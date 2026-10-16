@@ -13,6 +13,7 @@
  * Erişilebilirlik: düğümler gerçek <a> bağlantısıdır ve erişilebilir adı
  * "Eser adı, tür, durum" biçimindedir; durum renk + ikon + metinle verilir.
  */
+import { useState } from 'react';
 import { git } from '../../lib/yonlendirme';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
 import { IkonKilit, IkonTekrar, YildizDugum, type YildizDurumu } from '../../app/Ikonlar';
@@ -20,6 +21,7 @@ import { gunMetni, vadesiGelenler } from '../../lib/tekrar';
 import type { YolUnitesi } from '@shared/types';
 import { KonusanMaskot } from '../../app/Maskot';
 import { GununEseriDavet } from '../gunun-eseri/GununEseriDavet';
+import { TanitimTuru, tanitimGorulduMu } from './TanitimTuru';
 
 /** Zikzak: düğümler sırayla sola/sağa kayar (px). */
 const KAYMALAR = [0, -56, -84, -56, 0, 56, 84, 56];
@@ -151,6 +153,10 @@ function UniteYolu({
 export function YolSayfasi() {
   const { yol, yukleniyor, hata, ilerleme, tekrar } = useDurum();
   const seviye = useSeviye();
+  // İlk açılış turu: yalnızca hiç ders bitirmemiş, turu görmemiş kullanıcıya.
+  const [tanitim, setTanitim] = useState(
+    () => ilerleme.tamamlananDersler.length === 0 && !tanitimGorulduMu(),
+  );
 
   if (yukleniyor && !yol) {
     return (
@@ -198,15 +204,19 @@ export function YolSayfasi() {
         )}
       </div>
 
-      <KonusanMaskot
-        mesaj={
-          tamamlanan === 0
-            ? 'Merhaba, ben Kâşif! İlk eserimizi birlikte keşfedelim mi?'
-            : tamamlanan === toplamDers
-              ? 'Bütün eserleri keşfettin! Arşivde daha yüzlercesi var.'
-              : undefined
-        }
-      />
+      {tanitim ? (
+        <TanitimTuru onBitti={() => setTanitim(false)} />
+      ) : (
+        <KonusanMaskot
+          mesaj={
+            tamamlanan === 0
+              ? 'Merhaba, ben Kâşif! İlk eserimizi birlikte keşfedelim mi?'
+              : tamamlanan === toplamDers
+                ? 'Bütün eserleri keşfettin! Arşivde daha yüzlercesi var.'
+                : undefined
+          }
+        />
+      )}
 
       <GununEseriDavet />
 

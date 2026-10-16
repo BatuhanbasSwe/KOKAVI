@@ -119,6 +119,20 @@ Başvuruda: **yok** (Duolingo "başarılar"; ödül sistemini güçlendirir).
 
 ---
 
+## 6. İlk açılış turu — `İlk açılış turu` commit'i
+
+Başvuruda: **yok** (Duolingo'nun "tanışalım" ekranları).
+
+- Hiç ders bitirmemiş yeni kullanıcı Öğrenme Yolu'nu açınca maskot Kâşif'le 4 sayfalık bir kart:
+  *Merhaba ben Kâşif → Her gün kısa ders (ceza yok!) → Elmas, seri, rozet → Harita ve sınıf*.
+- Sayfa noktaları, maskot zıplaması, kayan metin. **Atla** ile tek dokunuşta geçilir; bir kez
+  gösterilir (cihazda hatırlanır).
+- Modal değil, sayfanın içinde kart: odak tuzağı / ekran okuyucu riski yok, testleri bozmaz.
+
+**Test**: `tests/tanitim.test.tsx` (3). Öğrenme Yolu'nun axe denetimi turla birlikte de 0 ihlal.
+
+---
+
 ## Geri alma
 
 Bir özelliği istemezsen (örnek Günün Eseri):

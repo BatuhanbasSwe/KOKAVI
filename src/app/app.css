@@ -828,3 +828,77 @@ body {
     transform: translateX(calc(var(--kayma, 0px) * 0.55));
   }
 }
+
+/* --- İlk açılış turu (yol sayfası) ------------------------------------------ */
+.kart.tanitim {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--b-3) var(--b-4);
+  align-items: center;
+  border: 3px solid var(--vurgu);
+  background: var(--vurgu-yumusak);
+}
+.tanitim__maskot {
+  grid-row: span 2;
+  animation: tanitim-zipla 600ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+.tanitim__govde {
+  animation: tanitim-kay 360ms ease-out both;
+}
+.tanitim__baslik {
+  margin: 0 0 var(--b-1);
+}
+.tanitim__metin {
+  margin: 0;
+}
+.tanitim__noktalar {
+  display: flex;
+  gap: var(--b-1);
+}
+.tanitim__nokta {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cizgi-kalin);
+  transition: width var(--gecis-normal), background var(--gecis-normal);
+}
+.tanitim__nokta--aktif {
+  width: 26px;
+  border-radius: var(--kose-tam);
+  background: var(--vurgu);
+}
+.tanitim__eylem {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+}
+@media (max-width: 480px) {
+  .tanitim {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .tanitim__maskot {
+    grid-row: auto;
+  }
+  .tanitim__eylem {
+    justify-content: center;
+  }
+}
+@keyframes tanitim-zipla {
+  0% {
+    scale: 0.6;
+    opacity: 0;
+  }
+  70% {
+    scale: 1.1;
+  }
+}
+@keyframes tanitim-kay {
+  from {
+    opacity: 0;
+    translate: 24px 0;
+  }
+}
