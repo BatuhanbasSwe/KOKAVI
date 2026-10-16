@@ -119,7 +119,8 @@
 }
 .canli-takma-ad {
   background: var(--ikincil-yumusak);
-  color: var(--ikincil-metin);
+  color: var(--ikincil);
+  border: 2px solid var(--ikincil);
 }
 .canli-puan {
   background: var(--odul);
@@ -269,6 +270,14 @@ button.canli-secenek:active:not(:disabled) {
 .canli-cevaplayan {
   font-weight: 800;
   color: var(--metin-ikincil);
+}
+
+/* Telefonda seçenekler ekrana sığsın: oyuncu ekranında fotoğraf daha kısa. */
+.canli--oyuncu .canli-soru__foto {
+  max-height: 28vh;
+}
+.canli--oyuncu .canli-soru__metin {
+  font-size: var(--yazi-lg);
 }
 
 /* --- Geri sayım --------------------------------------------------------------- */
@@ -618,4 +627,33 @@ button.canli-secenek:active:not(:disabled) {
 .canli-davet h2,
 .canli-davet p {
   margin: 0;
+}
+
+/* Katılım QR kodu: koyu nokta açık zemin (temada ters dönse de modern
+   telefon kameraları ters QR'ı da okur). */
+.canli-pin__yollar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--b-4);
+}
+.canli-pin__yollar p {
+  margin: 0;
+  max-width: 34ch;
+}
+.canli-qr {
+  width: min(200px, 60vw);
+  height: auto;
+  border-radius: var(--kose-sm);
+}
+.canli-qr__zemin {
+  fill: var(--zemin-kart);
+}
+.canli-qr__nokta {
+  fill: var(--metin);
+}
+
+.canli-sira {
+  text-align: left;
 }

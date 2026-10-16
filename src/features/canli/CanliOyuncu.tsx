@@ -13,7 +13,7 @@ import { Konfeti } from '@/app/Konfeti';
 import { Maskot } from '@/app/Maskot';
 import type { CanliOyuncuDurumu } from '@shared/canli';
 import { CanliApiHatasi, PIN_BICIMI, canliApi, canliDepo } from './canliApi';
-import { GeriSayim, Podyum, SEKILLER, SekilRozeti, useYoklama } from './parcalar';
+import { Duyuru, GeriSayim, Podyum, SEKILLER, SekilRozeti, useYoklama } from './parcalar';
 import './canli.css';
 
 /** `#/canli?pin=123456` bağlantısından PIN'i okur (öğretmen tahtaya bağlantı yazabilir). */
@@ -168,6 +168,7 @@ export function CanliOynaSayfasi({ pin }: { pin: string }) {
         </p>
       )}
 
+      <Duyuru mesaj={veri ? oyuncuDuyurusu(veri) : ''} />
       {!veri ? (
         <p role="status">Oyuna bağlanılıyor…</p>
       ) : (
@@ -180,6 +181,22 @@ export function CanliOynaSayfasi({ pin }: { pin: string }) {
       )}
     </div>
   );
+}
+
+/** Ekran okuyucuya aşama değişince söylenecek tek cümle. */
+function oyuncuDuyurusu(d: CanliOyuncuDurumu): string {
+  if (d.asama === 'lobi') return `Hazırsın. Takma adın ${d.takmaAd}.`;
+  if (d.asama === 'bitti') return `Oyun bitti. ${d.sira}. oldun, ${d.puan} puan topladın.`;
+  const soru = d.soru!;
+  if (d.asama === 'soru') {
+    return d.cevabim === null
+      ? `Soru ${soru.no + 1}: ${soru.soru}`
+      : 'Cevabın alındı. Sonuç birazdan.';
+  }
+  const s = d.sonuc!;
+  return s.dogruMu
+    ? `Doğru! ${s.kazanilan} puan kazandın.`
+    : `Doğru cevap: ${soru.secenekler[s.dogruIndex]}. Puanın düşmedi.`;
 }
 
 function OyuncuAsamasi({
@@ -202,7 +219,7 @@ function OyuncuAsamasi({
           Senin takma adın <strong>{d.takmaAd}</strong>. Öğretmenin oyunu başlatınca sorular burada
           görünecek.
         </p>
-        <p className="metin-soluk" role="status">
+        <p className="metin-soluk">
           Şu ana kadar {d.oyuncuSayisi} kişi katıldı.
         </p>
       </section>
@@ -217,7 +234,7 @@ function OyuncuAsamasi({
         <h1 id="canli-baslik" className="canli-son__baslik">
           {ilkUcte ? 'Harikasın, podyumdasın!' : 'Oyun bitti, aferin!'}
         </h1>
-        <p className="canli-son__ozet" role="status">
+        <p className="canli-son__ozet">
           {d.oyuncuSayisi} kişi içinde <strong>{d.sira}.</strong> oldun ve{' '}
           <strong>{d.puan} puan</strong> topladın.
         </p>
@@ -282,7 +299,7 @@ function OyuncuAsamasi({
         <span className="canli-bekle__sekil">
           <SekilRozeti i={d.cevabim!} />
         </span>
-        <h1 id="canli-baslik" role="status">
+        <h1 id="canli-baslik">
           Cevabın alındı!
         </h1>
         <p className="metin-ikincil">Diğerleri cevaplarken bekle… Sonuç birazdan.</p>
@@ -303,7 +320,7 @@ function OyuncuAsamasi({
       <div className="canli-sonuc__rozet" aria-hidden="true">
         {s.dogruMu ? '✓' : d.cevabim === null ? '⏱' : '↻'}
       </div>
-      <h1 id="canli-baslik" role="status" className="canli-sonuc__baslik">
+      <h1 id="canli-baslik" className="canli-sonuc__baslik">
         {s.dogruMu
           ? `Doğru! +${s.kazanilan} puan`
           : d.cevabim === null

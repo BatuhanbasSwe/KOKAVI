@@ -162,7 +162,7 @@ describe('canlı yarışma ekranları', () => {
     );
     const { container } = await ac(`#/canli/oyna/${PIN}`);
     await screen.findByText('Bu sefer olmadı');
-    expect(screen.getByText(/Puanın düşmedi/)).toBeInTheDocument();
+    expect(screen.getByText('Puanın düşmedi; bir sonraki soruda yeniden dene.')).toBeInTheDocument();
     expect(screen.getByText(/Kaynak: Vakıf Katılım/)).toBeInTheDocument();
     expect(await ihlaller(container)).toEqual([]);
   });

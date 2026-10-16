@@ -15,7 +15,16 @@ import {
   type CanliSunucuDurumu,
 } from '@shared/canli';
 import { CanliApiHatasi, canliApi, canliDepo } from './canliApi';
-import { GeriSayim, Podyum, SEKILLER, SekilRozeti, SiraListesi, useYoklama } from './parcalar';
+import {
+  Duyuru,
+  GeriSayim,
+  Podyum,
+  QrKod,
+  SEKILLER,
+  SekilRozeti,
+  SiraListesi,
+  useYoklama,
+} from './parcalar';
 import './canli.css';
 
 const SORU_SAYILARI = [5, CANLI_SORU_SAYISI.varsayilan, 10, CANLI_SORU_SAYISI.en_cok];
@@ -179,6 +188,7 @@ export function CanliYonetSayfasi({ pin }: { pin: string }) {
         </p>
       )}
       <div role="alert">{eylemHatasi && <p className="bildirim bildirim--hata">{eylemHatasi}</p>}</div>
+      <Duyuru mesaj={veri ? yonetimDuyurusu(veri) : ''} />
       {!veri ? (
         <p role="status">Oyun yükleniyor…</p>
       ) : (
@@ -186,6 +196,15 @@ export function CanliYonetSayfasi({ pin }: { pin: string }) {
       )}
     </div>
   );
+}
+
+function yonetimDuyurusu(d: CanliSunucuDurumu): string {
+  if (d.asama === 'lobi') return `${d.oyuncular.length} oyuncu katıldı.`;
+  if (d.asama === 'bitti') return `Yarışma bitti. Birinci: ${d.siralama[0]?.takmaAd ?? 'yok'}.`;
+  const soru = d.soru!;
+  return d.asama === 'soru'
+    ? `Soru ${soru.no + 1}: ${soru.soru}`
+    : `Süre bitti. Doğru cevap: ${soru.secenekler[d.sonuc!.dogruIndex]}.`;
 }
 
 function YonetimAsamasi({
@@ -212,15 +231,20 @@ function YonetimAsamasi({
           <p className="canli-pin__sayi" aria-label={`PIN: ${d.pin.split('').join(' ')}`}>
             {d.pin.slice(0, 3)} {d.pin.slice(3)}
           </p>
-          <p className="metin-ikincil">
-            Kök Avı → <strong>Sınıfım</strong> → <strong>Canlı yarışmaya katıl</strong>
-            <br />
-            ya da <span className="canli-adres">{katilimAdresi}</span>
-          </p>
+          <div className="canli-pin__yollar">
+            <QrKod metin={katilimAdresi} etiket="Katılım bağlantısının QR kodu" />
+            <p className="metin-ikincil">
+              Telefon kamerasıyla QR kodu okut
+              <br />
+              ya da Kök Avı → <strong>Sınıfım</strong> → <strong>Canlı yarışmaya katıl</strong>
+              <br />
+              <span className="canli-adres">{katilimAdresi}</span>
+            </p>
+          </div>
         </div>
 
         <div className="canli-lobi__alt">
-          <h2 className="canli-lobi__sayi" role="status">
+          <h2 className="canli-lobi__sayi">
             {d.oyuncular.length === 0
               ? 'Oyuncular bekleniyor…'
               : `${d.oyuncular.length} oyuncu katıldı`}
@@ -277,7 +301,7 @@ function YonetimAsamasi({
         {d.asama === 'soru' ? (
           <>
             <GeriSayim kalanMs={soru.kalanMs} sureSn={soru.sureSn} anahtar={`${soru.no}`} />
-            <span className="canli-cevaplayan" role="status">
+            <span className="canli-cevaplayan">
               {d.cevaplayan} / {d.oyuncular.length} cevapladı
             </span>
           </>
