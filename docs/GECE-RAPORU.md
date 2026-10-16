@@ -208,6 +208,22 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 ---
 
+# İkinci tur (16 Ekim sabah, senin seçtiklerin)
+
+## 11. Hayrat mı Akar mı? — `Hayrat mı Akar mı` commit'i
+
+- Öğrenme Yolu → **Pratik** köşesi → `#/hayrat-akar`. Tur başına 10 kart (en az 3 akar).
+- Kart sola (hayrat) / sağa (akar) **sürüklenir**; aynı iş iki büyük düğmeyle ve klavyede ← → ile yapılır.
+- Cevaptan sonra gerekçe + kaynak: ör. *"Koza Hanı — kirası İstanbul'daki II. Bayezid Külliyesi'ne gidiyordu."*
+  Öğretici istisna: **Issız Han** ve **Kanuni Kervansarayı** han ama **hayrat** (yolculara hizmet).
+- Sınıflandırma yalnızca envanterdeki vakfiye cümlelerinden (28 eser). Külliyeler, Irgandı Köprüsü
+  (köprü hayrat + dükkân akar), kiliseler ve vakfiye metni olmayanlar **oyuna alınmadı**.
+- Süre baskısı yok; yanlışta puan düşmez ("↻ yeni öğrendin").
+
+**Test**: `tests/hayrat-akar.test.tsx` (4) — veri, tur dengesi, düğme+klavye akışı, axe.
+
+---
+
 ## Geri alma
 
 Bir özelliği istemezsen (örnek Günün Eseri):

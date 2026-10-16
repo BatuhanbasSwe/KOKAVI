@@ -22,6 +22,7 @@ import type { YolUnitesi } from '@shared/types';
 import { KonusanMaskot } from '../../app/Maskot';
 import { GununEseriDavet } from '../gunun-eseri/GununEseriDavet';
 import { TanitimTuru, tanitimGorulduMu } from './TanitimTuru';
+import { PratikKartlari } from './PratikKartlari';
 
 /** Zikzak: düğümler sırayla sola/sağa kayar (px). */
 const KAYMALAR = [0, -56, -84, -56, 0, 56, 84, 56];
@@ -219,6 +220,17 @@ export function YolSayfasi() {
       )}
 
       <GununEseriDavet />
+
+      <PratikKartlari
+        kartlar={[
+          {
+            href: '#/hayrat-akar',
+            baslik: 'Hayrat mı Akar mı?',
+            alt: 'Hizmet mi eder, gelir mi getirir?',
+            simge: '⇄',
+          },
+        ]}
+      />
 
       {bekleyenTekrar.length > 0 ? (
         <div className="kart tekrar-karti" role="status">
