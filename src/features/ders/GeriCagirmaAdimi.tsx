@@ -10,6 +10,7 @@ import type { Egzersiz } from '@shared/types';
 import { EgzersizKabugu, IpucuBildirimi } from './EgzersizKabugu';
 import { IkonTekrar } from '../../app/Ikonlar';
 import { useEfekt } from '../../app/useEfekt';
+import { sayacArtir } from '../rozetler/rozetMantigi';
 import type { TekrarGorevi } from './DersSayfasi';
 import { EslestirEgzersizi } from './EslestirEgzersizi';
 import { SiralaEgzersizi } from './SiralaEgzersizi';
@@ -168,7 +169,11 @@ export function GeriCagirmaAdimi({
   /** Egzersiz bitti: ipucusuzsa kombo artar, değilse sıfırlanır. */
   const egzersizBitti = (ipucusuz = !ipucuAlindi.current) => {
     ipucuAlindi.current = false;
-    setKombo((k) => (ipucusuz ? k + 1 : 0));
+    const yeniKombo = ipucusuz ? kombo + 1 : 0;
+    setKombo(yeniKombo);
+    // Son egzersiz de ipucusuz bittiyse: kusursuz ders (rozet sayacı, yalnızca cihazda).
+    const toplam = egzersizler.length + ofset;
+    if (sirasi === toplam - 1 && yeniKombo === toplam) sayacArtir('kusursuzDers');
     onIlerle();
   };
 

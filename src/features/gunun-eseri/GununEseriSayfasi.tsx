@@ -14,6 +14,7 @@ import { useDurum } from '@/app/DurumSaglayici';
 import { Konfeti } from '@/app/Konfeti';
 import { Maskot } from '@/app/Maskot';
 import { useEfekt } from '@/app/useEfekt';
+import { ROZET_OLAYI } from '../rozetler/rozetMantigi';
 import { gunAnahtari } from '@/lib/ilerleme';
 import {
   HAK,
@@ -86,6 +87,7 @@ export function GununEseriSayfasi() {
       const ist = istatistikGuncelle(istatistik, gun, s.dogru, yeni.length);
       setIstatistik(ist);
       depo.istatistikYaz(ist);
+      window.dispatchEvent(new Event(ROZET_OLAYI)); // rozet bildirimi yeniden hesaplasın
     }
     const e = eserBul(eserId)!;
     cal(s.dogru ? 'kutlama' : 'ipucu');

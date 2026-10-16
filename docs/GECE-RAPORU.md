@@ -100,6 +100,25 @@ Başvuruda: **yok** (Duolingo'daki "üst üste doğru" hissi).
 
 ---
 
+## 5. Başarım rozetleri — `Başarım rozetleri` commit'i
+
+Başvuruda: **yok** (Duolingo "başarılar"; ödül sistemini güçlendirir).
+
+- **Kâşif Defteri**'nin altında *Rozetlerim (x/14)* panosu: sekiz köşeli çini yıldızı rozetler.
+  Kilitli olanlar gri + kilit + "nasıl kazanılır" metni.
+- Rozetler: İlk Adım (1 ders), Meraklı Kâşif (5), Vakıf Uzmanı (20), Büyük Kâşif (hepsi),
+  **Bursa/Konya/Hatay Kâşifi** (şehri bitir), Üç Gün / Bir Hafta (seri), Kusursuz Ders
+  (bütün egzersizler ipucusuz), Dedektif (Günün Eseri ilk tahminde), Günlük Avcı
+  (Günün Eseri 5 kez), Sınıfın Yıldızı (canlı yarışmada ilk üç).
+- Rozet kazanılınca altta **"Yeni rozet!"** bildirimi (yıldız dönerek gelir, ses çalar, 5 sn sonra
+  kapanır; kapatma düğmesi var). İlk açılışta mevcut rozetler sessizce sayılır — eski
+  kullanıcıya bildirim yağmuru olmaz.
+- Rozetler ilerlemeden **hesaplanır**, kaybedilmez. Her şey cihazda (sunucuya bir şey gitmez).
+
+**Test**: `tests/rozetler.test.tsx` (5) + kombo testine kusursuz ders senaryosu.
+
+---
+
 ## Geri alma
 
 Bir özelliği istemezsen (örnek Günün Eseri):

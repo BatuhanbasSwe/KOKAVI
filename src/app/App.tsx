@@ -21,6 +21,7 @@ import { CarsiSayfasi } from '../features/carsi/CarsiSayfasi';
 import { KorumaliPanel } from '../features/panel/KorumaliPanel';
 import { OgretmenPaneli, SinifKoduGirisi } from '../features/ogretmen';
 import { GununEseriSayfasi } from '../features/gunun-eseri/GununEseriSayfasi';
+import { RozetBildirimi } from '../features/rozetler/Rozetler';
 import { CanliGirisSayfasi, CanliOynaSayfasi } from '../features/canli/CanliOyuncu';
 import { CanliKurSayfasi, CanliYonetSayfasi } from '../features/canli/CanliYonetim';
 import {
@@ -279,6 +280,8 @@ function Kabuk() {
           </p>
         )}
       </main>
+
+      <RozetBildirimi />
 
       {!odakModu && (
         <footer className="altbilgi">

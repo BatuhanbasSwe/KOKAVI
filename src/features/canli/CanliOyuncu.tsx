@@ -9,6 +9,7 @@
  */
 import { useEffect, useState, type FormEvent } from 'react';
 import { useEfekt } from '@/app/useEfekt';
+import { sayacArtir } from '../rozetler/rozetMantigi';
 import { git } from '@/lib/yonlendirme';
 import { Konfeti } from '@/app/Konfeti';
 import { Maskot } from '@/app/Maskot';
@@ -115,7 +116,20 @@ export function CanliOynaSayfasi({ pin }: { pin: string }) {
   useEffect(() => {
     if (!veri) return;
     if (veri.asama === 'cevap' && veri.sonuc) cal(veri.sonuc.dogruMu ? 'dogru' : 'ipucu');
-    if (veri.asama === 'bitti') cal(veri.sira !== null && veri.sira <= 3 ? 'kutlama' : 'rozet');
+    if (veri.asama === 'bitti') {
+      const podyumda = veri.sira !== null && veri.sira <= 3;
+      cal(podyumda ? 'kutlama' : 'rozet');
+      // Rozet sayacı: aynı oyun yenilenince iki kez sayılmasın.
+      const anahtar = `kokavi-canli-podyum-${pin}`;
+      try {
+        if (podyumda && !sessionStorage.getItem(anahtar)) {
+          sessionStorage.setItem(anahtar, '1');
+          sayacArtir('podyum');
+        }
+      } catch {
+        /* depolama kapalı */
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [anAnahtari]);
 

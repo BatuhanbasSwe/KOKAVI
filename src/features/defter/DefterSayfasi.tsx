@@ -16,6 +16,7 @@
  * Erişilebilirlik: şehir seçimi aria-pressed düğmeleri; öğrenilen sayfalar
  * gerçek <button>, öğrenilmeyenler metinle "henüz öğrenilmedi" diye okunur.
  */
+import { RozetPanosu } from '../rozetler/Rozetler';
 import { useEffect, useMemo, useState } from 'react';
 import type { Eser } from '@shared/types';
 import { api } from '../../lib/api';
@@ -252,6 +253,8 @@ export function DefterSayfasi() {
           ))}
         </section>
       )}
+
+      <RozetPanosu />
     </div>
   );
 }

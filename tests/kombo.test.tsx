@@ -9,6 +9,7 @@ import { useState } from 'react';
 import type { Egzersiz } from '../shared/types';
 import { DurumSaglayici } from '../src/app/DurumSaglayici';
 import { GeriCagirmaAdimi } from '../src/features/ders/GeriCagirmaAdimi';
+import { sayaclariOku } from '../src/features/rozetler/rozetMantigi';
 
 const egz = (i: number): Egzersiz<'eser-tani'> => ({
   id: `e${i}`,
@@ -35,6 +36,7 @@ function Kap({ adet }: { adet: number }) {
 
 beforeEach(() => {
   cleanup();
+  localStorage.clear();
   vi.stubGlobal(
     'fetch',
     vi.fn(async () => new Response(JSON.stringify({ sehirler: [] }), { status: 200 })),
@@ -60,5 +62,18 @@ describe('kombo', () => {
     expect(await screen.findByText(/üst üste ilk denemede/)).toHaveTextContent('2 egzersiz üst üste ilk denemede!');
     await coz(3, true); // önce yanlış → ipucu
     expect(screen.queryByText(/üst üste ilk denemede/)).toBeNull();
+    await coz(4);
+    expect(sayaclariOku().kusursuzDers).toBe(0); // bir ipucu alındı → kusursuz değil
+  });
+
+  it('bütün egzersizler ipucusuz biterse kusursuz ders sayılır (rozet sayacı)', async () => {
+    render(
+      <DurumSaglayici>
+        <Kap adet={3} />
+      </DurumSaglayici>,
+    );
+    for (const i of [1, 2, 3]) await coz(i);
+    expect(await screen.findByText('Bitti')).toBeInTheDocument();
+    expect(sayaclariOku().kusursuzDers).toBe(1);
   });
 });
