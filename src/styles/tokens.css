@@ -65,7 +65,7 @@
 [data-tema='koyu'] {
   color-scheme: dark;
 
-  --zemin: #0e1315;
+  --zemin: #000000; /* tam siyah (kullanıcı kararı) */
   --zemin-kart: #161d20;
   --zemin-vurgu: #1d2629;
 

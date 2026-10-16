@@ -20,7 +20,7 @@ Turkuaz/yeşil vurgu kullanıcı tarafından reddedildi; vurgu **safran**.
 ## 2. Görsel sistem
 
 ### Renk (tek vurgu)
-- Zemin `#0e1315` (siyah değil, soğuk koyu), yüzey `#161d20`, yüzey-2 `#1d2629`, çizgi `#2a3539`.
+- Zemin `#000000` (tam siyah; kullanıcı kararı, 2026-10-16), yüzey `#161d20`, yüzey-2 `#1d2629`, çizgi `#2a3539`.
 - Metin `#eef2f0`, ikincil `#9fb0ad` (koyu zeminde ≥ 4.5:1).
 - **Tek vurgu: safran `#ffbf3c`** (üstündeki metin koyu `#2a1c00`). Ana eylem, aktif sekme,
   ilerleme, biten durak, seri ve ödül. **Turkuaz ve yeşil arayüzden tamamen kalkar.**

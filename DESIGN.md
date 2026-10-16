@@ -23,7 +23,7 @@
 
 | Rol | Jeton | Koyu | Not |
 |---|---|---|---|
-| Zemin | `--zemin` | `#0e1315` | soğuk koyu, siyah değil |
+| Zemin | `--zemin` | `#000000` | tam siyah; yüzeyler soğuk koyu gri |
 | Yüzey | `--zemin-kart` | `#161d20` | kart, liste |
 | Yüzey 2 | `--zemin-vurgu` | `#1d2629` | simge kutusu, girdi, ikincil düğme |
 | Çizgi | `--cizgi` / `--cizgi-kalin` | `#2a3539` / `#3a474c` | 1px |
