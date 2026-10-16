@@ -12,15 +12,16 @@ beforeEach(() => {
 });
 
 describe('tanıtım turu', () => {
-  it('4 sayfa İleri ile ilerler; son sayfada "Hadi başlayalım!" kapatır ve hatırlanır', async () => {
+  it('4 sayfa İleri ile ilerler; son sayfada öğrenme sırası seçilir ve hatırlanır', async () => {
     const bitti = vi.fn();
     render(<TanitimTuru onBitti={bitti} />);
     expect(screen.getByRole('heading', { name: 'Merhaba, ben Kâşif!' })).toBeInTheDocument();
     for (let i = 0; i < 3; i++) await userEvent.click(screen.getByRole('button', { name: 'İleri' }));
     expect(screen.getByText('Tanışalım · 4/4')).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Atla' })).toBeNull();
-    await userEvent.click(screen.getByRole('button', { name: 'Hadi başlayalım!' }));
-    expect(bitti).toHaveBeenCalledOnce();
+    expect(screen.getByRole('heading', { name: 'Nasıl ilerlemek istersin?' })).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Zaman sırasıyla ilerle' }));
+    expect(bitti).toHaveBeenCalledWith('zaman');
     expect(tanitimGorulduMu()).toBe(true);
   });
 

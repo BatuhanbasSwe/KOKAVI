@@ -307,6 +307,21 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 **Test**: `tests/canli.test.ts` (+2), `tests/canli-arayuz.test.tsx` (+1).
 
+# Üçüncü tur (senin notların)
+
+## 19. Zamana göre öğrenme — `Zamana göre öğrenme` commit'i
+
+- Öğrenme Yolu'nun üstünde iki sekme: **Şehirlere göre** (üniteler, eskisi gibi) · **Zamana göre**
+  (57 ders 636 → 1916, yüzyıl yüzyıl). Seçim cihazda hatırlanır.
+- Zamana göre: üstte **"Zamanda sıradaki durak"** kartı + listede "BAŞLA" etiketli, nabız atan durak
+  (en eski bitmemiş eser). Kilit yok; her ders açık.
+- **İlerleme ortak:** hangi sekmeden biterse bitsin, ders iki görünümde de bitmiş görünür.
+- Tanıtım turunun son sayfası artık soruyor: **"Nasıl ilerlemek istersin?"** →
+  *Şehir şehir ilerle* / *Zaman sırasıyla ilerle*.
+- Zaman tüneli (Pratik) ile aynı liste bileşeni (`ZamanListesi`).
+
+**Test**: `tests/yol-zaman.test.tsx` + tur testi güncellendi.
+
 ---
 
 ## Geri alma

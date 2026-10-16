@@ -9,6 +9,7 @@
  */
 import { useState } from 'react';
 import { Maskot } from '@/app/Maskot';
+import type { YolGorunumu } from './yolGorunumu';
 
 const ANAHTAR = 'kokavi-tanitim-v1';
 
@@ -29,9 +30,9 @@ const SAYFALAR = [
       'Ders bitirince elmas kazanırsın. Her gün gelirsen serin büyür. Başarılarına rozetler eklenir, hepsi Kâşif Defteri’nde.',
   },
   {
-    baslik: 'Haritada ve sınıfta keşfet',
+    baslik: 'Nasıl ilerlemek istersin?',
     metin:
-      'Eserleri haritada bul, Günün Eseri’ni tahmin et, sınıfınla canlı yarışmaya katıl. Hazırsan başlayalım!',
+      'Şehir şehir gidebilir ya da yüzyıllar boyunca, en eski eserden en yeniye yolculuk edebilirsin. Sonra da değiştirebilirsin.',
   },
 ];
 
@@ -43,18 +44,18 @@ export function tanitimGorulduMu(): boolean {
   }
 }
 
-export function TanitimTuru({ onBitti }: { onBitti: () => void }) {
+export function TanitimTuru({ onBitti }: { onBitti: (secim?: YolGorunumu) => void }) {
   const [sayfa, setSayfa] = useState(0);
   const son = sayfa === SAYFALAR.length - 1;
   const s = SAYFALAR[sayfa]!;
 
-  function kapat() {
+  function kapat(secim?: YolGorunumu) {
     try {
       localStorage.setItem(ANAHTAR, new Date().toISOString().slice(0, 10));
     } catch {
       /* yine de kapanır */
     }
-    onBitti();
+    onBitti(secim);
   }
 
   return (
@@ -77,14 +78,25 @@ export function TanitimTuru({ onBitti }: { onBitti: () => void }) {
         ))}
       </div>
       <div className="tanitim__eylem">
-        {!son && (
-          <button type="button" className="dugme dugme--ikincil" onClick={kapat}>
-            Atla
-          </button>
+        {son ? (
+          <>
+            <button type="button" className="dugme" onClick={() => kapat('sehir')}>
+              Şehir şehir ilerle
+            </button>
+            <button type="button" className="dugme dugme--mavi" onClick={() => kapat('zaman')}>
+              Zaman sırasıyla ilerle
+            </button>
+          </>
+        ) : (
+          <>
+            <button type="button" className="dugme dugme--ikincil" onClick={() => kapat()}>
+              Atla
+            </button>
+            <button type="button" className="dugme" onClick={() => setSayfa(sayfa + 1)}>
+              İleri
+            </button>
+          </>
         )}
-        <button type="button" className="dugme" onClick={() => (son ? kapat() : setSayfa(sayfa + 1))}>
-          {son ? 'Hadi başlayalım!' : 'İleri'}
-        </button>
       </div>
     </section>
   );

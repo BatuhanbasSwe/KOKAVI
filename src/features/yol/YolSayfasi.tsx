@@ -24,6 +24,8 @@ import { GununEseriDavet } from '../gunun-eseri/GununEseriDavet';
 import { TanitimTuru, tanitimGorulduMu } from './TanitimTuru';
 import { PratikKartlari } from './PratikKartlari';
 import { SeriSeridi } from '../seri/Seri';
+import { ZamanListesi } from '../zaman/ZamanListesi';
+import { gorunumOku, gorunumYaz, type YolGorunumu } from './yolGorunumu';
 import { useHataSayisi } from '../hatalar/HatalarSayfasi';
 
 /** Zikzak: düğümler sırayla sola/sağa kayar (px). */
@@ -157,6 +159,12 @@ export function YolSayfasi() {
   const { yol, yukleniyor, hata, ilerleme, tekrar } = useDurum();
   const seviye = useSeviye();
   const hataSayisi = useHataSayisi();
+  // Öğrenme sırası: şehir şehir (üniteler) ya da zaman sırasıyla (cihazda hatırlanır).
+  const [gorunum, setGorunumDurum] = useState<YolGorunumu>(gorunumOku);
+  const setGorunum = (g: YolGorunumu) => {
+    setGorunumDurum(g);
+    gorunumYaz(g);
+  };
   // İlk açılış turu: yalnızca hiç ders bitirmemiş, turu görmemiş kullanıcıya.
   const [tanitim, setTanitim] = useState(
     () => ilerleme.tamamlananDersler.length === 0 && !tanitimGorulduMu(),
@@ -209,7 +217,12 @@ export function YolSayfasi() {
       </div>
 
       {tanitim ? (
-        <TanitimTuru onBitti={() => setTanitim(false)} />
+        <TanitimTuru
+          onBitti={(secim) => {
+            if (secim) setGorunum(secim);
+            setTanitim(false);
+          }}
+        />
       ) : (
         <KonusanMaskot
           mesaj={
@@ -269,7 +282,28 @@ export function YolSayfasi() {
         </div>
       ) : null}
 
-      {yol.sehirler.map((sehir) => (
+      <div className="yol-gorunum" role="group" aria-label="Öğrenme sırası">
+        <button
+          type="button"
+          className="yol-gorunum__dugme"
+          aria-pressed={gorunum === 'sehir'}
+          onClick={() => setGorunum('sehir')}
+        >
+          Şehirlere göre
+        </button>
+        <button
+          type="button"
+          className="yol-gorunum__dugme"
+          aria-pressed={gorunum === 'zaman'}
+          onClick={() => setGorunum('zaman')}
+        >
+          Zamana göre
+        </button>
+      </div>
+
+      {gorunum === 'zaman' && <ZamanListesi mod="yol" />}
+
+      {gorunum === 'sehir' && yol.sehirler.map((sehir) => (
         <section key={sehir.sehirId} aria-labelledby={`sehir-${sehir.sehirId}`}>
           <div className="sehir-basligi">
             <h2 id={`sehir-${sehir.sehirId}`}>
