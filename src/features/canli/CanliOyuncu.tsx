@@ -9,6 +9,7 @@
  */
 import { useEffect, useState, type FormEvent } from 'react';
 import { useEfekt } from '@/app/useEfekt';
+import { IkonSaat, IkonTekrar, IkonTik } from '@/app/Ikonlar';
 import { sayacArtir } from '../rozetler/rozetMantigi';
 import { git } from '@/lib/yonlendirme';
 import { Konfeti } from '@/app/Konfeti';
@@ -343,7 +344,7 @@ function OyuncuAsamasi({
     >
       {ust}
       <div className="canli-sonuc__rozet" aria-hidden="true">
-        {s.dogruMu ? '✓' : d.cevabim === null ? '⏱' : '↻'}
+        {s.dogruMu ? <IkonTik boyut={44} /> : d.cevabim === null ? <IkonSaat boyut={44} /> : <IkonTekrar boyut={44} />}
       </div>
       <h1 id="canli-baslik" className="canli-sonuc__baslik">
         {s.dogruMu

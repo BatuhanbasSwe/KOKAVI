@@ -11,6 +11,7 @@ import { useDurum } from '../../app/DurumSaglayici';
 import { baslikAyarla } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, arsivMetni, IL_ADLARI, type ArsivEseri } from './arsivVeri';
 import './arsiv.css';
+import { IkonYildiz } from '../../app/Ikonlar';
 
 const KISA = 3;
 
@@ -102,7 +103,9 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
 
       {dersId ? (
         <div className="kart arsiv-ders">
-          <p style={{ margin: 0, fontWeight: 900 }}>★ Bu eserin bir dersi var!</p>
+          <p style={{ margin: 0, fontWeight: 900 }}>
+            <IkonYildiz boyut={18} /> Bu eserin bir dersi var!
+          </p>
           <a className="dugme" href={`#/ders/${encodeURIComponent(dersId)}`}>
             Derse git
           </a>

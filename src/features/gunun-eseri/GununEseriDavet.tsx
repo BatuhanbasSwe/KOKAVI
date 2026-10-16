@@ -1,11 +1,11 @@
 /**
- * Öğrenme yolunun üstündeki "Günün Eseri" kartı: bugün oynandı mı, gösterir.
+ * Günün Eseri'nin bugünkü durumu — Öğrenme Yolu'ndaki "Bugün" şeridinde kart olarak.
  */
 import { gunAnahtari } from '@/lib/ilerleme';
 import { HAK, depo, degerlendir, gunNumarasi, gununEseri } from './oyun';
 import './gunun-eseri.css';
 
-export function GununEseriDavet() {
+export function gununEseriDurumu(): { no: number; durum: string; bitti: boolean } {
   const gun = gunNumarasi(gunAnahtari());
   const { tahminler } = depo.gunKaydi(gun);
   const hedef = gununEseri(gun);
@@ -18,23 +18,11 @@ export function GununEseriDavet() {
   });
   const bitti = kazandi || tahminler.length >= HAK;
   const durum = kazandi
-    ? '✓ Bugün bildin'
+    ? 'Bugün bildin!'
     : bitti
       ? 'Yarın yeni eser'
       : tahminler.length > 0
         ? `${HAK - tahminler.length} hak kaldı`
-        : 'Oyna';
-
-  return (
-    <a className="ge-davet" href="#/gunun-eseri">
-      <span className="ge-davet__simge" aria-hidden="true">
-        ?
-      </span>
-      <span className="ge-davet__metin">
-        <span className="ge-davet__baslik">Günün Eseri #{gun + 1}</span>
-        <span className="ge-davet__alt">İpuçlarından bugünün vakıf eserini bul.</span>
-      </span>
-      <span className="ge-davet__durum">{durum}</span>
-    </a>
-  );
+        : 'İpuçlarından eseri bul';
+  return { no: gun + 1, durum, bitti };
 }

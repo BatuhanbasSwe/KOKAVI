@@ -1,12 +1,17 @@
 /**
- * Öğrenme yolundaki "Pratik" köşesi: derslerin dışındaki kısa oyunlar.
- * Kartlar gerçek bağlantı (<a>), simgeler süs.
+ * Öğrenme yolundaki "Bugün" şeridi: Günün Eseri ve kısa pratik oyunları.
+ * Telefonda yana kaydırılır (scroll-snap), geniş ekranda ızgara. Kartlar gerçek
+ * bağlantı (<a>); simgeler SVG ve süs (aria-hidden).
  */
+import type { ReactNode } from 'react';
+
 export interface PratikKarti {
   href: string;
   baslik: string;
   alt: string;
-  simge: string;
+  simge: ReactNode;
+  /** Vurgulu kart (Günün Eseri). */
+  vurgu?: boolean;
 }
 
 export function PratikKartlari({ kartlar }: { kartlar: PratikKarti[] }) {
@@ -14,12 +19,12 @@ export function PratikKartlari({ kartlar }: { kartlar: PratikKarti[] }) {
   return (
     <section aria-labelledby="pratik-baslik" className="pratik">
       <h2 id="pratik-baslik" className="pratik__baslik">
-        Pratik
+        Bugün
       </h2>
       <ul className="pratik__liste">
         {kartlar.map((k) => (
           <li key={k.href}>
-            <a className="pratik__kart" href={k.href}>
+            <a className={`pratik__kart${k.vurgu ? ' pratik__kart--vurgu' : ''}`} href={k.href}>
               <span className="pratik__simge" aria-hidden="true">
                 {k.simge}
               </span>

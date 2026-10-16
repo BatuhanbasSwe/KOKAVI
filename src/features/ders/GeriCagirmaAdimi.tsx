@@ -8,7 +8,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Egzersiz } from '@shared/types';
 import { EgzersizKabugu, IpucuBildirimi } from './EgzersizKabugu';
-import { IkonTekrar } from '../../app/Ikonlar';
+import { IkonAlev, IkonTekrar } from '../../app/Ikonlar';
 import { useEfekt } from '../../app/useEfekt';
 import { sayacArtir } from '../rozetler/rozetMantigi';
 import { hataEkle } from '../hatalar/hataDeposu';
@@ -140,7 +140,7 @@ export function KomboBandi({ kombo }: { kombo: number }) {
   return (
     <p className="ders-kombo" key={kombo}>
       <span className="ders-kombo__alev" aria-hidden="true">
-        🔥
+        <IkonAlev boyut={22} />
       </span>
       <span>
         <strong>{kombo} egzersiz</strong> üst üste ilk denemede!

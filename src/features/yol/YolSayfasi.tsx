@@ -16,11 +16,19 @@
 import { useState } from 'react';
 import { git } from '../../lib/yonlendirme';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
-import { IkonKilit, IkonTekrar, YildizDugum, type YildizDurumu } from '../../app/Ikonlar';
+import {
+  IkonDegistir,
+  IkonKilit,
+  IkonKumSaati,
+  IkonSoru,
+  IkonTekrar,
+  YildizDugum,
+  type YildizDurumu,
+} from '../../app/Ikonlar';
+import { Maskot } from '../../app/Maskot';
 import { gunMetni, vadesiGelenler } from '../../lib/tekrar';
 import type { YolUnitesi } from '@shared/types';
-import { KonusanMaskot } from '../../app/Maskot';
-import { GununEseriDavet } from '../gunun-eseri/GununEseriDavet';
+import { gununEseriDurumu } from '../gunun-eseri/GununEseriDavet';
 import { TanitimTuru, tanitimGorulduMu } from './TanitimTuru';
 import { PratikKartlari } from './PratikKartlari';
 import { SeriSeridi } from '../seri/Seri';
@@ -155,10 +163,24 @@ function UniteYolu({
   );
 }
 
+const GUNLUK_SOZLER = [
+  'Bugün bir eser keşfedelim mi?',
+  'Her eserin bir vakfı, her vakfın bir hikâyesi var!',
+  'Bir han, uzak bir şehirdeki camiyi yaşatabilir. Merak ettin mi?',
+  'Haritada yakınlaştır: ilçeler, sonra eserler çıkar!',
+  'Yanlış cevap yok, sadece ipucu var. Hadi!',
+];
+
+/** Gün boyunca aynı kalan maskot sözü. */
+function gunlukSoz(): string {
+  return GUNLUK_SOZLER[Math.floor(Date.now() / 86_400_000) % GUNLUK_SOZLER.length]!;
+}
+
 export function YolSayfasi() {
   const { yol, yukleniyor, hata, ilerleme, tekrar } = useDurum();
   const seviye = useSeviye();
   const hataSayisi = useHataSayisi();
+  const gunEseri = gununEseriDurumu();
   // Öğrenme sırası: şehir şehir (üniteler) ya da zaman sırasıyla (cihazda hatırlanır).
   const [gorunum, setGorunumDurum] = useState<YolGorunumu>(gorunumOku);
   const setGorunum = (g: YolGorunumu) => {
@@ -197,24 +219,23 @@ export function YolSayfasi() {
 
   return (
     <div className="yigin" style={{ gap: 'var(--b-5)' }}>
-      <div className="yol-ozet">
-        <div>
-          <h1>Öğrenme Yolun</h1>
-          <p className="metin-ikincil" style={{ margin: 0 }}>
-            {tamamlanan}/{toplamDers} ders · {seviye.ad}
-            {seviye.kalanDers !== null ? ` · ${seviye.kalanDers} ders sonra bir üst seviye` : ''}
-          </p>
+      <header className="yol-ozet">
+        <h1 className="yol-ozet__baslik">Öğrenme Yolun</h1>
+        <p className="yol-ozet__alt">
+          {tamamlanan}/{toplamDers} ders · {seviye.ad}
+          {seviye.kalanDers !== null ? ` · ${seviye.kalanDers} ders sonra bir üst seviye` : ''}
+        </p>
+        <div
+          className="yol-ozet__cubuk"
+          role="progressbar"
+          aria-label="Öğrenme yolu ilerlemesi"
+          aria-valuemin={0}
+          aria-valuemax={toplamDers}
+          aria-valuenow={tamamlanan}
+        >
+          <span style={{ ['--oran' as string]: toplamDers ? tamamlanan / toplamDers : 0 }} />
         </div>
-        {yol.guncelDersId && (
-          <button
-            type="button"
-            className="dugme"
-            onClick={() => git(`ders/${yol.guncelDersId}`)}
-          >
-            Derse devam
-          </button>
-        )}
-      </div>
+      </header>
 
       {tanitim ? (
         <TanitimTuru
@@ -224,34 +245,48 @@ export function YolSayfasi() {
           }}
         />
       ) : (
-        <KonusanMaskot
-          mesaj={
-            tamamlanan === 0
-              ? 'Merhaba, ben Köstik! İlk eserimizi birlikte keşfedelim mi?'
-              : tamamlanan === toplamDers
-                ? 'Bütün eserleri keşfettin! Arşivde daha yüzlercesi var.'
-                : undefined
-          }
-        />
+        // Karşılama kartı: Köstik konuşur, ana eylem hemen altında (tek dokunuş).
+        <section className="kart karsilama" aria-label="Köstik">
+          <Maskot boyut={72} mutlu={tamamlanan === toplamDers} />
+          <div className="karsilama__govde">
+            <p className="karsilama__soz">
+              {tamamlanan === 0
+                ? 'Merhaba, ben Köstik! İlk eserimizi birlikte keşfedelim mi?'
+                : tamamlanan === toplamDers
+                  ? 'Bütün eserleri keşfettin! Arşivde daha yüzlercesi var.'
+                  : gunlukSoz()}
+            </p>
+            {yol.guncelDersId && (
+              <button type="button" className="dugme dugme--genis" onClick={() => git(`ders/${yol.guncelDersId}`)}>
+                {tamamlanan === 0 ? 'Başla' : 'Derse devam'}
+              </button>
+            )}
+          </div>
+        </section>
       )}
 
       <SeriSeridi />
 
-      <GununEseriDavet />
-
       <PratikKartlari
         kartlar={[
           {
+            href: '#/gunun-eseri',
+            baslik: `Günün Eseri #${gunEseri.no}`,
+            alt: gunEseri.durum,
+            simge: <IkonSoru boyut={22} />,
+            vurgu: !gunEseri.bitti,
+          },
+          {
             href: '#/hayrat-akar',
             baslik: 'Hayrat mı Akar mı?',
-            alt: 'Hizmet mi eder, gelir mi getirir?',
-            simge: '⇄',
+            alt: 'Hizmet mi, gelir mi?',
+            simge: <IkonDegistir boyut={22} />,
           },
           {
             href: '#/zaman-tuneli',
             baslik: 'Zaman tüneli',
             alt: 'Eserler yüzyıl yüzyıl',
-            simge: '⌛',
+            simge: <IkonKumSaati boyut={22} />,
           },
           ...(hataSayisi > 0
             ? [
@@ -259,7 +294,7 @@ export function YolSayfasi() {
                   href: '#/hatalar',
                   baslik: 'Hatalarımı çalış',
                   alt: `${hataSayisi} soru seni bekliyor`,
-                  simge: '↻',
+                  simge: <IkonTekrar boyut={22} />,
                 },
               ]
             : []),

@@ -11,6 +11,7 @@
  *  - Zorunlu alan "(zorunlu)" metniyle duyurulur — renk tek başına anlam taşımaz.
  */
 import type { ReactNode } from 'react';
+import { IkonUyari } from '../../app/Ikonlar';
 
 export interface AlanGirdiOzellikleri {
   id: string;
@@ -60,7 +61,7 @@ export function Alan({ id, etiket, hata, ipucu, zorunlu, sinif, children }: Alan
       {hata ? (
         // role="alert": alan hatası DOM'a girdiği anda duyurulur (SC 4.1.3).
         <p className="panel__hata" id={hataId ?? undefined} role="alert">
-          <span aria-hidden="true">⚠ </span>
+          <IkonUyari boyut={16} />{' '}
           {hata}
         </p>
       ) : null}
@@ -286,7 +287,7 @@ export function OnayKutusu({ id, etiket, isaretli, onDegistir, ipucu, hata }: On
       {hata ? (
         // role="alert": alan hatası DOM'a girdiği anda duyurulur (SC 4.1.3).
         <p className="panel__hata" id={hataId ?? undefined} role="alert">
-          <span aria-hidden="true">⚠ </span>
+          <IkonUyari boyut={16} />{' '}
           {hata}
         </p>
       ) : null}

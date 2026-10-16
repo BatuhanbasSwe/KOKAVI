@@ -71,6 +71,9 @@
 .ge-ipucu__kilit {
   font-size: var(--yazi-sm);
 }
+.ge-ipucu__kilit-ikon {
+  vertical-align: -2px;
+}
 .ge-ipucu__foto {
   width: 100%;
   max-height: 260px;

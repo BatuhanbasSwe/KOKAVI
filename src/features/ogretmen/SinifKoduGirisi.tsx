@@ -21,6 +21,7 @@
  */
 import { useState, type FormEvent } from 'react';
 import { Alan } from '@/features/panel/Alan';
+import { IkonYildiz } from '@/app/Ikonlar';
 import {
   ApiHatasi,
   SINIF_KODU_ORNEK,
@@ -108,7 +109,7 @@ export function SinifKoduGirisi({ onKatildi }: SinifKoduGirisiProps) {
             <div>
               <p className="etiket">Katıldın</p>
               <h2 id="katilim-baslik">
-                <span aria-hidden="true">🎉 </span>
+                <IkonYildiz boyut={22} />{' '}
                 {katilim.ad} sınıfına katıldın
               </h2>
               <p className="metin-ikincil">

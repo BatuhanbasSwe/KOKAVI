@@ -7,6 +7,7 @@
  */
 import { useMemo, useState } from 'react';
 import { useDurum } from '@/app/DurumSaglayici';
+import { IkonAlev } from '@/app/Ikonlar';
 import { gunMetni } from '@/lib/tekrar';
 import { AYLAR, GUN_KISA, GUN_UZUN, aktifGunler, ayHaftalari, enUzunSeri, haftaGunleri } from './seriTakvimi';
 import './seri.css';
@@ -38,7 +39,7 @@ export function SeriSeridi() {
     <section className="kart seri-serit" aria-labelledby="seri-serit-baslik">
       <div className="seri-serit__ust">
         <h2 id="seri-serit-baslik" className="seri-serit__baslik">
-          <span aria-hidden="true">🔥 </span>
+          <IkonAlev boyut={20} className="seri-alev" />
           {seri} günlük seri
         </h2>
         <a className="seri-serit__bag" href="#/seri">
@@ -59,7 +60,7 @@ export function SeriSeridi() {
                 {GUN_KISA[i]}
               </span>
               <span className="seri-gun__isaret" aria-hidden="true">
-                {aktif ? '🔥' : bugunMu ? '•' : ''}
+                {aktif ? <IkonAlev boyut={18} className="seri-alev" /> : bugunMu ? '•' : ''}
               </span>
               <span className="sr-only">
                 {GUN_UZUN[i]}
@@ -89,7 +90,7 @@ export function SeriSayfasi() {
       <header>
         <p className="etiket">Keşif serisi</p>
         <h1 className="seri-sayfa__baslik">
-          <span aria-hidden="true">🔥 </span>
+          <IkonAlev boyut={28} className="seri-alev" />
           {seri} günlük seri
         </h1>
         <p className="metin-ikincil">{davet(seri, bugunYapildi)}</p>
@@ -155,7 +156,9 @@ export function SeriSayfasi() {
                       key={g}
                       className={`seri-hucre${gunler.has(g) ? ' seri-hucre--aktif' : ''}${g === bugun ? ' seri-hucre--bugun' : ''}`}
                     >
-                      <span aria-hidden="true">{gunler.has(g) ? '🔥' : Number(g.slice(-2))}</span>
+                      <span aria-hidden="true">
+                        {gunler.has(g) ? <IkonAlev boyut={18} className="seri-alev" /> : Number(g.slice(-2))}
+                      </span>
                       <span className="sr-only">
                         {gunAdi(g)}
                         {g === bugun ? ', bugün' : ''}: {gunler.has(g) ? 'ders yapıldı' : 'ders yok'}

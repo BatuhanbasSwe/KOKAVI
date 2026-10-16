@@ -32,8 +32,12 @@
   stroke: var(--cizgi-kalin);
   stroke-width: 1.5;
 }
-.rozet-gorsel--kilitli .rozet-gorsel__isaret {
-  font-size: 13px;
+.rozet-gorsel__kilit rect {
+  fill: var(--metin-soluk);
+}
+.rozet-gorsel__kilit path {
+  stroke: var(--metin-soluk);
+  stroke-width: 2.5;
 }
 
 .rozet-izgara {

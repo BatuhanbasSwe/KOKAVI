@@ -33,6 +33,7 @@ import {
 } from './bolgeHaritasi';
 import { VAKIF_BAGLARI } from './vakifAgi';
 import { eserBul } from '../gunun-eseri/oyun';
+import { IkonOk, IkonSikke } from '../../app/Ikonlar';
 import { EserSatiri } from './EserSatiri';
 import { BOS_FILTRELER, filtreleriCoz } from './filtreler';
 import './harita.css';
@@ -418,7 +419,8 @@ export function HaritaSayfasi() {
             <li key={b.akarId} className="vakif-agi__bag">
               <span className="vakif-agi__akar">{eserBul(b.akarId)?.kisaAd ?? b.akarId}</span>
               <span className="vakif-agi__ok" aria-hidden="true">
-                → 💰 →
+                <IkonSikke boyut={18} />
+                <IkonOk boyut={18} />
               </span>
               <span className="vakif-agi__hayrat">
                 {b.hedef.ad} <span className="metin-soluk">({b.hedef.yer})</span>

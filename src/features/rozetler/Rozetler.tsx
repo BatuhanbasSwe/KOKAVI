@@ -36,9 +36,16 @@ export function RozetGorseli({ rozet, acik, boyut = 64 }: { rozet: Rozet; acik: 
         d="M32 2 40.6 11.2 53.2 10.8 52.8 23.4 62 32 52.8 40.6 53.2 53.2 40.6 52.8 32 62 23.4 52.8 10.8 53.2 11.2 40.6 2 32 11.2 23.4 10.8 10.8 23.4 11.2Z"
       />
       <circle className="rozet-gorsel__ic" cx="32" cy="32" r="17" />
-      <text className="rozet-gorsel__isaret" x="32" y="33" textAnchor="middle" dominantBaseline="middle">
-        {acik ? rozet.isaret : '🔒'}
-      </text>
+      {acik ? (
+        <text className="rozet-gorsel__isaret" x="32" y="33" textAnchor="middle" dominantBaseline="middle">
+          {rozet.isaret}
+        </text>
+      ) : (
+        <g className="rozet-gorsel__kilit">
+          <rect x="25" y="31" width="14" height="11" rx="2.5" />
+          <path d="M28 31v-3a4 4 0 0 1 8 0v3" fill="none" />
+        </g>
+      )}
     </svg>
   );
 }

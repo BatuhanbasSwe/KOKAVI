@@ -10,6 +10,7 @@
  */
 import { useRef, useState, type FormEvent } from 'react';
 import { useOturum } from '../../lib/oturum';
+import { IkonUyari } from '../../app/Ikonlar';
 
 export function GirisEkrani() {
   const { girisYap } = useOturum();
@@ -57,7 +58,7 @@ export function GirisEkrani() {
             role="alert"
             tabIndex={-1}
           >
-            <span aria-hidden="true">⚠ </span>
+            <IkonUyari boyut={16} />{' '}
             {hata}
           </div>
         )}

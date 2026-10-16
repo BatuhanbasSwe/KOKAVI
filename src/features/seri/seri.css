@@ -12,6 +12,9 @@
   gap: var(--b-2);
 }
 .seri-serit__baslik {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-1);
   margin: 0;
   font-size: var(--yazi-md);
 }

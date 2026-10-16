@@ -583,7 +583,9 @@
   font-weight: 900;
 }
 .vakif-agi__ok {
-  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
   color: var(--sicak);
 }
 .vakif-agi__hayrat {
@@ -599,4 +601,15 @@
   .hm-hedef {
     animation: none;
   }
+}
+
+/* Dokunma hedefi ≥ 44 px (MapLibre varsayılanı 29 px) */
+.harita-kap .maplibregl-ctrl-group button {
+  width: 44px;
+  height: 44px;
+}
+.harita-rota-bag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }

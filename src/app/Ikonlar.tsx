@@ -140,6 +140,72 @@ export const IkonTekrar = (p: IkonProps) => (
   </Svg>
 );
 
+/* --- Pratik ve oyunlar --------------------------------------------------- */
+
+export const IkonSoru = (p: IkonProps) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01" />
+  </Svg>
+);
+
+/** Hayrat ⇄ Akar: iki yönlü ok. */
+export const IkonDegistir = (p: IkonProps) => (
+  <Svg {...p}>
+    <path d="M4 8h14l-3-3M20 16H6l3 3" />
+  </Svg>
+);
+
+export const IkonKumSaati = (p: IkonProps) => (
+  <Svg {...p}>
+    <path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9" />
+  </Svg>
+);
+
+/** Vakıf geliri: sikke. */
+export const IkonSikke = (p: IkonProps) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <circle cx="12" cy="12" r="5" />
+    <path d="M12 9.5v5" />
+  </Svg>
+);
+
+export const IkonSaat = (p: IkonProps) => (
+  <Svg {...p}>
+    <circle cx="12" cy="13" r="8" />
+    <path d="M12 9v4l2.5 2M9 2h6" />
+  </Svg>
+);
+
+export const IkonYildiz = (p: IkonProps) => (
+  <Svg {...p}>
+    <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z" />
+  </Svg>
+);
+
+/** Şans: zar. */
+export const IkonZar = (p: IkonProps) => (
+  <Svg {...p}>
+    <rect x="4" y="4" width="16" height="16" rx="3.5" />
+    <path d="M8.5 8.5h.01M15.5 8.5h.01M12 12h.01M8.5 15.5h.01M15.5 15.5h.01" strokeWidth={3} />
+  </Svg>
+);
+
+/** Uyarı üçgeni (form hataları). */
+export const IkonUyari = (p: IkonProps) => (
+  <Svg {...p}>
+    <path d="M12 4 21 19H3Z" />
+    <path d="M12 10v4M12 16.5v.01" />
+  </Svg>
+);
+
+export const IkonOk = (p: IkonProps) => (
+  <Svg {...p}>
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </Svg>
+);
+
 /* --- Eser türleri ------------------------------------------------------- */
 
 const TUR_YOLLARI: Record<string, ReactNode> = {

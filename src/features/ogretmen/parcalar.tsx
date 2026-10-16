@@ -13,6 +13,7 @@
  * DİKKAT: Hiçbir metinde "öğrenci sayısı" geçmez; sunucu yalnızca sayaç tutar.
  */
 import { useState, type ReactNode } from 'react';
+import { IkonKilit, IkonUyari } from '@/app/Ikonlar';
 
 // ---------------------------------------------------------------------------
 // Canlı bölge
@@ -109,7 +110,7 @@ export function GizlilikNotu() {
   return (
     <div className="bildirim bildirim--uyari ogretmen__gizlilik" role="note">
       <p className="ogretmen__gizlilik-baslik">
-        <span aria-hidden="true">⚠ </span>
+        <IkonUyari boyut={16} />{' '}
         <strong>Bu sayılar kaç öğrenci olduğunu göstermez.</strong>
       </p>
       <p>
@@ -125,7 +126,7 @@ export function KatilimGizlilikNotu() {
   return (
     <div className="bildirim bildirim--bilgi ogretmen__gizlilik" role="note">
       <p>
-        <span aria-hidden="true">🔒 </span>
+        <IkonKilit boyut={16} />{' '}
         Bu sayı <strong>kaç kişi olduğunuzu göstermez.</strong> Uygulama senden isim, e-posta veya
         cihaz bilgisi istemez; yalnızca “bu ders bu sınıfta kaç kez tamamlandı” sayılır.
       </p>

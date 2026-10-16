@@ -16,6 +16,7 @@ import { Maskot } from '@/app/Maskot';
 import { useEfekt } from '@/app/useEfekt';
 import { ROZET_OLAYI } from '../rozetler/rozetMantigi';
 import { DinleDugmesi } from '../ders/DinleDugmesi';
+import { IkonKilit } from '@/app/Ikonlar';
 import { gunAnahtari } from '@/lib/ilerleme';
 import {
   HAK,
@@ -149,7 +150,7 @@ export function GununEseriSayfasi() {
                 <span className="ge-ipucu__baslik">{ip.baslik}</span>
                 {!acik ? (
                   <span className="ge-ipucu__kilit">
-                    <span aria-hidden="true">🔒 </span>
+                    <IkonKilit boyut={14} className="ge-ipucu__kilit-ikon" />{' '}
                     {i}. yanlış tahminden sonra açılır
                   </span>
                 ) : ip.tur === 'foto' ? (

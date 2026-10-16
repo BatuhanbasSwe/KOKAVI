@@ -335,6 +335,26 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
   Görseli olduğu gibi kullanmak istersen `public/maskot/` klasörüne koy; tur ve boş ekranlarda büyük
   illüstrasyon olarak bağlarım.
 
+## 21. Mobil arayüz revizyonu — `Mobil arayüz revizyonu` commit'i
+
+İstediğin gibi **ui-ux-pro-max** (çocuk eğitim uygulaması → *Claymorphism* önerisi + profesyonel
+mobil kontrol listesi) ve **design-md** (Duolingo kütüphanede yok; **Airbnb** taban seçildi: tek vurgu,
+kart hiyerarşisi, mobilde alta yapışık eylem) kullanıldı. Sonuç proje kökünde **`DESIGN.md`**
+(Kök Avı'nın kendi tasarım sistemi; palet/yazı tipi/maskot bizim, marka varlığı kopyalanmadı).
+
+- **Öğrenme Yolu ilk ekranı sadeleşti:** başlık + ince ilerleme çubuğu → **Köstik karşılama kartı**
+  (söz + tek dokunuşla "Başla / Derse devam") → seri şeridi → **"Bugün" şeridi** (Günün Eseri, Hayrat mı
+  Akar mı, Zaman tüneli, Hatalarımı çalış; telefonda yana kaydırılır) → sekmeler → yol. Önceden 6 ayrı
+  blok vardı, asıl yol ekranın çok altında kalıyordu.
+- **Tipografi:** başlıklar 900 → 800 ve `text-wrap: balance`; telefonda h1 36 → 28px, h2 28 → 22px.
+- **Emoji simgeler kaldırıldı** (projenin kendi "emoji yok" kuralı zaten vardı; gece benim eklediklerim +
+  önceden kalan 🎲 🎓 ⚠ ★): 9 yeni SVG simge (soru, değiştir, kum saati, sikke, saat, yıldız, ok, zar, uyarı).
+  Yeni **`tests/emoji-yok.test.ts`** tekrar girmesini engelliyor.
+- **Dokunma/güvenli alan:** üst çubukta çentik payı; harita yakınlaştırma düğmeleri 29 → 44px;
+  "Keşif rotası" bağlantısı 44px. Alt sekme çubuğu ve ders eylem çubuğu zaten güvenli alan paylıydı.
+- **Doğrulama:** 12 sayfa × 360/375/414px'te yatay taşma yok; koyu temada yeni bileşenlerin metin
+  kontrastı ölçüldü (≥ 4.5:1).
+
 ---
 
 ## Geri alma

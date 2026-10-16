@@ -51,7 +51,8 @@ h3,
 h4 {
   margin: 0 0 var(--b-3);
   line-height: var(--satir-baslik);
-  font-weight: 900;
+  font-weight: 800;
+  text-wrap: balance;
 }
 
 h1 {
@@ -67,6 +68,19 @@ h3 {
 }
 h4 {
   font-size: var(--yazi-lg);
+}
+
+/* Telefon: başlık ölçeği bir kademe küçülür (28 / 22 / 18 px), satır dar kalmasın. */
+@media (max-width: 720px) {
+  h1 {
+    font-size: calc(1.75rem * var(--yazi-olcek));
+  }
+  h2 {
+    font-size: calc(1.375rem * var(--yazi-olcek));
+  }
+  h3 {
+    font-size: calc(1.125rem * var(--yazi-olcek));
+  }
 }
 
 p {
