@@ -257,6 +257,23 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 **Test**: `tests/seri-takvimi.test.tsx` (4).
 
+## 15. Vakıf ağı haritası — `Vakıf ağı haritası` commit'i
+
+- Harita'da **"Vakıf ağını göster"** düğmesi: akar yapılardan besledikleri hayratlara **akan kesik
+  çizgiler** + hedef etiketleri; harita Bursa → İstanbul → Gelibolu hepsini gösterecek kadar uzaklaşır.
+- Haritanın altında her zaman **"Para nereye akıyordu?"** listesi (metin eşdeğeri):
+  Koza Hanı / Pirinç Hanı → II. Bayezid Külliyesi (İstanbul) · Fidan Hanı → Mahmutpaşa Külliyesi ·
+  İpek Hanı → Yeşilcami · Nasuh Paşa Hamamı → Mesih Mehmed Paşa Camii (Gelibolu) ·
+  Demirtaş Hamamı → Demirtaş Camii.
+- **Yalnızca envanterde açıkça yazan 6 bağ.** "Yeni Bedesten" bağı çıkarım gerektirdiği için alınmadı.
+- Hedef konumları OpenStreetMap'ten (Beyazıt ve Mahmut Paşa camileri kesin; Gelibolu ve
+  Demirtaş Camii OSM'de bulunamadığından semt/ilçe merkezi, "(yaklaşık)" etiketli).
+  Sorgularda kişisel bilgi gönderilmedi.
+- 🎯 Jüriye: vakıf modelini ("bir han, uzak bir şehirdeki camiyi yaşatır") tek bakışta gösterir.
+- `bolgeHaritasiKur` artık `{ temizle, agGoster }` döndürüyor.
+
+**Test**: `tests/vakif-agi.test.tsx` (2).
+
 ---
 
 ## Geri alma

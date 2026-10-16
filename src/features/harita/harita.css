@@ -516,3 +516,87 @@
   display: inline-flex;
   align-items: center;
 }
+
+/* --- Vakıf ağı: akar → hayrat çizgileri + metin eşdeğeri ------------------- */
+.harita-ag-dugme {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--b-2) var(--b-3);
+}
+.harita-ag-dugme__not {
+  font-size: var(--yazi-sm);
+}
+.hm-hedef {
+  padding: 4px 10px;
+  border-radius: var(--kose-tam);
+  background: var(--odul);
+  color: var(--odul-metin);
+  border: 2px solid var(--odul-golge);
+  font-family: var(--yazi-aile);
+  font-weight: 900;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: var(--golge);
+  pointer-events: none;
+  animation: hm-hedef-gir 500ms cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+@keyframes hm-hedef-gir {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+.vakif-agi {
+  display: grid;
+  gap: var(--b-2);
+}
+.vakif-agi__baslik,
+.vakif-agi__giris,
+.vakif-agi__kaynak {
+  margin: 0;
+}
+.vakif-agi__kaynak {
+  font-size: var(--yazi-xs);
+}
+.vakif-agi__liste {
+  display: grid;
+  gap: var(--b-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.vakif-agi__bag {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px var(--b-2);
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-vurgu);
+}
+.vakif-agi__akar {
+  padding: 0 var(--b-2);
+  border-radius: var(--kose-tam);
+  background: var(--odul);
+  color: var(--odul-metin);
+  font-weight: 900;
+}
+.vakif-agi__ok {
+  font-weight: 900;
+  color: var(--sicak);
+}
+.vakif-agi__hayrat {
+  font-weight: 900;
+  color: var(--vurgu-koyu);
+}
+.vakif-agi__cumle {
+  flex: 1 0 100%;
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hm-hedef {
+    animation: none;
+  }
+}
