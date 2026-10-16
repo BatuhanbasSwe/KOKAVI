@@ -3,6 +3,39 @@
 > Batuhan için sabah okuma notu. Her özellik **ayrı commit**; istemediğini
 > tek komutla geri alabilirsin (en altta).
 
+## 30 saniyede özet
+
+| # | Özellik | Başvuruda? | Nerede görürsün |
+|---|---|---|---|
+| 1 | Canlı sınıf yarışması (Kahoot) | ✅ iş listesinde | Altbilgi → *Canlı yarışma kur*; çocuk: *Sınıfım → Canlı yarışmaya katıl* |
+| 2 | Günün Eseri (Wordle) | ❌ senin fikrin | Öğrenme Yolu'ndaki sarı kart |
+| 3 | Ses efektleri + titreşim | ~ (sessiz moda uyar) | Derste doğru/yanlış cevap |
+| 4 | Kombo sayacı | ❌ | Derste üst üste ipucusuz egzersiz |
+| 5 | Başarım rozetleri | ❌ | Kâşif Defteri → Rozetlerim |
+| 6 | İlk açılış turu | ❌ | Yeni kullanıcıda Öğrenme Yolu'nun üstü |
+| 7 | Şehir sertifikası | ❌ | Kâşif Defteri → Sertifikalarım |
+| 8 | Kâşif'in tepkileri | ❌ | Ders geri bildirim bandı |
+| 9 | Seviye rozetleri | ❌ | 6. ve 12. derste bildirim |
+| 10 | Uygulamayı yükle kartı | ~ (PWA) | Ayarlar |
+
+**Sonuç:** `npm run dogrula` yeşil — **23 test dosyası, 322 test** (gece öncesi 263), derleme
+başarılı. Her ekran tarayıcıda telefon (390 px) ve masaüstünde, açık ve koyu temada
+denendi; konsol hatası yok, yatay taşma yok.
+
+### Sabah kontrol listesi
+1. `npm run dev` → http://localhost:5173 (sunucuları kapattım; seed gerekmez, veritabanı değişmedi).
+2. Yeni kullanıcı gibi görmek için tarayıcıda gizli pencere aç: tur + Günün Eseri kartı çıkar.
+3. Kahoot'u iki sekmeyle dene: birinde *Canlı yarışma kur*, diğerinde PIN ile katıl.
+4. İstemediğin özelliği söyle, o commit'i geri alırım (en altta nasıl yapıldığı var).
+
+### Bilmen gereken açık noktalar
+- **Vercel + Kahoot:** odalar bellekte; canlı sürümde bölünebilir. Finalde `npm run dev:lan` ile laptoptan göster (`docs/DEMO.md` EK).
+- **İçerik okuması:** Günün Eseri'nin 57 ipucu cümlesini bir insan okumalı (`scripts/gunun-eseri.py` → `IPUCLARI`).
+- **DEMO.md'deki eski bilgi:** ana senaryoda "Konya/Kütahya/İzmir kilitli" yazıyor; Kütahya/İzmir artık yok. Senaryoya dokunmadım.
+- **Yeni paket:** `qrcode-generator@2.0.4` (MIT, bağımlılıksız). `npm install` gerekir.
+- **🔴 bölgeler (senin iznin ile):** `server/index.ts` (1 satır), yeni `server/canli/*`, `server/routes/canli.ts`, `shared/canli.ts`. Güvenlik testleri dahil hepsi yeşil.
+- **14:00 zamanlayıcısı** hâlâ kurulu: VS Code açık kalırsa bu oturuma "devam et" yazacak.
+
 ## Nerede?
 
 - Proje artık **yerel git** deposu (hiçbir yere push edilmedi).
