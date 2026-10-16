@@ -1,31 +1,79 @@
 /* ===========================================================================
-   Kâşif Defteri — albüm görünümü ve defter temaları (Vakıf Çarşısı)
+   Kâşif Defteri: iç sekmeler, pul albümü ve defter temaları (Vakıf Çarşısı).
    Temalar yalnızca jetonları yeniden eşler; yeni renk eklemez.
    =========================================================================== */
 
-.defter-kok {
+.defter-kok,
+[data-defter-tema] {
   --defter-vurgu: var(--vurgu);
-  --defter-vurgu-golge: var(--vurgu-golge);
-  --defter-kare-zemin: var(--zemin-kart);
-  --defter-kare-cerceve: var(--odul);
-  --defter-kare-golge: var(--odul-golge);
+  --defter-vurgu-metin: var(--vurgu-metin);
+  --defter-pul-kagit: var(--foto-metin);
 }
 
-.defter-kok[data-defter-tema='tema-ebru'] {
+[data-defter-tema='tema-ebru'] {
   --defter-vurgu: var(--ikincil);
-  --defter-vurgu-golge: var(--ikincil-golge);
-  --defter-kare-zemin: var(--ikincil-yumusak);
-  --defter-kare-cerceve: var(--ikincil);
-  --defter-kare-golge: var(--ikincil-golge);
+  --defter-vurgu-metin: var(--ikincil-metin);
 }
 
-.defter-kok[data-defter-tema='tema-kalemisi'] {
+[data-defter-tema='tema-kalemisi'] {
   --defter-vurgu: var(--hata);
-  --defter-vurgu-golge: color-mix(in srgb, var(--hata) 70%, #000);
-  --defter-kare-zemin: var(--odul-yumusak);
-  --defter-kare-cerceve: var(--hata);
-  --defter-kare-golge: var(--odul-golge);
+  --defter-vurgu-metin: var(--hata-metin);
 }
+
+/* --- İç sekmeler (tablist) ---------------------------------------------- */
+
+.defter-sekmeler {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--kose-sm);
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+}
+
+.defter-sekme {
+  min-height: 44px;
+  padding: 0 var(--b-1);
+  font: inherit;
+  font-family: var(--yazi-baslik);
+  font-weight: 700;
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color var(--gecis-hizli),
+    color var(--gecis-hizli);
+}
+
+.defter-sekme:hover {
+  color: var(--metin);
+}
+
+.defter-sekme[aria-selected='true'] {
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+}
+
+.defter-panel {
+  animation: defter-panel-gel 280ms var(--yay) both;
+}
+
+@keyframes defter-panel-gel {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Pullar ------------------------------------------------------------------ */
 
 .defter-ust {
   display: flex;
@@ -35,12 +83,9 @@
   flex-wrap: wrap;
 }
 
-.defter-ust h1 {
-  margin-bottom: var(--b-1);
-}
-
 .defter-sayac {
-  font-weight: 800;
+  font-family: var(--yazi-baslik);
+  font-weight: 700;
   color: var(--metin-ikincil);
 }
 
@@ -48,36 +93,28 @@
   display: flex;
   gap: var(--b-2);
   overflow-x: auto;
-  padding-bottom: var(--bas-derinlik);
 }
 
 .defter-sehir {
   flex-shrink: 0;
   min-height: 44px;
   padding: var(--b-2) var(--b-3);
-  border-radius: var(--kose-md);
-  border: 2px solid var(--cizgi);
-  background: var(--zemin-kart);
+  border-radius: var(--kose-sm);
+  border: 1px solid var(--cizgi-kalin);
+  background: transparent;
   color: var(--metin);
   font: inherit;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 3px 0 var(--cizgi);
 }
 
 .defter-sehir[aria-pressed='true'] {
-  background: var(--defter-vurgu);
+  background: var(--zemin-vurgu);
   border-color: var(--defter-vurgu);
-  color: var(--vurgu-metin);
-  box-shadow: 0 3px 0 var(--defter-vurgu-golge);
-}
-
-[data-tema='yuksek-kontrast'] .defter-sehir[aria-pressed='true'] {
-  color: #000;
 }
 
 .defter-cubuk .ilerleme-cubugu__dolgu {
-  background: var(--odul);
+  background: var(--defter-vurgu);
 }
 
 .defter-albumu {
@@ -86,7 +123,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--b-3);
+  gap: var(--b-4) var(--b-3);
 }
 
 @media (min-width: 640px) {
@@ -95,69 +132,107 @@
   }
 }
 
-.defter-karesi {
+.defter-pul {
   width: 100%;
-  min-height: 116px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: var(--b-2);
-  padding: var(--b-2);
-  border-radius: var(--kose-md);
-  text-align: center;
+  padding: 0;
   font: inherit;
-}
-
-.defter-karesi--acik {
-  background: var(--defter-kare-zemin);
-  border: 3px solid var(--defter-kare-cerceve);
-  box-shadow: 0 var(--bas-derinlik) 0 var(--defter-kare-golge);
+  text-align: center;
   color: var(--metin);
+  background: none;
+  border: 0;
+}
+
+button.defter-pul {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.defter-karesi--acik[aria-expanded='true'] {
-  transform: translateY(2px);
+button.defter-pul:focus-visible {
+  outline-offset: 4px;
 }
 
-.defter-karesi--kapali {
+/* Pul kâğıdı: kenarlar tırtıklı (maske yalnızca saydamlık okur). */
+.defter-pul__kagit {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  padding: 7px;
+  background: var(--defter-pul-kagit);
+  -webkit-mask:
+    linear-gradient(var(--zemin) 0 0) content-box,
+    radial-gradient(circle at center, transparent 3.2px, var(--zemin) 3.7px) -6px -6px / 12px 12px;
+  mask:
+    linear-gradient(var(--zemin) 0 0) content-box,
+    radial-gradient(circle at center, transparent 3.2px, var(--zemin) 3.7px) -6px -6px / 12px 12px;
+  transition: transform 160ms var(--yay);
+}
+
+button.defter-pul:active .defter-pul__kagit {
+  transform: scale(0.95) rotate(-1deg);
+}
+
+.defter-pul--acik[aria-expanded='true'] .defter-pul__kagit {
+  transform: rotate(-3deg);
+  outline: 3px solid var(--defter-vurgu);
+  outline-offset: 2px;
+}
+
+.defter-pul__resim {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: var(--metin-soluk);
   background: var(--zemin-vurgu);
-  border: 2px dashed var(--cizgi-kalin);
+}
+
+.defter-pul__resim img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* Öğrenilmemiş: boş pul çerçevesi */
+.defter-pul--kapali .defter-pul__kagit {
+  background: var(--cizgi-kalin);
+  opacity: 0.6;
+}
+
+.defter-pul--kapali .defter-pul__ad {
   color: var(--metin-soluk);
 }
 
-.defter-karesi__ikon {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--kose-sm);
-}
-
-.defter-karesi--acik .defter-karesi__ikon {
-  background: var(--defter-vurgu);
-  color: var(--vurgu-metin);
-}
-
-[data-tema='yuksek-kontrast'] .defter-karesi--acik .defter-karesi__ikon {
-  color: #000;
-}
-
-.defter-karesi--kapali .defter-karesi__ikon {
-  background: var(--cizgi);
-  color: var(--kilit-metin);
-}
-
-.defter-karesi__ad {
+.defter-pul__ad {
   font-size: var(--yazi-sm);
-  font-weight: 800;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Yeni açılan pul "basılır" */
+.defter-pul--acik .defter-pul__kagit {
+  animation: pul-bas 420ms var(--yay) both;
+}
+
+@keyframes pul-bas {
+  from {
+    transform: scale(1.25) rotate(-6deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 .defter-sayfasi--acik {
-  border-color: var(--defter-kare-cerceve);
-  border-width: 3px;
+  border-color: var(--defter-vurgu);
+  border-width: 2px;
 }
 
 .defter-baglanti {

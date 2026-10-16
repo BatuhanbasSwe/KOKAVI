@@ -76,7 +76,9 @@ export function SeriSeridi() {
 }
 
 /** `#/seri`: iki aylık takvim + istatistik. */
-export function SeriSayfasi() {
+/** `gomulu`: Kâşif Defteri sekmesinde (başlık h2 olur, sayfa başlığı defterde). */
+export function SeriSayfasi({ gomulu = false }: { gomulu?: boolean }) {
+  const Baslik = gomulu ? 'h2' : 'h1';
   const { bugun, gunler, seri, bugunYapildi } = useSeri();
   const [y, a] = bugun.split('-').map(Number) as [number, number];
   const [ofset, setOfset] = useState(0);
@@ -88,11 +90,11 @@ export function SeriSayfasi() {
   return (
     <div className="yigin seri-sayfa">
       <header>
-        <p className="etiket">Keşif serisi</p>
-        <h1 className="seri-sayfa__baslik">
+        {!gomulu && <p className="etiket">Keşif serisi</p>}
+        <Baslik className="seri-sayfa__baslik">
           <IkonAlev boyut={28} className="seri-alev" />
           {seri} günlük seri
-        </h1>
+        </Baslik>
         <p className="metin-ikincil">{davet(seri, bugunYapildi)}</p>
       </header>
 
