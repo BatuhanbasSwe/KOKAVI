@@ -8,7 +8,7 @@
  *
  * Kötü kurgu yok: rozet kaybedilmez, süre baskısı yoktur, karşılaştırma yoktur.
  */
-import type { Ilerleme, OgrenmeYolu } from '@shared/types';
+import { SEVIYE_ESIKLERI, type Ilerleme, type OgrenmeYolu } from '@shared/types';
 import { depo as gununEseriDeposu } from '../gunun-eseri/oyun';
 
 export type RozetKategori = 'ders' | 'sehir' | 'seri' | 'oyun';
@@ -48,6 +48,20 @@ const SEHIR_ROZETI = (id: string, ad: string): Rozet => ({
 export const SABIT_ROZETLER: Rozet[] = [
   { id: 'ilk-ders', ad: 'İlk Adım', aciklama: 'İlk dersini bitir.', kategori: 'ders', isaret: '1' },
   { id: 'bes-ders', ad: 'Meraklı Kâşif', aciklama: '5 ders bitir.', kategori: 'ders', isaret: '5' },
+  {
+    id: 'seviye-kalfa',
+    ad: 'Kalfa Oldun!',
+    aciklama: `${SEVIYE_ESIKLERI[1]!.esik} ders bitirip Çıraklıktan Kalfalığa yüksel.`,
+    kategori: 'ders',
+    isaret: 'K',
+  },
+  {
+    id: 'seviye-usta',
+    ad: 'Usta Oldun!',
+    aciklama: `${SEVIYE_ESIKLERI[2]!.esik} ders bitirip Usta ol.`,
+    kategori: 'ders',
+    isaret: 'U',
+  },
   { id: 'yirmi-ders', ad: 'Vakıf Uzmanı', aciklama: '20 ders bitir.', kategori: 'ders', isaret: '20' },
   { id: 'tum-dersler', ad: 'Büyük Kâşif', aciklama: 'Bütün dersleri bitir.', kategori: 'ders', isaret: '★' },
   { id: 'seri-3', ad: 'Üç Gün Üst Üste', aciklama: '3 gün üst üste ders yap.', kategori: 'seri', isaret: '3' },
@@ -96,6 +110,8 @@ export function kazanilanlar(g: RozetGirdisi): Set<string> {
   const toplam = (g.yol?.sehirler ?? []).reduce((t, s) => t + s.toplamSayi, 0);
   if (n >= 1) k.add('ilk-ders');
   if (n >= 5) k.add('bes-ders');
+  if (n >= SEVIYE_ESIKLERI[1]!.esik) k.add('seviye-kalfa');
+  if (n >= SEVIYE_ESIKLERI[2]!.esik) k.add('seviye-usta');
   if (n >= 20) k.add('yirmi-ders');
   if (toplam > 0 && n >= toplam) k.add('tum-dersler');
   for (const s of g.yol?.sehirler ?? []) if (s.toplamSayi > 0 && s.tamamlananSayi >= s.toplamSayi) k.add(`sehir-${s.sehirId}`);

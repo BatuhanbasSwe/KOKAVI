@@ -104,9 +104,9 @@ Başvuruda: **yok** (Duolingo'daki "üst üste doğru" hissi).
 
 Başvuruda: **yok** (Duolingo "başarılar"; ödül sistemini güçlendirir).
 
-- **Kâşif Defteri**'nin altında *Rozetlerim (x/14)* panosu: sekiz köşeli çini yıldızı rozetler.
+- **Kâşif Defteri**'nin altında *Rozetlerim (x/16)* panosu: sekiz köşeli çini yıldızı rozetler.
   Kilitli olanlar gri + kilit + "nasıl kazanılır" metni.
-- Rozetler: İlk Adım (1 ders), Meraklı Kâşif (5), Vakıf Uzmanı (20), Büyük Kâşif (hepsi),
+- Rozetler: İlk Adım (1 ders), Meraklı Kâşif (5), **Kalfa Oldun! (6) / Usta Oldun! (12)** — seviye atlama kutlaması, Vakıf Uzmanı (20), Büyük Kâşif (hepsi),
   **Bursa/Konya/Hatay Kâşifi** (şehri bitir), Üç Gün / Bir Hafta (seri), Kusursuz Ders
   (bütün egzersizler ipucusuz), Dedektif (Günün Eseri ilk tahminde), Günlük Avcı
   (Günün Eseri 5 kez), Sınıfın Yıldızı (canlı yarışmada ilk üç).
@@ -146,6 +146,20 @@ Başvuruda: **yok** (öğretmen/aile için somut bir "bitirdim" belgesi).
 - Küçük temizlik: `App.tsx`'teki iç içe `?:` zinciri (`aktifAd`) bir eşleme tablosuna (`UST_SEKME`) çevrildi.
 
 **Test**: `tests/sertifika.test.tsx` (3) — kilit, gizlilik, axe.
+
+---
+
+## 8. Kâşif'in tepkileri — `Kâşif geri bildirime tepki veriyor` commit'i
+
+Başvuruda: **yok** (Duolingo karakterlerinin tepki vermesi gibi).
+
+- Egzersiz geri bildirim bandında küçük maskot: doğruda **gülümseyip zıplar**, ipucunda
+  **yukarı bakıp "o" diye düşünür** (üzgün değil — ceza yok). Süs; anlam simge + metinde.
+
+## 9. Seviye rozetleri — `Seviye atlama rozetleri` commit'i
+
+- Çırak → Kalfa (6 ders) ve Kalfa → Usta (12 ders) geçişinde "Yeni rozet!" bildirimi çıkar.
+  Eşikler `shared/types.ts`'teki `SEVIYE_ESIKLERI`'nden okunur (tek kaynak).
 
 ---
 

@@ -43,6 +43,10 @@ describe('rozet hesabı', () => {
     expect(kazanilanlar(girdi(1)).has('ilk-ders')).toBe(true);
     expect(kazanilanlar(girdi(5)).has('bes-ders')).toBe(true);
     expect(kazanilanlar(girdi(20)).has('yirmi-ders')).toBe(true);
+    // Seviye atlama da rozetle kutlanır (Çırak → Kalfa 6 · Usta 12).
+    expect(kazanilanlar(girdi(5)).has('seviye-kalfa')).toBe(false);
+    expect(kazanilanlar(girdi(6)).has('seviye-kalfa')).toBe(true);
+    expect(kazanilanlar(girdi(12)).has('seviye-usta')).toBe(true);
     const hepsi = kazanilanlar(girdi(33));
     expect(hepsi.has('sehir-bursa')).toBe(true);
     expect(hepsi.has('tum-dersler')).toBe(true);
