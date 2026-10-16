@@ -161,6 +161,18 @@ Başvuruda: **yok** (Duolingo karakterlerinin tepki vermesi gibi).
 - Çırak → Kalfa (6 ders) ve Kalfa → Usta (12 ders) geçişinde "Yeni rozet!" bildirimi çıkar.
   Eşikler `shared/types.ts`'teki `SEVIYE_ESIKLERI`'nden okunur (tek kaynak).
 
+## 10. "Uygulamayı yükle" kartı — `Uygulamayı yükle kartı` commit'i
+
+Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yardımcı).
+
+- Ayarlar'da kart: Android/Chrome/Edge'de **Ana ekrana ekle** düğmesi tarayıcının kurulum
+  penceresini açar; iPhone'da "Paylaş → Ana Ekrana Ekle" adımları yazılır. Zaten kuruluysa
+  ya da tarayıcı desteklemiyorsa kart görünmez.
+- Test bir hata yakaladı ve düzeltildi: kabulden sonra kart kendini gizleyip "Yüklendi!"
+  mesajını yutuyordu.
+
+**Test**: `tests/yukleme.test.tsx` (2).
+
 ---
 
 ## Geri alma
