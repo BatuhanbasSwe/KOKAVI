@@ -121,7 +121,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       'source-layer': 'landuse',
       minzoom: 8,
       filter: ['match', ['get', 'class'], ['residential', 'suburb', 'neighbourhood', 'commercial', 'retail'], true, false],
-      paint: { 'fill-color': renk('--zemin-vurgu', '#F3ECDD'), 'fill-opacity': BELIR as unknown as number },
+      paint: { 'fill-color': renk('--zemin-vurgu', '#1d2629'), 'fill-opacity': BELIR as unknown as number },
     },
     {
       id: 'sokak-yesil',
@@ -129,7 +129,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       source: 'sokak',
       'source-layer': 'park',
       minzoom: 8,
-      paint: { 'fill-color': renk('--vurgu-yumusak', '#E3F2F0'), 'fill-opacity': BELIR as unknown as number },
+      paint: { 'fill-color': renk('--vurgu-yumusak', '#2b2414'), 'fill-opacity': BELIR as unknown as number },
     },
     {
       id: 'sokak-su',
@@ -137,7 +137,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       source: 'sokak',
       'source-layer': 'water',
       minzoom: 8,
-      paint: { 'fill-color': renk('--harita-deniz', '#E3EEF4'), 'fill-opacity': BELIR as unknown as number },
+      paint: { 'fill-color': renk('--harita-deniz', '#0b1416'), 'fill-opacity': BELIR as unknown as number },
     },
     {
       id: 'sokak-bina',
@@ -145,7 +145,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       source: 'sokak',
       'source-layer': 'building',
       minzoom: 13,
-      paint: { 'fill-color': renk('--cizgi', '#E8DFCC'), 'fill-opacity': 0.9 },
+      paint: { 'fill-color': renk('--cizgi', '#2a3539'), 'fill-opacity': 0.9 },
     },
     {
       id: 'sokak-yol-kenar',
@@ -155,7 +155,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       minzoom: 9,
       filter: ['match', ['get', 'class'], ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor'], true, false],
       layout: { 'line-cap': 'round', 'line-join': 'round' },
-      paint: { 'line-color': renk('--cizgi-kalin', '#CFC3AB'), 'line-width': yolGenisligi(1.5) },
+      paint: { 'line-color': renk('--cizgi-kalin', '#3a474c'), 'line-width': yolGenisligi(1.5) },
     },
     {
       id: 'sokak-yol',
@@ -166,7 +166,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       filter: ['match', ['get', 'class'], ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor'], true, false],
       layout: { 'line-cap': 'round', 'line-join': 'round' },
       paint: {
-        'line-color': ['case', anaYol, renk('--odul-yumusak', '#FFF6DC'), renk('--zemin-kart', '#FFFFFF')] as unknown as string,
+        'line-color': ['case', anaYol, renk('--odul-yumusak', '#2b2414'), renk('--zemin-kart', '#161d20')] as unknown as string,
         'line-width': yolGenisligi(1),
       },
     },
@@ -215,7 +215,7 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
         },
       },
       layers: [
-        { id: 'deniz', type: 'background', paint: { 'background-color': renk('--harita-deniz', '#E3EEF4') } },
+        { id: 'deniz', type: 'background', paint: { 'background-color': renk('--harita-deniz', '#0b1416') } },
         {
           id: 'il-dolgu',
           type: 'fill',
@@ -231,11 +231,11 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
               [
                 'case',
                 ['in', ['get', 'anahtar'], ['literal', eserliIller]],
-                renk('--harita-vurgulu', '#D7EFEC'),
-                renk('--harita-kara', '#F3ECDD'),
+                renk('--harita-vurgulu', '#2b2414'),
+                renk('--harita-kara', '#1d2629'),
               ],
               10,
-              renk('--harita-kara', '#F3ECDD'),
+              renk('--harita-kara', '#1d2629'),
             ],
           },
         },
@@ -246,7 +246,7 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
           source: 'ilceler',
           minzoom: ILCE_ESIGI - 0.6,
           paint: {
-            'fill-color': renk('--vurgu', '#0F7F7A'),
+            'fill-color': renk('--vurgu', '#ffbf3c'),
             // İlçe görünümünde yoğunluk; eser görünümünde sokaklar okunsun diye silikleşir.
             'fill-opacity': [
               'interpolate',
@@ -264,27 +264,27 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
           type: 'line',
           source: 'ilceler',
           minzoom: ILCE_ESIGI - 0.6,
-          paint: { 'line-color': renk('--vurgu-golge', '#0A5A56'), 'line-width': 0.9, 'line-opacity': 0.6 },
+          paint: { 'line-color': renk('--vurgu-golge', '#b8862a'), 'line-width': 0.9, 'line-opacity': 0.6 },
         },
         {
           id: 'il-sinir',
           type: 'line',
           source: 'iller',
-          paint: { 'line-color': renk('--harita-sinir', '#CFC3AB'), 'line-width': 0.8 },
+          paint: { 'line-color': renk('--harita-sinir', '#3a474c'), 'line-width': 0.8 },
         },
         {
           id: 'eserli-il-sinir',
           type: 'line',
           source: 'iller',
           filter: ['in', ['get', 'anahtar'], ['literal', eserliIller]],
-          paint: { 'line-color': renk('--vurgu', '#0F7F7A'), 'line-width': 1.8 },
+          paint: { 'line-color': renk('--vurgu', '#ffbf3c'), 'line-width': 1.8 },
         },
         {
           id: 'ag-golge',
           type: 'line',
           source: 'ag',
           layout: { visibility: 'none', 'line-cap': 'round' },
-          paint: { 'line-color': renk('--odul-golge', '#B8862B'), 'line-width': 7, 'line-opacity': 0.35 },
+          paint: { 'line-color': renk('--odul-golge', '#b8862a'), 'line-width': 7, 'line-opacity': 0.35 },
         },
         {
           id: 'ag-cizgi',
@@ -292,7 +292,7 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
           source: 'ag',
           layout: { visibility: 'none', 'line-cap': 'butt' },
           paint: {
-            'line-color': renk('--sicak', '#9C4520'),
+            'line-color': renk('--sicak', '#ffbf3c'),
             'line-width': 3.5,
             'line-dasharray': [0, 2, 2],
           },

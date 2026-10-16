@@ -366,6 +366,32 @@ kart hiyerarşisi, mobilde alta yapışık eylem) kullanıldı. Sonuç proje kö
 - **Doğrulama:** 12 sayfa × 360/375/414px'te yatay taşma yok; koyu temada yeni bileşenlerin metin
   kontrastı ölçüldü (≥ 4.5:1).
 
+## 22. Sıfırdan yeniden tasarım: "Mozaik + Fotoğraf Patikası" (2026-10-16)
+
+Beyin fırtınasında senin seçimlerinle karar verildi (parşömen reddedildi → koyu, Duolingo hissi,
+şablon görüntüsü yok, turkuaz silindi, **safran** seçildi). Karar belgesi:
+`docs/superpowers/specs/2026-10-16-kok-avi-yeniden-tasarim-design.md`, plan:
+`docs/superpowers/plans/2026-10-16-kok-avi-yeniden-tasarim.md`, kurallar: `DESIGN.md`.
+
+| Commit | Ne değişti |
+|---|---|
+| Yazı tipleri | Nunito → **Bricolage Grotesque** (başlık) + **Figtree** (gövde), yerel, OFL |
+| Jetonlar | **Koyu varsayılan**, tek vurgu **safran `#ffbf3c`**, turkuaz/yeşil yok; palet denemesi kaldırıldı; yeni `tests/tema-kontrast.test.ts` (3 tema, WCAG oranları + "turkuaz geri gelmesin") |
+| Koyu varsayılan | Eski kayıtlardaki "açık" bir kez koyuya taşınır (`src/app/temaGocu.ts`); sonra seçimine dokunulmaz. `ilerleme.ts`'te yalnızca varsayılan değer değişti |
+| Simgeler | Elle çizilmiş SVG'ler yerine **Phosphor** (tek aile; aktifte dolu). Simge başına içe aktarma (testler 41 sn → 3 sn) |
+| Temel bileşenler | Düğmeler düz safran, gölgesiz, büyük harf yok, basınca küçülür; kart 1px çizgi |
+| Kabuk | Alt çubuk **Bugün · Yol · Keşfet · Defter**; profil üst çubukta; yetişkin bağlantıları Profil'de |
+| Bugün | Yeni ana ekran: **fotoğraf mozaiği** (sıradaki ders büyük fotoğraf, seri, bulanık Günün Eseri, oyunlar, canlı yarışma, sınıf) |
+| Keşfet / Profil | Harita, arşiv, zaman tüneli, rota merkezi; Profil: ayarlar, çarşı, seri, sınıf, yetişkinler |
+| Yol | **Fotoğraf madalyonlu patika**: biten safran kenar + onay, sıradaki büyük + ilerleme halkası + "Devam et", kilitli gri |
+| Köstik | Senin gönderdiğin karakter sayfasından 4 ifade (**meraklı, mutlu, şaşkın, düşünceli**) daire portre olarak (`public/maskot/`); SVG çizim kaldırıldı. PWA simgeleri de Köstik'in yüzü |
+| Ders | 5 bölümlü ilerleme çubuğu; sonuç **alttan yaylanan sayfa** (doğru safran, ipucu mavi) |
+| Defter | İç sekmeler **Pullar · Rozetler · Seri · Belgeler** (`#/defter?sekme=…`); öğrenilen eser **tırtıklı fotoğraf pulu** |
+| Denetim | Haritanın yedek renkleri, favicon ve PWA simgeleri yeni palete; 3 tema × 26 rota × 360px'te yatay taşma yok |
+
+Bütün eski rotalar (`#/harita`, `#/sinif`, `#/ayarlar`, `#/carsi`, `#/seri`…) çalışıyor.
+`server/`, `shared/`, `api.ts`, `oturum.ts`'e dokunulmadı.
+
 ---
 
 ## Geri alma

@@ -447,7 +447,7 @@
   display: grid;
   place-items: center;
   padding: var(--b-4);
-  background: rgba(12, 18, 24, 0.62);
+  background: color-mix(in srgb, var(--zemin) 75%, transparent);
 }
 
 .onay {

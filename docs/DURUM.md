@@ -182,7 +182,7 @@ mvp/
 │   ├── app/         kabuk · DurumSaglayici · HataSiniri
 │   ├── features/    yol · ders · defter · harita · sinif · ayarlar · ogretmen · panel
 │   ├── lib/         api · ilerleme · oturum · erisilebilirlik · yonlendirme
-│   └── styles/      tokens.css (4 tema × 4 palet) · global.css
+│   └── styles/      tokens.css (3 tema × renk körlüğü paletleri) · global.css
 ├── data/            research/ · content/ · tarihce.json · sergiler.json
 ├── tests/           11 paket, 214 test
 └── docs/            aşağıya bakın

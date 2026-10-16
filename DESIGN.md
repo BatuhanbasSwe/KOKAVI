@@ -1,101 +1,99 @@
-# DESIGN.md — Kök Avı tasarım sistemi (mobil öncelikli)
+# DESIGN.md: Kök Avı tasarım sistemi ("Mozaik + Fotoğraf Patikası")
 
-> **Kaynak:** Yapı (boşluk ölçeği, kart hiyerarşisi, tek vurgu rengi, tek gölge katmanı,
-> mobilde alta yapışık eylem) **Airbnb** DESIGN.md'sinden uyarlandı
-> (`~/.claude/skills/design-md/library/airbnb.md`). Çocuk uygulaması dokusu (tombul,
-> basılınca çöken düğmeler, yuvarlak köşeler) **ui-ux-pro-max** önerisindeki
-> *Claymorphism*'den. **Palet, yazı tipi ve maskot Kök Avı'nındır** — hiçbir marka
-> varlığı kopyalanmadı.
->
+> Karar belgesi: `docs/superpowers/specs/2026-10-16-kok-avi-yeniden-tasarim-design.md`.
 > Gerçek değerler `src/styles/tokens.css` içindedir; bu dosya *nasıl kullanılacağını* anlatır.
 > Bileşen kodunda ham renk yok: yalnızca jetonlar.
 
 ## 1. İlkeler
 
-1. **Tek vurgu.** Turkuaz (`--vurgu`) ana eylemi taşır: "Başla", "Derse devam", aktif sekme.
-   Ekranın çoğu sakin zemin + koyu metin. Altın (`--odul`) yalnızca ödül/bugün anları.
-2. **İlk ekran = sıradaki eylem.** Telefonda açılınca çocuk tek dokunuşla derse girebilmeli
-   (karşılama kartı). Yardımcı içerik yana kaydırılan şeritte, dikey yığında değil.
-3. **Ceza yok, kıyas yok.** Yanlışta ipucu tonu (sarı/turkuaz), asla kırmızı "hata" ekranı.
-   Sıralama yalnızca canlı yarışmada, takma adla.
-4. **Renk tek başına anlam taşımaz.** Her durum simge + metin. Simgeler SVG (`src/app/Ikonlar.tsx`),
-   **emoji yasak** (temaya boyanmaz, ekran okuyucu tutarsız okur).
-5. **Hareket anlam taşır ve susturulabilir.** Her animasyon `prefers-reduced-motion` ve
-   Ayarlar → "Hareketi azalt" ile durur. Ses/titreşim "Sessiz mod"a uyar.
+1. **Koyu, tek vurgu.** Varsayılan tema koyu. Tek vurgu rengi **safran** (`--vurgu`): ana eylem,
+   aktif sekme, ilerleme, biten durak, seri ve ödül. **Turkuaz ve yeşil arayüzde yok**
+   (`tests/tema-kontrast.test.ts` bunu denetler).
+2. **Fotoğraf öne.** Eser fotoğrafları arayüzün asıl rengidir: Bugün mozaiği, Yol madalyonları,
+   Defter pulları. Fotoğraf üstündeki metin her zaman `--karartma` geçişi + `--foto-metin` ile.
+3. **İlk ekran = sıradaki eylem.** Bugün sekmesinde büyük fotoğraflı "sıradaki ders" kutucuğu,
+   tek dokunuşla derse girer.
+4. **Ceza yok, kıyas yok.** Doğru: safran + onay simgesi. İpucu: kısık İznik mavisi (`--uyari`)
+   + ampul simgesi. Kırmızı "hata" ekranı yok. Sıralama yalnızca canlı yarışmada, takma adla.
+5. **Renk tek başına anlam taşımaz.** Her durumda simge + metin (WCAG 1.4.1).
+6. **Şablon görüntüsü yok.** Neon/parıltı, mor, degrade metin, büyük harfli etiket, emoji,
+   em-dash, elle çizilmiş simge yok.
 
-## 2. Renk (jeton → rol)
+## 2. Renk (koyu varsayılan)
 
-| Rol | Jeton | Kullanım |
-|---|---|---|
-| Zemin | `--zemin` | Sayfa tabanı (sıcak krem) |
-| Yüzey | `--zemin-kart` | Kartlar, üst ve alt çubuk |
-| Yumuşak yüzey | `--zemin-vurgu` | Pasif hücreler, çubuk izleri |
-| Metin | `--metin` / `--metin-ikincil` / `--metin-soluk` | Başlık-gövde / alt satır / not |
-| Vurgu (tek) | `--vurgu`, `--vurgu-metin`, `--vurgu-golge`, `--vurgu-yumusak` | Ana eylem, aktif durum |
-| Ödül | `--odul`, `--odul-metin`, `--odul-golge`, `--odul-yumusak` | Günün Eseri, rozet, seri günü |
-| Başarı / uyarı | `--basari*`, `--uyari*` | Doğru cevap / öğrenme anı |
-| Sıcak metin | `--sicak` | Küçük üst etiketler, yıl, alev simgesi |
-| Maskot | `--maskot-*` | Yalnızca Köstik çizimi (her temada aynı) |
+| Rol | Jeton | Koyu | Not |
+|---|---|---|---|
+| Zemin | `--zemin` | `#0e1315` | soğuk koyu, siyah değil |
+| Yüzey | `--zemin-kart` | `#161d20` | kart, liste |
+| Yüzey 2 | `--zemin-vurgu` | `#1d2629` | simge kutusu, girdi, ikincil düğme |
+| Çizgi | `--cizgi` / `--cizgi-kalin` | `#2a3539` / `#3a474c` | 1px |
+| Metin | `--metin` / `--metin-ikincil` / `--metin-soluk` | `#eef2f0` / `#a9b8b5` / `#8a9a97` | hepsi kartta ≥ 4.5:1 |
+| Vurgu | `--vurgu` + `--vurgu-metin` | `#ffbf3c` + `#2a1c00` | dolgu; üstünde koyu metin |
+| Vurgu (metin olarak) | `--vurgu-koyu` | `#ffd27a` | açık temada `#8a5b00` |
+| İpucu/bilgi | `--uyari`, `--ikincil` | `#8ea6ff` | yalnızca metin, simge, kenar |
 
-Üç tema (açık / koyu / yüksek kontrast) aynı jeton adlarıyla tanımlıdır; bileşen tema bilmez.
-Metin kontrastı her temada ≥ 4.5:1 (testli: `tests/erisilebilirlik.test.ts`).
+- **Açık tema:** kırık beyaz `#f6f4ef` (bej değil) + aynı safran. Safran açık zeminde metin
+  olamaz; metin olarak `--vurgu-koyu` kullanılır.
+- **Yüksek kontrast:** `#050607` zemin, beyaz metin, `#ffd000` vurgu, 2px çerçeveler.
+- **Yeni renk gerekiyorsa** üç temaya birden jeton ekleyin; kontrast testi yeni çifti ölçsün.
 
 ## 3. Tipografi
 
-- Yazı tipi: **Nunito** (yerel, çevrimdışı; OFL). Yuvarlak, çocuk dostu. Gövde **600**.
-- Başlıklar **800** (900 telefonda kaba duruyordu), `text-wrap: balance`.
+- Başlık: **Bricolage Grotesque** 700/800, `letter-spacing: -0.02em` (`--yazi-baslik`).
+- Gövde: **Figtree** 500/600/700 (`--yazi-aile`).
+- İkisi de OFL, `public/fonts/` altında yerel woff2 (latin + latin-ext: ğ ş ı İ).
+- Telefon ölçeği: h1 28 · h2 22 · h3 18 · gövde 16 · küçük 13. `--yazi-olcek` ile büyür.
+- 900 ağırlık ve büyük harfli küçük etiket kullanılmaz.
 
-| Seviye | Masaüstü | Telefon (≤720px) |
+## 4. Şekil ve derinlik (kilitli)
+
+| Öğe | Köşe |
+|---|---|
+| Düğme, girdi, simge kutusu | `--kose-sm` 12px |
+| Kart, mozaik kutucuğu | `--kose-md` 20px |
+| Alt sonuç sayfası, büyük yüzey | `--kose-lg` 24px |
+| Madalyon, maskot, hap | tam daire |
+
+- Düğmeler **gölgesiz**, düz dolgu; basınca `scale(.97)`.
+- Kart: yüzey + 1px çizgi; gölge yok. Kart yalnızca hiyerarşi gerekiyorsa.
+
+## 5. Bileşenler
+
+| Bileşen | Sınıf / dosya | Kural |
 |---|---|---|
-| h1 | 36px (`--yazi-3xl`) | 28px |
-| h2 | 28px | 22px |
-| h3 | 22px | 18px |
-| Gövde | 16px, satır 1.6 | 16px |
-| Etiket (üst başlık) | 12px, 800, büyük harf, aralıklı, `--sicak` | aynı |
+| Ana düğme | `.dugme` | 52px, safran, Bricolage 700 |
+| İkincil düğme | `.dugme--ikincil` | `--zemin-vurgu` dolgu |
+| Seçenek | `.secenek` | 56px; seçili safran kenar; doğru safran, ipucu mavi |
+| Mozaik | `src/features/bugun/Mozaik.tsx` | `Kutu` + `Foto`; 2 sütun, büyük kutucuk tam genişlik |
+| Fotoğraf patikası | `src/features/yol/FotografPatikasi.tsx` | madalyon 76px, sıradaki 100px + halka |
+| Pul | `src/features/defter/defter.css` | tırtıklı kenar `mask` ile |
+| Sonuç sayfası | `.ders-eylem--dogru/--ipucu` | alttan yaylanır, üst köşe 24px |
+| Simgeler | `src/app/Ikonlar.tsx` | Phosphor; `bold`, aktifte `fill` |
+| Maskot | `src/app/Maskot.tsx` | Köstik daire portre; `mutlu`, `saskin`, `dusunceli` |
 
-Tüm boyutlar `--yazi-olcek` ile çarpılır (Ayarlar → Yazı boyutu).
+## 6. Gezinme
 
-## 4. Boşluk, köşe, gölge
+Alt sekme çubuğu 4 sekme: **Bugün · Yol · Keşfet · Defter** (mobilde altta 64px, geniş
+ekranda üstte). Profil üst çubukta (avatar). Yetişkin girişleri Profil sayfasındaki
+"Yetişkinler için" gezinmesinde. Alt sayfaların hangi sekmeyi seçili gösterdiği
+`App.tsx` → `UST_SEKME`.
 
-- Ölçek (4/8 ritmi): `--b-1` 4 · `--b-2` 8 · `--b-3` 12 · `--b-4` 16 · `--b-5` 24 · `--b-6` 32 · `--b-7` 48.
-- Köşe: `--kose-sm` 10 (çip, simge kutusu) · `--kose-md` 16 (kart) · `--kose-lg` 20 (büyük kart, fotoğraf) · `--kose-tam` (hap).
-- Derinlik (claymorphism): kartlar ve düğmeler **alt kenar gölgesi** `0 var(--bas-derinlik) 0 <ton>`;
-  basınca `translateY(--bas-derinlik)` ile çöker (düzen kaymaz). Yüzer gölge yalnızca
-  `--golge` / `--golge-buyuk` (Airbnb'deki tek katman gibi).
+## 7. Hareket
 
-## 5. Mobil kabuk
+Yalnızca `transform`/`opacity`; eğri `--yay`. Hepsi `prefers-reduced-motion` ve
+"Hareketi azalt" ayarıyla durur.
 
-- **Üst çubuk:** yapışık, çentik payı `env(safe-area-inset-top)`; marka + seri (→ takvim) + elmas (→ çarşı) + seviye.
-- **Alt sekme çubuğu (≤720px):** 5 sekme (Yol, Defter, Harita, Sınıfım, Ayarlar), 64px, alt güvenli alan payı;
-  aktif sekme turkuaz çerçeveli hap. İçerik ve altbilgi altta 80px + güvenli alan boşluk bırakır.
-- **Ders odak modu:** gezinme gizli; eylem çubuğu (`.ders-eylem`) alta yapışık, güvenli alan paylı.
-- Kenar payı: telefonda ~10–16px; geniş ekranda içerik 720px'te ortalanır.
+| An | Hareket |
+|---|---|
+| Sayfa/sekme değişimi | içerik 8px kayarak gelir |
+| Mozaik, patika | kutucuk/duraklar sırayla yaylanır (60-70ms arayla) |
+| Sıradaki durak | halka çizilir, madalyon yavaş nefes alır (tek döngü) |
+| Cevap | sonuç sayfası alttan yaylanır, Köstik tepki verir |
+| Defter | yeni pul "basılır" |
 
-## 6. Bileşenler
+## 8. Yapma
 
-| Bileşen | Sınıf | Kural |
-|---|---|---|
-| Ana düğme | `.dugme` | Turkuaz, 48px+, büyük harf, 800; basınca çöker |
-| İkincil düğme | `.dugme--ikincil` | Yüzey + çizgi; aynı yükseklik |
-| Kart | `.kart` | Yüzey, 16px köşe, 2px çizgi; özel kartlar `.kart.<ad>` ile güçlendirilir |
-| Karşılama | `.kart.karsilama` | Köstik + söz + ana eylem; turkuaz çerçeve |
-| Bugün şeridi | `.pratik__liste` | Telefonda yatay `scroll-snap`, kart ~%46 genişlik; masaüstünde ızgara |
-| İlerleme | `.yol-ozet__cubuk` | 10px hap; `role="progressbar"` + `aria-valuenow` |
-| Sekme seçici | `.yol-gorunum` | İki düğme, `aria-pressed`; seçili olan yüzeye kalkar |
-| Rozet / çip | `.rozet`, `.canli-cip` | Hap; seçili çipte ✓ ön eki (renk + işaret) |
-| Maskot | `<Maskot>` | Köstik SVG; ifadeler: meraklı, `mutlu`, `saskin`, `dusunceli`; her zaman `aria-hidden` |
-
-## 7. Dokunma ve erişilebilirlik
-
-- Dokunulan her şey `<button>` / `<a>`; hedef ≥ 44×44px (MapLibre düğmeleri dahil).
-- Sürükle-bırak her zaman düğme + klavye eşdeğeriyle (Hayrat mı Akar mı: ← →).
-- Harita görsel özettir; aynı bilgi sayfadaki listede (eserler, "Para nereye akıyordu?").
-- axe ile 0 ihlal (her yeni ekran için test).
-
-## 8. Yap / Yapma
-
-**Yap:** jeton kullan · simgeyi SVG ve `aria-hidden` yap, anlamı metne koy · ilk ekranda tek ana eylem ·
-uzun listeyi yüzyıl/şehir başlıklarıyla böl · her yeni ekranı 360/375/414px'te yatay taşma için kontrol et.
-
-**Yapma:** ham renk · emoji simge · 900 kalınlıkta uzun başlık · yalnızca renkle durum · süre baskısı ·
-kırmızı "yanlış" ekranı · `.kart`'ı tek sınıfla ezmeye çalışmak (özgüllük için `.kart.<ad>`).
+- Ham hex/rgba (jeton dışı), turkuaz/yeşil vurgu, mor, neon parıltı.
+- Gölgeli "3B" düğme, büyük harf etiket, eşit üçlü kart dizisi.
+- Emoji, em-dash, elle çizilmiş SVG simge.
+- 44px'ten küçük dokunma hedefi; `div` üzerinde `onClick`.

@@ -85,7 +85,8 @@ Bu maddeler `axe-core` ile 6 sayfada **0 ihlal** verecek şekilde doğrulanmış
 - Hareket azaltma: `prefers-reduced-motion` + `[data-hareket-azalt]`
 - Kategorik seriler: `--seri-1` … `--seri-6`
 
-**Yeni renk eklemeyin** — jeton ekleyin. Aksi halde 4 tema × 4 palet matrisi bozulur.
+**Yeni renk eklemeyin**, jeton ekleyin (3 tema). `tests/tema-kontrast.test.ts` her temada metin/zemin
+oranlarını ölçer ve turkuaz/yeşil vurgunun geri gelmesini engeller. Tasarım kuralları: `DESIGN.md`.
 
 ### Türkçe tuzağı (yaşanmış hata)
 
@@ -168,15 +169,14 @@ Bu sözleşmeye uyularak yapıldı: `server/**`, `shared/**`, `src/lib/api.ts`,
 
 | Ne | Nerede |
 |---|---|
-| 3 palet jetonu (`data-palet="iznik|yesil|tas"`), 3B düğme jetonları (`--vurgu-golge`, `--ikincil*`, `--odul*`, `--kilit*`, `--vurgu-koyu`) | `src/styles/tokens.css` |
-| Nunito yazı tipi (gömülü, OFL), basılan düğmeler, programatik odak çerçevesi kaldırıldı (`[tabindex='-1']`) | `src/styles/global.css`, `public/fonts/` |
-| İkon seti + Selçuklu yıldızı yol düğümü (emoji yok) | `src/app/Ikonlar.tsx` |
+| Koyu varsayılan tema, tek vurgu safran (2026-10-16 yeniden tasarım; palet denemesi kaldırıldı) | `src/styles/tokens.css` |
+| Bricolage Grotesque + Figtree (gömülü, OFL), düz gölgesiz düğmeler, programatik odak çerçevesi kaldırıldı (`[tabindex='-1']`) | `src/styles/global.css`, `public/fonts/` |
+| Phosphor simgeleri (emoji yok), fotoğraf madalyonlu yol | `src/app/Ikonlar.tsx`, `src/features/yol/FotografPatikasi.tsx` |
 | Alt sekme çubuğu, ders odak modu, "Yetişkinler için" gezinmesi | `src/app/App.tsx`, `src/app/app.css` |
 | Zikzak öğrenme yolu, tekrar kartı | `src/features/yol/YolSayfasi.tsx` |
 | Alt geri bildirim paneli, Dinle düğmesi, ders sonu ekranı, katlanır kaynaklar | `src/features/ders/*` |
 | Aralıklı tekrar (Leitner, cihazda) | `src/lib/tekrar.ts`, `DurumSaglayici.tsx`, `GeriCagirmaAdimi.tsx` |
 | Sesli anlatım (Web Speech API) | `src/lib/ses.ts`, `src/features/ders/DinleDugmesi.tsx` |
 
-**Yeni renk eklerken:** jetonu 3 temaya (açık, koyu, yüksek kontrast) ve gerekirse
-`[data-palet]` bloklarına ekleyin. Metin rengi olarak `--vurgu` yerine `--vurgu-koyu`,
-`--ikincil` yerine `--ikincil-golge` kullanın (açık zeminde 4,5:1 garantisi).
+**Yeni renk eklerken:** jetonu 3 temaya (koyu, açık, yüksek kontrast) ekleyin. Metin rengi
+olarak `--vurgu` yerine `--vurgu-koyu` kullanın (safran açık zeminde metin olamaz).

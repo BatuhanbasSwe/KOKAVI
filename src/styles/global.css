@@ -494,8 +494,8 @@ svg {
     45deg,
     var(--seri-2),
     var(--seri-2) 6px,
-    color-mix(in srgb, var(--seri-2) 70%, #000) 6px,
-    color-mix(in srgb, var(--seri-2) 70%, #000) 12px
+    color-mix(in srgb, var(--seri-2) 70%, var(--zemin)) 6px,
+    color-mix(in srgb, var(--seri-2) 70%, var(--zemin)) 12px
   );
 }
 .cubuk__dolgu--d3 {
@@ -503,8 +503,8 @@ svg {
     90deg,
     var(--seri-3),
     var(--seri-3) 4px,
-    color-mix(in srgb, var(--seri-3) 70%, #000) 4px,
-    color-mix(in srgb, var(--seri-3) 70%, #000) 8px
+    color-mix(in srgb, var(--seri-3) 70%, var(--zemin)) 4px,
+    color-mix(in srgb, var(--seri-3) 70%, var(--zemin)) 8px
   );
 }
 .cubuk__dolgu--d4 {
@@ -512,8 +512,8 @@ svg {
     -45deg,
     var(--seri-4),
     var(--seri-4) 6px,
-    color-mix(in srgb, var(--seri-4) 70%, #000) 6px,
-    color-mix(in srgb, var(--seri-4) 70%, #000) 12px
+    color-mix(in srgb, var(--seri-4) 70%, var(--zemin)) 6px,
+    color-mix(in srgb, var(--seri-4) 70%, var(--zemin)) 12px
   );
 }
 
