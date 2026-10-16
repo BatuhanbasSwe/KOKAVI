@@ -231,6 +231,12 @@ export function YolSayfasi() {
             alt: 'Hizmet mi eder, gelir mi getirir?',
             simge: '⇄',
           },
+          {
+            href: '#/zaman-tuneli',
+            baslik: 'Zaman tüneli',
+            alt: 'Eserler yüzyıl yüzyıl',
+            simge: '⌛',
+          },
           ...(hataSayisi > 0
             ? [
                 {

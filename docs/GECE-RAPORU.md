@@ -233,6 +233,17 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 **Test**: `tests/hatalar.test.tsx` (3).
 
+## 13. Zaman tüneli — `Zaman tüneli` commit'i
+
+- Pratik → **Zaman tüneli** (`#/zaman-tuneli`): 57 eser 636 (Habib-i Neccar) → 1916 (Dullar Evi)
+  yıl sırasıyla. Telefonda soldan tek sütun, masaüstünde ortada çizgi + sağlı sollu kartlar.
+- Dönemler **yüzyılla** etiketli ("1200'ler"); "Selçuklu/Memlük" gibi hanedan etiketleri
+  her eser için kaynakla doğrulanmadığından **bilerek konmadı**.
+- Kesin olmayan yıllar "~" ile ve ekran okuyucuya "(yaklaşık)" diye. Keşfedilenler renkli ve
+  derse bağlı; diğerleri gri + "keşfedilmedi".
+
+**Test**: `tests/zaman-tuneli.test.tsx`.
+
 ---
 
 ## Geri alma
