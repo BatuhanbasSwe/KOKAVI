@@ -661,3 +661,66 @@ button.canli-secenek:active:not(:disabled) {
 .canli-sira {
   text-align: left;
 }
+
+/* --- Sınıf raporu (oyun sonu, öğretmen) ------------------------------------- */
+.canli-rapor {
+  display: grid;
+  gap: var(--b-2);
+  text-align: left;
+}
+.canli-rapor__baslik,
+.canli-rapor__not,
+.canli-rapor__vurgu {
+  margin: 0;
+}
+.canli-rapor__liste {
+  display: grid;
+  gap: var(--b-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.canli-rapor__satir {
+  display: grid;
+  gap: 4px;
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-vurgu);
+}
+.canli-rapor__olcum {
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+  font-weight: 800;
+  font-size: var(--yazi-sm);
+}
+.canli-rapor__cubuk {
+  flex: 1;
+  height: 12px;
+  border-radius: var(--kose-tam);
+  background: var(--zemin-kart);
+  overflow: hidden;
+}
+.canli-rapor__cubuk span {
+  display: block;
+  height: 100%;
+  width: calc(var(--oran, 0) * 100%);
+  background: var(--basari);
+  border-radius: inherit;
+}
+.canli-rapor__cevap {
+  font-size: var(--yazi-xs);
+  color: var(--metin-ikincil);
+}
+@media print {
+  .ustbar,
+  .altbilgi,
+  .gezinme,
+  .canli-podyum,
+  .canli-son .satir,
+  .canli-son__baslik,
+  .konfeti,
+  .canli-rapor button {
+    display: none !important;
+  }
+}

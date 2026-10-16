@@ -19,6 +19,7 @@
 import { randomBytes, randomInt, timingSafeEqual } from 'node:crypto';
 import type {
   CanliAsama,
+  CanliRaporSatiri,
   CanliOyuncuDurumu,
   CanliSiraSatiri,
   CanliSoruGorunumu,
@@ -237,7 +238,27 @@ export class CanliOdalar {
           ? { dogruIndex: soru.dogruIndex, aciklama: soru.aciklama, kaynak: soru.kaynak, dagilim }
           : null,
       siralama: oda.asama === 'bitti' ? siralama : siralama.slice(0, 5),
+      ...(oda.asama === 'bitti' ? { rapor: this.rapor(oda) } : {}),
     };
+  }
+
+  /** Soru soru anonim özet: yalnızca sayılar, hiçbir oyuncu adı yok. */
+  private rapor(oda: Oda): CanliRaporSatiri[] {
+    const oyuncular = [...oda.oyuncular.values()];
+    // Hiç başlamadıysa rapor boş; erken bitirildiyse sorulmayan sorular girmez.
+    if (oda.soruBaslangic === 0) return [];
+    const sorulan = oda.sorular.slice(0, oda.soruNo + 1);
+    return sorulan.map((s, no) => {
+      const cevaplar = oyuncular.map((o) => o.cevaplar.get(no)).filter((c): c is Cevap => !!c);
+      return {
+        no,
+        soru: s.soru,
+        dogruCevap: s.secenekler[s.dogruIndex]!,
+        eserId: s.eserId,
+        dogruSayisi: cevaplar.filter((c) => c.secim === s.dogruIndex).length,
+        cevaplayan: cevaplar.length,
+      };
+    });
   }
 
   oyuncuDurumu(pin: string, oyuncuAnahtari: string | undefined): CanliOyuncuDurumu {

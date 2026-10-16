@@ -296,6 +296,17 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 **Test**: `tests/dinle.test.tsx` (2).
 
+## 18. Yarışma sonrası sınıf raporu — `Sınıf raporu` commit'i
+
+- Canlı yarışma bitince öğretmen ekranında podyumun altında **Sınıf raporu**: her soru için
+  doğru oranı çubuğu ("%67 doğru (2/3)") ve doğru cevap.
+- Sınıf bir soruda %60'ın altında kaldıysa vurgu: *"Sınıf en çok 2. soruda zorlandı (%0 doğru).
+  Doğru cevap: Ayasofyası. Bu eserin dersini birlikte açın →"* (derse bağlantı).
+- **Anonim:** yalnızca sayılar; takma ad bile yok (testli). Kaydedilmez. **Raporu yazdır** düğmesi.
+- Sunucu: `CanliSunucuDurumu.rapor` yalnızca oyun bitince gönderilir (`shared/canli.ts`, `server/canli/oda.ts`).
+
+**Test**: `tests/canli.test.ts` (+2), `tests/canli-arayuz.test.tsx` (+1).
+
 ---
 
 ## Geri alma

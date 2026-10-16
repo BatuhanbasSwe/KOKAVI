@@ -167,6 +167,28 @@ describe('canlı yarışma ekranları', () => {
     expect(await ihlaller(container)).toEqual([]);
   });
 
+  it('öğretmene anonim sınıf raporu: en zor soru vurgulanır; ihlalsiz', async () => {
+    yonetimDurumu = {
+      ...yonetimDurumu,
+      asama: 'bitti',
+      oyuncular: ['Turkuaz Kubbe', 'Altın Minare'],
+      siralama: [
+        { sira: 1, takmaAd: 'Turkuaz Kubbe', puan: 1800 },
+        { sira: 2, takmaAd: 'Altın Minare', puan: 900 },
+      ],
+      rapor: [
+        { no: 0, soru: 'Bu fotoğraftaki eser hangisi?', dogruCevap: 'Koza Hanı', eserId: 'bursa-koza-hani', dogruSayisi: 2, cevaplayan: 2 },
+        { no: 1, soru: 'Evliya Çelebi boşluğu', dogruCevap: 'Ayasofyası', eserId: 'bursa-ulucami', dogruSayisi: 0, cevaplayan: 2 },
+      ],
+    };
+    sessionStorage.setItem(`kokavi-canli-yonet-${PIN}`, JSON.stringify('gizli-anahtar'));
+    const { container } = await ac(`#/canli/yonet/${PIN}`);
+    await screen.findByRole('heading', { name: 'Sınıf raporu' });
+    expect(screen.getByText(/en çok/)).toHaveTextContent('Sınıf en çok 2. soruda zorlandı (%0 doğru)');
+    expect(screen.getByText('%100 doğru (2/2)')).toBeInTheDocument();
+    expect(await ihlaller(container)).toEqual([]);
+  });
+
   it('oyun bitince podyum ihlalsiz', async () => {
     oyuncuDurumu = {
       ...oyuncuDurumu,
