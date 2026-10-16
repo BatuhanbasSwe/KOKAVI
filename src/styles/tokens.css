@@ -120,6 +120,7 @@
   --uyari: #8ea6ff; /* ipucu = mavi + ampul simgesi */
   --uyari-yumusak: #1a2140;
   --hata: #ff8a7a;
+  --hata-metin: #2a0a05;
   --hata-yumusak: #3a1a16;
 
   --odak: #ffd27a;
@@ -192,6 +193,7 @@
   --uyari: #2f4bc0;
   --uyari-yumusak: #e8ecff;
   --hata: #b3321c;
+  --hata-metin: #ffffff;
   --hata-yumusak: #fbe6e0;
 
   --odak: #2f4bc0;
@@ -262,6 +264,7 @@
   --uyari: #a8bcff;
   --uyari-yumusak: #0d1430;
   --hata: #ff9d9d;
+  --hata-metin: #000000;
   --hata-yumusak: #1a0505;
 
   --odak: #ffd000;

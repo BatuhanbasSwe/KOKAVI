@@ -63,7 +63,7 @@ body {
   margin: 0;
   font-family: var(--yazi-aile);
   font-size: var(--yazi-md);
-  font-weight: 600;
+  font-weight: 500;
   line-height: var(--satir-govde);
   color: var(--metin);
   background: var(--zemin);
@@ -193,12 +193,12 @@ svg {
 }
 
 /* ---------------------------------------------------------------------------
-   Kart
+   Kart: yüzey + 1px iç çizgi, gölgesiz. Yalnızca hiyerarşi gerektiğinde.
    --------------------------------------------------------------------------- */
 .kart {
   background: var(--zemin-kart);
-  border: 2px solid var(--cizgi);
-  border-radius: var(--kose-lg);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-md);
   padding: var(--b-4);
 }
 
@@ -207,73 +207,70 @@ svg {
 }
 
 /* ---------------------------------------------------------------------------
-   Düğmeler — en az 44px dokunma hedefi (WCAG 2.2 SC 2.5.8)
+   Düğmeler: düz dolgu, gölge yok, büyük harf yok. Basınca hafif küçülür.
+   En az 44px dokunma hedefi (WCAG 2.2 SC 2.5.8); ana düğme 52px.
    --------------------------------------------------------------------------- */
 .dugme {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--b-2);
-  min-height: 48px;
+  min-height: 52px;
   padding: var(--b-3) var(--b-5);
   font: inherit;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-md);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
   color: var(--vurgu-metin);
   background: var(--vurgu);
-  border: 2px solid transparent;
-  border-radius: var(--kose-md);
-  /* Duolingo tarzı: alt gölge "basılabilir" his verir. */
-  box-shadow: 0 var(--bas-derinlik) 0 var(--vurgu-golge);
-  margin-bottom: var(--bas-derinlik);
+  border: 1px solid transparent;
+  border-radius: var(--kose-sm);
   text-decoration: none;
   cursor: pointer;
-  transition: transform var(--gecis-hizli), box-shadow var(--gecis-hizli), filter var(--gecis-hizli);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 120ms var(--yay),
+    background-color var(--gecis-hizli);
 }
 
 .dugme:hover:not(:disabled) {
-  filter: brightness(1.08);
+  background: color-mix(in srgb, var(--vurgu) 88%, var(--metin));
 }
 
 .dugme:active:not(:disabled) {
-  transform: translateY(var(--bas-derinlik));
-  box-shadow: 0 0 0 var(--vurgu-golge);
+  transform: scale(0.97);
 }
 
 .dugme:disabled {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .dugme--ikincil {
-  background: var(--zemin-kart);
-  color: var(--vurgu-koyu);
+  background: var(--zemin-vurgu);
+  color: var(--metin);
   border-color: var(--cizgi);
-  box-shadow: 0 var(--bas-derinlik) 0 var(--cizgi);
 }
 
 .dugme--ikincil:hover:not(:disabled) {
-  background: var(--vurgu-yumusak);
-  filter: none;
-}
-
-.dugme--ikincil:active:not(:disabled) {
-  box-shadow: 0 0 0 var(--cizgi);
+  background: color-mix(in srgb, var(--zemin-vurgu) 80%, var(--metin));
 }
 
 .dugme--mavi {
   background: var(--ikincil);
   color: var(--ikincil-metin);
-  box-shadow: 0 var(--bas-derinlik) 0 var(--ikincil-golge);
+}
+
+.dugme--mavi:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ikincil) 88%, var(--metin));
 }
 
 .dugme--kucuk {
   min-height: 44px;
   padding: var(--b-2) var(--b-4);
   font-size: var(--yazi-sm);
-  letter-spacing: 0.02em;
-  text-transform: none;
 }
 
 .dugme--genis {
@@ -282,17 +279,17 @@ svg {
 
 .dugme--tehlike {
   background: var(--hata);
-  color: #fff;
-  box-shadow: 0 var(--bas-derinlik) 0 color-mix(in srgb, var(--hata) 70%, #000);
+  color: var(--hata-metin);
 }
 
-[data-tema='yuksek-kontrast'] .dugme--tehlike,
-[data-tema='koyu'] .dugme--tehlike {
-  color: #1b0b0a;
+.dugme--tehlike:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--hata) 88%, var(--metin));
 }
 
 /* ---------------------------------------------------------------------------
-   Seçenek düğmesi (ders seçenekleri, egzersiz öğeleri)
+   Seçenek düğmesi (ders seçenekleri, egzersiz öğeleri): 56px satır.
+   Seçili: safran kenar. Doğru: safran + onay simgesi. Yanlış: mavi ipucu
+   tonu (ceza yok). Anlam ASLA yalnızca renkle verilmez (WCAG 1.4.1).
    --------------------------------------------------------------------------- */
 .secenek {
   display: flex;
@@ -302,17 +299,18 @@ svg {
   min-height: 56px;
   padding: var(--b-3) var(--b-4);
   font: inherit;
-  font-weight: 700;
+  font-weight: 600;
   text-align: left;
   color: var(--metin);
   background: var(--zemin-kart);
-  border: 2px solid var(--cizgi);
-  border-radius: var(--kose-md);
-  box-shadow: 0 var(--bas-derinlik) 0 var(--cizgi);
-  margin-bottom: var(--bas-derinlik);
+  border: 1.5px solid var(--cizgi);
+  border-radius: var(--kose-sm);
   cursor: pointer;
-  transition: border-color var(--gecis-hizli), background var(--gecis-hizli),
-    transform var(--gecis-hizli);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    border-color var(--gecis-hizli),
+    background-color var(--gecis-hizli),
+    transform 120ms var(--yay);
 }
 
 .secenek:hover:not(:disabled) {
@@ -320,30 +318,23 @@ svg {
 }
 
 .secenek:active:not(:disabled) {
-  transform: translateY(2px);
+  transform: scale(0.985);
 }
 
 .secenek[aria-pressed='true'],
 .secenek--secili {
-  border-color: var(--ikincil);
-  background: var(--ikincil-yumusak);
-  box-shadow: 0 var(--bas-derinlik) 0 var(--ikincil);
+  border-color: var(--vurgu);
+  background: var(--vurgu-yumusak);
 }
 
-/*
-  Doğru/yanlış geri bildirimi ASLA yalnızca renkle verilmez:
-  yanında her zaman simge + metin bulunur (WCAG 1.4.1).
-*/
 .secenek.secenek--dogru {
   border-color: var(--basari);
   background: var(--basari-yumusak);
-  box-shadow: 0 var(--bas-derinlik) 0 var(--basari);
 }
 
 .secenek.secenek--yanlis {
-  border-color: var(--hata);
-  background: var(--hata-yumusak);
-  box-shadow: 0 var(--bas-derinlik) 0 var(--hata);
+  border-color: var(--uyari);
+  background: var(--uyari-yumusak);
 }
 
 .secenek:disabled {
@@ -351,15 +342,44 @@ svg {
 }
 
 /* ---------------------------------------------------------------------------
+   Girdiler: sıfır özgüllük (:where); ekran stilleri her zaman üstün gelir.
+   --------------------------------------------------------------------------- */
+:where(
+    input:not([type]),
+    input[type='text'],
+    input[type='search'],
+    input[type='number'],
+    input[type='password'],
+    input[type='email'],
+    select,
+    textarea
+  ) {
+  min-height: 48px;
+  padding: var(--b-2) var(--b-3);
+  font: inherit;
+  color: var(--metin);
+  background: var(--zemin-vurgu);
+  border: 1px solid var(--cizgi-kalin);
+  border-radius: var(--kose-sm);
+}
+
+:where(input, select, textarea):focus-visible {
+  border-color: var(--vurgu);
+}
+
+::placeholder {
+  color: var(--metin-soluk);
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
    Etiket / rozet
    --------------------------------------------------------------------------- */
 .etiket {
   display: inline-block;
-  font-size: var(--yazi-xs);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--sicak);
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--vurgu-koyu);
 }
 
 .rozet {
@@ -368,19 +388,19 @@ svg {
   gap: var(--b-1);
   padding: var(--b-1) var(--b-2);
   font-size: var(--yazi-xs);
-  font-weight: 800;
+  font-weight: 700;
   border-radius: var(--kose-tam);
   background: var(--zemin-vurgu);
   color: var(--metin-ikincil);
 }
 
 /* ---------------------------------------------------------------------------
-   Kaynak künyesi — PDF: "Her eser kaynağıyla öğretilir."
+   Kaynak künyesi: PDF: "Her eser kaynağıyla öğretilir."
    --------------------------------------------------------------------------- */
 .kaynak {
   font-size: var(--yazi-sm);
   color: var(--metin-soluk);
-  border-left: 3px solid var(--cizgi-kalin);
+  border-left: 2px solid var(--cizgi-kalin);
   padding-left: var(--b-3);
   line-height: 1.5;
 }
@@ -390,32 +410,32 @@ svg {
 }
 
 /* ---------------------------------------------------------------------------
-   Uyarı kutuları
+   Uyarı kutuları: zemin yumuşak ton, solda renkli şerit; metin okunur renkte.
    --------------------------------------------------------------------------- */
 .bildirim {
-  border-radius: var(--kose-md);
+  border-radius: var(--kose-sm);
   padding: var(--b-3) var(--b-4);
-  border: 2px solid transparent;
+  border: 1px solid var(--cizgi);
+  border-left-width: 4px;
   font-size: var(--yazi-sm);
+  color: var(--metin);
+  background: var(--zemin-kart);
 }
 
 .bildirim--basari {
   background: var(--basari-yumusak);
   border-color: var(--basari);
-  color: var(--basari);
 }
 .bildirim--uyari {
   background: var(--uyari-yumusak);
   border-color: var(--uyari);
-  color: var(--uyari);
 }
 .bildirim--hata {
   background: var(--hata-yumusak);
   border-color: var(--hata);
-  color: var(--hata);
 }
 .bildirim--bilgi {
-  background: var(--vurgu-yumusak);
+  background: var(--zemin-vurgu);
   border-color: var(--cizgi-kalin);
   color: var(--metin-ikincil);
 }

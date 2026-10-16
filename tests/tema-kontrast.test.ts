@@ -56,6 +56,8 @@ describe('tema kontrastı', () => {
         ['metin-soluk', 'zemin-kart', 4.5],
         ['vurgu-metin', 'vurgu', 4.5],
         ['odul-metin', 'odul', 4.5],
+        ['hata-metin', 'hata', 4.5],
+        ['ikincil-metin', 'ikincil', 4.5],
         ['vurgu-koyu', 'zemin-kart', 4.5],
         ['vurgu-koyu', 'vurgu-yumusak', 4.5],
       ])('%s / %s >= %s', (on, arka, esik) => {
