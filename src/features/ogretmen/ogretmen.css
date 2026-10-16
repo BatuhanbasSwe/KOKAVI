@@ -101,9 +101,7 @@
   font: inherit;
   font-size: var(--yazi-2xl);
   font-weight: 800;
-  letter-spacing: 0.18em;
   text-align: center;
-  text-transform: uppercase;
   color: var(--metin);
   background: var(--zemin-kart);
   border: 2px solid var(--cizgi-kalin);
@@ -258,8 +256,6 @@
 .ogretmen__olcumler dt {
   font-size: var(--yazi-xs);
   font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--metin-ikincil);
 }
 
@@ -428,8 +424,6 @@
   background: var(--zemin-vurgu);
   font-size: var(--yazi-xs);
   font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--metin-ikincil);
   white-space: nowrap;
 }

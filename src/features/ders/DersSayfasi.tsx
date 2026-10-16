@@ -347,6 +347,7 @@ export function DersSayfasi({ dersId }: Props) {
                 onIlerle={egzersizIlerle}
                 tekrarGorevi={tekrarGorevi}
                 onTekrarBitti={tekrarBitti}
+                eserAdi={dersBasligi.split(' (')[0] ?? dersBasligi}
               />
             </EkIpucuBaglami.Provider>
           ) : null}

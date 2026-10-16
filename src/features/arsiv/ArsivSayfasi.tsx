@@ -12,6 +12,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { git } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, IL_ADLARI, type ArsivEseri } from './arsivVeri';
 import './arsiv.css';
+import { IkonYildiz, IkonZar } from '../../app/Ikonlar';
 
 const SAYFA = 24;
 
@@ -99,7 +100,7 @@ export function ArsivSayfasi() {
             if (e) git(`arsiv/${e.id}`);
           }}
         >
-          <span aria-hidden="true">🎲</span> Şansına bir eser!
+          <IkonZar boyut={20} /> Şansına bir eser!
         </button>
       </div>
 
@@ -195,7 +196,7 @@ export function ArsivSayfasi() {
                 <span className="arsiv-kart__alt">
                   {[IL_ADLARI[e.il], e.ilce, e.tur].filter(Boolean).join(' · ')}
                 </span>
-                {e.ders ? <span className="arsiv-kart__rozet">★ Dersi var</span> : null}
+                {e.ders ? <span className="arsiv-kart__rozet"><IkonYildiz boyut={12} /> Dersi var</span> : null}
               </span>
             </a>
           </li>

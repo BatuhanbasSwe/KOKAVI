@@ -5,10 +5,14 @@
  * egzersiz tipi sırayla gelebilir. Bu bileşen sıradaki egzersizi tipine göre
  * doğru bileşene yönlendirir.
  */
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Egzersiz } from '@shared/types';
 import { EgzersizKabugu, IpucuBildirimi } from './EgzersizKabugu';
-import { IkonTekrar } from '../../app/Ikonlar';
+import { IkonAlev, IkonTekrar } from '../../app/Ikonlar';
+import { useEfekt } from '../../app/useEfekt';
+import { sayacArtir } from '../rozetler/rozetMantigi';
+import { hataEkle } from '../hatalar/hataDeposu';
+import { gunMetni } from '../../lib/tekrar';
 import type { TekrarGorevi } from './DersSayfasi';
 import { EslestirEgzersizi } from './EslestirEgzersizi';
 import { SiralaEgzersizi } from './SiralaEgzersizi';
@@ -85,6 +89,8 @@ interface AdimProps {
   /** Aralıklı tekrar: varsa ilk egzersiz önceki bir dersten gelir. */
   tekrarGorevi?: TekrarGorevi | null;
   onTekrarBitti?: (ipucusuz: boolean) => void;
+  /** "Hatalarımı çalış" listesinde gösterilecek eser adı. */
+  eserAdi?: string;
 }
 
 /**
@@ -125,6 +131,24 @@ function TekrarEgzersizi({
   );
 }
 
+/**
+ * Kombo: üst üste İPUCUSUZ çözülen egzersiz sayısı (Duolingo serisi gibi).
+ * Ceza yok: ipucu alınca sayaç sessizce sıfırlanır, hiçbir şey eksilmez.
+ */
+export function KomboBandi({ kombo }: { kombo: number }) {
+  if (kombo < 2) return null;
+  return (
+    <p className="ders-kombo" key={kombo}>
+      <span className="ders-kombo__alev" aria-hidden="true">
+        <IkonAlev boyut={22} />
+      </span>
+      <span>
+        <strong>{kombo} egzersiz</strong> üst üste ilk denemede!
+      </span>
+    </p>
+  );
+}
+
 /** 04 · GERİ ÇAĞIRMA adımı: egzersizleri sırayla sunar. */
 export function GeriCagirmaAdimi({
   egzersizler,
@@ -133,8 +157,32 @@ export function GeriCagirmaAdimi({
   onIlerle,
   tekrarGorevi = null,
   onTekrarBitti,
+  eserAdi = '',
 }: AdimProps) {
   const ofset = tekrarGorevi ? 1 : 0;
+
+  const [kombo, setKombo] = useState(0);
+  const ipucuAlindi = useRef(false);
+  const ipucuGoruldu = useCallback(() => {
+    ipucuAlindi.current = true;
+  }, []);
+  const cal = useEfekt();
+  useEffect(() => {
+    if (kombo >= 2) cal('kombo');
+  }, [kombo, cal]);
+
+  /** Egzersiz bitti: ipucusuzsa kombo artar, değilse sıfırlanır. */
+  const egzersizBitti = (ipucusuz = !ipucuAlindi.current, egzersiz?: Egzersiz) => {
+    ipucuAlindi.current = false;
+    // İpucu alınan egzersiz "Hatalarımı çalış" listesine (yalnızca cihazda).
+    if (!ipucusuz && egzersiz) hataEkle(egzersiz, eserAdi, gunMetni(new Date()));
+    const yeniKombo = ipucusuz ? kombo + 1 : 0;
+    setKombo(yeniKombo);
+    // Son egzersiz de ipucusuz bittiyse: kusursuz ders (rozet sayacı, yalnızca cihazda).
+    const toplam = egzersizler.length + ofset;
+    if (sirasi === toplam - 1 && yeniKombo === toplam) sayacArtir('kusursuzDers');
+    onIlerle();
+  };
 
   if (tekrarGorevi && sirasi === 0) {
     return (
@@ -143,7 +191,7 @@ export function GeriCagirmaAdimi({
           gorev={tekrarGorevi}
           onBitti={(ipucusuz) => {
             onTekrarBitti?.(ipucusuz);
-            onIlerle();
+            egzersizBitti(ipucusuz);
           }}
         />
       </div>
@@ -180,8 +228,18 @@ export function GeriCagirmaAdimi({
         </p>
       ) : null}
 
+      <div aria-live="polite">
+        <KomboBandi kombo={kombo} />
+      </div>
+
       {/* key: egzersiz değişince iç durum (seçim, sıralama) sıfırlanır. */}
-      <EgzersizCalistirici key={egzersiz.id} egzersiz={egzersiz} onBitti={onIlerle} />
+      <IpucuBildirimi.Provider value={ipucuGoruldu}>
+        <EgzersizCalistirici
+          key={egzersiz.id}
+          egzersiz={egzersiz}
+          onBitti={() => egzersizBitti(undefined, egzersiz)}
+        />
+      </IpucuBildirimi.Provider>
     </div>
   );
 }

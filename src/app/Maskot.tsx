@@ -1,44 +1,40 @@
 /**
- * Kâşif — uygulamanın maskotu: gözleri olan bir Selçuklu çini yıldızı.
+ * Köstik: uygulamanın maskotu. Kırmızı bandanalı, yuvarlak gözlüklü, meraklı
+ * bir köstebek kâşif ("Tarihi keşfet, geleceği anla!").
  *
- * Yol düğümleriyle aynı sekiz köşeli yıldız; çocuk onu "yol arkadaşı" olarak
- * tanır. Süs olduğu için aria-hidden; konuşma balonundaki metin ayrıca
- * görünür metin olarak verilir. Renkler tema jetonlarından gelir.
- * Animasyon (süzülme, göz kırpma) "hareketi azalt" ayarında durur.
+ * Görseller takımın karakter sayfasından (public/maskot/) daire portre olarak
+ * kesildi; uygulamanın madalyon diliyle aynı. İfadeler: varsayılan meraklı
+ * (dürbünlü) · `mutlu` · `saskin` · `dusunceli` (ipucu anı; üzgün DEĞİL).
+ *
+ * Süs olduğu için aria-hidden ve alt=""; anlam her zaman yanındaki metindedir.
+ * Mutlu anda kısa bir zıplama yapar; "hareketi azalt" ayarında durur.
  */
 
-const DIS =
-  '60,6 75.8,21.8 98.2,21.8 98.2,44.2 114,60 98.2,75.8 98.2,98.2 75.8,98.2 60,114 44.2,98.2 21.8,98.2 21.8,75.8 6,60 21.8,44.2 21.8,21.8 44.2,21.8';
+type Ifade = 'merakli' | 'mutlu' | 'saskin' | 'dusunceli';
 
-export function Maskot({ boyut = 72, mutlu = false }: { boyut?: number; mutlu?: boolean }) {
+export function Maskot({
+  boyut = 72,
+  mutlu = false,
+  dusunceli = false,
+  saskin = false,
+}: {
+  boyut?: number;
+  mutlu?: boolean;
+  /** İpucu anı: düşünüyor, üzgün DEĞİL. */
+  dusunceli?: boolean;
+  /** Şaşkın: iri gözler, açık ağız. */
+  saskin?: boolean;
+}) {
+  const ifade: Ifade = mutlu ? 'mutlu' : saskin ? 'saskin' : dusunceli ? 'dusunceli' : 'merakli';
   return (
-    <svg
-      className={`maskot${mutlu ? ' maskot--mutlu' : ''}`}
-      width={boyut}
-      height={boyut}
-      viewBox="0 0 120 124"
+    <span
+      key={ifade}
+      className={`maskot maskot--${ifade}`}
+      style={{ width: boyut, height: boyut }}
       aria-hidden="true"
-      focusable="false"
     >
-      <polygon points={DIS} transform="translate(0 6)" fill="var(--vurgu-golge)" />
-      <polygon points={DIS} fill="var(--vurgu)" />
-      <circle cx="60" cy="60" r="34" fill="var(--zemin-kart)" />
-      <g className="maskot__gozler">
-        <ellipse cx="48" cy="56" rx="6" ry="8" fill="var(--metin)" />
-        <ellipse cx="72" cy="56" rx="6" ry="8" fill="var(--metin)" />
-        <circle cx="50" cy="53" r="2.2" fill="var(--zemin-kart)" />
-        <circle cx="74" cy="53" r="2.2" fill="var(--zemin-kart)" />
-      </g>
-      <path
-        d={mutlu ? 'M46 70 Q60 86 74 70' : 'M48 72 Q60 80 72 72'}
-        fill="none"
-        stroke="var(--metin)"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-      <circle cx="40" cy="70" r="5" fill="var(--odul)" opacity="0.7" />
-      <circle cx="80" cy="70" r="5" fill="var(--odul)" opacity="0.7" />
-    </svg>
+      <img src={`/maskot/kostik-${ifade}.webp`} alt="" width={boyut} height={boyut} decoding="async" draggable={false} />
+    </span>
   );
 }
 
@@ -50,7 +46,7 @@ const SOZLER = [
   'Yanlış cevap yok, sadece ipucu var. Hadi!',
 ];
 
-/** Yol ekranının üstünde konuşan maskot. Söz gün boyunca aynı kalır. */
+/** Konuşan maskot. Söz gün boyunca aynı kalır. */
 export function KonusanMaskot({ mesaj }: { mesaj?: string }) {
   const gun = Math.floor(Date.now() / 86_400_000);
   const soz = mesaj ?? SOZLER[gun % SOZLER.length]!;

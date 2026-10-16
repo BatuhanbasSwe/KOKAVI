@@ -7,6 +7,9 @@
 import { useEffect, useState } from 'react';
 
 export type Rota =
+  | { ad: 'bugun' }
+  | { ad: 'kesfet' }
+  | { ad: 'profil' }
   | { ad: 'yol' }
   | { ad: 'ders'; dersId: string }
   | { ad: 'defter' }
@@ -16,6 +19,13 @@ export type Rota =
   | { ad: 'ayarlar' }
   | { ad: 'carsi' }
   | { ad: 'sinif' }
+  | { ad: 'gunun-eseri' }
+  | { ad: 'hayrat-akar' }
+  | { ad: 'hatalar' }
+  | { ad: 'zaman-tuneli' }
+  | { ad: 'seri' }
+  | { ad: 'rota' }
+  | { ad: 'sertifika'; sehirId: string }
   | { ad: 'canli' }
   | { ad: 'canli-kur' }
   | { ad: 'canli-yonet'; pin: string }
@@ -29,9 +39,15 @@ export function rotayiCoz(hash: string): Rota {
   const temiz = hash.replace(/^#\/?/, '').split('?')[0] ?? '';
   const parcalar = temiz.split('/').filter(Boolean);
 
-  if (parcalar.length === 0) return { ad: 'yol' };
+  if (parcalar.length === 0) return { ad: 'bugun' };
 
   switch (parcalar[0]) {
+    case 'bugun':
+      return { ad: 'bugun' };
+    case 'kesfet':
+      return { ad: 'kesfet' };
+    case 'profil':
+      return { ad: 'profil' };
     case 'yol':
       return { ad: 'yol' };
     case 'ders':
@@ -50,6 +66,20 @@ export function rotayiCoz(hash: string): Rota {
       return { ad: 'carsi' };
     case 'sinif':
       return { ad: 'sinif' };
+    case 'gunun-eseri':
+      return { ad: 'gunun-eseri' };
+    case 'hayrat-akar':
+      return { ad: 'hayrat-akar' };
+    case 'hatalar':
+      return { ad: 'hatalar' };
+    case 'zaman-tuneli':
+      return { ad: 'zaman-tuneli' };
+    case 'seri':
+      return { ad: 'seri' };
+    case 'rota':
+      return { ad: 'rota' };
+    case 'sertifika':
+      return parcalar[1] ? { ad: 'sertifika', sehirId: decodeURIComponent(parcalar[1]) } : { ad: 'defter' };
     case 'canli': {
       // #/canli · #/canli/kur · #/canli/yonet/123456 · #/canli/oyna/123456
       const pin = /^\d{6}$/.test(parcalar[2] ?? '') ? parcalar[2]! : null;

@@ -31,6 +31,21 @@ export interface HaritaEseri {
   yaklasik: boolean;
 }
 
+/** Vakıf ağı çizgisi: akar → beslediği hayrat. */
+export interface AgCizgisi {
+  id: string;
+  kaynak: [number, number];
+  hedef: [number, number];
+  hedefAd: string;
+  yaklasik: boolean;
+}
+
+export interface BolgeHaritasi {
+  temizle: () => void;
+  /** Vakıf ağını göster/gizle; gösterince bütün çizgiler sığacak kadar uzaklaşır. */
+  agGoster: (acik: boolean) => void;
+}
+
 export interface BolgeSayisi {
   ders: number;
   toplam: number;
@@ -46,6 +61,7 @@ interface Secenekler {
   ilceSayilari: Map<string, BolgeSayisi>;
   renk: (ad: string, yedek: string) => string;
   onSeviye: (seviye: Seviye) => void;
+  ag?: AgCizgisi[];
 }
 
 const ILCE_ESIGI = 7;
@@ -105,7 +121,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       'source-layer': 'landuse',
       minzoom: 8,
       filter: ['match', ['get', 'class'], ['residential', 'suburb', 'neighbourhood', 'commercial', 'retail'], true, false],
-      paint: { 'fill-color': renk('--zemin-vurgu', '#F3ECDD'), 'fill-opacity': BELIR as unknown as number },
+      paint: { 'fill-color': renk('--zemin-vurgu', '#1d2629'), 'fill-opacity': BELIR as unknown as number },
     },
     {
       id: 'sokak-yesil',
@@ -113,7 +129,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       source: 'sokak',
       'source-layer': 'park',
       minzoom: 8,
-      paint: { 'fill-color': renk('--vurgu-yumusak', '#E3F2F0'), 'fill-opacity': BELIR as unknown as number },
+      paint: { 'fill-color': renk('--vurgu-yumusak', '#2b2414'), 'fill-opacity': BELIR as unknown as number },
     },
     {
       id: 'sokak-su',
@@ -121,7 +137,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       source: 'sokak',
       'source-layer': 'water',
       minzoom: 8,
-      paint: { 'fill-color': renk('--harita-deniz', '#E3EEF4'), 'fill-opacity': BELIR as unknown as number },
+      paint: { 'fill-color': renk('--harita-deniz', '#0b1416'), 'fill-opacity': BELIR as unknown as number },
     },
     {
       id: 'sokak-bina',
@@ -129,7 +145,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       source: 'sokak',
       'source-layer': 'building',
       minzoom: 13,
-      paint: { 'fill-color': renk('--cizgi', '#E8DFCC'), 'fill-opacity': 0.9 },
+      paint: { 'fill-color': renk('--cizgi', '#2a3539'), 'fill-opacity': 0.9 },
     },
     {
       id: 'sokak-yol-kenar',
@@ -139,7 +155,7 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       minzoom: 9,
       filter: ['match', ['get', 'class'], ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor'], true, false],
       layout: { 'line-cap': 'round', 'line-join': 'round' },
-      paint: { 'line-color': renk('--cizgi-kalin', '#CFC3AB'), 'line-width': yolGenisligi(1.5) },
+      paint: { 'line-color': renk('--cizgi-kalin', '#3a474c'), 'line-width': yolGenisligi(1.5) },
     },
     {
       id: 'sokak-yol',
@@ -150,14 +166,14 @@ function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecificatio
       filter: ['match', ['get', 'class'], ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor'], true, false],
       layout: { 'line-cap': 'round', 'line-join': 'round' },
       paint: {
-        'line-color': ['case', anaYol, renk('--odul-yumusak', '#FFF6DC'), renk('--zemin-kart', '#FFFFFF')] as unknown as string,
+        'line-color': ['case', anaYol, renk('--odul-yumusak', '#2b2414'), renk('--zemin-kart', '#161d20')] as unknown as string,
         'line-width': yolGenisligi(1),
       },
     },
   ];
 }
 
-export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): () => void {
+export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): BolgeHaritasi {
   const { renk } = s;
   const eserliIller = [...s.ilSayilari.keys()];
 
@@ -177,6 +193,18 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): () =>
       sources: {
         iller: { type: 'geojson', data: s.iller },
         ilceler: { type: 'geojson', data: ilceler },
+        // Vakıf ağı: akar → hayrat hatları (başta gizli; düğmeyle açılır).
+        ag: {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: (s.ag ?? []).map((c) => ({
+              type: 'Feature',
+              properties: { id: c.id },
+              geometry: { type: 'LineString', coordinates: [c.kaynak, c.hedef] },
+            })),
+          },
+        },
         // Sokak ayrıntısı: OpenFreeMap vektör karoları (anahtarsız, OpenStreetMap
         // verisi). Uygulamanın kendi renkleriyle çizilir; yazı katmanı yoktur.
         // Karolar gelmezse (çevrimdışı) gömülü il/ilçe sınırları yine görünür.
@@ -187,7 +215,7 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): () =>
         },
       },
       layers: [
-        { id: 'deniz', type: 'background', paint: { 'background-color': renk('--harita-deniz', '#E3EEF4') } },
+        { id: 'deniz', type: 'background', paint: { 'background-color': renk('--harita-deniz', '#0b1416') } },
         {
           id: 'il-dolgu',
           type: 'fill',
@@ -203,11 +231,11 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): () =>
               [
                 'case',
                 ['in', ['get', 'anahtar'], ['literal', eserliIller]],
-                renk('--harita-vurgulu', '#D7EFEC'),
-                renk('--harita-kara', '#F3ECDD'),
+                renk('--harita-vurgulu', '#2b2414'),
+                renk('--harita-kara', '#1d2629'),
               ],
               10,
-              renk('--harita-kara', '#F3ECDD'),
+              renk('--harita-kara', '#1d2629'),
             ],
           },
         },
@@ -218,7 +246,7 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): () =>
           source: 'ilceler',
           minzoom: ILCE_ESIGI - 0.6,
           paint: {
-            'fill-color': renk('--vurgu', '#0F7F7A'),
+            'fill-color': renk('--vurgu', '#ffbf3c'),
             // İlçe görünümünde yoğunluk; eser görünümünde sokaklar okunsun diye silikleşir.
             'fill-opacity': [
               'interpolate',
@@ -236,20 +264,38 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): () =>
           type: 'line',
           source: 'ilceler',
           minzoom: ILCE_ESIGI - 0.6,
-          paint: { 'line-color': renk('--vurgu-golge', '#0A5A56'), 'line-width': 0.9, 'line-opacity': 0.6 },
+          paint: { 'line-color': renk('--vurgu-golge', '#b8862a'), 'line-width': 0.9, 'line-opacity': 0.6 },
         },
         {
           id: 'il-sinir',
           type: 'line',
           source: 'iller',
-          paint: { 'line-color': renk('--harita-sinir', '#CFC3AB'), 'line-width': 0.8 },
+          paint: { 'line-color': renk('--harita-sinir', '#3a474c'), 'line-width': 0.8 },
         },
         {
           id: 'eserli-il-sinir',
           type: 'line',
           source: 'iller',
           filter: ['in', ['get', 'anahtar'], ['literal', eserliIller]],
-          paint: { 'line-color': renk('--vurgu', '#0F7F7A'), 'line-width': 1.8 },
+          paint: { 'line-color': renk('--vurgu', '#ffbf3c'), 'line-width': 1.8 },
+        },
+        {
+          id: 'ag-golge',
+          type: 'line',
+          source: 'ag',
+          layout: { visibility: 'none', 'line-cap': 'round' },
+          paint: { 'line-color': renk('--odul-golge', '#b8862a'), 'line-width': 7, 'line-opacity': 0.35 },
+        },
+        {
+          id: 'ag-cizgi',
+          type: 'line',
+          source: 'ag',
+          layout: { visibility: 'none', 'line-cap': 'butt' },
+          paint: {
+            'line-color': renk('--sicak', '#ffbf3c'),
+            'line-width': 3.5,
+            'line-dasharray': [0, 2, 2],
+          },
         },
       ],
     },
@@ -435,10 +481,74 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): () =>
   });
   seviyeGuncelle();
 
-  return () => {
-    acikPopup?.remove();
-    kumeler.forEach((m) => m.remove());
-    isaretciler.forEach((m) => m.remove());
-    harita.remove();
+  // --- Vakıf ağı ------------------------------------------------------------
+  // Hedef etiketleri (DOM; yazı katmanı yok) başta gizli. Çizgi kesikleri
+  // kaydırılarak "para akıyor" hissi verilir; hareketi azalt'ta durağandır.
+  // Birbirine çok yakın hedefler (ör. İstanbul'daki iki külliye) tek etikette.
+  const hedefGruplari = new Map<string, { nokta: [number, number]; adlar: string[] }>();
+  for (const c of s.ag ?? []) {
+    const anahtar = `${c.hedef[0].toFixed(2)}|${c.hedef[1].toFixed(2)}`;
+    const g = hedefGruplari.get(anahtar) ?? { nokta: c.hedef, adlar: [] };
+    const ad = `${c.hedefAd}${c.yaklasik ? ' (yaklaşık)' : ''}`;
+    if (!g.adlar.includes(ad)) g.adlar.push(ad);
+    hedefGruplari.set(anahtar, g);
+  }
+  const hedefIsaretleri = [...hedefGruplari.values()].map((g) => {
+    const d = ogeYap('div', 'hm-hedef', g.adlar.join(' · '));
+    d.setAttribute('aria-hidden', 'true');
+    return new ml.Marker({ element: d, anchor: 'bottom' }).setLngLat(g.nokta);
+  });
+  const DASH = [
+    [0, 4, 3], [0.5, 4, 2.5], [1, 4, 2], [1.5, 4, 1.5], [2, 4, 1], [2.5, 4, 0.5], [3, 4, 0],
+    [0, 0.5, 3, 3.5], [0, 1, 3, 3], [0, 1.5, 3, 2.5], [0, 2, 3, 2], [0, 2.5, 3, 1.5], [0, 3, 3, 1], [0, 3.5, 3, 0.5],
+  ];
+  let animasyon = 0;
+  let adim = 0;
+  const hareketYok = () =>
+    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ||
+    document.documentElement.dataset.hareketAzalt === 'true';
+  const akit = (zaman: number) => {
+    const yeni = Math.floor(zaman / 80) % DASH.length;
+    if (yeni !== adim && harita.getLayer('ag-cizgi')) {
+      adim = yeni;
+      harita.setPaintProperty('ag-cizgi', 'line-dasharray', DASH[adim]);
+    }
+    animasyon = requestAnimationFrame(akit);
+  };
+
+  const agGoster = (acik: boolean) => {
+    const uygula = () => {
+      for (const id of ['ag-golge', 'ag-cizgi']) harita.setLayoutProperty(id, 'visibility', acik ? 'visible' : 'none');
+      hedefIsaretleri.forEach((m) => (acik ? m.addTo(harita) : m.remove()));
+      cancelAnimationFrame(animasyon);
+      if (acik && !hareketYok()) animasyon = requestAnimationFrame(akit);
+      kap.dataset.ag = acik ? 'acik' : 'kapali';
+      if (acik && (s.ag ?? []).length > 0) {
+        const noktalar = (s.ag ?? []).flatMap((c) => [c.kaynak, c.hedef]);
+        const xs = noktalar.map((p) => p[0]);
+        const ys = noktalar.map((p) => p[1]);
+        harita.fitBounds(
+          [
+            [Math.min(...xs), Math.min(...ys)],
+            [Math.max(...xs), Math.max(...ys)],
+          ],
+          { padding: { top: 70, bottom: 50, left: 140, right: 140 }, maxZoom: 8 },
+        );
+      }
+    };
+    if (harita.isStyleLoaded()) uygula();
+    else harita.once('load', uygula);
+  };
+
+  return {
+    agGoster,
+    temizle: () => {
+      cancelAnimationFrame(animasyon);
+      acikPopup?.remove();
+      kumeler.forEach((m) => m.remove());
+      isaretciler.forEach((m) => m.remove());
+      hedefIsaretleri.forEach((m) => m.remove());
+      harita.remove();
+    },
   };
 }

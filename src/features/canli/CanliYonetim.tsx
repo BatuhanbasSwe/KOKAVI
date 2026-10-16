@@ -12,10 +12,20 @@ import {
   CANLI_SORU_SAYISI,
   CANLI_SURELER,
   type CanliKapsam,
+  type CanliRaporSatiri,
   type CanliSunucuDurumu,
 } from '@shared/canli';
 import { CanliApiHatasi, canliApi, canliDepo } from './canliApi';
-import { GeriSayim, Podyum, SEKILLER, SekilRozeti, SiraListesi, useYoklama } from './parcalar';
+import {
+  Duyuru,
+  GeriSayim,
+  Podyum,
+  QrKod,
+  SEKILLER,
+  SekilRozeti,
+  SiraListesi,
+  useYoklama,
+} from './parcalar';
 import './canli.css';
 
 const SORU_SAYILARI = [5, CANLI_SORU_SAYISI.varsayilan, 10, CANLI_SORU_SAYISI.en_cok];
@@ -179,12 +189,80 @@ export function CanliYonetSayfasi({ pin }: { pin: string }) {
         </p>
       )}
       <div role="alert">{eylemHatasi && <p className="bildirim bildirim--hata">{eylemHatasi}</p>}</div>
+      <Duyuru mesaj={veri ? yonetimDuyurusu(veri) : ''} />
       {!veri ? (
         <p role="status">Oyun yükleniyor…</p>
       ) : (
         <YonetimAsamasi d={veri} bekliyor={bekliyor} onEylem={(a) => void eylem(a)} />
       )}
     </div>
+  );
+}
+
+function yonetimDuyurusu(d: CanliSunucuDurumu): string {
+  if (d.asama === 'lobi') return `${d.oyuncular.length} oyuncu katıldı.`;
+  if (d.asama === 'bitti') return `Yarışma bitti. Birinci: ${d.siralama[0]?.takmaAd ?? 'yok'}.`;
+  const soru = d.soru!;
+  return d.asama === 'soru'
+    ? `Soru ${soru.no + 1}: ${soru.soru}`
+    : `Süre bitti. Doğru cevap: ${soru.secenekler[d.sonuc!.dogruIndex]}.`;
+}
+
+/**
+ * Öğretmene anonim sınıf raporu: hangi soruda sınıf zorlandı? Kişi adı yok,
+ * kaydedilmez. En zor soru o eserin dersine bağlanır (sınıfta tekrar için).
+ */
+function SinifRaporu({ rapor }: { rapor: CanliRaporSatiri[] }) {
+  const { yol } = useDurum();
+  const dersId = (eserId: string) => {
+    for (const s of yol?.sehirler ?? [])
+      for (const u of s.uniteler) for (const d of u.dersler) if (d.eserId === eserId) return d.dersId;
+    return null;
+  };
+  const oran = (r: CanliRaporSatiri) => (r.cevaplayan ? r.dogruSayisi / r.cevaplayan : 0);
+  const cevaplanan = rapor.filter((r) => r.cevaplayan > 0);
+  const enZor = cevaplanan.length ? cevaplanan.reduce((a, b) => (oran(b) < oran(a) ? b : a)) : null;
+  const enZorDers = enZor ? dersId(enZor.eserId) : null;
+  return (
+    <section className="kart canli-rapor" aria-labelledby="canli-rapor-baslik">
+      <h2 id="canli-rapor-baslik" className="canli-rapor__baslik">
+        Sınıf raporu
+      </h2>
+      <p className="metin-soluk canli-rapor__not">
+        Yalnızca sayılar: kimin ne cevapladığı tutulmaz ve bu rapor kaydedilmez.
+      </p>
+      {enZor && oran(enZor) < 0.6 && (
+        <p className="bildirim bildirim--bilgi canli-rapor__vurgu">
+          Sınıf en çok <strong>{enZor.no + 1}. soruda</strong> zorlandı (%{Math.round(oran(enZor) * 100)} doğru).
+          Doğru cevap: <strong>{enZor.dogruCevap}</strong>.{' '}
+          {enZorDers && <a href={`#/ders/${enZorDers}`}>Bu eserin dersini birlikte açın →</a>}
+        </p>
+      )}
+      <ol className="canli-rapor__liste">
+        {rapor.map((r) => {
+          const yuzde = Math.round(oran(r) * 100);
+          return (
+            <li key={r.no} className="canli-rapor__satir">
+              <span className="canli-rapor__soru">
+                <strong>{r.no + 1}.</strong> {r.soru}
+              </span>
+              <span className="canli-rapor__olcum">
+                <span className="canli-rapor__cubuk" aria-hidden="true">
+                  <span style={{ ['--oran' as string]: oran(r) }} />
+                </span>
+                <span>
+                  {r.cevaplayan ? `%${yuzde} doğru (${r.dogruSayisi}/${r.cevaplayan})` : 'Cevap yok'}
+                </span>
+              </span>
+              <span className="canli-rapor__cevap">Doğru cevap: {r.dogruCevap}</span>
+            </li>
+          );
+        })}
+      </ol>
+      <button type="button" className="dugme dugme--ikincil" onClick={() => window.print()}>
+        Raporu yazdır
+      </button>
+    </section>
   );
 }
 
@@ -212,15 +290,20 @@ function YonetimAsamasi({
           <p className="canli-pin__sayi" aria-label={`PIN: ${d.pin.split('').join(' ')}`}>
             {d.pin.slice(0, 3)} {d.pin.slice(3)}
           </p>
-          <p className="metin-ikincil">
-            Kök Avı → <strong>Sınıfım</strong> → <strong>Canlı yarışmaya katıl</strong>
-            <br />
-            ya da <span className="canli-adres">{katilimAdresi}</span>
-          </p>
+          <div className="canli-pin__yollar">
+            <QrKod metin={katilimAdresi} etiket="Katılım bağlantısının QR kodu" />
+            <p className="metin-ikincil">
+              Telefon kamerasıyla QR kodu okut
+              <br />
+              ya da Kök Avı → <strong>Sınıfım</strong> → <strong>Canlı yarışmaya katıl</strong>
+              <br />
+              <span className="canli-adres">{katilimAdresi}</span>
+            </p>
+          </div>
         </div>
 
         <div className="canli-lobi__alt">
-          <h2 className="canli-lobi__sayi" role="status">
+          <h2 className="canli-lobi__sayi">
             {d.oyuncular.length === 0
               ? 'Oyuncular bekleniyor…'
               : `${d.oyuncular.length} oyuncu katıldı`}
@@ -253,6 +336,7 @@ function YonetimAsamasi({
           Yarışma bitti!
         </h1>
         <Podyum siralama={d.siralama} />
+        {d.rapor && d.rapor.length > 0 && <SinifRaporu rapor={d.rapor} />}
         <SiraListesi siralama={d.siralama} baslik="Bütün sıralama" />
         <div className="satir">
           <a className="dugme" href="#/canli/kur">
@@ -277,7 +361,7 @@ function YonetimAsamasi({
         {d.asama === 'soru' ? (
           <>
             <GeriSayim kalanMs={soru.kalanMs} sureSn={soru.sureSn} anahtar={`${soru.no}`} />
-            <span className="canli-cevaplayan" role="status">
+            <span className="canli-cevaplayan">
               {d.cevaplayan} / {d.oyuncular.length} cevapladı
             </span>
           </>

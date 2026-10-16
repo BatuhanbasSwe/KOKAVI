@@ -1,0 +1,234 @@
+/* ===========================================================================
+   Zaman tüneli — dikey şerit; masaüstünde ortada çizgi, sağlı sollu kartlar,
+   telefonda soldan tek sütun. Keşfedilmeyenler silik + "keşfedilmedi" metni.
+   =========================================================================== */
+.zt__baslik {
+  margin: 0 0 var(--b-1);
+}
+.zt-yuzyil__baslik {
+  position: sticky;
+  top: var(--b-2);
+  z-index: 2;
+  justify-self: center;
+  width: fit-content;
+  margin: var(--b-4) auto var(--b-2);
+  padding: var(--b-1) var(--b-4);
+  border-radius: var(--kose-tam);
+  background: var(--vurgu);
+  color: var(--vurgu-metin);
+  font-size: var(--yazi-md);
+  box-shadow: var(--golge);
+}
+.zt-liste {
+  position: relative;
+  display: grid;
+  gap: var(--b-3);
+  margin: 0;
+  padding: 0 0 0 28px;
+  list-style: none;
+}
+.zt-liste::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  width: 4px;
+  border-radius: var(--kose-tam);
+  background: var(--cizgi-kalin);
+}
+.zt-oge {
+  position: relative;
+  animation: zt-gir 420ms calc(var(--sira, 0) * 50ms) cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+.zt-oge__nokta {
+  position: absolute;
+  left: -24px;
+  top: 22px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid var(--cizgi-kalin);
+  background: var(--zemin);
+}
+.zt-oge--acik .zt-oge__nokta {
+  border-color: var(--vurgu);
+  background: var(--odul);
+}
+.zt-kart {
+  display: flex;
+  gap: var(--b-3);
+  align-items: center;
+  padding: var(--b-2);
+  border: 2px dashed var(--cizgi-kalin);
+  border-radius: var(--kose-md);
+  background: var(--zemin);
+  color: var(--metin-soluk);
+  text-decoration: none;
+}
+a.zt-kart:hover {
+  border-color: var(--vurgu);
+}
+.zt-oge--acik .zt-kart {
+  border-style: solid;
+  border-color: var(--cizgi);
+  background: var(--zemin-kart);
+  color: var(--metin);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--cizgi);
+}
+.zt-kart__foto {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--kose-sm);
+  object-fit: cover;
+  background: var(--zemin-vurgu);
+  filter: grayscale(1) opacity(0.6);
+}
+.zt-oge--acik .zt-kart__foto {
+  filter: none;
+}
+.zt-kart__metin {
+  display: grid;
+  min-width: 0;
+}
+.zt-kart__yil {
+  font-weight: 800;
+  font-size: var(--yazi-lg);
+  color: var(--sicak);
+  font-variant-numeric: tabular-nums;
+}
+.zt-kart__ad {
+  font-weight: 800;
+  line-height: 1.2;
+}
+.zt-kart__alt {
+  font-size: var(--yazi-xs);
+}
+.zt-kart__kilit {
+  font-style: italic;
+}
+
+/* Geniş ekranda: ortada çizgi, kartlar sağlı sollu */
+@media (min-width: 720px) {
+  .zt-liste {
+    padding: 0;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 56px;
+  }
+  .zt-liste::before {
+    left: 50%;
+    translate: -50% 0;
+  }
+  .zt-oge--sol {
+    grid-column: 1;
+  }
+  .zt-oge--sag {
+    grid-column: 2;
+    margin-top: var(--b-6);
+  }
+  .zt-oge--sol .zt-oge__nokta {
+    left: auto;
+    right: -36px;
+  }
+  .zt-oge--sag .zt-oge__nokta {
+    left: -36px;
+  }
+}
+
+@keyframes zt-gir {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zt-oge {
+    animation: none;
+  }
+}
+
+/* --- Öğrenme Yolu "Zamana göre" sekmesi ------------------------------------- */
+.kart.zt-siradaki {
+  display: grid;
+  gap: var(--b-2);
+  justify-items: start;
+  border: 3px solid var(--vurgu);
+  background: var(--vurgu-yumusak);
+}
+.zt-siradaki__etiket {
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  color: var(--sicak);
+}
+.zt-siradaki__ad {
+  font-size: var(--yazi-lg);
+  font-weight: 800;
+}
+.zt-oge--siradaki .zt-kart {
+  border: 3px solid var(--vurgu);
+  border-style: solid;
+  background: var(--zemin-kart);
+  color: var(--metin);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--vurgu-golge);
+}
+.zt-oge--siradaki .zt-kart__foto {
+  filter: none;
+}
+.zt-oge--siradaki .zt-oge__nokta {
+  border-color: var(--vurgu);
+  background: var(--vurgu);
+  animation: zt-nabiz 1.4s ease-in-out infinite;
+}
+.zt-kart__siradaki {
+  font-weight: 800;
+  color: var(--vurgu-koyu);
+}
+.zt-kart__basla {
+  margin-left: auto;
+  flex: none;
+  padding: var(--b-1) var(--b-2);
+  border-radius: var(--kose-sm);
+  background: var(--vurgu);
+  color: var(--vurgu-metin);
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+@keyframes zt-nabiz {
+  50% {
+    scale: 1.35;
+  }
+}
+
+/* Yol görünümü seçici (Şehirlere göre / Zamana göre) */
+.yol-gorunum {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--kose-tam);
+  background: var(--zemin-vurgu);
+  border: 2px solid var(--cizgi);
+}
+.yol-gorunum__dugme {
+  min-height: 44px;
+  font: inherit;
+  font-weight: 800;
+  color: var(--metin-ikincil);
+  background: transparent;
+  border: 0;
+  border-radius: var(--kose-tam);
+  cursor: pointer;
+  transition: background var(--gecis-hizli), color var(--gecis-hizli);
+}
+.yol-gorunum__dugme[aria-pressed='true'] {
+  background: var(--zemin-kart);
+  color: var(--vurgu-koyu);
+  box-shadow: var(--golge);
+}
+@media (prefers-reduced-motion: reduce) {
+  .zt-oge--siradaki .zt-oge__nokta {
+    animation: none;
+  }
+}

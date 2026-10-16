@@ -23,7 +23,17 @@ import { api, type FiltreSecenekleri } from '@/lib/api';
 import { useDurum } from '../../app/DurumSaglayici';
 import { arsivListesi, ilceAdi, IL_ADLARI, type ArsivEseri } from '../arsiv/arsivVeri';
 import { kucukKapak } from '../ders/EserGalerisi';
-import { bolgeHaritasiKur, type BolgeSayisi, type HaritaEseri, type Seviye } from './bolgeHaritasi';
+import {
+  bolgeHaritasiKur,
+  type AgCizgisi,
+  type BolgeHaritasi,
+  type BolgeSayisi,
+  type HaritaEseri,
+  type Seviye,
+} from './bolgeHaritasi';
+import { VAKIF_BAGLARI } from './vakifAgi';
+import { eserBul } from '../gunun-eseri/oyun';
+import { IkonOk, IkonSikke } from '../../app/Ikonlar';
 import { EserSatiri } from './EserSatiri';
 import { BOS_FILTRELER, filtreleriCoz } from './filtreler';
 import './harita.css';
@@ -186,6 +196,29 @@ export function HaritaSayfasi() {
     return { ilSayilari: il, ilceSayilari: ilce };
   }, [arsiv, eserler]);
 
+  // Vakıf ağı: akar → hayrat çizgileri (konumu bilinen bağlar).
+  const [agAcik, setAgAcik] = useState(false);
+  const haritaRef = useRef<BolgeHaritasi | null>(null);
+  const agCizgileri = useMemo<AgCizgisi[]>(() => {
+    const konum = new Map(haritaEserleri.map((e) => [e.id, [e.lng, e.lat] as [number, number]]));
+    return VAKIF_BAGLARI.flatMap((b) => {
+      const kaynak = konum.get(b.akarId);
+      const hedef = b.hedef.eserId
+        ? konum.get(b.hedef.eserId)
+        : b.hedef.lng !== undefined && b.hedef.lat !== undefined
+          ? ([b.hedef.lng, b.hedef.lat] as [number, number])
+          : undefined;
+      return kaynak && hedef
+        ? [{ id: b.akarId, kaynak, hedef, hedefAd: b.hedef.ad, yaklasik: !!b.hedef.yaklasik }]
+        : [];
+    });
+  }, [haritaEserleri]);
+  const agAcikRef = useRef(agAcik);
+  agAcikRef.current = agAcik;
+  useEffect(() => {
+    haritaRef.current?.agGoster(agAcik);
+  }, [agAcik]);
+
   useEffect(() => {
     if (!haritaKabi.current || konumlular.length === 0) return;
     let temizle: (() => void) | undefined;
@@ -204,7 +237,7 @@ export function HaritaSayfasi() {
       // Renkler tema jetonlarından okunur (açık / koyu / yüksek kontrast + palet).
       const stil = getComputedStyle(document.documentElement);
       try {
-        temizle = bolgeHaritasiKur(maplibre.default ?? maplibre, haritaKabi.current, {
+        const h = bolgeHaritasiKur(maplibre.default ?? maplibre, haritaKabi.current, {
           iller: (illerModulu as { default: unknown }).default as FeatureCollection,
           ilceler: (ilcelerModulu as { default: unknown }).default as FeatureCollection,
           eserler: haritaEserleri,
@@ -212,7 +245,11 @@ export function HaritaSayfasi() {
           ilceSayilari,
           renk: (ad, yedek) => stil.getPropertyValue(ad).trim() || yedek,
           onSeviye: setSeviye,
+          ag: agCizgileri,
         });
+        haritaRef.current = h;
+        temizle = h.temizle;
+        if (agAcikRef.current) h.agGoster(true);
       } catch {
         // Harita çizilemezse (WebGL yok vb.) sayfa ve liste çalışmaya devam eder.
       }
@@ -220,9 +257,10 @@ export function HaritaSayfasi() {
 
     return () => {
       iptal = true;
+      haritaRef.current = null;
       temizle?.();
     };
-  }, [konumlular.length, haritaEserleri, ilSayilari, ilceSayilari]);
+  }, [konumlular.length, haritaEserleri, ilSayilari, ilceSayilari, agCizgileri]);
 
   return (
     <div className="yigin" style={{ gap: 'var(--b-5)' }}>
@@ -332,6 +370,26 @@ export function HaritaSayfasi() {
               </li>
             ))}
           </ol>
+          {agCizgileri.length > 0 && (
+            <div className="harita-ag-dugme">
+              <button
+                type="button"
+                className={`dugme${agAcik ? '' : ' dugme--ikincil'}`}
+                aria-pressed={agAcik}
+                aria-describedby="vakif-agi-aciklama"
+                onClick={() => setAgAcik((a) => !a)}
+              >
+                <span aria-hidden="true">⇢ </span>
+                {agAcik ? 'Vakıf ağını gizle' : 'Vakıf ağını göster'}
+              </button>
+              <span id="vakif-agi-aciklama" className="metin-soluk harita-ag-dugme__not">
+                Hanların ve hamamların kirası hangi camiyi, külliyeyi yaşatıyordu?
+              </span>
+              <a className="harita-rota-bag" href="#/rota">
+                Keşif rotası oluştur →
+              </a>
+            </div>
+          )}
           <div
             className="harita-kap harita-kap--bolge"
             ref={haritaKabi}
@@ -346,6 +404,36 @@ export function HaritaSayfasi() {
           </p>
         </div>
       )}
+
+      {/* Vakıf ağının metin eşdeğeri (harita çizgileri yalnızca görsel özet) */}
+      <section aria-labelledby="vakif-agi-baslik" className="kart vakif-agi">
+        <h2 id="vakif-agi-baslik" className="vakif-agi__baslik">
+          Para nereye akıyordu?
+        </h2>
+        <p className="metin-ikincil vakif-agi__giris">
+          Vakıfta bir yapı kira getirir (<strong>akar</strong>), o kira başka bir yapıyı yaşatır
+          (<strong>hayrat</strong>). Bazen yüzlerce kilometre öteyi!
+        </p>
+        <ul className="vakif-agi__liste">
+          {VAKIF_BAGLARI.map((b) => (
+            <li key={b.akarId} className="vakif-agi__bag">
+              <span className="vakif-agi__akar">{eserBul(b.akarId)?.kisaAd ?? b.akarId}</span>
+              <span className="vakif-agi__ok" aria-hidden="true">
+                <IkonSikke boyut={18} />
+                <IkonOk boyut={18} />
+              </span>
+              <span className="vakif-agi__hayrat">
+                {b.hedef.ad} <span className="metin-soluk">({b.hedef.yer})</span>
+              </span>
+              <span className="vakif-agi__cumle">{b.cumle}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="metin-soluk vakif-agi__kaynak">
+          Kaynak: Vakıf Katılım envanterleri (eserlerin vakfiye bilgisi). Hedef konumları: ©
+          OpenStreetMap katkıcıları; Gelibolu ve Demirtaş Camii yaklaşık.
+        </p>
+      </section>
 
       {/* Haritanın erişilebilir eşdeğeri — zorunlu (WCAG 1.1.1) */}
       <section aria-labelledby="harita-liste-basligi" aria-busy={yukleniyor}>

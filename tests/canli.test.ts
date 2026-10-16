@@ -268,6 +268,32 @@ describe('oyun motoru', () => {
     expect(() => odalar.katil(pin)).toThrow(/dolu/);
   });
 
+  it('oyun sonu raporu: soru soru sayılar, hiçbir takma ad yok; bitmeden gelmez', () => {
+    const { pin, anahtar, oyuncular } = kurVeKatil(3);
+    const [a, b, c] = oyuncular.map((o) => o.oyuncuAnahtari);
+    odalar.basla(pin, anahtar);
+    odalar.cevapla(pin, a, 0, 0);
+    odalar.cevapla(pin, b, 0, 0);
+    odalar.cevapla(pin, c, 0, 1);
+    expect(odalar.sunucuDurumu(pin, anahtar).rapor).toBeUndefined();
+    odalar.sonraki(pin, anahtar);
+    odalar.cevapla(pin, a, 1, 2); // 2. soruda yalnız biri cevapladı, yanlış
+    odalar.bitir(pin, anahtar);
+    const d = odalar.sunucuDurumu(pin, anahtar);
+    expect(d.rapor).toEqual([
+      expect.objectContaining({ no: 0, dogruSayisi: 2, cevaplayan: 3, dogruCevap: 'kalıcı' }),
+      expect.objectContaining({ no: 1, dogruSayisi: 0, cevaplayan: 1 }),
+    ]);
+    const metin = JSON.stringify(d.rapor);
+    for (const o of oyuncular) expect(metin).not.toContain(o.takmaAd);
+  });
+
+  it('başlamadan bitirilen oyunun raporu boş', () => {
+    const { pin, anahtar } = kurVeKatil(1);
+    odalar.bitir(pin, anahtar);
+    expect(odalar.sunucuDurumu(pin, anahtar).rapor).toEqual([]);
+  });
+
   it('terk edilen odalar silinir', () => {
     kurVeKatil();
     expect(odalar.odaSayisi).toBe(1);

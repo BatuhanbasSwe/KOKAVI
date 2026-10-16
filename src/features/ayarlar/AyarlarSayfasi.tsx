@@ -8,6 +8,7 @@
  * Bu ekrandaki her ayar anında tüm ürüne uygulanır.
  */
 import { useDurum } from '../../app/DurumSaglayici';
+import { YuklemeKarti } from './YuklemeKarti';
 import {
   RENK_KORLUGU_ETIKETLERI,
   TEMA_ETIKETLERI,
@@ -140,7 +141,7 @@ export function AyarlarSayfasi() {
 
         <AyarSatiri
           etiket="Sessiz mod"
-          aciklama="Sesli içerikleri kapatır. Derslerin tamamı ses olmadan bitirilebilir."
+          aciklama="Sesli anlatımı, doğru/yanlış seslerini ve titreşimi kapatır. Derslerin tamamı ses olmadan bitirilebilir."
         >
           <button
             type="button"
@@ -152,6 +153,8 @@ export function AyarlarSayfasi() {
           </button>
         </AyarSatiri>
       </section>
+
+      <YuklemeKarti />
 
       <section className="kart" aria-labelledby="gizlilik-basligi">
         <h2 id="gizlilik-basligi" style={{ fontSize: 'var(--yazi-xl)' }}>

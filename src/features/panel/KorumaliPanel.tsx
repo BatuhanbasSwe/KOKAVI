@@ -7,6 +7,7 @@
  * belirteci yeniden doğrular.
  */
 import { useOturum } from '../../lib/oturum';
+import { IkonKilit } from '../../app/Ikonlar';
 import { PanelSayfasi } from './PanelSayfasi';
 import { GirisEkrani } from './GirisEkrani';
 
@@ -46,7 +47,7 @@ export function KorumaliPanel({ eserId }: { eserId?: string }) {
         style={{ justifyContent: 'space-between', gap: 'var(--b-3)', flexWrap: 'wrap' }}
       >
         <span className="rozet">
-          <span aria-hidden="true">🔒</span> {kullanici.ad} · {kullanici.rol}
+          <IkonKilit boyut={16} /> {kullanici.ad} · {kullanici.rol}
         </span>
         <button type="button" className="dugme dugme--ikincil" onClick={() => void cikisYap()}>
           Çıkış yap

@@ -64,6 +64,19 @@ export interface CanliSiraSatiri {
   puan: number;
 }
 
+/**
+ * Oyun bitince öğretmene giden anonim soru özeti: kim ne cevapladı DEĞİL,
+ * yalnızca "kaç kişi doğru bildi". Kaydedilmez; yalnızca o ekranda.
+ */
+export interface CanliRaporSatiri {
+  no: number;
+  soru: string;
+  dogruCevap: string;
+  eserId: string;
+  dogruSayisi: number;
+  cevaplayan: number;
+}
+
 export interface CanliSunucuDurumu {
   pin: string;
   asama: CanliAsama;
@@ -74,6 +87,8 @@ export interface CanliSunucuDurumu {
   sonuc: (CanliSoruSonucu & { dagilim: number[] }) | null;
   /** cevap aşamasında ilk 5, bitti aşamasında herkes. */
   siralama: CanliSiraSatiri[];
+  /** Yalnızca bitti aşamasında: soru soru anonim sınıf özeti. */
+  rapor?: CanliRaporSatiri[];
 }
 
 export interface CanliOyuncuDurumu {

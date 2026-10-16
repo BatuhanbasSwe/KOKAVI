@@ -17,8 +17,8 @@ export default defineConfig({
         lang: 'tr',
         start_url: '/',
         display: 'standalone',
-        background_color: '#FBF6EC',
-        theme_color: '#0F7F7A',
+        background_color: '#000000',
+        theme_color: '#000000',
         icons: [
           { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icon-512.png', sizes: '512x512', type: 'image/png' },
@@ -27,7 +27,7 @@ export default defineConfig({
       },
       workbox: {
         // Çevrimdışı ders desteği: uygulama kabuğu + ders verisi önbelleğe alınır.
-        globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}', 'maskot/*.webp'],
         // Eser fotoğrafları (~25 MB) ve arşiv (~23 MB) ilk yüklemeye girmez;
         // açıldıkça aşağıdaki çalışma zamanı önbelleğine alınır.
         globIgnores: ['gorseller/**', 'arsiv/**'],
@@ -82,5 +82,7 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./tests/setup.ts'],
     include: ['tests/**/*.test.{ts,tsx}'],
+    // axe denetimleri paralel yük altında 5 sn varsayılanı aşabiliyor
+    testTimeout: 20000,
   },
 });

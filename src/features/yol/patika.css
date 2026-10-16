@@ -1,0 +1,269 @@
+/* Fotoğraf patikası: madalyonlu zikzak yol. */
+
+.patika-unite {
+  display: grid;
+  gap: var(--b-4);
+}
+
+.patika-unite__baslik {
+  display: grid;
+  gap: var(--b-2);
+  padding-bottom: var(--b-2);
+}
+
+.patika-unite__satir {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--b-3);
+}
+
+.patika-unite__satir h3 {
+  margin: 0;
+  font-size: var(--yazi-lg);
+}
+
+.patika-unite__sayac {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--yazi-baslik);
+  font-weight: 700;
+  color: var(--metin-ikincil);
+  white-space: nowrap;
+}
+
+.patika-unite__cubuk {
+  height: 6px;
+  border-radius: var(--kose-tam);
+  background: var(--zemin-vurgu);
+  overflow: hidden;
+}
+
+.patika-unite__cubuk span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--vurgu);
+  transition: width var(--gecis-normal);
+}
+
+.patika-unite--kilitli .patika-unite__satir h3 {
+  color: var(--metin-ikincil);
+}
+
+/* --- Duraklar ------------------------------------------------------------- */
+
+.patika {
+  list-style: none;
+  margin: 0;
+  padding: var(--b-2) 0 var(--b-4);
+  display: grid;
+  justify-items: center;
+  gap: var(--b-5);
+}
+
+.patika__durak {
+  position: relative;
+  transform: translateX(var(--kayma, 0));
+  animation: durak-gel 520ms var(--yay) both;
+  animation-delay: calc(var(--sira, 0) * 70ms);
+}
+
+@keyframes durak-gel {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+    scale: 0.9;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+.patika__baglanti {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  color: var(--metin);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.patika__baglanti:focus-visible {
+  outline-offset: 4px;
+  border-radius: var(--kose-md);
+}
+
+.patika__cerceve {
+  position: relative;
+  display: grid;
+  place-items: center;
+  transition: transform 140ms var(--yay);
+}
+
+a.patika__baglanti:active .patika__cerceve {
+  transform: scale(0.94);
+}
+
+.patika__madalyon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+  border-radius: 50%;
+  color: var(--vurgu-koyu);
+  background: var(--zemin-vurgu);
+  border: 3px solid var(--cizgi-kalin);
+}
+
+.patika__madalyon img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.patika__ad {
+  max-width: 150px;
+  font-size: var(--yazi-sm);
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Biten: safran kenar + onay rozeti */
+.patika__durak--tamam .patika__madalyon {
+  border-color: var(--vurgu);
+}
+
+.patika__rozet {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+  border: 3px solid var(--zemin);
+}
+
+.patika__rozet--kilit {
+  color: var(--metin-ikincil);
+  background: var(--zemin-vurgu);
+}
+
+/* Kilitli: soluk ve gri */
+.patika__durak--kilitli .patika__madalyon {
+  border-color: var(--cizgi);
+}
+
+.patika__durak--kilitli .patika__madalyon img {
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+
+.patika__durak--kilitli .patika__ad {
+  color: var(--metin-soluk);
+}
+
+/* Sıradaki: büyük madalyon, ilerleme halkası, yavaş nefes */
+.patika__durak--aktif .patika__madalyon {
+  width: 100px;
+  height: 100px;
+  border-color: var(--zemin);
+  animation: nefes 2.6s ease-in-out 700ms infinite;
+}
+
+.patika__halka {
+  position: absolute;
+  inset: -12px;
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  max-width: none;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.patika__halka circle {
+  fill: none;
+  stroke-width: 5;
+}
+
+.patika__halka-iz {
+  stroke: var(--zemin-vurgu);
+}
+
+.patika__halka-cizgi {
+  stroke: var(--vurgu);
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  animation: halka-ciz 900ms var(--yay) 200ms both;
+}
+
+@keyframes halka-ciz {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nefes {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.patika__durak--aktif .patika__ad {
+  margin-top: 8px;
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-md);
+  font-weight: 700;
+}
+
+.patika__devam {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--b-4);
+  font-family: var(--yazi-baslik);
+  font-weight: 700;
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+  border-radius: var(--kose-sm);
+}
+
+/* Köstik sıradaki durağın yanında, patikanın merkezine doğru */
+.patika__maskot {
+  position: absolute;
+  top: 20px;
+  left: calc(100% + 14px);
+  width: 48px;
+  pointer-events: none;
+}
+
+.patika__durak--sag .patika__maskot {
+  left: auto;
+  right: calc(100% + 14px);
+}
+
+/* Telefon: zikzak daralır, taşma olmaz */
+@media (max-width: 420px) {
+  .patika__durak {
+    transform: translateX(calc(var(--kayma, 0) * 0.6));
+  }
+}

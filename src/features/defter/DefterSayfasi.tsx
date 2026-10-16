@@ -13,19 +13,132 @@
  * Defter teması Vakıf Çarşısı'ndan elmasla seçilir (PDF s. 3: "Kâşif
  * Defteri teması") — yalnızca görünüm değişir, bilgi değişmez.
  *
- * Erişilebilirlik: şehir seçimi aria-pressed düğmeleri; öğrenilen sayfalar
- * gerçek <button>, öğrenilmeyenler metinle "henüz öğrenilmedi" diye okunur.
+ * Defter dört iç sekmeden oluşur: Pullar (albüm) · Rozetler · Seri · Belgeler.
+ * Seçili sekme `#/defter?sekme=…` ile doğrudan açılabilir.
+ *
+ * Erişilebilirlik: sekmeler WAI-ARIA tablist (ok tuşları, Home/End); şehir
+ * seçimi aria-pressed düğmeleri; öğrenilen pullar gerçek <button>,
+ * öğrenilmeyenler metinle "henüz öğrenilmedi" diye okunur.
  */
-import { useEffect, useMemo, useState } from 'react';
+import { RozetPanosu } from '../rozetler/Rozetler';
+import { SertifikaBaglantilari } from '../sertifika/SertifikaBaglantilari';
+import { SeriSayfasi } from '../seri/Seri';
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import type { Eser } from '@shared/types';
 import { api } from '../../lib/api';
 import { useDurum } from '../../app/DurumSaglayici';
 import { IkonTur } from '../../app/Ikonlar';
-import { kisaAd } from '../yol/YolSayfasi';
+import { kisaAd } from '../yol/kisaAd';
 import '../ders/ders.css'; // .ders-ayrinti (Büyükler için)
 import './defter.css';
 
+const SEKMELER = [
+  { id: 'pullar', ad: 'Pullar' },
+  { id: 'rozetler', ad: 'Rozetler' },
+  { id: 'seri', ad: 'Seri' },
+  { id: 'belgeler', ad: 'Belgeler' },
+] as const;
+type Sekme = (typeof SEKMELER)[number]['id'];
+
+function sekmeOku(): Sekme {
+  const istenen = new URLSearchParams(window.location.hash.split('?')[1] ?? '').get('sekme');
+  return SEKMELER.find((s) => s.id === istenen)?.id ?? 'pullar';
+}
+
+/** Pul: eserin kapak fotoğrafı tırtıklı kenarlı çerçevede; görsel yoksa tür simgesi. */
+function PulGorseli({ eserId, tur }: { eserId: string; tur: string }) {
+  const [yok, setYok] = useState(false);
+  return (
+    <span className="defter-pul__resim" aria-hidden="true">
+      {yok ? (
+        <IkonTur tur={tur} boyut={28} />
+      ) : (
+        <img src={`/gorseller/${eserId}/k.webp`} alt="" loading="lazy" decoding="async" onError={() => setYok(true)} />
+      )}
+    </span>
+  );
+}
+
 export function DefterSayfasi() {
+  const [sekme, setSekmeDurum] = useState<Sekme>(sekmeOku);
+  const sekmeRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  function setSekme(s: Sekme, odak = false) {
+    setSekmeDurum(s);
+    // replaceState: hashchange tetiklemez (sayfa odağı ve kaydırma yerinde kalır).
+    try {
+      window.history.replaceState(null, '', s === 'pullar' ? '#/defter' : `#/defter?sekme=${s}`);
+    } catch {
+      /* geçmiş API'si yoksa yalnızca görünüm değişir */
+    }
+    if (odak) sekmeRefs.current[s]?.focus();
+  }
+
+  function tusla(e: KeyboardEvent<HTMLDivElement>) {
+    const i = SEKMELER.findIndex((s) => s.id === sekme);
+    const hedef =
+      e.key === 'ArrowRight'
+        ? (i + 1) % SEKMELER.length
+        : e.key === 'ArrowLeft'
+          ? (i - 1 + SEKMELER.length) % SEKMELER.length
+          : e.key === 'Home'
+            ? 0
+            : e.key === 'End'
+              ? SEKMELER.length - 1
+              : -1;
+    if (hedef < 0) return;
+    e.preventDefault();
+    setSekme(SEKMELER[hedef]!.id, true);
+  }
+
+  return (
+    <div className="defter-kok yigin" style={{ gap: 'var(--b-4)' }}>
+      <h1 style={{ margin: 0 }}>Kâşif Defteri</h1>
+      <div className="defter-sekmeler" role="tablist" aria-label="Defter bölümleri" onKeyDown={tusla}>
+        {SEKMELER.map((s) => (
+          <button
+            key={s.id}
+            ref={(el) => {
+              sekmeRefs.current[s.id] = el;
+            }}
+            type="button"
+            role="tab"
+            id={`defter-sekme-${s.id}`}
+            aria-selected={sekme === s.id}
+            aria-controls={`defter-panel-${s.id}`}
+            tabIndex={sekme === s.id ? 0 : -1}
+            className="defter-sekme"
+            onClick={() => setSekme(s.id)}
+          >
+            {s.ad}
+          </button>
+        ))}
+      </div>
+      <div
+        role="tabpanel"
+        id={`defter-panel-${sekme}`}
+        aria-labelledby={`defter-sekme-${sekme}`}
+        className="defter-panel"
+        key={sekme}
+      >
+        {sekme === 'pullar' && <Pullar />}
+        {sekme === 'rozetler' && <RozetPanosu />}
+        {sekme === 'seri' && <SeriSayfasi gomulu />}
+        {sekme === 'belgeler' && <Belgeler />}
+      </div>
+    </div>
+  );
+}
+
+function Belgeler() {
+  const { yol } = useDurum();
+  if (!yol || yol.sehirler.length === 0) {
+    return <p className="metin-ikincil">Bir şehri bitirince sertifikan burada olacak.</p>;
+  }
+  return <SertifikaBaglantilari />;
+}
+
+function Pullar() {
   const { ilerleme, yol, carsi } = useDurum();
   const [eserler, setEserler] = useState<Eser[]>([]);
   const [yukleniyor, setYukleniyor] = useState(true);
@@ -92,16 +205,13 @@ export function DefterSayfasi() {
   }, [eserler, ogrenilen]);
 
   return (
-    <div className="defter-kok yigin" data-defter-tema={carsi.defterTemasi} style={{ gap: 'var(--b-4)' }}>
+    <div className="yigin" data-defter-tema={carsi.defterTemasi} style={{ gap: 'var(--b-4)' }}>
       <div className="defter-ust">
-        <div>
-          <h1>Kâşif Defteri</h1>
-          <p className="metin-ikincil" style={{ margin: 0 }}>
-            Öğrendiğin her eser deftere bir sayfa olur. Boş yerler seni bekliyor.
-          </p>
-        </div>
+        <p className="metin-ikincil" style={{ margin: 0 }}>
+          Öğrendiğin her eser deftere bir pul olur. Boş yerler seni bekliyor.
+        </p>
         <span className="defter-sayac">
-          {toplamOgrenilen}/{eserler.length} sayfa
+          {toplamOgrenilen}/{eserler.length} pul
         </span>
       </div>
 
@@ -171,22 +281,24 @@ export function DefterSayfasi() {
                   {acik ? (
                     <button
                       type="button"
-                      className="defter-karesi defter-karesi--acik"
+                      className="defter-pul defter-pul--acik"
                       aria-expanded={acikSayfa === eser.id}
                       aria-controls="defter-sayfa-ayrinti"
                       onClick={() => setAcikSayfa(acikSayfa === eser.id ? null : eser.id)}
                     >
-                      <span className="defter-karesi__ikon" aria-hidden="true">
-                        <IkonTur tur={eser.tur} boyut={26} kalinlik={1.9} />
+                      <span className="defter-pul__kagit">
+                        <PulGorseli eserId={eser.id} tur={eser.tur} />
                       </span>
-                      <span className="defter-karesi__ad">{kisaAd(eser.ad)}</span>
+                      <span className="defter-pul__ad">{kisaAd(eser.ad)}</span>
                     </button>
                   ) : (
-                    <div className="defter-karesi defter-karesi--kapali">
-                      <span className="defter-karesi__ikon" aria-hidden="true">
-                        <IkonTur tur={eser.tur} boyut={26} kalinlik={1.9} />
+                    <div className="defter-pul defter-pul--kapali">
+                      <span className="defter-pul__kagit" aria-hidden="true">
+                        <span className="defter-pul__resim">
+                          <IkonTur tur={eser.tur} boyut={24} />
+                        </span>
                       </span>
-                      <span className="defter-karesi__ad">
+                      <span className="defter-pul__ad">
                         <span aria-hidden="true">? </span>
                         {eser.tur}
                         <span className="sr-only">, henüz öğrenilmedi</span>
@@ -243,7 +355,7 @@ export function DefterSayfasi() {
           </h2>
           {bagliBani.map(([bani, liste]) => (
             <div key={bani} className="kart defter-baglanti">
-              <p style={{ margin: 0, fontWeight: 900 }}>{bani}</p>
+              <p style={{ margin: 0, fontWeight: 800 }}>{bani}</p>
               <p className="metin-ikincil" style={{ margin: 'var(--b-1) 0 0' }}>
                 Aynı kişinin yaptırdığı {liste.length} eseri öğrendin:{' '}
                 {liste.map((e) => kisaAd(e.ad)).join(', ')}.
@@ -252,6 +364,7 @@ export function DefterSayfasi() {
           ))}
         </section>
       )}
+
     </div>
   );
 }

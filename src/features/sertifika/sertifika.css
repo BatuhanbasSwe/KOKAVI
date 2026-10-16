@@ -1,0 +1,146 @@
+/* ===========================================================================
+   Şehir sertifikası — ekranda jetonlarla çizilir; yazdırırken yalnızca belge.
+   =========================================================================== */
+.sertifika-ust h1 {
+  margin: 0 0 var(--b-1);
+}
+.sertifika-etiket {
+  display: block;
+  margin-top: var(--b-3);
+  font-weight: 800;
+}
+.sertifika-girdi {
+  width: min(100%, 420px);
+  min-height: 48px;
+  margin-top: var(--b-1);
+  padding: 0 var(--b-3);
+  font: inherit;
+  color: var(--metin);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-md);
+}
+.sertifika-cerceve {
+  margin: 0;
+  animation: sertifika-gir 700ms cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+.sertifika {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--kose-md);
+  box-shadow: var(--golge-buyuk);
+}
+.sertifika__zemin {
+  fill: var(--zemin-kart);
+}
+.sertifika__cerceve {
+  fill: none;
+  stroke: var(--vurgu);
+  stroke-width: 10;
+}
+.sertifika__ic-cerceve {
+  fill: none;
+  stroke: var(--odul);
+  stroke-width: 3;
+}
+.sertifika__kose,
+.sertifika__muhur {
+  fill: var(--vurgu);
+}
+.sertifika__muhur-ic {
+  fill: var(--odul);
+}
+.sertifika__muhur-yazi {
+  fill: var(--odul-metin);
+  font-family: var(--yazi-aile);
+  font-weight: 800;
+  font-size: 30px;
+}
+.sertifika__ust {
+  fill: var(--sicak);
+  font-family: var(--yazi-aile);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 4px;
+}
+.sertifika__baslik {
+  fill: var(--vurgu-koyu);
+  font-family: var(--yazi-aile);
+  font-weight: 800;
+  font-size: 64px;
+}
+.sertifika__metin {
+  fill: var(--metin-ikincil);
+  font-family: var(--yazi-aile);
+  font-weight: 600;
+  font-size: 24px;
+}
+.sertifika__ad {
+  fill: var(--metin);
+  font-family: var(--yazi-aile);
+  font-weight: 800;
+  font-size: 52px;
+}
+.sertifika__cizgi {
+  stroke: var(--cizgi-kalin);
+  stroke-width: 2;
+}
+.sertifika__alt {
+  fill: var(--metin-soluk);
+  font-family: var(--yazi-aile);
+  font-weight: 700;
+  font-size: 20px;
+}
+.sertifika-ilerleme {
+  height: 14px;
+  border-radius: var(--kose-tam);
+  background: var(--zemin-vurgu);
+  overflow: hidden;
+}
+.sertifika-ilerleme span {
+  display: block;
+  height: 100%;
+  width: calc(var(--oran, 0) * 100%);
+  background: var(--vurgu);
+}
+
+/* Defter'deki sertifika bağlantıları */
+.sertifika-baglantilar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+}
+
+@keyframes sertifika-gir {
+  from {
+    opacity: 0;
+    scale: 0.92;
+    rotate: -2deg;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sertifika-cerceve {
+    animation: none;
+  }
+}
+
+/* Yazdırırken yalnızca sertifika */
+@media print {
+  .ustbar,
+  .altbilgi,
+  .gezinme,
+  .sertifika-ust,
+  .sertifika-eylem,
+  .rozet-bildirim-kap,
+  .atla-baglantisi {
+    display: none !important;
+  }
+  .sertifika {
+    box-shadow: none;
+  }
+  @page {
+    size: landscape;
+    margin: 10mm;
+  }
+}

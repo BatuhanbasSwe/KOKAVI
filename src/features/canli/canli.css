@@ -23,12 +23,16 @@
   font-weight: 800;
   font-size: var(--yazi-sm);
 }
+.canli-katil > * {
+  min-width: 0;
+}
 .canli-katil__girdi {
+  width: 100%;
   min-height: 64px;
   padding: var(--b-2) var(--b-3);
   font: inherit;
   font-size: var(--yazi-2xl);
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 0.3em;
   text-align: center;
   color: var(--metin);
@@ -49,7 +53,12 @@
   border: 0;
   min-width: 0;
 }
+.canli-kur > * {
+  min-width: 0;
+}
 .canli-secim {
+  width: 100%;
+  min-width: 0;
   min-height: 48px;
   padding: 0 var(--b-3);
   font: inherit;
@@ -115,11 +124,12 @@
 .canli-puan {
   padding: var(--b-1) var(--b-3);
   border-radius: var(--kose-tam);
-  font-weight: 900;
+  font-weight: 800;
 }
 .canli-takma-ad {
   background: var(--ikincil-yumusak);
-  color: var(--ikincil-metin);
+  color: var(--ikincil);
+  border: 2px solid var(--ikincil);
 }
 .canli-puan {
   background: var(--odul);
@@ -240,7 +250,7 @@ button.canli-secenek:active:not(:disabled) {
 }
 .canli-secenek__isaret {
   color: var(--basari);
-  font-weight: 900;
+  font-weight: 800;
 }
 .canli-secenek__dagilim {
   display: flex;
@@ -269,6 +279,14 @@ button.canli-secenek:active:not(:disabled) {
 .canli-cevaplayan {
   font-weight: 800;
   color: var(--metin-ikincil);
+}
+
+/* Telefonda seçenekler ekrana sığsın: oyuncu ekranında fotoğraf daha kısa. */
+.canli--oyuncu .canli-soru__foto {
+  max-height: 28vh;
+}
+.canli--oyuncu .canli-soru__metin {
+  font-size: var(--yazi-lg);
 }
 
 /* --- Geri sayım --------------------------------------------------------------- */
@@ -300,7 +318,7 @@ button.canli-secenek:active:not(:disabled) {
   inset: 0;
   display: grid;
   place-items: center;
-  font-weight: 900;
+  font-weight: 800;
   font-size: var(--yazi-lg);
 }
 .canli-sayac--az .canli-sayac__dolgu {
@@ -350,7 +368,7 @@ button.canli-secenek:active:not(:disabled) {
   margin-inline: auto;
   border-radius: 50%;
   font-size: 44px;
-  font-weight: 900;
+  font-weight: 800;
   color: var(--zemin-kart);
   background: var(--basari);
   animation: canli-zipla 600ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
@@ -401,7 +419,7 @@ button.canli-secenek:active:not(:disabled) {
 .canli-pin__sayi {
   margin: 0;
   font-size: clamp(2.6rem, 12vw, 5rem);
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 0.08em;
   line-height: 1;
   color: var(--vurgu-koyu);
@@ -462,14 +480,14 @@ button.canli-secenek:active:not(:disabled) {
 }
 .canli-sira__no {
   min-width: 2.2em;
-  font-weight: 900;
+  font-weight: 800;
 }
 .canli-sira__ad {
   flex: 1;
   font-weight: 700;
 }
 .canli-sira__puan {
-  font-weight: 900;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
 
@@ -527,7 +545,7 @@ button.canli-secenek:active:not(:disabled) {
   outline-offset: 3px;
 }
 .canli-podyum__ad {
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.15;
   overflow-wrap: anywhere;
 }
@@ -538,7 +556,7 @@ button.canli-secenek:active:not(:disabled) {
 .canli-podyum__sira {
   align-self: end;
   font-size: var(--yazi-3xl);
-  font-weight: 900;
+  font-weight: 800;
   color: var(--metin-soluk);
 }
 
@@ -618,4 +636,96 @@ button.canli-secenek:active:not(:disabled) {
 .canli-davet h2,
 .canli-davet p {
   margin: 0;
+}
+
+/* Katılım QR kodu: koyu nokta açık zemin (temada ters dönse de modern
+   telefon kameraları ters QR'ı da okur). */
+.canli-pin__yollar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--b-4);
+}
+.canli-pin__yollar p {
+  margin: 0;
+  max-width: 34ch;
+}
+.canli-qr {
+  width: min(200px, 60vw);
+  height: auto;
+  border-radius: var(--kose-sm);
+}
+.canli-qr__zemin {
+  fill: var(--zemin-kart);
+}
+.canli-qr__nokta {
+  fill: var(--metin);
+}
+
+.canli-sira {
+  text-align: left;
+}
+
+/* --- Sınıf raporu (oyun sonu, öğretmen) ------------------------------------- */
+.canli-rapor {
+  display: grid;
+  gap: var(--b-2);
+  text-align: left;
+}
+.canli-rapor__baslik,
+.canli-rapor__not,
+.canli-rapor__vurgu {
+  margin: 0;
+}
+.canli-rapor__liste {
+  display: grid;
+  gap: var(--b-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.canli-rapor__satir {
+  display: grid;
+  gap: 4px;
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-vurgu);
+}
+.canli-rapor__olcum {
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+  font-weight: 800;
+  font-size: var(--yazi-sm);
+}
+.canli-rapor__cubuk {
+  flex: 1;
+  height: 12px;
+  border-radius: var(--kose-tam);
+  background: var(--zemin-kart);
+  overflow: hidden;
+}
+.canli-rapor__cubuk span {
+  display: block;
+  height: 100%;
+  width: calc(var(--oran, 0) * 100%);
+  background: var(--basari);
+  border-radius: inherit;
+}
+.canli-rapor__cevap {
+  font-size: var(--yazi-xs);
+  color: var(--metin-ikincil);
+}
+@media print {
+  .ustbar,
+  .altbilgi,
+  .gezinme,
+  .canli-podyum,
+  .canli-son .satir,
+  .canli-son__baslik,
+  .konfeti,
+  .canli-rapor button {
+    display: none !important;
+  }
 }

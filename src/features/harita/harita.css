@@ -140,8 +140,6 @@
   margin: 0 0 var(--b-1);
   font-size: var(--yazi-xs);
   font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--metin-soluk);
 }
 
@@ -320,7 +318,7 @@
   translate: 0 -2px;
 }
 .hm-il__ad {
-  font-weight: 900;
+  font-weight: 800;
   font-size: var(--yazi-md);
   color: var(--vurgu-koyu);
 }
@@ -330,7 +328,7 @@
 }
 .hm-il__ders {
   font-size: var(--yazi-xs);
-  font-weight: 900;
+  font-weight: 800;
   padding: 0 var(--b-2);
   border-radius: var(--kose-tam);
   background: var(--odul);
@@ -354,7 +352,7 @@
   box-shadow: 0 3px 0 var(--ikincil-golge);
 }
 .hm-ilce__sayi {
-  font-weight: 900;
+  font-weight: 800;
   font-size: var(--yazi-sm);
 }
 .hm-ilce__ad {
@@ -396,7 +394,7 @@
   display: grid;
   place-items: center;
   height: 100%;
-  font-weight: 900;
+  font-weight: 800;
   color: var(--vurgu-koyu);
 }
 .hm-eser--ogrenildi {
@@ -415,7 +413,7 @@
   background: var(--odul);
   color: var(--odul-metin);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 800;
 }
 .hm-eser--yaklasik {
   border-style: dashed;
@@ -452,7 +450,7 @@
   background: var(--odul);
   color: var(--odul-metin);
   border: 3px solid var(--zemin-kart);
-  font-weight: 900;
+  font-weight: 800;
   box-shadow: 0 3px 0 var(--odul-golge);
 }
 
@@ -497,7 +495,7 @@
   background: var(--ikincil-yumusak);
   color: var(--ikincil);
   font-size: var(--yazi-xs);
-  font-weight: 900;
+  font-weight: 800;
 }
 .hm-popup__durum--ogrenildi {
   background: var(--odul-yumusak);
@@ -515,4 +513,101 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+}
+
+/* --- Vakıf ağı: akar → hayrat çizgileri + metin eşdeğeri ------------------- */
+.harita-ag-dugme {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--b-2) var(--b-3);
+}
+.harita-ag-dugme__not {
+  font-size: var(--yazi-sm);
+}
+.hm-hedef {
+  padding: 4px 10px;
+  border-radius: var(--kose-tam);
+  background: var(--odul);
+  color: var(--odul-metin);
+  border: 2px solid var(--odul-golge);
+  font-family: var(--yazi-aile);
+  font-weight: 800;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: var(--golge);
+  pointer-events: none;
+  animation: hm-hedef-gir 500ms cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+@keyframes hm-hedef-gir {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+.vakif-agi {
+  display: grid;
+  gap: var(--b-2);
+}
+.vakif-agi__baslik,
+.vakif-agi__giris,
+.vakif-agi__kaynak {
+  margin: 0;
+}
+.vakif-agi__kaynak {
+  font-size: var(--yazi-xs);
+}
+.vakif-agi__liste {
+  display: grid;
+  gap: var(--b-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.vakif-agi__bag {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px var(--b-2);
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-vurgu);
+}
+.vakif-agi__akar {
+  padding: 0 var(--b-2);
+  border-radius: var(--kose-tam);
+  background: var(--odul);
+  color: var(--odul-metin);
+  font-weight: 800;
+}
+.vakif-agi__ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--sicak);
+}
+.vakif-agi__hayrat {
+  font-weight: 800;
+  color: var(--vurgu-koyu);
+}
+.vakif-agi__cumle {
+  flex: 1 0 100%;
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hm-hedef {
+    animation: none;
+  }
+}
+
+/* Dokunma hedefi ≥ 44 px (MapLibre varsayılanı 29 px) */
+.harita-kap .maplibregl-ctrl-group button {
+  width: 44px;
+  height: 44px;
+}
+.harita-rota-bag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }

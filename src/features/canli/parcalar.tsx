@@ -6,7 +6,8 @@
  * (▲ ◆ ● ■). Renk tek başına anlam taşımaz: şeklin adı ekran okuyucuya da
  * söylenir ("Üçgen: …"). Metin her temada düz kart zemininde durur.
  */
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import qrcode from 'qrcode-generator';
 import type { CanliSiraSatiri } from '@shared/canli';
 
 export const SEKILLER = [
@@ -70,6 +71,19 @@ export function useYoklama<T>(getir: (() => Promise<T>) | null, aralikMs = 1000)
     yenile: () => setTetik((t) => t + 1),
     ayarla: setVeri,
   };
+}
+
+/**
+ * Kalıcı canlı bölge: aşama değişince tek cümle duyurulur. Sayfayla birlikte
+ * yaşar (içerik her aşamada yeniden çizilse de bölge DOM'da kalır, ekran
+ * okuyucu değişikliği kaçırmaz). Her saniye değişen sayılar buraya girmez.
+ */
+export function Duyuru({ mesaj }: { mesaj: string }) {
+  return (
+    <div className="sr-only" role="status" aria-live="polite">
+      {mesaj}
+    </div>
+  );
 }
 
 /** Sunucunun verdiği kalan süreyi bu cihazın saatine çevirip geri sayar. */
@@ -160,5 +174,29 @@ export function SiraListesi({ siralama, baslik }: { siralama: CanliSiraSatiri[];
         ))}
       </ol>
     </section>
+  );
+}
+
+/**
+ * Katılım bağlantısının QR kodu. Telefon kamerasıyla okutulunca PIN dolu
+ * katılma ekranı açılır. Tek `<path>` olarak çizilir; renkler jetonlardan.
+ */
+export function QrKod({ metin, etiket }: { metin: string; etiket: string }) {
+  const { yol, boyut } = useMemo(() => {
+    const qr = qrcode(0, 'M');
+    qr.addData(metin);
+    qr.make();
+    const n = qr.getModuleCount();
+    let d = '';
+    for (let y = 0; y < n; y++) {
+      for (let x = 0; x < n; x++) if (qr.isDark(y, x)) d += `M${x + 4} ${y + 4}h1v1h-1z`;
+    }
+    return { yol: d, boyut: n + 8 }; // 4 modül sessiz bölge (QR standardı)
+  }, [metin]);
+  return (
+    <svg className="canli-qr" viewBox={`0 0 ${boyut} ${boyut}`} role="img" aria-label={etiket}>
+      <rect width={boyut} height={boyut} className="canli-qr__zemin" />
+      <path d={yol} className="canli-qr__nokta" shapeRendering="crispEdges" />
+    </svg>
   );
 }

@@ -20,38 +20,58 @@ import { DersSayfasi } from '../features/ders/DersSayfasi';
 import { CarsiSayfasi } from '../features/carsi/CarsiSayfasi';
 import { KorumaliPanel } from '../features/panel/KorumaliPanel';
 import { OgretmenPaneli, SinifKoduGirisi } from '../features/ogretmen';
+import { GununEseriSayfasi } from '../features/gunun-eseri/GununEseriSayfasi';
+import { RozetBildirimi } from '../features/rozetler/Rozetler';
+import { HayratAkarSayfasi } from '../features/hayrat-akar/HayratAkarSayfasi';
+import { HatalarSayfasi } from '../features/hatalar/HatalarSayfasi';
+import { ZamanTuneliSayfasi } from '../features/zaman/ZamanTuneliSayfasi';
+import { SeriSayfasi } from '../features/seri/Seri';
+import { RotaSayfasi } from '../features/rota/RotaSayfasi';
+import { SertifikaSayfasi } from '../features/sertifika/SertifikaSayfasi';
 import { CanliGirisSayfasi, CanliOynaSayfasi } from '../features/canli/CanliOyuncu';
 import { CanliKurSayfasi, CanliYonetSayfasi } from '../features/canli/CanliYonetim';
-import {
-  Avatar,
-  IkonAlev,
-  IkonAyarlar,
-  IkonDefter,
-  IkonElmas,
-  IkonHarita,
-  IkonSinif,
-  IkonYol,
-} from './Ikonlar';
+import { BugunSayfasi } from '../features/bugun/BugunSayfasi';
+import { KesfetSayfasi } from '../features/merkez/KesfetSayfasi';
+import { ProfilSayfasi } from '../features/profil/ProfilSayfasi';
+import { Avatar, IkonAlev, IkonDefter, IkonElmas, IkonEv, IkonPusula, IkonYol } from './Ikonlar';
 import './app.css';
 
 /**
- * Çocuğun ana gezinmesi: 5 öğe. Mobilde ekranın altında sabit sekme çubuğu,
- * masaüstünde üstte. Öğretmen ve yönetim girişleri çocuğun gezinmesinde
- * DEĞİL; altbilgideki "Yetişkinler için" gezinmesinde ve Ayarlar'da durur.
+ * Çocuğun ana gezinmesi: 4 sekme (Bugün · Yol · Keşfet · Defter). Mobilde
+ * ekranın altında sabit sekme çubuğu, geniş ekranda üstte. Profil üst çubukta.
+ * Öğretmen ve yönetim girişleri çocuğun gezinmesinde DEĞİL; Profil sayfasındaki
+ * "Yetişkinler için" gezinmesinde durur.
  */
 const GEZINME = [
-  { yol: 'yol', etiket: 'Öğrenme Yolu', kisa: 'Yol', ad: 'yol', Ikon: IkonYol },
-  { yol: 'defter', etiket: 'Kâşif Defteri', kisa: 'Defter', ad: 'defter', Ikon: IkonDefter },
-  { yol: 'harita', etiket: 'Harita', kisa: 'Harita', ad: 'harita', Ikon: IkonHarita },
-  { yol: 'sinif', etiket: 'Sınıfım', kisa: 'Sınıfım', ad: 'sinif', Ikon: IkonSinif },
-  { yol: 'ayarlar', etiket: 'Ayarlar', kisa: 'Ayarlar', ad: 'ayarlar', Ikon: IkonAyarlar },
+  { yol: 'bugun', etiket: 'Bugün', ad: 'bugun', Ikon: IkonEv },
+  { yol: 'yol', etiket: 'Yol', ad: 'yol', Ikon: IkonYol },
+  { yol: 'kesfet', etiket: 'Keşfet', ad: 'kesfet', Ikon: IkonPusula },
+  { yol: 'defter', etiket: 'Defter', ad: 'defter', Ikon: IkonDefter },
 ] as const;
 
-const YETISKIN_GEZINME = [
-  { yol: 'ogretmen', etiket: 'Öğretmen paneli', ad: 'ogretmen' },
-  { yol: 'canli/kur', etiket: 'Canlı yarışma kur', ad: 'canli-kur' },
-  { yol: 'panel', etiket: 'İçerik yönetimi', ad: 'panel' },
-] as const;
+/** Alt sayfanın gezinmede hangi sekmeyi seçili gösterdiği. */
+const UST_SEKME: Partial<Record<string, string>> = {
+  harita: 'kesfet',
+  arsiv: 'kesfet',
+  'arsiv-eser': 'kesfet',
+  'zaman-tuneli': 'kesfet',
+  rota: 'kesfet',
+  'gunun-eseri': 'bugun',
+  'hayrat-akar': 'bugun',
+  hatalar: 'bugun',
+  canli: 'bugun',
+  'canli-oyna': 'bugun',
+  sinif: 'bugun',
+  seri: 'defter',
+  sertifika: 'defter',
+  ayarlar: 'profil',
+  carsi: 'profil',
+  ogretmen: 'profil',
+  'canli-kur': 'profil',
+  'canli-yonet': 'profil',
+  panel: 'profil',
+  'panel-eser': 'profil',
+};
 
 /**
  * Çocuk tarafı sınıf ekranı.
@@ -109,6 +129,9 @@ function Kabuk() {
     document.documentElement.lang = 'tr';
 
     const basliklar: Record<string, string> = {
+      bugun: 'Bugün',
+      kesfet: 'Keşfet',
+      profil: 'Profil',
       yol: 'Öğrenme Yolu',
       defter: 'Kâşif Defteri',
       harita: 'Harita',
@@ -117,6 +140,13 @@ function Kabuk() {
       ayarlar: 'Ayarlar',
       carsi: 'Vakıf Çarşısı',
       sinif: 'Sınıf',
+      'gunun-eseri': 'Günün Eseri',
+      'hayrat-akar': 'Hayrat mı Akar mı?',
+      hatalar: 'Hatalarımı Çalış',
+      'zaman-tuneli': 'Zaman Tüneli',
+      seri: 'Keşif Serisi',
+      rota: 'Keşif Rotası',
+      sertifika: 'Sertifika',
       canli: 'Canlı Yarışma',
       'canli-kur': 'Canlı Yarışma Kur',
       'canli-yonet': 'Canlı Yarışma',
@@ -138,15 +168,9 @@ function Kabuk() {
     if (rota.ad !== 'ders') anaIcerik.current?.focus();
   }, [rota]);
 
-  // Arşiv haritanın uzantısıdır: gezinmede "Harita" seçili görünür.
-  const aktifAd =
-    rota.ad === 'panel-eser'
-      ? 'panel'
-      : rota.ad === 'arsiv' || rota.ad === 'arsiv-eser'
-        ? 'harita'
-        : rota.ad === 'canli' || rota.ad === 'canli-oyna'
-          ? 'sinif'
-          : rota.ad;
+  // Alt sayfalar gezinmede ait oldukları sekmeyi seçili gösterir
+  // (harita/arşiv → Keşfet, Günün Eseri/yarışma → Bugün, seri → Defter).
+  const aktifAd = UST_SEKME[rota.ad] ?? rota.ad;
   const odakModu = rota.ad === 'ders';
 
   return (
@@ -160,24 +184,27 @@ function Kabuk() {
       {!odakModu && (
         <header className="ustbar">
           <div className="sarmal ustbar__ic">
-            <a className="marka" href="#/yol" aria-label="Kök Avı ana sayfa">
-              <span className="marka__isaret" aria-hidden="true">
-                K
-              </span>
+            <a className="marka" href="#/bugun" aria-label="Kök Avı ana sayfa">
               <span className="marka__ad">Kök Avı</span>
             </a>
 
             <div className="gostergeler">
-              <span className="gosterge gosterge--seri" title="Keşif serisi">
+              <a
+                className="gosterge gosterge--seri"
+                href="#/seri"
+                title="Keşif serisi takvimi"
+                aria-current={rota.ad === 'seri' ? 'page' : undefined}
+              >
                 <IkonAlev />
                 <span className="sr-only">Keşif serisi:</span>
                 {ilerleme.seri.gunSayisi}
                 <span className="gosterge__birim"> gün</span>
-              </span>
+                <span className="sr-only"> — takvimi aç</span>
+              </a>
               <a
                 className="gosterge gosterge--elmas"
                 href="#/carsi"
-                aria-current={aktifAd === 'carsi' ? 'page' : undefined}
+                aria-current={rota.ad === 'carsi' ? 'page' : undefined}
                 title="Vakıf Çarşısı"
               >
                 <IkonElmas />
@@ -185,17 +212,20 @@ function Kabuk() {
                 {ilerleme.elmas}
                 <span className="sr-only"> — Vakıf Çarşısı'na git</span>
               </a>
-              <span className="gosterge gosterge--seviye" title="Seviye">
-                <Avatar id={carsi.avatar} boyut={26} />
-                <span className="sr-only">Seviye:</span>
-                {seviye.ad}
-              </span>
+              <a
+                className="gosterge gosterge--profil"
+                href="#/profil"
+                aria-current={rota.ad === 'profil' ? 'page' : undefined}
+              >
+                <Avatar id={carsi.avatar} boyut={34} />
+                <span className="sr-only">Profil (seviye: {seviye.ad})</span>
+              </a>
             </div>
           </div>
 
           <nav className="gezinme" aria-label="Ana gezinme">
             <div className="sarmal gezinme__ic">
-              {GEZINME.map(({ yol: hedef, etiket, kisa, ad, Ikon }) => (
+              {GEZINME.map(({ yol: hedef, etiket, ad, Ikon }) => (
                 <a
                   key={hedef}
                   href={`#/${hedef}`}
@@ -203,12 +233,9 @@ function Kabuk() {
                   aria-current={aktifAd === ad ? 'page' : undefined}
                 >
                   <span className="gezinme__ikon">
-                    <Ikon boyut={24} />
+                    <Ikon boyut={26} dolu={aktifAd === ad} />
                   </span>
-                  <span className="gezinme__etiket gezinme__etiket--uzun">{etiket}</span>
-                  <span className="gezinme__etiket gezinme__etiket--kisa" aria-hidden="true">
-                    {kisa}
-                  </span>
+                  <span className="gezinme__etiket">{etiket}</span>
                 </a>
               ))}
             </div>
@@ -242,6 +269,9 @@ function Kabuk() {
         tabIndex={-1}
         className={`sarmal ana${odakModu ? ' ana--odak' : ''}`}
       >
+        {rota.ad === 'bugun' && <BugunSayfasi />}
+        {rota.ad === 'kesfet' && <KesfetSayfasi />}
+        {rota.ad === 'profil' && <ProfilSayfasi />}
         {rota.ad === 'yol' && <YolSayfasi />}
         {rota.ad === 'defter' && <DefterSayfasi />}
         {rota.ad === 'harita' && <HaritaSayfasi />}
@@ -250,6 +280,13 @@ function Kabuk() {
         {rota.ad === 'ayarlar' && <AyarlarSayfasi />}
         {rota.ad === 'carsi' && <CarsiSayfasi />}
         {rota.ad === 'sinif' && <CocukSinifSayfasi />}
+        {rota.ad === 'gunun-eseri' && <GununEseriSayfasi />}
+        {rota.ad === 'hayrat-akar' && <HayratAkarSayfasi />}
+        {rota.ad === 'hatalar' && <HatalarSayfasi />}
+        {rota.ad === 'zaman-tuneli' && <ZamanTuneliSayfasi />}
+        {rota.ad === 'seri' && <SeriSayfasi />}
+        {rota.ad === 'rota' && <RotaSayfasi />}
+        {rota.ad === 'sertifika' && <SertifikaSayfasi sehirId={rota.sehirId} />}
         {rota.ad === 'canli' && <CanliGirisSayfasi />}
         {rota.ad === 'canli-kur' && <CanliKurSayfasi />}
         {rota.ad === 'canli-yonet' && <CanliYonetSayfasi pin={rota.pin} />}
@@ -261,9 +298,9 @@ function Kabuk() {
         {rota.ad === 'bulunamadi' && (
           <div className="kart yigin">
             <h1>Sayfa bulunamadı</h1>
-            <p className="metin-ikinci">“{rota.yol}” diye bir sayfa yok.</p>
-            <button type="button" className="dugme" onClick={() => git('yol')}>
-              Öğrenme yoluna dön
+            <p className="metin-ikincil">“{rota.yol}” diye bir sayfa yok.</p>
+            <button type="button" className="dugme" onClick={() => git('bugun')}>
+              Ana sayfaya dön
             </button>
           </div>
         )}
@@ -275,21 +312,11 @@ function Kabuk() {
         )}
       </main>
 
+      <RozetBildirimi />
+
       {!odakModu && (
         <footer className="altbilgi">
-          <div className="sarmal yigin" style={{ gap: 'var(--b-2)' }}>
-            <nav aria-label="Yetişkinler için" className="yetiskin-gezinme">
-              <span className="yetiskin-gezinme__baslik">Yetişkinler için:</span>
-              {YETISKIN_GEZINME.map((oge) => (
-                <a
-                  key={oge.yol}
-                  href={`#/${oge.yol}`}
-                  aria-current={aktifAd === oge.ad ? 'page' : undefined}
-                >
-                  {oge.etiket}
-                </a>
-              ))}
-            </nav>
+          <div className="sarmal">
             <p className="metin-soluk" style={{ margin: 0 }}>
               Kök Avı · TRİA · KÖK &amp; KOD Hackathon. İçerik ve görseller envanter projesine
               aittir; tarihsel bilgiler kaynak künyesiyle birlikte gösterilir.

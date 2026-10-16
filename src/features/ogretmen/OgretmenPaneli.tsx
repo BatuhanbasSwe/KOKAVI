@@ -26,6 +26,7 @@ import { SinifDetayi } from './SinifDetayi';
 import { SinifListesi } from './SinifListesi';
 import { SinifOlusturmaFormu } from './SinifOlusturmaFormu';
 import './ogretmen.css';
+import { IkonSinif } from '../../app/Ikonlar';
 
 /** Roller yalnızca yetişkinler içindir; çocuk hesabı yoktur. */
 const ROL_ETIKETI: Record<Rol, string> = {
@@ -174,7 +175,7 @@ function PanelIcerik({ kullanici, cikisYap }: PanelIcerikProps) {
         </div>
         <div className="ogretmen__kimlik">
           <span className="rozet">
-            <span aria-hidden="true">🎓</span> {kullanici.ad} · {ROL_ETIKETI[kullanici.rol]}
+            <IkonSinif boyut={18} /> {kullanici.ad} · {ROL_ETIKETI[kullanici.rol]}
           </span>
           <button type="button" className="dugme dugme--ikincil" onClick={() => void cikisYap()}>
             Çıkış yap

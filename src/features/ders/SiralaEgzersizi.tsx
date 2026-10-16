@@ -9,7 +9,7 @@
  * PDF: "Yanlış → ipucu + tekrar turu" — kontrol sonrası doğru yerdeki öğeler ✓,
  * yeri değişmesi gerekenler ! ile işaretlenir; sıralama sıfırlanmaz.
  */
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { SiralaVerisi } from '@shared/types';
 import {
   EgzersizKabugu,
@@ -74,13 +74,18 @@ export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<Si
     });
   }
 
-  const gosterilecekGeri: GeriBildirimVerisi | null = cozuldu
-    ? {
-        tur: 'dogru',
-        baslik: 'Sıralama doğru!',
-        metin: 'Öğeleri belgelenen sıraya göre dizdin.',
-      }
-    : geriBildirim;
+  // Sabit nesne: her çizimde yenisi üretilirse geri bildirim sesi tekrar tekrar çalar.
+  const gosterilecekGeri: GeriBildirimVerisi | null = useMemo(
+    () =>
+      cozuldu
+        ? {
+            tur: 'dogru',
+            baslik: 'Sıralama doğru!',
+            metin: 'Öğeleri belgelenen sıraya göre dizdin.',
+          }
+        : geriBildirim,
+    [cozuldu, geriBildirim],
+  );
 
   return (
     <EgzersizKabugu

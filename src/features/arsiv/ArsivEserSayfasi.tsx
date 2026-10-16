@@ -6,10 +6,12 @@
  * bağlantı verilir; sonda aynı ilçeden başka eserler önerilir (keşif sürsün).
  */
 import { useEffect, useMemo, useState } from 'react';
+import { DinleDugmesi } from '../ders/DinleDugmesi';
 import { useDurum } from '../../app/DurumSaglayici';
 import { baslikAyarla } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, arsivMetni, IL_ADLARI, type ArsivEseri } from './arsivVeri';
 import './arsiv.css';
+import { IkonYildiz } from '../../app/Ikonlar';
 
 const KISA = 3;
 
@@ -101,12 +103,18 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
 
       {dersId ? (
         <div className="kart arsiv-ders">
-          <p style={{ margin: 0, fontWeight: 900 }}>★ Bu eserin bir dersi var!</p>
+          <p style={{ margin: 0, fontWeight: 900 }}>
+            <IkonYildiz boyut={18} /> Bu eserin bir dersi var!
+          </p>
           <a className="dugme" href={`#/ders/${encodeURIComponent(dersId)}`}>
             Derse git
           </a>
         </div>
       ) : null}
+
+      {/* Okuma güçlüğü olan çocuklar için: görünen metni Türkçe sesle okur
+          (sessiz modda ya da Türkçe ses yoksa düğme hiç çıkmaz). */}
+      <DinleDugmesi metin={`${eser.ad}. ${gorunen.join(' ')}`} etiket="Hikâyesini dinle" />
 
       <div className="arsiv-metin">
         {gorunen.map((p) => (

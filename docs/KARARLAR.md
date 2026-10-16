@@ -303,3 +303,61 @@ kamuoyu" ifadesinden **daha dar** bir kapsamdır. Ancak:
 **Açık risk:** Jüri "hedef kitleniz Bilgi Notu'ndaki geniş kamuoyundan dar"
 diyebilir. Cevap: *gençler Bilgi Notu'nda açıkça önceliklendirilmiştir ve ürün
 yetişkin kullanımını dışlamaz.*
+
+---
+
+## 15. Canlı sınıf yarışması (Kahoot tarzı) — kimlik yok, ceza yok
+
+**İhtiyaç:** İş listesinde "Kahoot tarzı canlı sınıf yarışması" var. Yarışma
+normalde oyuncu adı ister ve puan tablosu tutar.
+
+**Kararlarımız:**
+
+- **Ad sorulmaz.** Sunucu "Turkuaz Kubbe", "Altın Minare" gibi takma ad verir
+  (renk + vakıf mimarisinden bir parça). Serbest metin olmadığı için kişisel
+  veri de, uygunsuz ad denetimi derdi de yoktur; çocuk bir mimari terim de öğrenir.
+- **Hiçbir şey kaydedilmez.** Odalar yalnızca sunucu belleğinde yaşar; oyun
+  bitince 30 dk, dokunulmazsa 2 saat sonra silinir. Veritabanına yazılmaz.
+- **Öğretmen girişi gerekmez.** Yetki, odayı kuran sekmeye verilen gizli
+  anahtardadır (`x-canli-anahtar` başlığı, URL'de değil). Oyun yalnızca bizim
+  kaynaklı ders içeriğimizi sorar; kötüye kullanım yüzeyi dardır. Oda sayısı
+  (200), oyuncu sayısı (80) ve kurulum sıklığı sınırlıdır.
+- **Ceza yok (bkz. Karar: kalp mekaniği yok).** Yanlış cevap puan düşürmez;
+  doğru cevap hıza göre 500–1000 puan getirir. Yanlışta doğru cevap, açıklaması
+  ve kaynak künyesi gösterilir — yarışma da bir öğrenme anıdır.
+- **Sorular uydurulmaz.** Dersin kendi "boşluk doldur" ve "eseri tanı"
+  egzersizlerinden, bir de envanter fotoğrafından ("Bu fotoğraftaki eser
+  hangisi?") üretilir. Doğru cevap süre bitmeden oyuncuya gönderilmez.
+- **Erişilebilirlik:** Her seçeneğin rengi VE şekli var (▲ ◆ ● ■); şeklin adı
+  ekran okuyucuya söylenir. 60 sn'lik "rahat mod" okuma güçlüğü olan çocuklar
+  içindir. Aşama değişimleri tek bir kalıcı canlı bölgeden duyurulur.
+- **Sınıf ağı:** Bir sınıftaki cihazlar genelde aynı IP'den çıkar. Yoklama uçları
+  IP başına değil "IP + oyuncu anahtarı" başına sınırlanır (30 kişilik sınıf
+  testi: `tests/canli.test.ts`).
+
+**Açık risk — Vercel:** Odalar süreç belleğinde olduğu için sunucusuz ortamda
+istekler farklı örneklere düşerse oda bölünebilir. **Finalde yarışma, laptop +
+aynı Wi-Fi ile gösterilir:** `npm run dev:lan` (telefonlar laptopun IP'sine
+bağlanır; öğretmen ekranındaki QR kod bu adresi verir). Kalıcı çözüm gerekirse
+oda durumu tek bir paylaşılan depoya (ör. Redis) taşınır.
+
+---
+
+## 16. Günün Eseri, rozetler, kombo — oyunlaştırma nereye kadar?
+
+**Risk:** Oyunlaştırma çocukta kaygı, kıyas ve bağımlılık üretebilir; bu da
+"ceza yok" (§ kalp mekaniği) ilkesine ters düşer.
+
+**Kararlarımız:**
+
+- **Kaybetmek yok.** Rozet geri alınmaz; kombo ipucu alınca *sessizce* sıfırlanır,
+  hiçbir şey eksilmez; Günün Eseri'nde haklar bitse de eser tanıtılır ve derse
+  bağlantı verilir.
+- **Kıyas yok.** Rozet, seri ve Günün Eseri istatistiği yalnızca cihazda; sınıf
+  ya da arkadaş sıralaması yok. Tek sıralama canlı yarışmadadır ve takma adlarla,
+  oyun bitince silinir.
+- **Bilgi uydurulmaz.** Günün Eseri ipuçları envanterdeki bilginin çocuk diline
+  çevrilmiş hâlidir; yazım sırasında envanterde olmayan 9 ayrıntı çıkarıldı. Test,
+  ilk dört ipucunun eserin adını ele vermediğini denetler.
+- **Sessiz mod ve hareketi azalt** her yeni efekte uyar (ses, titreşim, animasyon).
+- **Kişisel veri yok.** Sertifikadaki ad isteğe bağlıdır, yalnızca ekranda durur.

@@ -1,0 +1,284 @@
+/* Bugün (Mozaik): karışık boyutlu kutucuklar, fotoğraf + düz yüzeyler. */
+
+.bugun {
+  display: grid;
+  gap: var(--b-5);
+}
+
+.bugun__ust {
+  display: flex;
+  align-items: center;
+  gap: var(--b-3);
+}
+
+.bugun__selam {
+  min-width: 0;
+}
+
+.bugun__baslik {
+  margin: 0;
+  font-size: calc(1.75rem * var(--yazi-olcek));
+}
+
+.bugun__soz {
+  margin: 2px 0 0;
+  color: var(--metin-ikincil);
+  font-size: var(--yazi-sm);
+  line-height: 1.45;
+}
+
+.bugun__ozet {
+  margin: 0;
+  color: var(--metin-soluk);
+  font-size: var(--yazi-sm);
+}
+
+/* --- Izgara ----------------------------------------------------------------- */
+
+.mozaik {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--b-3);
+}
+
+.mozaik__oge {
+  animation: mozaik-gel 520ms var(--yay) both;
+  animation-delay: calc(var(--sira, 0) * 60ms);
+}
+
+.mozaik__oge--buyuk {
+  grid-column: 1 / -1;
+}
+
+/* Tek kalan son kutucuk tam genişlik olur (boş yarım hücre kalmaz). */
+.mozaik__oge:last-child:nth-child(even) {
+  grid-column: 1 / -1;
+}
+
+@keyframes mozaik-gel {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Kutucuk ---------------------------------------------------------------- */
+
+.mozaik__kutu {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+  height: 100%;
+  min-height: 140px;
+  padding: var(--b-4);
+  overflow: hidden;
+  color: var(--metin);
+  text-decoration: none;
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-md);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 140ms var(--yay),
+    border-color var(--gecis-hizli);
+}
+
+.mozaik__kutu:hover {
+  border-color: var(--cizgi-kalin);
+}
+
+.mozaik__kutu:active {
+  transform: scale(0.97);
+}
+
+.mozaik__kutu:focus-visible {
+  outline-offset: 3px;
+  border-radius: var(--kose-md);
+}
+
+.mozaik__oge--buyuk .mozaik__kutu {
+  aspect-ratio: 4 / 3;
+  max-height: 340px;
+  min-height: 230px;
+  width: 100%;
+  border: 0;
+}
+
+.mozaik__foto {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  transition: transform 600ms var(--yay);
+}
+
+.mozaik__kutu:hover .mozaik__foto {
+  transform: scale(1.04);
+}
+
+.mozaik__foto--bulanik,
+.mozaik__kutu:hover .mozaik__foto--bulanik {
+  filter: blur(9px) saturate(1.1);
+  transform: scale(1.2);
+}
+
+.mozaik__karartma {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, var(--karartma) 0%, transparent 70%);
+}
+
+.mozaik__icerik {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--foto-metin);
+}
+
+.mozaik__oge--duz .mozaik__icerik {
+  color: var(--metin);
+}
+
+.mozaik__ust {
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.mozaik__eser {
+  font-family: var(--yazi-baslik);
+  font-size: calc(1.75rem * var(--yazi-olcek));
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.mozaik__eylem {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--b-2);
+  min-height: 44px;
+  margin-top: var(--b-3);
+  padding: 0 var(--b-4);
+  font-family: var(--yazi-baslik);
+  font-weight: 700;
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+  border-radius: var(--kose-sm);
+}
+
+.mozaik__simge {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: auto;
+  border-radius: var(--kose-sm);
+  color: var(--vurgu-koyu);
+  background: var(--zemin-vurgu);
+}
+
+/* Fotoğraflı kutucuk: simge safran kutuda, metin fotoğrafın altında. */
+.mozaik__oge--gizem .mozaik__simge,
+.mozaik__oge--foto .mozaik__simge {
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+}
+
+.mozaik__oge--gizem .mozaik__icerik,
+.mozaik__oge--foto .mozaik__icerik {
+  height: 100%;
+}
+
+.mozaik__oge--buyuk.mozaik__oge--foto .mozaik__simge {
+  margin-bottom: auto;
+}
+
+.mozaik__ad {
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.mozaik__alt {
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+  line-height: 1.35;
+}
+
+.mozaik__icerik .mozaik__alt {
+  color: var(--foto-metin);
+  opacity: 0.88;
+}
+
+/* --- Seri kutucuğu ------------------------------------------------------------ */
+
+.mozaik__sayi {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-1);
+  margin-bottom: auto;
+  font-family: var(--yazi-baslik);
+  font-size: calc(2.5rem * var(--yazi-olcek));
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--vurgu-koyu);
+}
+
+.mozaik__hafta {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: var(--b-2);
+}
+
+.mozaik__gun {
+  height: 8px;
+  border-radius: 3px;
+  background: var(--cizgi-kalin);
+}
+
+.mozaik__gun--aktif {
+  background: var(--vurgu);
+}
+
+.mozaik__gun--bugun {
+  outline: 1.5px solid var(--metin-soluk);
+  outline-offset: 1.5px;
+}
+
+@media (min-width: 720px) {
+  .mozaik {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .mozaik__oge--buyuk {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .mozaik__oge--buyuk .mozaik__kutu {
+    aspect-ratio: auto;
+    max-height: none;
+  }
+  .mozaik__oge:last-child:nth-child(even) {
+    grid-column: auto;
+  }
+}
