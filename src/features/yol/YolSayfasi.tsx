@@ -19,6 +19,7 @@ import { IkonKilit, IkonTekrar, YildizDugum, type YildizDurumu } from '../../app
 import { gunMetni, vadesiGelenler } from '../../lib/tekrar';
 import type { YolUnitesi } from '@shared/types';
 import { KonusanMaskot } from '../../app/Maskot';
+import { GununEseriDavet } from '../gunun-eseri/GununEseriDavet';
 
 /** Zikzak: düğümler sırayla sola/sağa kayar (px). */
 const KAYMALAR = [0, -56, -84, -56, 0, 56, 84, 56];
@@ -206,6 +207,8 @@ export function YolSayfasi() {
               : undefined
         }
       />
+
+      <GununEseriDavet />
 
       {bekleyenTekrar.length > 0 ? (
         <div className="kart tekrar-karti" role="status">

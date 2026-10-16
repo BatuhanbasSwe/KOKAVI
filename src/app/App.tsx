@@ -20,6 +20,7 @@ import { DersSayfasi } from '../features/ders/DersSayfasi';
 import { CarsiSayfasi } from '../features/carsi/CarsiSayfasi';
 import { KorumaliPanel } from '../features/panel/KorumaliPanel';
 import { OgretmenPaneli, SinifKoduGirisi } from '../features/ogretmen';
+import { GununEseriSayfasi } from '../features/gunun-eseri/GununEseriSayfasi';
 import { CanliGirisSayfasi, CanliOynaSayfasi } from '../features/canli/CanliOyuncu';
 import { CanliKurSayfasi, CanliYonetSayfasi } from '../features/canli/CanliYonetim';
 import {
@@ -117,6 +118,7 @@ function Kabuk() {
       ayarlar: 'Ayarlar',
       carsi: 'Vakıf Çarşısı',
       sinif: 'Sınıf',
+      'gunun-eseri': 'Günün Eseri',
       canli: 'Canlı Yarışma',
       'canli-kur': 'Canlı Yarışma Kur',
       'canli-yonet': 'Canlı Yarışma',
@@ -144,7 +146,9 @@ function Kabuk() {
       ? 'panel'
       : rota.ad === 'arsiv' || rota.ad === 'arsiv-eser'
         ? 'harita'
-        : rota.ad === 'canli' || rota.ad === 'canli-oyna'
+        : rota.ad === 'gunun-eseri'
+          ? 'yol'
+          : rota.ad === 'canli' || rota.ad === 'canli-oyna'
           ? 'sinif'
           : rota.ad;
   const odakModu = rota.ad === 'ders';
@@ -250,6 +254,7 @@ function Kabuk() {
         {rota.ad === 'ayarlar' && <AyarlarSayfasi />}
         {rota.ad === 'carsi' && <CarsiSayfasi />}
         {rota.ad === 'sinif' && <CocukSinifSayfasi />}
+        {rota.ad === 'gunun-eseri' && <GununEseriSayfasi />}
         {rota.ad === 'canli' && <CanliGirisSayfasi />}
         {rota.ad === 'canli-kur' && <CanliKurSayfasi />}
         {rota.ad === 'canli-yonet' && <CanliYonetSayfasi pin={rota.pin} />}
