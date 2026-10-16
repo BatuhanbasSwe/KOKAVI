@@ -1,0 +1,621 @@
+/* ===========================================================================
+   Canlı sınıf yarışması (Kahoot tarzı)
+   Her seçeneğin bir rengi VE şekli var; metin her temada düz kart zemininde
+   durur (kontrast temadan bağımsız). Renkler yalnızca jetonlardan.
+   Hareketler "Hareketi azalt" ayarında tokens.css'teki genel kuralla durur.
+   =========================================================================== */
+.canli {
+  --canli-1: var(--sicak);
+  --canli-2: var(--ikincil);
+  --canli-3: var(--uyari);
+  --canli-4: var(--vurgu);
+}
+
+/* --- Katılma ---------------------------------------------------------------- */
+.canli-katil {
+  display: grid;
+  gap: var(--b-3);
+}
+.canli-katil__baslik {
+  margin: 0;
+}
+.canli-etiket {
+  font-weight: 800;
+  font-size: var(--yazi-sm);
+}
+.canli-katil__girdi {
+  min-height: 64px;
+  padding: var(--b-2) var(--b-3);
+  font: inherit;
+  font-size: var(--yazi-2xl);
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  text-align: center;
+  color: var(--metin);
+  background: var(--zemin);
+  border: 3px solid var(--cizgi-kalin);
+  border-radius: var(--kose-md);
+}
+.canli-katil__girdi:focus-visible {
+  border-color: var(--vurgu);
+}
+
+/* --- Kurulum ---------------------------------------------------------------- */
+.canli-alan {
+  display: grid;
+  gap: var(--b-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.canli-secim {
+  min-height: 48px;
+  padding: 0 var(--b-3);
+  font: inherit;
+  color: var(--metin);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-md);
+  max-width: 100%;
+}
+.canli-cipler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+}
+.canli-cip {
+  position: relative;
+  display: inline-flex;
+}
+.canli-cip input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.canli-cip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--b-4);
+  font-weight: 800;
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-tam);
+  background: var(--zemin-kart);
+  transition: background var(--gecis-hizli), border-color var(--gecis-hizli);
+}
+.canli-cip input:checked + span {
+  border-color: var(--vurgu);
+  background: var(--vurgu-yumusak);
+  color: var(--vurgu-koyu);
+}
+.canli-cip input:checked + span::before {
+  content: '✓ ';
+  white-space: pre;
+}
+.canli-cip input:focus-visible + span {
+  outline: 3px solid var(--odak);
+  outline-offset: 2px;
+}
+.canli-ipucu {
+  margin: 0;
+  font-size: var(--yazi-sm);
+}
+
+/* --- Üst bilgi: takma ad + puan ------------------------------------------------ */
+.canli-ust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--b-2);
+}
+.canli-takma-ad,
+.canli-puan {
+  padding: var(--b-1) var(--b-3);
+  border-radius: var(--kose-tam);
+  font-weight: 900;
+}
+.canli-takma-ad {
+  background: var(--ikincil-yumusak);
+  color: var(--ikincil-metin);
+}
+.canli-puan {
+  background: var(--odul);
+  color: var(--odul-metin);
+}
+
+/* --- Şekil rozetleri ---------------------------------------------------------- */
+.canli-sekil {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--kose-sm);
+  background: var(--canli-renk, var(--canli-1));
+}
+.canli-sekil svg {
+  fill: var(--zemin-kart);
+}
+.canli-sekil--ucgen {
+  --canli-renk: var(--canli-1);
+}
+.canli-sekil--elmas {
+  --canli-renk: var(--canli-2);
+}
+.canli-sekil--daire {
+  --canli-renk: var(--canli-3);
+}
+.canli-sekil--kare {
+  --canli-renk: var(--canli-4);
+}
+
+/* --- Soru ------------------------------------------------------------------- */
+.canli-soru-ust {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--b-3);
+  flex-wrap: wrap;
+}
+.canli-soru__metin {
+  margin: 0;
+  font-size: var(--yazi-xl);
+  line-height: var(--satir-baslik);
+  animation: canli-belir 380ms cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+.canli-soru--yonetim .canli-soru__metin {
+  font-size: var(--yazi-2xl);
+}
+.canli-soru__foto {
+  display: block;
+  width: 100%;
+  max-height: 46vh;
+  object-fit: cover;
+  border-radius: var(--kose-lg);
+  box-shadow: var(--golge-buyuk);
+  animation: kapak-ac 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.canli-secenekler {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--b-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.canli-secenek {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--b-3);
+  min-height: 72px;
+  padding: var(--b-3);
+  font: inherit;
+  font-size: var(--yazi-lg);
+  font-weight: 800;
+  text-align: left;
+  color: var(--metin);
+  background: var(--zemin-kart);
+  border: 3px solid var(--canli-renk);
+  border-radius: var(--kose-md);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--canli-renk);
+  animation: canli-secenek-gir 420ms calc(var(--sira, 0) * 90ms) cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+button.canli-secenek {
+  cursor: pointer;
+  transition: transform var(--gecis-hizli), box-shadow var(--gecis-hizli);
+}
+button.canli-secenek:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+button.canli-secenek:active:not(:disabled) {
+  transform: translateY(var(--bas-derinlik));
+  box-shadow: none;
+}
+.canli-secenek--ucgen {
+  --canli-renk: var(--canli-1);
+}
+.canli-secenek--elmas {
+  --canli-renk: var(--canli-2);
+}
+.canli-secenek--daire {
+  --canli-renk: var(--canli-3);
+}
+.canli-secenek--kare {
+  --canli-renk: var(--canli-4);
+}
+.canli-secenek__metin {
+  flex: 1 1 8rem;
+}
+.canli-secenek--dogru {
+  background: var(--basari-yumusak);
+  animation: canli-zipla 520ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+.canli-secenek--soluk {
+  opacity: 0.55;
+}
+.canli-secenek__isaret {
+  color: var(--basari);
+  font-weight: 900;
+}
+.canli-secenek__dagilim {
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+  flex: 1 0 100%;
+  font-size: var(--yazi-sm);
+}
+.canli-secenek__cubuk {
+  flex: 1;
+  height: 12px;
+  border-radius: var(--kose-tam);
+  background: var(--zemin-vurgu);
+  overflow: hidden;
+  position: relative;
+}
+.canli-secenek__cubuk::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: calc(var(--oran, 0) * 100%);
+  background: var(--canli-renk);
+  border-radius: inherit;
+  animation: canli-cubuk 700ms 150ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.canli-cevaplayan {
+  font-weight: 800;
+  color: var(--metin-ikincil);
+}
+
+/* --- Geri sayım --------------------------------------------------------------- */
+.canli-sayac {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+.canli-sayac svg {
+  width: 100%;
+  height: 100%;
+  rotate: -90deg;
+}
+.canli-sayac__iz,
+.canli-sayac__dolgu {
+  fill: none;
+  stroke-width: 6;
+}
+.canli-sayac__iz {
+  stroke: var(--zemin-vurgu);
+}
+.canli-sayac__dolgu {
+  stroke: var(--vurgu);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 250ms linear;
+}
+.canli-sayac__sayi {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: var(--yazi-lg);
+}
+.canli-sayac--az .canli-sayac__dolgu {
+  stroke: var(--sicak);
+}
+.canli-sayac--az {
+  animation: canli-nabiz 1s ease-in-out infinite;
+}
+
+/* --- Bekleme / sonuç ------------------------------------------------------------ */
+.canli-bekle {
+  display: grid;
+  justify-items: center;
+  gap: var(--b-3);
+  text-align: center;
+}
+.canli-bekle .canli-soru-ust {
+  justify-self: stretch;
+}
+.canli-bekle__sekil .canli-sekil {
+  width: 72px;
+  height: 72px;
+  animation: canli-zipla 600ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+.canli-bekle__sekil svg {
+  width: 40px;
+  height: 40px;
+}
+
+.canli-sonuc {
+  text-align: center;
+  justify-items: center;
+  border-width: 3px;
+}
+.canli-sonuc--dogru {
+  border-color: var(--basari);
+  background: var(--basari-yumusak);
+}
+.canli-sonuc--yanlis {
+  border-color: var(--cizgi-kalin);
+}
+.canli-sonuc__rozet {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  margin-inline: auto;
+  border-radius: 50%;
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--zemin-kart);
+  background: var(--basari);
+  animation: canli-zipla 600ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+.canli-sonuc--yanlis .canli-sonuc__rozet {
+  background: var(--ikincil);
+  animation: canli-salla 600ms ease-in-out both;
+}
+.canli-sonuc__baslik {
+  margin: 0;
+}
+.canli-sonuc__aciklama {
+  margin: 0;
+  font-weight: 700;
+}
+.canli-dogru-cevap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-2);
+  vertical-align: middle;
+}
+.canli-dogru-cevap .canli-sekil {
+  width: 28px;
+  height: 28px;
+}
+.canli-dogru-cevap svg {
+  width: 16px;
+  height: 16px;
+}
+.canli-aciklama {
+  display: grid;
+  gap: var(--b-2);
+  animation: canli-belir 400ms 200ms both;
+}
+
+/* --- Lobi (tahta ekranı) --------------------------------------------------------- */
+.canli-pin {
+  display: grid;
+  justify-items: center;
+  gap: var(--b-2);
+  text-align: center;
+  border: 3px solid var(--vurgu);
+}
+.canli-pin__baslik {
+  margin: 0;
+  font-size: var(--yazi-lg);
+}
+.canli-pin__sayi {
+  margin: 0;
+  font-size: clamp(2.6rem, 12vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--vurgu-koyu);
+  font-variant-numeric: tabular-nums;
+}
+.canli-adres {
+  word-break: break-all;
+  font-weight: 700;
+}
+.canli-lobi__alt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--b-3);
+}
+.canli-lobi__sayi {
+  margin: 0;
+  font-size: var(--yazi-lg);
+}
+.canli-oyuncular {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.canli-oyuncular__ad {
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-tam);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi-kalin);
+  font-weight: 800;
+  animation: canli-zipla 480ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+/* --- Sıralama ve podyum ------------------------------------------------------------ */
+.canli-sira__baslik {
+  margin: 0 0 var(--b-2);
+  font-size: var(--yazi-md);
+}
+.canli-sira__liste {
+  display: grid;
+  gap: var(--b-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.canli-sira__liste li {
+  display: flex;
+  gap: var(--b-3);
+  align-items: center;
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-vurgu);
+  animation: canli-secenek-gir 380ms calc(var(--sira, 0) * 70ms) cubic-bezier(0.2, 1.3, 0.4, 1) both;
+}
+.canli-sira__no {
+  min-width: 2.2em;
+  font-weight: 900;
+}
+.canli-sira__ad {
+  flex: 1;
+  font-weight: 700;
+}
+.canli-sira__puan {
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.canli-son {
+  text-align: center;
+}
+.canli-son__baslik {
+  margin: 0;
+  animation: canli-zipla 600ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+.canli-son__ozet {
+  margin: 0;
+  font-size: var(--yazi-lg);
+}
+.canli-podyum {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--b-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-height: 240px;
+}
+.canli-podyum__basamak {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  justify-items: center;
+  gap: 2px;
+  width: min(30%, 160px);
+  padding: var(--b-2) var(--b-1) 0;
+  border-radius: var(--kose-md) var(--kose-md) 0 0;
+  background: var(--zemin-kart);
+  border: 3px solid var(--cizgi-kalin);
+  border-bottom: 0;
+  transform-origin: bottom;
+  animation: canli-yuksel 700ms var(--gecikme, 0ms) cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+.canli-podyum__basamak--1 {
+  order: 2;
+  height: 220px;
+  border-color: var(--odul-golge);
+  background: var(--odul-yumusak);
+}
+.canli-podyum__basamak--2 {
+  order: 1;
+  height: 170px;
+}
+.canli-podyum__basamak--3 {
+  order: 3;
+  height: 130px;
+}
+.canli-podyum__basamak--ben {
+  outline: 3px dashed var(--vurgu);
+  outline-offset: 3px;
+}
+.canli-podyum__ad {
+  font-weight: 900;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.canli-podyum__puan {
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+.canli-podyum__sira {
+  align-self: end;
+  font-size: var(--yazi-3xl);
+  font-weight: 900;
+  color: var(--metin-soluk);
+}
+
+.canli-eylemler {
+  justify-content: flex-end;
+}
+
+/* --- Hareketler ----------------------------------------------------------------- */
+@keyframes canli-belir {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+}
+@keyframes canli-secenek-gir {
+  from {
+    opacity: 0;
+    scale: 0.85;
+  }
+}
+@keyframes canli-zipla {
+  0% {
+    scale: 0.4;
+    opacity: 0;
+  }
+  60% {
+    scale: 1.12;
+    opacity: 1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+@keyframes canli-salla {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: -10deg;
+  }
+  75% {
+    rotate: 10deg;
+  }
+}
+@keyframes canli-nabiz {
+  50% {
+    scale: 1.1;
+  }
+}
+@keyframes canli-cubuk {
+  from {
+    width: 0;
+  }
+}
+@keyframes canli-yuksel {
+  from {
+    scale: 1 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canli *,
+  .canli *::before,
+  .canli *::after {
+    animation: none !important;
+  }
+}
+
+/* Sınıfım sayfasındaki davet kartı */
+.canli-davet {
+  display: grid;
+  justify-items: start;
+  gap: var(--b-2);
+}
+.canli-davet h2,
+.canli-davet p {
+  margin: 0;
+}

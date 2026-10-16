@@ -1,0 +1,174 @@
+/* Vakıf Çarşısı */
+
+.carsi-ust {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--b-3);
+  flex-wrap: wrap;
+}
+
+.carsi-ust h1 {
+  margin-bottom: var(--b-1);
+}
+
+.carsi-bakiye {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-1);
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-md);
+  border: 2px solid var(--ikincil);
+  background: var(--ikincil-yumusak);
+  color: var(--ikincil-golge);
+  font-size: var(--yazi-xl);
+  font-weight: 900;
+}
+
+[data-tema='koyu'] .carsi-bakiye,
+[data-tema='yuksek-kontrast'] .carsi-bakiye {
+  color: var(--metin);
+}
+
+.carsi-kurallar {
+  border-color: var(--odul-golge);
+  background: var(--odul-yumusak);
+}
+
+.carsi-mesaj {
+  margin: 0;
+}
+
+.carsi-baslik {
+  font-size: var(--yazi-xl);
+  margin: 0;
+}
+
+.carsi-izgara {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--b-3);
+}
+
+@media (min-width: 640px) {
+  .carsi-izgara {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.carsi-urun {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--b-1);
+  padding: var(--b-3);
+  border: 2px solid var(--cizgi);
+  border-radius: var(--kose-lg);
+  background: var(--zemin-kart);
+  text-align: center;
+}
+
+.carsi-urun--secili {
+  border-color: var(--vurgu);
+  background: var(--vurgu-yumusak);
+}
+
+.carsi-urun__ad {
+  font-weight: 900;
+}
+
+.carsi-urun__aciklama {
+  font-size: var(--yazi-xs);
+  color: var(--metin-soluk);
+  line-height: 1.35;
+  flex: 1;
+}
+
+.carsi-urun__durum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 44px;
+  font-weight: 900;
+  color: var(--vurgu-koyu);
+}
+
+.carsi-eksik {
+  margin: 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  color: var(--metin-soluk);
+}
+
+.carsi-satir {
+  display: flex;
+  align-items: center;
+  gap: var(--b-3);
+  flex-wrap: wrap;
+}
+
+.carsi-satir__ikon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--odul);
+  color: var(--odul-metin);
+  flex-shrink: 0;
+}
+
+.carsi-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+}
+
+.carsi-liste__satir {
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+  padding: var(--b-2) var(--b-3);
+  border: 2px solid var(--cizgi);
+  border-radius: var(--kose-md);
+  background: var(--zemin-kart);
+}
+
+.carsi-tema-onizleme {
+  width: 72px;
+  height: 56px;
+  border-radius: var(--kose-sm);
+  border: 3px solid var(--odul);
+  background: var(--vurgu);
+}
+
+.carsi-tema-onizleme--tema-ebru {
+  border-color: var(--ikincil);
+  background: repeating-radial-gradient(
+    circle at 30% 40%,
+    var(--ikincil) 0 6px,
+    var(--ikincil-yumusak) 6px 12px
+  );
+}
+
+.carsi-tema-onizleme--tema-kalemisi {
+  border-color: var(--hata);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--odul) 0 8px,
+    var(--hata) 8px 12px,
+    var(--odul-yumusak) 12px 20px
+  );
+}
+

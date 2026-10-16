@@ -1,0 +1,732 @@
+/* ===========================================================================
+   Yönetim paneli — KATMAN 04 (içerik ekleme / düzenleme)
+   Şartname 5.1.4 (WCAG 2.2 AA) gereği:
+    - Dokunma hedefleri en az 44x44 px (.dugme ve .panel__girdi)
+    - Anlam ASLA yalnızca renkle verilmez: her rozetin yanında metin vardır
+    - Tüm renkler jetonlardan gelir; yüksek kontrast ve koyu tema otomatik uyar
+   =========================================================================== */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-5);
+}
+
+.panel h1,
+.panel h2,
+.panel h3 {
+  margin-top: 0;
+}
+
+/* --- Bölüm başlıkları ----------------------------------------------------- */
+
+.panel__baslik-satiri,
+.panel__bolum-basligi {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--b-4);
+  flex-wrap: wrap;
+}
+
+.panel__bolum-basligi {
+  align-items: baseline;
+  margin-bottom: var(--b-4);
+}
+
+.panel__bolum {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-4);
+  padding-top: var(--b-4);
+  border-top: 2px solid var(--cizgi);
+}
+
+.panel__sonuc {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+
+.panel__kimlik {
+  font-size: var(--yazi-xs);
+  color: var(--metin-soluk);
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+/* --- Canlı bölge (kaydetme/silme sonuçları) ------------------------------- */
+
+.panel__bildirim-alani:empty {
+  display: none;
+}
+
+.panel__bildirim-alani > .bildirim {
+  margin: 0;
+}
+
+/* --- İstatistik kartları -------------------------------------------------- */
+
+.panel__istatistik {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--b-3);
+  margin: 0;
+}
+
+.panel__ist-kart {
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-md);
+  padding: var(--b-3) var(--b-4);
+  box-shadow: var(--golge);
+}
+
+.panel__ist-etiket {
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--metin-ikincil);
+}
+
+.panel__ist-sayi {
+  margin: var(--b-1) 0 0;
+  font-size: var(--yazi-2xl);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.panel__ist-not {
+  display: block;
+  margin-top: var(--b-1);
+  font-size: var(--yazi-xs);
+  font-weight: 600;
+  color: var(--metin-soluk);
+}
+
+/* --- Filtreler ------------------------------------------------------------ */
+
+.panel__filtreler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-4);
+  align-items: flex-start;
+  margin-bottom: var(--b-4);
+}
+
+.panel__filtreler .panel__alan:first-child {
+  flex: 1 1 260px;
+}
+
+.panel__filtre-temizle {
+  margin-left: auto;
+  align-self: center;
+}
+
+/* --- Tablo ---------------------------------------------------------------- */
+
+.panel__tablo-kaydirma {
+  overflow-x: auto;
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-md);
+}
+
+/* Klavye kullanıcısı yatay kaydırılabilir bölgeyi görebilmeli (SC 2.1.1). */
+.panel__tablo-kaydirma:focus-visible {
+  outline: 3px solid var(--odak);
+  outline-offset: 2px;
+}
+
+.panel__tablo {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--yazi-sm);
+  min-width: 640px;
+}
+
+.panel__tablo caption {
+  text-align: left;
+}
+
+.panel__tablo-baslik {
+  padding: var(--b-3) var(--b-4);
+  font-weight: 800;
+  color: var(--metin-ikincil);
+  border-bottom: 1px solid var(--cizgi);
+}
+
+.panel__tablo th,
+.panel__tablo td {
+  padding: var(--b-3) var(--b-4);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--cizgi);
+}
+
+.panel__tablo thead th {
+  background: var(--zemin-vurgu);
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--metin-ikincil);
+  white-space: nowrap;
+}
+
+.panel__tablo tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.panel__satir-eylemler {
+  display: flex;
+  gap: var(--b-2);
+  flex-wrap: wrap;
+}
+
+/* --- Durum rozetleri (metin + renk birlikte) ------------------------------ */
+
+.rozet--yayinda {
+  background: var(--basari-yumusak);
+  border: 1px solid var(--basari);
+  color: var(--basari);
+}
+
+.rozet--taslak {
+  background: var(--zemin-vurgu);
+  border: 1px solid var(--cizgi-kalin);
+  color: var(--metin-ikincil);
+}
+
+.rozet--belgeli {
+  background: var(--vurgu-yumusak);
+  border: 1px solid var(--vurgu);
+  color: var(--vurgu);
+}
+
+.rozet--belgesiz {
+  background: var(--uyari-yumusak);
+  border: 1px solid var(--uyari);
+  color: var(--uyari);
+}
+
+/* --- Şehir grupları ------------------------------------------------------- */
+
+.panel__sehir-grubu {
+  margin-bottom: var(--b-4);
+}
+
+.panel__sehir-baslik {
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+  margin-bottom: var(--b-2);
+  font-size: var(--yazi-lg);
+}
+
+/* --- Form ----------------------------------------------------------------- */
+
+.panel__form-bolum {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-4);
+}
+
+.panel__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-4);
+}
+
+.panel__form-kart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-3);
+}
+
+.panel__grup {
+  margin: 0;
+  padding: var(--b-4);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-md);
+  background: var(--zemin-kart);
+  min-width: 0;
+}
+
+.panel__grup-baslik {
+  padding: 0 var(--b-2);
+  font-size: var(--yazi-lg);
+  font-weight: 800;
+}
+
+.panel__grup-aciklama {
+  margin: 0 0 var(--b-3);
+  font-size: var(--yazi-sm);
+  color: var(--metin-soluk);
+}
+
+.panel__grup-ic {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-4);
+}
+
+.panel__form-eylem {
+  display: flex;
+  gap: var(--b-3);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* --- Alanlar -------------------------------------------------------------- */
+
+.panel__alan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-1);
+  min-width: 0;
+}
+
+.panel__etiket {
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+}
+
+.panel__zorunlu {
+  font-weight: 600;
+  color: var(--metin-soluk);
+}
+
+.panel__ipucu {
+  margin: 0;
+  font-size: var(--yazi-xs);
+  color: var(--metin-soluk);
+  line-height: 1.5;
+}
+
+/* Hata yalnızca renkle değil, metinle ve kalın yazıyla da bildirilir. */
+.panel__hata {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--hata);
+}
+
+.panel__girdi {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--b-2) var(--b-3);
+  font: inherit;
+  color: var(--metin);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-sm);
+}
+
+.panel__girdi::placeholder {
+  color: var(--metin-soluk);
+  opacity: 1;
+}
+
+.panel__girdi[aria-invalid='true'] {
+  border-color: var(--hata);
+}
+
+.panel__girdi[readonly] {
+  background: var(--zemin-vurgu);
+  color: var(--metin-ikincil);
+  border-style: dashed;
+}
+
+.panel__girdi--cok-satir {
+  min-height: 96px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Onay kutusu: kutu büyütülür, etiket hemen yanında ve tıklanabilir. */
+.panel__alan--onay {
+  gap: var(--b-2);
+}
+
+.panel__onay-satiri {
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+  min-height: 44px;
+}
+
+.panel__onay-kutusu {
+  width: 24px;
+  height: 24px;
+  accent-color: var(--vurgu);
+  flex: 0 0 auto;
+}
+
+.panel__onay-satiri .panel__etiket {
+  cursor: pointer;
+}
+
+/* Salt okunur otomatik hesaplanan çıktı (gelir dağılımı durumu). */
+.panel__cikti {
+  display: block;
+  padding: var(--b-3);
+  border: 2px dashed var(--cizgi-kalin);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-vurgu);
+  font-weight: 700;
+}
+
+/* --- Dinamik satırlar (gelir kalemleri, kaynaklar) ------------------------ */
+
+.panel__dinamik {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-3);
+}
+
+.panel__dinamik-satir {
+  display: grid;
+  gap: var(--b-3);
+  align-items: end;
+  padding: var(--b-3);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-vurgu);
+}
+
+/* Kalem satırı: ad · tip · oran · kaynak · kaldır */
+.panel__dinamik-satir--kalem {
+  grid-template-columns:
+    minmax(140px, 1.8fr) minmax(150px, 1.2fr) minmax(90px, 0.6fr) minmax(140px, 1.6fr)
+    auto;
+}
+
+.panel__dinamik-satir--kaynak {
+  grid-template-columns: minmax(200px, 2fr) minmax(180px, 1.5fr) auto;
+}
+
+/* Satır içi alanlarda etiketler daha küçük: satır yüksekliği okunabilir kalır. */
+.panel__dinamik-satir .panel__etiket {
+  font-size: var(--yazi-xs);
+}
+
+.panel__dinamik-eylem {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* --- Hata özeti ----------------------------------------------------------- */
+
+.panel__ozet-baslik {
+  margin: 0 0 var(--b-2);
+}
+
+.panel__ozet-listesi {
+  margin: 0;
+  padding-left: var(--b-5);
+}
+
+/* --- Katlanmış bölüm ("Yeni şehir ekle") --------------------------------- */
+
+.panel__katlanmis > .panel__ozet {
+  cursor: pointer;
+  font-weight: 800;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+}
+
+.panel__katlanmis[open] > .panel__ozet {
+  margin-bottom: var(--b-3);
+}
+
+/* --- Onay diyaloğu -------------------------------------------------------- */
+
+.onay-perde {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: var(--b-4);
+  background: rgba(12, 18, 24, 0.62);
+}
+
+.onay {
+  width: min(100%, 480px);
+  max-height: 85vh;
+  overflow: auto;
+  padding: var(--b-5);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-md);
+  box-shadow: var(--golge-buyuk);
+}
+
+.onay__baslik {
+  margin: 0 0 var(--b-3);
+}
+
+.onay__aciklama {
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+
+.onay__aciklama p + p {
+  margin-top: var(--b-2);
+}
+
+.onay__eylemler {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--b-3);
+  flex-wrap: wrap;
+  margin-top: var(--b-4);
+}
+
+/* ===========================================================================
+   Panel sekmeleri (içerik ↔ kullanıcı yönetimi)
+   WAI-ARIA "tabs" deseni: role=tablist/tab/tabpanel, ok tuşlarıyla gezinme.
+   Sekmeler .dugme tabanını korur; dokunma hedefi >= 44px kalır (SC 2.5.8).
+   =========================================================================== */
+
+.panel__sekmeler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+  padding-bottom: var(--b-2);
+  border-bottom: 2px solid var(--cizgi);
+}
+
+.panel__sekme {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Seçili sekme yalnızca renkle değil, kalın yazı ve alt çizgiyle de ayrılır. */
+.panel__sekme.panel__sekme--aktif {
+  background: var(--vurgu);
+  border-color: var(--vurgu);
+  color: var(--vurgu-metin);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.panel__sekme-icerik {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-5);
+}
+
+/* `hidden` yazar stilini yenmeli: etkin olmayan sekme paneli tamamen gizlenir. */
+.panel__sekme-icerik[hidden] {
+  display: none;
+}
+
+/* ===========================================================================
+   Kullanıcı yönetimi — yalnızca YETİŞKİN hesapları (yönetici + öğretmen)
+   =========================================================================== */
+
+/* Çocuk hesabı açılmadığını anlatan zorunlu politika notu. */
+.panel__bilgi-kutusu {
+  border-left-width: 6px;
+  border-left-style: solid;
+  font-size: var(--yazi-sm);
+  line-height: var(--satir-govde);
+}
+
+.panel__rol-satir {
+  display: grid;
+  grid-template-columns: minmax(150px, max-content) 1fr;
+  gap: var(--b-3);
+  align-items: baseline;
+}
+
+.panel__rol-satir dd {
+  margin: 0;
+  color: var(--metin-ikincil);
+}
+
+.panel__kullanici-rol-rozet {
+  white-space: nowrap;
+}
+
+.panel__kendi-hesap {
+  align-self: center;
+  font-size: var(--yazi-xs);
+  font-weight: 700;
+  color: var(--metin-soluk);
+}
+
+/* Parola kuralları formun içinde AÇIKÇA yazılır. */
+.panel__kurallar {
+  padding: var(--b-3) var(--b-4);
+  background: var(--zemin-vurgu);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-sm);
+}
+
+.panel__kurallar h4 {
+  margin: 0 0 var(--b-2);
+  font-size: var(--yazi-sm);
+}
+
+.panel__kural-listesi {
+  margin: 0;
+  padding-left: var(--b-5);
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+
+/* --- Rol ve durum rozetleri (metin her zaman yanında) --------------------- */
+
+.rozet--rol-admin {
+  background: var(--vurgu-yumusak);
+  border: 1px solid var(--vurgu);
+  color: var(--vurgu);
+}
+
+.rozet--rol-ogretmen {
+  background: var(--sicak-yumusak);
+  border: 1px solid var(--sicak);
+  color: var(--sicak);
+}
+
+.rozet--aktif {
+  background: var(--basari-yumusak);
+  border: 1px solid var(--basari);
+  color: var(--basari);
+}
+
+.rozet--pasif {
+  background: var(--zemin-vurgu);
+  border: 1px solid var(--cizgi-kalin);
+  color: var(--metin-ikincil);
+}
+
+@media (max-width: 720px) {
+  .panel__rol-satir {
+    grid-template-columns: 1fr;
+    gap: var(--b-1);
+  }
+
+  .panel__dinamik-satir--kalem,
+  .panel__dinamik-satir--kaynak {
+    grid-template-columns: 1fr;
+  }
+
+  .panel__dinamik-eylem {
+    align-items: stretch;
+  }
+
+  .panel__dinamik-eylem .dugme {
+    width: 100%;
+  }
+
+  .panel__filtre-temizle {
+    margin-left: 0;
+    align-self: stretch;
+  }
+
+  .panel__form-eylem .dugme {
+    flex: 1 1 100%;
+  }
+}
+
+/* ===========================================================================
+   İki dilli alanlar (tarihçe) ve salt okunur fotoğraf / sergi görünümü
+   Bilgi Notu: "Türkçe ve İngilizce metinler, fotoğraf galerileri ve sergi
+   bilgileri". Bu turda fotoğraf ve sergi DÜZENLENMEZ; yalnızca gösterilir.
+   =========================================================================== */
+
+/* Alan grubu içindeki alt başlık — başlık sırasını bozmamak için <p>. */
+.panel__alt-baslik {
+  margin: 0 0 var(--b-2);
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--metin-soluk);
+}
+
+.panel__salt-okunur-not {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  color: var(--metin-soluk);
+}
+
+/* --- Salt okunur fotoğraf listesi ----------------------------------------- */
+
+.panel__foto-listesi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.panel__foto-kare {
+  width: 168px;
+}
+
+.panel__foto {
+  width: 100%;
+  height: 112px;
+  object-fit: cover;
+  background: var(--zemin-vurgu);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-sm);
+}
+
+/* Eksik alt metni yalnızca renkle değil, açık METİNLE bildirir (SC 1.4.1). */
+.panel__foto-uyari {
+  display: block;
+  margin-top: var(--b-1);
+  font-size: var(--yazi-xs);
+  font-weight: 700;
+  color: var(--uyari);
+}
+
+.panel__foto-kunye {
+  display: block;
+  margin-top: var(--b-1);
+  font-size: var(--yazi-xs);
+  color: var(--metin-soluk);
+  line-height: 1.4;
+}
+
+/* --- Salt okunur sergi listesi -------------------------------------------- */
+
+.panel__sergi-listesi {
+  display: grid;
+  gap: var(--b-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.panel__sergi {
+  padding-left: var(--b-3);
+  border-left: 3px solid var(--cizgi-kalin);
+}
+
+.panel__sergi-ad {
+  margin: 0;
+}
+
+.panel__sergi-ad-en {
+  font-weight: 400;
+  color: var(--metin-soluk);
+}
+
+.panel__sergi-kunye,
+.panel__sergi-aciklama {
+  margin: var(--b-1) 0 0;
+  font-size: var(--yazi-sm);
+  color: var(--metin-soluk);
+  line-height: 1.5;
+}
+

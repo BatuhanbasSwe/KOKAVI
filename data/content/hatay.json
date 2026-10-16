@@ -1,0 +1,1991 @@
+{
+  "grup": "hatay",
+  "dersler": [
+    {
+      "eserId": "hatay-habib-i-neccar-camii-ve-kulliyesi",
+      "merak": {
+        "soru": "1500'lerde Antakya'da Habib-i Neccar adını taşıyan İKİ ayrı vakıf vardı. Sence neden iki vakıf kurulmuştu?",
+        "secenekler": [
+          "Biri cami, öbürü yemek dağıtılan yer için.",
+          "Biri onarım, öbürü çalışanların maaşı için.",
+          "İkisi de aynı iş için kuruldu, sonra birleşti."
+        ],
+        "kopru": "Tahminini not ettik! Göreceksin: Bir vakıf sadece binayı değil, sofrayı da düşünür."
+      },
+      "baglam": {
+        "baslik": "Bir caminin iki vakfı",
+        "metin": "Habib-i Neccar Camii, Antakya'nın en eski ibadet yerlerinden biri. Bugünkü binanın üstündeki en eski yazı 1271 yılından.\n\n1500'lerde bu adı taşıyan iki ayrı vakıf vardı. Biri caminin, öbürü imaretin vakfıydı. İmaret, yemek dağıtılan yerdir. Burada ziyaretçilere, öğrencilere ve yoksullara para almadan yemek verilirdi.\n\n1550 yılında devlet vakıfların hesabını bir deftere yazdı. Bu deftere göre caminin bir yıllık geliri 7.689 akçeydi. Akçe, o zamanın parasıydı.",
+        "kavramlar": [
+          {
+            "ad": "VAKIF",
+            "aciklama": "Bir kişinin malını sonsuza kadar bir iyilik işine bağlaması. O mal artık satılmaz, hep o işe hizmet eder.",
+            "ornek": "Antakya'da Habib-i Neccar adına iki vakıf vardı."
+          },
+          {
+            "ad": "İMARET",
+            "aciklama": "Yemek pişirilip dağıtılan hayır mutfağı.",
+            "ornek": "Bu imarette yoksullara ve öğrencilere para almadan yemek verilirdi."
+          },
+          {
+            "ad": "EVKAF DEFTERİ",
+            "aciklama": "Devletin vakıfların gelirini ve giderini yazdığı defter.",
+            "ornek": "1550'deki deftere göre caminin bir yıllık geliri 7.689 akçeydi."
+          }
+        ],
+        "kapanis": "Bir vakıf, bir sofrayı yüzyıllarca kurabilir. Peki bu para nasıl harcanıyordu? Bir karar anına bakalım."
+      },
+      "perspektif": {
+        "baslik": "1550'de vakfın kasası",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1550. Antakya'da caminin hesapları deftere yazılıyor."
+          },
+          {
+            "kim": "KÂTİP",
+            "metin": "Vakfın bu yılki geliri 7.689 akçe. Köylerden ürün, topraktan kira geldi."
+          },
+          {
+            "kim": "MÜTEVELLİ",
+            "metin": "Şimdi bu parayı paylaştırmalıyız. Çalışanların maaşı, hasır, yağ, beklenmedik masraflar... Hepsi bu paraya bakıyor."
+          }
+        ],
+        "soru": "Vakfın yöneticisi sen olsan, 7.689 akçeyi nasıl paylaştırırdın?",
+        "secenekler": [
+          {
+            "metin": "Önce çalışanların maaşını öderdim. Kalanı caminin yağına ve hasırına ayırırdım.",
+            "sonuc": "Gerçekte de böyle oldu! Paranın büyük kısmı, yaklaşık dörtte üçü, çalışanların maaşına gitti. Kalanı caminin yağına, hasırına ve beklenmedik masraflara ayrıldı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Parayı ikiye bölerdim: Yarısı maaşa, yarısı sofraya.",
+            "sonuc": "Defterde böyle bir paylaşım yok. Paranın yaklaşık dörtte üçü maaşlara, kalanı caminin diğer masraflarına gitti.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Hepsini imaretin kazanına ayırırdım.",
+            "sonuc": "İmaret de vakfın hizmetlerindendi. Ama bu defterde caminin giderleri yazıyor: maaşlar ile yağ ve hasır.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Habib-i Neccar Camii, Antakya'nın en eski ibadet yerlerinden biri. 1550'de geliri 7.689 akçeydi. Paranın çoğu çalışanların maaşına gitti. Cami 6 Şubat 2023 depreminde ağır hasar gördü. Onarıldı ve 27 Aralık 2025'te yeniden açıldı.",
+        "rontgenSorusu": "1550'de bu caminin parası nereden geliyor, nereye harcanıyordu?",
+        "rontgenAciklama": "Bu eserin 1550 tarihli evkaf defteri kaydında iki ayrı büyüklük vardır: vakfa paranın NEREDEN geldiği ve gelirin NEREYE harcandığı. Uygulama bu iki tarafı karıştırmaz, ayrı ayrı gösterir. GİDER tarafı kendi içinde %100 eder: vakıf personeli maaşları %77, caminin yağ ve hasır ihtiyacı ile öngörülemeyen diğer masrafları %23. GELİR tarafı da kendi içinde %100 eder: Kuseyr'e bağlı Kozya köyü mahsul ve rüsûmunun tamamı %59, Altunözü'ne bağlı Buhşîn köyü mahsulünün 3/24 kırat hissesi %21, Antakya surları içinde bağ ve bahçeye dönüştürülen arazi kirasının 12/24 kırat hissesi %20. Yüzdeler kaynakta doğrudan verilmemiştir; kaynakta akçe olarak yazılı tutarların toplama oranlanmasıyla hesaplanmıştır. Vakfiyenin özgün arşiv numarası bulunamamıştır; elimizdeki numara 1550 tarihli evkaf defteri kaydına aittir (TKA, Evkaf 556, s. 129a). İki not: deprem hasarının resmî teknik raporu görülmemiştir, hasar durumu basın açıklamalarına dayanır; restorasyonun 27 Aralık 2025'te tamamlandığı bilgisi de basın kaynaklıdır. Ayrıca Hatay 2025 Yatırım Programında 'Habib-i Neccar Camii + Kuseyri Evi' tek kalemde 280.003.001 TL olarak yer alır; bu yüzden caminin tek başına restorasyon maliyeti ayrıştırılamamaktadır.",
+        "kaynakKunye": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları (1550 Tarihli Evkaf Defterine Göre)', Vakıflar Dergisi, S. 43, Haziran 2015, s. 18-19 (TKA, Evkaf 556, s. 129a) · Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 55-72 · Diyanet Haber, 'Habib-i Neccar Camii'nde 3 yıl aradan sonra ilk cuma namazı kılındı', 02.01.2026"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-habib-i-neccar-camii-ve-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Gelir mi, gider mi? Her birini doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "gelir",
+                "ad": "Gelir",
+                "aciklama": "Vakfa para getirenler: köy ürünleri, kiralar."
+              },
+              {
+                "id": "gider",
+                "ad": "Gider",
+                "aciklama": "Paranın harcandığı yerler: maaşlar, bakım."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Kozya köyünün ürünleri",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Buhşîn köyünün ürünlerinden bir pay",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Antakya'daki toprakların kirasından bir pay",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "İmam, müezzin ve temizlikçinin maaşı",
+                "kategoriId": "gider"
+              },
+              {
+                "metin": "Caminin yağ ve hasır ihtiyacı",
+                "kategoriId": "gider"
+              },
+              {
+                "metin": "Beklenmedik masraflar",
+                "kategoriId": "gider"
+              }
+            ]
+          },
+          "kaynak": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları (1550 Tarihli Evkaf Defterine Göre)', Vakıflar Dergisi, S. 43 (2015), s. 19 (TKA, Evkaf 556, s. 129a) — kalemler kaynakta akçe olarak verilmiştir; 'gelir' ve 'gider' ayrımı veri setinde tip alanıyla yapılmıştır"
+        },
+        {
+          "id": "hatay-habib-i-neccar-camii-ve-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Vakfın gelirlerini çoktan aza doğru sırala.",
+            "dogruSira": [
+              "Kozya köyünün ürünleri: 4.562 akçe",
+              "Buhşîn köyünden gelen pay: 1.627 akçe",
+              "Antakya'daki toprakların kirasından gelen pay: 1.500 akçe"
+            ]
+          },
+          "kaynak": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları', Vakıflar Dergisi, S. 43 (2015), s. 19 — yüzdeler kaynakta akçe olarak verilen tutarların toplama oranlanmasıyla hesaplanmıştır"
+        },
+        {
+          "id": "hatay-habib-i-neccar-camii-ve-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Ziyaretçilere, öğrencilere ve yoksullara para almadan yemek verilen yere ___ denir.",
+            "cevap": "imaret",
+            "secenekler": [
+              "imaret",
+              "medrese",
+              "şadırvan",
+              "hazire"
+            ]
+          },
+          "kaynak": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları', Vakıflar Dergisi, S. 43 (2015), s. 18-19; Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 55-72"
+        },
+        {
+          "id": "hatay-habib-i-neccar-camii-ve-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Antakya'da. İçinde bir cami, öğrenci odaları, bir şadırvan ve türbeler var. Bazı türbeler yerin dört metre altında. 2023 depreminde ağır hasar gördü, 2025'te yeniden açıldı.",
+            "secenekler": [
+              "Habib-i Neccar Camii ve Külliyesi",
+              "Sokullu Mehmed Paşa Külliyesi Medresesi ve Sıbyan Mektebi",
+              "Bâyezîd-i Bistâmî Türbesi ve Tekkesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 55-72; Diyanet Haber, 'Habib-i Neccar Camii'nde 3 yıl aradan sonra ilk cuma namazı kılındı', 02.01.2026"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-sokullu-mehmet-pasa-kulliyesi-medrese-ve-sibyan-mektebi",
+      "merak": {
+        "soru": "Payas'taki külliyede hem bir medrese hem de bir sıbyan mektebi vardı. Sence ikisinin farkı neydi?",
+        "secenekler": [
+          "Medrese büyük öğrenciler, sıbyan mektebi küçük çocuklar içindi.",
+          "Medrese ders için, sıbyan mektebi uyumak içindi.",
+          "İkisi de aynıydı, sadece binaları ayrıydı."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi bu külliyeye ve içindeki iki okula yakından bakalım."
+      },
+      "baglam": {
+        "baslik": "Yol üstünde iki okul",
+        "metin": "Payas, Hatay'da bir ilçe. Buradaki külliyeyi Sokullu Mehmed Paşa yaptırdı. Külliye, İstanbul'dan Şam'a ve Hicaz'a giden büyük yolun üstünde. Amaç, yolcuların güvenle yolculuk etmesiydi.\n\nYapımı 1567'de başladı, 1574'te büyük kısmı bitti. Bazı belgeler mimarın Mimar Sinan olduğunu söyler. Ama bu kesin değil. Külliyede bir han, cami, hamam, imaret ve 48 dükkânlı bir çarşı var.\n\nBir de iki okul! Büyük öğrenciler medresede okurdu. Küçük çocuklar ise sıbyan mektebine giderdi. Sıbyan mektebinin bir de oyun bahçesi vardı.",
+        "kavramlar": [
+          {
+            "ad": "MENZİL KÜLLİYESİ",
+            "aciklama": "Yol üstünde kurulan, yolcuların kalıp dinlendiği yapılar.",
+            "ornek": "Payas'taki külliye, İstanbul-Şam yolunda bir menzil külliyesi."
+          },
+          {
+            "ad": "SIBYAN MEKTEBİ",
+            "aciklama": "Küçük çocukların okuma yazma öğrendiği ilk okul.",
+            "ornek": "Payas'taki sıbyan mektebinin bir oyun bahçesi var."
+          },
+          {
+            "ad": "DERBENDCİLİK",
+            "aciklama": "Bir geçidi ya da yolu koruma görevi. Bu işi yapan halk, bazı vergileri ödemezdi.",
+            "ornek": "Payas çevresindeki halka yolu koruma görevi verildi."
+          }
+        ],
+        "kapanis": "Bir külliye sadece yolcuları değil, çocukları da düşünür. Peki yolu kim koruyacaktı?"
+      },
+      "perspektif": {
+        "baslik": "Külliyenin ilk yılları",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "1567-1574 arası. Payas'ta han, cami, hamam, çarşı ve okullar birer birer yükseliyor."
+          },
+          {
+            "kim": "SOKULLU MEHMED PAŞA",
+            "metin": "Bu yol İstanbul'u Şam'a bağlıyor. Yolcu güvende olmalı, çocuk burada okumalı, esnaf burada kazanmalı."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Kâtip defteri açtı. Şimdi yolun çevresindeki halka ne verilecek?"
+          }
+        ],
+        "soru": "Bu yolu güvenli tutmak için bölge halkına ne yapardın?",
+        "secenekler": [
+          {
+            "metin": "Yolu koruma görevi verirdim. Karşılığında vergi ödemezlerdi.",
+            "sonuc": "Gerçekte de böyle oldu! Halk yolu korudu. Karşılığında bazı vergilerden kurtuldu. Buna derbendcilik denir.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Onları inşaatta işçi olarak çalıştırırdım.",
+            "sonuc": "İnşaatta elbette çok kişi çalıştı. Ama halk için belgelenen uygulama bu değil. Belgelenen, vergi karşılığında yolu korumak.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Külliye bitince halkı başka bir yere taşırdım.",
+            "sonuc": "Tam tersi oldu! Amaç, göçebe Türkmenlerin buraya yerleşmesiydi.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Payas'taki Sokullu Mehmed Paşa Külliyesi, büyük bir yolun üstünde kuruldu. İçinde han, cami, hamam, çarşı ve iki okul var. 2023 depremini büyük ölçüde sağlam atlattı. Aylarca depremzedelere hamam ve misafirhane oldu. Ama camisinin minaresinin bir kısmı yıkıldı.",
+        "rontgenSorusu": "Bu külliyenin masraflarını ne karşılıyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu eser için oran göstermez. Payas vakfiyesinin arşiv numarası hiçbir erişilebilir kaynakta bulunamamıştır. Vakfın gelir dağılımı, personel kadrosu ve maaşları, imaretin niceliksel hizmet kapasitesi de kaynaklarda yer almamaktadır. Bu sorunun cevabı büyük olasılıkla Payas vakfiyesini ayrıntılı inceleyen bir lisansüstü tezindedir; ancak tezin tam metnine erişilememiş ve künyesi doğrulanamamıştır. Medrese ve sıbyan mektebine özel bir deprem hasar tespiti de bulunamamıştır. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "Mehmet Fatih Müderrisoğlu, 'SOKULLU MEHMED PAŞA KÜLLİYESİ (Payas)', TDV İslâm Ansiklopedisi, c. 37 (2009), s. 364-366 · Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 95-120 · Anadolu Ajansı, 'Hatay'ın depremleri hasarsız atlatan külliyesinde 46 işletme faaliyet gösteriyor'"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-sokullu-mehmet-pasa-kulliyesi-medrese-ve-sibyan-mektebi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bu yapı ne işe yarar? Doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "egitim",
+                "ad": "Okul ve ibadet",
+                "aciklama": "Okumak ve ibadet etmek için yapılar."
+              },
+              {
+                "id": "yolcu",
+                "ad": "Yolcu ve ticaret",
+                "aciklama": "Yolcuların ve esnafın kullandığı yapılar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Yirmi bir odalı medrese",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Sıbyan mektebi ve oyun bahçesi",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Cami",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Han (kervansaray)",
+                "kategoriId": "yolcu"
+              },
+              {
+                "metin": "48 dükkânlı çarşı",
+                "kategoriId": "yolcu"
+              },
+              {
+                "metin": "İskele ve gemi yapım yeri",
+                "kategoriId": "yolcu"
+              }
+            ]
+          },
+          "kaynak": "Mehmet Fatih Müderrisoğlu, 'SOKULLU MEHMED PAŞA KÜLLİYESİ (Payas)', TDV İslâm Ansiklopedisi, c. 37 (2009), s. 364-366; Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 95-120"
+        },
+        {
+          "id": "hatay-sokullu-mehmet-pasa-kulliyesi-medrese-ve-sibyan-mektebi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Külliyenin tarihini eskiden yeniye sırala.",
+            "dogruSira": [
+              "1567: Yapımı başladı",
+              "1574: Büyük kısmı bitti",
+              "1580'lerin başı: Son hâlini aldı",
+              "2023: Depremzedelere hamam ve misafirhane oldu",
+              "2024: İçinde 46 dükkân ve işletme çalışıyor"
+            ]
+          },
+          "kaynak": "Mehmet Fatih Müderrisoğlu, 'SOKULLU MEHMED PAŞA KÜLLİYESİ (Payas)', TDV İslâm Ansiklopedisi, c. 37 (2009), s. 364-366; Anadolu Ajansı, 'Hatay'ın depremleri hasarsız atlatan külliyesinde 46 işletme faaliyet gösteriyor'"
+        },
+        {
+          "id": "hatay-sokullu-mehmet-pasa-kulliyesi-medrese-ve-sibyan-mektebi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Küçük çocukların okuma yazma öğrendiği ilk okula ___ denir.",
+            "cevap": "sıbyan mektebi",
+            "secenekler": [
+              "sıbyan mektebi",
+              "medrese",
+              "hankah",
+              "arasta"
+            ]
+          },
+          "kaynak": "Mehmet Fatih Müderrisoğlu, 'SOKULLU MEHMED PAŞA KÜLLİYESİ (Payas)', TDV İslâm Ansiklopedisi, c. 37 (2009), s. 364-366"
+        },
+        {
+          "id": "hatay-sokullu-mehmet-pasa-kulliyesi-medrese-ve-sibyan-mektebi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Payas'ta. İçinde han, cami, hamam, 48 dükkânlı bir çarşı ve iki okul var. Küçüklerin okulunun bir oyun bahçesi var. 2023 depreminden sonra depremzedelere ev sahipliği yaptı.",
+            "secenekler": [
+              "Sokullu Mehmed Paşa Külliyesi Medresesi ve Sıbyan Mektebi (Payas)",
+              "Habib-i Neccar Camii ve Külliyesi (Antakya)",
+              "Kanuni Sultan Süleyman Kervansarayı (Belen Menzil Külliyesi)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Mehmet Fatih Müderrisoğlu, 'SOKULLU MEHMED PAŞA KÜLLİYESİ (Payas)', TDV İslâm Ansiklopedisi, c. 37 (2009), s. 364-366; Anadolu Ajansı, 20.03.2023 ve 2024 tarihli haberler"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-kurtulus-beyseri-hamami",
+      "merak": {
+        "soru": "Bu hamamda yıkanma yerlerinin yanında bir DALMA HAVUZU vardı. Sence bu havuz ne içindi?",
+        "secenekler": [
+          "Dinî bir inanç için girilen bir havuz.",
+          "Hamamı serin tutan bir su deposu.",
+          "Çamaşır yıkamak için."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi Antakya'nın eski hamamlarından birine girelim. Bir de karışan bir isim meselesi var."
+      },
+      "baglam": {
+        "baslik": "Binaların arasına sıkışmış hamam",
+        "metin": "Kurtuluş Hamamı, Antakya'da Kurtuluş Caddesi'nde. Üç tarafı başka binalarla çevrili. Bu yüzden dışarıdan pek görünmüyor.\n\nÜstündeki yazıda \"Beyseri 1364\" yazıyor. Ama bu tarih hamamın mı, yoksa önüne sonradan eklenen binaların mı? Bilinmiyor. Hamamın 1551'de var olduğu ise kesin.\n\nİçinde soyunma yeri, ılık bölüm ve sıcak bölüm var. Bir de dinî inanç için yapılmış bir dalma havuzu. İçeriye ışık, tavandaki küçük pencerelerden girer.",
+        "kavramlar": [
+          {
+            "ad": "HAMAM",
+            "aciklama": "İnsanların yıkandığı yapı. Soyunma yeri, ılık bölüm ve sıcak bölüm vardır.",
+            "ornek": "Bu hamamın sıcak bölümünün yanında bir dalma havuzu var."
+          },
+          {
+            "ad": "KİTÂBE",
+            "aciklama": "Bir yapının üstüne yazılan yazı. Kimin, ne zaman yaptırdığını söyler.",
+            "ornek": "Bu hamamın kitâbesinde \"Beyseri 1364\" yazıyor."
+          },
+          {
+            "ad": "ÇIKARIM",
+            "aciklama": "İpuçlarına bakarak yapılan tahmin. Belgeyle kanıtlanmadığı için \"kesin\" diye yazılmaz.",
+            "ornek": "Yaptıranın Beyseri adında biri olması bir çıkarım. Kesin değil."
+          }
+        ],
+        "kapanis": "Bu hamamın kaydında iki şey eksik: Yazıdaki tarihin neye ait olduğu ve yaptıranın kim olduğu. Eksik bilgiyi nasıl yazarız?"
+      },
+      "perspektif": {
+        "baslik": "Aynı adı taşıyan iki hamam",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Arşivde \"Kurtuluş Hamamı\" adlı bir kayıt var. Ama bu ad iki farklı yerde geçiyor."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Biri Antakya'daki bu hamam. Öbürü Belen'de, 1562-1566'da yapılmış başka bir hamam."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Üstelik bir kitapta adı bir yerde \"Beyhan\", başka bir yerde \"Beysen\" yazıyor. İkisi de muhtemelen yanlış yazılmış."
+          }
+        ],
+        "soru": "Hamamın kimlik kartını yazıyorsun. Bu iki kaydı ne yaparsın?",
+        "secenekler": [
+          {
+            "metin": "İkisinin aynı yapı olduğunu kesin diye yazarım.",
+            "sonuc": "Aynı yapı olabilirler ama bu bir belgeyle kanıtlanmadı. Kesin diye yazmak yanlış olur.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Antakya'daki kaydı yazarım. Belen'dekiyle karıştırılmasın diye not düşerim.",
+            "sonuc": "Doğru! Bu kart Antakya'daki hamamı anlatıyor. Belen'deki hamam başka bir yapı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "İkisini tek bir kayıtta birleştiririm.",
+            "sonuc": "İkisi farklı yerlerde, farklı tarihlerde yapılmış. Birleştirmek yanlış bir kart çıkarır.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Kurtuluş Hamamı, Antakya'da binaların arasına sıkışmış eski bir hamam. Yazısında \"Beyseri 1364\" yazıyor. Yaptıranı kesin değil. 2023 depreminde zarar gördü ve o günden beri kapalı. Onarım programına alındı. Ne kadar hasar gördüğü ise belgelerde yok.",
+        "rontgenSorusu": "Bu hamamın geliri nereye gidiyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu eser için oran göstermez. Hamamın vakfiyesine ve gelir dağılımına ilişkin hiçbir belge bulunamamıştır; vakfiyenin arşiv numarası da yoktur. Elimizde en az belge bulunan eserlerden biri budur: haritadaki koordinatı bile hiçbir kayıtta bulunamamıştır. Ayrıca 'Kurtuluş' adının 'Beyseri' ile aynı yapıyı gösterdiği kuvvetle muhtemel olmakla birlikte resmî bir belgeyle teyit edilememiştir. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 466-467 (KURTULUŞ (BEYSERİ) HAMAMI) · Halil Sahillioğlu, 'ANTAKYA', TDV İslâm Ansiklopedisi, c. 3 (1991), s. 231 · T.C. Kültür ve Turizm Bakanlığı, Hatay 2025 Yatırım Programı (21.01.2025), 'Kurtuluş Hamamı' kalemi, Antakya, 29.270.000 TL, 2023-2028"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-kurtulus-beyseri-hamami-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bu bilgi hangi hamama ait? Doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "antakya",
+                "ad": "Antakya'daki Kurtuluş Hamamı",
+                "aciklama": "Kurtuluş Caddesi'nde, \"Beyseri 1364\" yazılı hamam."
+              },
+              {
+                "id": "belen",
+                "ad": "Belen'deki hamam",
+                "aciklama": "1562-1566'da yapılan başka bir hamam."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Yazısında \"Beyseri 1364\" var",
+                "kategoriId": "antakya"
+              },
+              {
+                "metin": "Üç tarafı başka binalarla çevrili",
+                "kategoriId": "antakya"
+              },
+              {
+                "metin": "1551 kayıtlarında adı geçiyor",
+                "kategoriId": "antakya"
+              },
+              {
+                "metin": "Kanuni'nin külliyesinde en son yapılan bina",
+                "kategoriId": "belen"
+              },
+              {
+                "metin": "1562-1566'da yapıldı",
+                "kategoriId": "belen"
+              },
+              {
+                "metin": "Arşivde aynı adla geçen öbür kayıt",
+                "kategoriId": "belen"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 466-467 ve s. 139-158; Halil Sahillioğlu, 'ANTAKYA', TDV İslâm Ansiklopedisi, c. 3 (1991), s. 231"
+        },
+        {
+          "id": "hatay-kurtulus-beyseri-hamami-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Tarihleri eskiden yeniye sırala.",
+            "dogruSira": [
+              "1364: Yazıdaki tarih (neye ait olduğu belirsiz)",
+              "1551: Hamam kayıtlarda geçiyor",
+              "6 Şubat 2023: Depremde zarar gördü",
+              "Ocak 2025: Onarımı için para ayrıldı",
+              "Şubat 2026: Onarım programına alındı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 466-467; T.C. Kültür ve Turizm Bakanlığı, Hatay 2025 Yatırım Programı (21.01.2025); TBMM önerisi 7/39980, 05.02.2026"
+        },
+        {
+          "id": "hatay-kurtulus-beyseri-hamami-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Bu hamamda dinî inanç için yapılmış havuza ___ havuzu denir.",
+            "cevap": "dalma",
+            "secenekler": [
+              "dalma",
+              "külhan",
+              "ılıklık",
+              "şadırvan"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 466-467"
+        },
+        {
+          "id": "hatay-kurtulus-beyseri-hamami-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Antakya'da bir caddede. Üç tarafı başka binalarla çevrili. İçinde dinî inanç için yapılmış bir dalma havuzu var. Işık tavandaki küçük pencerelerden girer.",
+            "secenekler": [
+              "Kurtuluş (Beyseri) Hamamı",
+              "Kanuni Sultan Süleyman Kervansarayı (Belen Menzil Külliyesi)",
+              "Sokullu Mehmed Paşa Külliyesi Medresesi ve Sıbyan Mektebi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 466-467 (KURTULUŞ (BEYSERİ) HAMAMI)"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-kursunlu-han-cesmesi",
+      "merak": {
+        "soru": "Hatay'da bugüne kalan 28 eski çeşme var. Sence en eskilerinden biri nerede?",
+        "secenekler": [
+          "Bir hanın duvarının içinde.",
+          "Bir caminin avlusunda.",
+          "Bir köy yolunun kenarında."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi Antakya çarşısına gidelim. Göreceksin: Bu çeşme kendi başına bir bina bile değil."
+      },
+      "baglam": {
+        "baslik": "Duvarın içindeki çeşme",
+        "metin": "Antakya çarşısında Kurşunlu Han var. Han 1569'da yapıldı. Yanında küçük bir mescit, duvarında da bir çeşme var. Bu üç yapı birlikte tasarlandı.\n\nHan iki katlı ve üç kapılı. Alt katında sokağa bakan dükkânlar var. Çeşme ise hanın bir köşesinde. Duvarın içine oyulmuş, kemerli bir oyuktan ibaret.\n\nÇeşmenin taşları hanın taşlarıyla aynı. Bu yüzden ikisinin birlikte yapıldığı düşünülüyor. Bu çeşme, Hatay'daki en eski çeşmelerden biri.",
+        "kavramlar": [
+          {
+            "ad": "ÇEŞME",
+            "aciklama": "Mahalleye ya da çarşıya su veren, musluklu küçük yapı.",
+            "ornek": "Kurşunlu Han Çeşmesi, Hatay'ın en eski çeşmelerinden biri."
+          },
+          {
+            "ad": "MESCİT",
+            "aciklama": "Küçük ibadet yeri. Minaresi olabilir ama içinde minber yoktur.",
+            "ornek": "Hanın köşesindeki mescide zamanla \"cami\" denmeye başlandı."
+          },
+          {
+            "ad": "MANZUME",
+            "aciklama": "Birlikte tasarlanmış yapılar: Han, mescit ve çeşme gibi.",
+            "ornek": "Kurşunlu Han manzumesinde han, mescit ve çeşme var."
+          }
+        ],
+        "kapanis": "Bir çeşme, bir hanın duvarında yüzyıllarca su akıtabilir. Ama bu çeşmenin kimlik kartında bir boşluk var."
+      },
+      "perspektif": {
+        "baslik": "Çarşının suyu",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1569. Antakya çarşısında iki katlı bir han yükseliyor. Köşesinde bir çeşme var."
+          },
+          {
+            "kim": "ÇARŞI ESNAFI",
+            "metin": "Suyumuz artık bu duvardan akıyor. Handaki yolcular da buradan içiyor, biz de."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Yüzyıllar sonra bu çeşme, Hatay'ın en eski çeşmelerinden biri sayılacak. Ama kimlik kartında bir boşluk var."
+          }
+        ],
+        "soru": "Çeşmenin kimlik kartını yazıyorsun. \"Yaptıran\" kısmına ne yazarsın?",
+        "secenekler": [
+          {
+            "metin": "\"Câfer Ağa\" yazarım, kesinmiş gibi.",
+            "sonuc": "Câfer Ağa'nın adı hanın kayıtlarında geçiyor, çeşmenin değil. Bu yüzden kesinmiş gibi yazmak doğru olmaz.",
+            "dogruMu": false
+          },
+          {
+            "metin": "\"Hanla birlikte 1569'da yapıldı\" yazarım. Bu bilginin hanın kayıtlarından geldiğini de söylerim.",
+            "sonuc": "Doğru! Bilginin nereden geldiğini ve ne kadar kesin olduğunu birlikte yazmak en iyisi.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hiçbir şey yazmam, boş bırakırım.",
+            "sonuc": "Bilgiyi saklamak da doğru değil. Hanın kayıtlarında bir isim var. En doğrusu, bilginin nereden geldiğini söyleyerek yazmak.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Kurşunlu Han Çeşmesi, Antakya'daki bir hanın duvarına oyulmuş. 1569'da hanla birlikte yapıldığı düşünülüyor. Hatay'ın en eski çeşmelerinden biri. 2023 depreminde han ağır hasar gördü. Onarımı hâlâ sürüyor.",
+        "rontgenSorusu": "Bu hanın ve çeşmenin masrafını ne karşılıyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu eser için oran göstermez. Çeşmenin kendine ait bir vakfiye arşiv numarası bulunamamıştır; 1569 tarihi ve Câfer Ağa atfı, hanın tamamına ilişkin kayıtlara dayanır. Hanın gelir dağılımı belgesi de yoktur. Kaynakta verilen 'Hatay - Antakya 5. Mıntıka 260 parsel' numarası bir vakıf taşınmaz kaydıdır, vakfiye arşiv numarası değildir. Ayrıca TDV İslâm Ansiklopedisi'ndeki 'Hân-ı Sebîl'in Câfer Ağa vakfı olduğu bilgisi ile Kurşunlu Han'ın aynı yapı olup olmadığı hiçbir kaynakta açıkça yazmamaktadır; bu eşitlik doğrulanmış bir olgu değil, yalnızca bir çıkarımdır. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 468-473 (KURŞUNLU HAN) ve s. 62 (çeşmelerin tarihlendirilmesi) · Enver Çakar, '16. Yüzyılda Antakya Vakıfları', Vakıflar Dergisi, S. 43 (2015), s. 22 · Habertürk, 'Hatay Valisi Mustafa Masatlı, restorasyonu süren tarihi yapıları inceledi'"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-kursunlu-han-cesmesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Hangi yapıya ait? Doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "han",
+                "ad": "Han",
+                "aciklama": "İki katlı, üç kapılı, dükkânlı yapı."
+              },
+              {
+                "id": "cesme",
+                "ad": "Çeşme",
+                "aciklama": "Hanın köşesinde, duvarın içindeki su yapısı."
+              },
+              {
+                "id": "mescit",
+                "ad": "Mescit",
+                "aciklama": "Hanın öbür köşesindeki ibadet yeri."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Avlunun çevresindeki odalar",
+                "kategoriId": "han"
+              },
+              {
+                "metin": "Hayvanların kaldığı ahır",
+                "kategoriId": "han"
+              },
+              {
+                "metin": "Duvarın içine oyulmuş kemerli oyuk",
+                "kategoriId": "cesme"
+              },
+              {
+                "metin": "Tek kubbeli ibadet odası",
+                "kategoriId": "mescit"
+              },
+              {
+                "metin": "Kısa ve kalın minare",
+                "kategoriId": "mescit"
+              },
+              {
+                "metin": "Girişteki sütunlu bölüm",
+                "kategoriId": "mescit"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 468-473 (KURŞUNLU HAN)"
+        },
+        {
+          "id": "hatay-kursunlu-han-cesmesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1569: Han, mescit ve çeşme yapıldı",
+              "1751: Mescide bir imam atandı",
+              "6 Şubat 2023: Han depremde ağır hasar gördü",
+              "Ocak 2025: Onarım için para ayrıldı",
+              "Mart 2026: Vali onarımı yerinde inceledi"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 468-473; Enver Çakar, '16. Yüzyılda Antakya Vakıfları', Vakıflar Dergisi, S. 43 (2015), s. 22; Habertürk, 1 Mart 2026 tarihli haber"
+        },
+        {
+          "id": "hatay-kursunlu-han-cesmesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Hanın köşesindeki ibadet yerinde minber yok. Bu yüzden orası cami değil, bir ___.",
+            "cevap": "mescit",
+            "secenekler": [
+              "mescit",
+              "medrese",
+              "türbe",
+              "arasta"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 468-473 (KURŞUNLU HAN)"
+        },
+        {
+          "id": "hatay-kursunlu-han-cesmesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Antakya'da 1569'da yapılmış bir hanın köşesinde. Duvarın içine oyulmuş, kemerli bir oyuk. Kendi başına bir bina gibi görünmez. Hatay'ın en eski çeşmelerinden biri.",
+            "secenekler": [
+              "Kurşunlu Han Çeşmesi",
+              "Kurtuluş (Beyseri) Hamamı",
+              "Sokullu Mehmed Paşa Külliyesi'ndeki iki çeşme"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 468-473 ve s. 62 (çeşmelerin tarihlendirilmesi)"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-beyazid-i-bestami-turbesi-ve-tekkesi",
+      "merak": {
+        "soru": "Bir tekkenin içinde \"çilehane\" denen, dışarıya kapalı bir bölüm vardı. Sence burada ne yapılırdı?",
+        "secenekler": [
+          "Dervişler sessizce ibadet ederdi.",
+          "Yolcular geceyi geçirirdi.",
+          "Burası mutfak ve kilerdi."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi Kırıkhan'daki bu tekkeye çıkalım."
+      },
+      "baglam": {
+        "baslik": "Tepedeki tekke",
+        "metin": "Tekke, dervişlerin bir arada yaşayıp ibadet ettiği yerdir. Bu tekke Hatay'ın Kırıkhan ilçesinde, bir tepenin yamacında. Onu 1890'da Mustafa Şevki Paşa yaptırdı.\n\nTekkenin adı Bâyezîd-i Bistâmî. O, 1100 yıldan daha önce yaşamış ünlü bir din bilginiydi. Ama mezarı burada değil, İran'da! Buradaki yapı onu anmak için yapıldı. Böyle yerlere makam denir.\n\nTekkede bir türbe, bir mescit ve beş odalı bir medrese var. Bir de dışarıya kapalı bir çilehane. Dervişler burada uzun süre sessizce ibadet ederdi.",
+        "kavramlar": [
+          {
+            "ad": "TEKKE (ZAVİYE)",
+            "aciklama": "Dervişlerin bir arada yaşayıp ibadet ettiği yer.",
+            "ornek": "Bu tekke, Antakya çevresinde en çok bilgi bulunan tekke."
+          },
+          {
+            "ad": "MAKAM",
+            "aciklama": "Birini anmak için yapılan yer. Gerçek mezarı başka bir yerdedir.",
+            "ornek": "Bâyezîd-i Bistâmî'nin mezarı İran'da. Kırıkhan'daki yapı bir makam."
+          },
+          {
+            "ad": "ÇİLEHANE",
+            "aciklama": "Dervişlerin uzun süre ibadet ettiği, dışarıya kapalı oda.",
+            "ornek": "Bu tekkede bir çilehane var."
+          }
+        ],
+        "kapanis": "Bu tekke bugün de Kırıkhan'ın en çok ziyaret edilen yerlerinden biri. Şimdi 1890'a gidelim."
+      },
+      "perspektif": {
+        "baslik": "1890'da bir tepede",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1890. Kırıkhan'da bir tepenin yamacında taşlar üst üste konuyor."
+          },
+          {
+            "kim": "MUSTAFA ŞEVKİ PAŞA",
+            "metin": "Buraya bir tekke yaptırıyorum. Bir türbe, bir mescit, bir çilehane ve medrese odaları olsun."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Ama bir sorun var: Bâyezîd-i Bistâmî'nin mezarı İran'da. Burada mezar yok."
+          }
+        ],
+        "soru": "Gerçek mezar burada değilken ne yapardın?",
+        "secenekler": [
+          {
+            "metin": "Onu anmak için bir makam yapardım.",
+            "sonuc": "Gerçekte de böyle oldu! Buradaki yapı bir makam türbesi. Bölgenin en çok ziyaret edilen yerlerinden biri oldu.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Türbe yapmaz, sadece bir mescit kurardım.",
+            "sonuc": "Burada bir mescit de var. Ama onu anmak için bir türbe de yapıldı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "İran'daki mezarı buraya taşıtırdım.",
+            "sonuc": "Böyle bir şey olmadı. Gerçek mezar İran'da duruyor. Buradaki yapı bir makam.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Bâyezîd-i Bistâmî Tekkesi'ni 1890'da Mustafa Şevki Paşa Kırıkhan'da yaptırdı. İçinde türbe, mescit, çilehane ve medrese var. 2023 depreminde ağır hasar gördü. Medresesi yeniden yapıldı. 24 Temmuz 2026'da yeniden ziyarete açıldı.",
+        "rontgenSorusu": "Bu tekkenin masrafını ne karşılıyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu eser için oran göstermez. Vakfiye arşiv numarası bulunamamıştır ve gelir dağılımı belgesi yoktur. Tekkenin bağlı olduğu tarikat silsilesi ve şeyh listesi, medresenin ders programı ve talebe sayısı da erişilen kaynaklarda yer almamaktadır. Deprem öncesi ve sonrasına ait resmî teknik hasar raporu da görülmemiştir. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "Atayurt Gazetesi, 'Bâyezîd-i Bistâmî Türbesi yeniden ziyaretçileriyle buluşacak, Hatay'daki Bâyezîd-i Bistâmî Türbesi ayağa kaldırıldı', 23 Temmuz 2026 · Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 420-423 · Anadolu Ajansı, 'Hatay'ın hasar gören vakıf eserleri restorasyon ve rekonstrüksiyonla ayağa kaldırılıyor', 3 Şubat 2026"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-beyazid-i-bestami-turbesi-ve-tekkesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bu bölüm ne için kullanılırdı? Doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "ibadet",
+                "ad": "İbadet ve ziyaret",
+                "aciklama": "İbadetle ve ziyaretle ilgili bölümler."
+              },
+              {
+                "id": "egitim",
+                "ad": "Eğitim",
+                "aciklama": "Ders yapılan bölümler."
+              },
+              {
+                "id": "defin",
+                "ad": "Anma",
+                "aciklama": "Sandukaların ve mezarların olduğu yerler."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Dışarıya kapalı çilehane",
+                "kategoriId": "ibadet"
+              },
+              {
+                "metin": "Kemerli tavanlı ibadet odası",
+                "kategoriId": "ibadet"
+              },
+              {
+                "metin": "At nalı biçimli mihrap",
+                "kategoriId": "ibadet"
+              },
+              {
+                "metin": "Beş odalı medrese",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Medresenin süslü kapısı",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Mustafa Şevki Paşa'nın sandukası",
+                "kategoriId": "defin"
+              },
+              {
+                "metin": "Bâyezîd-i Bistâmî adına konan sanduka",
+                "kategoriId": "defin"
+              },
+              {
+                "metin": "Mezarlık (hazire)",
+                "kategoriId": "defin"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 420-423 (BEYAZID-I BESTAMİ TÜRBESİ)"
+        },
+        {
+          "id": "hatay-beyazid-i-bestami-turbesi-ve-tekkesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "800'ler: Bâyezîd-i Bistâmî yaşadı",
+              "1890: Tekke yapıldı",
+              "6 Şubat 2023: Depremde ağır hasar gördü",
+              "Şubat 2026: Onarım hâlâ sürüyordu",
+              "24 Temmuz 2026: Yeniden ziyarete açıldı"
+            ]
+          },
+          "kaynak": "Atayurt Gazetesi, 23 Temmuz 2026 · Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 420-423 · Anadolu Ajansı, 3 Şubat 2026"
+        },
+        {
+          "id": "hatay-beyazid-i-bestami-turbesi-ve-tekkesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Gerçek mezarı başka yerde olan birini anmak için yapılan yere ___ denir.",
+            "cevap": "makam",
+            "secenekler": [
+              "makam",
+              "hazire",
+              "çilehane",
+              "tekke"
+            ]
+          },
+          "kaynak": "Atayurt Gazetesi, 23 Temmuz 2026; Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 420-423"
+        },
+        {
+          "id": "hatay-beyazid-i-bestami-turbesi-ve-tekkesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Kırıkhan'da, bir tepenin yamacında. 1890'da yapıldı. İçinde türbe, mescit, dışarıya kapalı bir çilehane ve beş odalı bir medrese var.",
+            "secenekler": [
+              "Bâyezîd-i Bistâmî Türbesi ve Tekkesi (Kırıkhan)",
+              "Habib-i Neccar Camii ve Külliyesi (Antakya)",
+              "Kanuni Sultan Süleyman Kervansarayı (Belen Menzil Külliyesi)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 420-423; Atayurt Gazetesi, 23 Temmuz 2026"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-kanuni-sultan-suleyman-kervansarayi",
+      "merak": {
+        "soru": "Belen geçidinde eskiden eşkıyalar vardı. Tüccarlar burada güvende değildi. Sence Kanuni Sultan Süleyman ne yaptı?",
+        "secenekler": [
+          "Bir han ve imaret yaptırıp yolu güvenli hâle getirdi.",
+          "Geçidin iki ucuna nöbet kuleleri diktirdi.",
+          "Kervanların bu yoldan geçmesini yasakladı."
+        ],
+        "kopru": "Tahminini not ettik! Göreceksin: Bu hanın bir de yıllarca yanlış okunan bir yazısı var."
+      },
+      "baglam": {
+        "baslik": "Geçidin ortasındaki han",
+        "metin": "Belen, Hatay'da dağların arasından geçen bir yol. Eskiden burada eşkıyalar vardı. Kanuni Sultan Süleyman buraya bir han ve imaret yaptırdı. Böylece yol güvenli olacaktı.\n\nHan 1550'de yapıldı. Cami 1553'te, hamam ise 1562-1566'da eklendi. Hamam en son yapılan bina oldu. Bu, alışılmış bir durum değil. Çünkü çoğu külliyede önce hamam yapılırdı.\n\nBelen halkına da bir görev verildi: Geçidi korumak! Karşılığında bazı vergileri ödemediler. Bu görevi yapanlara dervendci denirdi.",
+        "kavramlar": [
+          {
+            "ad": "KERVANSARAY",
+            "aciklama": "Yol üstünde, yolcuların ve kervanların konakladığı büyük han.",
+            "ornek": "Belen'deki kervansaray 1550'de yapıldı."
+          },
+          {
+            "ad": "MENZİL KÜLLİYESİ",
+            "aciklama": "Yol üstünde, yolcuların ihtiyaçları için kurulan yapılar.",
+            "ornek": "Belen'deki külliyede han, cami ve hamam var."
+          },
+          {
+            "ad": "DERVENDCİ",
+            "aciklama": "Bir geçidi koruyan kişi. Karşılığında bazı vergileri ödemezdi.",
+            "ornek": "Belen halkı dervendci yapıldı."
+          }
+        ],
+        "kapanis": "Bir yazı, taşları yanlış dizilince yüzyıllarca yanlış okunabilir. Peki bunu nasıl düzeltiriz?"
+      },
+      "perspektif": {
+        "baslik": "Yanlış okunan yazı",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Hanın eski kapısından geriye tek bir şey kaldı: dört satırlık bir yazı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Ama yazının taşları parçalara bölünmüş. Yanlış sırayla dizilmiş. Bu yüzden yazı yıllarca yanlış okundu."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "2002'de bir tarihçi yazıyı yeniden okudu. Han 1550'de, Kanuni'nin emriyle yapılmıştı."
+          }
+        ],
+        "soru": "Elinde yanlış dizilmiş taşlardan bir yazı var. Ne yapardın?",
+        "secenekler": [
+          {
+            "metin": "Olduğu gibi bırakır, yanlış okumaya devam ederdim.",
+            "sonuc": "Taşlar bugün de yanlış dizili duruyor. Ama yanlış okuma sürmedi. 2002'de doğru okundu.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Taşların doğru sırasını bulur, doğru okumayı herkese duyururdum.",
+            "sonuc": "Gerçekte de böyle oldu! 2002'de bir tarihçi yazıyı doğru okudu. Yapım yılı 1550 olarak bulundu.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hiç okumam, çünkü taşlar orijinal değil.",
+            "sonuc": "Taşlar orijinal, sadece yanlış dizilmiş. Bu yüzden doğru okunabilir.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Kanuni Sultan Süleyman Kervansarayı, Belen geçidindeki bir külliyenin parçası. Han 1550'de, cami 1553'te, hamam en son yapıldı. 2023 depremini az hasarla atlattı. Kapısındaki yazı yıllarca yanlış okundu. 2002'de doğru okundu.",
+        "rontgenSorusu": "Bu kervansarayın masrafını ne karşılıyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu eser için oran göstermez. Külliyenin gelir dağılımı belgesi bulunamamıştır ve vakfiye arşiv numarası yoktur; kaynakta verilen BOA, KK, Mevkûfat 2684, s. 39b numarası Belen halkının dervendci yapılmasına ve vergi muafiyetine ilişkin bir kayda aittir, vakfiyeye değildir. Kervansaraydaki toplam oda sayısı da kaynakta net olarak verilmemektedir. '6 Şubat 2023 depremlerinden az hasarla kurtuldu' bilgisi basın kaynaklıdır; külliyenin deprem sonrası onarım ihtiyacı ve restorasyon takvimi doğrulanamamıştır. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 139-158 (KANUNİ SULTAN SÜLEYMAN KERVANSARAYI) · Enver Çakar, '16. Yüzyılda Antakya Vakıfları', Vakıflar Dergisi, S. 43 (2015), s. 21-22 · Diyanet Haber, 'Hatay'daki tarihi taş yapılar ve Belen'deki Türk Bayraklı Heykel depremden etkilenmedi', 6 Mart 2023"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-kanuni-sultan-suleyman-kervansarayi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Hanın içinde mi, külliyenin başka bir yapısı mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "kervansaray",
+                "ad": "Hanın içi",
+                "aciklama": "Kervansarayın kendi bölümleri."
+              },
+              {
+                "id": "kulliye",
+                "ad": "Külliyenin diğer yapıları",
+                "aciklama": "Hanın dışındaki yapılar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Ortadaki dört büyük taş ayak",
+                "kategoriId": "kervansaray"
+              },
+              {
+                "metin": "Kemerli tavanlı kapalı salon",
+                "kategoriId": "kervansaray"
+              },
+              {
+                "metin": "Salonun bölümleri (sahınlar)",
+                "kategoriId": "kervansaray"
+              },
+              {
+                "metin": "Girişin iki yanındaki kubbeli dört oda",
+                "kategoriId": "kervansaray"
+              },
+              {
+                "metin": "Cami",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "Hamam",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "Eski bir hanın kalıntıları",
+                "kategoriId": "kulliye"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 139-158 (KANUNİ SULTAN SÜLEYMAN KERVANSARAYI)"
+        },
+        {
+          "id": "hatay-kanuni-sultan-suleyman-kervansarayi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1550: Han yapıldı",
+              "1553: Cami yapıldı",
+              "1562-1566: Hamam yapıldı",
+              "2004: Han onarıldı",
+              "6 Şubat 2023: Depremi az hasarla atlattı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 139-158; Diyanet Haber, 6 Mart 2023"
+        },
+        {
+          "id": "hatay-kanuni-sultan-suleyman-kervansarayi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Bir geçidi koruyan ve karşılığında bazı vergileri ödemeyen kişilere ___ denirdi.",
+            "cevap": "dervendci",
+            "secenekler": [
+              "dervendci",
+              "mütevelli",
+              "câbi",
+              "kervancı"
+            ]
+          },
+          "kaynak": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları', Vakıflar Dergisi, S. 43 (2015), s. 21-22; Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 139-158"
+        },
+        {
+          "id": "hatay-kanuni-sultan-suleyman-kervansarayi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Belen geçidinde büyük bir han. Ortasında dört büyük taş ayak var. Girişin iki yanında kubbeli dört oda var. Kapısındaki yazı yıllarca yanlış okundu.",
+            "secenekler": [
+              "Kanuni Sultan Süleyman Kervansarayı (Belen Menzil Külliyesi)",
+              "Kurşunlu Han (Antakya)",
+              "Sokullu Mehmed Paşa Külliyesi (Payas)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 139-158 (KANUNİ SULTAN SÜLEYMAN KERVANSARAYI)"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-ulu-camii-ve-kulliyesi",
+      "merak": {
+        "soru": "Bir caminin adında neden 'Ulu' kelimesi olur?",
+        "secenekler": [
+          "Şehrin herkesin cuma namazı için toplandığı büyük camisi olduğu için",
+          "Çok yaşlı bir imamı olduğu için",
+          "Dağın tepesinde olduğu için"
+        ],
+        "kopru": "Tahminini not ettik! Antakya Ulu Camii de şehrin ortasında, çarşının yanında."
+      },
+      "baglam": {
+        "baslik": "Antakya'nın büyük camisi",
+        "metin": "Eskiden bir şehrin Müslümanları cuma namazını büyük bir camide birlikte kılardı. Bu büyük camilere \"Ulu Cami\" denirdi. Ulu camiler şehrin ortasına, çarşıların yanına yapılırdı.\n\nAntakya Ulu Camii'nin ne zaman yapıldığı kesin bilinmiyor. Minaresinin altındaki yazıda 1271 yılı var. Bu tarih, Memlük Sultanı Baybars'ın dönemine denk geliyor.\n\nCami bir külliyenin parçası. Külliyede medrese, yazlık mescit, şadırvan, iki türbe, çeşme, imaret ve vakıf dükkânları var. Cami yüzyıllar boyunca birçok kez onarıldı. 1986 ve 2002'de Vakıflar tarafından restore edildi.",
+        "kavramlar": [
+          {
+            "ad": "ULU CAMİ",
+            "aciklama": "Bir şehirde herkesin cuma namazı için toplandığı büyük cami.",
+            "ornek": "Antakya Ulu Camii şehrin ortasında."
+          },
+          {
+            "ad": "YAZLIK MESCİT",
+            "aciklama": "Sıcak günlerde namaz kılınan, açık ya da yarı açık bölüm.",
+            "ornek": "Külliyede bir yazlık mescit var."
+          },
+          {
+            "ad": "VAKIF DÜKKÂNI",
+            "aciklama": "Kirası vakfa gelir sağlayan dükkân.",
+            "ornek": "Ulu Camii'nin vakıf dükkânları vardı."
+          }
+        ],
+        "kapanis": "Bir caminin tek bir yapım tarihi olmayabilir mi?"
+      },
+      "perspektif": {
+        "baslik": "İki farklı bölüm",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Caminin içinde doğu ve batı bölümleri birbirinden biraz farklı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Kemerler, tavanlar ve zemin yüksekliği farklı. Bu farklar, iki bölümün farklı zamanlarda yapıldığını gösteriyor."
+          }
+        ],
+        "soru": "Tarihçi bunu nasıl anladı?",
+        "secenekler": [
+          {
+            "metin": "Yapının kendisini dikkatle inceleyerek.",
+            "sonuc": "Doğru! Bir yapının taşları, kemerleri ve tavanları da tarih anlatır. Tarihçi bu ipuçlarını okur.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Caminin imamına sorarak.",
+            "sonuc": "İmam yardımcı olabilir ama buradaki bilgi yapının mimarisini incelemekten geliyor.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Tahmin ederek, kanıt yok.",
+            "sonuc": "Kanıt var: Doğu ve batı bölümlerinin yapısı birbirinden farklı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Antakya Ulu Camii, şehrin cuma camisi. Minaresindeki yazı 1271 tarihli. Külliyesinde medrese, türbeler, imaret ve vakıf dükkânları var. Envanter 2023 depreminden sonraki durumunu bildirmiyor.",
+        "rontgenSorusu": "Külliyenin giderlerine ne katkı veriyordu?",
+        "rontgenAciklama": "Külliyede vakıf dükkânları vardı; bu dükkânların kirası vakfa gelir sağlıyordu. Ama envanter bir vakfiye metni ya da gelir oranları vermez; bu yüzden uygulama bu eser için oran göstermez. Envanter 2023 depremleri sonrasındaki durumu da bildirmez.",
+        "kaynakKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 74-95 (ULU CAMİİ VE KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-ulu-camii-ve-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Birinci avluda mı, ikinci avluda mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "birinci",
+                "ad": "Birinci avlu",
+                "aciklama": "Caminin önündeki büyük avlu."
+              },
+              {
+                "id": "ikinci",
+                "ad": "İkinci avlu",
+                "aciklama": "Güneydeki küçük avlu."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Medrese odaları",
+                "kategoriId": "birinci"
+              },
+              {
+                "metin": "Şadırvan",
+                "kategoriId": "birinci"
+              },
+              {
+                "metin": "Yazlık mescit",
+                "kategoriId": "birinci"
+              },
+              {
+                "metin": "İki türbe",
+                "kategoriId": "ikinci"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "ikinci"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 74-95"
+        },
+        {
+          "id": "hatay-ulu-camii-ve-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1271: Minare kaidesindeki yazı",
+              "1705: Minare onarıldı",
+              "1876: Caminin kendisi onarıldı",
+              "1986: Külliye restore edildi",
+              "2002: Külliye yeniden restore edildi"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 74-95"
+        },
+        {
+          "id": "hatay-ulu-camii-ve-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Minaredeki yazı, Memlük Sultanı ___ dönemine ait.",
+            "cevap": "Baybars",
+            "secenekler": [
+              "Baybars",
+              "Kanuni",
+              "Orhan",
+              "Selim"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 74-95"
+        },
+        {
+          "id": "hatay-ulu-camii-ve-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Antakya'nın cuma camisi. Minaresinin altında 1271 tarihli bir yazı var. Külliyesinde iki türbe, imaret ve vakıf dükkânları bulunuyor.",
+            "secenekler": [
+              "Ulu Camii ve Külliyesi (Antakya)",
+              "Habib-i Neccar Camii ve Külliyesi",
+              "Meydan Camii ve Külliyesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 74-95"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-senkoy-ahmet-kusayri-camii",
+      "merak": {
+        "soru": "Bir derviş memleketine döndüğünde neler yaptırmış olabilir?",
+        "secenekler": [
+          "Yollar, mescitler, çeşmeler ve bir köprü",
+          "Kendine büyük bir saray",
+          "Hiçbir şey"
+        ],
+        "kopru": "Tahminini not ettik! Rivayete göre Ahmed Kusayri tam olarak bunları yaptırdı."
+      },
+      "baglam": {
+        "baslik": "Dağ köyündeki cami",
+        "metin": "Şenköy, Antakya'nın 35 kilometre güneyinde bir köy. Burada eğimli bir arazide cami, zaviye ve türbeden oluşan bir külliye var. Külliye adını Ahmed Kusayri'den alıyor.\n\nAhmed Kusayri bir Halveti dervişiydi. 1549'da öldü. Rivayete göre İstanbul'da Kanuni ile görüştü. Memleketine dönünce yollar, medreseler, mescitler ve çeşmeler yaptırdı. Kuseyr Çayı üzerindeki köprünün de onun eseri olduğu anlatılır.\n\nCaminin önünde on ahşap direk üzerinde kiremit çatılı bir giriş bölümü var. Minarenin gövdesi yıkılmış, 1957'de yeniden yapılmış.",
+        "kavramlar": [
+          {
+            "ad": "DERVİŞ",
+            "aciklama": "Tasavvuf yolunda yetişen kişi.",
+            "ornek": "Ahmed Kusayri bir Halveti dervişiydi."
+          },
+          {
+            "ad": "ZAVİYE",
+            "aciklama": "Dervişlerin kaldığı, yolculara yemek ve yer verilen küçük yapı.",
+            "ornek": "Külliyede bir zaviye var."
+          },
+          {
+            "ad": "RİVAYET",
+            "aciklama": "Kesin kanıtı olmayan, dilden dile anlatılan bilgi.",
+            "ornek": "Köprüyü onun yaptırdığı bir rivayettir."
+          }
+        ],
+        "kapanis": "Bir rivayet ile bir kitabe arasındaki fark ne?"
+      },
+      "perspektif": {
+        "baslik": "Kitabeler ne diyor?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Ahmed Kusayri hakkında halk arasında birçok olağanüstü hikâye anlatılır."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Kitabeler ise başka şeyler söylüyor: Türbe 1602 civarında onun torunu tarafından yenilenmiş. Cami 1714'te ve 1785'te onarılmış."
+          }
+        ],
+        "soru": "Sence hangisi daha kesin bilgi verir?",
+        "secenekler": [
+          {
+            "metin": "Yapının üzerindeki kitabeler.",
+            "sonuc": "Doğru! Kitabeler yapıya o dönemde yazılmış belgelerdir. Rivayetler değerlidir ama kanıt sayılmaz.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Halk arasında anlatılan hikâyeler.",
+            "sonuc": "Hikâyeler kültürümüzün parçası ama kesin bilgi için kitabe ve belge gerekir.",
+            "dogruMu": false
+          },
+          {
+            "metin": "İkisi de hiçbir şey söylemez.",
+            "sonuc": "İkisi de bir şey söyler; ama kitabe tarihçi için daha sağlam bir kanıttır.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Şenköy Ahmet Kusayri Camii, Antakya'nın güneyinde bir dağ köyünde. Adını Halveti dervişi Ahmed Kusayri'den alıyor. Kitabelere göre 1714 ve 1785'te onarıldı. Envanter 2023 depreminden sonraki durumunu bildirmiyor.",
+        "rontgenSorusu": "Bu caminin vakfiyesi biliniyor mu?",
+        "rontgenAciklama": "Envanter caminin bir vakfiyesinden ya da gelir kaynaklarından söz etmez. Ahmed Kusayri'nin yollar, çeşmeler ve köprü yaptırdığı bilgisi rivayettir. Belge olmadığı için uygulama bu eser için gelir dağılımı göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 326-333 (ŞENKÖY AHMET KUSAYRİ CAMİİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-senkoy-ahmet-kusayri-camii-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Rivayet mi, kitabeye dayanan bilgi mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "rivayet",
+                "ad": "Rivayet",
+                "aciklama": "Dilden dile anlatılan."
+              },
+              {
+                "id": "kitabe",
+                "ad": "Kitabeye dayanır",
+                "aciklama": "Yapı üzerindeki yazıdan."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Ahmed Kusayri Kanuni ile görüştü",
+                "kategoriId": "rivayet"
+              },
+              {
+                "metin": "Kuseyr Çayı'ndaki köprüyü yaptırdı",
+                "kategoriId": "rivayet"
+              },
+              {
+                "metin": "Cami 1714'te onarıldı",
+                "kategoriId": "kitabe"
+              },
+              {
+                "metin": "Cami 1785'te yeniden onarıldı",
+                "kategoriId": "kitabe"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 326-333"
+        },
+        {
+          "id": "hatay-senkoy-ahmet-kusayri-camii-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1549: Ahmed Kusayri öldü",
+              "1602 civarı: Türbe torunu tarafından yenilendi",
+              "1714: Cami onarıldı",
+              "1785: Cami yeniden onarıldı",
+              "1957: Minare yeniden yapıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 326-333"
+        },
+        {
+          "id": "hatay-senkoy-ahmet-kusayri-camii-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Dervişlerin kaldığı, yolculara yemek ve yer verilen küçük yapıya ___ denir.",
+            "cevap": "zaviye",
+            "secenekler": [
+              "zaviye",
+              "bedesten",
+              "kervansaray",
+              "hazire"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 326-333"
+        },
+        {
+          "id": "hatay-senkoy-ahmet-kusayri-camii-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Antakya'nın güneyinde, eğimli bir arazide cami, zaviye ve türbe. Adını bir Halveti dervişinden alıyor. Önünde on ahşap direkli bir giriş bölümü var.",
+            "secenekler": [
+              "Şenköy Ahmet Kusayri Camii",
+              "Kantara Camii",
+              "Ulu Camii ve Külliyesi (Antakya)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 326-333"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-yogunoluk-ermeni-kilisesi",
+      "merak": {
+        "soru": "Bir köyde, bir kilise ve bir cami üst üste durabilir mi?",
+        "secenekler": [
+          "Evet, Yoğunoluk'ta böyle bir yapı var.",
+          "Hayır, bu mümkün değil.",
+          "Sadece masallarda olur."
+        ],
+        "kopru": "Tahminini not ettik! Bu yapının katlarında 250 yıllık bir hikâye var."
+      },
+      "baglam": {
+        "baslik": "Katman katman bir yapı",
+        "metin": "Yoğunoluk, Hatay'ın Samandağ ilçesinde bir köy. Köyün ortasında 1774'te yapılmış küçük bir Ermeni kilisesi var. Bunu kapısındaki yazıdan biliyoruz.\n\n1900'lerde bölgedeki Ermeni vatandaşlar çeşitli yerlere dağıldı. Kilisenin cemaati kalmadı. 1940'ta köyde yaşayan Müslümanlar yapının üstüne kiremit bir çatı ekleyip onu camiye dönüştürdü.\n\n1990'da köy halkı, kendi parasıyla kilisenin tam üstüne betonarme bir cami yaptı. Bugün iki yapı üst üste duruyor. Envantere göre üstteki cami, alttaki kiliseye zarar vermiyor.",
+        "kavramlar": [
+          {
+            "ad": "KİLİSE",
+            "aciklama": "Hristiyanların ibadet ettiği yapı.",
+            "ornek": "Yoğunoluk Kilisesi 1774'te yapıldı."
+          },
+          {
+            "ad": "CEMAAT",
+            "aciklama": "Bir ibadet yerine birlikte giden topluluk.",
+            "ornek": "1900'lerde kilisenin cemaati kalmadı."
+          },
+          {
+            "ad": "NEF",
+            "aciklama": "Kilisenin uzunlamasına bölümlerinden her biri.",
+            "ornek": "Yoğunoluk Kilisesi üç neflidir."
+          }
+        ],
+        "kapanis": "Bir yapı zaman içinde farklı insanlara hizmet edebilir mi?"
+      },
+      "perspektif": {
+        "baslik": "Yapının katmanları",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Altta 1774'ten kalma bir kilise, üstte 1990'da yapılmış bir cami var."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Kilisenin kuzey cephesi toprak altında kaldı. Bu yüzden üstteki caminin girişi o taraftan."
+          }
+        ],
+        "soru": "Bu yapıyı inceleyen bir tarihçi en çok neye dikkat etmeli?",
+        "secenekler": [
+          {
+            "metin": "Her katmanın ne zaman, kimler tarafından yapıldığını doğru kaydetmeye.",
+            "sonuc": "Doğru! Tarihçi her dönemi, belgelerin söylediği gibi sırasıyla kaydeder. Böylece yapının bütün hikâyesi korunur.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Sadece en yeni katmana.",
+            "sonuc": "Eksik olur. Alttaki kilise yapının en eski ve önemli parçası.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Sadece en eski katmana.",
+            "sonuc": "O da eksik olur. Yapının sonraki dönemleri de hikâyenin parçası.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Yoğunoluk Ermeni Kilisesi 1774'te yapıldı. Cemaati kalmayınca 1940'ta camiye dönüştürüldü, 1990'da üstüne bir cami yapıldı. Bugün iki yapı üst üste duruyor. Envanter 2023 depreminden sonraki durumunu bildirmiyor.",
+        "rontgenSorusu": "Bu kilisenin vakfiyesi biliniyor mu?",
+        "rontgenAciklama": "Envanter kilisenin bir vakfiyesinden ya da gelir kaynaklarından söz etmez; yapı Hatay'daki vakıf eserleri arasında kayıtlıdır. Belge olmadığı için uygulama bu eser için gelir dağılımı göstermez. Envanter 2023 depremleri sonrasındaki durumu da bildirmez.",
+        "kaynakKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 452-455 (YOĞUNOLUK ERMENİ KİLİSESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-yogunoluk-ermeni-kilisesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Alttaki kilise mi, üstteki cami mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "kilise",
+                "ad": "Alttaki kilise",
+                "aciklama": "1774'te yapılan yapı."
+              },
+              {
+                "id": "cami",
+                "ad": "Üstteki cami",
+                "aciklama": "1990'da yapılan yapı."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Kesme taştan iç duvarlar",
+                "kategoriId": "kilise"
+              },
+              {
+                "metin": "Üç bölümlü (üç nefli) plan",
+                "kategoriId": "kilise"
+              },
+              {
+                "metin": "Toprak altında kalan kuzey cephe",
+                "kategoriId": "kilise"
+              },
+              {
+                "metin": "Betonarme yapı",
+                "kategoriId": "cami"
+              },
+              {
+                "metin": "Kare plan",
+                "kategoriId": "cami"
+              },
+              {
+                "metin": "Minare",
+                "kategoriId": "cami"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 452-455"
+        },
+        {
+          "id": "hatay-yogunoluk-ermeni-kilisesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1774: Kilise yapıldı",
+              "1900'ler: Kilisenin cemaati kalmadı",
+              "1940: Yapı camiye dönüştürüldü",
+              "1990: Kilisenin üstüne betonarme cami yapıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 452-455"
+        },
+        {
+          "id": "hatay-yogunoluk-ermeni-kilisesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Bir ibadet yerine birlikte giden topluluğa ___ denir.",
+            "cevap": "cemaat",
+            "secenekler": [
+              "cemaat",
+              "kervan",
+              "vakıf",
+              "lonca"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 452-455"
+        },
+        {
+          "id": "hatay-yogunoluk-ermeni-kilisesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Samandağ'da bir köyün ortasında 1774'ten kalma bir kilise. Üstünde 1990'da yapılmış bir cami var. İki yapı üst üste duruyor.",
+            "secenekler": [
+              "Yoğunoluk Ermeni Kilisesi",
+              "Rum Ortodoks Kilisesi (Yayladağı)",
+              "Kurşunlu Han Çeşmesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 452-455"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-meydan-camii-ve-kulliyesi",
+      "merak": {
+        "soru": "Eskiden namaz vakitleri saat yokken nasıl bilinirdi?",
+        "secenekler": [
+          "Muvakkithane denen bir odada hesaplanırdı.",
+          "Herkes tahmin ederdi.",
+          "Hiç bilinmezdi."
+        ],
+        "kopru": "Tahminini not ettik! Meydan Camii'nin avlusunda böyle bir oda var."
+      },
+      "baglam": {
+        "baslik": "Ağaçlı avludaki külliye",
+        "metin": "Meydan Camii Külliyesi Antakya'da. Ne zaman yapıldığı kesin bilinmiyor. Yanındaki aynı adlı hamam 1527'deki bir Osmanlı sayımında geçiyor. Bu yüzden külliyenin 1500'lerden kaldığı düşünülüyor. Kesin bildiğimiz şey, 1878'de büyük bir onarım gördüğü.\n\nKülliyenin bütün yapıları ağaçlı bir avlunun içinde: cami, şadırvan, medrese odaları ve muvakkithane. Avluya giriş kapısının tam üstünde yuvarlak gövdeli, şemsiye külahlı bir minare yükseliyor.\n\nAvlunun ortasındaki şadırvanı 1906'da adı bilinmeyen bir hayırsever yaptırdı. Muvakkithane, namaz vakitlerinin hesaplandığı oda. Envanter yazıldığında burası kitap satış yeri olarak kullanılıyordu.",
+        "kavramlar": [
+          {
+            "ad": "MUVAKKİTHANE",
+            "aciklama": "Namaz vakitlerinin hesaplandığı oda.",
+            "ornek": "Meydan Camii'nin avlusunda bir muvakkithane var."
+          },
+          {
+            "ad": "ŞADIRVAN",
+            "aciklama": "Cami avlusunda abdest almak için yapılan çeşme.",
+            "ornek": "Şadırvanı 1906'da bir hayırsever yaptırdı."
+          },
+          {
+            "ad": "HAYIRSEVER",
+            "aciklama": "İnsanların yararına iyilik yapan kişi.",
+            "ornek": "Adı bilinmeyen bir hayırsever şadırvanı yaptırdı."
+          }
+        ],
+        "kapanis": "Bir hayırsever neden adını yazdırmaz?"
+      },
+      "perspektif": {
+        "baslik": "Adı bilinmeyen hayırsever",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Şadırvanın beş satırlık bir kitabesi var."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Kitabeye göre şadırvanı 1906'da bir hayırsever yaptırdı. Ama adı yazılmamış."
+          }
+        ],
+        "soru": "Sence bir hayırsever neden adını yazdırmamış olabilir?",
+        "secenekler": [
+          {
+            "metin": "İyiliği gösteriş için değil, yalnızca yardım için yaptığından.",
+            "sonuc": "Olası bir açıklama bu. Bazı hayırseverler iyiliklerinin bilinmesini istemezdi. Kitabe nedenini yazmıyor, biz de kesin bilemeyiz.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Okuma yazma bilmediği için.",
+            "sonuc": "Bunu bilemeyiz. Kitabeyi zaten başkası yazardı; asıl soru adın neden konmadığı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Şadırvanı aslında kimse yaptırmadı.",
+            "sonuc": "Yaptırdı: Kitabe bir hayırseverin yaptırdığını açıkça söylüyor.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Meydan Camii Külliyesi Antakya'da, ağaçlı bir avlunun içinde. 1500'lerden kaldığı düşünülüyor, 1878'de onarıldı. Şadırvanını 1906'da adı bilinmeyen bir hayırsever yaptırdı. Envanter 2023 depreminden sonraki durumunu bildirmiyor.",
+        "rontgenSorusu": "Bu külliyenin vakfiyesi biliniyor mu?",
+        "rontgenAciklama": "Envanter külliyenin bir vakfiyesinden ya da gelir kaynaklarından söz etmez. Yalnızca şadırvanın 1906'da bir hayırsever tarafından yaptırıldığı biliniyor. Belge olmadığı için uygulama bu eser için gelir dağılımı göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 122-138 (MEYDAN CAMİİ VE KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-meydan-camii-ve-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Hangi yapı ne işe yarar? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "ibadet",
+                "ad": "İbadet",
+                "aciklama": "Namaz ve abdest için."
+              },
+              {
+                "id": "egitim",
+                "ad": "Eğitim ve bilgi",
+                "aciklama": "Okumak ve hesaplamak için."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Cami",
+                "kategoriId": "ibadet"
+              },
+              {
+                "metin": "Şadırvan",
+                "kategoriId": "ibadet"
+              },
+              {
+                "metin": "Medrese odaları",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Muvakkithane",
+                "kategoriId": "egitim"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 122-138"
+        },
+        {
+          "id": "hatay-meydan-camii-ve-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1527: Yakındaki Meydan Hamamı bir Osmanlı sayımında geçti",
+              "1878: Külliye büyük bir onarım gördü",
+              "1906: Bir hayırsever şadırvanı yaptırdı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 122-138"
+        },
+        {
+          "id": "hatay-meydan-camii-ve-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Cami avlusunda abdest almak için yapılan çeşmeye ___ denir.",
+            "cevap": "şadırvan",
+            "secenekler": [
+              "şadırvan",
+              "kurna",
+              "sebil",
+              "havuz"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 122-138"
+        },
+        {
+          "id": "hatay-meydan-camii-ve-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Antakya'da ağaçlı bir avlusu olan bir külliye. Giriş kapısının üstünde şemsiye külahlı bir minare var. Avlusunda bir muvakkithane bulunuyor.",
+            "secenekler": [
+              "Meydan Camii ve Külliyesi",
+              "Kantara Camii",
+              "Ulu Camii ve Külliyesi (Antakya)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 122-138"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-kantara-camii",
+      "merak": {
+        "soru": "Bir minarenin altından sokağa açılan bir geçit vardı. 1906'da bu geçide ne oldu dersin?",
+        "secenekler": [
+          "Kapatılıp çeşmeye dönüştürüldü.",
+          "Genişletilip yol yapıldı.",
+          "Dükkân oldu."
+        ],
+        "kopru": "Tahminini not ettik! Bu çeşmenin de bir şiiri var."
+      },
+      "baglam": {
+        "baslik": "Kapı üstündeki minare",
+        "metin": "Kantara Camii Antakya'da. Ne zaman ve kim tarafından yapıldığını gösteren bir kitabesi yok. Avlu girişindeki \"Maşallah 1264\" yazısı, caminin 1864'te büyük bir onarım gördüğünü gösteriyor.\n\nCaminin avlusu yamuk biçimli. Minaresi sekiz köşeli, kısa gövdeli ve ahşap bir şemsiyeyle örtülü. Minarenin altında sokağa açılan bir geçit vardı.\n\n1906'da bu geçit kapatıldı ve bir çeşmeye dönüştürüldü. Çeşmeyi Tevfik adlı bir hayırsever yaptırdı. Çeşmenin dört dizelik tarih şiirini Sami adlı bir şair yazdı.",
+        "kavramlar": [
+          {
+            "ad": "SON CEMAAT YERİ",
+            "aciklama": "Caminin girişindeki, üstü örtülü ön bölüm.",
+            "ornek": "Kantara Camii'nin son cemaat yeri ahşap direkler üzerinde."
+          },
+          {
+            "ad": "TARİH KİTABESİ",
+            "aciklama": "Bir yapının yapılış ya da onarım yılını bildiren yazı.",
+            "ornek": "Çeşmenin tarih kitabesini şair Sami yazdı."
+          },
+          {
+            "ad": "HAZİRE",
+            "aciklama": "Cami yanındaki küçük mezarlık.",
+            "ornek": "Caminin yanında küçük bir hazire var."
+          }
+        ],
+        "kapanis": "Bir yapının kitabesi yoksa onun hakkında ne öğrenebiliriz?"
+      },
+      "perspektif": {
+        "baslik": "Kitabesiz bir cami",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Kantara Camii'nin yapılış tarihini, yaptıranını ve mimarını gösteren bir yazı yok."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Ama avlu girişindeki küçük bir yazı, 'Maşallah 1264', bize bir ipucu veriyor."
+          }
+        ],
+        "soru": "Bu küçük yazı bize ne söylüyor?",
+        "secenekler": [
+          {
+            "metin": "Caminin 1864'te büyük bir onarım gördüğünü.",
+            "sonuc": "Doğru! Hicri 1264 yılı bir onarıma işaret ediyor. Küçük bir yazı bile önemli bir ipucudur.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Caminin 1264'te ilk kez yapıldığını.",
+            "sonuc": "Envantere göre bu yazı caminin yapılışını değil, ciddi bir onarımını gösteriyor.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Hiçbir şey söylemiyor.",
+            "sonuc": "Söylüyor: Yapının o yıl onarıldığını.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Kantara Camii Antakya'nın yerel mimarisini yansıtan bir cami. Kitabesi yok ama 1864'te onarıldığını biliyoruz. 1906'da minare altındaki geçit, Tevfik adlı bir hayırseverin yaptırdığı çeşmeye dönüştü. Envanter 2023 depreminden sonraki durumunu bildirmiyor.",
+        "rontgenSorusu": "Bu caminin vakfiyesi biliniyor mu?",
+        "rontgenAciklama": "Envanter caminin bir vakfiyesinden ya da gelir kaynaklarından söz etmez. Yalnızca çeşmenin 1906'da Tevfik adlı bir hayırsever tarafından yaptırıldığı biliniyor. Belge olmadığı için uygulama bu eser için gelir dağılımı göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 264-271 (KANTARA CAMİİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-kantara-camii-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bunu nereden biliyoruz? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "kitabe",
+                "ad": "Bir yazıdan (kitabeden)",
+                "aciklama": "Yapı üzerindeki yazılar."
+              },
+              {
+                "id": "yapi",
+                "ad": "Yapının kendisinden",
+                "aciklama": "Gözle görülen özellikler."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Cami 1864'te onarıldı",
+                "kategoriId": "kitabe"
+              },
+              {
+                "metin": "Çeşmeyi Tevfik yaptırdı",
+                "kategoriId": "kitabe"
+              },
+              {
+                "metin": "Minare sekiz köşeli",
+                "kategoriId": "yapi"
+              },
+              {
+                "metin": "Avlu yamuk biçimli",
+                "kategoriId": "yapi"
+              },
+              {
+                "metin": "Son cemaat yeri ahşap direkler üzerinde",
+                "kategoriId": "yapi"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 264-271"
+        },
+        {
+          "id": "hatay-kantara-camii-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "Cami yapıldı (tarihi bilinmiyor)",
+              "1864: Cami büyük bir onarım gördü",
+              "1906: Minare altındaki geçit çeşmeye dönüştürüldü"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 264-271"
+        },
+        {
+          "id": "hatay-kantara-camii-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Bir yapının yapılış ya da onarım yılını bildiren yazıya tarih ___ denir.",
+            "cevap": "kitabesi",
+            "secenekler": [
+              "kitabesi",
+              "vakfiyesi",
+              "minaresi",
+              "avlusu"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 264-271"
+        },
+        {
+          "id": "hatay-kantara-camii-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Antakya'da yamuk avlulu bir cami. Minaresi kapının üstünde, sekiz köşeli ve ahşap şemsiyeli. Minarenin altındaki geçit 1906'da çeşme oldu.",
+            "secenekler": [
+              "Kantara Camii",
+              "Meydan Camii ve Külliyesi",
+              "Şenköy Ahmet Kusayri Camii"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 264-271"
+        }
+      ]
+    },
+    {
+      "eserId": "hatay-rum-ortodoks-kilisesi",
+      "merak": {
+        "soru": "Bir yapının kitabesi yoksa ne zaman yapıldığını nasıl tahmin ederiz?",
+        "secenekler": [
+          "Mimarisine ve süslemelerine bakarak",
+          "Rastgele bir yıl seçerek",
+          "Hiçbir şekilde tahmin edemeyiz"
+        ],
+        "kopru": "Tahminini not ettik! Yayladağı'ndaki bu kilisenin tarihi böyle tahmin edildi."
+      },
+      "baglam": {
+        "baslik": "Yayladağı'ndaki kilise",
+        "metin": "Rum Ortodoks Kilisesi, Hatay'ın Yayladağı ilçesinde, eğimli bir arazide. Ne zaman yapıldığını gösteren bir kitabesi yok. Mimarisine ve süslemelerine bakılarak 1800'lerin son çeyreğinde yapıldığı düşünülüyor.\n\nKilise sade ve dikdörtgen biçimli. Duvarları kaba taştan. Doğu ucunda yarım daire biçiminde, dışarı taşan bir bölüm var. Buna apsis denir.\n\nKilisenin içinde ahşap bir ara kat ve bir vaftiz teknesi bulunuyor. Desenli karo zemini ve ahşap tavanı ilk günkü hâlini koruyor.",
+        "kavramlar": [
+          {
+            "ad": "APSİS",
+            "aciklama": "Kilisenin doğu ucundaki yarım daire biçimli bölüm.",
+            "ornek": "Kilisenin apsisinde üç küçük pencere var."
+          },
+          {
+            "ad": "VAFTİZ TEKNESİ",
+            "aciklama": "Hristiyanların vaftiz töreninde kullandığı su teknesi.",
+            "ornek": "Vaftiz teknesi ahşap galerinin altında."
+          },
+          {
+            "ad": "KARO",
+            "aciklama": "Zemine döşenen kare biçimli parça.",
+            "ornek": "Kilisenin zemini desenli karolarla kaplı."
+          }
+        ],
+        "kapanis": "Bir yapının neyi 'özgün' sayılır?"
+      },
+      "perspektif": {
+        "baslik": "Özgün zemin",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Kilisenin zemininde desenli karolar var."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Envantere göre bu zemin erken döneme ait ve özgün hâlini koruyor. Ahşap tavanı da öyle."
+          }
+        ],
+        "soru": "Bir yapıda özgün parçaların korunması neden önemli?",
+        "secenekler": [
+          {
+            "metin": "Yapının ilk hâlini ve yapıldığı dönemi anlamamızı sağladığı için.",
+            "sonuc": "Doğru! Özgün parçalar, yapının tarihini anlatan belgeler gibidir.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Önemli değil, her şey yenilenebilir.",
+            "sonuc": "Yenilenen parça tarihî bilgiyi taşımaz. Özgün parça taşır.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Sadece güzel göründükleri için.",
+            "sonuc": "Güzel de olabilirler; ama asıl önemleri, geçmişten kalan bir belge olmaları.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Yayladağı'ndaki Rum Ortodoks Kilisesi'nin kitabesi yok; 1800'lerin sonunda yapıldığı düşünülüyor. Desenli karo zemini ve ahşap tavanı özgün hâlini koruyor. Envanter 2023 depreminden sonraki durumunu bildirmiyor.",
+        "rontgenSorusu": "Bu kilisenin vakfiyesi biliniyor mu?",
+        "rontgenAciklama": "Envanter kilisenin bir vakfiyesinden ya da gelir kaynaklarından söz etmez; yapı Hatay'daki vakıf eserleri arasında kayıtlıdır. Belge olmadığı için uygulama bu eser için gelir dağılımı göstermez. Envanter 2023 depremleri sonrasındaki durumu da bildirmez.",
+        "kaynakKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 450-451 (RUM ORTODOKS KİLİSESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "hatay-rum-ortodoks-kilisesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Kilisenin neresinde? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "dogu",
+                "ad": "Doğu ucunda (apsis)",
+                "aciklama": "Yarım daire biçimli bölüm."
+              },
+              {
+                "id": "bati",
+                "ad": "Batı tarafında",
+                "aciklama": "Girişe yakın bölüm."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Üç küçük pencere",
+                "kategoriId": "dogu"
+              },
+              {
+                "metin": "Sunak masası",
+                "kategoriId": "dogu"
+              },
+              {
+                "metin": "Ahşap ara kat",
+                "kategoriId": "bati"
+              },
+              {
+                "metin": "Vaftiz teknesi",
+                "kategoriId": "bati"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 450-451"
+        },
+        {
+          "id": "hatay-rum-ortodoks-kilisesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Bir tarihçinin kitabesiz bir yapıyı tarihleme adımlarını sırala.",
+            "dogruSira": [
+              "Yapıda kitabe aranır",
+              "Kitabe bulunamaz",
+              "Mimari ve süslemeler incelenir",
+              "Yaklaşık bir dönem tahmin edilir"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 450-451"
+        },
+        {
+          "id": "hatay-rum-ortodoks-kilisesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Kilisenin doğu ucundaki yarım daire biçimli bölüme ___ denir.",
+            "cevap": "apsis",
+            "secenekler": [
+              "apsis",
+              "mihrap",
+              "minber",
+              "avlu"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 450-451"
+        },
+        {
+          "id": "hatay-rum-ortodoks-kilisesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Yayladağı'nda eğimli bir arazide sade bir kilise. Kitabesi yok. Desenli karo zemini ve ahşap tavanı özgün hâlini koruyor.",
+            "secenekler": [
+              "Rum Ortodoks Kilisesi (Yayladağı)",
+              "Yoğunoluk Ermeni Kilisesi",
+              "Kantara Camii"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 450-451"
+        }
+      ]
+    }
+  ]
+}

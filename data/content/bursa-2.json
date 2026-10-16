@@ -1,0 +1,1847 @@
+{
+  "grup": "bursa-2",
+  "dersler": [
+    {
+      "eserId": "bursa-koza-hani",
+      "merak": {
+        "soru": "Koza Hanı Bursa'da. Ama gelirini İstanbul'daki bir yapıya gönderiyordu. Sence neden?",
+        "secenekler": [
+          "Sultanın İstanbul'daki külliyesi yaşasın diye.",
+          "İstanbul'da hanın sahibi oturduğu için.",
+          "Bursa'da para harcanamadığı için."
+        ],
+        "kopru": "Tahminini not ettik! Bir şehirdeki han, başka bir şehirdeki camiyi yaşatabiliyordu."
+      },
+      "baglam": {
+        "baslik": "İpek kokulu han",
+        "metin": "Koza Hanı'nı Sultan II. Bayezid yaptırdı. İnşaat 1489'da başladı. 1491'de han açıldı.\n\nHanın ortasında geniş bir avlu var. Etrafında iki katlı odalar sıralanıyor. Avlunun tam ortasında küçük bir mescit var. Yanında bir de ahır bulunuyor. Bu ahır, Osmanlı'dan kalan çok az ahırdan biri.\n\nSultan bu hanı İstanbul'daki külliyesine gelir sağlasın diye yaptırdı. Handaki odaların kirası İstanbul'a gidiyordu. Bugün de han çok canlı. Üst katta ipek satılıyor, avluda insanlar çay içiyor.",
+        "kavramlar": [
+          {
+            "ad": "HAN",
+            "aciklama": "Tüccarların kaldığı ve mallarını sakladığı büyük yapı.",
+            "ornek": "Koza Hanı'nın iki katında odalar var."
+          },
+          {
+            "ad": "KOZA",
+            "aciklama": "İpek böceğinin ördüğü ve içinden ipek ipliği çıkan küçük yuva.",
+            "ornek": "Koza Hanı'nda bugün ipek satılıyor."
+          },
+          {
+            "ad": "KÖŞK MESCİT",
+            "aciklama": "Han avlusunun ortasında, yerden yüksekte duran küçük mescit.",
+            "ornek": "Koza Hanı'nın avlusunda bir köşk mescit var."
+          }
+        ],
+        "kapanis": "Bursa'daki bir handan çıkan para, İstanbul'daki bir camiyi nasıl yaşatır?"
+      },
+      "perspektif": {
+        "baslik": "Kira nereye gider?",
+        "diyalog": [
+          {
+            "kim": "TÜCCAR",
+            "metin": "Hanın bir odasını kiraladım. İpeklerimi burada saklıyorum."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Senin ödediğin kira, vakıf aracılığıyla İstanbul'daki külliyeye gidiyordu."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Sultan II. Bayezid bu hanı tam da bunun için yaptırmıştı."
+          }
+        ],
+        "soru": "Tüccarın ödediği kira en çok neye yarıyordu?",
+        "secenekler": [
+          {
+            "metin": "Sultanın kişisel harcamalarına.",
+            "sonuc": "Hayır. Han bir vakfa bağlıydı. Geliri sultanın cebine değil, külliyeye gidiyordu.",
+            "dogruMu": false
+          },
+          {
+            "metin": "İstanbul'daki külliyenin giderlerine.",
+            "sonuc": "Doğru! Vakıf, bir yerde para kazanıp başka bir yerdeki hayır işini yaşatabiliyordu.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hiçbir şeye, kira toplanmıyordu.",
+            "sonuc": "Kira toplanıyordu. Hanın yapılma amacı zaten gelir sağlamaktı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Koza Hanı'nı Sultan II. Bayezid 1489-1491 arasında yaptırdı. Kirası İstanbul'daki külliyesine gidiyordu. Bugün üst katında ipek satılıyor, avlusu çay bahçesi.",
+        "rontgenSorusu": "Koza Hanı'nın geliri nereye gidiyordu?",
+        "rontgenAciklama": "Koza Hanı, Sultan II. Bayezid'in İstanbul'daki külliyesine gelir sağlamak için yapıldı. Yani hanın kira geliri bu külliyenin giderlerini karşılıyordu. Gelirin hangi işe ne oranda harcandığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 15-24 (KOZA HANI)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-koza-hani-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Eskiden mi, bugün mü? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "eski",
+                "ad": "Osmanlı döneminde",
+                "aciklama": "Han ilk yapıldığında."
+              },
+              {
+                "id": "bugun",
+                "ad": "Bugün",
+                "aciklama": "Hanın bugünkü hâli."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Kervanların atları ahırda dinlenirdi",
+                "kategoriId": "eski"
+              },
+              {
+                "metin": "Kira geliri İstanbul'daki külliyeye giderdi",
+                "kategoriId": "eski"
+              },
+              {
+                "metin": "Mescide yetmeyince ahşap bir mescit daha yapıldı",
+                "kategoriId": "eski"
+              },
+              {
+                "metin": "Avlu çay bahçesi olarak kullanılıyor",
+                "kategoriId": "bugun"
+              },
+              {
+                "metin": "Eski ahır kahvehane ve büfe oldu",
+                "kategoriId": "bugun"
+              },
+              {
+                "metin": "Üst katta ipek satan dükkânlar var",
+                "kategoriId": "bugun"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 15-24"
+        },
+        {
+          "id": "bursa-koza-hani-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1489: Hanın inşaatı başladı",
+              "1491: Han hizmete açıldı",
+              "1630: Bir belgede hanın su yollarının onarımı yazıldı",
+              "1950'ler: Üst kat revakı ve ahırlar onarıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 15-24"
+        },
+        {
+          "id": "bursa-koza-hani-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Han avlusunun ortasında, yerden yüksekte duran küçük mescide ___ mescit denir.",
+            "cevap": "köşk",
+            "secenekler": [
+              "köşk",
+              "kule",
+              "kubbe",
+              "kapı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 15-24"
+        },
+        {
+          "id": "bursa-koza-hani-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Ulucami ile Orhan Camii arasında bir han. Avlusunun ortasında küçük bir mescit var. Bugün üst katında ipek satılıyor, avlusunda çay içiliyor.",
+            "secenekler": [
+              "Koza Hanı",
+              "Pirinç Hanı",
+              "İpek Hanı (Sultan Hanı, Hân-ı Harîr)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 15-24"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-ipek-hani-sultan-hani-han-i-harir",
+      "merak": {
+        "soru": "Bursa'nın en büyük hanında 81 oda var. Odalar tüccarlara kiralanıyordu. Sence bu kiralar nereye gidiyordu?",
+        "secenekler": [
+          "Hanı yaptıran padişahın ailesine",
+          "Yeşilcami'deki yemek ve okul masraflarına",
+          "Bursa'daki tüccarların birliğine"
+        ],
+        "kopru": "Tahminini not ettik! Şimdi bu hanın neden yapıldığına bakalım."
+      },
+      "baglam": {
+        "baslik": "Şehrin ortasındaki dev han",
+        "metin": "Han, yolcuların ve tüccarların kaldığı büyük bir binadır. İpek Hanı'nı Çelebi Sultan Mehmed 1400'lerin ilk yarısında yaptırdı. Amacı belliydi: Yeşilcami'ye para kazandırmak.\n\nBursa'nın en büyük hanıdır. İki katında toplam 81 oda var. Alt kattaki kemerli bölümler depo olarak kullanılırdı. Kervanlar burada konaklardı.\n\nHanın adı, burada yapılan ipek ticaretinden gelir. 1958'de büyük bir yangın çıktı. Han yeniden onarıldı. Bugün içinde terziler ve giysi dükkânları var.",
+        "kavramlar": [
+          {
+            "ad": "HAN",
+            "aciklama": "Yolcuların ve tüccarların kaldığı, mallarını koyduğu büyük bina.",
+            "ornek": "İpek Hanı'nda 81 oda var."
+          },
+          {
+            "ad": "AKAR",
+            "aciklama": "Vakfa para ya da ürün getiren mal.",
+            "ornek": "İpek Hanı, Yeşilcami'nin akarıdır."
+          },
+          {
+            "ad": "RÜSUM",
+            "aciklama": "Bir yapıdan ya da ticaretten vakıf için alınan para.",
+            "ornek": "Eski bir hesap defterinde İpek Hanı'ndan 2.500 kuruş rüsum yazıyor."
+          }
+        ],
+        "kapanis": "Hanı hangi ustanın yaptığı kesin bilinmiyor. Biz de emin olmadığımız şeyi kesinmiş gibi yazmıyoruz. Şimdi bir karar anına gidelim."
+      },
+      "perspektif": {
+        "baslik": "Kervan avlusunda",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "1400'lerin ilk yarısı. Bir kervan, Bursa'nın büyük hanının avlusuna giriyor."
+          },
+          {
+            "kim": "TÂCİR",
+            "metin": "Yüklerimi alt kattaki depoya koyacağım. Kendim üst katta bir odada kalacağım."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Akşam olunca hanın kâtibi kiraları topladı. Bu para nereye gidecek?"
+          }
+        ],
+        "soru": "Hanın kiralarını topladın. Bu parayı nereye gönderirdin?",
+        "secenekler": [
+          {
+            "metin": "Yeşilcami'nin imaretine ve medresesine gönderirdim.",
+            "sonuc": "Han tam da bunun için yapılmıştı! Kiraları Yeşilcami'nin hizmetlerini karşıladı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hanın onarımı için kenara koyardım.",
+            "sonuc": "Han gerçekten birçok kez onarıldı. Ama hanın kendi parasının nasıl paylaşıldığına dair bir belge bulunamadı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Parayı padişahın hazinesine gönderirdim.",
+            "sonuc": "Böyle bir kayıt yok. Eski hesap defterinde han, Yeşilcami'nin gelirleri arasında yazılı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "İpek Hanı, Yeşilcami'ye para kazandırmak için yapıldı. Bursa'nın en büyük hanıdır ve 81 odası var. 1958 yangınından sonra onarıldı. Bugün içi dükkânlarla dolu.",
+        "rontgenSorusu": "Bu hanın kirası nereye gidiyordu?",
+        "rontgenAciklama": "Bu hanın kendi gelir dağılımı oranları belgelenememiştir; bu yüzden bu ekranda oran gösterilmez. Belgelenen tek şey, hanın Yeşilcami Külliyesi vakfına ödediği rüsumdur: 19. yüzyıl ortası vakıf muhasebe defterinde 'Harir Hanı rüsumu' 2.500 kuruş olarak kayıtlıdır. Bu tutar, hanın kendi gelirinin dağılımı değil, külliyeye aktarılan miktardır.",
+        "kaynakKunye": "Enis Karakaya, 'İpek Hanı', TDV İslâm Ansiklopedisi, C. 22 (2000), s. 368-369 (son güncelleme 14.02.2020) · Zeynep Akan Yetişir, 'Yeşil Külliye'nin On Dokuzuncu Yüzyıl Ortalarındaki Vaziyeti', Sultan Çelebi Mehmed ve Devri Sempozyumu, Bursa 2022, s. 214 (Harir Hanı rüsumu kaydı)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-ipek-hani-sultan-hani-han-i-harir-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Hanın geçmişi mi, bugünü mü? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "gecmis",
+                "ad": "Geçmişte",
+                "aciklama": "Hanın eski adları ve eski olaylar."
+              },
+              {
+                "id": "bugun",
+                "ad": "Bugün",
+                "aciklama": "Hanın şimdiki hâli."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Sultan Hanı adıyla anılırdı",
+                "kategoriId": "gecmis"
+              },
+              {
+                "metin": "Faytoncular Hanı adıyla anılırdı",
+                "kategoriId": "gecmis"
+              },
+              {
+                "metin": "Arabacılar Hanı adıyla anılırdı",
+                "kategoriId": "gecmis"
+              },
+              {
+                "metin": "1958'deki büyük yangında yandı",
+                "kategoriId": "gecmis"
+              },
+              {
+                "metin": "İçinde terziler ve giysi dükkânları var",
+                "kategoriId": "bugun"
+              },
+              {
+                "metin": "Bakımlı bir çarşı binası",
+                "kategoriId": "bugun"
+              }
+            ]
+          },
+          "kaynak": "Enis Karakaya, 'İpek Hanı', TDV İslâm Ansiklopedisi, C. 22 (2000), s. 368-369; Kültür Envanteri, 'İpek Han' (KE No 10539)"
+        },
+        {
+          "id": "bursa-ipek-hani-sultan-hani-han-i-harir-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Hanın başından geçenleri eskiden yeniye doğru sırala.",
+            "dogruSira": [
+              "1400'lerin ilk yarısı: Han yapıldı",
+              "1800'lerin sonu: Yeni bir cadde açılırken bir duvarı yıkıldı",
+              "1958: Büyük yangında yandı",
+              "1972-1973: Onarıldı"
+            ]
+          },
+          "kaynak": "Enis Karakaya, 'İpek Hanı', TDV İslâm Ansiklopedisi, C. 22 (2000), s. 368-369"
+        },
+        {
+          "id": "bursa-ipek-hani-sultan-hani-han-i-harir-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Hanın adı, burada yapılan ___ ticaretinden gelir.",
+            "cevap": "ipek",
+            "secenekler": [
+              "ipek",
+              "baharat",
+              "tuz",
+              "kereste"
+            ]
+          },
+          "kaynak": "Enis Karakaya, 'İpek Hanı', TDV İslâm Ansiklopedisi, C. 22 (2000), s. 368-369"
+        },
+        {
+          "id": "bursa-ipek-hani-sultan-hani-han-i-harir-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bursa'nın en büyük hanıdır. İki katında 81 oda var. Alt kattaki kemerli bölümler depoydu. Avlusunun ortasında yükseltilmiş küçük bir mescit var.",
+            "secenekler": [
+              "İpek Hanı (Sultan Hanı, Hân-ı Harîr)",
+              "Yeşil Medrese (Sultaniye Medresesi)",
+              "Muradiye Hamamı (II. Murad Hamamı)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Enis Karakaya, 'İpek Hanı', TDV İslâm Ansiklopedisi, C. 22 (2000), s. 368-369"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-yildirim-bayezid-bedesteni",
+      "merak": {
+        "soru": "Eskiden altın, ipek gibi değerli mallar nerede satılırdı?",
+        "secenekler": [
+          "Kapıları kilitlenen, kubbeli sağlam bir çarşıda",
+          "Sokakta açık tezgâhlarda",
+          "Evlerin bahçesinde"
+        ],
+        "kopru": "Tahminini not ettik! Bu sağlam çarşıların adı bedesten. Osmanlı'nın ilk bedesteni de Bursa'da."
+      },
+      "baglam": {
+        "baslik": "Osmanlı'nın ilk bedesteni",
+        "metin": "Bursa, Osmanlı'nın başkenti olunca hızla büyüdü ve önemli bir ticaret şehri oldu. Yıldırım Bayezid de şehrin ortasına bir bedesten yaptırdı. Bu, Osmanlı'da yapılan ilk bedestendi. Sonraki bütün bedestenlere örnek oldu.\n\nBedestenin üstünde 14 kubbe var. İçinde 32 mahzen ve dükkânlar sıralanıyor. Dört yönde birer kapısı var. Evliya Çelebi'ye göre çevresi kuyumcularla doluydu.\n\nBedesten hem çarşının kalbiydi hem de vakfa gelir sağlıyordu. 1958'deki büyük yangında ağır hasar gördü. 1960'ta onarıldı. Bugün de kuyumcular burada çalışıyor.",
+        "kavramlar": [
+          {
+            "ad": "BEDESTEN",
+            "aciklama": "Değerli malların satıldığı, kapıları kilitlenen kubbeli kapalı çarşı.",
+            "ornek": "Yıldırım Bayezid Bedesteni'nin 14 kubbesi var."
+          },
+          {
+            "ad": "MAHZEN",
+            "aciklama": "Malların saklandığı sağlam, kapalı oda.",
+            "ornek": "Bedestende 32 mahzen var."
+          },
+          {
+            "ad": "KUYUMCU",
+            "aciklama": "Altın ve gümüşten takı yapıp satan kişi.",
+            "ornek": "Bedestende bugün kuyumcu atölyeleri var."
+          }
+        ],
+        "kapanis": "Bir şehri şehir yapan şey nedir? Osmanlılar bunun cevabını biliyordu."
+      },
+      "perspektif": {
+        "baslik": "Şehir olmak için ne gerekir?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "1326'da Bursa küçük bir yerdi. Kalenin içinde iki bin kadar ev ve yirmi dükkân vardı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Türk-İslam şehir geleneğine göre bir yerin şehir sayılması için iki şey gerekir: cuma namazı kılınan bir cami ve bir pazar yeri."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Osmanlılar şehri bu yüzden cami, bedesten ve imaretin çevresinde kurdu."
+          }
+        ],
+        "soru": "Sence bedesten neden büyük caminin yanına yapıldı?",
+        "secenekler": [
+          {
+            "metin": "Cami ve pazar birlikte şehrin merkezini oluşturduğu için.",
+            "sonuc": "Doğru! Bedesten, Ulucami'nin yakınına yapıldı ve çarşı bu ikisinin çevresinde büyüdü.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Başka boş arsa kalmadığı için.",
+            "sonuc": "Envanterde böyle bir bilgi yok. Yer bilinçli seçildi: cami ile pazar şehrin kalbiydi.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Kuyumcular camiye yakın oturmak istediği için.",
+            "sonuc": "Kuyumcular sonradan geldi. Asıl neden şehrin cami ve pazar etrafında kurulmasıydı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Yıldırım Bayezid Bedesteni, Osmanlı'nın ilk bedesteni. 14 kubbesi ve 32 mahzeni var. Hem çarşının kalbi oldu hem vakfa gelir sağladı. Bugün kuyumcular burada çalışıyor.",
+        "rontgenSorusu": "Bedesten kime gelir sağlıyordu?",
+        "rontgenAciklama": "Envantere göre bedesten vakfa gelir sağlamak amacı da taşıyordu; dükkân ve mahzenlerin kirası vakfın giderlerine harcanıyordu. Bu gelirin hangi işlere ne oranda gittiği envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 53-57 (YILDIRIM BAYEZİD BEDESTENİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-yildirim-bayezid-bedesteni-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bedestenin içinde mi, çevresindeki çarşılarda mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "ic",
+                "ad": "Bedestenin içinde",
+                "aciklama": "Kubbeli yapının kendisi."
+              },
+              {
+                "id": "cevre",
+                "ad": "Çevresindeki çarşılarda",
+                "aciklama": "Evliya Çelebi'nin anlattığı çarşılar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "14 kubbe",
+                "kategoriId": "ic"
+              },
+              {
+                "metin": "32 mahzen",
+                "kategoriId": "ic"
+              },
+              {
+                "metin": "Dört yöndeki kapılar",
+                "kategoriId": "ic"
+              },
+              {
+                "metin": "Yorgancılar Çarşısı",
+                "kategoriId": "cevre"
+              },
+              {
+                "metin": "Kavukçular Çarşısı",
+                "kategoriId": "cevre"
+              },
+              {
+                "metin": "İplikçiler Çarşısı",
+                "kategoriId": "cevre"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 53-57"
+        },
+        {
+          "id": "bursa-yildirim-bayezid-bedesteni-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1326: Bursa Osmanlıların eline geçti",
+              "XIV. yüzyıl: Yıldırım Bayezid bedesteni yaptırdı",
+              "1958: Büyük Kapalıçarşı Yangını",
+              "1960: Bedesten onarıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 53-57"
+        },
+        {
+          "id": "bursa-yildirim-bayezid-bedesteni-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Değerli malların satıldığı, kapıları kilitlenen kubbeli kapalı çarşıya ___ denir.",
+            "cevap": "bedesten",
+            "secenekler": [
+              "bedesten",
+              "imaret",
+              "medrese",
+              "hazire"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 53-57"
+        },
+        {
+          "id": "bursa-yildirim-bayezid-bedesteni-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Osmanlı'nın ilk kapalı çarşısı. Üstünde 14 kubbe, içinde 32 mahzen var. 1958'de yandı, 1960'ta onarıldı. Bugün kuyumcular burada çalışıyor.",
+            "secenekler": [
+              "Yıldırım Bayezid Bedesteni",
+              "Koza Hanı",
+              "Irgandı Köprüsü (Kapalı Köprü)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 53-57"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-irgandi-koprusu-kapali-kopru",
+      "merak": {
+        "soru": "Irgandı Köprüsü'nü kim yaptırdı? Kaynaklar bu soruya üç farklı isimle cevap veriyor. Sence hangisi?",
+        "secenekler": [
+          "Hoca Muslihuddin: Bursalı bir tüccar.",
+          "Timurtaş: Bir vakfiyede şahit olarak adı geçen kişi.",
+          "Pîr Ali Çelebi: Hoca Muslihuddin'in babası."
+        ],
+        "kopru": "Tahminini not ettik! Üç isim de gerçek kaynaklarda geçiyor. Hangisinin doğru olduğu bugün hâlâ bilinmiyor. Şimdi köprünün üstündeki çarşıya bakalım."
+      },
+      "baglam": {
+        "baslik": "Üstünde çarşı olan köprü",
+        "metin": "Irgandı Köprüsü, Bursa'da bir derenin iki yakasını birleştirir. Ama sıradan bir köprü değil. Üstünde iki sıra dükkân var! Köprü de dükkânlar da vakfın malıdır.\n\nKöprünün ne zaman yapıldığı kesin değil. Bir kaynak 1442 der, başka bir kaynak 1492. 1559'da yaptıranın torunu bir vakfiye yazdırdı. Köprünün üstüne otuz bir dükkân yapmayı planladı. Dükkânlardan birini de küçük bir mescide çevirdi.\n\n1640'ta ünlü gezgin Evliya Çelebi buraya geldi. Dükkânlarda kumaş dokunduğunu yazdı. Geceleri çarşının iki ucu demir kapılarla kapanıyordu.",
+        "kavramlar": [
+          {
+            "ad": "KÖPRÜ",
+            "aciklama": "Bir derenin iki yakasını birleştiren geçit. Bu köprünün üstünde bir de çarşı var.",
+            "ornek": "Irgandı Köprüsü'nün üstünde iki sıra dükkân var."
+          },
+          {
+            "ad": "VAKFİYE",
+            "aciklama": "Bir vakfın kurallarını yazan belge. Paranın nereye harcanacağını söyler.",
+            "ornek": "1559'da yazılan vakfiyede köprünün üstüne otuz bir dükkân planlandı."
+          },
+          {
+            "ad": "AKAR",
+            "aciklama": "Vakfa para getiren mal.",
+            "ornek": "Köprünün üstündeki dükkânlar vakfın malıdır."
+          }
+        ],
+        "kapanis": "Bu köprü sadece bir geçit değil. Dükkânları ve mescidiyle küçük bir çarşı. Peki akşam olunca bu çarşıya ne oluyordu?"
+      },
+      "perspektif": {
+        "baslik": "Köprüde akşam vakti",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1640. Köprünün üstündeki çarşıda gün bitiyor. Esnaf tezgâhlarını topluyor."
+          },
+          {
+            "kim": "EVLİYA ÇELEBİ",
+            "metin": "Bu çarşının iki ucunda kale kapısı gibi demir kapılar var. Bir tarafında da misafirlerin kaldığı bir yer var. Atlar oraya bağlanıyor."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Dükkânlarda yün atılıyor, kumaş dokunuyor. Şimdi akşam oldu. Kapılara ne olacak?"
+          }
+        ],
+        "soru": "Akşam oldu. Köprünün iki ucundaki demir kapıları ne yapardın?",
+        "secenekler": [
+          {
+            "metin": "Kapıları kapatırdım. Misafirler köprünün bir tarafında kalırdı.",
+            "sonuc": "Gerçekte de böyleydi! Evliya Çelebi, kapıların geceleri kapandığını yazar. Köprünün bir tarafı misafirlere ve atlarına ayrılmıştı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Kapıları açık bırakırdım. Gece de alışveriş yapılırdı.",
+            "sonuc": "Böyle bir kayıt yok. Evliya Çelebi tam tersini yazar: Kapılar geceleri kapanırdı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Köprüyü boşaltırdım. Gece kimse kalmazdı.",
+            "sonuc": "Aslında köprüde gece de insanlar vardı. Bir tarafında misafirler kalır, atlar bağlanırdı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Irgandı Köprüsü'nün üstünde iki sıra dükkân var. Ne zaman yapıldığı kesin değil: 1442 mi, 1492 mi? 1640'ta Evliya Çelebi, kapılarının geceleri kapandığını yazdı. Köprü depremler ve yangınlar gördü. Birçok kez onarıldı, en son 2003-2004'te.",
+        "rontgenSorusu": "Köprünün üstündeki dükkânların kirası nereye gidiyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu ekranda oran göstermez. Köprü ve üzerindeki dükkânlar vakıf malıdır ve baninin torunu Cemâziyelâhir 966 (Mart 1559) tarihli vakfiyesiyle bazı şartlar belirlemiştir; ancak bu vakfiyenin maddeleri erişilebilir kaynaklarda ayrıntılı olarak verilmemiştir. Vakfiye metni ve Vakıflar Genel Müdürlüğü arşiv numarası görülmediği için gelir kalemlerinin oranları gösterilemez. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "Semavi Eyice, 'IRGANDI KÖPRÜSÜ', TDV İslâm Ansiklopedisi, c. 19, İstanbul 1999, s. 122-124 · T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Irgandı Köprüsü (Kapalı Köprü)', Envanter No A293 · Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, Bursa Büyükşehir Belediyesi, 2. basım 2010 · Bursa Şer'iyye (Kadı) Sicilleri, Defter nr. 72, s. 114 (966/1559 tarihli vakfiye)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-irgandi-koprusu-kapali-kopru-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Köprünün geçmişi mi, bugünü mü? Her birini doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "gecmis",
+                "ad": "Geçmişte",
+                "aciklama": "Köprünün eski günleri."
+              },
+              {
+                "id": "bugun",
+                "ad": "Bugün",
+                "aciklama": "Köprünün şimdiki hâli."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Geceleri iki ucu demir kapılarla kapanırdı",
+                "kategoriId": "gecmis"
+              },
+              {
+                "metin": "Bir tarafında misafirler kalır, atlar bağlanırdı",
+                "kategoriId": "gecmis"
+              },
+              {
+                "metin": "Dükkânlarda kumaş dokunurdu",
+                "kategoriId": "gecmis"
+              },
+              {
+                "metin": "1922'de üstündeki dükkânlar yakılıp yıkıldı",
+                "kategoriId": "gecmis"
+              },
+              {
+                "metin": "Kayıtlarda \"köprü\" olarak geçiyor",
+                "kategoriId": "bugun"
+              },
+              {
+                "metin": "Artık sadece bir geçit yeri",
+                "kategoriId": "bugun"
+              }
+            ]
+          },
+          "kaynak": "Semavi Eyice, 'IRGANDI KÖPRÜSÜ', TDV İslâm Ansiklopedisi, c. 19, İstanbul 1999, s. 122-124; T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Irgandı Köprüsü (Kapalı Köprü)', Envanter No A293"
+        },
+        {
+          "id": "bursa-irgandi-koprusu-kapali-kopru-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Köprünün başından geçenleri eskiden yeniye doğru sırala. (Yapım yılı için 1442'yi aldık. Başka bir kaynak 1492 der.)",
+            "dogruSira": [
+              "1442: Köprü yapıldı (bir kaynağa göre)",
+              "1559: Üstüne dükkânlar planlandı",
+              "1640: Evliya Çelebi çarşıyı anlattı",
+              "1855: Depremde ağır hasar gördü",
+              "1922: Dükkânlar yakılıp yıkıldı",
+              "1949: Belediye onardı",
+              "2003-2004: Yeniden onarıldı"
+            ]
+          },
+          "kaynak": "Semavi Eyice, 'IRGANDI KÖPRÜSÜ', TDV İslâm Ansiklopedisi, c. 19, İstanbul 1999, s. 122-124; Bursa Şer'iyye (Kadı) Sicilleri, Defter nr. 72, s. 114 (966/1559 tarihli vakfiye)"
+        },
+        {
+          "id": "bursa-irgandi-koprusu-kapali-kopru-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Evliya Çelebi'ye göre çarşının iki ucu geceleri ___ kapılarla kapanırdı.",
+            "cevap": "demir",
+            "secenekler": [
+              "demir",
+              "ahşap",
+              "cam",
+              "kurşun"
+            ]
+          },
+          "kaynak": "Semavi Eyice, 'IRGANDI KÖPRÜSÜ', TDV İslâm Ansiklopedisi, c. 19, İstanbul 1999, s. 122-124 (Evliya Çelebi'nin 1640 tarihli anlatımı burada aktarılır)"
+        },
+        {
+          "id": "bursa-irgandi-koprusu-kapali-kopru-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bursa'da bir derenin iki yakasını birleştirir. Üstünde iki sıra dükkân var. 1640'ta bir gezgin, geceleri iki ucunun demir kapılarla kapandığını yazdı.",
+            "secenekler": [
+              "Irgandı Köprüsü (Kapalı Köprü)",
+              "Demirtaş (Timurtaş) Hamamı",
+              "Gazi Hüdavendigar (Kaplıca) İmareti"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Irgandı Köprüsü (Kapalı Köprü)', Envanter No A293; Semavi Eyice, 'IRGANDI KÖPRÜSÜ', TDV İslâm Ansiklopedisi, c. 19, İstanbul 1999, s. 122-124"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-ordekli-hamam",
+      "merak": {
+        "soru": "Bir hamamın adı \"Ördekli Hamam\". Sence bu ad nereden geliyor?",
+        "secenekler": [
+          "Su akan kurnalar ördek gagasına benzediği için",
+          "Havuzunda ördekler yüzdüğü için",
+          "Yaptıranın adı Ördek olduğu için"
+        ],
+        "kopru": "Tahminini not ettik! Bu hamamın bir değil, tam dört adı var."
+      },
+      "baglam": {
+        "baslik": "Dört adlı hamam",
+        "metin": "Bu hamamın yapımına Yıldırım Bayezid zamanında başlandığı düşünülüyor. 1402'de Timur'un ordusu Bursa'yı işgal edince inşaat yarım kaldı. Hamam için getirilen suyu da çevredeki evler kullanmaya başladı. Hamam ancak Çelebi Mehmed döneminde bitti.\n\nHamamın dört adı var. Önce \"Yeni Hamam\" dendi. Şehirde yeni hamamlar yapılınca \"Eski Yeni Hamam\" oldu. Kubbesi uzun süre yıkık kaldığı için \"Yıkık Hamam\" da dendi. Su akan kurnaları ördek gagasına benzediği için halk ona \"Ördekli Hamam\" dedi.\n\nHamamın bir kadınlar, bir de erkekler bölümü var. Uzun yıllar boş kaldı, depo oldu. 2004-2008'de onarıldı. Bugün bir kültür merkezi.",
+        "kavramlar": [
+          {
+            "ad": "ÇİFTE HAMAM",
+            "aciklama": "Kadınlar ve erkekler için iki ayrı bölümü olan hamam.",
+            "ornek": "Ördekli Hamam büyük bir çifte hamam."
+          },
+          {
+            "ad": "KURNA",
+            "aciklama": "Hamamda suyun aktığı taş tekne.",
+            "ornek": "Ördekli Hamam'ın kurnaları ördek gagasına benzetilir."
+          },
+          {
+            "ad": "KÜLTÜR MERKEZİ",
+            "aciklama": "Sergi, konser ve atölyelerin yapıldığı yer.",
+            "ornek": "Ördekli Hamam bugün bir kültür merkezi."
+          }
+        ],
+        "kapanis": "Eski bir hamam bugün ne işe yarayabilir?"
+      },
+      "perspektif": {
+        "baslik": "Boş kalan hamam",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Hamam uzun yıllar kullanılmadı. Bir dönem çömlek atölyesi, sonra belediye deposu oldu."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Bir yapı kullanılmayınca bakımı da yapılmaz. Böyle yapılar yavaş yavaş harap olur."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "2004-2008'de belediye hamamı onardı ve ona yeni bir görev verdi."
+          }
+        ],
+        "soru": "Sence hamama nasıl bir görev verildi?",
+        "secenekler": [
+          {
+            "metin": "Kültür merkezi oldu.",
+            "sonuc": "Doğru! Hamam 'Ördekli Kültür Merkezi' adıyla açıldı. Böylece yine insanların uğradığı bir yer oldu.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Yıkılıp yerine otopark yapıldı.",
+            "sonuc": "Hayır. Hamam yıkılmadı; onarılıp yeniden kullanıma açıldı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Kapısı kilitlenip boş bırakıldı.",
+            "sonuc": "Hayır. Boş kalan yapı harap olur. Hamam onarılıp kültür merkezi yapıldı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Ördekli Hamam'ın yapımına Yıldırım Bayezid zamanında başlandı, Çelebi Mehmed zamanında bitti. Kurnaları ördek gagasına benzediği için bu adı aldı. Bugün Ördekli Kültür Merkezi.",
+        "rontgenSorusu": "Ördekli Hamam'ın bir vakfiyesi biliniyor mu?",
+        "rontgenAciklama": "Hamamın kitabesi yok ve envanter bir vakfiyesinden söz etmez. Kimin yaptırdığı ve gelirinin nereye gittiği belgelenmediği için uygulama bu eser için gelir dağılımı göstermez. Bilinen şey, suyunun 'Müftü Suyu' denen bir hatla Uludağ'dan getirildiğidir.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 151-163 (ÖRDEKLİ HAMAM (ESKİ YENİ HAMAM))"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-ordekli-hamam-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Hamamın adı ile adın sebebini eşleştir.",
+            "kategoriler": [
+              {
+                "id": "ordekli",
+                "ad": "Ördekli Hamam",
+                "aciklama": "Halkın verdiği ad."
+              },
+              {
+                "id": "yikik",
+                "ad": "Yıkık Hamam",
+                "aciklama": "Bir dönem kullanılan ad."
+              },
+              {
+                "id": "yeni",
+                "ad": "Eski Yeni Hamam",
+                "aciklama": "Zamanla değişen ad."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Kurnaları ördek gagasına benzer",
+                "kategoriId": "ordekli"
+              },
+              {
+                "metin": "Büyük kubbesi uzun süre yıkık kaldı",
+                "kategoriId": "yikik"
+              },
+              {
+                "metin": "Nalıncılar Hamamı'ndan sonra yapıldığı için önce 'Yeni' dendi",
+                "kategoriId": "yeni"
+              },
+              {
+                "metin": "Şehirde yeni hamamlar çoğalınca 'Eski' sözü eklendi",
+                "kategoriId": "yeni"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 151-163"
+        },
+        {
+          "id": "bursa-ordekli-hamam-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "Yıldırım Bayezid döneminde yapımına başlandı",
+              "1402: Timur'un işgaliyle inşaat yarım kaldı",
+              "Çelebi Mehmed döneminde tamamlandı",
+              "2004-2008: Kültür merkezi olarak onarıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 151-163"
+        },
+        {
+          "id": "bursa-ordekli-hamam-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Hamamda suyun aktığı taş tekneye ___ denir.",
+            "cevap": "kurna",
+            "secenekler": [
+              "kurna",
+              "kubbe",
+              "kemer",
+              "çeşme"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 151-163"
+        },
+        {
+          "id": "bursa-ordekli-hamam-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Kervan yolu üzerinde büyük bir çifte hamam. Yapımı Timur'un işgali yüzünden yarım kaldı. Bir dönem depo oldu. Bugün bir kültür merkezi.",
+            "secenekler": [
+              "Ördekli Hamam (Eski Yeni Hamam)",
+              "Nasuh Paşa Hamamı",
+              "Muradiye Hamamı (II. Murad Hamamı, Bekçiyan Hamamı)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 151-163"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-fidan-hani",
+      "merak": {
+        "soru": "Bir hanın adı \"Fidan Hanı\". Sence bu ad nereden geliyor?",
+        "secenekler": [
+          "İçinde fidan satıldığı için",
+          "Bahçesinde tek bir fidan olduğu için",
+          "Yaptıranın adı Fidan olduğu için"
+        ],
+        "kopru": "Tahminini not ettik! Bu hanın başka adları da var. Biri İstanbul'daki bir paşadan geliyor."
+      },
+      "baglam": {
+        "baslik": "Üç adlı han",
+        "metin": "Fidan Hanı, Bursa çarşısındaki Uzun Çarşı'da. İçinde fidan satıldığı için bu adı aldı. Bir dönem çevresinde saman satıldığı için \"Saman Pazarı Hanı\" da dendi.\n\nÜçüncü adı \"Mahmud Paşa Hanı\". Mahmud Paşa, Fatih Sultan Mehmed'in sadrazamıydı. İstanbul'da cami, medrese, mektep ve kütüphane yaptırdı. Bu yapıların giderleri için Fidan Hanı'nı ve çevresindeki dükkânları vakfetti.\n\nHan iki katlı. Ortasında geniş bir avlu ve bir mescit var. Eskiden iki avlusu vardı. Bugün handa 105 dükkân var. Avluda çay bahçeleri ve lokantalar bulunuyor.",
+        "kavramlar": [
+          {
+            "ad": "SADRAZAM",
+            "aciklama": "Padişahtan sonra devletin en yetkili yöneticisi.",
+            "ornek": "Mahmud Paşa, Fatih Sultan Mehmed'in sadrazamıydı."
+          },
+          {
+            "ad": "AVLU",
+            "aciklama": "Bir yapının ortasındaki üstü açık alan.",
+            "ornek": "Fidan Hanı'nın avlusunda bir mescit var."
+          },
+          {
+            "ad": "REVAK",
+            "aciklama": "Kemerlerle çevrili, üstü örtülü yol.",
+            "ornek": "Fidan Hanı'nın iki katında da revaklar var."
+          }
+        ],
+        "kapanis": "Bir İstanbul paşası neden Bursa'daki bir hanı vakfeder?"
+      },
+      "perspektif": {
+        "baslik": "Paşanın hanı",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Mahmud Paşa, 1463'te İstanbul'da bir külliye yaptırdı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Külliyenin giderleri için İstanbul, Ankara ve Bursa'daki birçok mülkün gelirini vakfetti. Fidan Hanı da bunlardan biriydi."
+          }
+        ],
+        "soru": "Sence Mahmud Paşa neden farklı şehirlerdeki mülkleri vakfetti?",
+        "secenekler": [
+          {
+            "metin": "Külliyenin giderleri büyüktü; birçok yerden gelir gerekiyordu.",
+            "sonuc": "Doğru! Cami, medrese, mektep ve kütüphanenin giderleri yıllarca sürecekti. Farklı şehirlerdeki han ve dükkânlar bu parayı sağladı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Bursa'da yaşamak istediği için.",
+            "sonuc": "Envanterde böyle bir bilgi yok. Han, İstanbul'daki külliyeye gelir sağlasın diye vakfedildi.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Hanı satıp para kazanmak için.",
+            "sonuc": "Vakfedilen mal satılamaz. Han, gelir getirsin diye vakfa bağlandı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Fidan Hanı, içinde fidan satıldığı için bu adı aldı. Mahmud Paşa onu İstanbul'daki külliyesine gelir sağlasın diye vakfetti. Bugün 105 dükkânı olan canlı bir çarşı.",
+        "rontgenSorusu": "Fidan Hanı'nın geliri nereye gidiyordu?",
+        "rontgenAciklama": "Fidan Hanı ve çevresindeki dükkânlar, Mahmud Paşa'nın İstanbul'daki külliyesine (cami, medrese, mektep, kütüphane) gelir sağlamak için vakfedildi. Gelirin hangi işe ne oranda harcandığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 25-31 (FİDAN HANI)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-fidan-hani-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Hanın adı ile adın sebebini eşleştir.",
+            "kategoriler": [
+              {
+                "id": "fidan",
+                "ad": "Fidan Hanı",
+                "aciklama": "Bugünkü adı."
+              },
+              {
+                "id": "saman",
+                "ad": "Saman Pazarı Hanı",
+                "aciklama": "Bir dönemki adı."
+              },
+              {
+                "id": "pasa",
+                "ad": "Mahmud Paşa Hanı",
+                "aciklama": "Vakfından gelen adı."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "İçinde fidan satılırdı",
+                "kategoriId": "fidan"
+              },
+              {
+                "metin": "Çevresinde bir dönem saman satıldı",
+                "kategoriId": "saman"
+              },
+              {
+                "metin": "Bir sadrazamın külliyesine vakfedildi",
+                "kategoriId": "pasa"
+              },
+              {
+                "metin": "Geliri İstanbul'daki külliyeye gitti",
+                "kategoriId": "pasa"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 25-31"
+        },
+        {
+          "id": "bursa-fidan-hani-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Hanın değişimini eskiden yeniye sırala.",
+            "dogruSira": [
+              "Hanın iki avlusu vardı",
+              "İkinci avluya dükkânlar yapıldı",
+              "Bugün handa 105 dükkân var"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 25-31"
+        },
+        {
+          "id": "bursa-fidan-hani-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Padişahtan sonra devletin en yetkili yöneticisine ___ denir.",
+            "cevap": "sadrazam",
+            "secenekler": [
+              "sadrazam",
+              "kadı",
+              "müderris",
+              "kervancı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 25-31"
+        },
+        {
+          "id": "bursa-fidan-hani-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Uzun Çarşı'da iki katlı bir han. Adını içinde satılan bitkilerden alıyor. Bir sadrazam onu İstanbul'daki külliyesine vakfetti. Bugün 105 dükkânı var.",
+            "secenekler": [
+              "Fidan Hanı",
+              "Koza Hanı",
+              "Pirinç Hanı"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 25-31"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-pirinc-hani",
+      "merak": {
+        "soru": "Bir sultan, yeni bir han yaptırmak için 10.000 akçe ayırdı. Sence bu hanı neden yaptırdı?",
+        "secenekler": [
+          "İstanbul'daki camisine gelir sağlasın diye",
+          "Kendisi orada otursun diye",
+          "Askerlerine kışla olsun diye"
+        ],
+        "kopru": "Tahminini not ettik! Bu hanın eski bir adı da var: İkinci Yeni Han."
+      },
+      "baglam": {
+        "baslik": "İkinci Yeni Han",
+        "metin": "Pirinç Hanı'nı da Sultan II. Bayezid yaptırdı. İstanbul'daki camisine gelir sağlasın istedi. İnşaat için 10.000 akçe ayırdı.\n\nİnşaat 1507'de başladı, 1508'de bitti. Koza Hanı'na \"Birinci Yeni Han\" deniyordu. Bu yüzden bu hana \"İkinci Yeni Han\" dendi. 1600'lerin başından sonra ise \"Pirinç Hanı\" adıyla tanındı.\n\nHan çok büyük ve iki katlı. Üst katta kırk sekiz oda var. Her odanın bir ocağı var. Kışın tüccarlar ısınabiliyordu. Batı tarafı ise ahır olarak kullanılıyordu.",
+        "kavramlar": [
+          {
+            "ad": "AKÇE",
+            "aciklama": "Osmanlı'nın gümüş parası.",
+            "ornek": "Sultan han için 10.000 akçe ayırdı."
+          },
+          {
+            "ad": "OCAK",
+            "aciklama": "Odayı ısıtmak için ateş yakılan yer.",
+            "ornek": "Pirinç Hanı'nın üst katındaki her odada ocak var."
+          },
+          {
+            "ad": "MİMAR",
+            "aciklama": "Bir yapıyı tasarlayan ve yapımını yöneten kişi.",
+            "ornek": "Pirinç Hanı'nın mimarı Yâkub Şah'tır."
+          }
+        ],
+        "kapanis": "Bir hanın adı neden zamanla değişir?"
+      },
+      "perspektif": {
+        "baslik": "Kayıp yazı",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Eskiden hanın kapısında sıvalı bir yazı olduğu söyleniyordu."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Ama son büyük onarımda böyle bir yazının izine rastlanmadı."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Hanın yapım tarihini ise arşiv belgelerinden biliyoruz: 1507-1508."
+          }
+        ],
+        "soru": "Kapıda yazı yoksa hanın tarihini nasıl öğrenebiliriz?",
+        "secenekler": [
+          {
+            "metin": "Eski arşiv belgelerini okuyarak.",
+            "sonuc": "Doğru! Belgeler hanın mimarını ve 1507-1508 yapım tarihini kaydetmiş.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hiç öğrenemeyiz.",
+            "sonuc": "Öğrenebiliriz. Yazı olmasa da arşiv belgeleri tarihi saklamış.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Tahmin ederek bir tarih uydururuz.",
+            "sonuc": "Tarihçiler tarih uydurmaz. Belge ararlar; burada belge bulundu.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Pirinç Hanı'nı Sultan II. Bayezid 1507-1508'de yaptırdı. İstanbul'daki camisine gelir sağlıyordu. Eskiden 'İkinci Yeni Han' denirdi.",
+        "rontgenSorusu": "Pirinç Hanı'nın geliri nereye gidiyordu?",
+        "rontgenAciklama": "Pirinç Hanı, Sultan II. Bayezid'in İstanbul'daki camisine vakıf gelir sağlamak için yapıldı. Hanın inşaatı için 10.000 akçe ayrıldığı biliniyor. Kira gelirinin hangi işe ne oranda harcandığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 43-49 (PİRİNÇ HANI)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-pirinc-hani-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Hangi han? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "koza",
+                "ad": "Koza Hanı",
+                "aciklama": "Birinci Yeni Han."
+              },
+              {
+                "id": "pirinc",
+                "ad": "Pirinç Hanı",
+                "aciklama": "İkinci Yeni Han."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "1491'de açıldı",
+                "kategoriId": "koza"
+              },
+              {
+                "metin": "Avlusunun ortasında köşk mescit var",
+                "kategoriId": "koza"
+              },
+              {
+                "metin": "1508'de tamamlandı",
+                "kategoriId": "pirinc"
+              },
+              {
+                "metin": "Üst katında ocaklı kırk sekiz oda var",
+                "kategoriId": "pirinc"
+              },
+              {
+                "metin": "Mimarı Yâkub Şah bin Sultan Şah",
+                "kategoriId": "pirinc"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 15-24 ve s. 43-49"
+        },
+        {
+          "id": "bursa-pirinc-hani-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1491: Koza Hanı açıldı",
+              "1507: Pirinç Hanı'nın inşaatı başladı",
+              "1508: Pirinç Hanı tamamlandı",
+              "1600'lerin başı: 'Pirinç Hanı' adı kullanılmaya başlandı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 15-24 ve s. 43-49"
+        },
+        {
+          "id": "bursa-pirinc-hani-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Sultan II. Bayezid, Pirinç Hanı'nın inşaatı için 10.000 ___ ayırdı.",
+            "cevap": "akçe",
+            "secenekler": [
+              "akçe",
+              "lira",
+              "altın",
+              "kuruş"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 43-49"
+        },
+        {
+          "id": "bursa-pirinc-hani-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "1507-1508'de yapılan büyük bir han. Eskiden 'İkinci Yeni Han' denirdi. Üst katındaki her odanın bir ocağı var. Geliri İstanbul'daki bir camiye gidiyordu.",
+            "secenekler": [
+              "Pirinç Hanı",
+              "Fidan Hanı",
+              "Issız (Susuz) Han"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 43-49"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-nasuh-pasa-hamami",
+      "merak": {
+        "soru": "Bir hamamın bakımı çok pahalıya geliyordu. Sence vakıf ne yaptı?",
+        "secenekler": [
+          "Hamamın bir bölümünü yıkıp taşlarıyla öbür bölümü onardı.",
+          "Hamamı tamamen kapattı.",
+          "Hamamı başka bir şehre taşıdı."
+        ],
+        "kopru": "Tahminini not ettik! Bu hamam 500 yıldır hâlâ çalışıyor."
+      },
+      "baglam": {
+        "baslik": "Hâlâ çalışan hamam",
+        "metin": "Bu hamamı, Sultan II. Bayezid'in sadrazamı Mesih Mehmed Paşa yaptırdı. Hamamın geliri Gelibolu'daki camisine gidecekti. Hamam 1483'ten önce yapıldı.\n\nHalk ona \"Nasuh Paşa Hamamı\" der. Çünkü vakfı uzun süre Mevlânâ Nasuh Efendi ve oğlu yönetti.\n\nHamam önce iki bölümlüydü. Ama bakımı çok pahalıya geliyordu. 1588'de kadınlar bölümü yıkıldı. Taşlarıyla erkekler bölümü onarıldı. Hamam birçok depremden sonra yeniden onarıldı. Bugün hâlâ çalışıyor.",
+        "kavramlar": [
+          {
+            "ad": "MÜTEVELLİ",
+            "aciklama": "Bir vakfı yöneten kişi.",
+            "ornek": "Mevlânâ Nasuh Efendi uzun süre bu vakfın mütevellisiydi."
+          },
+          {
+            "ad": "HAMAM",
+            "aciklama": "Sıcak su ve buharla yıkanılan yapı.",
+            "ornek": "Nasuh Paşa Hamamı bugün de çalışıyor."
+          },
+          {
+            "ad": "VAKIF MALI",
+            "aciklama": "Bir vakfa bağlanmış, satılamayan mal.",
+            "ornek": "Hamam vakıf malı olduğu için yeniden vakfa döndü."
+          }
+        ],
+        "kapanis": "Vakıf malı olan bir yapıyı birisi kendi malı yapabilir mi?"
+      },
+      "perspektif": {
+        "baslik": "Hamam kimin?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Bir dönem hamamı Ovakim adlı Ermeni bir kadın işletti. Halk onu 'Kalyoncuoğlu Kızı' diye tanırdı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "1914'te Ovakim öldü. Ermeni cemaati hamamın kullanım hakkını devralmak istedi."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Ama bir sorun vardı: Hamam bir vakfın malıydı."
+          }
+        ],
+        "soru": "Sence sonunda ne oldu?",
+        "secenekler": [
+          {
+            "metin": "Hamam yeniden Vakıflar İdaresi'ne döndü.",
+            "sonuc": "Doğru! Mülk vakıf statüsünde olduğu için hamam yeniden Vakıflar İdaresi'ne devredildi.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hamam Ermeni cemaatine verildi.",
+            "sonuc": "Hayır. Vakıf malı olduğu için başkasına geçmedi, vakfa döndü.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Hamam yıkıldı.",
+            "sonuc": "Hayır. Hamam yıkılmadı; bugün de çalışıyor.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Nasuh Paşa Hamamı'nı Mesih Mehmed Paşa, Gelibolu'daki camisine gelir sağlasın diye yaptırdı. Adını vakfın yöneticisinden alıyor. Bugün hâlâ çalışıyor.",
+        "rontgenSorusu": "Bu hamamın geliri nereye gidiyordu?",
+        "rontgenAciklama": "Hamam, Mesih Mehmed Paşa'nın Gelibolu'daki camisine gelir sağlamak için yapıldı. Vakıf malı olduğu için 1914'ten sonra yeniden Vakıflar İdaresi'ne devredildi. Gelirin hangi işe ne oranda harcandığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 143-150 (NASUH PAŞA HAMAMI)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-nasuh-pasa-hamami-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Kim ne yaptı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "mesih",
+                "ad": "Mesih Mehmed Paşa",
+                "aciklama": "Hamamı yaptıran."
+              },
+              {
+                "id": "nasuh",
+                "ad": "Mevlânâ Nasuh Efendi",
+                "aciklama": "Vakfın yöneticisi."
+              },
+              {
+                "id": "ovakim",
+                "ad": "Ovakim",
+                "aciklama": "Hamamı işleten."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Hamamı Gelibolu'daki camisi için yaptırdı",
+                "kategoriId": "mesih"
+              },
+              {
+                "metin": "II. Bayezid'in sadrazamıydı",
+                "kategoriId": "mesih"
+              },
+              {
+                "metin": "Uzun süre vakfın mütevellisi oldu",
+                "kategoriId": "nasuh"
+              },
+              {
+                "metin": "Hamama adını verdi",
+                "kategoriId": "nasuh"
+              },
+              {
+                "metin": "Halk onu 'Kalyoncuoğlu Kızı' diye tanırdı",
+                "kategoriId": "ovakim"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 143-150"
+        },
+        {
+          "id": "bursa-nasuh-pasa-hamami-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1483'ten önce: Hamam yapıldı",
+              "1588: Kadınlar bölümü yıkılıp erkekler bölümü onarıldı",
+              "1855: Depremden sonra hamam yeniden onarıldı",
+              "1914: Hamam yeniden Vakıflar İdaresi'ne döndü"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 143-150"
+        },
+        {
+          "id": "bursa-nasuh-pasa-hamami-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Bir vakfı yöneten kişiye ___ denir.",
+            "cevap": "mütevelli",
+            "secenekler": [
+              "mütevelli",
+              "müezzin",
+              "sadrazam",
+              "mimar"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 143-150"
+        },
+        {
+          "id": "bursa-nasuh-pasa-hamami-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bursa'da hâlâ çalışan bir hamam. Geliri Gelibolu'daki bir camiye gidiyordu. Adını vakfın yöneticisinden alıyor. Bakımı pahalı olunca kadınlar bölümü yıkıldı.",
+            "secenekler": [
+              "Nasuh Paşa Hamamı",
+              "Ördekli Hamam (Eski Yeni Hamam)",
+              "Demirtaş (Timurtaş) Hamamı"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 143-150"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-issiz-susuz-han",
+      "merak": {
+        "soru": "Göl kıyısında, kervan yolu üzerinde bir han var. Adı \"Issız Han\". Sence yolcular burada ne yapardı?",
+        "secenekler": [
+          "Yolculuk arasında dinlenip geceyi geçirirdi.",
+          "Gölde balık tutmayı öğrenirdi.",
+          "Askerlik eğitimi alırdı."
+        ],
+        "kopru": "Tahminini not ettik! Bu hanı yaptıran kişinin vakfı çok büyüktü."
+      },
+      "baglam": {
+        "baslik": "Göl kıyısındaki kervansaray",
+        "metin": "Issız Han, Karacabey'de, Uluabat Gölü'nün kıyısında. Eski Bursa-Balıkesir kervan yolunun üzerinde duruyor. Yolcular ve kervanlar burada dinlenirdi.\n\nHanı 1394'te İne Bey yaptırdı. İne Bey, Yıldırım Bayezid'in vezirlerinden birinin oğluydu. Balıkesir'de görev yaptı, savaşlarda kahramanlık gösterdi.\n\nİne Bey'in vakfı çok büyüktü. Balıkesir'de mescit, zaviye ve imaret yaptırdı. Bursa'da bir medrese ve bir hamam yaptırdı. Bunların giderleri için Ankara, Bergama ve Balıkesir'deki hamamları, köyleri ve arazileri vakfetti. Issız Han da bu vakfın bir parçasıydı.",
+        "kavramlar": [
+          {
+            "ad": "KERVANSARAY",
+            "aciklama": "Yol üstünde kervanların konakladığı büyük han.",
+            "ornek": "Issız Han, Bursa-Balıkesir yolunda bir kervansaray."
+          },
+          {
+            "ad": "KERVAN",
+            "aciklama": "Birlikte yolculuk eden tüccar ve hayvan topluluğu.",
+            "ornek": "Kervanlar Issız Han'da dinlenirdi."
+          },
+          {
+            "ad": "ZAVİYE",
+            "aciklama": "Yolculara ve yoksullara yemek ve yer verilen küçük yapı.",
+            "ornek": "İne Bey Balıkesir'de bir zaviye yaptırdı."
+          }
+        ],
+        "kapanis": "Bir kişinin vakfı birçok şehre nasıl yayılır?"
+      },
+      "perspektif": {
+        "baslik": "Büyük bir vakıf",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "İne Bey'in vakfında beş şehirde hamamlar, köyler ve araziler vardı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Vakfiyesinin 1402 tarihli bir kopyası bugün Vakıflar Genel Müdürlüğü Arşivi'nde duruyor."
+          }
+        ],
+        "soru": "Sence bu vakfiye neden bugün de önemli?",
+        "secenekler": [
+          {
+            "metin": "Vakfın neleri kapsadığını belgeyle gösterdiği için.",
+            "sonuc": "Doğru! Vakfiye sayesinde İne Bey'in hangi yapıları, hangi gelirle yaşattığını biliyoruz.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Eski bir kâğıt olduğu için, başka değeri yok.",
+            "sonuc": "Değeri büyük. Vakfiye, vakfın kuralları ve malları hakkında en önemli belgedir.",
+            "dogruMu": false
+          },
+          {
+            "metin": "İçinde hanın fotoğrafı olduğu için.",
+            "sonuc": "1402'de fotoğraf yoktu. Vakfiye yazılı bir belgedir.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Issız Han'ı İne Bey 1394'te Uluabat Gölü kıyısına, kervan yolu üzerine yaptırdı. Han, birçok şehre yayılan büyük bir vakfın parçasıydı. Bugün bakımlı durumda.",
+        "rontgenSorusu": "İne Bey'in vakfı nelerle yaşıyordu?",
+        "rontgenAciklama": "İne Bey'in vakfının gelirleri Ankara, Bergama ve Balıkesir'deki hamamlardan, köylerden ve arazilerden geliyordu. Issız Han da bu vakfa dahildi. Vakfiyenin 1402 tarihli bir sureti Vakıflar Genel Müdürlüğü Arşivi'nde kayıtlı. Gelirin hangi işe ne oranda harcandığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 223-227 (ISSIZ (SUSUZ) HAN)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-issiz-susuz-han-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "İne Bey'in vakfında: Yaptırdığı yapı mı, gelir getiren mülk mü? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "yapi",
+                "ad": "Hizmet veren yapı",
+                "aciklama": "İnsanlara hizmet etmek için yapıldı."
+              },
+              {
+                "id": "gelir",
+                "ad": "Gelir getiren mülk",
+                "aciklama": "Yapıların giderini karşıladı."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Balıkesir'deki mescit",
+                "kategoriId": "yapi"
+              },
+              {
+                "metin": "Balıkesir'deki imaret",
+                "kategoriId": "yapi"
+              },
+              {
+                "metin": "Bursa'daki medrese",
+                "kategoriId": "yapi"
+              },
+              {
+                "metin": "Ankara'daki beş hamam",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Balıkesir'deki Kilisecik Köyü",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Karasu üzerindeki değirmen",
+                "kategoriId": "gelir"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 223-227"
+        },
+        {
+          "id": "bursa-issiz-susuz-han-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1394: İne Bey hanı yaptırdı",
+              "1402: İne Bey'in vakfiyesi yazıldı",
+              "Han restore edilip turistik tesis olarak işletildi"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 223-227"
+        },
+        {
+          "id": "bursa-issiz-susuz-han-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Issız Han, Karacabey'de ___ Gölü'nün kıyısında duruyor.",
+            "cevap": "Uluabat",
+            "secenekler": [
+              "Uluabat",
+              "Van",
+              "Tuz",
+              "İznik"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 223-227"
+        },
+        {
+          "id": "bursa-issiz-susuz-han-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Göl kıyısında, eski Bursa-Balıkesir kervan yolunda bir kervansaray. 1394'te İne Bey yaptırdı. Bir dönem turistik tesis olarak işletildi.",
+            "secenekler": [
+              "Issız (Susuz) Han",
+              "Koza Hanı",
+              "Pirinç Hanı"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 223-227"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-muradiye-hamami-ii-murad-hamami-bekciyan-hamami",
+      "merak": {
+        "soru": "Bir hamam neden yapıların ortasında değil de en ucunda, dört yolun birleştiği yerde olur?",
+        "secenekler": [
+          "Yoldan geçenler kolayca girsin diye.",
+          "Suya en yakın yer orası olduğu için.",
+          "Diğer yapılardan uzak dursun diye."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi hamamın içine bakalım."
+      },
+      "baglam": {
+        "baslik": "Külliyenin hamamı",
+        "metin": "Muradiye Hamamı'nı Sultan II. Murad yaptırdı. Kayıtlara göre yapım yılı 1426. Hamam, Muradiye Külliyesi'nin bir parçası. Külliyede cami, medrese, imaret, çeşme ve türbe de var.\n\nHamam, külliyenin en batısında, dört yolun birleştiği yerde. İçinde büyük bir kubbe var. Bir de sıcak bir bölüm ve iki küçük yıkanma odası.\n\n1986'ya kadar burada metal dökülüyordu. Sonra onarıldı ve eski hâline döndü. Bugün hamam olarak çalışıp çalışmadığı bilinmiyor.",
+        "kavramlar": [
+          {
+            "ad": "KÜLLİYE",
+            "aciklama": "Yan yana kurulan ve birbirine bağlı yapılar.",
+            "ornek": "Muradiye Külliyesi'nde cami, medrese, hamam, imaret, çeşme ve türbe var."
+          },
+          {
+            "ad": "HALVET",
+            "aciklama": "Hamamda yıkanılan küçük, kapalı oda.",
+            "ornek": "Muradiye Hamamı'nda iki halvet var."
+          },
+          {
+            "ad": "VAKFİYE",
+            "aciklama": "Bir vakfın kurallarını yazan belge.",
+            "ornek": "Bu hamama ait ayrı bir vakfiye kuralı bulunamadı."
+          }
+        ],
+        "kapanis": "Bir yapı ayakta durabilir. Ama her bilgisi kayıtlarda olmayabilir. Bu hamamın kayıtlarında da bir boşluk var."
+      },
+      "perspektif": {
+        "baslik": "Kayıttaki boşluk",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1426. Hamam, külliyenin en ucunda, dört yolun birleştiği yerde yükseldi."
+          },
+          {
+            "kim": "SULTAN II. MURAD",
+            "metin": "Cami, medrese, hamam, imaret, çeşme ve türbe. Hepsi bir arada. Hamam da insanların temizlenmesi için."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Yüzyıllar sonra tarihçiler bir şey fark etti. Hamama kimin parasız, kimin parayla girdiğini söyleyen bir kural yok."
+          }
+        ],
+        "soru": "Bu bilgi eksik. Hamamın kimlik kartına ne yazarsın?",
+        "secenekler": [
+          {
+            "metin": "\"Hamam ücretsizdi\" yazarım. Yapılar zaten iyilik için kurulmuş.",
+            "sonuc": "Bunu gösteren bir belge yok. Külliye iyilik için kurulmuş olabilir. Ama bu, hamamın ücretsiz olduğunu kanıtlamaz.",
+            "dogruMu": false
+          },
+          {
+            "metin": "\"Bu bilgi belgelerde bulunamadı\" yazarım.",
+            "sonuc": "Doğru! Emin olmadığımız bilgiyi kesin gibi yazmayız. Bu yüzden Vakıf Röntgeni'nde bu hamam için oran gösterilmez.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Kafamdan bir sayı uydurur, kesinmiş gibi yazarım.",
+            "sonuc": "Uydurulmuş bir sayı yanlış bilgi öğretir. Belgesi olmayan bilgi kesin gibi yazılmaz.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Muradiye Hamamı'nı Sultan II. Murad yaptırdı. Külliyenin en ucunda, dört yolun birleştiği yerde. Büyük bir kubbesi ve iki küçük yıkanma odası var. 1986'ya kadar metal dökülen bir yer oldu. Sonra onarıldı.",
+        "rontgenSorusu": "Bu hamamın geliri nereye gidiyordu?",
+        "rontgenAciklama": "Bu hamamın vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden bu ekranda oran gösterilmez. Hamamın kendine ait vakfiye şartı, hizmet koşulu ve kimlerin ücretsiz yararlandığı hiçbir kaynakta bulunamamıştır; Muradiye vakfiyesinin arşiv numarası da tespit edilememiştir. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198 · Kültür Envanteri, 'Muradiye Hamamı' (KE No 10546)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-muradiye-hamami-ii-murad-hamami-bekciyan-hamami-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Hamamın içinde mi, külliyenin başka bir yapısı mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "hamam",
+                "ad": "Hamamın içindeki yerler",
+                "aciklama": "Hamamın kendi bölümleri."
+              },
+              {
+                "id": "kulliye",
+                "ad": "Külliyenin diğer yapıları",
+                "aciklama": "Hamamın dışındaki yapılar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Kubbeli giriş bölümü",
+                "kategoriId": "hamam"
+              },
+              {
+                "metin": "Sıcak bölüm",
+                "kategoriId": "hamam"
+              },
+              {
+                "metin": "Küçük yıkanma odaları",
+                "kategoriId": "hamam"
+              },
+              {
+                "metin": "Cami",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "Medrese",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "Çeşme",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "Sultanın türbesi",
+                "kategoriId": "kulliye"
+              }
+            ]
+          },
+          "kaynak": "Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198; Özgenur Şeker, 'Bursa Muradiye Külliyesi, Hanım Sultan Türbeleri Kalemişi Tezyinatı', NEÜ Sosyal Bilimler Enstitüsü, YL Tezi, Konya 2023, s. 26"
+        },
+        {
+          "id": "bursa-muradiye-hamami-ii-murad-hamami-bekciyan-hamami-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye doğru sırala.",
+            "dogruSira": [
+              "1421: Sultan II. Murad padişah oldu",
+              "1426: Hamam yapıldı",
+              "1986'ya kadar: Hamamda metal döküldü",
+              "1986'dan sonra: Hamam onarıldı"
+            ]
+          },
+          "kaynak": "Kültür Envanteri, 'Muradiye Hamamı' (KE No 10546); Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198"
+        },
+        {
+          "id": "bursa-muradiye-hamami-ii-murad-hamami-bekciyan-hamami-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Hamamda yıkanılan küçük, kapalı odalara ___ denir.",
+            "cevap": "halvet",
+            "secenekler": [
+              "halvet",
+              "eyvan",
+              "şadırvan",
+              "kasnak"
+            ]
+          },
+          "kaynak": "Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198"
+        },
+        {
+          "id": "bursa-muradiye-hamami-ii-murad-hamami-bekciyan-hamami-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Külliyenin en ucunda, dört yolun birleştiği yerde. Girişinde on metre genişliğinde bir kubbe var. İçinde iki küçük yıkanma odası var. 1986'ya kadar burada metal döküldü.",
+            "secenekler": [
+              "Muradiye Hamamı (II. Murad Hamamı, Bekçiyan Hamamı)",
+              "Muradiye Medresesi Çeşmesi",
+              "Yeşil Medrese (Sultaniye Medresesi)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Kültür Envanteri, 'Muradiye Hamamı' (KE No 10546); Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-demirtas-timurtas-hamami",
+      "merak": {
+        "soru": "1552'de bakımsız kalmış bir hamamın mermerleri sökülüp satıldı. Sence bu mermerler nereye gitti?",
+        "secenekler": [
+          "Aynı şehirde yapılan yeni bir hamama.",
+          "Sarayda yeni bir odaya.",
+          "Başka bir şehirdeki camiye."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi bu hamamın başından geçenlere bakalım. Göreceksin, bir binanın taşları bile yer değiştirebilir."
+      },
+      "baglam": {
+        "baslik": "Taşları başka binaya giden hamam",
+        "metin": "Demirtaş Hamamı bir mahalle hamamı. Hamamdan gelen para, yakındaki Demirtaş Camii'nin masraflarına gidiyordu. Hamamı kimin yaptırdığı tartışmalı.\n\nHamam bir dönem yıllarca boş kaldı ve yıkılmaya yüz tuttu. 1552'de mermerleri ve süslü taşları söküldü. Bunlar satıldı. Bursa'da yapılan yeni bir kaplıcada kullanıldı.\n\nAma hikâye bitmedi! Hubbâ Hatun adında bir kadın hamamı satın aldı. Onu tamir ettirdi. Hamam yeniden açıldı.",
+        "kavramlar": [
+          {
+            "ad": "HAMAM",
+            "aciklama": "İnsanların yıkandığı yapı. Mahalle hamamları halkın temizlenmesi içindi.",
+            "ornek": "Demirtaş Hamamı'nın parası, yakındaki caminin masraflarına gidiyordu."
+          },
+          {
+            "ad": "VAKIF",
+            "aciklama": "Bir malın gelirini bir iyilik işine ayırmak.",
+            "ornek": "Hamam, Demirtaş Camii için vakfedildi."
+          },
+          {
+            "ad": "HALVET",
+            "aciklama": "Hamamda yıkanılan küçük, kapalı oda.",
+            "ornek": "1552'de hamamın halvet taşları da satıldı."
+          }
+        ],
+        "kapanis": "Bu hamam yıkılmadı ama taşları başka bir yapıya gitti. Bakımsız kalan bir vakıf yapısıyla ne yapılır?"
+      },
+      "perspektif": {
+        "baslik": "Hamamın mermerleri",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1552. Demirtaş Hamamı yıllardır boş. İçi bakımsız."
+          },
+          {
+            "kim": "VAKIF GÖREVLİSİ",
+            "metin": "Mermerler, süslü taşlar hâlâ duruyor. Yeni bir kaplıca yapan biri bunları almak istiyor."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Karar vakfın. Taşlar satılsın mı, hamam olduğu gibi mi kalsın?"
+          }
+        ],
+        "soru": "Bakımsız kalan bu hamam için ne yapardın?",
+        "secenekler": [
+          {
+            "metin": "Mermerleri satardım. Yeni yapılan kaplıcada kullanılırdı.",
+            "sonuc": "Gerçekte de böyle oldu! 1552'de mermerler ve süslü taşlar satıldı. Bursa'daki Yeni Kaplıca'da kullanıldı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hamamı olduğu gibi bırakırdım. Kimse dokunmazdı.",
+            "sonuc": "Hamam kaderine terk edilmedi. Daha sonra Hubbâ Hatun onu satın alıp tamir ettirdi. Hamam yeniden açıldı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Hamamı yıktırıp yerine cami yaptırırdım.",
+            "sonuc": "Böyle bir şey olmadı. Hamam ayakta kaldı. Bugün de hamam olarak kullanılıyor.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Demirtaş Hamamı bir mahalle hamamı. Parası yakındaki camiye gidiyordu. 1552'de mermerleri satıldı ve yeni bir kaplıcada kullanıldı. Sonra Hubbâ Hatun onu tamir ettirdi. Kayıtlara göre bugün de hamam olarak kullanılıyor.",
+        "rontgenSorusu": "Bu hamamın geliri nereye gidiyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu ekranda oran göstermez. Belgelenen tek şey gelirin nereye ayrıldığıdır: hamam, Demirtaş Paşa'nın oğlu tarafından babası adına Demirtaş Camii'ne vakfedilmiştir, yani geliri caminin masraflarına tahsis edilmiştir. Hamamın vakfına dair bağımsız bir akademik kaynak bulunamamıştır ve vakfiye bilgisi tek kaynaklıdır. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Demirtaş (Timurtaş) Hamamı', Envanter No A21 · Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, 'DEMİRTAŞ HAMAMI' maddesi, Bursa Büyükşehir Belediyesi, 2. basım 2010 · Bursa Şer'iyye Sicilleri BS. 25/332 ve BS. 25/345 (1552 tarihli fetva ve mermer satış kaydı)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-demirtas-timurtas-hamami-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bu hamamın bir parçası mı, başka bir yapı mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "hamam",
+                "ad": "Bu hamamın parçaları",
+                "aciklama": "Demirtaş Hamamı'nın içindeki şeyler."
+              },
+              {
+                "id": "baska",
+                "ad": "Başka yapılar",
+                "aciklama": "Hamamın dışındaki yapılar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Yıkanma odalarının taşları",
+                "kategoriId": "hamam"
+              },
+              {
+                "metin": "Soyunma yerinin taşları",
+                "kategoriId": "hamam"
+              },
+              {
+                "metin": "Su teknesi (şadırvan çanağı)",
+                "kategoriId": "hamam"
+              },
+              {
+                "metin": "Hamamın mermerleri",
+                "kategoriId": "hamam"
+              },
+              {
+                "metin": "Demirtaş Camii",
+                "kategoriId": "baska"
+              },
+              {
+                "metin": "Yeni Kaplıca",
+                "kategoriId": "baska"
+              }
+            ]
+          },
+          "kaynak": "Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, 'DEMİRTAŞ HAMAMI' maddesi, Bursa Büyükşehir Belediyesi, 2. basım 2010; Bursa Şer'iyye Sicilleri BS. 25/332 ve BS. 25/345"
+        },
+        {
+          "id": "bursa-demirtas-timurtas-hamami-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Hamamın başından geçenleri eskiden yeniye doğru sırala.",
+            "dogruSira": [
+              "Hamam yapıldı (yılı tartışmalı)",
+              "Yıllarca boş kalıp bakımsızlaştı",
+              "1552: Mermerleri satıldı",
+              "Hubbâ Hatun hamamı tamir ettirdi",
+              "1900'lerin ortası: Belediye depo olarak kullandı",
+              "1987 ve 2010: Onarıldı"
+            ]
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Demirtaş (Timurtaş) Hamamı', Envanter No A21; Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, Bursa Büyükşehir Belediyesi, 2. basım 2010"
+        },
+        {
+          "id": "bursa-demirtas-timurtas-hamami-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "1552'de hamamın mermerleri satıldı. Bu taşlar ___ yapımında kullanıldı.",
+            "cevap": "Yeni Kaplıca",
+            "secenekler": [
+              "Yeni Kaplıca",
+              "Demirtaş (Balıkpazarı) Camii",
+              "Irgandı Köprüsü",
+              "Veled-i Yaniç Mescidi"
+            ]
+          },
+          "kaynak": "Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, 'DEMİRTAŞ HAMAMI' maddesi (BŞS 25/332, 345), Bursa Büyükşehir Belediyesi, 2. basım 2010"
+        },
+        {
+          "id": "bursa-demirtas-timurtas-hamami-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bir mahallede insanların yıkandığı yapı. Parası yakındaki bir camiye gidiyordu. 1552'de mermerleri sökülüp satıldı. Bir dönem depo olarak da kullanıldı.",
+            "secenekler": [
+              "Gazi Hüdavendigar (Kaplıca) İmareti",
+              "Beşir Ağa Çeşmesi",
+              "Demirtaş (Timurtaş) Hamamı"
+            ],
+            "dogruIndex": 2
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Demirtaş (Timurtaş) Hamamı', Envanter No A21; Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, Bursa Büyükşehir Belediyesi, 2. basım 2010"
+        }
+      ]
+    }
+  ]
+}

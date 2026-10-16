@@ -1,0 +1,518 @@
+/* ===========================================================================
+   Harita — filtreler ve zengin eser listesi
+   Bilgi Notu: "eserlerin harita üzerinde gösterilmesi ve kullanıcıların şehir
+   ya da eser türüne göre filtreleme yapabilmesi."
+   WCAG 2.2 AA notları:
+    - Dokunma hedefleri en az 44x44 px (SC 2.5.8): seçim kutuları, temizleme
+      düğmesi ve katlanmış tarihçe başlıkları.
+    - Renk tek başına anlam taşımaz; her rozet metinle birlikte gelir.
+    - Tüm renkler jetonlardan gelir; koyu ve yüksek kontrast temalar uyar.
+   =========================================================================== */
+
+/* --- Filtreler ------------------------------------------------------------ */
+
+.harita-filtreler {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+  padding: var(--b-4);
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-md);
+}
+
+.harita-filtreler__baslik {
+  margin: 0;
+  font-size: var(--yazi-lg);
+}
+
+.harita-filtreler__aciklama {
+  margin: 0;
+  font-size: var(--yazi-xs);
+  line-height: 1.5;
+}
+
+.harita-filtreler__izgara {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--b-3);
+  align-items: end;
+  margin-top: var(--b-2);
+}
+
+.harita-filtre {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-1);
+  min-width: 0;
+}
+
+/* Görünür etiket: placeholder etiket yerine geçmez (SC 3.3.2). */
+.harita-filtre__etiket {
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+}
+
+.harita-filtre__secim {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--b-2) var(--b-3);
+  font: inherit;
+  color: var(--metin);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-sm);
+}
+
+.harita-filtre__eylem {
+  display: flex;
+  align-items: flex-end;
+}
+
+.harita-filtre__temizle {
+  width: 100%;
+}
+
+.harita-filtreler__durum {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--metin-ikincil);
+}
+
+/* --- Eser satırı ---------------------------------------------------------- */
+
+.harita-eser {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+}
+
+.harita-eser__baslik-satiri {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.harita-eser__kimlik {
+  min-width: 0;
+}
+
+.harita-eser__ad {
+  font-size: var(--yazi-lg);
+}
+
+/* İngilizce ad — küçük punto, Türkçe adın altında. */
+.harita-eser__ad-en {
+  display: block;
+  font-size: var(--yazi-sm);
+  font-weight: 400;
+  color: var(--metin-soluk);
+}
+
+.harita-eser__kunye {
+  margin: var(--b-1) 0 0;
+  font-size: var(--yazi-sm);
+}
+
+.harita-eser__tarihce {
+  margin: var(--b-1) 0 0;
+  font-size: var(--yazi-sm);
+  line-height: var(--satir-govde);
+  color: var(--metin-ikincil);
+}
+
+/* Katlanmış tarihçe: başlık 44 px dokunma hedefi ve klavye odağı korur. */
+.harita-eser__katlanmis > summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--vurgu);
+  cursor: pointer;
+}
+
+.harita-eser__bolum {
+  margin-top: var(--b-2);
+}
+
+.harita-eser__alt-baslik {
+  margin: 0 0 var(--b-1);
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--metin-soluk);
+}
+
+.harita-eser__uyari {
+  margin: 0;
+  font-size: var(--yazi-sm);
+}
+
+/* --- Fotoğraf galerisi ---------------------------------------------------- */
+
+.harita-eser__fotograflar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.harita-eser__foto-kare {
+  width: 132px;
+}
+
+.harita-eser__foto {
+  width: 100%;
+  height: 88px;
+  object-fit: cover;
+  background: var(--zemin-vurgu);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-sm);
+}
+
+.harita-eser__foto-kunye {
+  display: block;
+  margin-top: var(--b-1);
+  font-size: var(--yazi-xs);
+  color: var(--metin-soluk);
+  line-height: 1.4;
+}
+
+/* --- Sergi rozetleri ------------------------------------------------------ */
+
+.harita-eser__sergiler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rozet--sergi {
+  background: var(--sicak-yumusak);
+  border: 1px solid var(--sicak);
+  color: var(--sicak);
+}
+
+.harita-eser__sergi-ad {
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .harita-eser__foto-kare {
+    width: calc(50% - var(--b-2));
+  }
+}
+
+/* ===========================================================================
+   Bölge bölge harita — seviye göstergesi, balonlar, fotoğraflı işaretler
+   Seviye, kap üzerindeki data-seviye ile CSS'ten yönetilir (il | ilce | eser).
+   =========================================================================== */
+.harita-kap--bolge {
+  height: min(68vh, 560px);
+  border-radius: var(--kose-lg);
+  overflow: hidden;
+  border: 2px solid var(--cizgi);
+}
+
+.harita-seviye {
+  display: flex;
+  gap: var(--b-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.harita-seviye__adim {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-1);
+  padding: var(--b-1) var(--b-3) var(--b-1) var(--b-1);
+  border-radius: var(--kose-tam);
+  border: 2px solid var(--cizgi);
+  background: var(--zemin-kart);
+  font-weight: 800;
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+  transition: background var(--gecis-normal), border-color var(--gecis-normal), transform var(--gecis-normal);
+}
+.harita-seviye__no {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--zemin-vurgu);
+  font-size: var(--yazi-xs);
+}
+.harita-seviye__adim--aktif {
+  border-color: var(--vurgu);
+  background: var(--vurgu-yumusak);
+  color: var(--vurgu-koyu);
+  transform: translateY(-2px);
+}
+.harita-seviye__adim--aktif .harita-seviye__no {
+  background: var(--vurgu);
+  color: var(--vurgu-metin);
+}
+.harita-kaynak {
+  font-size: var(--yazi-xs);
+  margin: 0;
+}
+
+/* --- Ortak işaretçi ----------------------------------------------------- */
+.hm {
+  font: inherit;
+  font-family: var(--yazi-aile);
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  animation: hm-belir 420ms var(--gecikme, 0ms) cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+/* ÖNEMLİ: MapLibre işaretçiyi inline `transform` ile konumlar. Animasyon ve
+   hover burada `transform` KULLANMAZ; bağımsız `scale`/`translate` özellikleri
+   transform ile birleşir, konumu ezmez. */
+@keyframes hm-belir {
+  from {
+    scale: 0.2;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+.hm-gizli {
+  visibility: hidden;
+}
+
+/* Seviyeye göre görünürlük */
+.harita-kap--bolge[data-seviye='il'] .hm-ilce,
+.harita-kap--bolge[data-seviye='il'] .hm-eser,
+.harita-kap--bolge[data-seviye='il'] .hm-kume,
+.harita-kap--bolge[data-seviye='ilce'] .hm-il,
+.harita-kap--bolge[data-seviye='ilce'] .hm-eser,
+.harita-kap--bolge[data-seviye='ilce'] .hm-kume,
+.harita-kap--bolge[data-seviye='eser'] .hm-il,
+.harita-kap--bolge[data-seviye='eser'] .hm-ilce {
+  display: none;
+}
+
+/* --- İl balonu ---------------------------------------------------------- */
+.hm-il {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-width: 96px;
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-md);
+  background: var(--zemin-kart);
+  color: var(--metin);
+  border: 2px solid var(--vurgu);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--vurgu-golge);
+}
+.hm-il:hover {
+  translate: 0 -2px;
+}
+.hm-il__ad {
+  font-weight: 900;
+  font-size: var(--yazi-md);
+  color: var(--vurgu-koyu);
+}
+.hm-il__sayi {
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+}
+.hm-il__ders {
+  font-size: var(--yazi-xs);
+  font-weight: 900;
+  padding: 0 var(--b-2);
+  border-radius: var(--kose-tam);
+  background: var(--odul);
+  color: var(--odul-metin);
+}
+
+/* --- İlçe balonu -------------------------------------------------------- */
+.hm-ilce {
+  display: grid;
+  place-items: center;
+  width: var(--boyut, 36px);
+  height: var(--boyut, 36px);
+  border-radius: 50%;
+  background: var(--vurgu);
+  color: var(--vurgu-metin);
+  box-shadow: 0 3px 0 var(--vurgu-golge);
+  position: relative;
+}
+.hm-ilce--dersli {
+  background: var(--ikincil);
+  box-shadow: 0 3px 0 var(--ikincil-golge);
+}
+.hm-ilce__sayi {
+  font-weight: 900;
+  font-size: var(--yazi-sm);
+}
+.hm-ilce__ad {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 0 var(--b-2);
+  border-radius: var(--kose-tam);
+  background: var(--zemin-kart);
+  color: var(--metin);
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  box-shadow: var(--golge);
+}
+.hm-ilce:hover {
+  filter: brightness(1.1);
+}
+
+/* --- Eser işareti (fotoğraflı) ----------------------------------------- */
+.hm-eser {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--zemin-kart);
+  border: 3px solid var(--vurgu);
+  box-shadow: 0 3px 0 var(--vurgu-golge);
+}
+.hm-eser__resim {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+.hm-eser__harf {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-weight: 900;
+  color: var(--vurgu-koyu);
+}
+.hm-eser--ogrenildi {
+  border-color: var(--odul-golge);
+  box-shadow: 0 3px 0 var(--odul-golge);
+}
+.hm-eser__rozet {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--odul);
+  color: var(--odul-metin);
+  font-size: 12px;
+  font-weight: 900;
+}
+.hm-eser--yaklasik {
+  border-style: dashed;
+}
+.hm-eser--siradaki::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 3px solid var(--ikincil);
+  animation: hm-nabiz 1.6s ease-out infinite;
+}
+@keyframes hm-nabiz {
+  from {
+    transform: scale(0.85);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+.hm-eser:hover {
+  scale: 1.12;
+}
+
+/* --- Grup balonu -------------------------------------------------------- */
+.hm-kume {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--odul);
+  color: var(--odul-metin);
+  border: 3px solid var(--zemin-kart);
+  font-weight: 900;
+  box-shadow: 0 3px 0 var(--odul-golge);
+}
+
+/* --- Popup ---------------------------------------------------------------- */
+.hm-popup-kap .maplibregl-popup-content {
+  padding: var(--b-3);
+  border-radius: var(--kose-md);
+  background: var(--zemin-kart);
+  color: var(--metin);
+  box-shadow: var(--golge-buyuk);
+}
+.hm-popup-kap .maplibregl-popup-close-button {
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  color: var(--metin);
+}
+.hm-popup {
+  display: grid;
+  gap: var(--b-1);
+  font-family: var(--yazi-aile);
+}
+.hm-popup__resim {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--kose-sm);
+}
+.hm-popup__ad {
+  font-size: var(--yazi-md);
+  padding-right: 24px;
+}
+.hm-popup__alt,
+.hm-popup__not {
+  font-size: var(--yazi-xs);
+  color: var(--metin-soluk);
+}
+.hm-popup__durum {
+  justify-self: start;
+  padding: 0 var(--b-2);
+  border-radius: var(--kose-tam);
+  background: var(--ikincil-yumusak);
+  color: var(--ikincil);
+  font-size: var(--yazi-xs);
+  font-weight: 900;
+}
+.hm-popup__durum--ogrenildi {
+  background: var(--odul-yumusak);
+  color: var(--altin-metin);
+}
+.hm-popup__dugme {
+  margin-top: var(--b-1);
+  min-height: 44px;
+  font-size: var(--yazi-sm);
+}
+.hm-popup__bag {
+  font-weight: 800;
+  font-size: var(--yazi-sm);
+  color: var(--ikincil);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}

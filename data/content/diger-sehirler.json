@@ -1,0 +1,1991 @@
+{
+  "grup": "diger-sehirler",
+  "dersler": [
+    {
+      "eserId": "karatay-medresesi",
+      "merak": {
+        "soru": "Konya'da 1251'de bir medrese açıldı. İçinde dersler yapılıyor, mumlar yanıyor, yerlere hasır seriliyor. Sence bunların parası nereden geliyordu?",
+        "secenekler": [
+          "Öğrencilerin getirdiği paralardan",
+          "Yaptıran kişinin bağışladığı dükkân ve tarlaların gelirinden",
+          "Her yıl şehirde toplanan yardımlardan"
+        ],
+        "kopru": "Tahminini not ettik! Cevap, vakfiye denen uzun bir belgede saklı. Hadi okuyalım."
+      },
+      "baglam": {
+        "baslik": "Bir emîrin kurduğu okul",
+        "metin": "1251'de Konya'da Celâleddin Karatay bir medrese yaptırdı. Karatay, Selçuklu Devleti'nin önemli bir yöneticisiydi. Medrese, eskiden okul demekti.\n\nKaratay sadece binayı yapmakla kalmadı. İki yıl sonra bir vakfiye yazdırdı. Vakfiyede paranın hangi sırayla harcanacağı yazıyordu. Önce gelir getiren dükkân ve tarlalar onarılacaktı. Sonra medrese onarılacak; hasır, yağ, halı ve mum alınacaktı.\n\nArtan para ise on parçaya bölünecekti. Bu parçalar medresede çalışanlara verilecekti: hocaya, yardımcısına, kapıcıya, temizlikçiye... Düzenli derse gelen öğrencilere de yardım yapılacaktı.",
+        "kavramlar": [
+          {
+            "ad": "MEDRESE",
+            "aciklama": "Eskiden ders verilen okul. Karatay Medresesi'nde bir hoca ve onun yardımcısı ders verirdi.",
+            "ornek": "Karatay Medresesi bugün bir çini müzesi."
+          },
+          {
+            "ad": "VAKFİYE",
+            "aciklama": "Bir vakfın kurallarını yazan belge. Paranın nereye harcanacağını ve kimlerin çalışacağını söyler.",
+            "ornek": "Bu vakfiye, medreseye mum ve hasır alınmasını bile yazmıştı."
+          },
+          {
+            "ad": "MÜTEVELLİ",
+            "aciklama": "Vakfı yöneten ve vakfiyedeki kurallara uyulmasını sağlayan kişi.",
+            "ornek": "Karatay vakfında mütevelli, artan paranın on parçasından birini alıyordu."
+          }
+        ],
+        "kapanis": "Demek ki bir medrese, arkasındaki vakıf olmadan ayakta kalamaz. Peki artan para kime verilmeli? Kâtiple birlikte sen karar ver."
+      },
+      "perspektif": {
+        "baslik": "Vakfiyeyi yazdıran emîr",
+        "diyalog": [
+          {
+            "kim": "KÂTİP",
+            "metin": "Efendim, onarımlar ve görevlilerin parası ayrıldı. Artan parayı nasıl yazayım?"
+          },
+          {
+            "kim": "CELÂLEDDİN KARATAY",
+            "metin": "Önce medrese onarılsın. Hasırı, yağı, halısı ve kandil gecelerinin mumu alınsın."
+          },
+          {
+            "kim": "KÂTİP",
+            "metin": "Peki bundan sonra da para artarsa?"
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Sen kâtibin yerinde olsan ne yazardın?"
+          }
+        ],
+        "soru": "Vakfiyeye göre en son artan para ne yapılacaktı?",
+        "secenekler": [
+          {
+            "metin": "Hepsini hocaya verelim. Medresenin en önemli kişisi o.",
+            "sonuc": "Vakfiye böyle demiyordu. Para on parçaya bölündü. Hoca, yönetici, kapıcı, temizlikçi ve çalışkan öğrenciler pay aldı. Yani para, emeği olan herkese gidiyordu.",
+            "dogruMu": false
+          },
+          {
+            "metin": "On parçaya bölelim. Hocaya, yöneticiye, kapıcıya, temizlikçiye ve öğrencilere pay verelim.",
+            "sonuc": "Doğru! Vakfiye artan parayı on parçaya böldü. Böylece medresede çalışan herkes pay aldı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Kimseye vermeyelim, sandıkta saklansın.",
+            "sonuc": "Vakfiye parayı bekletmiyordu. Vakıf para biriktirmek için değil, hizmet etmek için kurulmuştu.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Karatay Medresesi'ni 1251'de Celâleddin Karatay yaptırdı. Vakfiyesi, paranın hangi sırayla harcanacağını yazdı. Artan para on parçaya bölünüp çalışanlara verildi. Medrese bugün Konya'da bir çini müzesi.",
+        "rontgenSorusu": "Medresede kimler ne kadar pay alıyordu?",
+        "rontgenAciklama": "Vakfiye, artan geliri on hisseye ayırmıştı: müderris (Hanefi mezhebinden), mütevelli, muid, bevvâb (kapıcı), ferrâş ve dersleri düzenli takip edenler. Ancak kaynak metnin iki pasajı muidin hissesi konusunda çelişir ve listelenen hisselerin toplamı on hisseyi tam vermez; kaynakta yazılan yüzdelerin toplamı %100'e oturmuyor. Bu yüzden uygulama Karatay Medresesi için oran çubuğu çizmez, kalemleri hisse listesi olarak gösterir. Bu bir kusur değil, ürünün dürüstlüğüdür: doğrulanmamış bir toplamı kesin bilgi gibi göstermiyoruz.",
+        "kaynakKunye": "Medeniyet Tasavvuru ve Karatay Medresesi (ed. Ömer Faruk Erdem – Murat Ayvacı), KTO Karatay Üniversitesi Yayınları, Konya 2020, s. 424-430 — dayanak: Osman Turan, “Selçuklu Devri Vakfiyeleri III: Celâleddin Karatay Vakıfları ve Vakfiyeleri”, TTK Belleten XII/45 (1948), s. 142, 147; Selçuk Mülâyim, “KARATAY MEDRESESİ”, TDV İslâm Ansiklopedisi, c. 24 (2001), s. 475-476"
+      },
+      "egzersizler": [
+        {
+          "id": "karatay-medresesi-e1",
+          "tip": "eslestir",
+          "kaynak": "Medeniyet Tasavvuru ve Karatay Medresesi (KTO Karatay Üniversitesi Yayınları, Konya 2020), s. 424-430",
+          "veri": {
+            "yonerge": "Medresede çalışan biri mi, medreseye alınan bir şey mi? Doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "gorevli",
+                "ad": "Çalışanlar",
+                "aciklama": "Vakfiyede adı geçen görevliler"
+              },
+              {
+                "id": "alinan",
+                "ad": "Alınan eşyalar",
+                "aciklama": "Vakfiyede sayılan malzemeler"
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Müderris (hoca)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Mütevelli (vakfın yöneticisi)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Muid (hocanın yardımcısı)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Bevvâb (kapıcı)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Ferrâş (temizlikçi)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Cüzhan (Kur'an okuyan görevli)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Hasır",
+                "kategoriId": "alinan"
+              },
+              {
+                "metin": "Zeytinyağı",
+                "kategoriId": "alinan"
+              },
+              {
+                "metin": "Halı",
+                "kategoriId": "alinan"
+              },
+              {
+                "metin": "Kandil geceleri için mum",
+                "kategoriId": "alinan"
+              }
+            ]
+          }
+        },
+        {
+          "id": "karatay-medresesi-e2",
+          "tip": "sirala",
+          "kaynak": "Medeniyet Tasavvuru ve Karatay Medresesi (KTO Karatay Üniversitesi Yayınları, Konya 2020), s. 428; Osman Turan, TTK Belleten XII/45 (1948), s. 142, 147",
+          "veri": {
+            "yonerge": "Vakfiyeye göre para hangi sırayla harcanacaktı? Baştan sona diz.",
+            "dogruSira": [
+              "Önce gelir getiren dükkân ve tarlalar onarılır",
+              "Sonra parayı toplayan görevlilere ödeme yapılır",
+              "Sonra medrese onarılır; hasır, yağ, halı ve mum alınır",
+              "En son artan para on parçaya bölünüp çalışanlara verilir"
+            ]
+          }
+        },
+        {
+          "id": "karatay-medresesi-e3",
+          "tip": "bosluk-doldur",
+          "kaynak": "Selçuk Mülâyim, “KARATAY MEDRESESİ”, TDV İslâm Ansiklopedisi, c. 24 (2001), s. 475-476; Medeniyet Tasavvuru ve Karatay Medresesi, s. 424-430",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Medresede ders veren hocaya ___ denirdi. Ona yardım edene ise muid denirdi.",
+            "cevap": "müderris",
+            "secenekler": [
+              "müderris",
+              "mütevelli",
+              "bevvâb"
+            ]
+          }
+        },
+        {
+          "id": "karatay-medresesi-e4",
+          "tip": "eser-tani",
+          "kaynak": "Kültür Portalı (T.C. Kültür ve Turizm Bakanlığı), “Karatay Medresesi Çini Eserler Müzesi”; Kültür Envanteri, “Karatay Medresesi” kaydı (KE No 3881)",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Konya'da bir medrese. Kubbesi turkuaz ve lacivert çinilerle kaplı. Vakfiyesine göre artan para on parçaya bölündü. Bugün bir çini müzesi.",
+            "secenekler": [
+              "Sâhib Ata Külliyesi",
+              "Karatay Medresesi",
+              "Zazadin Hanı"
+            ],
+            "dogruIndex": 1
+          }
+        }
+      ]
+    },
+    {
+      "eserId": "sahib-ata-kulliyesi",
+      "merak": {
+        "soru": "Bir yerde cami, türbe, hamam ve misafirhane yan yana duruyor. Sence bu yapıları bir \"külliye\" yapan şey ne?",
+        "secenekler": [
+          "Aynı kişinin yaptırması ve birbirine yakın olmaları",
+          "İçinde hem ibadet, hem yıkanma, hem misafirlik olması",
+          "Hepsinin tek bir vakfa ve tek bir gelire bağlı olması"
+        ],
+        "kopru": "Tahminini not ettik! Cevap, Sâhib Ata Külliyesi'nin vakfiyesinde yazıyor. Hadi bakalım."
+      },
+      "baglam": {
+        "baslik": "Konya'nın ortasında bir külliye",
+        "metin": "Sâhib Ata, Selçuklu Devleti'nin veziriydi. 1258'de Konya'da bir külliye yaptırmaya başladı. Külliye, yan yana kurulan ve birbirine bağlı yapılar demektir. Yapımı 1283'e kadar sürdü.\n\nKülliyede bir cami, bir türbe ve misafirlerin kaldığı bir hankah vardı. Bir de büyük bir çifte hamam. Hamamın bir yanı erkeklere, öbür yanı kadınlara ayrılmıştı.\n\nPeki bu yapıların masrafını ne karşıladı? Sâhib Ata, köylerini, dükkânlarını, bağlarını ve bahçelerini vakfa bağladı. Ürünün üçte biri, vakfı yöneten kişiye ayrıldı.",
+        "kavramlar": [
+          {
+            "ad": "KÜLLİYE",
+            "aciklama": "Yan yana kurulan, aynı vakfa bağlı yapılar. Sâhib Ata Külliyesi'nde cami, türbe, hankah ve hamam bir aradaydı.",
+            "ornek": "Külliyenin hankahı bugün bir vakıf müzesi."
+          },
+          {
+            "ad": "HAYRAT",
+            "aciklama": "Para getirmeyen, insanlara doğrudan hizmet eden yapı. Cami, türbe, hamam ve hankah birer hayrattır.",
+            "ornek": "Cami ve hamam yaşasın diye köyler, dükkânlar ve bağlar bağışlandı."
+          },
+          {
+            "ad": "TEVLİYET",
+            "aciklama": "Vakfı yönetme görevi. Bu görevi yapan kişiye mütevelli denir.",
+            "ornek": "Tevliyet önce Sâhib Ata'nın kendisine, sonra oğullarına geçecekti."
+          }
+        ],
+        "kapanis": "Gördün mü? Külliyeyi bir arada tutan şey tek bir vakıf. Peki gelirin ne kadarı yöneticiye gitmeli?"
+      },
+      "perspektif": {
+        "baslik": "Gelirin üçte biri",
+        "diyalog": [
+          {
+            "kim": "KÂTİP",
+            "metin": "Efendim, ürünün ne kadarını vakfı yönetecek kişiye ayırayım?"
+          },
+          {
+            "kim": "SÂHİB ATA FAHREDDİN ALİ",
+            "metin": "Külliye ayakta kalsın, hizmet sürsün. Bunu düşünerek yaz."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Sen kâtibin yerinde olsan ne kadar ayırırdın?"
+          }
+        ],
+        "soru": "Vakfiye, ürünün ne kadarını vakfı yöneten kişiye ayırmıştı?",
+        "secenekler": [
+          {
+            "metin": "Yarısını ayıralım.",
+            "sonuc": "Vakfiye yarısını değil, üçte birini ayırdı. Yani her üç çuval üründen biri yöneticiye gidiyordu.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Üçte birini ayıralım. Önce Sâhib Ata alsın, sonra oğulları.",
+            "sonuc": "Doğru! Vakfiye üçte bir dedi. Bu payın kimden kime geçeceğini de sırayla yazdı. Böylece vakıf nesiller boyunca düzenli yönetilecekti.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hiç ayırmayalım. Her şey doğrudan hizmete gitsin.",
+            "sonuc": "Vakfiye yöneticiye üçte bir ayırdı. Vakfı yönetmek de bir emekti. Bu pay olmadan vakfın işleri yürümezdi.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Sâhib Ata Külliyesi'ni Selçuklu veziri Sâhib Ata Konya'da yaptırdı. Köyler, dükkânlar ve bağlar külliyeye gelir getirdi. Ürünün üçte biri, vakfı yönetene ayrıldı. Hankahı bugün bir vakıf müzesi.",
+        "rontgenSorusu": "Külliyenin gelirinin üçte biri kime gidiyordu?",
+        "rontgenAciklama": "Sâhib Ata vakfiyesi gelir dağılımını yüzdelerle değil, görevlilere ödenen sabit miktarlarla (dirhem ve ekmek) düzenlemişti. Belgelenen tek yüzde, tevliyet ve nezaret hakkı olarak açıkça “tam üçtebir” denilen paydır; yani mahsulün %33'ü vakfı yönetme ve denetleme hakkının sahibine aitti. Bu bir dağılım tablosu değil, tek bir şarttır: iki muide ayda onar dirhem, nakibe on beş dirhem, imama ve müezzine ekmek gibi diğer ödemeler yüzdeye çevrilemediği için oran olarak gösterilmiyor.",
+        "kaynakKunye": "Sadi Bayram – Ahmet Hamdi Karabacak, “Sahib Ata Fahrü'd-din Ali'nin Konya, İmaret ve Sivas Gökmedrese Vakfiyeleri”, Vakıflar Dergisi 13 (1981), s. 40 (Konya İmaret vakfiyesi tercümesi); Sevgi Parlak, “SÂHİB ATA KÜLLİYESİ”, TDV İslâm Ansiklopedisi, c. 35 (2008), s. 516-518"
+      },
+      "egzersizler": [
+        {
+          "id": "sahib-ata-kulliyesi-e1",
+          "tip": "eslestir",
+          "kaynak": "Sevgi Parlak, “SÂHİB ATA KÜLLİYESİ”, TDV İslâm Ansiklopedisi, c. 35 (2008), s. 516-518; Sadi Bayram – Ahmet Hamdi Karabacak, Vakıflar Dergisi 13 (1981), s. 40",
+          "veri": {
+            "yonerge": "Hayrat mı, akar mı? Doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "hayrat",
+                "ad": "Hayrat",
+                "aciklama": "Hizmet veren, para getirmeyen yapı"
+              },
+              {
+                "id": "akar",
+                "ad": "Akar",
+                "aciklama": "Kira ya da ürün getiren, vakfa gelir sağlayan mal"
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Cami",
+                "kategoriId": "hayrat"
+              },
+              {
+                "metin": "Hankah (misafirhane)",
+                "kategoriId": "hayrat"
+              },
+              {
+                "metin": "Türbe",
+                "kategoriId": "hayrat"
+              },
+              {
+                "metin": "Çifte hamam",
+                "kategoriId": "hayrat"
+              },
+              {
+                "metin": "Köy",
+                "kategoriId": "akar"
+              },
+              {
+                "metin": "Dükkân",
+                "kategoriId": "akar"
+              },
+              {
+                "metin": "Bağ",
+                "kategoriId": "akar"
+              },
+              {
+                "metin": "Sebze bahçesi",
+                "kategoriId": "akar"
+              }
+            ]
+          }
+        },
+        {
+          "id": "sahib-ata-kulliyesi-e2",
+          "tip": "sirala",
+          "kaynak": "Sadi Bayram – Ahmet Hamdi Karabacak, “Sahib Ata Fahrü'd-din Ali'nin Konya, İmaret ve Sivas Gökmedrese Vakfiyeleri”, Vakıflar Dergisi 13 (1981), s. 40",
+          "veri": {
+            "yonerge": "Vakfı yönetme görevi sırayla kimlere geçecekti? Sırala.",
+            "dogruSira": [
+              "Sâhib Ata'nın kendisi",
+              "Sâhib Ata'nın oğulları",
+              "Onlar kalmazsa, özgür bıraktığı hizmetkârlarının en dürüst oğlu",
+              "Onlar da kalmazsa, Konya'nın kadısının seçeceği kişi"
+            ]
+          }
+        },
+        {
+          "id": "sahib-ata-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "kaynak": "Sadi Bayram – Ahmet Hamdi Karabacak, Vakıflar Dergisi 13 (1981), s. 40 — “bu vakfın mahsulünden tam üçtebirini tevliyet ve nezaret hakkı olarak kendi nefsine şart kıldı”",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Vakfiyeye göre ürünün ___ vakfı yöneten kişiye ayrıldı.",
+            "cevap": "üçtebirini",
+            "secenekler": [
+              "üçtebirini",
+              "yarısını",
+              "onda birini"
+            ]
+          }
+        },
+        {
+          "id": "sahib-ata-kulliyesi-e4",
+          "tip": "eser-tani",
+          "kaynak": "Sevgi Parlak, “SÂHİB ATA KÜLLİYESİ”, TDV İslâm Ansiklopedisi, c. 35 (2008), s. 516-518; Kültür Envanteri, “Sahip Ata Vakıf Müzesi” kaydı (KE No 3876)",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Konya'da yan yana cami, türbe, misafirhane ve büyük bir çifte hamam. Hamamın bir yanı erkeklere, öbür yanı kadınlara ayrılmış. Ürünün üçte biri vakfı yönetene ayrılmış.",
+            "secenekler": [
+              "Karatay Medresesi",
+              "Zazadin Hanı",
+              "Sâhib Ata Külliyesi"
+            ],
+            "dogruIndex": 2
+          }
+        }
+      ]
+    },
+    {
+      "eserId": "zazadin-hani",
+      "merak": {
+        "soru": "Konya ile Aksaray arasındaki yolda, şehirden uzakta kocaman bir han var. Sence neden şehrin dışına, yolun üstüne yapılmış?",
+        "secenekler": [
+          "Kervanlar ve askerler geceyi geçirsin diye",
+          "Şehirde yer kalmadığı için",
+          "Yolcular manzarayı görsün diye"
+        ],
+        "kopru": "Tahminini not ettik! Şimdi 1235 yılına gidelim."
+      },
+      "baglam": {
+        "baslik": "Yolun üstündeki han",
+        "metin": "Zazadin Hanı, Konya'ya 22 kilometre uzakta. Böyle yol üstündeki büyük hanlara kervansaray denir. Tüccarlar ve yolcular burada geceyi geçirirdi. Hanı, Sâdeddin Köpek adında bir Selçuklu yöneticisi yaptırdı. 1235'te başlandı, 1237'de bitti.\n\nHan çok büyük: 104 metre uzunluğunda. Neredeyse bir futbol sahası kadar! İçinde odalar, bir mescit, bir hamam, ambarlar ve ahırlar var. Kışın kalınacak kapalı bir bölümü de var.\n\nHan yıllarca bakımsız kaldı. 2017'de onarıldı. Dikkat: Bu hanın vakfiyesi bulunamadı. Bu yüzden parasının nereye gittiğini bilmiyoruz.",
+        "kavramlar": [
+          {
+            "ad": "KERVANSARAY",
+            "aciklama": "Yol üstünde, yolcuların ve tüccarların konakladığı büyük han.",
+            "ornek": "Zazadin Hanı'nın yazlık ve kışlık bölümleri var."
+          },
+          {
+            "ad": "KERVAN",
+            "aciklama": "Birlikte yolculuk eden tüccarlar ve yük taşıyan hayvanları.",
+            "ornek": "Konya'dan Aksaray'a giden bir kervan, akşam bu handa kalırdı."
+          },
+          {
+            "ad": "VAKFİYE",
+            "aciklama": "Bir vakfın kurallarını yazan belge. Zazadin Hanı'nın vakfiyesi bulunamadı.",
+            "ornek": "Belge yoksa bilgi de yok. Bu yüzden bu han için oran göstermiyoruz."
+          }
+        ],
+        "kapanis": "Bilmediğimiz bir şeyi uydurmak yerine \"bilmiyoruz\" diyoruz. Şimdi bir karar anına gidelim."
+      },
+      "perspektif": {
+        "baslik": "Yolun önemli noktası",
+        "diyalog": [
+          {
+            "kim": "KERVANBAŞI",
+            "metin": "Bu han yolun tam ortasında. Neden şehre değil de buraya yapılmış?"
+          },
+          {
+            "kim": "HANIN GÖREVLİSİ",
+            "metin": "Bu yoldan kervanlar da askerler de geçer. Akşam olunca kalacak bir yer gerekir."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Sence bu han neden tam buraya yapıldı?"
+          }
+        ],
+        "soru": "Sence Sâdeddin Köpek hanı neden şehrin dışına, yolun üstüne yaptırdı?",
+        "secenekler": [
+          {
+            "metin": "Kervanlar ve askerler kalabilsin diye. Yolun en işlek yerine yaptırdı.",
+            "sonuc": "Doğru! Han, önemli bir yolun üstündeydi. Yüzlerce yıl kervanlara ve askerlere hizmet etti.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Şehirde boş yer kalmadığı için.",
+            "sonuc": "Han, yer bulunamadığı için oraya yapılmadı. Yolculara hizmet etsin diye yapıldı. Kervansaraylar yol için yapılır.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Manzarası güzel olduğu için.",
+            "sonuc": "Yeri manzara için değil, kervanların ihtiyacı için seçildi. Han, bir futbol sahası kadar büyük!",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Zazadin Hanı, 1235-1237'de Konya-Aksaray yolunda yapılmış bir kervansaray. İçinde odalar, mescit, hamam, ambarlar ve ahırlar var. Yüzyıllarca kervanlara hizmet etti. 2017'de onarıldı.",
+        "rontgenSorusu": "Bu hanın geliri nereye gidiyordu?",
+        "rontgenAciklama": "Zazadin Hanı'nın vakfiyesi hiçbir kaynakta bulunamamıştır. Vakfiye olmadığı için gelirin kim tarafından toplandığı ve nereye harcandığı belgelenememiştir; uygulama bu eser için oran göstermez, hiçbir tahmini oran yazmaz ve gelir kalemi listelemez. Kervansaraylar için sık tekrarlanan “üç gün ücretsiz konaklama” bilgisi de bu han özelinde hiçbir kaynakta görülmediği için burada yazılmamıştır. Avludaki oda sayısı da hakemli bir yayından değil bir basın açıklamasından geldiği için kesin bilgi olarak sunulmaz. Hanın yapım tarihi de kaynaklarda bir yıl farkla verilir: bir kaynak inşanın 1235'te başlayıp 1237'de bittiğini, TDV İslâm Ansiklopedisi ise hanı 1236-1237 yıllarına tarihlendirir.",
+        "kaynakKunye": "Kültür Envanteri, “Zazadin Han” kaydı (KE No 2576); Muharrem Kesik, “SÂDEDDİN KÖPEK”, TDV İslâm Ansiklopedisi, c. 35 (2008), s. 392-393; Anadolu Ajansı haberinden aktaran Arkeolojik Haber, “Sadettin Köpek'in yaptırdığı kervansaray: Zazadin Hanı” (10 Aralık 2018)"
+      },
+      "egzersizler": [
+        {
+          "id": "zazadin-hani-e1",
+          "tip": "eslestir",
+          "kaynak": "Kültür Envanteri, “Zazadin Han” kaydı (KE No 2576) — avludaki oda, mescit, hamam, ambar, depo ve ahırlar",
+          "veri": {
+            "yonerge": "Handaki bölümler kimin için? Doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "insan",
+                "ad": "İnsanlar için",
+                "aciklama": "Yolcuların kullandığı yerler"
+              },
+              {
+                "id": "yuk",
+                "ad": "Yükler için",
+                "aciklama": "Malların konduğu yerler"
+              },
+              {
+                "id": "hayvan",
+                "ad": "Hayvanlar için",
+                "aciklama": "Yük hayvanlarının kaldığı yer"
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Mescit (kapının üstünde, merdivenle çıkılır)",
+                "kategoriId": "insan"
+              },
+              {
+                "metin": "Hamam",
+                "kategoriId": "insan"
+              },
+              {
+                "metin": "Odalar",
+                "kategoriId": "insan"
+              },
+              {
+                "metin": "Ambar",
+                "kategoriId": "yuk"
+              },
+              {
+                "metin": "Depo",
+                "kategoriId": "yuk"
+              },
+              {
+                "metin": "Ahırlar",
+                "kategoriId": "hayvan"
+              }
+            ]
+          }
+        },
+        {
+          "id": "zazadin-hani-e2",
+          "tip": "sirala",
+          "kaynak": "Kültür Envanteri, “Zazadin Han” kaydı (KE No 2576); Arkeolojik Haber, “Sadettin Köpek'in yaptırdığı kervansaray: Zazadin Hanı” (10 Aralık 2018)",
+          "veri": {
+            "yonerge": "Hanın bakımsız hâlinden bugüne gelişini sırala.",
+            "dogruSira": [
+              "Han yıllarca bakımsız kaldı",
+              "1996'da kazılar başladı",
+              "2017'de onarım yapıldı",
+              "Birçok bölümü eski hâline döndü"
+            ]
+          }
+        },
+        {
+          "id": "zazadin-hani-e3",
+          "tip": "bosluk-doldur",
+          "kaynak": "Kültür Envanteri, “Zazadin Han” kaydı (KE No 2576); Muharrem Kesik, “SÂDEDDİN KÖPEK”, TDV İslâm Ansiklopedisi, c. 35 (2008)",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Yol üstünde, yolcuların konakladığı bu büyük yapı bir ___.",
+            "cevap": "kervansaray",
+            "secenekler": [
+              "kervansaray",
+              "medrese",
+              "imaret"
+            ]
+          }
+        },
+        {
+          "id": "zazadin-hani-e4",
+          "tip": "eser-tani",
+          "kaynak": "Kültür Envanteri, “Zazadin Han” kaydı (KE No 2576) — konum, ölçüler ve kitâbe durumu",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Konya'ya 22 kilometre uzakta, yol üstünde büyük bir han. Yazlık ve kışlık bölümleri var. Mescidi, kapının üstünde. Duvarlarında Roma ve Bizans'tan kalma taşlar kullanılmış.",
+            "secenekler": [
+              "Zazadin Hanı",
+              "Kızlarağası Hanı",
+              "Hisar Camii"
+            ],
+            "dogruIndex": 0
+          }
+        }
+      ]
+    },
+    {
+      "eserId": "konya-mevlana-turbesi",
+      "merak": {
+        "soru": "Mevlâna, mezarının üstüne bir türbe yapılmasını istemiş mi?",
+        "secenekler": [
+          "Hayır, istemediği anlatılır.",
+          "Evet, kendisi çizmiş.",
+          "Hiç konuşmamış."
+        ],
+        "kopru": "Tahminini not ettik! Bugün ise türbesi Konya'nın en tanınan yapısı."
+      },
+      "baglam": {
+        "baslik": "Gül bahçesindeki türbe",
+        "metin": "Selçuklu Sultanı Alâeddin Keykubat, Konya surlarının dışındaki gül bahçesini Mevlâna'nın babası Bahaeddin Veled'e bağışladı. Bahaeddin Veled 1231'de öldü ve bu bahçeye gömüldü.\n\nMevlâna 1273'te öldü ve babasının yanına gömüldü. Mevlevi kaynaklarına göre Mevlâna, mezarının üstüne türbe yapılmasını istememişti. Ama bir yıl sonra Gürcü Hatun ve oğlu Sultan Veled türbeyi yaptırdı.\n\nTürbe zamanla büyüdü. Karamanoğulları döneminde bugünkü dilimli biçimini aldı ve ilk kez çinilerle kaplandı. Çevresine semahane, mescit, mutfak ve derviş odaları eklendi. Bugün burası Mevlâna Müzesi.",
+        "kavramlar": [
+          {
+            "ad": "TÜRBE",
+            "aciklama": "Önemli bir kişinin mezarının bulunduğu, üstü örtülü yapı.",
+            "ornek": "Mevlâna Türbesi Konya'da."
+          },
+          {
+            "ad": "SEMAHANE",
+            "aciklama": "Mevlevilerin sema töreni yaptığı salon.",
+            "ornek": "Mevlâna Külliyesi'nde bir semahane var."
+          },
+          {
+            "ad": "DERGÂH",
+            "aciklama": "Tasavvuf yolundaki kişilerin toplandığı ve eğitim gördüğü yer.",
+            "ornek": "Türbe, Mevlâna Dergâhı'nın ilk yapısı."
+          }
+        ],
+        "kapanis": "Bir gül bahçesi nasıl koca bir külliyeye dönüşür?"
+      },
+      "perspektif": {
+        "baslik": "Büyüyen külliye",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Önce bir gül bahçesi vardı. Sonra burada Mevlâna'nın babası, sonra Mevlâna gömüldü."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Hocaları, arkadaşları ve ailesinden ölenler de türbenin yanına gömüldü. Zamanla semahane, mescit, mutfak ve derviş odaları eklendi."
+          }
+        ],
+        "soru": "Sence bu külliye neden yüzyıllar boyunca büyüdü?",
+        "secenekler": [
+          {
+            "metin": "Mevlâna'yı sevenler çoğaldı; onlara hizmet edecek yapılar gerekti.",
+            "sonuc": "Doğru! Dergâhta yaşayan dervişler ve ziyaretçiler için yeni yapılar eklendi.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Bahçe çok büyük olduğu için boş kalmasın diye.",
+            "sonuc": "Asıl neden bahçenin büyüklüğü değil, buraya gelen insanların ihtiyaçlarıydı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Hiç büyümedi, bugün de tek bir türbe var.",
+            "sonuc": "Büyüdü: Bugün semahane, mescit, mutfak, şadırvan ve altı türbe daha var.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Mevlâna Türbesi, Sultan Alâeddin Keykubat'ın bağışladığı gül bahçesinde yapıldı. Mevlâna 1273'te öldü, türbesi bir yıl sonra yapıldı. Bugün Mevlâna Müzesi'nin içinde.",
+        "rontgenSorusu": "Bu külliye hangi bağışla başladı?",
+        "rontgenAciklama": "Külliye, Sultan Alâeddin Keykubat'ın Mevlâna'nın babasına bağışladığı gül bahçesinde gelişti. Envanter külliyenin bir vakfiyesinden ya da gelir dağılımından söz etmez; bu yüzden uygulama bu eser için gelir oranı göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 30-73 (MEVLÂNA TÜRBESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "konya-mevlana-turbesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Kim ne yaptı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "sultan",
+                "ad": "Sultan Alâeddin Keykubat",
+                "aciklama": "Selçuklu sultanı."
+              },
+              {
+                "id": "veled",
+                "ad": "Gürcü Hatun ve Sultan Veled",
+                "aciklama": "Türbeyi yaptıranlar."
+              },
+              {
+                "id": "karaman",
+                "ad": "Karamanoğlu Alâeddin Ali Bey",
+                "aciklama": "Türbeyi yenileyen."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Gül bahçesini Bahaeddin Veled'e bağışladı",
+                "kategoriId": "sultan"
+              },
+              {
+                "metin": "Mevlâna'nın mezarı üstüne ilk türbeyi yaptırdı",
+                "kategoriId": "veled"
+              },
+              {
+                "metin": "Türbe bugünkü dilimli biçimini onun zamanında aldı",
+                "kategoriId": "karaman"
+              },
+              {
+                "metin": "Türbe ilk kez onun zamanında çinilerle kaplandı",
+                "kategoriId": "karaman"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 30-73"
+        },
+        {
+          "id": "konya-mevlana-turbesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1231: Bahaeddin Veled gül bahçesine gömüldü",
+              "1273: Mevlâna öldü",
+              "1274: Türbe yapıldı",
+              "2018: Türbede restorasyon yapıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 30-73"
+        },
+        {
+          "id": "konya-mevlana-turbesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Mevlevilerin sema töreni yaptığı salona ___ denir.",
+            "cevap": "semahane",
+            "secenekler": [
+              "semahane",
+              "bedesten",
+              "darüşşifa",
+              "medrese"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 30-73"
+        },
+        {
+          "id": "konya-mevlana-turbesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Konya'da, eskiden bir gül bahçesi olan yerde bir türbe. Dilimli ve çinili bir kubbesi var. Çevresinde semahane ve derviş odaları bulunuyor. Bugün müze.",
+            "secenekler": [
+              "Mevlâna Türbesi (Müze)",
+              "Şems-i Tebrizi Camii ve Türbesi",
+              "Sahip Ata Külliyesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 30-73"
+        }
+      ]
+    },
+    {
+      "eserId": "konya-ince-minareli-medrese",
+      "merak": {
+        "soru": "Bir medresenin ince ve uzun bir minaresi vardı. 1901'de bir fırtınada ne oldu dersin?",
+        "secenekler": [
+          "Üst üste iki yıldırım düştü ve minare yıkıldı.",
+          "Rüzgâr minareyi eğdi ama yıkmadı.",
+          "Hiçbir şey olmadı."
+        ],
+        "kopru": "Tahminini not ettik! Medrese adını bu ince minareden alıyor."
+      },
+      "baglam": {
+        "baslik": "Hadis okulu",
+        "metin": "İnce Minareli Medrese'yi Selçuklu veziri Sahip Ata yaptırdı. 1261-1262'de açıldı. Burada hadis, yani Hz. Muhammed'in sözleri öğretiliyordu.\n\nVakfiyesine göre medrese, mescidi ve minaresiyle birlikte kuruldu. Gelir getiren birçok mülkle desteklendi. Mimarı Abdullah oğlu Kelûk'tu. Adı kapıdaki iki madalyonda yazıyor.\n\nMedrese 1706'daki depremde ağır hasar gördü. 1901'de üst üste iki yıldırım düştü. İnce minare yıkıldı, mescidin kubbesi çöktü. Bugün burası Taş ve Ahşap Eserler Müzesi.",
+        "kavramlar": [
+          {
+            "ad": "DARÜLHADİS",
+            "aciklama": "Hadis ilminin öğretildiği medrese.",
+            "ornek": "İnce Minareli Medrese bir darülhadisti."
+          },
+          {
+            "ad": "ZEYİL",
+            "aciklama": "Bir belgeye sonradan eklenen bölüm.",
+            "ornek": "Medresenin vakfiyesine iki zeyil eklendi."
+          },
+          {
+            "ad": "MADALYON",
+            "aciklama": "Yuvarlak ya da oval çerçeveli süs.",
+            "ornek": "Mimarın adı kapıdaki madalyonlarda yazıyor."
+          }
+        ],
+        "kapanis": "Bir okul binası bugün müze olarak nasıl yaşar?"
+      },
+      "perspektif": {
+        "baslik": "Büyüyen vakfiye",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Medresenin vakfiyesi 1264'te yazıldı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Sonra 1265'te ve 1280'de iki kez ekleme yapıldı. Bu eklere zeyil denir. Böylece vakıf genişledi."
+          }
+        ],
+        "soru": "Sence bir vakfiyeye neden sonradan ekleme yapılır?",
+        "secenekler": [
+          {
+            "metin": "Vakfa yeni gelir kaynakları ya da yeni kurallar eklemek için.",
+            "sonuc": "Doğru! Zeyiller sayesinde vakıf büyüyebilir ve yeni ihtiyaçlara göre düzenlenebilir.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Vakfı kapatmak için.",
+            "sonuc": "Hayır. Bu medresede zeyiller vakfı genişletti.",
+            "dogruMu": false
+          },
+          {
+            "metin": "İlk yazı yanlış olduğu için silmek için.",
+            "sonuc": "Zeyil eskiyi silmez, ona yeni bir bölüm ekler.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "İnce Minareli Medrese'yi Sahip Ata 1261-1262'de bir hadis okulu olarak açtı. 1901'de yıldırım düşüp minaresi yıkıldı. Bugün Taş ve Ahşap Eserler Müzesi.",
+        "rontgenSorusu": "Medresenin giderleri neyle karşılanıyordu?",
+        "rontgenAciklama": "Envantere göre medrese, 1264 tarihli ve iki kez genişletilen vakfiyesiyle zengin akarlarla, yani gelir getiren mülklerle desteklendi. Bu gelirin hangi işe ne oranda harcandığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 102-109 (İNCE MİNARELİ MEDRESE (SAHİP ATA DARÜLHADİS))"
+      },
+      "egzersizler": [
+        {
+          "id": "konya-ince-minareli-medrese-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Yapının başına gelenler: Doğa olayı mı, insan eliyle mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "doga",
+                "ad": "Doğa olayı",
+                "aciklama": "Deprem, yıldırım gibi."
+              },
+              {
+                "id": "insan",
+                "ad": "İnsan eliyle",
+                "aciklama": "Yapım ve onarım işleri."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "1706 depremi",
+                "kategoriId": "doga"
+              },
+              {
+                "metin": "1901'de düşen iki yıldırım",
+                "kategoriId": "doga"
+              },
+              {
+                "metin": "1900'de eyvana eklenen payandalar",
+                "kategoriId": "insan"
+              },
+              {
+                "metin": "Medresenin müzeye dönüştürülmesi",
+                "kategoriId": "insan"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 102-109"
+        },
+        {
+          "id": "konya-ince-minareli-medrese-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1261-1262: Medrese açıldı",
+              "1264: Vakfiyesi yazıldı",
+              "1706: Depremde ağır hasar gördü",
+              "1901: Yıldırımlar minareyi yıktı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 102-109"
+        },
+        {
+          "id": "konya-ince-minareli-medrese-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Hadis ilminin öğretildiği medreseye ___ denir.",
+            "cevap": "darülhadis",
+            "secenekler": [
+              "darülhadis",
+              "darüşşifa",
+              "dârülkurrâ",
+              "bedesten"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 102-109"
+        },
+        {
+          "id": "konya-ince-minareli-medrese-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Selçuklu veziri Sahip Ata'nın yaptırdığı bir hadis okulu. Adını ince minaresinden alıyor. 1901'de yıldırım düşüp minaresi yıkıldı. Bugün taş ve ahşap eserler sergileniyor.",
+            "secenekler": [
+              "İnce Minareli Medrese (Sahip Ata Darülhadis)",
+              "Karatay Medresesi (bugünkü adıyla Karatay Medresesi Çini Eserleri Müzesi)",
+              "Şems-i Tebrizi Camii ve Türbesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 102-109"
+        }
+      ]
+    },
+    {
+      "eserId": "konya-esrefoglu-suleyman-bey-kulliyesi",
+      "merak": {
+        "soru": "700 yaşındaki bir caminin tavanını taşıyan direkler neyden yapılmış olabilir?",
+        "secenekler": [
+          "Ahşaptan",
+          "Betondan",
+          "Demirden"
+        ],
+        "kopru": "Tahminini not ettik! Bu caminin ortasında direkleri korumak için bir de havuz var."
+      },
+      "baglam": {
+        "baslik": "Ahşap direkli cami",
+        "metin": "Eşrefoğulları Beyliği, 1200'lerin sonunda Beyşehir'de kuruldu. Eşrefoğlu Süleyman Bey, 1296-1299'da Beyşehir'e büyük bir cami yaptırdı. Şehir de bu caminin çevresinde büyüdü.\n\nCaminin tavanı ahşap direklerle taşınıyor. Bu tür camiler Semerkant ve Buhara gibi Türkistan şehirlerinde de görülür. Eşrefoğlu Camii, Anadolu'daki en önemli, en büyük ve en orijinal örnek.\n\nCaminin ortasında \"karlık\" denen bir havuz var. Bu havuz su ihtiyacını karşılamak ve ahşap direklerin nem dengesini korumak için yapıldı. Külliyede cami, türbe, bedesten ve hamam vardı. Süleyman Bey 1302'de öldü ve buradaki türbeye gömüldü.",
+        "kavramlar": [
+          {
+            "ad": "BEYLİK",
+            "aciklama": "Bir beyin yönettiği küçük devlet.",
+            "ornek": "Eşrefoğulları Beyliği Beyşehir'de kuruldu."
+          },
+          {
+            "ad": "KARLIK",
+            "aciklama": "Eşrefoğlu Camii'nin ortasındaki havuz.",
+            "ornek": "Karlık, ahşap direklerin nemini dengeler."
+          },
+          {
+            "ad": "HARİM",
+            "aciklama": "Caminin namaz kılınan iç bölümü.",
+            "ornek": "Eşrefoğlu Camii'nin harimi yedi bölüme ayrılmış."
+          }
+        ],
+        "kapanis": "Ahşap direkler 700 yıl nasıl dayanır?"
+      },
+      "perspektif": {
+        "baslik": "Ustanın imzası",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Caminin taç kapısının köşelerinde küçük bir yazı var."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Bu yazı 'İsa'nın işidir' ya da 'İsa yaptı' anlamına geliyor. Kapıyı yapan usta adını buraya bırakmış."
+          }
+        ],
+        "soru": "Sence usta adını neden kapıya yazdı?",
+        "secenekler": [
+          {
+            "metin": "Emeğinin ve ustalığının bilinmesi için.",
+            "sonuc": "Doğru! Usta imzası, eseri kimin yaptığını yüzyıllar sonra bile gösterir.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Kapının sahibi olduğunu göstermek için.",
+            "sonuc": "Hayır. Cami vakfın malıydı. İmza, yapanın adını gösterir, sahibini değil.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Yanlışlıkla yazıldı.",
+            "sonuc": "Hayır. Ustalar imzalarını bilerek ve özenle bırakırdı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Eşrefoğlu Süleyman Bey, 1296-1299'da Beyşehir'e ahşap direkli bir cami yaptırdı. Anadolu'daki en büyük ve en orijinal ahşap direkli cami bu. Ortasındaki karlık, direklerin nem dengesini koruyor.",
+        "rontgenSorusu": "Bu külliyenin vakfiyesi biliniyor mu?",
+        "rontgenAciklama": "Envanter bu külliyenin bir vakfiyesinden ya da gelir kaynaklarından söz etmez. Külliyede bir bedesten ve hamam olduğu biliniyor; bunlar gelir getirmiş olabilir ama belge olmadığı için uygulama bu eser için gelir dağılımı göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 12-34 (EŞREFOĞLU SÜLEYMAN BEY KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "konya-esrefoglu-suleyman-bey-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Caminin içinde mi, külliyenin diğer yapılarında mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "cami",
+                "ad": "Caminin içinde",
+                "aciklama": "Cami binasının bölümleri."
+              },
+              {
+                "id": "kulliye",
+                "ad": "Külliyenin diğer yapıları",
+                "aciklama": "Caminin dışındaki yapılar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Ahşap direkler",
+                "kategoriId": "cami"
+              },
+              {
+                "metin": "Karlık havuzu",
+                "kategoriId": "cami"
+              },
+              {
+                "metin": "Çinili iç kapı",
+                "kategoriId": "cami"
+              },
+              {
+                "metin": "Süleyman Bey'in türbesi",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "Bedesten",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "Hamam",
+                "kategoriId": "kulliye"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 12-34"
+        },
+        {
+          "id": "konya-esrefoglu-suleyman-bey-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1284: Süleyman Bey beyliğin başına geçti",
+              "1296-1299: Cami yapıldı",
+              "1301: Türbe yapıldı",
+              "1302: Süleyman Bey öldü",
+              "1965: Vakıflar camiyi restore etti"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 12-34"
+        },
+        {
+          "id": "konya-esrefoglu-suleyman-bey-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Eşrefoğlu Camii'nin ortasındaki havuza ___ denir.",
+            "cevap": "karlık",
+            "secenekler": [
+              "karlık",
+              "kurna",
+              "şadırvan",
+              "hazire"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 12-34"
+        },
+        {
+          "id": "konya-esrefoglu-suleyman-bey-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Beyşehir'de 700 yıllık bir cami. Tavanı ahşap direklerle taşınıyor. Ortasında karlık denen bir havuz var. Kapısında 'İsa yaptı' yazıyor.",
+            "secenekler": [
+              "Eşrefoğlu Süleyman Bey Külliyesi",
+              "Sultan Alâeddin (Ulu) Camii",
+              "Lala Mustafa Paşa Külliyesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 12-34"
+        }
+      ]
+    },
+    {
+      "eserId": "konya-sultan-ii-selim-kulliyesi",
+      "merak": {
+        "soru": "Bir şehzade, ıssız, susuz ve tehlikeli bir yol üstünden geçti. Sence ne yapmak istedi?",
+        "secenekler": [
+          "Yolculara güvenli bir konak yeri ve bir şehir kurmak",
+          "Yolu tamamen kapatmak",
+          "Hiçbir şey, yoluna devam etti"
+        ],
+        "kopru": "Tahminini not ettik! Şehzade isteğini babası Kanuni'ye yazdı."
+      },
+      "baglam": {
+        "baslik": "Issız yolda bir şehir",
+        "metin": "Karapınar, İstanbul'dan Hicaz'a giden yolun üstündeydi. Ama ıssız, susuz ve tehlikeli bir yerdi. Şehzade II. Selim burayı görünce bir şeyler yapmak istedi.\n\nSelim, babası Kanuni Sultan Süleyman'a bir yazı gönderdi. Burada bir menzil külliyesi kurmak, su getirmek ve bir şehir kurmak istediğini anlattı. Divan da buna onay verdi.\n\nKülliyenin yapımı 1560'ta başladı, 1563'te bitti. İçinde cami, sıbyan mektebi, imaret, tabhane, arasta, iki han, çeşme, hamam ve iki yel değirmeni vardı. Envanter külliyeyi Mimar Sinan'ın eseri olarak tanıtıyor.",
+        "kavramlar": [
+          {
+            "ad": "MENZİL KÜLLİYESİ",
+            "aciklama": "Yol üstünde yolcuların konaklaması için kurulan yapılar.",
+            "ornek": "Karapınar'daki külliye bir menzil külliyesi."
+          },
+          {
+            "ad": "DERBENT",
+            "aciklama": "Dağlar arasındaki dar ve tehlikeli geçit.",
+            "ornek": "Karapınar eskiden tehlikeli bir derbentti."
+          },
+          {
+            "ad": "YEL DEĞİRMENİ",
+            "aciklama": "Rüzgârla dönen ve tahıl öğüten değirmen.",
+            "ornek": "Külliyede iki yel değirmeni vardı."
+          }
+        ],
+        "kapanis": "Bir vakıf, ıssız bir yeri şehre nasıl çevirir?"
+      },
+      "perspektif": {
+        "baslik": "Divan'ın kararı",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Şehzade Selim'in yazısı Divan'a ulaştı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Divan'a göre burada yapılacak bir vakıf eseri yolculara güven verecek, halkın refahını artıracak, insanlar arasındaki ilişkileri düzenleyecekti."
+          }
+        ],
+        "soru": "Sence bir külliye yolculara nasıl güven verir?",
+        "secenekler": [
+          {
+            "metin": "Yolcular gece kalacak, yemek yiyecek ve su bulacak bir yer bulur.",
+            "sonuc": "Doğru! Han, imaret ve çeşme sayesinde yolcular ıssız yolda yalnız kalmazdı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Külliye yolu kapatır, kimse geçemez.",
+            "sonuc": "Hayır. Külliye yolu kapatmaz, yolcuların işini kolaylaştırır.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Yolculardan çok para alır.",
+            "sonuc": "Vakıf yapıları insanlara hizmet etmek için kurulurdu; imaret yardıma muhtaçlara da yemek verirdi.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Sultan II. Selim Külliyesi, ıssız Karapınar'ı yolcular için güvenli bir yere çevirmek için 1560-1563'te yapıldı. İçinde imaret, iki han ve iki yel değirmeni vardı.",
+        "rontgenSorusu": "Vakfın giderleri arasında imaret nerede duruyordu?",
+        "rontgenAciklama": "Arşiv bilgisine göre vakfın giderleri arasında imaret ikinci sıradaydı. İmaret yalnızca külliyeye değil, gelip geçenlere ve yardıma muhtaç insanlara da hizmet ediyordu. Giderlerin tam oranları envanterde verilmez; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 34-54 (SULTAN II. SELİM KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "konya-sultan-ii-selim-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Külliyede hangi yapı ne işe yarar? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "yolcu",
+                "ad": "Yolcular için",
+                "aciklama": "Konaklama ve yemek."
+              },
+              {
+                "id": "halk",
+                "ad": "Şehrin halkı için",
+                "aciklama": "Günlük yaşam ve eğitim."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "İki han",
+                "kategoriId": "yolcu"
+              },
+              {
+                "metin": "Tabhane",
+                "kategoriId": "yolcu"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "yolcu"
+              },
+              {
+                "metin": "Sıbyan mektebi",
+                "kategoriId": "halk"
+              },
+              {
+                "metin": "Hamam",
+                "kategoriId": "halk"
+              },
+              {
+                "metin": "Yel değirmenleri",
+                "kategoriId": "halk"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 34-54"
+        },
+        {
+          "id": "konya-sultan-ii-selim-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları doğru sıraya koy.",
+            "dogruSira": [
+              "Şehzade Selim Karapınar'ın ıssız ve tehlikeli olduğunu gördü",
+              "Babası Kanuni'ye ve Divan'a yazı gönderdi",
+              "Divan onay verdi",
+              "1560: Külliyenin yapımı başladı",
+              "1563: Külliye hizmete açıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 34-54"
+        },
+        {
+          "id": "konya-sultan-ii-selim-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Yol üstünde yolcuların konaklaması için kurulan yapılara ___ külliyesi denir.",
+            "cevap": "menzil",
+            "secenekler": [
+              "menzil",
+              "selatin",
+              "saray",
+              "kale"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 34-54"
+        },
+        {
+          "id": "konya-sultan-ii-selim-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Karapınar'da, Hicaz yolunda bir külliye. Bir şehzade babasına yazı yazarak yaptırdı. İçinde iki han ve iki yel değirmeni vardı.",
+            "secenekler": [
+              "Sultan II. Selim Külliyesi",
+              "Lala Mustafa Paşa Külliyesi",
+              "Zazadin Hanı (Sâdeddin Hanı)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 34-54"
+        }
+      ]
+    },
+    {
+      "eserId": "konya-tahir-ile-zuhre-mescidi",
+      "merak": {
+        "soru": "Halk bir mescide 'Tahir ile Zühre Mescidi' diyor. Sence bu ad ne kadar eski?",
+        "secenekler": [
+          "Yeni; birisi sonradan uydurmuş.",
+          "700 yıllık, yapıldığından beri böyle.",
+          "Kitabesinde böyle yazıyor."
+        ],
+        "kopru": "Tahminini not ettik! Bir tarihçi bu adın nereden çıktığını yazmış."
+      },
+      "baglam": {
+        "baslik": "Bir mescidin dört adı",
+        "metin": "Bu küçük mescit Konya'nın Meram ilçesinde. Halk ona \"Tahir ile Zühre Mescidi\" der. \"Arzu ile Kanber\" ve \"Dön Baba Mescidi\" adları da var. Yaptıranından dolayı \"Sahip Ata Mescidi\" de denir.\n\nMescidin kitabesi yok. Ama 1200'lerin sonunda Selçuklu veziri Sahip Ata'nın yaptırdığı kabul ediliyor. Sahip Ata yaklaşık kırk yıl devletin önemli görevlerinde bulundu ve birçok büyük yapı yaptırdı.\n\nMescidin yanında bir türbe var. Türbede Sahip Ata'nın torunlarının yattığı tahmin ediliyor. Yapı 1958'de onarıldı. Onarım sırasında topraktan çini parçaları çıktı. Bugün hâlâ ibadete açık.",
+        "kavramlar": [
+          {
+            "ad": "MESCİT",
+            "aciklama": "Küçük, genellikle minberi olmayan ibadet yeri.",
+            "ornek": "Tahir ile Zühre Mescidi küçük bir mescit."
+          },
+          {
+            "ad": "VEZİR",
+            "aciklama": "Sultana yardım eden yüksek rütbeli devlet adamı.",
+            "ornek": "Sahip Ata bir Selçuklu veziriydi."
+          },
+          {
+            "ad": "HALK HİKÂYESİ",
+            "aciklama": "Dilden dile anlatılan, yazarı bilinmeyen hikâye.",
+            "ornek": "Tahir ile Zühre bir halk hikâyesi."
+          }
+        ],
+        "kapanis": "Bir yapının adı ile gerçek hikâyesi farklı olabilir mi?"
+      },
+      "perspektif": {
+        "baslik": "Ad nereden geldi?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Tarihçi İbrahim Hakkı Konyalı bu mescit hakkında yazı yazmış."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Konyalı'ya göre 'Tahir ile Zühre' ve 'Arzu ile Kanber' adları yeni. Bu adları uyduran kişi yakın zamana kadar yaşıyormuş."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Yani mescidin romantik adı sonradan verilmiş. Mescidi aslında bir Selçuklu veziri yaptırmış."
+          }
+        ],
+        "soru": "Bu durumda en doğru söz hangisi?",
+        "secenekler": [
+          {
+            "metin": "Mescidin halk arasındaki adı yeni; onu Sahip Ata yaptırmış olabilir.",
+            "sonuc": "Doğru! Tarihçi, halkın verdiği adla yapının gerçek geçmişini birbirinden ayırır.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Tahir ile Zühre gerçekten bu mescidi yaptırdı.",
+            "sonuc": "Hayır. Tahir ile Zühre bir halk hikâyesinin kahramanları. Bu ad mescide sonradan verilmiş.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Bir yapının adı her zaman doğru bilgi verir.",
+            "sonuc": "Her zaman değil. Bu mescitte ad sonradan uydurulmuş.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Tahir ile Zühre Mescidi'nin halk arasındaki adı yeni. Mescidi 1200'lerin sonunda Selçuklu veziri Sahip Ata'nın yaptırdığı kabul ediliyor. Bugün hâlâ ibadete açık.",
+        "rontgenSorusu": "Bu mescidin vakfiyesi biliniyor mu?",
+        "rontgenAciklama": "Envanter mescidin bir vakfiyesinden ya da gelir kaynaklarından söz etmez. Yapıyı Sahip Ata'nın yaptırdığı kabul edilse de belge olmadığı için uygulama bu eser için gelir dağılımı göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 114-117 (TAHİR İLE ZÜHRE (DÖN BABA-PİR AHİ SULTAN) MESCİT VE TÜRBESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "konya-tahir-ile-zuhre-mescidi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Halkın verdiği ad mı, belgeye dayanan bilgi mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "halk",
+                "ad": "Halkın verdiği ad",
+                "aciklama": "Sonradan konan adlar."
+              },
+              {
+                "id": "bilgi",
+                "ad": "Envanterdeki bilgi",
+                "aciklama": "Tarihçilerin aktardığı."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Tahir ile Zühre Mescidi",
+                "kategoriId": "halk"
+              },
+              {
+                "metin": "Arzu ile Kanber Mescidi",
+                "kategoriId": "halk"
+              },
+              {
+                "metin": "Sahip Ata'nın yaptırdığı kabul edilir",
+                "kategoriId": "bilgi"
+              },
+              {
+                "metin": "1958'de onarıldı",
+                "kategoriId": "bilgi"
+              },
+              {
+                "metin": "1991 ve 2006'da restore edildi",
+                "kategoriId": "bilgi"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 114-117"
+        },
+        {
+          "id": "konya-tahir-ile-zuhre-mescidi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1200'lerin sonu: Mescit yapıldı",
+              "1958: Mescit ve türbe onarıldı",
+              "1991: Vakıflar restore etti",
+              "2006: Vakıflar yeniden restore etti"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 114-117"
+        },
+        {
+          "id": "konya-tahir-ile-zuhre-mescidi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Küçük, genellikle minberi olmayan ibadet yerine ___ denir.",
+            "cevap": "mescit",
+            "secenekler": [
+              "mescit",
+              "medrese",
+              "imaret",
+              "han"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 114-117"
+        },
+        {
+          "id": "konya-tahir-ile-zuhre-mescidi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Meram'da küçük bir mescit ve türbe. Halk ona bir halk hikâyesinin adını vermiş. Ama bir tarihçiye göre bu ad yeni. Onarımda topraktan çini parçaları çıktı.",
+            "secenekler": [
+              "Tahir ile Zühre (Dön Baba-Pir Ahi Sultan) Mescit ve Türbesi",
+              "Şems-i Tebrizi Camii ve Türbesi",
+              "İnce Minareli Medrese (Sahip Ata Darülhadis)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 114-117"
+        }
+      ]
+    },
+    {
+      "eserId": "konya-sultan-alaeddin-camii",
+      "merak": {
+        "soru": "Bir caminin yapımı üç ayrı sultan zamanına yayılabilir mi?",
+        "secenekler": [
+          "Evet, bu camide öyle oldu.",
+          "Hayır, her cami bir yılda biter.",
+          "Hayır, her camiyi tek bir sultan yaptırır."
+        ],
+        "kopru": "Tahminini not ettik! Konya'nın ortasındaki bu cami yaklaşık 70 yılda bugünkü hâlini aldı."
+      },
+      "baglam": {
+        "baslik": "Tepedeki ulu cami",
+        "metin": "Alâeddin Camii, Konya'nın ortasındaki Alâeddin Tepesi'nde. Bu tepe eski bir höyük. Burada 4000 yıl öncesine kadar uzanan yerleşim izleri bulundu.\n\nCaminin en eski bölümü Sultan I. Mesud zamanında yapıldı. Minberindeki yazıda 1155 yılı var. Orta bölümünü I. İzzettin Keykavus başlattı. O ölünce inşaat yarım kaldı. Sonra I. Alâeddin Keykubad bitirtti. Cami 1220'de son şeklini aldı.\n\nCaminin ahşap minberini Ahlatlı Hacı Mekkî Usta yaptı. Çini mihrabını Kerimüddin Erdişah süsledi. Cami bugün ibadete açık.",
+        "kavramlar": [
+          {
+            "ad": "HÖYÜK",
+            "aciklama": "Üst üste kurulmuş eski yerleşimlerden oluşan tepe.",
+            "ornek": "Alâeddin Tepesi bir höyük."
+          },
+          {
+            "ad": "MİNBER",
+            "aciklama": "Camide cuma hutbesinin okunduğu basamaklı yer.",
+            "ornek": "Alâeddin Camii'nin minberi 1155 tarihli."
+          },
+          {
+            "ad": "MİHRAP",
+            "aciklama": "Camide kıble yönünü gösteren oyuk.",
+            "ornek": "Caminin mihrabı çinilerle süslü."
+          }
+        ],
+        "kapanis": "Bir yapıyı birkaç kişi birlikte nasıl tamamlar?"
+      },
+      "perspektif": {
+        "baslik": "Yarım kalan inşaat",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "I. İzzettin Keykavus caminin orta bölümünü yaptırmaya başladı. Ama 1219'da öldü."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Kardeşi I. Alâeddin Keykubad tahta geçti ve inşaatı tamamlattı. İşleri Atabek Ayaz yönetti."
+          }
+        ],
+        "soru": "Sence yarım kalan bir yapıyı bitirmek neden önemliydi?",
+        "secenekler": [
+          {
+            "metin": "Başlanan hayır işi yarım kalmasın ve halk camiyi kullanabilsin diye.",
+            "sonuc": "Doğru! Cami tamamlandı ve 800 yıldır Konya halkına hizmet ediyor.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Önemli değildi, yarım kalabilirdi.",
+            "sonuc": "Yarım kalan bir cami kullanılamazdı. Tamamlanması herkesin yararınaydı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Sadece sultanın adının yazılması için.",
+            "sonuc": "Kitabede adı geçse de asıl amaç halkın ibadet edebileceği bir camiydi.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Alâeddin Camii'nin en eski bölümü 1155'ten kalma. Cami 1220'de, I. Alâeddin Keykubad zamanında son şeklini aldı. Bugün Konya'nın ortasında, ibadete açık.",
+        "rontgenSorusu": "Bu caminin vakıfları var mıydı?",
+        "rontgenAciklama": "1476-77 tarihli Konya Evkâf Defteri'ne göre caminin Konya ve çevresindeki köy ve kasabalarda vakıfları vardı. Bu vakıfların geliri caminin giderlerini karşılıyordu. Gelirin hangi işe ne oranda harcandığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 304-319 (SULTAN ALÂEDDİN (ULU) CAMİİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "konya-sultan-alaeddin-camii-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Kim ne yaptı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "sultan",
+                "ad": "Sultanlar",
+                "aciklama": "Yapımı başlatan ya da bitiren."
+              },
+              {
+                "id": "usta",
+                "ad": "Ustalar ve yöneticiler",
+                "aciklama": "Yapımda çalışan."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "I. Mesud: en eski bölüm",
+                "kategoriId": "sultan"
+              },
+              {
+                "metin": "I. Alâeddin Keykubad: inşaatı tamamlattı",
+                "kategoriId": "sultan"
+              },
+              {
+                "metin": "Hacı Mekkî Usta: minberi yaptı",
+                "kategoriId": "usta"
+              },
+              {
+                "metin": "Kerimüddin Erdişah: çini mihrabı süsledi",
+                "kategoriId": "usta"
+              },
+              {
+                "metin": "Atabek Ayaz: inşaatı yönetti",
+                "kategoriId": "usta"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 304-319"
+        },
+        {
+          "id": "konya-sultan-alaeddin-camii-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1155: Minber tamamlandı",
+              "1211-1219: Orta bölümün yapımına başlandı",
+              "1220: Cami son şeklini aldı",
+              "1952: Vakıflar Genel Müdürlüğü'ne devredildi"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 304-319"
+        },
+        {
+          "id": "konya-sultan-alaeddin-camii-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Üst üste kurulmuş eski yerleşimlerden oluşan tepeye ___ denir.",
+            "cevap": "höyük",
+            "secenekler": [
+              "höyük",
+              "derbent",
+              "hazire",
+              "avlu"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 304-319"
+        },
+        {
+          "id": "konya-sultan-alaeddin-camii-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Konya'nın ortasında, eski bir höyüğün üstünde bir cami. En eski bölümü 1155'ten kalma. 1220'de son şeklini aldı. Çini bir mihrabı var.",
+            "secenekler": [
+              "Sultan Alâeddin (Ulu) Camii",
+              "Eşrefoğlu Süleyman Bey Külliyesi",
+              "İmaret (Hasan Paşa) Camii"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 304-319"
+        }
+      ]
+    },
+    {
+      "eserId": "konya-sems-i-tebrizi-camii",
+      "merak": {
+        "soru": "Bir vakıf, bir külliyenin kaç yıl yaşamasını isteyebilir?",
+        "secenekler": [
+          "Kıyamete kadar",
+          "On yıl",
+          "Vakıf kuranın ölümüne kadar"
+        ],
+        "kopru": "Tahminini not ettik! Bu külliyenin vakfiyesinde tam olarak böyle yazıyor."
+      },
+      "baglam": {
+        "baslik": "Mevlâna'nın dostu",
+        "metin": "Şems-i Tebrizî, Mevlâna'nın gönül dünyasında etkili olan yakın dostuydu. Envantere göre caminin yanındaki türbede gömülü. Cami ve türbenin 1200'lerde yapıldığı düşünülüyor.\n\n1510'da Emir İshak Bey buraya yeni yapılar ekledi. Kur'an öğretmek için bir mektep ve bir dershane yaptırdı. Vakfiyesinde külliyenin kıyamete kadar yaşaması için vakıflar kurduğu anlaşılıyor.\n\nTürbenin avlusunda bir kuyu vardı. Kaynaklara göre halk, cumartesi günleri bu kuyudan su çekip yazılı sarı bir tastan şifa niyetine içerdi. 1944'te caminin çevresindeki mezarlık yol yapımı için kaldırıldı.",
+        "kavramlar": [
+          {
+            "ad": "DÂRÜLHUFFÂZ",
+            "aciklama": "Kur'an'ı ezberleyenlerin yetiştirildiği okul.",
+            "ornek": "Emir İshak Bey dârülhuffâzı genişletti."
+          },
+          {
+            "ad": "TÜRBEDAR",
+            "aciklama": "Bir türbenin bakımını yapan görevli.",
+            "ornek": "1944'e kadar türbedarın ailesi burada otururdu."
+          },
+          {
+            "ad": "VAKFİYE",
+            "aciklama": "Vakfın kurallarını ve mallarını yazan belge.",
+            "ornek": "Şems Camii'nin vakfiyesi 1510 tarihli."
+          }
+        ],
+        "kapanis": "'Kıyamete kadar' demek, bir vakıf için ne anlama gelir?"
+      },
+      "perspektif": {
+        "baslik": "Kıyamete kadar",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Emir İshak Bey'in vakfiyesi Konya Vakıflar Müdürlüğü'nün defterinde kayıtlı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Vakfiyeden, külliyenin kıyamete kadar yaşaması için vakıflar kurduğu anlaşılıyor."
+          }
+        ],
+        "soru": "Sence bir vakıf neden 'kıyamete kadar' sürsün istenir?",
+        "secenekler": [
+          {
+            "metin": "Hizmet hiç kesilmesin, gelecek kuşaklar da yararlansın diye.",
+            "sonuc": "Doğru! Vakıfların en önemli özelliği sürekliliktir. Mal satılmaz, gelir hep hizmete gider.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Vakfı kuranın adı unutulmasın diye, başka bir amacı yok.",
+            "sonuc": "Ad hatırlanır ama asıl amaç hizmetin yıllarca sürmesidir.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Vakıflar hep kısa sürer, bu bir şakadır.",
+            "sonuc": "Hayır. Vakıflar sürekli olsun diye kurulur; bu yüzden malları satılamaz.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Şems-i Tebrizi Camii ve Türbesi, Mevlâna'nın dostu Şems'in adını taşıyor. 1510'da Emir İshak Bey buraya mektep ve dershane ekledi ve külliyenin kıyamete kadar yaşaması için vakıflar kurdu.",
+        "rontgenSorusu": "Emir İshak Bey'in vakfı neyi amaçlıyordu?",
+        "rontgenAciklama": "1510 tarihli vakfiyeye göre Emir İshak Bey mescide yeni bir bina, Kur'an öğretmek için bir mektep ve bir dershane ekledi; külliyenin kıyamete kadar yaşaması için vakıflar kurdu. Bu vakıfların gelirinin oranları envanterde yer almaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 224-235 (ŞEMS-İ TEBRİZİ CAMİİ VE TÜRBESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "konya-sems-i-tebrizi-camii-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bugün de var mı, yok oldu mu? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "var",
+                "ad": "Bugün de var",
+                "aciklama": "Ayakta olanlar."
+              },
+              {
+                "id": "yok",
+                "ad": "Kaldırıldı",
+                "aciklama": "1944'te ortadan kalkanlar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Cami",
+                "kategoriId": "var"
+              },
+              {
+                "metin": "Şems-i Tebrizî'nin türbesi",
+                "kategoriId": "var"
+              },
+              {
+                "metin": "Şems Mezarlığı",
+                "kategoriId": "yok"
+              },
+              {
+                "metin": "Türbedar bölümü",
+                "kategoriId": "yok"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 224-235"
+        },
+        {
+          "id": "konya-sems-i-tebrizi-camii-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1200'ler: Mescit ve türbe yapıldı",
+              "1510: Emir İshak Bey vakfiyesini hazırladı",
+              "1796: Şer'iyye defterine vakfın gelirleri yazıldı",
+              "1944: Mezarlık yol için kaldırıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 224-235"
+        },
+        {
+          "id": "konya-sems-i-tebrizi-camii-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Bir türbenin bakımını yapan görevliye ___ denir.",
+            "cevap": "türbedar",
+            "secenekler": [
+              "türbedar",
+              "müezzin",
+              "kervancı",
+              "mimar"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 224-235"
+        },
+        {
+          "id": "konya-sems-i-tebrizi-camii-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Konya'da Mevlâna'nın dostunun adını taşıyan bir cami ve türbe. Avlusundaki kuyunun suyu eskiden şifa niyetine içilirdi.",
+            "secenekler": [
+              "Şems-i Tebrizi Camii ve Türbesi",
+              "Mevlâna Türbesi (Müze)",
+              "Tahir ile Zühre (Dön Baba-Pir Ahi Sultan) Mescit ve Türbesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 224-235"
+        }
+      ]
+    },
+    {
+      "eserId": "konya-lala-mustafa-pasa-kulliyesi",
+      "merak": {
+        "soru": "Bir paşa, Ilgın'da yoksul çocuklar için bir okul yaptırdı. Sence okulun içinde ne vardı?",
+        "secenekler": [
+          "Bir kütüphane",
+          "Bir hamam",
+          "Bir ahır"
+        ],
+        "kopru": "Tahminini not ettik! Vakfiyede bu okul 'içinde kütüphanesi olan' bir mektep olarak geçiyor."
+      },
+      "baglam": {
+        "baslik": "Kıbrıs Fatihi'nin külliyesi",
+        "metin": "Lala Mustafa Paşa, Kıbrıs'ı fetheden paşa olarak tanınır. 1576'da Ilgın'da büyük bir külliye yaptırdı.\n\nKülliyede cami, bedesten, kapalı çarşı, imaret, fırın, konuk odaları, sıbyan mektebi ve çifte hamam vardı. Böyle külliyelere menzil külliyesi denir. Tüccarlar, hacılar ve yolcular burada güvenle kalırdı.\n\nVakfiyesi 1577 tarihli ve bugün Konya'daki Yusuf Ağa Kütüphanesi'nde. Vakfiyeye göre sıbyan mektebi, yoksul çocuklara Kur'an öğretmek için yapıldı. İçinde bir de kütüphane vardı.",
+        "kavramlar": [
+          {
+            "ad": "ARASTA",
+            "aciklama": "Aynı işi yapan esnafın dükkânlarının sıralandığı çarşı.",
+            "ornek": "Külliyenin arastasına halk 'kapalı çarşı' der."
+          },
+          {
+            "ad": "SIBYAN MEKTEBİ",
+            "aciklama": "Küçük çocukların okuduğu ilkokul.",
+            "ornek": "Lala Mustafa Paşa'nın mektebi yoksul çocuklar içindi."
+          },
+          {
+            "ad": "MENZİL",
+            "aciklama": "Yolculuk sırasında konaklanan durak.",
+            "ornek": "Ilgın, yol üstünde bir menzildi."
+          }
+        ],
+        "kapanis": "Bir külliye kimlere hizmet edebilir?"
+      },
+      "perspektif": {
+        "baslik": "Yoksul çocukların okulu",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Vakfiyede sıbyan mektebinin neden yapıldığı yazıyor."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Mektep, fakir ve muhtaç ailelerin çocuklarına Kur'an öğretmek için yapıldı. İçinde bir de kütüphane vardı."
+          }
+        ],
+        "soru": "Sence vakıf neden özellikle yoksul çocuklar için okul yaptırdı?",
+        "secenekler": [
+          {
+            "metin": "Parası olmayan çocuklar da okuyabilsin diye.",
+            "sonuc": "Doğru! Vakıf okulları ücretsizdi. Böylece her çocuk okuma fırsatı bulurdu.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Zengin çocuklar okula gitmek istemediği için.",
+            "sonuc": "Vakfiyede böyle bir şey yazmıyor. Amaç yoksul çocukların da okuyabilmesiydi.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Çocuklar çarşıda çalışsın diye.",
+            "sonuc": "Hayır. Mektep, çocuklara okumayı öğretmek için yapıldı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Lala Mustafa Paşa Külliyesi 1576'da Ilgın'da yapıldı. Yolculara konaklama, halka çarşı ve hamam, yoksul çocuklara da içinde kütüphane olan bir okul sundu.",
+        "rontgenSorusu": "Bu külliyenin vakfiyesi nerede saklanıyor?",
+        "rontgenAciklama": "Külliyenin 12 Aralık 1577 tarihli Arapça vakfiyesi Konya Yusuf Ağa Kütüphanesi arşivinde, 7710 numaralı defterde bulunuyor. Bedesten, çarşı ve hamam gibi birimler gelir getirirken mektep ve imaret hizmet veriyordu. Gelirin oranları envanterde yer almaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 54-77 (LALA MUSTAFA PAŞA KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "konya-lala-mustafa-pasa-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Külliyede: Gelir mi getirir, hizmet mi verir? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "gelir",
+                "ad": "Gelir getirebilir",
+                "aciklama": "Kirası ya da ücreti olan."
+              },
+              {
+                "id": "hizmet",
+                "ad": "Hizmet verir",
+                "aciklama": "İnsanlara yarar sağlayan."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Bedesten",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Kapalı çarşı",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Çifte hamam",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Sıbyan mektebi",
+                "kategoriId": "hizmet"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "hizmet"
+              },
+              {
+                "metin": "Cami",
+                "kategoriId": "hizmet"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 54-77"
+        },
+        {
+          "id": "konya-lala-mustafa-pasa-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1575: Lala Mustafa Paşa, Hümâ Sultan ile evlendi",
+              "1576: Ilgın'daki külliye yapıldı",
+              "1577: Vakfiyesi yazıldı",
+              "1580: Lala Mustafa Paşa İstanbul'da öldü"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 54-77"
+        },
+        {
+          "id": "konya-lala-mustafa-pasa-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Aynı işi yapan esnafın dükkânlarının sıralandığı çarşıya ___ denir.",
+            "cevap": "arasta",
+            "secenekler": [
+              "arasta",
+              "avlu",
+              "imaret",
+              "türbe"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 54-77"
+        },
+        {
+          "id": "konya-lala-mustafa-pasa-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Ilgın'da 1576'da yapılan bir külliye. Yaptıran paşa Kıbrıs'ı fethetmişti. İçinde kütüphanesi olan bir çocuk okulu ve bir kapalı çarşı var.",
+            "secenekler": [
+              "Lala Mustafa Paşa Külliyesi",
+              "Sultan II. Selim Külliyesi",
+              "Eşrefoğlu Süleyman Bey Külliyesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 54-77"
+        }
+      ]
+    },
+    {
+      "eserId": "konya-imaret-hasan-pasa-camii",
+      "merak": {
+        "soru": "Bir caminin sütunundaki tunç bileziğe yüzyıllar boyunca insanlar yazı yazmış. Sence bu yazılar kimin?",
+        "secenekler": [
+          "Akşehir'e uğrayan yolcuların",
+          "Camiyi yapan ustaların",
+          "Sadece imamların"
+        ],
+        "kopru": "Tahminini not ettik! Yazıların arasında ünlü bir gezginin el yazısı da var."
+      },
+      "baglam": {
+        "baslik": "Bilezikteki el yazısı",
+        "metin": "İmaret Camii Akşehir'de. Kapısındaki on satırlık yazıya göre 1510'da yapıldı. Yaptıran Rumeli Beylerbeyi Hasan Paşa'ydı.\n\nVakfiyesine göre caminin yanında bir imaret ve bir mektep de yapıldı. Ama bunlar bugüne ulaşmadı. Caminin adı \"İmaret Camii\" bu imaretten geliyor.\n\nGirişin solundaki ilk sütunun altında tunç bir bilezik var. Üzerinde Akşehir'e uğrayanların yazıları bulunuyor. Bu yazıların arasında gezgin Evliya Çelebi'nin el yazısı dikkat çekiyor.",
+        "kavramlar": [
+          {
+            "ad": "BEYLERBEYİ",
+            "aciklama": "Büyük bir bölgeyi yöneten Osmanlı yöneticisi.",
+            "ornek": "Hasan Paşa, Rumeli Beylerbeyiydi."
+          },
+          {
+            "ad": "TUNÇ",
+            "aciklama": "Bakır ve kalayla yapılan sert bir metal.",
+            "ornek": "Sütunun altında tunç bir bilezik var."
+          },
+          {
+            "ad": "ŞADIRVAN",
+            "aciklama": "Cami avlusunda abdest almak için yapılan çeşme.",
+            "ornek": "Caminin avlusuna 1895-96'da bir şadırvan eklendi."
+          }
+        ],
+        "kapanis": "Bir caminin onarımına halk nasıl katkı verir?"
+      },
+      "perspektif": {
+        "baslik": "Halkın yardımı",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "1895-96'da caminin girişindeki kubbeler yıkıldı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Müftü Selim Efendi ve Akşehir halkı yardım topladı. Kubbeler Konyalı Ali Usta'ya yeniden yaptırıldı. Avluya bir de şadırvan eklendi."
+          }
+        ],
+        "soru": "Sence halkın onarıma katılması neyi gösterir?",
+        "secenekler": [
+          {
+            "metin": "Halk camiye sahip çıkıyor ve onu birlikte yaşatıyor.",
+            "sonuc": "Doğru! Vakıf eserleri yalnızca yaptıranın değil, onu kullanan halkın da emeğiyle ayakta kalır.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Caminin vakfı hiç yoktu.",
+            "sonuc": "Vakfiyesi vardı. Ama zamanla halkın yardımı da gerekti.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Halk zorla para verdi.",
+            "sonuc": "Envanterde böyle bir bilgi yok; onarım halkın yardımlarıyla yapıldı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "İmaret Camii'ni Rumeli Beylerbeyi Hasan Paşa 1510'da Akşehir'de yaptırdı. İmareti ve mektebi bugüne ulaşmadı. Sütunundaki tunç bilezikte Evliya Çelebi'nin el yazısı var.",
+        "rontgenSorusu": "Caminin vakfiyesinde neler vardı?",
+        "rontgenAciklama": "Caminin vakfiyesine göre cami ile birlikte bir imaret ve bir mektep de yapıldı; bunlar bugüne ulaşmadı. Vakfın gelirinin hangi işe ne oranda harcandığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 336-345 (İMARET (HASAN PAŞA) CAMİİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "konya-imaret-hasan-pasa-camii-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bugün de var mı, bugüne ulaşmadı mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "var",
+                "ad": "Bugün de var",
+                "aciklama": "Ayakta olanlar."
+              },
+              {
+                "id": "yok",
+                "ad": "Bugüne ulaşmadı",
+                "aciklama": "Vakfiyede geçen ama kaybolanlar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Cami",
+                "kategoriId": "var"
+              },
+              {
+                "metin": "Avludaki şadırvan",
+                "kategoriId": "var"
+              },
+              {
+                "metin": "Sütundaki tunç bilezik",
+                "kategoriId": "var"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "yok"
+              },
+              {
+                "metin": "Mektep",
+                "kategoriId": "yok"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 336-345"
+        },
+        {
+          "id": "konya-imaret-hasan-pasa-camii-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1510: Hasan Paşa camiyi yaptırdı",
+              "1833-34: Ahmet Ağa camiyi onardı",
+              "1895-96: Halkın yardımıyla kubbeler yeniden yapıldı",
+              "1949: İç süslemeler yapıldı",
+              "2015: Vakıflar camiyi onardı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 336-345"
+        },
+        {
+          "id": "konya-imaret-hasan-pasa-camii-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Caminin sütunundaki tunç bilezikte gezgin ___ Çelebi'nin el yazısı var.",
+            "cevap": "Evliya",
+            "secenekler": [
+              "Evliya",
+              "Kâtip",
+              "Süleyman",
+              "Ahmed"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 336-345"
+        },
+        {
+          "id": "konya-imaret-hasan-pasa-camii-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Akşehir'de 1510'da yapılan bir cami. Adını bugün olmayan imaretinden alıyor. Sütunundaki tunç bilezikte yolcuların yazıları var.",
+            "secenekler": [
+              "İmaret (Hasan Paşa) Camii",
+              "Sultan Alâeddin (Ulu) Camii",
+              "Şems-i Tebrizi Camii ve Türbesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 336-345"
+        }
+      ]
+    }
+  ]
+}

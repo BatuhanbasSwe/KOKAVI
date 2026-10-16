@@ -1,0 +1,14 @@
+﻿node_modules/
+dist/
+.pgdata/
+*.log
+.DS_Store
+data/research/_pdfs/
+data/research/_tmp/
+.vercel
+
+# Yerel git (gece çalışması) — gizli ve üretilen dosyalar
+deploy/ADMIN-PAROLA.txt
+kaynak/
+.playwright-mcp/
+*.tsbuildinfo

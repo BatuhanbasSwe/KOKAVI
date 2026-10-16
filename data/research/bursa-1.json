@@ -1,0 +1,425 @@
+{
+  "arastirmaGrubu": "bursa-1",
+  "tema": "İbadet ve İlim",
+  "sehir": "Bursa",
+  "eserler": [
+    {
+      "id": "bursa-ulucami",
+      "ad": "Ulucami",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Cami",
+      "koordinat": {
+        "lat": 40.183806,
+        "lng": 29.061899
+      },
+      "bani": "Yıldırım Bayezid (Sultan I. Bayezid)",
+      "baniDonem": "Osmanlı — Yıldırım Bayezid dönemi",
+      "yapimYili": "Minber kitabesine göre H. 802 (M. 1399/1400). Üç yıl süren inşaatın ardından caminin açılışı 1399 yılında bir cuma günü yapılmıştır.",
+      "vakfiyeAmaci": "Orhan Bey'in 1339 tarihli camisi ve hanı yaklaşık altmış yıl sonra ihtiyacı karşılayamaz hâle gelince şehrin büyük cuma camisi olarak yaptırılmıştır. Caminin arsası Orhan Vakfı'na aittir; Yıldırım Bayezid bu vakfa başka bir arazi tahsis etmiş, cami vakfa ait arsa üzerine inşa edilmiştir.",
+      "hizmet": "Bursa halkının cuma ve vakit namazları. Plan aşamasında cami, medrese, hamam, bedesten, dükkânlar ve meşrutalardan oluşan bir külliye olarak tasarlanmış; zamanla şadırvanlar, muvakkithane, muallimhane, müezzin ve muvakkit odaları eklenmiştir.",
+      "bugunNeOldu": "İbadete açıktır. Yaklaşık 55 × 69 m boyutlarında, yirmi kubbeli ve 3500 m² ibadet alanlı caminin duvar ve payelerindeki hat yazıları onu bir hat sanatı müzesi görünümüne getirir. Sonradan eklenen yapıların büyük kısmı kaldırılmış, medresesi dükkân ve depo olarak kullanılmaya başlanmış, hamamı işlevini yitirmiştir. 1960 restorasyonunda doğu cephesinde Sultan Abdülaziz döneminde açılan kapı yeniden pencereye çevrilmiş; kapının özgün kanatları Bursa Vakıflar Bölge Müdürlüğü deposunda korunmaktadır.",
+      "kulliye": "Plan aşamasında cami, medrese, hamam, bedesten, dükkânlar ve meşrutalardan oluşan bir külliye olarak düşünülmüştür. Yıldırım Bayezid, Ulucami'yi Orhan Camii'ne paralel, bedesteni ise Emir Hanı'nın karşısına yaptırmıştır.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 36-83 (ULUCAMİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Ulu Cami, Bursa' araması (amenity/place_of_worship: Ulu Cami); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Mimarın kimliği kesin değildir: envanter Hacı İvaz bin Ahî Bayezid, Ali Neccâr, Niğbolu Savaşı'nda esir düşen bir gayrimüslim mimar ve Konyalı Mimar Hacı Alâaddin adlarını verir. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "ad": "Yeşilcami (Yeşil Cami)",
+      "sehir": "Bursa",
+      "ilce": "Yıldırım (Yeşil Mahallesi)",
+      "tur": "Cami",
+      "koordinat": {
+        "lat": 40.182195,
+        "lng": 29.074611
+      },
+      "bani": "Çelebi Sultan Mehmed (I. Mehmed)",
+      "baniDonem": "Osmanlı padişahı; saltanatı 1413-1421 (Fetret Devri sonrası devletin yeniden kuruluş dönemi)",
+      "yapimYili": "İnşasına 817/1414'te başlandı, Zilhicce 822 / Aralık 1419'da tamamlandı (taçkapı kitâbesi)",
+      "vakfiyeAmaci": "Cami, medrese ve imaret için ortak düzenlenen vakfiyede külliyenin birimleri imaret, zaviye ve medrese olarak sayılmış; sırasıyla 'şerîfe', 'latîfe' ve 'müşeyyedetü'l-erkân' sıfatlarıyla nitelenmiştir; zaviye olarak anılan birim sonradan minber eklenerek camiye dönüştürülen Yeşilcami'dir. Külliyenin kuruluş amacı Cihannümâ'da Çelebi Mehmed'in Bursa'ya gelince 'ahiret için bir âli imaret ve bir âli cami' yapılmasını, ayrıca 'gurebâ ve fukarâ için müsafirhane ve dârülhayr' kurulmasını buyurması olarak kayıtlıdır.",
+      "hizmet": "Bursa'nın merkezinde ibadet mekânı olarak hizmet etti. Aynı vakfa bağlı imarette yemek pişirilip dağıtıldı: 16.-17. yüzyıl imaret muhasebesine göre bir yılda 629 müd buğday harcanmış (351 müd ile ekmek, 82 müd ile çorba, 5 kile ile aşure yapılmış), gıda ve diğer ihtiyaç maddelerine 145.297 akçe sarf edilmiş, sabah kahvaltısında sunulan bal için 9.643 akçe ödenmiştir. Vakfiyede medreseye otuz öğrenci kayıtlıdır; külliyenin han ve dükkân gelirleri bu hizmetleri finanse etmiştir.",
+      "bugunNeOldu": "Cami olarak ibadete açıktır (Kültür Portalı kaydında orijinal kullanım, bugünkü kullanım ve önerilen kullanım 'Cami' olarak işaretlidir). 1552, 1573, 1617, 1623, 1635, 1645, 1684, 1783, 1863, 1881, 1893 ve 1940'lı yıllarda büyük tamir görmüş, 2010'da kapsamlı bir restorasyona alınmıştır. 1855 depreminde hasar gören minare kaidesine kadar yıkılıp yeniden yapılmış, 1869'da mahya kurulabilmesi için ikinci bir minare eklenmiştir.",
+      "kulliye": "Yeşilcami (Yeşil) Külliyesi",
+      "gelirDagilimi": [
+        {
+          "kalem": "Mahsûlât-ı kurâ: vakıf köylerinden buğday gelirleri (4.092 kile buğday = 70.615 kuruş)",
+          "yuzde": 82.7,
+          "tip": "gelir",
+          "kaynak": "Akan Yetişir 2022, s. 214, Tablo 2 (R. 1257 vakıf muhasebe defteri) — kaynakta kuruş olarak verilen tutardan hesaplanmıştır"
+        },
+        {
+          "kalem": "Kite kazası zemin-i bâğât mukataası meyve öşrü (10.125 kuruş)",
+          "yuzde": 11.9,
+          "tip": "gelir",
+          "kaynak": "Akan Yetişir 2022, s. 214, Tablo 2 (R. 1257 vakıf muhasebe defteri) — kaynakta kuruş olarak verilen tutardan hesaplanmıştır"
+        },
+        {
+          "kalem": "Harir Hanı (İpek Hanı) rüsumu (2.500 kuruş)",
+          "yuzde": 2.9,
+          "tip": "gelir",
+          "kaynak": "Akan Yetişir 2022, s. 214, Tablo 2 (R. 1257 vakıf muhasebe defteri) — kaynakta kuruş olarak verilen tutardan hesaplanmıştır"
+        },
+        {
+          "kalem": "Balıklı-i Sağîr mezraası çayır öşrü (722 kuruş)",
+          "yuzde": 0.8,
+          "tip": "gelir",
+          "kaynak": "Akan Yetişir 2022, s. 214, Tablo 2 (R. 1257 vakıf muhasebe defteri) — kaynakta kuruş olarak verilen tutardan hesaplanmıştır"
+        },
+        {
+          "kalem": "Geyve Hanı (Lonca Hanı) rüsumu (700 kuruş)",
+          "yuzde": 0.8,
+          "tip": "gelir",
+          "kaynak": "Akan Yetişir 2022, s. 214, Tablo 2 (R. 1257 vakıf muhasebe defteri) — kaynakta kuruş olarak verilen tutardan hesaplanmıştır"
+        },
+        {
+          "kalem": "Diğer kalemler (740 kuruş)",
+          "yuzde": 0.9,
+          "tip": "gelir",
+          "kaynak": "Akan Yetişir 2022, s. 214, Tablo 2 (R. 1257 vakıf muhasebe defteri) — kaynakta kuruş olarak verilen tutardan hesaplanmıştır"
+        }
+      ],
+      "gelirDagilimiDurumu": "belgeli",
+      "arsivNo": "Cami, medrese ve imaretin ortak vakfiyesi: İstanbul Belediye Kütüphanesi, Muallim Cevdet–Fermanlar No. 5 (Oğuzoğlu 2022, s. 45, dipnot 15). Vakıflar Genel Müdürlüğü Vakıf Kayıtlar Arşivi numarası bulunamadı.",
+      "kaynaklar": [
+        {
+          "kunye": "Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495",
+          "url": "https://islamansiklopedisi.org.tr/yesilcami-kulliyesi--bursa"
+        },
+        {
+          "kunye": "Yusuf Oğuzoğlu, 'Sultan Çelebi Mehmed'in Osmanlı Medeniyetine Armağanı: Bursa Yeşil Cami', Sultan Çelebi Mehmed ve Devri Sempozyumu (17-18 Haziran 2021), ed. Cafer Çiftçi, Bursa 2022, s. 35 vd.",
+          "url": "https://www.bursa.bel.tr/dosyalar/yayinlar/ttufwyjxsogsk8.pdf"
+        },
+        {
+          "kunye": "Zeynep Akan Yetişir, 'Yeşil Külliye'nin On Dokuzuncu Yüzyıl Ortalarındaki Vaziyeti (Gelir-Giderleri ve Vazifelileri)', aynı sempozyum kitabı, s. 209 vd.",
+          "url": "https://www.bursa.bel.tr/dosyalar/yayinlar/ttufwyjxsogsk8.pdf"
+        },
+        {
+          "kunye": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Cami' Kültür Envanteri Anıt kaydı, Envanter No A29",
+          "url": "https://www.kulturportali.gov.tr/turkiye/bursa/kulturenvanteri/yesil-cami"
+        },
+        {
+          "kunye": "Kültür Envanteri, 'Yeşil Cami' (KE No 10563) — koordinat teyidi",
+          "url": "https://kulturenvanteri.com/yer/yesil-cami/"
+        }
+      ],
+      "dogrulamaNotu": "1) Koordinat dört bağımsız kaynakla (Kültür Envanteri, OpenStreetMap, Wikidata Q1549086, tr.wikipedia) 15 m içinde örtüşmektedir. 2) İLÇE DÜZELTMESİ: Eser Osmangazi'de değil Yıldırım ilçesi Yeşil Mahallesi'ndedir; Kültür Portalı adres alanı 'Yeşil Mahallesi 1. Yeşil Cad.', Kültür Envanteri bölge alanı ve OSM/Nominatim sonucu bunu doğrulamaktadır. 3) TARİH ÇELİŞKİSİ: TDV, inşaatın 1414'te başlayıp Aralık 1419'da bittiğini ve son cemaat yeri eklenmesinden vazgeçildiğini yazar; Kültür Portalı ise son cemaat yerinin II. Murad tarafından 1424'te tamamlandığını, ayrıca kendi içinde çelişkili biçimde yapımın '1419'da başladığını' belirtir. Kültür Portalı'ndaki bu iki ifade birbiriyle ve TDV ile uyuşmamaktadır; kesin kabul edilmemelidir. 4) GELİR DAĞILIMI NİTELİĞİ: Buradaki oranlar 1419 tarihli vakfiyede şart koşulan dağılım DEĞİLDİR; 19. yüzyıl ortası (R. 1257) vakıf muhasebe defterindeki fiilî gelir kompozisyonudur ve yüzdeler kaynakta verilen kuruş tutarlarından hesaplanmıştır. Kaynak, R. 1267 yılı için mahsûlât-ı kurâ payını doğrudan '%95,5' olarak vermektedir; R. 1257 için böyle bir oran verilmemiştir. 5) Vakfiyenin oransal gelir dağılımına dair hükümleri hiçbir kaynakta bulunamamıştır. 6) Kültür Portalı kaydında 'Vakfiye: Var' denilmektedir ancak vakfiye metnine doğrudan erişilememiştir."
+    },
+    {
+      "ad": "Yeşil Medrese (Sultaniye Medresesi; bugün Bursa Türk ve İslam Eserleri Müzesi)",
+      "sehir": "Bursa",
+      "ilce": "Yıldırım (Yeşil Mahallesi)",
+      "tur": "Medrese",
+      "koordinat": {
+        "lat": 40.1815795,
+        "lng": 29.0731104
+      },
+      "bani": "Çelebi Sultan Mehmed (I. Mehmed)",
+      "baniDonem": "Osmanlı padişahı; saltanatı 1413-1421",
+      "yapimYili": "1414-1424 (Kültür Portalı). İki katlı planlanmış, baninin ölümü üzerine üst kat tamamlanmamıştır; TDV de yapının yarım kaldığını belirtir.",
+      "vakfiyeAmaci": "Külliyenin cami ve imaretle ortak düzenlenen vakfiyesinde medrese, 'müşeyyedetü'l-erkân' sıfatıyla anılan eğitim birimidir. Vakfiyede medreseye otuz öğrenci kayıtlıdır; yapıda ise yalnızca on üç hücre bulunması medresenin yarım kaldığını gösterir.",
+      "hizmet": "Osmanlı eğitim hayatında 'Bursa Sultânîsi' adıyla ün yapmış bir yüksek öğretim kurumudur. On üç hücre, bir müderris odası, üç eyvan, revaklı avlu ve şadırvandan oluşur; şöhreti Buhara ve Türkistan'a kadar ulaşmıştır. Mehmed Şah Fenârî, Yûsuf Bâlî Fenârî, Alâeddin Ali et-Tûsî, Hızır Bey, Yâkub Paşa, Zenbilli Ali Efendi, Ebüssuûd Efendi ve Hoca Sâdeddin Efendi gibi tanınmış âlimler burada müderrislik yapmıştır.",
+      "bugunNeOldu": "1923 yılından beri Bursa Türk ve İslam Eserleri Müzesi olarak kullanılmaktadır. Müzede 13.-20. yüzyıllara uzanan Selçuklu, Beylik ve Osmanlı dönemlerine ait İznik ve Kütahya çinileri, seramik, ahşap oyma-kakma eserler, maden sanatı örnekleri ve sikkeler sergilenmektedir.",
+      "kulliye": "Yeşilcami (Yeşil) Külliyesi",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": "Cami, medrese ve imaretin ortak vakfiyesi: İstanbul Belediye Kütüphanesi, Muallim Cevdet–Fermanlar No. 5 (Oğuzoğlu 2022, s. 45, dipnot 15). Medreseye ait ayrı bir vakfiye tespit edilememiştir.",
+      "kaynaklar": [
+        {
+          "kunye": "Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495",
+          "url": "https://islamansiklopedisi.org.tr/yesilcami-kulliyesi--bursa"
+        },
+        {
+          "kunye": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Medresesi' (kaynak: Bursa İl Kültür ve Turizm Müdürlüğü)",
+          "url": "https://kulturportali.gov.tr/turkiye/bursa/gezilecekyer/yesil-medresesi"
+        },
+        {
+          "kunye": "Yusuf Oğuzoğlu, 'Sultan Çelebi Mehmed'in Osmanlı Medeniyetine Armağanı: Bursa Yeşil Cami', Sultan Çelebi Mehmed ve Devri Sempozyumu, Bursa 2022, s. 44-46",
+          "url": "https://www.bursa.bel.tr/dosyalar/yayinlar/ttufwyjxsogsk8.pdf"
+        },
+        {
+          "kunye": "Kültür Envanteri, 'Yeşil Cami Medresesi' (KE No 10564) ve 'Bursa Türk ve İslam Eserleri Müzesi' (KE No 72739) — koordinat teyidi",
+          "url": "https://kulturenvanteri.com/yer/yesil-cami-medresesi/"
+        }
+      ],
+      "dogrulamaNotu": "1) Koordinat, Kültür Envanteri medrese noktasının OSM'deki müze poligonu içine düşmesiyle teyit edilmiştir (üç bağımsız kaynak). 2) İLÇE: Yıldırım ilçesi Yeşil Mahallesi'ndedir (Kültür Portalı adres alanı: 'Yeşil Mahallesi Yıldırım/BURSA'). 3) Medreseye ait AYRI bir vakfiye bulunamamıştır; cami ve imaretle ortak vakfiye söz konusudur ve bu vakfiyede akarların medrese ile cami arasında nasıl paylaştırıldığına dair oransal bir hüküm hiçbir kaynakta görülmemiştir, bu nedenle gelirDagilimi boş bırakılmıştır. 4) 'Sultaniye Medresesi' adı kaynaklarda ortak kullanılmakla birlikte, aynı adın Bursa'daki başka medreseler için de kullanılıp kullanılmadığı doğrulanamamıştır."
+    },
+    {
+      "ad": "Yeşil Türbe (Çelebi Sultan Mehmed Türbesi)",
+      "sehir": "Bursa",
+      "ilce": "Yıldırım (Yeşil Mahallesi)",
+      "tur": "Türbe",
+      "koordinat": {
+        "lat": 40.1814121,
+        "lng": 29.0748829
+      },
+      "bani": "Çelebi Sultan Mehmed (I. Mehmed) — türbeyi sağlığında kendi için yaptırmıştır",
+      "baniDonem": "Osmanlı padişahı; saltanatı 1413-1421",
+      "yapimYili": "1413-1421 (Kültür Portalı). Yapımına baninin sağlığında başlanmış ve ölümünden 40 gün önce tamamlanmıştır. Kültür Portalı ayrıca 1421 tarihini verir.",
+      "vakfiyeAmaci": "Türbenin kendisine ait ayrı bir vakfiye şartı hiçbir kaynakta bulunamamıştır; eser Yeşilcami Külliyesi'nin bir parçası olarak aynı vakıf bünyesinde değerlendirilmektedir. Yapılış amacı, baninin kendi defin yeri olmasıdır: Kültür Envanteri kaydına göre yapımına I. Mehmet Çelebi'nin sağlığında başlanmış ve ölümünden 40 gün önce tamamlanmıştır.",
+      "hizmet": "Çelebi Sultan Mehmed'in defnedildiği hanedan türbesidir ve Bursa'nın sembol yapılarından biridir. Zemin katında sandukalar, altında tonozla örtülü bir kripta (bodrum) bulunur; bu bodrum Osmanlı türbeleri içinde ayrıcalıklı bir özelliktir. 25,5 m yüksekliğiyle Osmanlı türbelerinin en yükseğidir; dış cepheleri ve iç duvarları çini kaplıdır. Halk tarafından yeşil çinileri nedeniyle 'Yeşil Türbe' olarak adlandırılmıştır.",
+      "bugunNeOldu": "Kapsamlı bir onarımdan sonra 2009 yılında yeniden ziyarete açılmıştır. Kültür Portalı kaydında orijinal kullanım, bugünkü kullanım ve önerilen kullanım 'Türbe' olarak işaretlidir. 1617, 1622, 1645, 1680, 1741, 1762, 1765, 1775, 1776, 1818 ve 2005 yıllarında onarım görmüştür.",
+      "kulliye": "Yeşilcami (Yeşil) Külliyesi",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495",
+          "url": "https://islamansiklopedisi.org.tr/yesilcami-kulliyesi--bursa"
+        },
+        {
+          "kunye": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Türbe (Çelebi Sultan Mehmet Türbesi)' Kültür Envanteri Anıt kaydı, Envanter No A58",
+          "url": "https://www.kulturportali.gov.tr/turkiye/bursa/kulturenvanteri/yesil-turbe-celebi-sultan-mehmet-turbesi"
+        },
+        {
+          "kunye": "Kültür Envanteri, 'Yeşil Türbe' (KE No 4575); OpenStreetMap way 254313386; Wikidata Q8053362 — koordinat teyidi",
+          "url": "https://kulturenvanteri.com/yer/yesil-turbe/"
+        }
+      ],
+      "dogrulamaNotu": "1) Koordinat dört kaynakla (Kültür Envanteri KE 4575, OpenStreetMap, Wikidata Q8053362, en.wikipedia 'Green Tomb') teyit edilmiştir; tr.wikipedia 'Yeşil Türbe' maddesinde koordinat parametresi YOKTUR. 2) İLÇE: Yıldırım ilçesi Yeşil Mahallesi'ndedir (Kültür Portalı adres alanı 'Yeşil Mahallesi Yeşil Caddesi Yıldırım/Bursa'). 3) TARİH: Kültür Portalı hem 'Yapım Tarihi 1413-21' hem de metin içinde 1421 demektedir; TDV türbenin yapım yılını ayrıca vermez, yalnızca Çelebi Mehmed'in caminin karşısındaki türbesi olduğunu belirtir. Kesin yıl için bağımsız teyit yoktur. 4) arsivNo null bırakılmıştır: Kültür Portalı kaydında 'Vakfiye: Var' yazmaktadır, ancak bu vakfiyenin türbeye özel mi yoksa külliyenin ortak vakfiyesi mi olduğu doğrulanamamıştır; bu nedenle külliyenin Muallim Cevdet numarası bu kayda yazılmamıştır. 5) Türbenin kendine ait vakfiye amacı beyanı hiçbir kaynakta bulunamamıştır."
+    },
+    {
+      "id": "bursa-haraccioglu-darulkurra-mektebi",
+      "ad": "Haraççıoğlu (Dârülkurrâ) Mektebi",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Mektep (dârülkurrâ — Kur'an okuma okulu)",
+      "koordinat": {
+        "lat": 40.183732,
+        "lng": 29.057285
+      },
+      "bani": "Hoca Yakup (Hoca Ya'kûb) adlı bir hayırsever",
+      "baniDonem": "Osmanlı (H. 898 / M. 1492)",
+      "yapimYili": "H. 898 / M. 1492 (giriş kapısı üzerindeki kitabe)",
+      "vakfiyeAmaci": "Kur'an eğitimi vermek amacıyla inşa ettirilmiştir.",
+      "hizmet": "Kur'an okumayı öğrenenler. Planı, bazı sıbyan mekteplerinde olduğu gibi yazlık ve kışlık bölümler düşünülerek tasarlanmıştır: kuzeydeki odada ocak vardır, kuzeydoğudaki oda okuma odası olarak kullanılmıştır.",
+      "bugunNeOldu": "1946'da kapsamlı bir onarım geçirmiş, 1958'den itibaren Bursa Eski Eserleri Sevenler Kurumu'nun kullanımına tahsis edilmiştir. Günümüzde Üftâde Kur'an Kursu'nun ek binası olarak kullanılmaktadır. Bahçede gelişigüzel bırakılmış mezar taşları 2014'teki düzenleme çalışmasıyla düzene kavuşturulmuştur.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 80-83 (HARAÇÇIOĞLU (DÂRÜLKURRÂ) MEKTEBİ)"
+        },
+        {
+          "kunye": "Koordinat — YAKLAŞIK: OpenStreetMap Nominatim, 'Haraççıoğlu, Osmangazi, Bursa' araması yakınındaki Haraççıoğlu Medresesi'ni buldu. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Kaynaklarda 'Haraççıoğlu Mektebi', 'Yerkapı Mektebi' ve 'Dârülkurrâ' adlarıyla anılır. Kitabeyi şair Cemâlî düzenlemiştir. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "bursa-molla-yegan-medresesi",
+      "ad": "Molla Yegân Medresesi",
+      "sehir": "Bursa",
+      "ilce": "Yıldırım",
+      "tur": "Medrese",
+      "koordinat": {
+        "lat": 40.187763,
+        "lng": 29.079709
+      },
+      "bani": "İlk yapı: Yıldırım Bayezid dönemi ümerasından Kara Eyne Bey. Harap olunca yeniden yaptıran: Molla Yegân (asıl adı Mehmed)",
+      "baniDonem": "Osmanlı — ilk yapı Yıldırım Bayezid dönemi; yeniden inşa Molla Yegân tarafından",
+      "yapimYili": "Kesin tarih verilmez. Molla Yegân'ın vakfiyesini H. 865 / M. 1461 civarında düzenlediği ve bu yıllarda vefat ettiği düşünülmektedir.",
+      "vakfiyeAmaci": "Medrese eğitimini sürdürmek. Molla Yegân 2900 ciltlik kütüphanesini medresenin yanındaki mescide vakfetmiş, yapıların sürdürülebilirliği için birçok gelir getiren araziyi vakfına katmıştır. Kaynaklarda medrese yakınında bir mektep de yaptırdığı belirtilir.",
+      "hizmet": "Öğrenciler ve müderrisler. Medrese on iki hücre ve bir dershaneden oluşur. Başlangıçta 20'li, sonra 50'li medreseler sınıfında yer almış ve XX. yüzyıl başlarına kadar eğitim vermiştir.",
+      "bugunNeOldu": "1990'larda metruktu; sahipsiz hücreler kimsesizler ve yoksullar tarafından barınak olarak kullanıldı. 2006-2009 yıllarında Yıldırım Belediyesi tarafından restore edildi; kuzeyine bir eyvan/dershane eklendi, çevresine muhtarlık, kültür merkezi ve postane gibi birimler yapıldı. Avlusuna camla çevrili 'Molla Yegân Çocuk Üniversitesi' (Bilim Merkezi) inşa edilmiştir.",
+      "kulliye": "Yanında 1723'te kapsamlı onarım gören kâgir bir mescit bulunur. Tarihî ve coğrafi yakınlığı nedeniyle Yıldırım Külliyesi ile birlikte anılır.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 546-551 (MOLLA YEGÂN MEDRESESİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Molla Yegan Çocuk Üniversitesi' araması (amenity/childcare: Molla Yegan Çocuk Üniversitesi); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Molla Yegân'ın mezarının yeri günümüze ulaşmamıştır. Medresenin dershane ve şadırvanı kazılara rağmen bulunamamıştır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "ad": "Gökdere Medresesi (Paşa Çelebi Medresesi)",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Medrese",
+      "koordinat": {
+        "lat": 40.18386,
+        "lng": 29.071574
+      },
+      "bani": "Paşa Çelebi. Kültür Portalı envanter kaydı: “Hayatı hakkında yeterli bilgiye sahip olamadığımız bu kişinin II. Bayezıd döneminin müderrislerinden Zeyrek Zade Paşa Çelebi olması muhtemel görünmektedir.” Baninin kimliği kesin değildir.",
+      "baniDonem": "Osmanlı. MSGSÜ yüksek lisans tezine göre II. Bayezid devri (1481-1512); Osmangazi Belediyesi'nin proje sayfası ise “15. yüzyıl ortaları” der.",
+      "yapimYili": "Kesin yıl bilinmiyor. Kültür Portalı envanteri “15 YY.” kaydını verir; MSGSÜ tezi yapının II. Bayezid devrinde inşa edilmiş olabileceğini belirtir.",
+      "vakfiyeAmaci": "Eğitim-öğretim vakfı. Vakfiyede, vakıf mütevelliliğini yapacak kişilerin medresede okuyup tahsil yapmış olması şart koşulmuştur (Osmangazi Belediyesi resmî proje sayfası: “Yıllarca eğitim ve öğretim verilen medresenin vakfiyesinde, vakıf mütevelliliğini yapacak kişilerde, medrese okuyup tahsil yapma şart koşulmuştur.”; aynı şart TBMM Tutanak Dergisi'nde de aktarılır). Kepecioğlu'ndan naklen: “Paşa Çelebi, vakfının mütevelliliğini soyundan gelecek okumuş evlâtlarına şart eylediğinden çocuk ve torunları hep tahsil ve terbiye görmüş âlim kişiler olmuşlardır.” Vakfın gelir kaynakları arasında çarşı dükkânları, değirmenler, bir debbağhane, ahırlar ve nakit akçe sayılır (MSGSÜ tezi).",
+      "hizmet": "Medrese öğrencilerine eğitim-öğretim. Yapı “otuzlu medrese” pâyesindedir (müderris pâyesi 30 akçe, 1552-53 öncesi); fıkıh (Tenkih/Tavzih), belagat (Şerh-i Miftah), kelam (Haşiye-i Tecdit) ve hadis (Mesabih) dersleri okutulurdu. Medrese 12 oda (hücre) ve büyük bir dershane (ana eyvan) olarak inşa edilmiştir; öğrenci sayısı 1884'te 10, kapatılmadan hemen önce 1906'da 30'dur (MSGSÜ tezi).",
+      "bugunNeOldu": "1906'da medrese olarak kapatılmış; uzun yıllar kadın hapishanesi, marangozhane, demirci dükkânı ve depo olarak kullanılmıştır. Özel mülkiyete geçen yapı 2004'te kamulaştırılmış (Kültür Portalı: “Kökeni vakıf olmasına karşın, Bursa'daki özel mülkiyete satılmış onlarca yapıdan biri”), 2005-2006'da Osmangazi Belediyesi tarafından aslına uygun restore edilmiştir. 2006'dan bu yana “Gökdere Kültür Sanat Merkezi” olarak kullanılmakta; tasavvuf ve sanat müziği çalışmaları, konserler ve kurslar düzenlenmektedir (Kültür Portalı; Osmangazi Belediyesi).",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "T.C. Kültür ve Turizm Bakanlığı, Kültür Portalı / Kültür Envanteri Anıt kaydı: “Gökdere Medresesi”, Envanter No A42",
+          "url": "https://kulturportali.gov.tr/turkiye/bursa/kulturenvanteri/gokdere-medresesi"
+        },
+        {
+          "kunye": "Osmangazi Belediyesi, “Gökdere Kültür Sanat Merkezi” proje sayfası (vakfiye şartı burada aktarılır)",
+          "url": "https://osmangazi.bel.tr/index.php/proje/gokdere-kultur-sanat-merkezi"
+        },
+        {
+          "kunye": "Deniz Ildız, “Bursa Gökdere (Paşa Çelebi) Medresesi Restorasyon Projesi”, MSGSÜ Fen Bilimleri Enstitüsü Yüksek Lisans Tezi, 2006",
+          "url": "https://acikerisim.msgsu.edu.tr/xmlui/bitstream/handle/20.500.14124/2027/184173.pdf?sequence=1&isAllowed=y"
+        },
+        {
+          "kunye": "TBMM Tutanak Dergisi, 26. Dönem, 39. Birleşim, 16 Aralık 2017 (medresenin vakfiye şartı ve güncel kullanımı hakkında)",
+          "url": "https://cdn.tbmm.gov.tr/TbmmWeb/Tutanak20230120/26/3/39/ff3dd240-d22e-41bc-bff1-96c6e1793cbc.pdf"
+        },
+        {
+          "kunye": "Kültür Envanteri (kulturenvanteri.com), “Gökdere Medresesi” kaydı, KE No 3783 — koordinat için",
+          "url": "https://kulturenvanteri.com/yer/gokdere-medresesi/"
+        }
+      ],
+      "dogrulamaNotu": "1) En önemli çelişki: Kültür Portalı envanter kaydında “Vakfiye” alanı boş (“-”) iken, vakfiyedeki mütevelli şartı Osmangazi Belediyesi ve TBMM tutanağı olmak üzere iki bağımsız kaynakta birebir aktarılmaktadır; vakfiye belgesinin kendisi ve arşiv numarası hiçbir kaynakta görülmedi, bu yüzden arsivNo ve gelir dağılımı boş bırakıldı. 2) Yapım tarihi çelişkisi: Osmangazi Belediyesi “15. yüzyıl ortaları” ile MSGSÜ tezinin “II. Bayezid devri (1481-1512)” tespiti bağdaşmıyor. 3) Bani kimliği kesin değil (“Zeyrek Zade Paşa Çelebi olması muhtemel”). 4) Oda sayısı kaynaklara göre 12 oda veya “on hücre” olarak farklılaşıyor. 5) Ad karışıklığı: Yanı başındaki ayrı bir Kayhan Medresesi erken tarihte yıkılmış, onun adı yanlışlıkla bu yapıya verilmiştir; “Kayhan Medresesi” adıyla geçen kayıtlar bu yapıya ait olmayabilir. 6) Koordinat, kulturenvanteri.com kaydından alınmış yaklaşık değerdir (Bursa Büyükşehir Belediyesi rota platformundaki değerle ~10 m içinde uyuşur), ancak kadastral veriyle birebir doğrulanmadı."
+    },
+    {
+      "ad": "Veled-i Yaniç Mescidi (Veled-i Yaniç Camii)",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Mescit",
+      "koordinat": {
+        "lat": 40.1849899,
+        "lng": 29.0564022
+      },
+      "bani": "Hacı Mahmud Çelebi bin Hacı Hayreddin bin Yaniç. Giriş kapısındaki inşa kitabesinin okunuşu: “Hâcî Mahmûd Çelebi bin Hâcî Hayreddin bin Yâniç”. Kültür Portalı envanter kaydı “Yaptıran: Mahmut Çelebi” der.",
+      "baniDonem": "II. Murad devri (1421-1451); kitabede “Mehmed Han oğlu Sultan Murad zamanında” denir",
+      "yapimYili": "1440 (H. 844 Safer). Giriş kapısı üzerindeki inşa kitabesinin Türkçesi: “Yânic oğlu Hacı Hayreddin oğlu Hacı Mahmud — Allah onları bağışlasın — bu mübarek mescidi, Mehmed Han oğlu Sultan Murad zamanında imar etti ve 844 (1440) yılının safer ayında hayır ve başarı ile tamamladı.” Kültür Portalı “Temmuz 1440” kaydını verir.",
+      "vakfiyeAmaci": "Mescidin doğu duvarındaki H. 900 (1494) tarihli vakıf kitabesine göre Hacı Mustafa kızı Hacı Ayşe, Yaniç oğlu mahallesinde altı ev ve altı bin dirhem vakfetmiştir; şart, “camiyi yapanın ruhuna imam ve müezzin tarafından Kur'an'dan cüzler okunması”dır. Aynı mahallede iki sabbağ (boyacı) dükkânının arsaları; el-Hac Ayşe Pula binti el-Hac Musa'nın haftada iki gün sevabı ruhuna bağışlanmak üzere cüz okunması karşılığında vakfettiği bir ev ve Gülşah binti Abdullah'ın, kendisi ve eşinin ruhuna mescidin imam ve müezzininin Kur'an okuması şartıyla vakfettiği 2.500 dirhem de caminin vakıfları arasındadır (Hancıoğlu, MSGSÜ YLT 2022; kitabe neşirleri için Kazım Baykal, Bursa ve Anıtları, s. 178-179 ve Saadet Maydaer'in BŞS A 19 41a, A 8 271a, 18 102b referansları). Kültür Portalı envanter kaydı “Vakfiye: Var” der; ancak vakfiye belgesinin kendisi, tarihi ve arşiv numarası erişilebilir kaynaklarda bulunamadı.",
+      "hizmet": "Mahalle mescidi; bugün cami olarak ibadete açıktır. Yapının dikkat çekici özelliği: minaresi caminin dışında ve alt kısmı çeşmedir; çeşmenin üzerinden beş basamakla kuleye benzeyen minareye çıkılır. İç mekân 11,50 x 7,60 m olup tek kubbelidir.",
+      "bugunNeOldu": "Bugün cami (Kültür Portalı “Bugünkü Kullanımı: Cami”). 20. yüzyılın ortalarına kadar yıkık ve harap durumda iken mahalle halkı tarafından onarılarak ibadete açılmıştır; özgün şeklini büyük ölçüde kaybetmiştir, yapıldığı dönemden kalan minare kaidesi günümüze ulaşmıştır. Minberi ahşap, mihrabı alçı dökümdür ve bunlar günümüz yapısıdır. Bakımından sorumlu kuruluş Vakıflar Genel Müdürlüğü; tescil kararları 1977, 1978, 1981, 1986 ve 04.05.1991/1730.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "T.C. Kültür ve Turizm Bakanlığı, Kültür Portalı / Kültür Envanteri Anıt kaydı: “Veled-i Yaniç Mescidi”, Envanter No A207",
+          "url": "https://kulturportali.gov.tr/turkiye/bursa/kulturenvanteri/veled-i-yanic-mescidi"
+        },
+        {
+          "kunye": "Goncagül Hancıoğlu, “Bursa Hisar Bölgesi'ndeki Erken Osmanlı Dönemi Camileri” (4.2.4 Veled-i Yaniç Camii), Mimar Sinan Güzel Sanatlar Üniversitesi Yüksek Lisans Tezi, 2022",
+          "url": "https://acikerisim.msgsu.edu.tr/xmlui/bitstream/handle/20.500.14124/6268/GONCA%20HANCIO%C4%9ELU%20-%20Y%C3%9CKSEK%20L%C4%B0SANS%20TEZ%C4%B0.pdf"
+        },
+        {
+          "kunye": "Kültür Envanteri (kulturenvanteri.com), “Veled-i Yaniç Camii” kaydı, KE No 42126 — koordinat için (metni Kültür Portalı kaydıyla aynıdır)",
+          "url": "https://kulturenvanteri.com/yer/veled-i-yanic-camii/"
+        }
+      ],
+      "dogrulamaNotu": "1) Envanter kaydındaki “Vakfiye: Var” bilgisi bir vakfiye belgesiyle doğrulanamadı; eldeki vakıf bilgileri vakfiye değil, doğu duvarındaki 1494 tarihli vakıf KİTABESİ kaynaklıdır (kitabe ile vakfiye aynı şey değildir). Bu nedenle arsivNo boş bırakıldı. 2) Bani adı kaynaklarda farklı biçimlerde geçiyor: Kültür Portalı “Mahmut Çelebi”, tez “Hacı Mahmud b. Yaniç”, kitabe okunuşu “Hâcî Mahmûd Çelebi bin Hâcî Hayreddin bin Yâniç”. 3) Tarih: Kültür Portalı'nın “Temmuz 1440” kaydı ile kitabenin “Safer 844” kaydı arasında küçük bir ay uyuşmazlığı var (Safer 844, Temmuz 1440'a denk gelir; ancak bu eşleştirme kaynaklarda açıkça yapılmıyor). 4) Bahçedeki mezar taşının 736/1336 tarihli “Veled-i Yaniç”e ait olduğu okunmaktadır; bu, mescidin 1440'ta yapılmış olmasıyla çelişir (aynı kişi olamaz) ve tez bu çelişkiyi açıklamaz. 5) kulturenvanteri.com kaydının metni Kültür Portalı kaydıyla birebir aynıdır; bu nedenle bağımsız ikinci kaynak sayılmamalıdır. Koordinat da bu kayıttan alınmış yaklaşık değerdir."
+    },
+    {
+      "id": "bursa-osman-gazi-turbesi",
+      "ad": "Osman Gazi Türbesi",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Türbe",
+      "koordinat": {
+        "lat": 40.186775,
+        "lng": 29.057323
+      },
+      "bani": "Bugünkü yapı: Sultan Abdülaziz",
+      "baniDonem": "Osmanlı — Sultan Abdülaziz dönemi (bugünkü yapı, 1863)",
+      "yapimYili": "Orhan Bey, babası Osman Gazi'yi 'Gümüşlü Kümbet' olarak bilinen yuvarlak planlı yapıya defnettirmiştir. Yapı 1801'de yanmış ve onarılmış, 1855 Bursa Depremi'nde ağır hasar görmüştür. Bugünkü türbe 1863'te Sultan Abdülaziz tarafından, eskisinden daha geniş ölçülerde yeniden yaptırılmıştır.",
+      "vakfiyeAmaci": null,
+      "hizmet": "Osmanlı Devleti'nin kurucusu Osman Gazi'nin kabri; ziyaretçiler.",
+      "bugunNeOldu": "Hisariçi'nde 'Osmangazi Meydanı' olarak bilinen alanda, 1863 yapısı ayaktadır. Girişteki sundurmada Sultan Abdülaziz'in tuğrası, kapıda Şair Nevres Efendi'nin yazdığı ve Mevlevî Zeki Dede'nin talik hatla yazdığı kitabe bulunur. Halk arasında Selçuklu Sultanı Alâaddin'in Osman Bey'e gönderdiği davul, tespih, tuğ ve sancağın burada saklandığı anlatılır.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 235-246 (OSMAN GAZİ TÜRBESİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Osman Gazi Türbesi, Osmangazi, Bursa' araması (building/yes: Osman Gazi Türbesi); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "'Gümüşlü Kubbe' sözü rivayettir ve öyle sunulur. Envanter türbeye ait bir vakfiye bilgisi vermez. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "bursa-hz-uftade-camii",
+      "ad": "Hz. Üftâde Camii",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Cami",
+      "koordinat": {
+        "lat": 40.182961,
+        "lng": 29.057758
+      },
+      "bani": "İlk yapı: Üftâde Hazretleri (Mehmed Muhyiddin) adına. Yeniden yaptıran: Rıza Paşa (kitabeye göre)",
+      "baniDonem": "Osmanlı — ilk yapı 1579; yeniden inşa Sultan Abdülaziz dönemi (1866)",
+      "yapimYili": "1579 (envanter). Kitabeye göre harap olan cami H. 1283 / M. 1866'da Rıza Paşa tarafından baştan yeniden yaptırılmıştır.",
+      "vakfiyeAmaci": "Hasan Rıza Paşa cami ve türbe için büyük miktarda para vakfetmiş ve her yıl 10.000 kuruş gönderilmesini istemiştir.",
+      "hizmet": "Mahalle halkının namazları. Üftâde Hazretleri'nin türbesi caminin doğu tarafındadır.",
+      "bugunNeOldu": "İbadete açıktır. 1975-1977 yılları arasında onarımlar Vakıflar Genel Müdürlüğü tarafından sürdürülmüştür. Caminin yerinde daha önce kilise bulunduğuna dair rivayet, temelden yeniden inşa sırasında mimari bir izle doğrulanamamıştır; doğu duvarında yalnızca tek bir devşirme malzeme vardır.",
+      "kulliye": "Caminin doğusunda Üftâde Hazretleri'nin türbesi bulunur.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 447-455 (HZ. ÜFTÂDE CAMİİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Üftade Camii' araması (amenity/place_of_worship: Üftade Camii); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Envanter caminin 1579'da 'dönemin padişahı Kanûnî Sultan Süleyman'ın izni' ile yapıldığını yazar; Kanuni 1566'da vefat ettiği için bu ifade tutarsızdır ve derste kullanılmamıştır. Kitabedeki 'Rıza Paşa' ile vakfeden 'Hasan Rıza Paşa'nın aynı kişi olduğu envanterde açıkça yazmaz. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "bursa-esrefzade-camii",
+      "ad": "Eşrefzâde Camii, Minaresi ve Haziresi",
+      "sehir": "Bursa",
+      "ilce": "İznik",
+      "tur": "Cami (minare ve hazire)",
+      "koordinat": {
+        "lat": 40.429808,
+        "lng": 29.723432
+      },
+      "bani": "Sufi Eşrefoğlu Rûmî (Eşrefzâde) adına yapılmıştır. Camiye vakfiye düzenleyen: Mükrime Hatun (Fâtih Sultan Mehmed'in eşi, II. Bayezid'in annesi)",
+      "baniDonem": "Osmanlı — Eşrefzâde'nin 1469'daki vefatı ile Mükrime Hatun'un 1518'deki vefatı arası",
+      "yapimYili": "Kesin değildir. Genel kanaat, Eşrefzâde'nin H. 874 / M. 1469'daki vefatından sonra ve Mükrime Hatun'un 1518'deki vefatından önce yapıldığı yönündedir. 1950'de yeniden yapılmış, bugünkü yapı 2015-2017'de Vakıflar Bölge Müdürlüğü tarafından baştan inşa edilmiştir.",
+      "vakfiyeAmaci": "Mükrime Hatun'un H. 890 / M. 1485 tarihli vakfiyesinde Eşrefzâde'nin ruhuna Kur'an okunması ve kandil yağ bedelinin karşılanması için düzenlemeler vardır.",
+      "hizmet": "Dergâh (asitane) ve cami; ziyaretçiler.",
+      "bugunNeOldu": "Yunan işgali sırasında tamamen yanmış, günümüze yalnızca minaresi ve Eşrefoğlu Rûmî'nin kabrinin bulunduğu hazire ulaşmıştır. 1950'de bir dernek tarafından eski ölçülere göre yeniden yapılmış; bugünkü yapı 2015-2017'de Vakıflar Bölge Müdürlüğü tarafından baştan inşa edilmiştir. Harimde büyük çini panolar, ahşap mihrap, minber ve kadınlar mahfili bulunur.",
+      "kulliye": "Cami, minare ve hazireden oluşur; kaynaklarda dergâh 'Eşrefzâde Asitanesi' olarak anılır.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 34-43 (EŞREFZÂDE CAMİİ, MİNARESİ VE HAZİRESİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Eşrefzâde Camii, İznik, Bursa' araması (amenity/place_of_worship: Eşrefzade Camii); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "IV. Murad'ın 1633'te Bağdat Seferi'ne çıkarken İznik'e uğrayıp dergâhın tamiri için irade çıkardığı kaynaklarda geçer. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    }
+  ]
+}

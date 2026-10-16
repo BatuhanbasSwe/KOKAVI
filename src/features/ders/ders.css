@@ -1,0 +1,1331 @@
+/* ===========================================================================
+   DERS MOTORU — adım akışı, egzersizler ve Vakıf Röntgeni stilleri.
+
+   Tüm sınıflar `ders-` önekiyle yazılır (paylaşılan global.css ile çakışmasın).
+   Renk yalnızca jetonlardan (tokens.css) alınır; böylece tema, renk körlüğü
+   paleti, yazı ölçeği ve yüksek kontrast ayarları bu ekranda da geçerli olur.
+   =========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Sayfa kabuğu
+   --------------------------------------------------------------------------- */
+.ders-sayfa {
+  width: 100%;
+  margin-inline: auto;
+  padding-block: 0 var(--b-5);
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+/* Odak modu üst çubuğu: çıkış (×) + ilerleme çubuğu */
+.ders-ustcubuk {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: var(--b-3);
+  padding-block: var(--b-3);
+  background: var(--zemin);
+}
+
+.ders-cikis {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--kose-sm);
+  color: var(--metin-soluk);
+}
+
+.ders-cikis:hover {
+  background: var(--zemin-vurgu);
+  color: var(--metin);
+}
+
+.ders-ust {
+  display: flex;
+  align-items: center;
+  gap: var(--b-3);
+  margin-block: var(--b-2) var(--b-4);
+}
+
+.ders-ust__ikon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--kose-md);
+  background: var(--vurgu);
+  color: var(--vurgu-metin);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--vurgu-golge);
+}
+
+.ders-ust__alt {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  color: var(--metin-soluk);
+  font-weight: 700;
+}
+
+.ders-baslik {
+  margin: 0;
+  font-size: var(--yazi-xl);
+}
+
+.ders-hata {
+  margin-top: var(--b-4);
+}
+
+/* ---------------------------------------------------------------------------
+   İlerleme göstergesi — üstte sabit
+   --------------------------------------------------------------------------- */
+.ders-ilerleme {
+  flex: 1;
+  min-width: 0;
+}
+
+.ders-ilerleme__cubuk {
+  display: block;
+}
+
+.ders-ilerleme__cubuk .cubuk {
+  height: 16px;
+  border: 0;
+  background: var(--cizgi);
+}
+
+.ders-ilerleme__cubuk .cubuk__dolgu {
+  background: var(--vurgu);
+  box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.25);
+  min-width: 16px;
+}
+
+.ders-ilerleme__liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-1) var(--b-2);
+  list-style: none;
+  margin: var(--b-2) 0 0;
+  padding: 0;
+}
+
+.ders-ilerleme__adim {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-1);
+  padding: 2px var(--b-2);
+  font-size: var(--yazi-xs);
+  color: var(--metin-soluk);
+  border: 1px solid transparent;
+  border-radius: var(--kose-tam);
+}
+
+/* Tamamlanan adım: ✓ işareti + "tamamlandı" metni (renk tek başına anlam vermez) */
+.ders-ilerleme__adim--tamam {
+  color: var(--basari);
+  background: var(--basari-yumusak);
+  border-color: var(--basari);
+}
+
+/* Aktif adım: ▸ işareti + kalın yazı + çerçeve */
+.ders-ilerleme__adim--aktif {
+  color: var(--vurgu);
+  background: var(--vurgu-yumusak);
+  border-color: var(--vurgu);
+  font-weight: 800;
+}
+
+.ders-ilerleme__isaret {
+  font-weight: 800;
+}
+
+/* ---------------------------------------------------------------------------
+   Adım başlığı (odak hedefi)
+   --------------------------------------------------------------------------- */
+.ders-adim-baslik {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 var(--b-2);
+  margin-bottom: var(--b-3);
+  scroll-margin-top: 5rem;
+  font-size: var(--yazi-sm);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ikincil-golge);
+}
+
+[data-tema='koyu'] .ders-adim-baslik,
+[data-tema='yuksek-kontrast'] .ders-adim-baslik {
+  color: var(--metin);
+}
+
+.ders-adim-baslik .etiket {
+  color: inherit;
+}
+
+.ders-adim-baslik__ad {
+  display: inline;
+}
+
+.ders-adim-baslik__alt {
+  display: inline;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--metin-soluk);
+}
+
+.ders-adim-baslik__alt::before {
+  content: '· ';
+}
+
+.ders-adim-icerik {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-4);
+}
+
+/* Sorular ve yönergeler */
+.ders-soru {
+  margin-bottom: 0;
+  font-size: var(--yazi-xl);
+  line-height: 1.3;
+}
+
+.ders-soru-kutusu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--b-3);
+}
+
+.ders-sayfa p {
+  font-size: var(--yazi-lg);
+}
+
+.ders-sayfa .metin-soluk,
+.ders-sayfa .kaynak,
+.ders-sayfa .ders-ust__alt {
+  font-size: var(--yazi-sm);
+}
+
+/* ---------------------------------------------------------------------------
+   Alt eylem paneli — Duolingo tarzı: geri bildirim + Devam, ekranın altında.
+   Mobilde yapışkan; renk tek başına anlam taşımaz (ikon + başlık metni var).
+   --------------------------------------------------------------------------- */
+.ders-eylem {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-3);
+  margin-top: var(--b-3);
+  margin-inline: calc(var(--b-3) * -1);
+  padding: var(--b-4) var(--b-3) calc(var(--b-3) + env(safe-area-inset-bottom));
+  background: var(--zemin);
+  border-top: 2px solid var(--cizgi);
+}
+
+.ders-eylem--dogru {
+  background: var(--basari-yumusak);
+  border-top-color: var(--basari);
+}
+
+.ders-eylem--ipucu {
+  background: var(--odul-yumusak);
+  border-top-color: var(--odul-golge);
+}
+
+.ders-eylem--bilgi {
+  background: var(--ikincil-yumusak);
+  border-top-color: var(--ikincil);
+}
+
+.ders-eylem .bildirim {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.ders-eylem .dugme {
+  margin-bottom: var(--bas-derinlik);
+}
+
+.ders-eylem--dogru .dugme {
+  background: var(--basari);
+  box-shadow: 0 var(--bas-derinlik) 0 color-mix(in srgb, var(--basari) 70%, #000);
+}
+
+[data-tema='yuksek-kontrast'] .ders-eylem--dogru .dugme {
+  color: #000;
+  box-shadow: 0 var(--bas-derinlik) 0 #fff;
+}
+
+/* "Dinle" düğmesi */
+.ders-dinle {
+  text-transform: none;
+}
+
+/* Kapalı ayrıntı bölümleri: kaynaklar, büyükler için notlar */
+.ders-ayrinti {
+  border: 2px solid var(--cizgi);
+  border-radius: var(--kose-md);
+  background: var(--zemin-kart);
+}
+
+.ders-ayrinti > summary {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: var(--b-2) var(--b-4);
+  font-weight: 800;
+  color: var(--ikincil-golge);
+  cursor: pointer;
+  list-style-position: inside;
+}
+
+[data-tema='koyu'] .ders-ayrinti > summary,
+[data-tema='yuksek-kontrast'] .ders-ayrinti > summary {
+  color: var(--metin);
+}
+
+.ders-ayrinti__icerik {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+  padding: 0 var(--b-4) var(--b-4);
+}
+
+.ders-ayrinti__icerik p {
+  font-size: var(--yazi-md);
+}
+
+/* Aralıklı tekrar bandı */
+.ders-tekrar-bandi {
+  display: flex;
+  align-items: center;
+  gap: var(--b-3);
+  padding: var(--b-3) var(--b-4);
+  border-radius: var(--kose-md);
+  background: var(--ikincil-yumusak);
+  border: 2px solid var(--ikincil);
+}
+
+.ders-tekrar-bandi p {
+  margin: 0;
+  font-size: var(--yazi-md);
+}
+
+.ders-tekrar-bandi__ikon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ikincil);
+  color: var(--ikincil-metin);
+}
+
+/* ---------------------------------------------------------------------------
+   Ders sonu — kutlama
+   --------------------------------------------------------------------------- */
+.ders-sonu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--b-5);
+  padding-top: var(--b-6);
+  text-align: center;
+}
+
+.ders-sonu__yildiz {
+  animation: ders-sonu-belir 520ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes ders-sonu-belir {
+  from {
+    transform: scale(0.4) rotate(-20deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.ders-sonu__baslik h1 {
+  margin-bottom: var(--b-2);
+  color: var(--vurgu-koyu);
+  font-size: var(--yazi-3xl);
+}
+
+.ders-sonu__kazanclar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--b-3);
+}
+
+.ders-sonu__kazanc {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--cizgi);
+  border-radius: var(--kose-md);
+  overflow: hidden;
+  background: var(--zemin-kart);
+}
+
+.ders-sonu__kazanc-ust {
+  padding: 4px 0;
+  font-size: var(--yazi-xs);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ders-sonu__kazanc-deger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: var(--b-3) 0;
+  font-size: var(--yazi-xl);
+  font-weight: 900;
+}
+
+.ders-sonu__kazanc--elmas {
+  border-color: var(--ikincil);
+}
+.ders-sonu__kazanc--elmas .ders-sonu__kazanc-ust {
+  background: var(--ikincil);
+  color: var(--ikincil-metin);
+}
+.ders-sonu__kazanc--seri {
+  border-color: var(--odul-golge);
+}
+.ders-sonu__kazanc--seri .ders-sonu__kazanc-ust {
+  background: var(--odul);
+  color: var(--odul-metin);
+}
+.ders-sonu__kazanc--defter {
+  border-color: var(--vurgu);
+}
+.ders-sonu__kazanc--defter .ders-sonu__kazanc-ust {
+  background: var(--vurgu);
+  color: var(--vurgu-metin);
+}
+
+.ders-sonu__defter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--b-3);
+  padding: var(--b-3) var(--b-4);
+  border: 2px dashed var(--odul-golge);
+  border-radius: var(--kose-lg);
+  background: var(--zemin-kart);
+  text-align: left;
+}
+
+.ders-sonu__defter p {
+  margin: 0;
+}
+
+.ders-sonu__defter-ikon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--kose-md);
+  background: var(--vurgu);
+  color: var(--vurgu-metin);
+}
+
+.ders-sonu__defter-ust {
+  font-size: var(--yazi-xs) !important;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--altin-metin);
+}
+
+.ders-sonu__defter-ad {
+  font-weight: 900;
+}
+
+.ders-sonu__tekrar {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--b-3);
+  padding: var(--b-3) var(--b-4);
+  border-radius: var(--kose-md);
+  background: var(--ikincil-yumusak);
+  border: 2px solid var(--ikincil);
+  text-align: left;
+}
+
+.ders-sonu__tekrar p {
+  margin: 0 0 var(--b-1);
+  font-size: var(--yazi-md);
+}
+
+.ders-sonu .ders-eylem {
+  width: 100%;
+  margin-inline: 0;
+}
+
+.ders-bolum-baslik {
+  margin-bottom: 0;
+  font-size: var(--yazi-sm);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--metin-soluk);
+}
+
+/* ---------------------------------------------------------------------------
+   Seçenek düğmeleri ekleri
+   --------------------------------------------------------------------------- */
+.ders-secenekler {
+  gap: var(--b-2);
+}
+
+.ders-secenek-isaret:empty {
+  display: none;
+}
+
+.ders-secenek-isaret {
+  flex: 0 0 1.25rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--metin-ikincil);
+}
+
+.ders-secenek-rozet {
+  margin-left: auto;
+  padding: 0 var(--b-2);
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--metin-ikincil);
+  background: var(--zemin-vurgu);
+  border-radius: var(--kose-tam);
+  white-space: nowrap;
+}
+
+/* Metin içinde kullanılan ✓ / ! işareti (her zaman yanında metin vardır) */
+.ders-isaret {
+  font-weight: 800;
+}
+
+/* ---------------------------------------------------------------------------
+   01 · MERAK
+   --------------------------------------------------------------------------- */
+.ders-kopru {
+  padding: 0;
+}
+
+.ders-kopru__baslangic {
+  margin-bottom: var(--b-2);
+  font-weight: 900;
+  color: var(--ikincil-golge);
+}
+
+[data-tema='koyu'] .ders-kopru__baslangic,
+[data-tema='yuksek-kontrast'] .ders-kopru__baslangic {
+  color: var(--metin);
+}
+
+.ders-kopru__metin {
+  margin: 0;
+  font-size: var(--yazi-lg);
+}
+
+/* ---------------------------------------------------------------------------
+   02 · BAĞLAM
+   --------------------------------------------------------------------------- */
+.ders-kavram__liste {
+  margin: 0;
+}
+
+.ders-kavram__ad {
+  margin-bottom: var(--b-1);
+  font-size: var(--yazi-sm);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sicak);
+}
+
+.ders-kavram__aciklama {
+  margin-inline-start: 0;
+  margin-bottom: 0;
+}
+
+.ders-kavram__ornek {
+  margin-inline-start: 0;
+  margin-top: var(--b-2);
+  margin-bottom: 0;
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+
+.ders-kavram__ornek-etiket {
+  font-weight: 800;
+}
+
+.ders-kapanis {
+  margin: 0;
+  padding: var(--b-3) var(--b-4);
+  border-left: 6px solid var(--altin);
+  background: var(--sicak-yumusak);
+  border-radius: var(--kose-md);
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------------------
+   03 · PERSPEKTİF — konuşma balonları
+   --------------------------------------------------------------------------- */
+.ders-konusma {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--b-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ders-konusma__satir {
+  display: flex;
+  flex-direction: column;
+  max-width: min(88%, 46ch);
+}
+
+/* ben: true → sağa yaslanır (konuşan çocuğun kendisi) */
+.ders-konusma__satir--ben {
+  align-self: flex-end;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.ders-konusma__kim {
+  margin-bottom: var(--b-1);
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--metin-soluk);
+}
+
+.ders-konusma__metin {
+  margin: 0;
+  padding: var(--b-3) var(--b-4);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi);
+  border-radius: var(--kose-lg);
+}
+
+.ders-konusma__satir--ben .ders-konusma__metin {
+  background: var(--vurgu-yumusak);
+  border-color: var(--vurgu);
+}
+
+.ders-perspektif-sonuc {
+  font-size: var(--yazi-md);
+}
+
+.ders-perspektif-sonuc__baslik {
+  margin-bottom: var(--b-1);
+  font-weight: 800;
+}
+
+.ders-perspektif-sonuc__metin {
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   04 · GERİ ÇAĞIRMA — egzersiz kabuğu
+   --------------------------------------------------------------------------- */
+.ders-egzersiz {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-3);
+}
+
+.ders-egzersiz__govde {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-4);
+}
+
+.ders-egzersiz-sayaci {
+  margin: 0;
+  font-weight: 700;
+}
+
+.ders-sessiz-not {
+  margin: 0;
+}
+
+.ders-geri {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--b-3);
+}
+
+.ders-geri__ikon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--basari);
+  color: #fff;
+}
+
+.ders-geri--ipucu .ders-geri__ikon {
+  background: var(--odul);
+  color: var(--odul-metin);
+}
+
+[data-tema='yuksek-kontrast'] .ders-geri__ikon {
+  color: #000;
+}
+
+.ders-geri__baslik {
+  margin: 0 0 2px;
+  font-size: var(--yazi-xl) !important;
+  font-weight: 900;
+  color: var(--basari);
+}
+
+.ders-geri--ipucu .ders-geri__baslik {
+  color: var(--altin-metin);
+}
+
+[data-tema='koyu'] .ders-geri--ipucu .ders-geri__baslik,
+[data-tema='yuksek-kontrast'] .ders-geri--ipucu .ders-geri__baslik {
+  color: var(--metin);
+}
+
+.ders-geri__metin {
+  margin: 0;
+  font-size: var(--yazi-md) !important;
+}
+
+.ders-egzersiz__devam {
+  margin-top: var(--b-1);
+}
+
+/* --- Eşleştir ------------------------------------------------------------- */
+.ders-eslestir {
+  display: grid;
+  gap: var(--b-5);
+}
+
+@media (min-width: 760px) {
+  .ders-eslestir {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.ders-eslestir__bolum {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+}
+
+.ders-eslestir__kategori {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+}
+
+.ders-eslestir__kategori-dugme {
+  width: 100%;
+}
+
+.ders-eslestir__aciklama {
+  margin: 0;
+}
+
+.ders-eslestir__yerlesen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-1) var(--b-3);
+  list-style: none;
+  margin: 0;
+  padding: var(--b-2) 0 0;
+  border-top: 1px dashed var(--cizgi-kalin);
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+
+/* --- Sırala --------------------------------------------------------------- */
+.ders-sirala {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ders-sirala__satir {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--b-2) var(--b-3);
+  align-items: center;
+  padding: var(--b-3);
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-md);
+}
+
+@media (min-width: 640px) {
+  .ders-sirala__satir {
+    grid-template-columns: auto 1fr auto;
+  }
+}
+
+.ders-sirala__no {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  font-size: var(--yazi-sm);
+  font-weight: 800;
+  color: var(--metin-ikincil);
+  background: var(--zemin-vurgu);
+  border-radius: var(--kose-tam);
+}
+
+.ders-sirala__metin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-1);
+}
+
+.ders-sirala__isaret {
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+}
+
+.ders-sirala__isaret--dogru {
+  color: var(--basari);
+}
+
+.ders-sirala__isaret--ipucu {
+  color: var(--uyari);
+}
+
+.ders-sirala__dugmeler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+  grid-column: 2;
+}
+
+@media (min-width: 640px) {
+  .ders-sirala__dugmeler {
+    grid-column: 3;
+  }
+}
+
+.ders-sirala__dugme {
+  padding: var(--b-2) var(--b-3);
+  font-size: var(--yazi-sm);
+}
+
+/* Kenar düğmeleri devre dışı bırakılmaz (odak kaybı olmasın); sadece soluklaşır. */
+.ders-sirala__dugme[aria-disabled='true'] {
+  opacity: 0.5;
+}
+
+/* --- Boşluğu doldur ------------------------------------------------------- */
+.ders-cumle {
+  font-size: var(--yazi-lg);
+  line-height: 1.9;
+}
+
+.ders-bosluk {
+  display: inline-block;
+  min-width: 7rem;
+  margin-inline: var(--b-1);
+  padding: 0 var(--b-2);
+  font-weight: 800;
+  text-align: center;
+  border-bottom: 3px solid var(--vurgu);
+}
+
+.ders-bosluk-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+}
+
+.ders-bosluk-etiket {
+  font-weight: 700;
+}
+
+.ders-bosluk-girdi {
+  min-width: 12rem;
+  min-height: 44px;
+  padding: var(--b-2) var(--b-3);
+  font: inherit;
+  color: var(--metin);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-md);
+}
+
+/* --- Eseri tanı ----------------------------------------------------------- */
+.ders-betimleme {
+  margin: 0;
+  border-left: 6px solid var(--altin);
+}
+
+.ders-betimleme__metin {
+  margin: 0;
+  font-size: var(--yazi-lg);
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------------------------
+   05 · YANSIMA — Vakıf Röntgeni
+   --------------------------------------------------------------------------- */
+.ders-ozet {
+  border-color: var(--vurgu);
+}
+
+.ders-ozet__metin {
+  margin: 0;
+  font-size: var(--yazi-lg);
+}
+
+.ders-rontgen-bolumu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-3);
+  padding: var(--b-4);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-lg);
+}
+
+.ders-rontgen {
+  gap: var(--b-5);
+}
+
+.ders-rontgen__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ders-rontgen__baslik {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--b-3);
+  margin-bottom: var(--b-2);
+  font-weight: 700;
+}
+
+.ders-rontgen__ad {
+  flex: 1 1 auto;
+}
+
+.ders-rontgen__yuzde {
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  color: var(--vurgu-koyu);
+  white-space: nowrap;
+}
+
+.ders-rontgen__belgesiz {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--metin-soluk);
+}
+
+.ders-rontgen__kalem-kaynak {
+  margin: var(--b-2) 0 0;
+}
+
+.ders-rontgen__bildiri {
+  font-size: var(--yazi-md);
+}
+
+.ders-rontgen__bildiri p:last-child {
+  margin-bottom: 0;
+}
+
+.ders-rontgen__arsiv,
+.ders-rontgen__not {
+  margin: 0;
+}
+
+.ders-rontgen__kaynaklar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+}
+
+.ders-rontgen__kaynak-listesi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Yüksek kontrast temasında ince çerçeveler kalınlaşır (WCAG 1.4.11 hedefi)
+   --------------------------------------------------------------------------- */
+[data-tema='yuksek-kontrast'] .ders-sirala__satir,
+[data-tema='yuksek-kontrast'] .ders-konusma__metin,
+[data-tema='yuksek-kontrast'] .ders-kopru,
+[data-tema='yuksek-kontrast'] .ders-ozet,
+[data-tema='yuksek-kontrast'] .ders-kavram,
+[data-tema='yuksek-kontrast'] .ders-betimleme,
+[data-tema='yuksek-kontrast'] .ders-rontgen-bolumu,
+[data-tema='yuksek-kontrast'] .ders-bosluk-girdi {
+  border-width: 2px;
+}
+
+/* Eşleştir — kategoriler mobilde de yan yana: iki "sepet", daha az kaydırma */
+.ders-eslestir__bolum[role='group'] > .yigin {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--b-2);
+}
+
+.ders-eslestir__kategori {
+  padding: var(--b-2);
+  gap: var(--b-1);
+}
+
+.ders-sayfa .ders-eslestir__aciklama {
+  font-size: var(--yazi-xs);
+  line-height: 1.35;
+}
+
+.ders-eslestir__yerlesen {
+  font-size: var(--yazi-xs);
+}
+
+/* Ek ipucu (Vakıf Çarşısı) */
+.ders-ek-ipucu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-1);
+  padding: var(--b-3);
+  border-radius: var(--kose-md);
+  background: var(--zemin-kart);
+  border: 2px solid var(--odul-golge);
+}
+
+.ders-ek-ipucu p,
+.ders-ek-ipucu__yok {
+  margin: 0;
+  font-size: var(--yazi-md) !important;
+}
+
+.ders-ek-ipucu__yok {
+  font-size: var(--yazi-sm) !important;
+  color: var(--metin-ikincil);
+}
+
+/* ---------------------------------------------------------------------------
+   Eser fotoğrafları — Merak kapağı, Bağlam galerisi, ders sonu pulu
+   --------------------------------------------------------------------------- */
+.kapak-acilis {
+  position: relative;
+  margin: 0 0 var(--b-4);
+  border-radius: var(--kose-lg);
+  overflow: hidden;
+  box-shadow: var(--golge-buyuk);
+  background: var(--zemin-vurgu);
+  aspect-ratio: 3 / 2;
+}
+
+.kapak-acilis__resim {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: kapak-ac 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes kapak-ac {
+  from {
+    clip-path: circle(8% at 50% 50%);
+    transform: scale(1.15);
+  }
+  to {
+    clip-path: circle(150% at 50% 50%);
+    transform: scale(1);
+  }
+}
+
+.kapak-acilis__alt {
+  position: absolute;
+  left: var(--b-3);
+  bottom: var(--b-3);
+  padding: var(--b-1) var(--b-3);
+  border-radius: var(--kose-tam);
+  background: var(--zemin-kart);
+  color: var(--metin);
+  font-weight: 900;
+  font-size: var(--yazi-sm);
+  box-shadow: var(--golge);
+  animation: kapak-etiket 500ms 650ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes kapak-etiket {
+  from {
+    transform: translateY(12px) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.galeri {
+  margin: 0 0 var(--b-4);
+  display: grid;
+  gap: var(--b-2);
+}
+
+.galeri__cerceve {
+  position: relative;
+  border-radius: var(--kose-lg);
+  overflow: hidden;
+  background: var(--zemin-vurgu);
+  aspect-ratio: 3 / 2;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.galeri__resim {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: galeri-gir 420ms ease-out both;
+}
+
+@keyframes galeri-gir {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.galeri__ok {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: 50%;
+  background: var(--zemin-kart);
+  color: var(--metin);
+  font: inherit;
+  font-size: var(--yazi-2xl);
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 var(--bas-derinlik) 0 var(--cizgi-kalin);
+}
+.galeri__ok:active {
+  transform: translateY(calc(-50% + var(--bas-derinlik)));
+  box-shadow: none;
+}
+.galeri__ok--sol {
+  left: var(--b-2);
+}
+.galeri__ok--sag {
+  right: var(--b-2);
+}
+
+.galeri__alt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--b-1) var(--b-3);
+  font-size: var(--yazi-xs);
+  color: var(--metin-soluk);
+}
+.galeri__sira {
+  font-weight: 900;
+  color: var(--metin-ikincil);
+}
+
+.galeri__noktalar {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+.galeri__nokta {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.galeri__nokta span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cizgi-kalin);
+  transition: transform var(--gecis-normal), background var(--gecis-normal);
+}
+.galeri__nokta[aria-current='true'] span {
+  background: var(--vurgu);
+  transform: scale(1.4);
+}
+
+.ders-sonu__pul {
+  flex: none;
+  width: 96px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: var(--kose-sm);
+  border: 3px solid var(--zemin-kart);
+  outline: 2px dashed var(--odul-golge);
+  outline-offset: 2px;
+  transform: rotate(-4deg);
+  animation: pul-bas 600ms 350ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+@keyframes pul-bas {
+  from {
+    transform: rotate(-30deg) scale(2.2);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(-4deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Geri bildirim hareketi: doğruda onay patlar, ipucunda simge yumuşakça sallanır
+   (ceza hissi yok — PDF: "yanlışta yalnızca ipucu"). Alt çubuk aşağıdan kayar.
+   --------------------------------------------------------------------------- */
+.ders-geri--dogru .ders-geri__ikon {
+  position: relative;
+  animation: onay-patla 520ms cubic-bezier(0.2, 1.8, 0.4, 1) both;
+}
+.ders-geri--dogru .ders-geri__ikon::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 3px solid var(--basari);
+  animation: onay-halka 700ms ease-out both;
+}
+@keyframes onay-patla {
+  from {
+    transform: scale(0) rotate(-45deg);
+  }
+  to {
+    transform: scale(1) rotate(0);
+  }
+}
+@keyframes onay-halka {
+  from {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+.ders-geri--ipucu .ders-geri__ikon {
+  animation: ipucu-salla 560ms ease-in-out both;
+}
+@keyframes ipucu-salla {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(-14deg);
+  }
+  40% {
+    transform: rotate(12deg);
+  }
+  60% {
+    transform: rotate(-8deg);
+  }
+  80% {
+    transform: rotate(4deg);
+  }
+}
+.ders-eylem--dogru,
+.ders-eylem--bilgi {
+  animation: eylem-yuksel 320ms cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+@keyframes eylem-yuksel {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.ders-adim-icerik {
+  animation: adim-gir 360ms ease-out both;
+}
+@keyframes adim-gir {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Alt eylem çubuğunun negatif kenar boşluğu dar ekranda 2 px taşıyordu.
+   clip, sticky konumu bozmadan yatay kaydırmayı engeller. */
+.ders-sayfa {
+  overflow-x: clip;
+}

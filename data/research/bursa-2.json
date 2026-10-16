@@ -1,0 +1,360 @@
+{
+  "arastirmaGrubu": "bursa-2",
+  "tema": "Ticaret ve Şehir Hayatı",
+  "sehir": "Bursa",
+  "eserler": [
+    {
+      "id": "bursa-koza-hani",
+      "ad": "Koza Hanı",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Han",
+      "koordinat": {
+        "lat": 40.184446,
+        "lng": 29.063252
+      },
+      "bani": "Sultan II. Bayezid",
+      "baniDonem": "Osmanlı — II. Bayezid dönemi",
+      "yapimYili": "İnşaata Mart 1489'da başlanmış, 30 Eylül 1491'de tamamlanarak hizmete açılmıştır.",
+      "vakfiyeAmaci": "Sultan II. Bayezid'in İstanbul'daki külliyesine gelir sağlamak.",
+      "hizmet": "Tüccarlar ve kervanlar: avlu etrafında altlı üstlü odalar, doğu cephesine bitişik ahır-depo bölümü. Avlunun ortasında köşk mescit vardır; cemaate yetmediği için yanına ahşap ikinci bir mescit yapıldığı bir arşiv belgesinden anlaşılır.",
+      "bugunNeOldu": "Bursa Çarşısı'nın en yoğun ticaret alanlarından biridir: üst katta ipek ticareti yapan işletmeler, alt katta esnaf bulunur; avlusu çay bahçesi olarak kullanılır. Ahşap üst kat revakı ve ahırlar 1950'lerde Bursa Eski Eserleri Sevenler Kurumu tarafından onarılmıştır. Ahır bölümü bugün kahvehane ve büfe olarak kullanılır ve Osmanlı döneminden günümüze ulaşan nadir ahır yapılarındandır.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 15-24 (KOZA HANI)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Koza Han, Osmangazi, Bursa' araması (building/yes: Koza Han); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Mimarı Abdülûlâ bin Pulad Şah, bina emini Şücâ bin Karaca'dır. Tarih boyunca 'Yeni Han', 'Beylik Han', 'Hân-ı Cedîd-i Evvel', 'Simkeş Han' gibi adlarla anılmıştır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "ad": "İpek Hanı (Sultan Hanı, Hân-ı Harîr)",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi (Şehreküstü Mahallesi)",
+      "tur": "Han",
+      "koordinat": {
+        "lat": 40.1851957,
+        "lng": 29.0606803
+      },
+      "bani": "Çelebi Sultan Mehmed (I. Mehmed). Mimarının kim olduğu kesin bilinmemekle birlikte, hem Yeşilcami Külliyesi'nin mimarı olan hem de yakınında kendi adına külliye inşa eden Hacı İvaz Paşa tarafından yapılmış olması kuvvetle muhtemeldir.",
+      "baniDonem": "Osmanlı padişahı; saltanatı 1413-1421",
+      "yapimYili": "XV. yüzyılın ilk yarısı (TDV madde tanımı). Kesin inşa tarihi belgelenmemiştir; Kültür Envanteri kaydı yüzyıl olarak '15. yy' verir. Baninin saltanat dönemi 1413-1421'dir.",
+      "vakfiyeAmaci": "Çelebi Sultan Mehmed tarafından Yeşilcami Külliyesi'ne gelir sağlamak amacıyla inşa edilmiştir (TDV ve Kültür Envanteri). Kervanların konaklaması ve yerli tâcirlerin iş yeri olarak kullanılması için yapılmıştır. Han, külliyenin vakıf akarları arasındadır; 19. yüzyıl vakıf muhasebe defterlerinde 'Harir Hanı rüsumu' kalemiyle kayıtlıdır.",
+      "hizmet": "Bursa'nın en büyük hanıdır ve şehir içi ticaretin merkezinde yer alır. Alt katta otuz dokuz, üst katta kırk iki oda (toplam 81 oda) birer kapıyla önlerindeki revaklara açılır. Zemin katındaki tonozlu revaklar eskiden hanın deposu olarak kullanılıyordu; ahır ve yemlik mekânlarının güney kısımda olduğu tahmin edilmektedir. Avlunun ortasında onikigen şemaya sahip fevkânî bir mescid ve altında şadırvan ile dört oda bulunuyordu. Adı, burada ipek ticareti yapılmasından gelir; geçmişte Sultan Hanı, Paytoncular (Faytoncular) Hanı ve Arabacılar Hanı olarak da anılmıştır.",
+      "bugunNeOldu": "1958'deki büyük yangında büsbütün harap olmuş, 1972-1973 yıllarında restore edilmiştir. Bugün içinde çok sayıda dükkânın bulunduğu, oldukça bakımlı bir ticarî binadır; Kültür Envanteri kaydına göre handa terzi atölyeleri ile giysi satan dükkânlar yer alır. 19. yüzyıl sonunda Vali Ahmed Vefik Paşa döneminde Mecidiye Caddesi'nin açılması sırasında hanın doğusundaki giriş cephesi yıkılmış, 1958'den sonra bu bölüm yeniden yapılmıştır.",
+      "kulliye": "Yeşilcami (Yeşil) Külliyesi",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Enis Karakaya, 'İpek Hanı', TDV İslâm Ansiklopedisi, C. 22 (2000), s. 368-369 (son güncelleme 14.02.2020)",
+          "url": "https://islamansiklopedisi.org.tr/ipek-hani"
+        },
+        {
+          "kunye": "Kültür Envanteri, 'İpek Han' (KE No 10539)",
+          "url": "https://kulturenvanteri.com/yer/ipek-han/"
+        },
+        {
+          "kunye": "Zeynep Akan Yetişir, 'Yeşil Külliye'nin On Dokuzuncu Yüzyıl Ortalarındaki Vaziyeti', Sultan Çelebi Mehmed ve Devri Sempozyumu, Bursa 2022, s. 214 (Harir Hanı rüsumu kaydı)",
+          "url": "https://www.bursa.bel.tr/dosyalar/yayinlar/ttufwyjxsogsk8.pdf"
+        }
+      ],
+      "dogrulamaNotu": "1) Oda sayısı ve kuruluş amacı TDV İslam Ansiklopedisi'nde açıkça doğrulanmıştır: alt kat 39 + üst kat 42 = 81 oda ve 'Yeşilcami Külliyesi'ne gelir sağlamak amacıyla' yaptırılmış olması. 2) Hanın KENDİ gelir dağılımı (vakfiye şartı) hiçbir kaynakta bulunamamıştır; bu nedenle gelirDagilimi boş bırakılmıştır. Yalnızca hanın vakfa ödediği rüsum tutarı 19. yy defterinde belgelidir (R. 1257'de 2.500 kuruş) — bu, hanın kendi gelirinin dağılımı değil, külliyeye aktarılan tutardır. 3) arsivNo null bırakılmıştır: 1419 tarihli külliyenin ortak vakfiyesinin akar listesinde 'bedestenin yanında büyük bir han' geçmektedir (Oğuzoğlu 2022, s. 45); bu hanın İpek Hanı olduğu MUHTEMELDİR ancak hiçbir kaynakta adı açıkça yazılmadığı için kimlik eşleştirmesi kesinleştirilememiştir. 4) Koordinat üç kaynakla (Kültür Envanteri KE 10539, OSM relation 13407128, tr.wikipedia) teyit edilmiştir; konum TDV'nin 'Ulucami'nin kuzeyinde' ifadesiyle uyumludur. 5) Mimar ataması (Hacı İvaz Paşa) TDV'de 'kuvvetle muhtemel' kaydıyla verilmiştir, kesin değildir."
+    },
+    {
+      "id": "bursa-yildirim-bayezid-bedesteni",
+      "ad": "Yıldırım Bayezid Bedesteni",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Bedesten",
+      "koordinat": {
+        "lat": 40.18515,
+        "lng": 29.062124
+      },
+      "bani": "Yıldırım Bayezid (Sultan I. Bayezid)",
+      "baniDonem": "Osmanlı — Yıldırım Bayezid dönemi (XIV. yüzyıl)",
+      "yapimYili": "XIV. yüzyıl, Yıldırım Bayezid döneminde (kesin yıl envanterde verilmez).",
+      "vakfiyeAmaci": "Vakfa gelir sağlamak ve şehrin hızla büyüyen ticaretine merkez olmak. Büyük Cuma Camii'nin (Ulucami) yakınına konumlandırılmıştır.",
+      "hizmet": "Değerli malların alınıp satıldığı kapalı çarşı. 15 × 56,5 m'lik merkez mekân altı ayağa oturan 14 kubbeyle örtülüdür; 32 mahzen ve önlerindeki dükkânlardan oluşur, dört cephede kapısı vardır. Evliya Çelebi'ye göre dört cephesi kuyumcular çarşısıyla çevriliydi.",
+      "bugunNeOldu": "1958 Kapalıçarşı Yangını'nda ağır hasar görüp kullanılmaz hâle gelmiş, 1960'ta özgün özelliklerine sadık kalınarak onarılmıştır. Bugün Bursa Kapalıçarşısı'nın bir bölümüdür ve kuyumcu atölyeleriyle öne çıkar; kapılardan birinde 'Bedesten Kuyumcular Çarşısı' tabelası vardır.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 53-57 (YILDIRIM BAYEZİD BEDESTENİ)"
+        },
+        {
+          "kunye": "Koordinat — YAKLAŞIK: OpenStreetMap Nominatim, 'Bedesten, Osmangazi' araması (landuse/retail: Bedesten); yapının kendisi değil, yakınındaki sokak/yerleşim; ilçe sınırı içinde. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Envantere göre Osmanlı'da inşa edilen ilk bedestendir ve sonraki bedestenlere örnek olmuştur. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "ad": "Irgandı Köprüsü (Kapalı Köprü)",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Köprü",
+      "koordinat": {
+        "lat": 40.18195,
+        "lng": 29.07083
+      },
+      "bani": "Hâce (Hoca) Muslihuddin — “Irgandî” diye anılan Ali el-Irgandî'nin oğlu, Bursalı tüccar. (TDV İslam Ansiklopedisi ve Kültür Portalı envanter kaydının Yaptıran alanı.)",
+      "baniDonem": "II. Murad devri (1421-1451)",
+      "yapimYili": "1442 (H. 846). Ekrem Hakkı Ayverdi'nin Bursa kadı sicillerinden çıkardığı nota göre Hâce Muslihuddin köprüyü 846/1442'de yaptırmıştır. Ayvansarâyî'nin Mecmûa-i Tevârih'teki tarih beyti ise 897/1492'yi verir; TDV bu çelişkiyi belirtir ve bilginin başka belgelerle kontrol edilmesi gerektiğini söyler.",
+      "vakfiyeAmaci": "Köprü ve üzerindeki dükkânlar vakıf malıdır. Baninin torunu (Ahmed Çelebi oğlu) Muslihuddin, babasından kalan servetle köprü üstüne otuz bir dükkân yapmayı tasarlamış, köprünün kuzey ucundaki beş dükkândan birini mescit haline getirmiş ve Cemâziyelâhir 966 (Mart 1559) tarihli vakfiyesiyle bazı şartlar belirlemiştir (TDV). Vakfiyenin maddeleri erişilebilir kaynaklarda ayrıntılı olarak verilmemiştir.",
+      "hizmet": "Gökdere vadisindeki dere üzerinde iki yakayı birleştiren geçit. Üzerinde iki sıra hâlinde dükkânlar vardır (Kültür Portalı: her iki tarafta 16'şar, toplam 32 dükkân; bunlardan biri mescide ayrılmıştır. TDV: 1559'da 31 dükkân tasarlanmıştır). Evliya Çelebi (1640): çarşının iki ucu kale kapısı gibi demir kapılarla kapatılır, bir tarafı han gibi misafirhane olup at bağlanırdı; dükkânlarda hallaçlık ve dokuma tezgâhları vardı. TDV'ye göre köprü üstü çarşısı bir arasta görünümündedir.",
+      "bugunNeOldu": "1855 depreminde ağır hasar görmüş, 1922'de Yunan çekilmesi sırasında üstündeki dükkânlar yakılıp yıkılmıştır. 1949'da Bursa Belediyesi tarafından — TDV'nin ifadesiyle “tarih içindeki geçmişi hiç hesaba katılmaksızın” — onarılmış, 2003-2004'te yeniden restore edilmiştir. Bugün Kültür Portalı envanter kaydında kullanım türü “Köprü” olarak geçer; TDV 1949 onarımının özgün çarşı görünümünü ortadan kaldırdığını, yapının artık sadece bir geçit yeri görünümü aldığını belirtir.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": "Bursa Şer'iyye (Kadı) Sicilleri: Defter nr. 72, s. 114 (966/1559 tarihli vakfiye); Defter nr. 13, s. 11 (902/1497 tarihli kayıt); ayrıca Defter nr. 110, s. 5-6; nr. 116, s. 108; nr. 127, s. 230; nr. 243, s. 123; nr. 304, s. 3 (tamir kayıtları). Kaynak: TDV İslam Ansiklopedisi, “Irgandı Köprüsü” maddesi. Vakıflar Genel Müdürlüğü arşiv numarası bulunamadı.",
+      "kaynaklar": [
+        {
+          "kunye": "Semavi Eyice, “IRGANDI KÖPRÜSÜ”, TDV İslâm Ansiklopedisi, c. 19, İstanbul 1999, s. 122-124",
+          "url": "https://islamansiklopedisi.org.tr/irgandi-koprusu"
+        },
+        {
+          "kunye": "T.C. Kültür ve Turizm Bakanlığı, Kültür Portalı / Kültür Envanteri Anıt kaydı: “Irgandı Köprüsü (Kapalı Köprü)”, Envanter No A293",
+          "url": "https://kulturportali.gov.tr/turkiye/bursa/kulturenvanteri/irgandi-koprusu-kapali-kopru"
+        },
+        {
+          "kunye": "Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, haz. Hüseyin Algül, Osman Çetin, Mefail Hızlı vd., Bursa Büyükşehir Belediyesi, 2. basım 2010",
+          "url": "https://www.bursa.bel.tr/dosyalar/yayinlar/fsl1b71n140gc8o.pdf"
+        }
+      ],
+      "dogrulamaNotu": "1) Banilikte kaynak çelişkisi var: TDV ile Kültür Portalı envanterinin “Yaptıran” alanı Hâce Muslihuddin derken, Kültür Portalı'nın ayrıntılı tanımı yapının “Hacı İvaz Paşa'nın vakfiyesinde şahit gösterdiği Abdullah oğlu Timurtaş'a yaptırıldığı sanılmaktadır” ifadesiyle farklı bir isim verir; Kepecioğlu ise 1442'de köprüyü inşa ettirenin Muslihuddin'in babası “Irgandî” lakaplı Pîr Ali Çelebi olduğunu yazar. Bu üçlü çelişki çözülemedi. 2) Tarih çelişkisi: 1442 (kadı sicili kaydı) ile 1492 (Ayvansarâyî'nin tarih beyti) arasında TDV'nin kendisi tereddüt eder. 3) Dükkân sayısı kaynaklara göre 31, 32 ve Evliya Çelebi'de 200 olarak geçer. 4) Köprünün vakıf statüsü kadı sicili kayıtlarına ve 1559 tarihli vakfiyeye dayanıyor; vakfiye metni ve VGM arşiv numarası görülmedi, bu yüzden gelir dağılımı boş bırakıldı. 5) Koordinat, Wikidata (Q6026873) ve OpenStreetMap kaydından alınmış yaklaşık değerdir; köprü Osmangazi-Yıldırım ilçe sınırında yer alır, ilçe bilgisi Kültür Portalı envanter kaydına göre Osmangazi yazıldı."
+    },
+    {
+      "id": "bursa-ordekli-hamam",
+      "ad": "Ördekli Hamam (Eski Yeni Hamam)",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Hamam (çifte hamam)",
+      "koordinat": {
+        "lat": 40.187775,
+        "lng": 29.068274
+      },
+      "bani": "Kitabesi yoktur; banisi envanterde belirtilmez.",
+      "baniDonem": "Osmanlı — Yıldırım Bayezid döneminde başlanıp Çelebi Mehmed döneminde tamamlandığı tahmin edilir",
+      "yapimYili": "Yıldırım Bayezid döneminde (1389-1402) yapımına başlandığı, 1402 Ankara Savaşı sonrası Timur ordusunun Bursa'yı işgaliyle yarım kaldığı, Çelebi Mehmed'in tahta çıkışından sonra (1402-1421) tamamlandığı tahmin edilir.",
+      "vakfiyeAmaci": null,
+      "hizmet": "Halkın yıkanma ihtiyacı. Kuzeyde kadınlar, güneyde erkekler bölümü bulunan yaklaşık 1400 m²'lik büyük bir çifte hamamdır. Suyu, Şeyhülislam Kara Çelebizâde Abdülaziz Efendi'nin Uludağ'dan getirdiği 'Müftü Suyu' hattıyla karşılanmıştır.",
+      "bugunNeOldu": "Uzun yıllar işlevini yitirmiş, bir dönem toprak eşya atölyesi ve belediye deposu olarak kullanılmıştır. 2004-2008'de Osmangazi Belediyesi tarafından restore edilerek 'Ördekli Kültür Merkezi' adıyla kültürel kullanıma açılmıştır.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 151-163 (ÖRDEKLİ HAMAM (ESKİ YENİ HAMAM))"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Ördekli Hamam, Osmangazi, Bursa' araması (tourism/gallery: Ördekli Hamamı Kültür Merkezi); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Nalıncılar Hamamı'ndan sonra yapıldığı için 'Yeni Hamam', sonra 'Eski Yeni Hamam' denmiştir; kurnaları ördek gagasına benzetildiği için 'Ördekli', kubbesi uzun süre yıkık kaldığı için 'Yıkık Hamam' olarak da anılır. Yapım tarihleri envanterde tahmin olarak verilir. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "bursa-fidan-hani",
+      "ad": "Fidan Hanı",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Han",
+      "koordinat": {
+        "lat": 40.185143,
+        "lng": 29.064456
+      },
+      "bani": "Envanter yapanı açıkça belirtmez. Fâtih Sultan Mehmed'in sadrazamı Mahmud Paşa tarafından İstanbul'daki külliyesine vakfedilmiştir.",
+      "baniDonem": "Osmanlı — Fâtih Sultan Mehmed dönemi (vakfedilme)",
+      "yapimYili": null,
+      "vakfiyeAmaci": "Mahmud Paşa'nın 1463'te İstanbul'da yaptırdığı Mahmutpaşa Külliyesi'ne (cami, medrese, mektep, kütüphane) gelir getirmek. Mahmud Paşa bu yapıların giderleri için Fidan Hanı ve çevresindeki dükkânlar başta olmak üzere İstanbul ve Ankara'da çok sayıda mülkün gelirini vakfetmiştir.",
+      "hizmet": "Tüccarlar ve esnaf. İki katlı, revaklı, geniş avlulu bir şehir hanıdır; başlangıçta iki avlusu vardı, ikinci avluda ahırlar, seyis odaları ve mahzenler bulunduğu tahmin edilir. Birinci avlunun ortasında on iki köşeli bir şadırvan üzerinde mescit yer alır; alt katta 48, üst katta 50 oda vardır.",
+      "bugunNeOldu": "Çarşıya açılan bir kapısıyla kullanılmaktadır. İkinci avludaki eski yapılar kalkmış, yerlerine modern dükkânlar yapılmıştır. Bugün handa 105 dükkân vardır ve çoğunu tekstil esnafı kullanır; avluda çay bahçeleri ve lokantalar bulunur.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 25-31 (FİDAN HANI)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Fidan Han, Osmangazi, Bursa' araması (tourism/attraction: Fidan Han); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "İçinde fidan satıldığı için 'Fidan Hanı', bölgede saman satıldığı için 'Saman Pazarı Hanı', Mahmud Paşa'nın vakfı olduğu için 'Mahmud Paşa Hanı' adlarıyla anılır. Envanter yapım tarihini vermez. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "bursa-pirinc-hani",
+      "ad": "Pirinç Hanı",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Han",
+      "koordinat": {
+        "lat": 40.185717,
+        "lng": 29.060625
+      },
+      "bani": "Sultan II. Bayezid",
+      "baniDonem": "Osmanlı — II. Bayezid dönemi",
+      "yapimYili": "Arşiv belgelerine göre inşaat H. Muharrem 913 / M. Mayıs 1507'de başlamış, H. Rebiyülevvel 914 / M. Temmuz 1508'de tamamlanmıştır.",
+      "vakfiyeAmaci": "Sultan II. Bayezid'in İstanbul'daki camisine vakıf gelir sağlamak. Sultan inşaat masrafları için 10.000 akçe ayırmıştır.",
+      "hizmet": "Tüccarlar ve kervanlar. Yaklaşık 70 × 75 m ölçülerinde, iki katlı bir handır; alt katta revakların gerisinde odalar, batı cephesinde ahır, üst katta her biri ocaklı kırk sekiz oda vardır.",
+      "bugunNeOldu": "Mülkiyeti bugün Millî Emlak, Celal Bayar Vakfı ve bazı özel şahıslara aittir. Son büyük onarımda kapısında olduğu ileri sürülen sıvalı kitabeye dair iz bulunamamıştır.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 43-49 (PİRİNÇ HANI)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Pirinç Han, Osmangazi, Bursa' araması (historic/building: Pirinç Han); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Koza Hanı 'Hân-ı Cedîd-i Evvel' (Birinci Yeni Han) olarak anıldığı için bu han 'Hân-ı Cedîd-i Sânî' (İkinci Yeni Han) adını almış, XVII. yüzyıl başından itibaren 'Pirinç Hanı' olarak tanınmıştır. Mimarı Yâkub Şah bin Sultan Şah, yardımcısı Ali bin Abdullah'tır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "bursa-nasuh-pasa-hamami",
+      "ad": "Nasuh Paşa Hamamı",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Hamam",
+      "koordinat": {
+        "lat": 40.181386,
+        "lng": 29.068191
+      },
+      "bani": "Mesih Mehmed Paşa (Sultan II. Bayezid devrinde sadrazam)",
+      "baniDonem": "Osmanlı — II. Bayezid dönemi",
+      "yapimYili": "Kitabesi yoktur; 1483 yılından önce inşa edilmiştir.",
+      "vakfiyeAmaci": "Mesih Mehmed Paşa'nın Gelibolu'daki camisine gelir sağlamak.",
+      "hizmet": "Halkın yıkanma ihtiyacı. İlk yapıldığında çifte hamamdı; bakım giderleri yüksek olduğu için 6 Nisan 1588'de batıdaki kadınlar bölümü yıktırılmış ve malzemesiyle erkekler kısmı onarılmıştır.",
+      "bugunNeOldu": "Hâlâ hamam olarak çalışmaktadır. 1555, 1568, 1588 ve 1855 depremlerinden sonra kapsamlı onarımlar görmüştür. Bir dönem 'Kalyoncuoğlu Kızı' olarak tanınan Ovakim adlı bir Ermeni kadın tarafından vakıftan satın alınarak işletilmiş; 1914'te onun vefatından sonra Ermeni cemaati kullanım hakkını devralmak istemiş, ancak mülk vakıf statüsünde olduğu için yeniden Vakıflar İdaresi'ne devredilmiştir.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 143-150 (NASUH PAŞA HAMAMI)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Nasuh Paşa Hamamı, Osmangazi, Bursa' araması (amenity/public_bath: Nasuh Paşa Hamamı); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Halk arasındaki 'Nasuh Paşa' adı, uzun süre vakfın mütevellisi olan Mevlânâ Nasuh Efendi ve oğlu Mehmed Efendi'den gelir. Envanter Ovakim için 'vakıftan satın alınarak işletilmiştir' ifadesini kullanır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "bursa-issiz-susuz-han",
+      "ad": "Issız (Susuz) Han",
+      "sehir": "Bursa",
+      "ilce": "Karacabey",
+      "tur": "Han/kervansaray",
+      "koordinat": {
+        "lat": 40.220229,
+        "lng": 28.477631
+      },
+      "bani": "İne Bey (Yıldırım Bayezid'in vezirlerinden Feleküddin'in oğlu)",
+      "baniDonem": "Osmanlı — Yıldırım Bayezid dönemi",
+      "yapimYili": "1394",
+      "vakfiyeAmaci": "Eski Bursa-Balıkesir kervan yolundaki yolculara hizmet etmek. İne Bey bu kervansarayı, Bursa'daki medresesi ve hamamı, Balıkesir'deki mescit, zaviye ve imareti ile birlikte vakfına dahil etmiş; bunların giderleri için Balıkesir, Ankara ve Bergama'daki hamamlar, köyler ve araziler vakfedilmiştir.",
+      "hizmet": "Eski Bursa-Balıkesir kervan yolu üzerindeki yolcular ve kervanlar.",
+      "bugunNeOldu": "Uluabat Gölü kıyısında, 'Çingen Çeşme' mevkii yakınındadır. Restore edildikten sonra bir dönem turistik tesis olarak kiraya verilmiş ve uzun süre işletilmiştir; bugün bakımlı durumdadır.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": "H. 804 / M. 1402 tarihli vakfiyenin bir sureti Vakıflar Genel Müdürlüğü Arşivi'nde kayıtlıdır (envanterde numara verilmez).",
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 223-227 (ISSIZ (SUSUZ) HAN)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Issız, Karacabey, Bursa' araması (building/yes: Issız Han); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "İne Bey, I. Murad devrinde Balıkesir Subaşılığı ve ardından Karasi Sancak Beyliği yapmıştır. Vakfiyesine göre türbesi Bursa'daki medresesinin bahçesindedir. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "ad": "Muradiye Hamamı (II. Murad Hamamı, Bekçiyan Hamamı)",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi (Muradiye Mahallesi)",
+      "tur": "Hamam",
+      "koordinat": {
+        "lat": 40.1908798,
+        "lng": 29.0450325
+      },
+      "bani": "Sultan II. Murad",
+      "baniDonem": "Osmanlı padişahı; saltanatı 1421-1451 (babası Çelebi Sultan Mehmed'in ardından tahta çıkmıştır)",
+      "yapimYili": "1426 (Kültür Envanteri). Külliye'nin ana birimi olan caminin inşası kitâbesine göre 828-830 / 1425-1426 yılları arasındadır.",
+      "vakfiyeAmaci": "Muradiye Külliyesi'nin bir parçası olarak, külliyeyi oluşturan 'cami, medrese, hamam, imaret, çeşme ve baninin türbesi' arasında sayılmaktadır; hamamın kendine ait vakfiye şartı veya amacına dair bir kaynak bulunamamıştır.",
+      "hizmet": "Külliyenin hamamı olarak yıkanma ve temizlik hizmeti vermiştir. Sekizgen kasnağa oturan 10 m çapında sivri tromplu bir kubbeyle örtülü soğukluk, iki eyvanlı dikdörtgen sıcaklık ve iki halvetten oluşan sade bir planı vardır. Kimlerin ücretsiz veya ücretli yararlandığına dair vakfiye hükmü bulunamamıştır.",
+      "bugunNeOldu": "1986 yılına kadar dökümhane olarak kullanılmış, ardından onarılıp aslına döndürülmüştür (TDV). Kültür Envanteri kaydında durum 'Erişilebilir' olarak işaretlidir. Bugün hamam olarak işletilip işletilmediği doğrulanamamıştır; TDV 'aslına döndürülmüştür' demekte ancak güncel işlev belirtilmemektedir.",
+      "kulliye": "Muradiye (Murâdiye) Külliyesi",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198",
+          "url": "https://islamansiklopedisi.org.tr/muradiye-kulliyesi--bursa"
+        },
+        {
+          "kunye": "Kültür Envanteri, 'Muradiye Hamamı' (KE No 10546)",
+          "url": "https://kulturenvanteri.com/yer/muradiye-hamami/"
+        },
+        {
+          "kunye": "Özgenur Şeker, 'Bursa Muradiye Külliyesi, Hanım Sultan Türbeleri Kalemişi Tezyinatı', Necmettin Erbakan Üniversitesi Sosyal Bilimler Enstitüsü, Yüksek Lisans Tezi, Konya 2023, s. 26",
+          "url": "https://acikerisim.erbakan.edu.tr/bitstreams/91a085fd-0763-41e9-9508-3f994e137724/download"
+        }
+      ],
+      "dogrulamaNotu": "1) Hamamın külliyenin parçası olduğu ve II. Murad tarafından yaptırıldığı TDV ile Kültür Envanteri'nde açıkça doğrulanmıştır; konumu da uyumludur (TDV: 'külliyenin en batısında ve dört yol ağzında'). 2) Hamamın KENDİ vakfiye amacı, hizmet şartı ve gelir dağılımı hiçbir kaynakta bulunamamıştır; gelirDagilimi bu nedenle boş bırakılmıştır. 3) arsivNo null: Muradiye vakfiyesinin Vakıflar Genel Müdürlüğü arşiv numarası bulunamamıştır; bu konuyu ele alan bir Uludağ Üniversitesi tezinin tam metnine erişilememiştir. 4) Bugünkü işlevi (hamam olarak çalışıp çalışmadığı) doğrulanamamıştır. 5) Koordinat, Kültür Envanteri (40.1908798, 29.0450325) ile Wikipedia'daki Muradiye Külliyesi koordinatı (40.19083, 29.04611) arasındaki ~90 m'lik farkla tutarlıdır ve hamamın külliyenin en batısında olmasıyla örtüşür."
+    },
+    {
+      "ad": "Demirtaş (Timurtaş) Hamamı",
+      "sehir": "Bursa",
+      "ilce": "Osmangazi",
+      "tur": "Hamam",
+      "koordinat": {
+        "lat": 40.1883,
+        "lng": 29.0718
+      },
+      "bani": "Kara (Gazi) Demirtaş Paşa'nın oğlu. Kültür Portalı envanter kaydı “Yaptıran: Oruç Bey” der; Kepecioğlu (Bursa Kütüğü) ise hamamı 1420'den önce Demirtaş oğlu Umur Bey'in yaptırıp babası adına, kardeşi Ali Bey'in yaptırdığı Demirtaş Camii'ne vakfettiğini yazar. Aynı kaynakta hamam yer yer “Oruç Bey vakfı” olarak da anılır.",
+      "baniDonem": "Yıldırım Bayezid – II. Murad dönemleri (14. yüzyıl sonu – 15. yüzyıl başı)",
+      "yapimYili": "Kültür Portalı: 1390 (14. yüzyılın sonları, Yıldırım Bayezid dönemi). Kepecioğlu: 1420'den önce. Kaynaklar kesin yıl konusunda uzlaşmıyor.",
+      "vakfiyeAmaci": "Hamam, Demirtaş Paşa'nın oğlu tarafından babası adına yaptırılıp Demirtaş (Balıkpazarı) Camii'ne vakfedilmiştir; yani hamamın geliri caminin masraflarına tahsis edilmiştir (Kepecioğlu, Bursa Kütüğü: “Demirtaş oğlu Umur Bey, 1420'den evvel bu hamamı yaptırmış ve babası namına, kardeşi Ali Bey'in yaptırdığı Demirtaş Camii'ne vakfeylemiştir.”).",
+      "hizmet": "Mahalle hamamı; geliri Demirtaş Camii'ne gitmektedir. Kepecioğlu hamamın çok süslü olduğunu, bir dönem yıllarca boş kalıp harap düştüğünü kaydeder. 1552'de harap hamamın halvet ve camekân döşemeleri, şadırvan çanağı ve mermerleri 123 filoriye Rüstem Paşa'nın vekili Kerim Bey'e satılmış, bu malzeme Yeni Kaplıca inşaatında kullanılmıştır; hamam daha sonra Hubbâ Hatun tarafından satın alınıp tamir ettirilerek yeniden faaliyete geçirilmiştir (BŞS 25/332, 345).",
+      "bugunNeOldu": "Kültür Portalı envanter kaydına göre bugün de hamam olarak kullanılmaktadır (yapılan onarımlar: 16. yy, 1987, 2010; “Bugünkü Kullanımı: Hamam”). Kepecioğlu ise 20. yüzyıl ortasında yapının belediyenin gaz deposu olarak kullanıldığını yazar; bu, yapının işlev değiştirdiğini ve sonradan yeniden hamam işlevi kazandığını gösterir.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": "Bursa Şer'iyye Sicilleri: BS. 25/332 ve BS. 25/345 (1552 tarihli fetva ve mermer satış kaydı) — Kepecioğlu'nun verdiği referanslar. Vakıflar Genel Müdürlüğü arşiv numarası bulunamadı.",
+      "kaynaklar": [
+        {
+          "kunye": "T.C. Kültür ve Turizm Bakanlığı, Kültür Portalı / Kültür Envanteri Anıt kaydı: “Demirtaş (Timurtaş) Hamamı”, Envanter No A21",
+          "url": "https://kulturportali.gov.tr/turkiye/bursa/kulturenvanteri/demirtas-timurtas-hamami"
+        },
+        {
+          "kunye": "Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, “DEMİRTAŞ HAMAMI” maddesi, Bursa Büyükşehir Belediyesi, 2. basım 2010",
+          "url": "https://www.bursa.bel.tr/dosyalar/yayinlar/fsl1b71n140gc8o.pdf"
+        }
+      ],
+      "dogrulamaNotu": "1) Bu eser için yalnızca iki kaynak bulunabildi: bir resmî envanter kaydı (Kültür Portalı) ve bir belediye yayını (Kepecioğlu). Hamamın vakfına dair bağımsız bir akademik kaynak açılamadı (ilgili bir akademik PDF HTTP 403 verdi), bu yüzden vakfiye bilgisi tek kaynaklıdır. 2) Bani çelişkisi: Kültür Portalı “Oruç Bey”, Kepecioğlu “Umur Bey” der; Kepecioğlu aynı madde içinde hamamı “Oruç Bey'in vakfı” olarak da anar, yani kaynağın kendisi tutarlı değildir. 3) Yapım yılı 1390 ile “1420'den önce” arasında fark var. 4) 1552'deki mermer satışı ve malzemenin Yeni Kaplıca'da kullanılması yalnızca Kepecioğlu'nda geçer. 5) Güncel işlev bilgisi 2013 tarihli envanter kaydına dayanıyor; bir yerel haber sitesinde yapının kapalı olduğuna dair bir başlık görüldü ancak sayfa okunamadığı için bu iddia doğrulanamadı ve veriye işlenmedi. 6) Koordinat, Kültür Portalı'nda verilen “Demirtaş Paşa Mahallesi 2. Demirtaş Sokak” adresinin OpenStreetMap karşılığından türetilmiş yaklaşık değerdir."
+    }
+  ]
+}

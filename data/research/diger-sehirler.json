@@ -1,0 +1,442 @@
+{
+  "arastirmaGrubu": "diger-sehirler",
+  "arastirmaTarihi": "2026-10-12",
+  "eserler": [
+    {
+      "id": "karatay-medresesi",
+      "ad": "Karatay Medresesi (bugünkü adıyla Karatay Medresesi Çini Eserleri Müzesi)",
+      "sehir": "Konya",
+      "ilce": "Karatay",
+      "tur": "Medrese",
+      "koordinat": {
+        "lat": 37.8750305,
+        "lng": 32.492897
+      },
+      "bani": "Celâleddin Karatay (Karatay b. Abdullah) — Anadolu Selçuklu Devleti'nin ileri gelen emîri; vakfiyesinde kendisinden 'Atabey' olarak söz edilir",
+      "baniDonem": "Anadolu Selçuklu Devleti — Sultan II. İzzeddin Keykâvus dönemi (taçkapı kitâbesindeki 649/1251 tarihi bu döneme düşer)",
+      "yapimYili": "649 / 1251 (taçkapı kitâbesi). Vakfiye 651/1253 tarihli olup 652/1254 ve 1262 tarihli iki zeyli (eki) vardır.",
+      "vakfiyeAmaci": "Vakfiye, gelirin harcanma sırasını ayrıntılı biçimde şart koşmuştur: gelir önce vakıf akarlarının (mülklerin) imarına, tamirine ve yıkılan yerlerinin onarımına, sonra geliri toplayan ve imar hizmetini yürüten görevlilere harcanacak; artan gelirle medresenin tahrip olan yerleri onarılacak ve medreseye hasır, zeytinyağı, halı ile Regaib Gecesi, Şaban ayının ortası ve Kadir Gecesi'nde yakılmak üzere mum temin edilecekti. Artan gelir on hisseye ayrılıp görevlilere ödenecekti. Vâkıf ayrıca bir felaket hâlinde gelirin sırasıyla Antalya yolu üzerindeki darüssüleha (zaviyeye), orası da yıkılırsa Kayseri-Elbistan yolu üzerinde bina ettiği hanın ihtiyaçlarına, o da mümkün olmazsa 'gök ve yer mevcut oldukça' doğu ve batıdaki fakir ve muhtaç Müslümanlara harcanmasını şart koşmuştur.",
+      "hizmet": "Medrese, Hanefi mezhebinden bir müderris ile onun yardımcısı muid, imam, fakih, bevvâb (kapıcı), ferrâş, iki cüzhan ve çeşme görevlisi tarafından işletiliyordu; müderris ve muidin Hanefi olması şarttı. Vakfiye, düzenli olarak dersleri takip eden talebelere eğitim yardımı (burs) yapılmasını öngörüyordu, ancak burs miktarı vakfiyede belirtilmemiştir. II. zeylde iki cüzhana ayda 60 dirhem (kişi başı 30), çeşme temizliğiyle ilgilenen kişiye 30 dirhem verilmesi şart kılınmıştır. TDV İslâm Ansiklopedisi'ne göre medrese Selçuklu devrinde Konya'nın kültür hayatında önemli yer tutmuş, Mevlânâ Celâleddîn-i Rûmî çağı derviş ve fakihlerinin buluşma ve toplantı yeri olmuştur.",
+      "bugunNeOldu": "XIX. yüzyıl sonlarında terk edilmiş olan yapı 1954'te onarılarak Konya Müzesi Çini Eserleri seksiyonu olarak kullanılmaya başlanmıştır; bugün Karatay Medresesi Çini Eserleri Müzesi olarak ziyarete açıktır. Kubbeyi kaplayan firuze-lâcivert mozaik çini kompozisyonu günümüze ulaşan sayılı örneklerdendir. Yapı, UNESCO Dünya Mirası Geçici Listesi'ndeki Selçuklu eserleri kapsamındadır.",
+      "kulliye": null,
+      "gelirDagilimi": [
+        {
+          "kalem": "Müderris (Hanefi mezhebinden)",
+          "yuzde": 10,
+          "tip": "gider",
+          "kaynak": "Medeniyet Tasavvuru ve Karatay Medresesi (KTO Karatay Üniversitesi Yayınları, Konya 2020), s. 428 — vakfiye özeti; dayanak: Osman Turan, 'Selçuklu Devri Vakfiyeleri III: Celâleddin Karatay Vakıfları ve Vakfiyeleri', TTK Belleten XII/45 (1948), s. 142, 147"
+        },
+        {
+          "kalem": "Mütevelli (vakıf yöneticisi)",
+          "yuzde": 10,
+          "tip": "gider",
+          "kaynak": "Medeniyet Tasavvuru ve Karatay Medresesi, s. 428; Turan, a.g.e., s. 142, 147"
+        },
+        {
+          "kalem": "Muid (müderris yardımcısı) — kaynakta çelişkili: bir pasajda muid, kapıcı ve ferrâşla birlikte 'yarımşar hisse', diğer pasajda muide tam bir hisse verildiği yazılıdır",
+          "yuzde": 10,
+          "tip": "gider",
+          "kaynak": "Medeniyet Tasavvuru ve Karatay Medresesi, s. 426 ve s. 428 (iki pasaj arasında fark)"
+        },
+        {
+          "kalem": "Bevvâb / kapıcı (vâkıfın kardeşinin oğullarından)",
+          "yuzde": 5,
+          "tip": "gider",
+          "kaynak": "Medeniyet Tasavvuru ve Karatay Medresesi, s. 426, 428"
+        },
+        {
+          "kalem": "Ferrâş (vâkıfın kardeşinin oğullarından)",
+          "yuzde": 5,
+          "tip": "gider",
+          "kaynak": "Medeniyet Tasavvuru ve Karatay Medresesi, s. 426, 428"
+        },
+        {
+          "kalem": "İmam, fakih ve düzenli olarak dersleri takip edenler (müderris ve mütevellinin kararıyla dört mezhepten birine mensup olanlar)",
+          "yuzde": 70,
+          "tip": "gider",
+          "kaynak": "Medeniyet Tasavvuru ve Karatay Medresesi, s. 428 — vakfiyede 'geri kalan onda yedi hisse'"
+        }
+      ],
+      "gelirDagilimiDurumu": "belgeli",
+      "arsivNo": "VGM Vakıf Kayıtlar Arşivi (VGMA), Defter No. 608/1, s. 148 (vakfiye; ikincil aktarım)",
+      "kaynaklar": [
+        {
+          "kunye": "Selçuk Mülâyim, 'KARATAY MEDRESESİ', TDV İslâm Ansiklopedisi, c. 24 (2001), s. 475-476",
+          "url": "https://islamansiklopedisi.org.tr/karatay-medresesi"
+        },
+        {
+          "kunye": "Medeniyet Tasavvuru ve Karatay Medresesi (ed. Ömer Faruk Erdem – Murat Ayvacı), KTO Karatay Üniversitesi Yayınları, Konya 2020, ISBN 978-605-66970-9-8 — 'Karatay Medresesi Vakfı'nın Gelir Kaynakları' ve 'Karatay Medresesi'nin Giderleri' bölümleri (s. 424-430)",
+          "url": "http://karyay.karatay.edu.tr/images/nesneler/medeniyet-tasavvuru-ve-karatay-medresesi.pdf"
+        },
+        {
+          "kunye": "Kültür Envanteri, 'Karatay Medresesi' kaydı (KE No 3881) — konum/koordinat ve ilçe bilgisi",
+          "url": "https://kulturenvanteri.com/yer/karatay-medresesi/"
+        },
+        {
+          "kunye": "Kültür Portalı (T.C. Kültür ve Turizm Bakanlığı), 'Karatay Medresesi Çini Eserler Müzesi'",
+          "url": "https://www.kulturportali.gov.tr/turkiye/konya/gezilecekyer/karatay-medresesi-cini-eserler-muzesi"
+        }
+      ],
+      "dogrulamaNotu": "Gelir dağılımı vakfiyede yüzde olarak değil 'on hisse' üzerinden belirtilmiştir; yüzdeler bu hisselerin doğrudan karşılığıdır (1 hisse = %10). Ancak kaynağın aynı vakfiyeyi özetleyen iki pasajı muidin hissesi konusunda çelişir ve listelenen hisselerin toplamı on hisseyi tam vermemektedir; bu nedenle yüzdeler yeniden hesaplanmamış, metinde yazıldığı gibi aktarılmıştır. SONUÇ OLARAK BU KALEMLERİN YÜZDE TOPLAMI %100 ETMEZ; bu, kaynak metnin kendi çelişkisidir ve uygulama bu kalemleri bir bütçe dağılımı gibi toplayarak gösterMEMELİDİR. Vakfiyenin aslına (VGMA Defter 608/1) doğrudan erişilememiş, metin Osman Turan'ın 1948 tarihli yayınına dayanan ikincil aktarımdan okunmuştur. Medresenin öğrencilere verdiği burs miktarı hiçbir kaynakta belirtilmemiştir ve bu alan boş bırakılmıştır. Taçkapı kitâbesindeki 649/1251 tarihi ile vakfiyenin 651/1253 tarihi arasındaki fark kaynaklarda açıklanmamaktadır. Mimarı kesin olarak bilinmemektedir; taçkapının Alâeddin Camii'nin kuzey portalini tekrarlamasından hareketle 'Şamlı Havlan oğlu Muhammed' olabileceği ileri sürülmektedir (Kültür Envanteri) — bu bir tahmindir, doğrulanmış bir atıf değildir."
+    },
+    {
+      "id": "sahib-ata-kulliyesi",
+      "ad": "Sâhib Ata Külliyesi (bugünkü adıyla Sahip Ata Vakıf Müzesi)",
+      "sehir": "Konya",
+      "ilce": "Meram",
+      "tur": "Külliye",
+      "koordinat": {
+        "lat": 37.867576,
+        "lng": 32.494342
+      },
+      "bani": "Selçuklu veziri Sâhib Ata Fahreddin Ali (kitâbelerde adı geçen bâni); caminin mimarı taçkapıdaki madalyonlarda adı yazılı Kölük b. Abdullah, diğer yapılarda Kālûyân el-Konevî'nin adı da geçmektedir",
+      "baniDonem": "Anadolu Selçuklu Devleti vezirliği dönemi (XIII. yüzyıl); inşa 656/1258'de başlamış, 682/1283'e kadar sürmüştür",
+      "yapimYili": "656 / 1258'de başlamış, türbeye yapılan ilâveler sebebiyle 682 / 1283'te tamamlanmıştır. Hankah taçkapısı kitâbesine göre 678 / 1279; türbe 682 / 1283'te yenilenmiştir. Çifte hamamın kitâbesi yoktur, 1258-1279 arasında inşa edilmiş olmalıdır.",
+      "vakfiyeAmaci": "Vakıflar Dergisi'nde yayımlanan Konya İmaret vakfiyesi tercümesine göre vakfiye, cami, hankah ve türbenin yanı sıra birbirine bitişik medrese, mescid ve minarenin yararına olmak üzere Konya ve çevresindeki köy, dükkân, bağ ve sebzelikleri vakfetmiş; tevliyet ve nezaret hakkı olarak vakıf mahsulünün 'tam üçtebirini' sırasıyla vâkıfın kendisine, sonra erkek evlâdına, erkek evlâdından elverişli kimse kalmadığında azatlılarının oğullarının en dürüst ve reşidine, bunlardan da kimse bulunmazsa Konya Kadısı'nın re'yine bırakmıştır. Vakıf gelirinden tahsildar ve mimara ayda otuzar dirhem verilmesi ve bu kişilerin vâkıfın dürüst azatlılarından emin kişiler olması şart koşulmuştur.",
+      "hizmet": "Vakfiye hizmet kalemlerini ve ödemeleri tek tek saymıştır: iki muide ayda onar dirhem, nakibe on beş dirhem, mescid imamına yarım batman ekmek, müezzine günde bir batmanın dörtte biri ekmek, ferrâşa günde bir batmanın dörtte biri ekmek; vâkıfın nesli kesildikten sonra mütevelliye ayda on dirhem, mimar ile câbîye günde yarım batman ekmek; Seyfüddin Sefer b. Abdullah el-Kâtib'e günde yarım batman ekmek ve ayda beş dirhem. Külliye; cami, türbe (Sâhib Ata Fahreddin Ali, eşi ve çocuklarının sandukaları), hankah (1279) ve Selçuklu dönemi çifte hamamlarının en büyüğü olan çifte hamamdan oluşur; hamamın kuzeyi erkekler, güneyi kadınlar kısmıdır.",
+      "bugunNeOldu": "Külliyenin hankah bölümü Vakıflar Bölge Müdürlüğü tarafından Sâhib Atâ Vakıf Müzesi olarak düzenlenmiş ve ziyarete açılmıştır; külliye 2006'da Vakıflar Genel Müdürlüğü'nce restore edilmiştir. Külliyenin medresesi 1935'ten itibaren tamamen ortadan kaldırılmış, büyük kısmının üzerinden Gediz Caddesi geçmiştir. Külliye günümüzde imaret/hankah ve türbesiyle varlığını sürdürmektedir; hankah 1934'te bir dönem keçe imalâthanesi olarak da kullanılmıştır.",
+      "kulliye": null,
+      "gelirDagilimi": [
+        {
+          "kalem": "Tevliyet ve nezaret hakkı (vakıf yöneticiliği ve denetimi) — sırasıyla vâkıfın kendisi, erkek evlâdı, azatlılarının oğulları, bunlar kalmadığında Konya Kadısı'nın re'yine",
+          "yuzde": 33,
+          "tip": "gider",
+          "kaynak": "Sadi Bayram – Ahmet Hamdi Karabacak, 'Sahib Ata Fahrü'd-din Ali'nin Konya, İmaret ve Sivas Gökmedrese Vakfiyeleri', Vakıflar Dergisi 13 (1981) — Konya İmaret vakfiyesi tercümesi, s. 40: 'bu vakfın mahsulünden tam üçtebirini tevliyet ve nezaret hakkı olarak kendi nefsine şart kıldı'"
+        }
+      ],
+      "gelirDagilimiDurumu": "belgeli",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Sevgi Parlak, 'SÂHİB ATA KÜLLİYESİ', TDV İslâm Ansiklopedisi, c. 35 (2008), s. 516-518",
+          "url": "https://islamansiklopedisi.org.tr/sahib-ata-kulliyesi"
+        },
+        {
+          "kunye": "Sadi Bayram – Ahmet Hamdi Karabacak, 'Sahib Ata Fahrü'd-din Ali'nin Konya, İmaret ve Sivas Gökmedrese Vakfiyeleri', Vakıflar Dergisi, sy. 13 (1981), Vakıflar Genel Müdürlüğü Yayını (Konya İmaret vakfiyesi tercümesi)",
+          "url": "https://acikerisim.fsm.edu.tr/bitstreams/e87ec260-6cbe-4e64-9238-5470ae6d5814/download"
+        },
+        {
+          "kunye": "Kültür Portalı (T.C. Kültür ve Turizm Bakanlığı / Konya İl Kültür ve Turizm Müdürlüğü), 'Sahip Ata Vakıf Müzesi' — adres: Sahibata Caddesi Karatay/KONYA",
+          "url": "https://kulturportali.gov.tr/turkiye/konya/gezilecekyer/sahip-ata-vakif-muzesi"
+        },
+        {
+          "kunye": "Kültür Envanteri, 'Sahip Ata Vakıf Müzesi' kaydı (KE No 3876) — koordinat ve ilçe (Meram) bilgisi",
+          "url": "https://kulturenvanteri.com/yer/sahip-ata-vakif-muzesi/"
+        },
+        {
+          "kunye": "Konya Büyükşehir Belediyesi Açık Veri Platformu, 'Tarihi Camiler' veri seti — Sahipata Külliyesi kaydı (1258-1283, Larende Caddesi, mescid-türbe-hangâh-hamam)",
+          "url": "https://acikveri.konya.bel.tr/dataset/tarihi-camiler"
+        }
+      ],
+      "dogrulamaNotu": "İLÇE ÇELİŞKİSİ: Kültür Portalı adres alanında 'Karatay', Kültür Envanteri ve külliyeye dair Vakıflar kaynaklı yayın 'Meram', Vikipedi/Vikidata tanımı ise 'Selçuklu' ilçesini vermektedir. Burada konum kaydı ve uzman yayını esas alınarak 'Meram' yazılmıştır; ilçe bilgisi kesin değildir. YAPIM YILI ÇELİŞKİSİ: TDV ve Konya Büyükşehir Belediyesi veri seti 1258-1283 aralığını verirken Kültür Portalı külliyenin 1277'de yaptırıldığını yazmaktadır. GELİR DAĞILIMI: Vakfiye gelir dağılımını yüzde olarak değil, görevlilere ödenen sabit aylık/günlük miktarlar (dirhem ve ekmek) olarak düzenlemiştir; bu kalemler yüzdeye çevrilemediği için listeye alınmamıştır. Listelenen tek yüzde, tevliyet ve nezaret hakkı olarak vakfiye metninde açıkça 'tam üçtebir' denilen paydır. ARŞİV NO: Vakıflar Dergisi makalesi, vakfiyenin 19. yüzyılda Evkaf Nezareti'nde tutulan nüshalarından ve bir 'tomar' nüshadan söz etmekte, '592 numarada kayıtlı vakfiye' ifadesi geçmektedir; ancak bu numaranın hangi vakfiye defterine/nüshasına ait olduğu metinden kesin olarak çıkarılamadığı için arsivNo boş bırakılmıştır. Ayrıca makale, Konya İmaret, Sivas Gökmedrese ve başka vakfiyelerin metinlerini bir arada yayımladığı ve taranmış metinde okunamayan kısımlar bulunduğu için, hizmet kalemlerindeki dirhem/ekmek miktarları bu çalışmanın Konya İmaret vakfiyesi bölümünden alınmış olmakla birlikte küçük bir atıf kayması riski tümüyle dışlanamaz."
+    },
+    {
+      "id": "zazadin-hani",
+      "ad": "Zazadin Hanı (Sâdeddin Hanı)",
+      "sehir": "Konya",
+      "ilce": "Selçuklu",
+      "tur": "Kervansaray",
+      "koordinat": {
+        "lat": 38.003822,
+        "lng": 32.678061
+      },
+      "bani": "Anadolu Selçuklu devlet adamı Sâdeddin Köpek (kitâbesinde adı 'Köpek b. Muhammed', lakabı Sâdeddin)",
+      "baniDonem": "Anadolu Selçuklu Devleti — I. Alâeddin Keykubad (1220-1237) ve II. Gıyâseddin Keyhusrev (1237-1246) dönemleri; Sâdeddin Köpek bu dönemde emîr-i şikâr, nakkaş ve mimar olarak da anılmakta, 636/1238-39'da öldürülmüştür",
+      "yapimYili": "İnşası I. Alâeddin Keykubad döneminde 1235'te başlamış, II. Gıyâseddin Keyhusrev zamanında 1237'de tamamlanmıştır. TDV İslâm Ansiklopedisi ise hanı 633-634 / 1236-1237 yıllarına tarihlendirmektedir.",
+      "vakfiyeAmaci": null,
+      "hizmet": "Konya'ya 22 km uzaklıkta, Aksaray-Konya karayolundan 5 km içeride Tömek köyü yakınında, önemli bir güzergâhın kilit noktasında kurulmuş yazlık ve kışlık bölümlerden oluşan bir Selçuklu kervansarayıdır; yüzlerce yıl güzergâhı kullanan kervanlara ve ordulara hizmet vermiştir. Avluda önleri açık ve kapalı olmak üzere irili ufaklı 24 oda ile mescit, hamam, ambar, depo ve ahırlar bulunmaktadır; mescit taçkapının üzerinde, basamaklarla çıkılan bir kotta yer alır. Doğu-batı doğrultusunda altı sahınlı kapalı bölüm ile geniş bir avludan oluşur; yapı 104 m uzunluğunda ve 62 m genişliğindedir. İnşasında Roma ve Bizans dönemi kalıntıları da kullanılmıştır.",
+      "bugunNeOldu": "Han uzun yıllar harap vaziyette kalmış; 1996'da handa kazı çalışmaları başlatılmış, 2017'de Selçuklu Belediyesi tarafından yapılan restorasyonla birçok bölümü onarılarak eski ihtişamına kavuşturulmuştur. Kültür Envanteri kaydındaki 'harap durumdadır' ifadesi bu restorasyondan önceki tespite dayanmaktadır. Zazadin Han, Selçuklu kervansarayları kapsamında UNESCO Dünya Mirası Geçici Listesi temasıyla ilişkilendirilmiştir.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Muharrem Kesik, 'SÂDEDDİN KÖPEK', TDV İslâm Ansiklopedisi, c. 35 (2008), s. 392-393",
+          "url": "https://islamansiklopedisi.org.tr/sadeddin-kopek"
+        },
+        {
+          "kunye": "Kültür Envanteri, 'Zazadin Han' kaydı (KE No 2576) — konum/koordinat, ilçe, ölçüler ve kitâbe durumu",
+          "url": "https://kulturenvanteri.com/yer/zazadin-han/"
+        },
+        {
+          "kunye": "Anadolu Ajansı haberinden aktaran Arkeolojik Haber, 'Sadettin Köpek'in yaptırdığı kervansaray: Zazadin Hanı' (10 Aralık 2018) — Selçuk Üniversitesi Sanat Tarihi Bölümü öğretim üyeleri Prof. Dr. Ali Baş ve Dr. Şükrü Dursun'un değerlendirmeleri",
+          "url": "https://www.arkeolojikhaber.com/haber-sadettin-kopekin-yaptirdigi-kervansaray-zazadin-hani-18672/"
+        }
+      ],
+      "dogrulamaNotu": "VAKFİYE BULUNAMADI: Bu han için yayımlanmış bir vakfiye metnine veya vakfiye arşiv kaydına hiçbir kaynakta ulaşılamamıştır; bu nedenle vakfiyeAmaci null, gelirDagilimi boş dizi ve arsivNo null bırakılmıştır. Selçuklu kervansarayları için sık tekrarlanan 'üç gün ücretsiz konaklama' gibi bilgiler bu han özelinde hiçbir kaynakta görülmediği için YAZILMAMIŞTIR. TARİH ÇELİŞKİSİ: TDV 633-634 (1236-1237) derken, Selçuk Üniversitesi'nden aktarılan bilgi inşanın 1235'te başlayıp 1237'de bittiğini belirtmektedir; iki tarih arasında bir yıllık fark vardır. ODA SAYISI: '24 oda' bilgisi han üzerine çalışan bir akademisyenin (Dr. Şükrü Dursun) basın açıklamasına dayanmaktadır; hakemli bir yayından teyit edilememiştir. Bânisinin kimliği (Sâdeddin Köpek) TDV tarafından doğrulanmıştır, ancak hanın mimarının Sâdeddin Köpek olduğu yalnızca 'tahmin' olarak ifade edilmektedir."
+    },
+    {
+      "id": "konya-mevlana-turbesi",
+      "ad": "Mevlâna Türbesi (Müze)",
+      "sehir": "Konya",
+      "ilce": "Karatay",
+      "tur": "Türbe (Mevlâna Külliyesi, bugün müze)",
+      "koordinat": {
+        "lat": 37.870962,
+        "lng": 32.505711
+      },
+      "bani": "Türbe: Selçuklu Sarayı'ndan Gürcü Hatun ile Mevlâna'nın büyük oğlu Sultan Veled",
+      "baniDonem": "Anadolu Selçuklu dönemi (türbe); Karamanoğulları ve Osmanlı dönemlerinde eklemeler",
+      "yapimYili": "Mevlâna 17 Aralık 1273'te vefat etmiş; türbe bir yıl sonra yaptırılmıştır. Karamanoğlu Alâeddin Ali Bey zamanında bugünkü dilimli biçimini almış ve ilk kez çinilerle kaplanmıştır.",
+      "vakfiyeAmaci": "Sultan Alâeddin Keykubat, Konya surları dışındaki gül bahçesini 1230'larda Mevlâna'nın babası Sultanu'l-Ulema Bahaeddin Veled'e bağışlamıştır; külliye bu bahçede gelişmiştir. Envanter bir vakfiye metni vermez.",
+      "hizmet": "Mevlâna'nın kabri ve Mevlevi dergâhı: semahane, mescit, derviş hücreleri, matbah-ı şerif (mutfak), meydan-ı şerif, şadırvan, Şeb-i Arus çeşmesi, selsebil ve bahçedeki altı türbe.",
+      "bugunNeOldu": "Türbe bugün Mevlâna Müzesi'nin içindedir. Osmanlı döneminde birçok kez onarılmış; içteki kalem işleri II. Bayezid zamanında Halepli Mevlevi Abdurrahman'a yaptırılmıştır. 2018'de Müze Müdürlüğü tarafından restorasyon yapılmıştır.",
+      "kulliye": "Semahane, mescit, derviş hücreleri, matbah-ı şerif, meydan-ı şerif, şadırvan, Şeb-i Arus çeşmesi, selsebil ve bahçede altı türbe.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 30-73 (MEVLÂNA TÜRBESİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Mevlana Müzesi' araması (tourism/museum: Mevlâna Müzesi); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Mevlâna'nın mezarı üzerine türbe yapılmasına izin vermediği bilgisi Mevlevi kaynaklarındaki bir anlatıdır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "konya-ince-minareli-medrese",
+      "ad": "İnce Minareli Medrese (Sahip Ata Darülhadis)",
+      "sehir": "Konya",
+      "ilce": "Selçuklu",
+      "tur": "Medrese (darülhadis)",
+      "koordinat": null,
+      "bani": "Selçuklu Veziri Sahip Ata Fahreddîn Ali",
+      "baniDonem": "Anadolu Selçuklu dönemi",
+      "yapimYili": "İnşa kitabesi yoktur; H. 662 / M. 1264 tarihli vakfiyesinden hareketle 1261-62'de hizmete açıldığı kabul edilir.",
+      "vakfiyeAmaci": "Hadis ilminin öğretildiği bir ihtisas medresesi kurmak. 1265 ve 1280'de iki zeyille genişletilen Arapça vakfiyesine göre mescit ve minaresiyle birlikte bir 'imaret' olarak kurulmuş ve zengin akarlarla (gelir getiren mülklerle) desteklenmiştir.",
+      "hizmet": "Hadis öğrenen öğrenciler ve müderrisler.",
+      "bugunNeOldu": "Taş ve Ahşap Eserler Müzesi olarak hizmet vermektedir; Konya surlarına ait kitabe ve kabartmalar ile bölgedeki diğer Orta Çağ yapılarından kalan taş ve ahşap eserler sergilenir. 26 Aralık 1706 depreminde ağır hasar görmüş; 27 Kasım 1901'de üst üste düşen iki yıldırım minareyi birinci şerefeden yıkmış ve mescit kubbesini çökertmiştir.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 102-109 (İNCE MİNARELİ MEDRESE (SAHİP ATA DARÜLHADİS))"
+        }
+      ],
+      "dogrulamaNotu": "Mimarı, taç kapıdaki madalyonlarda adı geçen Abdullah oğlu Kelûk'tur. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "konya-esrefoglu-suleyman-bey-kulliyesi",
+      "ad": "Eşrefoğlu Süleyman Bey Külliyesi",
+      "sehir": "Konya",
+      "ilce": "Beyşehir",
+      "tur": "Külliye (cami, türbe, bedesten, hamam)",
+      "koordinat": {
+        "lat": 37.683452,
+        "lng": 31.718619
+      },
+      "bani": "Eşrefoğlu Seyfettin Süleyman Bey",
+      "baniDonem": "Eşrefoğulları Beyliği",
+      "yapimYili": "Cami 1296-99 (kitabelerde H. 696 / M. 1296-97 ve H. 699 / M. 1299-1300); türbe M. 1301.",
+      "vakfiyeAmaci": "Envanter bir vakfiye metni vermez.",
+      "hizmet": "Beyşehir halkı; cami, türbe, bedesten ve hamamdan oluşan külliye. Beyşehir şehri Eşrefoğlu Camii'nin çevresinde büyümüştür.",
+      "bugunNeOldu": "Cami ayaktadır. Semerkant ve Buhara gibi Türkistan şehirlerinde görülen ahşap direkli camilerin Anadolu'daki en önemli, en büyük ve en orijinal örneğidir. Harimin ortasında 'karlık' adı verilen bir havuz vardır; envantere göre su ihtiyacını karşılamak ve ahşap direklerin nem dengesini sağlamak için yapılmıştır. 1965'teki restorasyonda dökülen yerler alçıyla aslına uygun tamamlanmıştır.",
+      "kulliye": "Cami, türbe, bedesten ve hamam. Süleyman Bey 27 Ağustos 1302'de vefat etmiş ve bu külliyedeki türbeye defnedilmiştir.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 12-34 (EŞREFOĞLU SÜLEYMAN BEY KÜLLİYESİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Eşrefoğlu Camii, Beyşehir' araması (amenity/place_of_worship: Eşrefoğlu Camii); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Taç kapının köşelerinde 'İsa'nın işidir / İsa yaptı' anlamına gelen bir usta imzası okunur. Türbedeki üç sandukanın Süleyman Bey, hanımı ve oğlu Mübarizüddin Mehmet Bey'e ait olduğu tespit edilmiştir. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "konya-sultan-ii-selim-kulliyesi",
+      "ad": "Sultan II. Selim Külliyesi",
+      "sehir": "Konya",
+      "ilce": "Karapınar",
+      "tur": "Külliye (menzil külliyesi)",
+      "koordinat": {
+        "lat": 37.714511,
+        "lng": 33.547728
+      },
+      "bani": "Şehzade (sonra Sultan) II. Selim; Kanuni Sultan Süleyman'ın onayıyla",
+      "baniDonem": "Osmanlı — Kanuni Sultan Süleyman dönemi",
+      "yapimYili": "Yapımına II. Selim'in Konya valiliği sırasında 18 Şaban 967 / 14 Mayıs 1560'ta başlanmış, H. 971 / M. 1563'te tamamlanmıştır.",
+      "vakfiyeAmaci": "Issız, susuz ve tehlikeli bir derbent olan Karapınar'da İstanbul-Hicaz yolunu kullananlara güvenli bir konak yeri sağlamak, su getirmek ve yeni bir yerleşim kurmak. Şehzade Selim bu isteğini babası Kanuni'ye ve Divan'a yazmış, Divan vakıf eserinin yola güven ve refah getireceği düşüncesiyle onay vermiştir. Arşiv bilgisine göre vakfın giderleri arasında imaret ikinci sıradadır.",
+      "hizmet": "Yolcular, hacılar, gelip geçenler ve yardıma muhtaç insanlar: cami, sıbyan mektebi, imaret, tabhane, arasta, iki han, çeşme, hamam ve iki yel değirmeni.",
+      "bugunNeOldu": "Cami ayaktadır. İmaret büyük mekân kayıplarıyla günümüze ulaşmış, yalnızca bazı kubbeli eyvanları kalmış; mutfağı kazıyla ortaya çıkarılmıştır.",
+      "kulliye": "Cami, sıbyan mektebi, imaret (fırın, mutfak, kiler, yemekhane, ambar, odun deposu), tabhane, arasta, iki han, çeşme, hamam ve iki yel değirmeni.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 34-54 (SULTAN II. SELİM KÜLLİYESİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Sultan Selim Camii, Karapınar' araması (amenity/place_of_worship: Sultan Selim Camii); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Envanter külliyeyi 'Mimar Sinan'ın Karapınar'da inşa ettiği menzil külliyesi' olarak tanıtır; ayrıca Mimar Cemaleddin'in görevlendirildiğini ve bunun Sinan'ın bilgisi dahilinde olması gerektiğini belirtir. Vakfiye ve arşiv belgesinin tamamına ulaşılamadığı envanterde belirtilir. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "konya-tahir-ile-zuhre-mescidi",
+      "ad": "Tahir ile Zühre (Dön Baba-Pir Ahi Sultan) Mescit ve Türbesi",
+      "sehir": "Konya",
+      "ilce": "Meram",
+      "tur": "Mescit ve türbe",
+      "koordinat": {
+        "lat": 37.86989,
+        "lng": 32.485423
+      },
+      "bani": "Selçuklu Veziri Sahip Ata Fahreddin Ali (kabul edilen görüş)",
+      "baniDonem": "Anadolu Selçuklu dönemi (XIII. yüzyıl sonları)",
+      "yapimYili": "Kitabesi yoktur; XIII. yüzyıl sonlarında yaptırıldığı kabul edilir.",
+      "vakfiyeAmaci": "Envanter bir vakfiye metni vermez.",
+      "hizmet": "Mahalle mescidi; türbede Sahip Ata'nın torunlarının gömülü olduğu tahmin edilir.",
+      "bugunNeOldu": "Sağlam biçimde ayaktadır ve ibadete açıktır. 1958'de tamir edilmiş, tamirdeki kazılarda toprak içinden birçok çini parçası çıkarılmıştır. 1991 ve 2006'da Konya Vakıflar Bölge Müdürlüğü tarafından restore edilmiştir.",
+      "kulliye": "Mescit, türbe ve son cemaat yeri.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 114-117 (TAHİR İLE ZÜHRE (DÖN BABA-PİR AHİ SULTAN) MESCİT VE TÜRBESİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Tahir ile Zühre, Meram, Konya' araması (amenity/place_of_worship: Tahir ile Zühre Camii); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Halk arasında 'Tahir ile Zühre', 'Arzu ile Kanber' ve 'Dön Baba' adlarıyla anılır. Envanterin aktardığına göre İbrahim Hakkı Konyalı bu adların yeni olduğunu, onları uyduran kişinin yakın zamana kadar yaşadığını yazmıştır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "konya-sultan-alaeddin-camii",
+      "ad": "Sultan Alâeddin (Ulu) Camii",
+      "sehir": "Konya",
+      "ilce": "Selçuklu",
+      "tur": "Cami (ulu cami)",
+      "koordinat": {
+        "lat": 37.873428,
+        "lng": 32.492786
+      },
+      "bani": "Birkaç evrede: en eski bölüm I. Mesud (1116-1155), orta bölüm I. İzzettin Keykavus (1211-1219) başlattı, I. Alâeddin Keykubad (1219-1237) tamamlattı",
+      "baniDonem": "Anadolu Selçuklu dönemi",
+      "yapimYili": "Minberdeki kitabeye göre H. 550 / M. 1155; cami son şeklini I. Alâeddin Keykubad döneminde, 1220'de almıştır.",
+      "vakfiyeAmaci": "1476-77 tarihli Konya Evkâf Defteri'nden caminin Konya ve çevresindeki köy ve kasabalarda vakıfları olduğu tespit edilmiştir.",
+      "hizmet": "Konya halkının cuma ve vakit namazları; Selçuklu başkentinin iç kalesindeki ulu cami.",
+      "bugunNeOldu": "İbadete açıktır. 1944'te Millî Eğitim Bakanlığı'na, 1952'de Vakıflar Genel Müdürlüğü'ne devredilerek ibadete açılmış; 1980-1995 arasında Vakıflar Genel Müdürlüğü ve DSİ tarafından zemini güçlendirilmiştir. Alâeddin Tepesi bugün mesire yeridir.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 304-319 (SULTAN ALÂEDDİN (ULU) CAMİİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Alaeddin Camii, Konya' araması (amenity/place_of_worship: Alaeddin Keykubad Camii); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Minberi Ahlatlı Hacı Mekkî Usta 550 yılının Recep ayında bitirmiştir. 1220'deki inşaatı Atabek Ayaz idare etmiş, mimarı Muhammed b. Havlan el-Dımışki, çini mihrabın ustası Kerimüddin Erdişah'tır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "konya-sems-i-tebrizi-camii",
+      "ad": "Şems-i Tebrizi Camii ve Türbesi",
+      "sehir": "Konya",
+      "ilce": "Karatay",
+      "tur": "Cami ve türbe (külliye)",
+      "koordinat": {
+        "lat": 37.873682,
+        "lng": 32.497553
+      },
+      "bani": "Kesin değil; XIII. yüzyılda yapıldığı düşünülür. Emir İshak Bey 1510 vakfiyesiyle eklemeler yaptırmıştır.",
+      "baniDonem": "Anadolu Selçuklu (ilk yapı), Karamanoğulları ve Osmanlı (eklemeler)",
+      "yapimYili": "İnşa tarihi tam bilinmemektedir; XIII. yüzyılda yapıldığı düşünülür. Emir İshak Bey'in vakfiyesi H. 915 / M. 1510 tarihlidir.",
+      "vakfiyeAmaci": "Konya Vakıflar Müdürlüğü'nün 4 numaralı defterinin 106. sayfasındaki 1510 tarihli Arapça vakfiyeye göre Emir İshak Bey mescide yeni bir bina eklemiş, dârülhuffâzı genişletmiş, Kur'an öğretmek için bir mektep ve bir dershane yaptırmış ve külliyenin kıyamete kadar yaşaması için vakıflar kurdurmuştur.",
+      "hizmet": "Mescit, türbe, mektep, dershane, dârülhuffâz, Şems Dedesi Evi, dervişlere ait dört hücre ve bir salon, kuyu ve şadırvan.",
+      "bugunNeOldu": "Cami ve türbe ayaktadır. 1944'e kadar türbenin kuzeyinde bir türbedar bölümü vardı. Şems Mezarlığı 26 Nisan 1944'te yol yapımı için yıktırılmış; bazı mezar taşları Sırçalı Medrese Mezar Anıtları Müzesi'ne taşınmış, mezarlık parka dönüştürülmüştür.",
+      "kulliye": "Mescit, türbe, mektep, dershane, dârülhuffâz, Şems Dedesi Evi, derviş hücreleri, kuyu ve şadırvan.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": "Konya Vakıflar Müdürlüğü, 4 numaralı defter, s. 106 (H. 915 / M. 1510 tarihli Arapça vakfiye)",
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 224-235 (ŞEMS-İ TEBRİZİ CAMİİ VE TÜRBESİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Şems-i Tebrizi Camii' araması (amenity/place_of_worship: Şems-i Tebrizi Camii); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Şems-i Tebrizî'nin caminin bitişiğindeki türbede gömülü olduğu 'belirtilmektedir' ifadesiyle verilir. Kuyu suyunun şifa niyetine içildiği bilgisi kaynaklarda aktarılan bir halk uygulamasıdır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "konya-lala-mustafa-pasa-kulliyesi",
+      "ad": "Lala Mustafa Paşa Külliyesi",
+      "sehir": "Konya",
+      "ilce": "Ilgın",
+      "tur": "Külliye (menzil külliyesi)",
+      "koordinat": {
+        "lat": 38.280376,
+        "lng": 31.915912
+      },
+      "bani": "Kıbrıs Fâtihi Lala Mustafa Paşa",
+      "baniDonem": "Osmanlı — III. Murad dönemi",
+      "yapimYili": "Cami kitabesine göre H. 984 / M. 1576",
+      "vakfiyeAmaci": "Tüccarların, hacıların, seyyahların ve askerlerin güvenle konaklayabileceği bir menzil külliyesi kurmak. Vakfiyesine göre sıbyan mektebi, fakir ve miskinlerin çocuklarına Kur'an öğretmek için yapılmış ve 'içinde kütüphanesi olan' bir mektep olarak anılmıştır.",
+      "hizmet": "Yolcular, hacılar ve Ilgın halkı: cami, bedesten, kapalı çarşı, imaret-mutfak, fırın, tabhane odaları, sıbyan mektebi, şadırvan ve çifte hamam.",
+      "bugunNeOldu": "Külliye Ilgın şehir merkezindedir; arasta halk arasında 'kapalı çarşı' olarak bilinir ve dört yönden girişi vardır.",
+      "kulliye": "Cami, bedesten, kapalı çarşı (arasta), imaret-mutfak, odunluk, fırın, tabhane odaları, sıbyan mektebi, samanlık, şadırvan, tuvaletler ve çifte hamam.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": "Konya Yusuf Ağa Kütüphanesi arşivi, 7710 numaralı defter (H. Şevval 985 / M. 12 Aralık 1577 tarihli Arapça vakfiye)",
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (Kasım 2024), s. 54-77 (LALA MUSTAFA PAŞA KÜLLİYESİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Lala Mustafa Paşa Camii, Ilgın' araması (amenity/place_of_worship: Lala Mustafa Paşa Camii); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Lala Mustafa Paşa'nın Bosna'nın Sokol Köyü'nden olduğu ve 7 Ağustos 1580'de İstanbul'da vefat ettiği envanterde yer alır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "konya-imaret-hasan-pasa-camii",
+      "ad": "İmaret (Hasan Paşa) Camii",
+      "sehir": "Konya",
+      "ilce": "Akşehir",
+      "tur": "Cami",
+      "koordinat": {
+        "lat": 38.354763,
+        "lng": 31.416108
+      },
+      "bani": "Rumeli Beylerbeyi Abdülhayoğlu Hasan Paşa",
+      "baniDonem": "Osmanlı — II. Bayezid dönemi",
+      "yapimYili": "Taç kapıdaki 10 satırlık kitabeye göre H. 916 / M. 1510",
+      "vakfiyeAmaci": "Caminin mevcut vakfiyesine göre cami ile birlikte bir imaret ve bir mektep de yapılmıştır; bunlar günümüze ulaşmamıştır.",
+      "hizmet": "Akşehir halkının ibadeti; vakfiyeye göre imaret ve mektep.",
+      "bugunNeOldu": "İbadete açıktır. 1833-34'te Ahmet Ağa tarafından tamir edilmiş; son cemaat yerinin kubbeleri 1895-96'da yıkılınca Müftü Selim Efendi ve halkın yardımlarıyla Konyalı Ali Usta'ya yeniden yaptırılmış, bu sırada avluya barok üslupta bir şadırvan eklenmiştir. İçindeki kalem işleri 1949'da Müslüm Gökçek tarafından yapılmış, cami 2015'te Vakıflar Bölge Müdürlüğü tarafından tamir edilmiştir. Girişin solundaki ilk sütunun tunç bileziğinde Akşehir'e uğrayanların yazıları vardır; aralarında Evliya Çelebi'nin el yazısı dikkat çeker.",
+      "kulliye": "Vakfiyeye göre cami, imaret ve mektep; imaret ve mektep günümüze ulaşmamıştır.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 336-345 (İMARET (HASAN PAŞA) CAMİİ)"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'İmaret, Akşehir, Konya' araması (amenity/place_of_worship: Hasan Paşa imaret cami); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Son cemaat yeri kubbelerinin yıkılıp yeniden yapıldığı bilgisi İbrahim Hakkı Konyalı'ya dayanır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    }
+  ]
+}

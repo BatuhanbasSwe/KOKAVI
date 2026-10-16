@@ -1,0 +1,36 @@
+{
+  "_kaynak": "KÖK&KOD HACKATHONU - VAKIF ESERLERİ ENVANTER PROJESİ BİLGİ NOTU (Vakıf Katılım, Ekim 2026)",
+  "_not": "Bilgi Notu 'sergi bilgileri'ni veri alanı olarak sayıyor. Buradaki kayıtlar doğrudan Bilgi Notu metninden alınmıştır; uydurma yoktur. Eser bağlantıları (eserIdler) yalnızca o şehirdeki eserlerimiz için kurulur.",
+  "sergiler": [
+    {
+      "id": "5-subat-hatay",
+      "ad": "5 Şubat Hatay",
+      "adEn": "5 February Hatay",
+      "tarih": "2023 sonrası",
+      "mekan": "Mimar Sinan Sanat Galerisi",
+      "aciklama": "Hatay Vakıf Eserleri envanteri kapsamında çekilen fotoğrafların bir bölümü, 6 Şubat 2023 depremi öncesinde belgelenen Hatay'ın kültürel mirasını kamuoyuyla buluşturmak amacıyla sergilenmiştir."
+    },
+    {
+      "id": "ayna",
+      "ad": "Ayna",
+      "adEn": "Mirror",
+      "tarih": "24 Ocak 2025",
+      "mekan": "Mimar Sinan Galerisi, Üsküdar",
+      "aciklama": "Konya Vakıf Eserleri kitabı için çekilen fotoğraflardan oluşan sergi."
+    },
+    {
+      "id": "bursa-700",
+      "ad": "Bursa'nın Fethinin 700. Yılı Fotoğraf Sergisi",
+      "adEn": "700th Anniversary of the Conquest of Bursa Photography Exhibition",
+      "tarih": "2026",
+      "mekan": "Mimar Sinan Sanat Galerisi",
+      "aciklama": "Bursa'nın fethinin 700. yılına özel olarak Bursa Vakıf Eserleri envanteri fotoğraflarından düzenlenen sergi."
+    }
+  ],
+  "_baglantilar": {
+    "_aciklama": "Hangi sergi hangi şehirdeki eserlerle ilişkilendirilir",
+    "5-subat-hatay": ["Hatay"],
+    "ayna": ["Konya"],
+    "bursa-700": ["Bursa"]
+  }
+}

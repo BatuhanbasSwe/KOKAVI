@@ -1,0 +1,1857 @@
+{
+  "grup": "bursa-1",
+  "dersler": [
+    {
+      "eserId": "bursa-ulucami",
+      "merak": {
+        "soru": "Bursa Ulucami'nin çatısında tek bir büyük kubbe yok. Sence kaç kubbe var?",
+        "secenekler": [
+          "Yirmi kubbe",
+          "Tek bir dev kubbe",
+          "Hiç yok, çatısı düz"
+        ],
+        "kopru": "Tahminini not ettik! Bu camide kubbelerden de ilginç bir şey var: duvarlardaki yazılar."
+      },
+      "baglam": {
+        "baslik": "Bursa'nın en büyük camisi",
+        "metin": "Ulucami'yi Yıldırım Bayezid yaptırdı. İnşaat üç yıl sürdü. Cami 1399'da bir cuma günü açıldı. Altı yüz yıl boyunca Bursa'nın en büyük camisi oldu.\n\nÇatısında yirmi kubbe var. İçeride çok geniş bir ibadet alanı bulunuyor. Duvarlar ve kalın taş ayaklar güzel yazılarla süslü. Bu yüzden cami bir yazı sanatı müzesine benziyor.\n\nÜnlü gezgin Evliya Çelebi, Ulucami'ye \"Bursa'nın Ayasofyası\" dedi. Caminin ilk imamı da Mevlid'i yazan Süleyman Çelebi'ydi.",
+        "kavramlar": [
+          {
+            "ad": "ULUCAMİ",
+            "aciklama": "Bir şehirde herkesin cuma namazı için toplandığı büyük cami.",
+            "ornek": "Bursa Ulucami'nin yirmi kubbesi var."
+          },
+          {
+            "ad": "HAT",
+            "aciklama": "Güzel yazı sanatı.",
+            "ornek": "Ulucami'nin duvarları hat yazılarıyla dolu."
+          },
+          {
+            "ad": "KUBBE",
+            "aciklama": "Yarım top biçiminde çatı.",
+            "ornek": "Ulucami'nin kubbeleri 11 metre genişliğinde."
+          }
+        ],
+        "kapanis": "Bu kocaman cami, başka bir vakfın arsasına yapıldı. Peki bu sorun nasıl çözüldü?"
+      },
+      "perspektif": {
+        "baslik": "Arsa kimin?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıldırım Bayezid büyük bir cami yaptırmak istiyordu. Ama seçilen arsa Orhan Bey'in vakfına aitti."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Vakfın malı satılamaz. Başka bir işe de kolayca verilemez. Vakıf kendi görevini sürdürmek zorundadır."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Sultan yine de herkesin razı olacağı bir yol buldu."
+          }
+        ],
+        "soru": "Sence Yıldırım Bayezid ne yaptı?",
+        "secenekler": [
+          {
+            "metin": "Arsayı vakıftan zorla aldı.",
+            "sonuc": "Hayır. Vakfın malına dokunmak doğru sayılmazdı. Sultan başka bir yol buldu.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Orhan Vakfı'na karşılığında başka bir arazi verdi.",
+            "sonuc": "Doğru! Vakıf hiçbir şey kaybetmedi. Cami de bu arsanın üzerine yapıldı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Camiyi şehrin dışına yaptırdı.",
+            "sonuc": "Hayır. Ulucami bugün de şehrin ortasında, çarşının yanında duruyor.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Ulucami'yi Yıldırım Bayezid yaptırdı ve cami 1399'da açıldı. Yirmi kubbesi ve duvarlarındaki hat yazılarıyla ünlü. Arsası Orhan Vakfı'na aitti; vakfa karşılığında başka bir arazi verildi.",
+        "rontgenSorusu": "Ulucami'nin arsası kimindi?",
+        "rontgenAciklama": "Ulucami'nin arsası Orhan Vakfı'na aitti. Yıldırım Bayezid bu vakfa başka bir arazi verdi; böylece vakfın malı azalmadı. Caminin gelirinin nasıl paylaştırıldığını gösteren oranlar envanterde yer almaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 36-83 (ULUCAMİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-ulucami-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bugün camide görülür mü, yoksa değişti mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "bugun",
+                "ad": "Bugün camide görülür",
+                "aciklama": "Hâlâ yerinde duranlar."
+              },
+              {
+                "id": "degisti",
+                "ad": "Değişti ya da kayboldu",
+                "aciklama": "Zamanla işlevi ya da biçimi değişenler."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Yirmi kubbe",
+                "kategoriId": "bugun"
+              },
+              {
+                "metin": "Duvarlardaki hat yazıları",
+                "kategoriId": "bugun"
+              },
+              {
+                "metin": "Ortadaki mermer havuz",
+                "kategoriId": "bugun"
+              },
+              {
+                "metin": "Doğu cephesindeki sonradan açılmış kapı",
+                "kategoriId": "degisti"
+              },
+              {
+                "metin": "Caminin hamamı",
+                "kategoriId": "degisti"
+              },
+              {
+                "metin": "Caminin medresesi",
+                "kategoriId": "degisti"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 36-83 (ULUCAMİ)"
+        },
+        {
+          "id": "bursa-ulucami-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1339: Orhan Bey'in camisi ve hanı yapıldı",
+              "1399: Ulucami bir cuma günü açıldı",
+              "1960: Doğudaki kapı yeniden pencere yapıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 36-83 (ULUCAMİ)"
+        },
+        {
+          "id": "bursa-ulucami-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Evliya Çelebi, Ulucami'ye \"Bursa'nın ___\" dedi.",
+            "cevap": "Ayasofyası",
+            "secenekler": [
+              "Ayasofyası",
+              "Sarayı",
+              "Çarşısı",
+              "Kalesi"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 36-83 (ULUCAMİ)"
+        },
+        {
+          "id": "bursa-ulucami-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bursa çarşısının yanında büyük bir cami. Çatısında yirmi kubbe var. Duvarları güzel yazılarla dolu. 1399'da bir cuma günü açıldı.",
+            "secenekler": [
+              "Ulucami",
+              "Yeşilcami (Yeşil Cami)",
+              "Hz. Üftâde Camii"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 36-83 (ULUCAMİ)"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-yesilcami-yesil-cami",
+      "merak": {
+        "soru": "Bir camide her gün yemek pişip dağıtıldığını düşün. Bu yemeğin parası nereden geliyordu?",
+        "secenekler": [
+          "Padişah her yıl kendi cebinden para gönderiyordu.",
+          "Vakfın hanları ve dükkânları kira getiriyordu.",
+          "Vakfa bağlı köylerden buğday geliyordu."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi 1414 yılına gidelim. Göreceksin: para tek bir yerden gelmiyordu."
+      },
+      "baglam": {
+        "baslik": "Kendi parasını kazanan yapılar",
+        "metin": "Çelebi Sultan Mehmed bir padişahtı. 1414'te Bursa'da yan yana birkaç yapı yaptırmaya başladı: bir cami, bir medrese ve bir imaret. İmaret, yemek pişirilip dağıtılan yerdir.\n\nYapılar 1419'un sonunda bitti. Hepsi için tek bir vakfiye yazıldı. İmarette her gün yemek pişti. Medresede otuz öğrenci okudu.\n\nPeki bütün bunların parasını kim ödedi? Hanlar ve dükkânlar! Vakıf onları kiraya verdi. Gelen para bu hizmetlere harcandı.",
+        "kavramlar": [
+          {
+            "ad": "VAKFİYE",
+            "aciklama": "Bir vakfın kurallarını yazan belge. Paranın nereye harcanacağını söyler.",
+            "ornek": "Cami, medrese ve imaret için tek bir vakfiye yazıldı."
+          },
+          {
+            "ad": "HAYRAT",
+            "aciklama": "İnsanlara doğrudan hizmet eden yapı. Cami, medrese, imaret, çeşme ve hamam birer hayrattır.",
+            "ornek": "İmarette pişen çorba bir hayrat hizmetidir."
+          },
+          {
+            "ad": "AKAR",
+            "aciklama": "Vakfa para ya da ürün getiren mal. Kiraya verilen han ve dükkân, ürün veren köy ve tarla birer akardır.",
+            "ornek": "İpek Hanı ve vakfın köyleri bu yapıların akarlarıdır."
+          }
+        ],
+        "kapanis": "Yani bir vakıf yapısı sadece taştan bir bina değil. Kendi parasını kazanan bir kurum. Şimdi bir karar anına gidelim."
+      },
+      "perspektif": {
+        "baslik": "Vakfiyeyi yazdıran padişah",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1419. Yeşilcami'nin büyük kapısının üstündeki yazı yeni bitti."
+          },
+          {
+            "kim": "ÇELEBİ SULTAN MEHMED",
+            "metin": "Bursa'ya bir imaret ve bir cami yapılsın. Gariplere ve yoksullara da bir misafirhane açılsın."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Kâtip kalemini aldı. Şimdi en önemli soru geldi: Bütün bunların parasını ne ödeyecek?"
+          }
+        ],
+        "soru": "İmaretin kazanı her gün kaynayacak. Bu masraf için vakfiyeye ne yazdırırdın?",
+        "secenekler": [
+          {
+            "metin": "Köylerin buğdayını ve hanların kirasını vakfa bağlardım.",
+            "sonuc": "Gerçekte de böyle oldu! Han ve dükkân kiraları bu hizmetleri karşıladı. Vakfın köylerinden de buğday geldi.",
+            "dogruMu": true
+          },
+          {
+            "metin": "İmarette yemek yiyen yoksullardan para toplardım.",
+            "sonuc": "İmaret, yoksullara yardım için kurulmuştu. Yemek yiyenlerden para alındığına dair hiçbir kayıt yok.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Her yıl padişahın hazinesinden para gönderilmesini yazardım.",
+            "sonuc": "Para hazineden gelmedi. Yapılar kendi akarlarıyla, yani han ve dükkân kiralarıyla döndü.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Yeşilcami'yi ve yanındaki yapıları Çelebi Sultan Mehmed yaptırdı. Yapılar 1414'te başladı, 1419'da bitti. Cami, medrese ve imaret tek bir vakfiyeye bağlandı. Hepsinin masrafını han ve dükkân kiraları karşıladı.",
+        "rontgenSorusu": "İmaretin kazanı her gün kaynıyordu. Bu yemeğin parası nereden geliyordu?",
+        "rontgenAciklama": "Aşağıdaki oranlar 19. yüzyıl ortasına ait vakıf muhasebe defterindeki (R. 1257) fiilî gelir kompozisyonudur; 1419 tarihli vakfiyede şart koşulan dağılım DEĞİLDİR. Oranlar, kaynakta kuruş olarak verilen tutarlardan hesaplanmıştır. 1419 vakfiyesinin oranlarla ilgili hükümleri hiçbir kaynakta bulunamamıştır; bu yüzden ekranda yalnızca belgelenen muhasebe kaydı gösterilir.",
+        "kaynakKunye": "Zeynep Akan Yetişir, 'Yeşil Külliye'nin On Dokuzuncu Yüzyıl Ortalarındaki Vaziyeti (Gelir-Giderleri ve Vazifelileri)', Sultan Çelebi Mehmed ve Devri Sempozyumu, Bursa 2022, s. 209 vd. (Tablo 2, R. 1257 vakıf muhasebe defteri) · Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-yesilcami-yesil-cami-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Hayrat mı, akar mı? Her birini doğru kutuya koy.",
+            "kategoriler": [
+              {
+                "id": "hayrat",
+                "ad": "Hayrat",
+                "aciklama": "İnsanlara doğrudan hizmet eden şeyler."
+              },
+              {
+                "id": "akar",
+                "ad": "Akar",
+                "aciklama": "Vakfa para ya da ürün getiren şeyler."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "İmarette pişen çorba",
+                "kategoriId": "hayrat"
+              },
+              {
+                "metin": "Sabah dağıtılan bal",
+                "kategoriId": "hayrat"
+              },
+              {
+                "metin": "Medresede okuyan otuz öğrenci",
+                "kategoriId": "hayrat"
+              },
+              {
+                "metin": "Köylerden gelen buğday",
+                "kategoriId": "akar"
+              },
+              {
+                "metin": "İpek Hanı'ndan gelen para",
+                "kategoriId": "akar"
+              },
+              {
+                "metin": "Meyve bahçelerinden alınan vergi",
+                "kategoriId": "akar"
+              }
+            ]
+          },
+          "kaynak": "Zeynep Akan Yetişir, 'Yeşil Külliye'nin On Dokuzuncu Yüzyıl Ortalarındaki Vaziyeti', Sultan Çelebi Mehmed ve Devri Sempozyumu, Bursa 2022, s. 209 vd.; Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495"
+        },
+        {
+          "id": "bursa-yesilcami-yesil-cami-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Bu sayılar 1800'lerin ortasında tutulan bir hesap defterinden. Gelirleri çoktan aza doğru sırala.",
+            "dogruSira": [
+              "Köylerden gelen buğday: 70.615 kuruş",
+              "Kite'deki meyvelerden alınan vergi: 10.125 kuruş",
+              "İpek Hanı'ndan gelen para: 2.500 kuruş",
+              "Diğer küçük gelirler: 740 kuruş",
+              "Küçük bir çayırdan alınan vergi: 722 kuruş"
+            ]
+          },
+          "kaynak": "Zeynep Akan Yetişir, 'Yeşil Külliye'nin On Dokuzuncu Yüzyıl Ortalarındaki Vaziyeti', Sultan Çelebi Mehmed ve Devri Sempozyumu, Bursa 2022, s. 214, Tablo 2 (R. 1257 vakıf muhasebe defteri) — yüzdeler kaynakta kuruş olarak verilen tutarlardan hesaplanmıştır"
+        },
+        {
+          "id": "bursa-yesilcami-yesil-cami-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Vakfa kira ya da ürün getiren han, dükkân ve tarlalara ___ denir.",
+            "cevap": "akar",
+            "secenekler": [
+              "akar",
+              "hayrat",
+              "vakfiye",
+              "külliye"
+            ]
+          },
+          "kaynak": "Enis Karakaya, 'İpek Hanı', TDV İslâm Ansiklopedisi, C. 22 (2000), s. 368-369"
+        },
+        {
+          "id": "bursa-yesilcami-yesil-cami-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Yapımı 1414'te başladı, 1419'da bitti. Yanındaki imarette her gün yemek pişti. Medresesinde otuz öğrenci okudu. Büyük kapısının üstündeki yazı, yapım tarihini söyler.",
+            "secenekler": [
+              "Yeşilcami (Yeşil Cami)",
+              "Yeşil Türbe (Çelebi Sultan Mehmed Türbesi)",
+              "Yeşil Medrese (Sultaniye Medresesi)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Yusuf Oğuzoğlu, 'Sultan Çelebi Mehmed'in Osmanlı Medeniyetine Armağanı: Bursa Yeşil Cami', Sultan Çelebi Mehmed ve Devri Sempozyumu, Bursa 2022, s. 35 vd.; Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-yesil-medrese-sultaniye-medresesi-bugun-bursa-tu",
+      "merak": {
+        "soru": "Bir medreseye otuz öğrenci yazılmış. Ama binada sadece on üç oda var. Sence neden?",
+        "secenekler": [
+          "Çünkü üst kat hiç bitmemiş.",
+          "Çünkü öğrenciler odaları paylaşıyordu.",
+          "Çünkü bazı dersler bahçede yapılıyordu."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi bu binanın neden yarım kaldığına bakalım."
+      },
+      "baglam": {
+        "baslik": "Yarım kalan medrese",
+        "metin": "Yeşil Medrese 1414 ile 1424 arasında yapıldı. Medrese, eskiden okul demekti. Bina iki katlı olacaktı.\n\nAma onu yaptıran Çelebi Sultan Mehmed öldü. Üst kat hiç bitmedi. Binada on üç küçük oda, bir hoca odası ve ortada bir avlu var. Öğrenciler bu odalarda kalırdı.\n\nYarım olsa da medrese çok ünlendi. Adı ta Buhara'ya ve Türkistan'a kadar duyuldu. 1923'ten beri ise bir müze.",
+        "kavramlar": [
+          {
+            "ad": "MEDRESE",
+            "aciklama": "Eskiden ders verilen okul. Öğrenciler \"hücre\" denen küçük odalarda kalırdı.",
+            "ornek": "Yeşil Medrese'de on üç hücre var."
+          },
+          {
+            "ad": "MÜDERRİS",
+            "aciklama": "Medresede ders veren hoca.",
+            "ornek": "Ünlü âlimler bu medresede müderrislik yaptı."
+          },
+          {
+            "ad": "KÜLLİYE",
+            "aciklama": "Yan yana kurulan ve birbirine bağlı yapılar. Cami, medrese, imaret, hamam, çeşme bir arada.",
+            "ornek": "Yeşilcami Külliyesi; cami, medrese ve imaretten oluşur."
+          }
+        ],
+        "kapanis": "Bir bina yarım kalsa bile işini yapmaya devam edebilir. Şimdi bir hocanın yerine geç."
+      },
+      "perspektif": {
+        "baslik": "Medresenin ilk dersi",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Padişah öldü. Medresenin üst katı yarım kaldı. Avluda ise dersler başlıyor."
+          },
+          {
+            "kim": "MÜDERRİS",
+            "metin": "Üst kat bitmedi. Ama dersler sürmeli. Otuz öğrencim var, on üç odam."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıllar sonra bu avluda okuyanların adı çok uzaklara ulaşacak."
+          }
+        ],
+        "soru": "Üst kat hiç bitmedi. Bir hoca olarak ne yapardın?",
+        "secenekler": [
+          {
+            "metin": "Elimdeki on üç odayla derslere devam ederdim.",
+            "sonuc": "Gerçekte de böyle oldu! Medrese yarım hâliyle kullanıldı. \"Bursa Sultânîsi\" adıyla ünlendi.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Üst katı bitirmesi için yeni birini arardım.",
+            "sonuc": "Üst katın sonradan bittiğine dair bir bilgi yok. Bina yarım hâliyle bugüne geldi.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Binayı bambaşka bir iş için kullanırdım.",
+            "sonuc": "Bina yüzyıllarca okul olarak kullanıldı. Ancak 1923'te müzeye dönüştü.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Yeşil Medrese, Yeşilcami ile aynı vakfa bağlı bir okuldu. Üst katı hiç bitmedi. On üç odasıyla bile çok ünlendi. 1923'ten beri Bursa Türk ve İslam Eserleri Müzesi.",
+        "rontgenSorusu": "Bu medresenin masraflarını ne karşılıyordu?",
+        "rontgenAciklama": "Bu medresenin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden bu ekranda oran gösterilmez. Medreseye ait ayrı bir vakfiye bulunamamıştır: cami ve imaretle ortak düzenlenen vakfiyede, akarların medrese ile cami arasında nasıl paylaştırıldığına dair oransal bir hüküm hiçbir kaynakta görülmemiştir. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495 · T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Medresesi' kaydı"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-yesil-medrese-sultaniye-medresesi-bugun-bursa-tu-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Binanın bir parçası mı, müzede sergilenen bir eser mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "yapi",
+                "ad": "Binanın parçası",
+                "aciklama": "Medresenin kendi içindeki yerler."
+              },
+              {
+                "id": "koleksiyon",
+                "ad": "Müzedeki eser",
+                "aciklama": "1923'ten beri burada sergilenen eserler."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "On üç öğrenci odası",
+                "kategoriId": "yapi"
+              },
+              {
+                "metin": "Üç eyvan (önü açık oda)",
+                "kategoriId": "yapi"
+              },
+              {
+                "metin": "Ortadaki avlu ve şadırvan",
+                "kategoriId": "yapi"
+              },
+              {
+                "metin": "İznik ve Kütahya çinileri",
+                "kategoriId": "koleksiyon"
+              },
+              {
+                "metin": "Ahşap oymalar",
+                "kategoriId": "koleksiyon"
+              },
+              {
+                "metin": "Eski paralar (sikkeler)",
+                "kategoriId": "koleksiyon"
+              }
+            ]
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Medresesi' (kaynak: Bursa İl Kültür ve Turizm Müdürlüğü); Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495"
+        },
+        {
+          "id": "bursa-yesil-medrese-sultaniye-medresesi-bugun-bursa-tu-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Medresedeki sayıları çoktan aza doğru sırala.",
+            "dogruSira": [
+              "Öğrenci sayısı: 30",
+              "Öğrenci odası sayısı: 13",
+              "Eyvan sayısı: 3",
+              "Hoca odası sayısı: 1"
+            ]
+          },
+          "kaynak": "Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495; T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Medresesi' kaydı"
+        },
+        {
+          "id": "bursa-yesil-medrese-sultaniye-medresesi-bugun-bursa-tu-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Medresede ders veren hocaya ___ denir.",
+            "cevap": "müderris",
+            "secenekler": [
+              "müderris",
+              "imam",
+              "kâtip",
+              "bani"
+            ]
+          },
+          "kaynak": "Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495"
+        },
+        {
+          "id": "bursa-yesil-medrese-sultaniye-medresesi-bugun-bursa-tu-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "İki katlı olacaktı ama üst katı hiç bitmedi. On üç küçük odası ve ortada bir avlusu var. 1923'ten beri içinde çiniler ve ahşap eserler sergileniyor.",
+            "secenekler": [
+              "Yeşil Medrese (Sultaniye Medresesi; bugün Bursa Türk ve İslam Eserleri Müzesi)",
+              "Yeşilcami (Yeşil Cami)",
+              "Muradiye Medresesi Çeşmesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Medresesi' kaydı; Kültür Envanteri, 'Yeşil Cami Medresesi' (KE No 10564)"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-yesil-turbe-celebi-sultan-mehmed-turbesi",
+      "merak": {
+        "soru": "Sence Çelebi Sultan Mehmed'in türbesini kim yaptırdı?",
+        "secenekler": [
+          "Kendisi, daha hayattayken.",
+          "Oğlu, o öldükten sonra.",
+          "Bursa halkı, onu anmak için."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi türbenin nasıl yapıldığına bakalım. Bir de kaynakların emin olmadığı bir noktayı göreceğiz."
+      },
+      "baglam": {
+        "baslik": "Hayattayken yapılan türbe",
+        "metin": "Türbe, önemli bir kişinin mezarının bulunduğu yapıdır. Çelebi Sultan Mehmed kendi türbesini hayattayken yaptırdı. Türbe, o ölmeden kırk gün önce bitti. Kesin yapım yılı ise bilinmiyor.\n\nYeşil Türbe 25,5 metre yüksekliğinde. Osmanlı türbelerinin en yükseği! Yaklaşık sekiz katlı bir bina kadar.\n\nİçi ve dışı yeşil çinilerle kaplı. Adı da buradan gelir. Altında kemerli bir bodrum katı da var.",
+        "kavramlar": [
+          {
+            "ad": "TÜRBE",
+            "aciklama": "Önemli bir kişinin mezarının bulunduğu yapı.",
+            "ornek": "Çelebi Sultan Mehmed, Yeşil Türbe'de yatıyor."
+          },
+          {
+            "ad": "ÇİNİ",
+            "aciklama": "Duvarları kaplayan renkli, parlak, küçük levha.",
+            "ornek": "Yeşil Türbe adını yeşil çinilerinden alır."
+          },
+          {
+            "ad": "KRİPTA",
+            "aciklama": "Bir yapının altındaki kemerli bodrum katı.",
+            "ornek": "Yeşil Türbe'nin altında bir kripta var."
+          }
+        ],
+        "kapanis": "Bu türbe bugün Bursa'nın simgelerinden biri. Peki bir türbenin kendi parası olur mu? Karar anına gidelim."
+      },
+      "perspektif": {
+        "baslik": "Kendi türbesini yaptıran padişah",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Padişah türbesini hayattayken yaptırdı. Türbe, o ölmeden kırk gün önce bitti."
+          },
+          {
+            "kim": "ÇELEBİ SULTAN MEHMED",
+            "metin": "Taşlar yerine oturdu, çiniler duvara geçti. Peki buranın bakımını kim yapacak?"
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Kâtip bekliyor. Türbe için ayrı bir vakfiye yazılacak mı?"
+          }
+        ],
+        "soru": "Türben için ayrı bir vakfiye yazdırır mıydın?",
+        "secenekler": [
+          {
+            "metin": "Hayır. Türbe, yanındaki yapıların vakfına bağlı kalsın.",
+            "sonuc": "Kaynaklar da bunu gösteriyor. Türbeye ait ayrı bir vakfiye bulunamadı. Türbe, Yeşilcami'nin vakfının bir parçası sayılır.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Evet. Türbeye kendi parasını getiren ayrı bir vakfiye yazdırırdım.",
+            "sonuc": "Böyle bir vakfiye bulunamadı. Bir kayıtta \"vakfiyesi var\" yazıyor. Ama bunun türbeye mi, bütün yapılara mı ait olduğu bilinmiyor.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Bu işi tamamen oğluma bırakırdım.",
+            "sonuc": "Türbeye ait ayrı bir vakfiye bulunamadı. Türbe, Yeşilcami'nin ortak vakfı içinde sayılır.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Yeşil Türbe'yi Çelebi Sultan Mehmed hayattayken yaptırdı. Türbe, o ölmeden kırk gün önce bitti. Osmanlı türbelerinin en yükseğidir ve yeşil çinileriyle ünlüdür. Büyük bir onarımdan sonra 2009'da yeniden ziyarete açıldı.",
+        "rontgenSorusu": "Bir türbenin geliri olur mu? Bu türbenin bakımını ne karşılıyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden bu ekranda oran gösterilmez. Türbenin kendisine ait ayrı bir vakfiye şartı hiçbir kaynakta bulunamamıştır; eser, Yeşilcami Külliyesi'nin bir parçası olarak aynı vakıf bünyesinde değerlendirilmektedir. Kültür Portalı kaydında 'Vakfiye: Var' denmekte, ancak bunun türbeye özel mi yoksa külliyenin ortak vakfiyesi mi olduğu doğrulanamamıştır.",
+        "kaynakKunye": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Türbe (Çelebi Sultan Mehmet Türbesi)' Kültür Envanteri Anıt kaydı, Envanter No A58 · Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-yesil-turbe-celebi-sultan-mehmed-turbesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bu yapı hangi külliyeye ait? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "yesil",
+                "ad": "Yeşilcami Külliyesi",
+                "aciklama": "Çelebi Sultan Mehmed'in yaptırdığı yapılar."
+              },
+              {
+                "id": "muradiye",
+                "ad": "Muradiye Külliyesi",
+                "aciklama": "Sultan II. Murad'ın yaptırdığı yapılar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Yeşil Türbe",
+                "kategoriId": "yesil"
+              },
+              {
+                "metin": "Yeşil Medrese",
+                "kategoriId": "yesil"
+              },
+              {
+                "metin": "İpek Hanı",
+                "kategoriId": "yesil"
+              },
+              {
+                "metin": "Muradiye Hamamı",
+                "kategoriId": "muradiye"
+              },
+              {
+                "metin": "Muradiye Medresesi Çeşmesi",
+                "kategoriId": "muradiye"
+              }
+            ]
+          },
+          "kaynak": "Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495; Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198"
+        },
+        {
+          "id": "bursa-yesil-turbe-celebi-sultan-mehmed-turbesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Türbenin onarımlarını eskiden yeniye doğru sırala.",
+            "dogruSira": [
+              "1617'deki onarım",
+              "1680'deki onarım",
+              "1818'deki onarım",
+              "2005'teki onarım",
+              "2009'da yeniden ziyarete açılması"
+            ]
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Türbe (Çelebi Sultan Mehmet Türbesi)' Kültür Envanteri Anıt kaydı, Envanter No A58"
+        },
+        {
+          "id": "bursa-yesil-turbe-celebi-sultan-mehmed-turbesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Yeşil Türbe'nin içi ve dışı ___ kaplıdır. Adı da buradan gelir.",
+            "cevap": "çini",
+            "secenekler": [
+              "çini",
+              "mermer",
+              "ahşap",
+              "tuğla"
+            ]
+          },
+          "kaynak": "Doğan Yavaş, 'Yeşilcami Külliyesi', TDV İslâm Ansiklopedisi, C. 43 (2013), s. 492-495"
+        },
+        {
+          "id": "bursa-yesil-turbe-celebi-sultan-mehmed-turbesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Osmanlı türbelerinin en yükseğidir, 25,5 metre. İçi ve dışı yeşil çinilerle kaplı. Altında kemerli bir bodrum katı var.",
+            "secenekler": [
+              "Yeşil Türbe (Çelebi Sultan Mehmed Türbesi)",
+              "Yeşilcami (Yeşil Cami)",
+              "Yeşil Medrese (Sultaniye Medresesi)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Türbe (Çelebi Sultan Mehmet Türbesi)' Kültür Envanteri Anıt kaydı, Envanter No A58"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-haraccioglu-darulkurra-mektebi",
+      "merak": {
+        "soru": "Bu küçük okulun kapısında 1492'den kalma bir yazı var. Sence bu yazıyı kim yazdı?",
+        "secenekler": [
+          "Bir şair",
+          "Binayı yapan usta",
+          "Okulun öğrencileri"
+        ],
+        "kopru": "Tahminini not ettik! Yazının sonunda, okulu yaptıran kişiye güzel bir dilek var."
+      },
+      "baglam": {
+        "baslik": "Kur'an okuma okulu",
+        "metin": "Bu okul 1492'de yapıldı. Hoca Yakup adlı bir hayırsever, Kur'an okumayı öğretmek için yaptırdı. Bu tür okullara dârülkurrâ denir.\n\nOkulun üç adı var. Bahçesinde Haraççıoğlu ailesinin mezarları olduğu için \"Haraççıoğlu Mektebi\" denir. Yerkapı denen yerde olduğu için \"Yerkapı Mektebi\" de denir.\n\nOkulda kubbeli iki oda var. Birinde ısınmak için bir ocak var. Diğeri okuma odası. Yani okul hem yazın hem kışın kullanılacak biçimde yapılmış.",
+        "kavramlar": [
+          {
+            "ad": "DÂRÜLKURRÂ",
+            "aciklama": "Kur'an okumanın öğretildiği okul.",
+            "ornek": "Hoca Yakup Bursa'da bir dârülkurrâ yaptırdı."
+          },
+          {
+            "ad": "MEKTEP",
+            "aciklama": "Okul.",
+            "ornek": "Haraççıoğlu Mektebi 1492'de yapıldı."
+          },
+          {
+            "ad": "KİTABE",
+            "aciklama": "Bir yapının üstüne yazılan ve yapının hikâyesini anlatan yazı.",
+            "ornek": "Bu okulun kitabesini şair Cemâlî yazdı."
+          }
+        ],
+        "kapanis": "Bu okul beş yüz yıldan fazla dayandı. Sence bugün ne işe yarıyor?"
+      },
+      "perspektif": {
+        "baslik": "Kapıdaki şiir",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Okulun kapısının üstünde iki satırlık bir yazı var. Şair Cemâlî yazmış."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Yazıda Hoca Yakup'u övüyor. Kur'an okunan bu güzel yer için gösterdiği çabanın takdir edilmesi gerektiğini söylüyor."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Yazı bir dilekle bitiyor: Hoca Yakup'un cennette güzel bir köşkü olsun."
+          }
+        ],
+        "soru": "Bir şair neden bir okulun kapısına şiir yazar?",
+        "secenekler": [
+          {
+            "metin": "Okulu yaptıranı anmak ve yapım yılını kaydetmek için.",
+            "sonuc": "Doğru! Kitabe hem Hoca Yakup'u anıyor hem de 1492 yılını kaydediyor. Bu sayede beş yüz yıl sonra biz de öğrenebiliyoruz.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Öğrencilere ödev vermek için.",
+            "sonuc": "Hayır. Kitabe ders vermek için değil, okulu yaptıranı anmak için yazıldı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Sadece süs için, anlamı önemsiz.",
+            "sonuc": "Süsleyici ama anlamı da var: Kimin, ne zaman, neden yaptırdığını anlatıyor.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Haraççıoğlu Mektebi 1492'de Hoca Yakup'un yaptırdığı bir Kur'an okuma okulu. Kapısındaki yazıyı şair Cemâlî yazdı. Bugün hâlâ bir Kur'an kursunun ek binası olarak kullanılıyor.",
+        "rontgenSorusu": "Bu okulu kim, ne için yaptırdı?",
+        "rontgenAciklama": "Hoca Yakup adlı bir hayırsever, Kur'an eğitimi vermek için yaptırdı. Okulun giderlerinin nasıl karşılandığını gösteren bir vakfiye envanterde yer almaz; bu yüzden uygulama bu eser için gelir oranı göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 80-83 (HARAÇÇIOĞLU (DÂRÜLKURRÂ) MEKTEBİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-haraccioglu-darulkurra-mektebi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Binada mı, bahçede mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "bina",
+                "ad": "Binada",
+                "aciklama": "Okul binasının bölümleri."
+              },
+              {
+                "id": "bahce",
+                "ad": "Bahçede",
+                "aciklama": "Okulun geniş bahçesinde olanlar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Ocaklı, kubbeli oda",
+                "kategoriId": "bina"
+              },
+              {
+                "metin": "Okuma odası",
+                "kategoriId": "bina"
+              },
+              {
+                "metin": "Şair Cemâlî'nin yazdığı kitabe",
+                "kategoriId": "bina"
+              },
+              {
+                "metin": "Haraççıoğlu ailesinin mezar taşları",
+                "kategoriId": "bahce"
+              },
+              {
+                "metin": "Câfer Çelebi'nin mezarı",
+                "kategoriId": "bahce"
+              },
+              {
+                "metin": "Başka mezarlıklardan getirilen taşlar",
+                "kategoriId": "bahce"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 80-83"
+        },
+        {
+          "id": "bursa-haraccioglu-darulkurra-mektebi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1492: Hoca Yakup okulu yaptırdı",
+              "1946: Bina büyük bir onarım gördü",
+              "1958: Bursa Eski Eserleri Sevenler Kurumu'na verildi",
+              "2014: Bahçedeki mezar taşları düzenlendi"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 80-83"
+        },
+        {
+          "id": "bursa-haraccioglu-darulkurra-mektebi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Kur'an okumanın öğretildiği okula ___ denir.",
+            "cevap": "dârülkurrâ",
+            "secenekler": [
+              "dârülkurrâ",
+              "kervansaray",
+              "bedesten",
+              "hamam"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 80-83"
+        },
+        {
+          "id": "bursa-haraccioglu-darulkurra-mektebi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Hisar'ın içinde küçük bir okul. Kubbeli iki odası var. Kapısındaki şiiri şair Cemâlî yazdı. Bahçesinde eski mezar taşları var.",
+            "secenekler": [
+              "Haraççıoğlu (Dârülkurrâ) Mektebi",
+              "Gökdere Medresesi (Paşa Çelebi Medresesi)",
+              "Molla Yegân Medresesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 80-83"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-molla-yegan-medresesi",
+      "merak": {
+        "soru": "Molla Yegân'ın çok sayıda kitabı vardı. Sence kaç cilt kitabı vardı?",
+        "secenekler": [
+          "Yaklaşık 2900 cilt",
+          "Yaklaşık 29 cilt",
+          "Yaklaşık 290 cilt"
+        ],
+        "kopru": "Tahminini not ettik! Peki bu kadar kitapla ne yaptı dersin?"
+      },
+      "baglam": {
+        "baslik": "Bir okulun ikinci hayatı",
+        "metin": "Bu medreseyi önce Kara Eyne Bey yaptırdı. Zamanla bina yıkılmaya yüz tuttu. Burada ders vermiş olan Molla Yegân onu yeniden yaptırdı.\n\nMolla Yegân Aydın'da doğdu. Medreselerde ders verdi, Bursa'da kadılık yaptı. Hacdan dönerken Mısır'dan genç bir âlim getirdi: Molla Gürânî. Molla Gürânî daha sonra Fatih Sultan Mehmed'in hocası oldu.\n\nMolla Yegân'ın 2900 ciltlik bir kütüphanesi vardı. Bu kitapları medresenin yanındaki mescide vakfetti. Böylece kitaplar herkesin olacaktı.",
+        "kavramlar": [
+          {
+            "ad": "MEDRESE",
+            "aciklama": "Eskiden yükseköğrenim yapılan okul.",
+            "ornek": "Molla Yegân Medresesi'nde on iki öğrenci odası vardı."
+          },
+          {
+            "ad": "MÜDERRİS",
+            "aciklama": "Medresede ders veren öğretmen.",
+            "ornek": "Molla Yegân bir süre müderrislik yaptı."
+          },
+          {
+            "ad": "VAKFETMEK",
+            "aciklama": "Bir malı herkesin yararına, sonsuza kadar bağışlamak.",
+            "ornek": "Molla Yegân kitaplarını mescide vakfetti."
+          }
+        ],
+        "kapanis": "Bu medrese bir dönem boş kaldı. Bugün avlusunda çocuklar için bir yer var. Ne olabilir?"
+      },
+      "perspektif": {
+        "baslik": "Kitaplar kimin?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Molla Yegân'ın 2900 cilt kitabı vardı. O dönem için bu çok büyük bir kütüphane."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Kitapları mescide vakfetti. Medrese yıllarca yaşasın diye gelir getiren araziler de bağışladı."
+          }
+        ],
+        "soru": "Sence Molla Yegân kitaplarını neden vakfetti?",
+        "secenekler": [
+          {
+            "metin": "Kendisinden sonra da öğrenciler okuyabilsin diye.",
+            "sonuc": "Doğru! Vakfedilen kitap satılamaz, herkesin yararına kalır.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Evinde yer kalmadığı için.",
+            "sonuc": "Envanterde böyle bir bilgi yok. Kitaplar herkes okusun diye mescide vakfedildi.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Kitapları satıp para kazanmak için.",
+            "sonuc": "Vakfedilen bir mal satılamaz. Vakıf, malı herkesin yararına bağlar.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Molla Yegân Medresesi'ni önce Kara Eyne Bey yaptırdı, Molla Yegân yeniden yaptırdı. Molla Yegân 2900 ciltlik kütüphanesini vakfetti. Bugün avlusunda çocuklar için bir bilim merkezi var.",
+        "rontgenSorusu": "Bu medreseyi yıllarca ne ayakta tuttu?",
+        "rontgenAciklama": "Molla Yegân, medrese ve mescit yaşasın diye gelir getiren birçok araziyi vakfına kattı. Bu arazilerin geliri yapıların giderini karşılıyordu. Gelirin hangi işe ne oranda harcandığı envanterde yer almaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 546-551 (MOLLA YEGÂN MEDRESESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-molla-yegan-medresesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Medrese açıkken mi vardı, yoksa onarımdan sonra mı eklendi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "eski",
+                "ad": "Medrese açıkken",
+                "aciklama": "Eğitim sürerken var olanlar."
+              },
+              {
+                "id": "yeni",
+                "ad": "2006-2009 onarımından sonra",
+                "aciklama": "Belediyenin onarımıyla eklenenler."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "On iki öğrenci odası ve bir dershane",
+                "kategoriId": "eski"
+              },
+              {
+                "metin": "Mescide vakfedilen 2900 cilt kitap",
+                "kategoriId": "eski"
+              },
+              {
+                "metin": "Müderrislerin verdiği dersler",
+                "kategoriId": "eski"
+              },
+              {
+                "metin": "Avludaki Çocuk Üniversitesi",
+                "kategoriId": "yeni"
+              },
+              {
+                "metin": "Kiremit kaplı yeni çatılar",
+                "kategoriId": "yeni"
+              },
+              {
+                "metin": "Muhtarlık ve kültür merkezi",
+                "kategoriId": "yeni"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 546-551"
+        },
+        {
+          "id": "bursa-molla-yegan-medresesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "Kara Eyne Bey medreseyi yaptırdı",
+              "Molla Yegân medreseyi yeniden yaptırdı",
+              "1723: Yanındaki mescit onarıldı",
+              "2006-2009: Belediye medreseyi onardı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 546-551"
+        },
+        {
+          "id": "bursa-molla-yegan-medresesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Medresede ders veren öğretmene ___ denir.",
+            "cevap": "müderris",
+            "secenekler": [
+              "müderris",
+              "müezzin",
+              "kadı",
+              "mütevelli"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 546-551"
+        },
+        {
+          "id": "bursa-molla-yegan-medresesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Yıldırım'da bir medrese. Onu yeniden yaptıran âlim, binlerce kitabını vakfetti. Bir dönem kimsesizler burada barındı. Bugün avlusunda çocuklar için bir bilim merkezi var.",
+            "secenekler": [
+              "Molla Yegân Medresesi",
+              "Gökdere Medresesi (Paşa Çelebi Medresesi)",
+              "Haraççıoğlu (Dârülkurrâ) Mektebi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 546-551"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-gokdere-medresesi-pasa-celebi-medresesi",
+      "merak": {
+        "soru": "Bir medrese 1906'da kapandı. Sence binaya sonra ne oldu?",
+        "secenekler": [
+          "Bir süre hapishane oldu.",
+          "Marangoz ve demirci dükkânı oldu.",
+          "Yıkıldı, yerine başka bir bina yapıldı."
+        ],
+        "kopru": "Tahminini not ettik! Bu binanın hikâyesi uzun: kapandı, el değiştirdi, onarıldı. Bugün bambaşka bir işe yarıyor. Önce vakfiyesine bakalım."
+      },
+      "baglam": {
+        "baslik": "Kapandıktan sonra da yaşayan medrese",
+        "metin": "Gökdere Medresesi 1400'lerde yapılmış bir okul. Kimin yaptırdığı kesin değil. On iki öğrenci odası ve büyük bir derslik var. Burada din ve dil dersleri okutuldu.\n\nVakfiyesinde ilginç bir kural var. Vakfı yönetecek kişi, bu medresede okumuş olmalıydı. Yani okulu, okulda okumuş biri yönetecekti.\n\nMedrese 1906'da kapandı. Bina yıllarca hapishane, marangoz dükkânı ve depo oldu. 2006'da onarıldı. Bugün bir kültür ve sanat merkezi.",
+        "kavramlar": [
+          {
+            "ad": "MEDRESE",
+            "aciklama": "Eskiden ders verilen okul. Öğrenciler küçük odalarda kalırdı.",
+            "ornek": "Gökdere Medresesi'nde on iki öğrenci odası var."
+          },
+          {
+            "ad": "MÜTEVELLİ",
+            "aciklama": "Vakfın işlerini yöneten kişi.",
+            "ornek": "Bu vakfın mütevellisi, medresede okumuş biri olmalıydı."
+          },
+          {
+            "ad": "VAKIF",
+            "aciklama": "Bir malın gelirini bir iyilik işine ayırmak.",
+            "ornek": "Vakfın gelirleri arasında dükkânlar, değirmenler ve ahırlar vardı."
+          }
+        ],
+        "kapanis": "Bu medrese bugün bir kültür merkezi. Yani vakıf yapıları hâlâ şehrin içinde yaşıyor. Peki vakfı kim yönetmeliydi?"
+      },
+      "perspektif": {
+        "baslik": "Vakfı kim yönetecek?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "1400'ler. Paşa Çelebi'nin medresesi için vakfiye yazılıyor."
+          },
+          {
+            "kim": "PAŞA ÇELEBİ",
+            "metin": "Bu medrese okumak için kuruldu. Burada din ve dil dersleri okutulacak."
+          },
+          {
+            "kim": "KÂTİP",
+            "metin": "Peki bu vakfı kim yönetecek?"
+          }
+        ],
+        "soru": "Vakfı kimin yönetmesini isterdin?",
+        "secenekler": [
+          {
+            "metin": "Bu medresede okumuş biri yönetsin.",
+            "sonuc": "Gerçekte de bu kural konmuştu! Bu yüzden vakfı yöneten aileden okumuş, bilgili insanlar yetişti.",
+            "dogruMu": true
+          },
+          {
+            "metin": "En çok bağış yapan kişi yönetsin.",
+            "sonuc": "Böyle bir kural yok. Önemli olan para değil, medresede okumuş olmaktı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Devletin memurları yönetsin.",
+            "sonuc": "Böyle bir kural yok. Vakfiye, yöneticinin medresede okumuş olmasını istedi.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Gökdere Medresesi 1400'lerde yapılmış bir okul. Vakfiyesine göre vakfı, medresede okumuş biri yönetecekti. 1906'da kapandı ve yıllarca hapishane, dükkân ve depo oldu. 2006'dan beri bir kültür ve sanat merkezi.",
+        "rontgenSorusu": "Bu medresenin masraflarını ne karşılıyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu ekranda oran göstermez. Vakfın gelir kaynakları arasında çarşı dükkânları, değirmenler, bir debbağhane, ahırlar ve nakit akçe sayılır; ancak bu kalemlerin oranları hiçbir kaynakta verilmemiştir. Vakfiye belgesinin kendisi ve arşiv numarası görülmemiştir; Kültür Portalı envanter kaydında 'Vakfiye' alanı boştur, vakfiyedeki mütevelli şartı ise iki bağımsız kaynakta aktarılmaktadır. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Gökdere Medresesi', Envanter No A42 · Osmangazi Belediyesi, 'Gökdere Kültür Sanat Merkezi' proje sayfası · Deniz Ildız, 'Bursa Gökdere (Paşa Çelebi) Medresesi Restorasyon Projesi', MSGSÜ Fen Bilimleri Enstitüsü Yüksek Lisans Tezi, 2006 · TBMM Tutanak Dergisi, 26. Dönem, 39. Birleşim, 16 Aralık 2017"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-gokdere-medresesi-pasa-celebi-medresesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Medresenin okul olduğu yıllar mı, kapandıktan sonrası mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "egitim",
+                "ad": "Okul olduğu yıllar",
+                "aciklama": "Bina medreseyken."
+              },
+              {
+                "id": "sonra",
+                "ad": "Kapandıktan sonra",
+                "aciklama": "1906'dan sonra bina neye dönüştü?"
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "On iki öğrenci odası ve büyük bir derslik",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Din ve dil dersleri",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Hocasının maaş derecesi: otuz akçe",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "1884'te on, 1906'da otuz öğrenci",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Hapishane",
+                "kategoriId": "sonra"
+              },
+              {
+                "metin": "Marangoz ve demirci dükkânı",
+                "kategoriId": "sonra"
+              },
+              {
+                "metin": "Depo",
+                "kategoriId": "sonra"
+              },
+              {
+                "metin": "Kültür ve sanat merkezi",
+                "kategoriId": "sonra"
+              }
+            ]
+          },
+          "kaynak": "Deniz Ildız, 'Bursa Gökdere (Paşa Çelebi) Medresesi Restorasyon Projesi', MSGSÜ Fen Bilimleri Enstitüsü Yüksek Lisans Tezi, 2006; T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Gökdere Medresesi', Envanter No A42"
+        },
+        {
+          "id": "bursa-gokdere-medresesi-pasa-celebi-medresesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Medresenin başından geçenleri eskiden yeniye doğru sırala.",
+            "dogruSira": [
+              "1400'ler: Medrese yapıldı",
+              "1884: On öğrencisi vardı",
+              "1906: Otuz öğrencisi vardı ve kapandı",
+              "1906'dan sonra: Hapishane, dükkân ve depo oldu",
+              "2004: Devlet binayı satın aldı",
+              "2005-2006: Onarıldı",
+              "2006'dan beri: Kültür ve sanat merkezi"
+            ]
+          },
+          "kaynak": "Deniz Ildız, 'Bursa Gökdere (Paşa Çelebi) Medresesi Restorasyon Projesi', MSGSÜ Fen Bilimleri Enstitüsü Yüksek Lisans Tezi, 2006; T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Gökdere Medresesi', Envanter No A42; Osmangazi Belediyesi, 'Gökdere Kültür Sanat Merkezi' proje sayfası"
+        },
+        {
+          "id": "bursa-gokdere-medresesi-pasa-celebi-medresesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Vakfı yönetecek kişi, bu medresede okuyup ___ yapmış olmalıydı.",
+            "cevap": "tahsil",
+            "secenekler": [
+              "tahsil",
+              "ticaret",
+              "askerlik",
+              "hac"
+            ]
+          },
+          "kaynak": "Osmangazi Belediyesi, 'Gökdere Kültür Sanat Merkezi' proje sayfası; TBMM Tutanak Dergisi, 26. Dönem, 39. Birleşim, 16 Aralık 2017"
+        },
+        {
+          "id": "bursa-gokdere-medresesi-pasa-celebi-medresesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "On iki öğrenci odası olan eski bir okul. 1906'da kapandı. Yıllarca hapishane ve depo oldu. Bugün bir kültür ve sanat merkezi.",
+            "secenekler": [
+              "Gökdere Medresesi (Paşa Çelebi Medresesi)",
+              "Veled-i Yaniç Mescidi (Veled-i Yaniç Camii)",
+              "Demirtaş (Timurtaş) Hamamı"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Gökdere Medresesi', Envanter No A42; Osmangazi Belediyesi, 'Gökdere Kültür Sanat Merkezi' proje sayfası"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-veled-i-yanic-mescidi-veled-i-yanic-camii",
+      "merak": {
+        "soru": "Bahçedeki mezar taşı 1336 yılından. Ama mescit 1440'ta yapılmış. Sence bu nasıl olabilir?",
+        "secenekler": [
+          "Mezar taşı aynı adı taşıyan başka birine ait olabilir.",
+          "Mescit daha eski bir yapının yerine yapılmış olabilir.",
+          "Tarihlerden biri yanlış okunmuş olabilir."
+        ],
+        "kopru": "Tahminini not ettik! Bu soru hâlâ çözülmedi. Tarihçiler de bilmiyor. Şimdi mescidin duvarlarındaki iki yazıya bakalım."
+      },
+      "baglam": {
+        "baslik": "Duvarında iki yazı olan mescit",
+        "metin": "Mescit, mahallenin küçük ibadet yeridir. Veled-i Yaniç Mescidi 1440'ta yapıldı. Kapısının üstünde bir yazı var. Bu yazı, mescidi kimin ve ne zaman yaptırdığını söyler.\n\nMescidin tek bir kubbesi var. Minaresi binanın dışında. Minarenin alt kısmı bir çeşme! Çeşmeden beş basamakla minareye çıkılır.\n\nDoğu duvarında 1494 yılından ikinci bir yazı var. Hacı Ayşe adında bir kadın mescide altı ev ve para bağışlamış. Bir de şart koymuş: İmam ve müezzin, mescidi yaptıran için Kur'an okuyacak.",
+        "kavramlar": [
+          {
+            "ad": "MESCİT",
+            "aciklama": "Mahallenin küçük ibadet yeri.",
+            "ornek": "Bu mescit bugün cami olarak kullanılıyor."
+          },
+          {
+            "ad": "KİTÂBE",
+            "aciklama": "Bir yapının üstüne yazılan yazı. Kimin, ne zaman yaptırdığını ya da vakfın şartını söyler.",
+            "ornek": "Bu mescidin kapısında bir kitâbe, doğu duvarında bir kitâbe daha var."
+          },
+          {
+            "ad": "VAKIF",
+            "aciklama": "Bir malın gelirini bir iyilik işine ayırmak.",
+            "ornek": "Hacı Ayşe altı evini ve parasını bu mescide vakfetti."
+          }
+        ],
+        "kapanis": "Dikkat! Bu mescidin vakıf bilgisi bir vakfiye belgesinden değil, duvardaki yazıdan geliyor. Peki Hacı Ayşe hangi şartı koymuştu?"
+      },
+      "perspektif": {
+        "baslik": "Duvara yazılan şart",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1494. Mescidin doğu duvarına yeni bir yazı konuyor."
+          },
+          {
+            "kim": "HACI AYŞE",
+            "metin": "Bu mahallede altı evim ve biraz param var. Hepsini bu mescide bağışlıyorum."
+          },
+          {
+            "kim": "KÂTİP",
+            "metin": "Yazıyı yazmadan önce şartını söyle. Bu bağış neye hizmet edecek?"
+          }
+        ],
+        "soru": "Sen olsan bu bağışa hangi şartı koyardın?",
+        "secenekler": [
+          {
+            "metin": "İmam ve müezzin, mescidi yaptıran için Kur'an okusun.",
+            "sonuc": "Duvardaki yazıda tam olarak bu şart var! Mescidi yaptıranın ruhu için Kur'an okunacaktı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Bu parayla mescide yeni bir minare yapılsın.",
+            "sonuc": "Yazıda böyle bir şart yok. Şart, mescidi yaptıran için Kur'an okunmasıydı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Evler kiraya verilsin, para mahalleye dağıtılsın.",
+            "sonuc": "Yazıdaki şart bu değil. Şart, imam ve müezzinin Kur'an okumasıydı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Veled-i Yaniç Mescidi 1440'ta yapıldı. Minaresinin alt kısmı bir çeşme. 1494'te Hacı Ayşe mescide altı ev ve para bağışladı. Bu bilgi duvardaki bir yazıda saklı. Mescit yıllarca bakımsız kaldı. Sonra mahalle halkı onu onardı.",
+        "rontgenSorusu": "Bağışlanan evlerin ve paranın geliri nereye gidiyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu ekranda oran göstermez. Eldeki vakıf bilgileri bir vakfiye belgesinden değil, doğu duvarındaki H. 900 (1494) tarihli vakıf kitâbesinden gelmektedir; kitâbe ile vakfiye aynı şey değildir. Envanter kaydındaki 'Vakfiye: Var' bilgisi bir vakfiye belgesiyle doğrulanamamıştır; belgenin tarihi ve arşiv numarası yoktur, vakfedilen malların gelirinin nasıl dağıtıldığına dair bir oran da hiçbir kaynakta verilmemiştir. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Veled-i Yaniç Mescidi', Envanter No A207 · Goncagül Hancıoğlu, 'Bursa Hisar Bölgesi'ndeki Erken Osmanlı Dönemi Camileri', Mimar Sinan Güzel Sanatlar Üniversitesi Yüksek Lisans Tezi, 2022 · Kitâbe neşirleri: Kazım Baykal, Bursa ve Anıtları, s. 178-179; Saadet Maydaer (BŞS A 19 41a, A 8 271a, 18 102b)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-veled-i-yanic-mescidi-veled-i-yanic-camii-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bu bilgi kapıdaki yazıda mı, yoksa bağış kayıtlarında mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "insa",
+                "ad": "Kapıdaki yazı",
+                "aciklama": "Mescidin kim tarafından, ne zaman yapıldığını söyler."
+              },
+              {
+                "id": "vakif",
+                "ad": "Bağış kayıtları",
+                "aciklama": "Duvardaki 1494 yazısı ve eski mahkeme defterleri."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Yaptıranın adı: Hacı Mahmud Çelebi",
+                "kategoriId": "insa"
+              },
+              {
+                "metin": "Yapım yılı: 1440",
+                "kategoriId": "insa"
+              },
+              {
+                "metin": "Sultan Murad zamanında yapıldığı",
+                "kategoriId": "insa"
+              },
+              {
+                "metin": "Hacı Ayşe'nin bağışladığı altı ev ve para",
+                "kategoriId": "vakif"
+              },
+              {
+                "metin": "Mescidi yaptıran için Kur'an okunması şartı",
+                "kategoriId": "vakif"
+              },
+              {
+                "metin": "Gülşah adında bir kadının bağışladığı para",
+                "kategoriId": "vakif"
+              },
+              {
+                "metin": "İki boyacı dükkânının arsası",
+                "kategoriId": "vakif"
+              }
+            ]
+          },
+          "kaynak": "Goncagül Hancıoğlu, 'Bursa Hisar Bölgesi'ndeki Erken Osmanlı Dönemi Camileri' (4.2.4 Veled-i Yaniç Camii), Mimar Sinan Güzel Sanatlar Üniversitesi Yüksek Lisans Tezi, 2022; kitâbe neşirleri: Kazım Baykal, Bursa ve Anıtları, s. 178-179; Saadet Maydaer (BŞS A 19 41a, A 8 271a, 18 102b)"
+        },
+        {
+          "id": "bursa-veled-i-yanic-mescidi-veled-i-yanic-camii-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye doğru sırala.",
+            "dogruSira": [
+              "1336: Bahçedeki mezar taşının tarihi",
+              "1440: Mescit yapıldı",
+              "1494: Doğu duvarına bağış yazısı kondu",
+              "1900'lerin ortası: Mahalle halkı mescidi onardı",
+              "1977: Mescit ilk kez koruma altına alındı",
+              "1991: Koruma kararı yenilendi"
+            ]
+          },
+          "kaynak": "Goncagül Hancıoğlu, 'Bursa Hisar Bölgesi'ndeki Erken Osmanlı Dönemi Camileri', Mimar Sinan Güzel Sanatlar Üniversitesi Yüksek Lisans Tezi, 2022; T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Veled-i Yaniç Mescidi', Envanter No A207"
+        },
+        {
+          "id": "bursa-veled-i-yanic-mescidi-veled-i-yanic-camii-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Bu mescidin minaresi binanın dışında. Minarenin alt kısmı bir ___.",
+            "cevap": "çeşme",
+            "secenekler": [
+              "çeşme",
+              "hamam",
+              "kuyu",
+              "türbe"
+            ]
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Veled-i Yaniç Mescidi', Envanter No A207"
+        },
+        {
+          "id": "bursa-veled-i-yanic-mescidi-veled-i-yanic-camii-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Tek kubbeli, küçük bir mahalle ibadet yeri. Minaresinin alt kısmı bir çeşme. Duvarındaki bir yazıda, bir kadının buraya altı ev bağışladığı yazıyor.",
+            "secenekler": [
+              "Beşir Ağa Çeşmesi",
+              "Gökdere Medresesi (Paşa Çelebi Medresesi)",
+              "Veled-i Yaniç Mescidi (Veled-i Yaniç Camii)"
+            ],
+            "dogruIndex": 2
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Veled-i Yaniç Mescidi', Envanter No A207; Goncagül Hancıoğlu, 'Bursa Hisar Bölgesi'ndeki Erken Osmanlı Dönemi Camileri', Mimar Sinan Güzel Sanatlar Üniversitesi Yüksek Lisans Tezi, 2022"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-osman-gazi-turbesi",
+      "merak": {
+        "soru": "Osman Gazi, Bursa'yı kuşatırken uzakta gümüş gibi parlayan bir kubbe gördü. Sence oğluna ne dedi?",
+        "secenekler": [
+          "\"Öldüğümde beni o kubbenin altına koy.\"",
+          "\"O kubbeyi yık, yerine saray yap.\"",
+          "\"O kubbeyi altınla kaplat.\""
+        ],
+        "kopru": "Tahminini not ettik! Bu söz, Osman Gazi hakkında en çok anlatılan hikâyelerden biri."
+      },
+      "baglam": {
+        "baslik": "Gümüşlü Kubbe",
+        "metin": "Osman Gazi, Osmanlı Devleti'nin kurucusu. 1258'de doğdu. Babası Ertuğrul Bey ölünce, 23 yaşında beyliğin başına geçti.\n\nBursa'nın alınması uzun sürdü. Şehrin iki yanına iki küçük kale yapıldı. Şehir yirmi yıldan uzun süre kuşatıldı. Rivayete göre Osman Gazi, uzakta parlayan bir kubbeyi gösterip oğluna şöyle dedi: \"Oğul, ben öldüğüm vakit beni Bursa'da şu Gümüşlü Kubbe'nin altına koy.\"\n\nBursa'yı oğlu Orhan Bey aldı. Babasının isteğini yerine getirdi ve onu o kubbeli yapıya gömdü.",
+        "kavramlar": [
+          {
+            "ad": "TÜRBE",
+            "aciklama": "Önemli bir kişinin mezarının bulunduğu, üstü örtülü yapı.",
+            "ornek": "Osman Gazi'nin türbesi Bursa'da."
+          },
+          {
+            "ad": "VASİYET",
+            "aciklama": "Bir kişinin, öldükten sonra yapılmasını istediği şey.",
+            "ornek": "Osman Gazi'nin vasiyeti Gümüşlü Kubbe'ye gömülmekti."
+          },
+          {
+            "ad": "RİVAYET",
+            "aciklama": "Kesin kanıtı olmayan, dilden dile anlatılan bilgi.",
+            "ornek": "Gümüşlü Kubbe sözü bir rivayettir."
+          }
+        ],
+        "kapanis": "Bu türbe bir kez yandı, bir kez de depremde zarar gördü. Bugün gördüğümüz türbe ne zaman yapıldı?"
+      },
+      "perspektif": {
+        "baslik": "Yeniden yapılan türbe",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Osman Gazi'nin gömüldüğü yapı 1801'de yandı. Sonra onarıldı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "1855'te Bursa'da büyük bir deprem oldu. Bir belgede türbenin 'tamamen yıkılmadı ama çok zedelendi' diye anlatıldığı yazıyor."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "1863'te Sultan Abdülaziz türbeyi yeniden yaptırdı."
+          }
+        ],
+        "soru": "Sence yeni türbe eskisinden nasıl farklı oldu?",
+        "secenekler": [
+          {
+            "metin": "Eskisinden daha geniş yapıldı.",
+            "sonuc": "Doğru! Yeni türbe eskisinden daha geniş ölçülerle yapıldı. Girişinde Sultan Abdülaziz'in tuğrası var.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Eskisinin aynısı, hiç fark yok.",
+            "sonuc": "Hayır. Envantere göre yeni yapı eskisinden daha geniş.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Türbe başka bir şehre taşındı.",
+            "sonuc": "Hayır. Türbe hâlâ Bursa'da, Hisariçi'ndeki Osmangazi Meydanı'nda.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Osman Gazi, Osmanlı Devleti'nin kurucusu. Oğlu Orhan Bey onu Bursa'daki 'Gümüşlü Kubbe'nin altına gömdü. Bugünkü türbeyi 1863'te Sultan Abdülaziz yaptırdı.",
+        "rontgenSorusu": "Bu türbenin giderleri nasıl karşılanıyordu?",
+        "rontgenAciklama": "Envanter, türbenin bir vakfiyesinden ya da gelir kaynağından söz etmez. Belge olmadığı için uygulama bu türbe için gelir dağılımı göstermez. Bildiğimiz şey, türbenin 1863'te Sultan Abdülaziz tarafından yeniden yaptırıldığıdır.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 235-246 (OSMAN GAZİ TÜRBESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-osman-gazi-turbesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Osman Gazi'nin hayatı mı, türbenin hikâyesi mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "osman",
+                "ad": "Osman Gazi'nin hayatı",
+                "aciklama": "Osman Gazi'nin yaptıkları."
+              },
+              {
+                "id": "turbe",
+                "ad": "Türbenin hikâyesi",
+                "aciklama": "Türbenin başından geçenler."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "23 yaşında beyliğin başına geçti",
+                "kategoriId": "osman"
+              },
+              {
+                "metin": "Domaniç ve Bilecik'i aldı",
+                "kategoriId": "osman"
+              },
+              {
+                "metin": "Yenişehir'i beyliğin merkezi yaptı",
+                "kategoriId": "osman"
+              },
+              {
+                "metin": "1801'de yandı",
+                "kategoriId": "turbe"
+              },
+              {
+                "metin": "1855 depreminde zarar gördü",
+                "kategoriId": "turbe"
+              },
+              {
+                "metin": "1863'te yeniden yapıldı",
+                "kategoriId": "turbe"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 235-246"
+        },
+        {
+          "id": "bursa-osman-gazi-turbesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1258: Osman Gazi doğdu",
+              "1280: Domaniç ve Bilecik'i aldı",
+              "1801: Türbe yandı",
+              "1855: Bursa depremi türbeye zarar verdi",
+              "1863: Sultan Abdülaziz türbeyi yeniden yaptırdı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 235-246"
+        },
+        {
+          "id": "bursa-osman-gazi-turbesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Osman Gazi, oğluna kendisini Bursa'daki \"___ Kubbe\"nin altına koymasını söyledi.",
+            "cevap": "Gümüşlü",
+            "secenekler": [
+              "Gümüşlü",
+              "Altınlı",
+              "Yeşil",
+              "Kırmızı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 235-246"
+        },
+        {
+          "id": "bursa-osman-gazi-turbesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Hisariçi'nde bir türbe. Osmanlı Devleti'nin kurucusu burada yatıyor. Bugünkü yapıyı 1863'te Sultan Abdülaziz yaptırdı. Girişinde onun tuğrası var.",
+            "secenekler": [
+              "Osman Gazi Türbesi",
+              "Yeşil Türbe (Çelebi Sultan Mehmed Türbesi)",
+              "Eşrefzâde Camii, Minaresi ve Haziresi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 235-246"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-hz-uftade-camii",
+      "merak": {
+        "soru": "Bir caminin yerinde eskiden kilise olduğu anlatılıyor. Bunun doğru olup olmadığını nasıl anlarız?",
+        "secenekler": [
+          "Duvarlarda ve temelde eski yapıdan iz ararız.",
+          "Halk ne diyorsa ona inanırız.",
+          "Hiçbir şekilde anlayamayız."
+        ],
+        "kopru": "Tahminini not ettik! Bu camide tam olarak böyle bir araştırma yapıldı."
+      },
+      "baglam": {
+        "baslik": "Üftâde'nin camisi",
+        "metin": "Üftâde Hazretleri'nin asıl adı Mehmed Muhyiddin'di. 1489'da Bursa'da doğdu. Ulucami'de müezzinlik yaptı. Uludağ'ın yamacında kurduğu dergâhta birçok öğrenci yetiştirdi. Yaklaşık doksan yaşında öldü.\n\nCami, Bursa'nın Hisar semtinde, dik bir yamacın dibinde. 1579'da yapıldı. Zamanla harap oldu. Kapısındaki yazıya göre 1866'da Rıza Paşa onu baştan yeniden yaptırdı.\n\nEnvantere göre Hasan Rıza Paşa cami ve türbe için para da vakfetti. Her yıl 10.000 kuruş gönderilmesini istedi.",
+        "kavramlar": [
+          {
+            "ad": "DERGÂH",
+            "aciklama": "Tasavvuf yolundaki kişilerin toplanıp eğitim gördüğü yer.",
+            "ornek": "Üftâde Hazretleri Uludağ'ın yamacında bir dergâh kurdu."
+          },
+          {
+            "ad": "MÜEZZİN",
+            "aciklama": "Camide ezan okuyan görevli.",
+            "ornek": "Üftâde Hazretleri Ulucami'de müezzinlik yaptı."
+          },
+          {
+            "ad": "RİVAYET",
+            "aciklama": "Kesin kanıtı olmayan, dilden dile anlatılan bilgi.",
+            "ornek": "Caminin yerinde kilise olduğu bir rivayettir."
+          }
+        ],
+        "kapanis": "Bir rivayetin doğru olduğunu göstermek için ne gerekir?"
+      },
+      "perspektif": {
+        "baslik": "Rivayet mi, kanıt mı?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Halk arasında bir rivayet var: Bu caminin yerinde eskiden bir kilise varmış."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Cami temelden yeniden yapılırken bu bilgiyi doğrulayacak bir iz bulunamadı. Doğu duvarında yalnızca tek bir eski taş var."
+          }
+        ],
+        "soru": "Bu durumda en doğru söz hangisi?",
+        "secenekler": [
+          {
+            "metin": "Burada kesinlikle bir kilise vardı.",
+            "sonuc": "Bunu kesin söyleyemeyiz. Temelde iz bulunamadı; tek bir eski taş yeterli kanıt değil.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Böyle bir rivayet var ama kanıtı bulunamadı.",
+            "sonuc": "Doğru! Tarihçiler rivayeti ve kanıtı ayrı ayrı söyler. Kanıt yoksa rivayet kesin bilgi sayılmaz.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Rivayetler her zaman yanlıştır.",
+            "sonuc": "Her zaman değil. Bazı rivayetler kanıtla doğrulanır. Burada ise kanıt bulunamadı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Hz. Üftâde Camii 1579'da yapıldı, 1866'da Rıza Paşa onu yeniden yaptırdı. Caminin yerinde kilise olduğu rivayeti, yeniden yapım sırasında kanıtlanamadı.",
+        "rontgenSorusu": "Bu caminin giderleri için ne vakfedildi?",
+        "rontgenAciklama": "Envantere göre Hasan Rıza Paşa cami ve türbe için büyük miktarda para vakfetti ve her yıl 10.000 kuruş gönderilmesini istedi. Bu paranın hangi işlere ne oranda harcandığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 447-455 (HZ. ÜFTÂDE CAMİİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-hz-uftade-camii-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Üftâde Hazretleri ile mi, cami ile mi ilgili? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "uftade",
+                "ad": "Üftâde Hazretleri",
+                "aciklama": "Caminin adını aldığı kişi."
+              },
+              {
+                "id": "cami",
+                "ad": "Cami",
+                "aciklama": "Yapının kendisi."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "1489'da Bursa'da doğdu",
+                "kategoriId": "uftade"
+              },
+              {
+                "metin": "Ulucami'de müezzinlik yaptı",
+                "kategoriId": "uftade"
+              },
+              {
+                "metin": "Uludağ yamacında dergâh kurdu",
+                "kategoriId": "uftade"
+              },
+              {
+                "metin": "Dik bir yamacın dibinde duruyor",
+                "kategoriId": "cami"
+              },
+              {
+                "metin": "1866'da yeniden yapıldı",
+                "kategoriId": "cami"
+              },
+              {
+                "metin": "Kapısında şiirli bir yazı var",
+                "kategoriId": "cami"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 447-455"
+        },
+        {
+          "id": "bursa-hz-uftade-camii-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1489: Üftâde Hazretleri doğdu",
+              "1579: Cami yapıldı",
+              "1866: Rıza Paşa camiyi yeniden yaptırdı",
+              "1975-1977: Vakıflar Genel Müdürlüğü onarım yaptı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 447-455"
+        },
+        {
+          "id": "bursa-hz-uftade-camii-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Kesin kanıtı olmayan, dilden dile anlatılan bilgiye ___ denir.",
+            "cevap": "rivayet",
+            "secenekler": [
+              "rivayet",
+              "kitabe",
+              "vakfiye",
+              "tuğra"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 447-455"
+        },
+        {
+          "id": "bursa-hz-uftade-camii-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Hisar'da, dik bir yamacın dibinde bir cami. Adını Ulucami'de müezzinlik yapmış bir evliyadan alıyor. Onun türbesi caminin doğusunda.",
+            "secenekler": [
+              "Hz. Üftâde Camii",
+              "Ulucami",
+              "Eşrefzâde Camii, Minaresi ve Haziresi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 447-455"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-esrefzade-camii",
+      "merak": {
+        "soru": "Bir cami yanarsa geriye ne kalabilir?",
+        "secenekler": [
+          "Taş minaresi ve mezarlar",
+          "Hiçbir şey",
+          "Ahşap tavanı"
+        ],
+        "kopru": "Tahminini not ettik! İznik'teki bu camide tam olarak böyle oldu."
+      },
+      "baglam": {
+        "baslik": "Yanan cami",
+        "metin": "Eşrefoğlu Rûmî İznik'te doğmuş bir sufiydi. Asıl adı Abdullah'tı. 1469'da öldü. Ondan sonra adına bir cami ve dergâh yapıldı.\n\nFatih Sultan Mehmed'in eşi Mükrime Hatun bir vakıf kurdu. Vakfiyesinde iki şey istedi: Eşrefzâde'nin ruhuna Kur'an okunsun, kandil yağının parası da ödensin.\n\nYunan işgali sırasında cami tamamen yandı. Geriye yalnızca minare ve mezarların olduğu hazire kaldı. Cami 1950'de yeniden yapıldı. Bugünkü yapıyı ise Vakıflar 2015-2017'de baştan inşa etti.",
+        "kavramlar": [
+          {
+            "ad": "HAZİRE",
+            "aciklama": "Cami avlusundaki küçük mezarlık.",
+            "ornek": "Eşrefoğlu Rûmî'nin kabri caminin haziresinde."
+          },
+          {
+            "ad": "SUFİ",
+            "aciklama": "Tasavvuf yolunda olan kişi.",
+            "ornek": "Eşrefoğlu Rûmî İznikli bir sufiydi."
+          },
+          {
+            "ad": "KANDİL",
+            "aciklama": "Yağla yanan eski bir lamba.",
+            "ornek": "Vakıf, kandil yağının parasını ödüyordu."
+          }
+        ],
+        "kapanis": "Bir vakıf neden kandil yağı gibi küçük bir şeyi düşünür?"
+      },
+      "perspektif": {
+        "baslik": "Kandilin yağı",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Mükrime Hatun 1485'te bir vakfiye hazırladı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Vakfiyede iki istek var: Eşrefzâde'nin ruhuna Kur'an okunsun, kandil yağının parası da karşılansın."
+          }
+        ],
+        "soru": "Kandil yağının parasını vakfın ödemesi neden önemliydi?",
+        "secenekler": [
+          {
+            "metin": "Yağ biterse kandil söner. Vakıf, ışığın yıllarca yanmasını sağladı.",
+            "sonuc": "Doğru! Vakıflar düzenli giderleri yıllarca karşılamak için kurulurdu. Kandil yağı da böyle bir giderdi.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Kandil yalnızca bir kez yakılacaktı.",
+            "sonuc": "Hayır. Kandil her gece yanar, yağı sürekli alınmalıydı. Bu yüzden vakıf gerekiyordu.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Yağ bedava olduğu için önemsizdi.",
+            "sonuc": "Yağ bedava değildi. Bu yüzden vakfiyede ayrıca yazıldı.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Eşrefzâde Camii, sufi Eşrefoğlu Rûmî adına İznik'te yapıldı. Yunan işgalinde yandı; minare ve hazire kaldı. Bugünkü yapıyı Vakıflar 2015-2017'de yeniden inşa etti.",
+        "rontgenSorusu": "Mükrime Hatun'un vakfı neyi karşılıyordu?",
+        "rontgenAciklama": "Mükrime Hatun'un 1485 tarihli vakfiyesi, Eşrefzâde'nin ruhuna Kur'an okunması ve kandil yağı bedeli için düzenlemeler içerir. Bu giderlerin vakıf gelirinin yüzde kaçı olduğu envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 34-43 (EŞREFZÂDE CAMİİ, MİNARESİ VE HAZİRESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-esrefzade-camii-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Yangından kaldı mı, sonradan mı yapıldı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "kaldi",
+                "ad": "Yangından kaldı",
+                "aciklama": "Yunan işgalindeki yangından sağ çıkanlar."
+              },
+              {
+                "id": "yeni",
+                "ad": "Sonradan yapıldı",
+                "aciklama": "Yeniden yapımda eklenenler."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Minare",
+                "kategoriId": "kaldi"
+              },
+              {
+                "metin": "Eşrefoğlu Rûmî'nin kabri",
+                "kategoriId": "kaldi"
+              },
+              {
+                "metin": "Hazire",
+                "kategoriId": "kaldi"
+              },
+              {
+                "metin": "Ahşap mihrap ve minber",
+                "kategoriId": "yeni"
+              },
+              {
+                "metin": "Büyük çini panolar",
+                "kategoriId": "yeni"
+              },
+              {
+                "metin": "Ahşap kadınlar mahfili",
+                "kategoriId": "yeni"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 34-43"
+        },
+        {
+          "id": "bursa-esrefzade-camii-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1469: Eşrefoğlu Rûmî öldü",
+              "1485: Mükrime Hatun vakfiyesini hazırladı",
+              "1633: IV. Murad dergâhın onarılmasını emretti",
+              "1950: Cami yeniden yapıldı",
+              "2015-2017: Vakıflar camiyi baştan inşa etti"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 34-43"
+        },
+        {
+          "id": "bursa-esrefzade-camii-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Cami avlusundaki küçük mezarlığa ___ denir.",
+            "cevap": "hazire",
+            "secenekler": [
+              "hazire",
+              "harim",
+              "avlu",
+              "minber"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 34-43"
+        },
+        {
+          "id": "bursa-esrefzade-camii-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "İznik'te bir cami. Yunan işgalinde yandı, minaresi kaldı. Avlusunda bir sufinin kabri var. 2015-2017'de yeniden yapıldı.",
+            "secenekler": [
+              "Eşrefzâde Camii, Minaresi ve Haziresi",
+              "Hz. Üftâde Camii",
+              "Ulucami"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 34-43"
+        }
+      ]
+    }
+  ]
+}

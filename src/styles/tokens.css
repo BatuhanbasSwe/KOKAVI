@@ -1,0 +1,360 @@
+/* ===========================================================================
+   Kök Avı — tasarım jetonları
+   Başvuru PDF'i: "Yüksek kontrast teması, renk körlüğü uyumlu palet,
+   ölçeklenebilir yazı boyutu." + "Arayüz WCAG 2.2 AA uyumlu geliştirilir."
+
+   İlkeler:
+   1. Renk ASLA tek başına anlam taşımaz (WCAG 1.4.1). Her renkli öğenin
+      yanında metin etiketi veya desen bulunur.
+   2. Gövde metni hedefi >= 7:1, ikincil metin >= 4.5:1 (WCAG AA).
+   3. Dokunma hedefi en az 44x44 px (WCAG 2.2 SC 2.5.8 hedefi aşılar).
+   =========================================================================== */
+
+:root {
+  /* --- Tipografi ------------------------------------------------------- */
+  --yazi-aile: "Nunito", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  /* Kullanıcı ayarıyla ölçeklenir (ayarlar ekranı --yazi-olcek'i değiştirir). */
+  --yazi-olcek: 1;
+  --yazi-xs: calc(0.75rem * var(--yazi-olcek));
+  --yazi-sm: calc(0.875rem * var(--yazi-olcek));
+  --yazi-md: calc(1rem * var(--yazi-olcek));
+  --yazi-lg: calc(1.125rem * var(--yazi-olcek));
+  --yazi-xl: calc(1.375rem * var(--yazi-olcek));
+  --yazi-2xl: calc(1.75rem * var(--yazi-olcek));
+  --yazi-3xl: calc(2.25rem * var(--yazi-olcek));
+
+  --satir-govde: 1.6;
+  --satir-baslik: 1.25;
+
+  /* --- Boşluk ---------------------------------------------------------- */
+  --b-1: 0.25rem;
+  --b-2: 0.5rem;
+  --b-3: 0.75rem;
+  --b-4: 1rem;
+  --b-5: 1.5rem;
+  --b-6: 2rem;
+  --b-7: 3rem;
+
+  --kose-sm: 10px;
+  --kose-md: 16px;
+  --kose-lg: 20px;
+  /* Duolingo tarzı "basılan" düğmelerin alt gölge kalınlığı */
+  --bas-derinlik: 4px;
+  --kose-tam: 999px;
+
+  /* --- Hareket --------------------------------------------------------- */
+  --gecis-hizli: 140ms;
+  --gecis-normal: 240ms;
+}
+
+/* ===========================================================================
+   TEMA: Açık (varsayılan) — PALET A "İznik Çini"
+   Renkler vakıf eserlerinden: çini turkuazı (ana), kobalt (bilgi/seçim),
+   altın varak (ödül), mercan (ipucu/hata), kurşun kubbe grisi (kilit).
+   Diğer paletler aşağıda: <html data-palet="yesil|tas">.
+   =========================================================================== */
+:root,
+[data-tema='acik'] {
+  --zemin: #fbf6ec;
+  --zemin-kart: #ffffff;
+  --zemin-vurgu: #f3ecdd;
+
+  --metin: #1b2a41; /* krem üzerinde ~13:1 */
+  --metin-ikincil: #47536b; /* beyaz üzerinde ~8:1 */
+  --metin-soluk: #5b6472; /* beyaz üzerinde ~6:1 */
+
+  --vurgu: #0f7f7a; /* çini turkuazı — beyazla 4,8:1 */
+  --vurgu-metin: #ffffff;
+  --vurgu-yumusak: #e3f2f0;
+  --vurgu-golge: #0a5a56;
+  --vurgu-koyu: #0a5a56; /* metin olarak, yumuşak zemin üzerinde */
+
+  --ikincil: #1e4fa0; /* kobalt — beyazla 7,8:1 */
+  --ikincil-metin: #ffffff;
+  --ikincil-yumusak: #dce6f6;
+  --ikincil-golge: #153a78;
+
+  --odul: #f2c14e; /* altın varak — YALNIZCA dolgu; üstünde --odul-metin */
+  --odul-metin: #1b2a41;
+  --odul-golge: #c98a12;
+  --odul-yumusak: #fff6dc;
+
+  --kilit: #c9c3b6; /* kurşun kubbe grisi */
+  --kilit-golge: #a8a194;
+  --kilit-metin: #4a453a;
+
+  --sicak: #9c4520; /* metin olarak kullanılabilir kiremit */
+  --sicak-yumusak: #fdf3e6;
+
+  --altin-metin: #7a5a1e; /* metin olarak kullanılabilir altın */
+  --altin: #f2c14e; /* YALNIZCA dekoratif/dolgu */
+
+  --cizgi: #e8dfcc;
+  --cizgi-kalin: #cfc3ab;
+
+  --basari: #0b6b66;
+  --basari-yumusak: #def1ee;
+  --uyari: #8a5300;
+  --uyari-yumusak: #fdf3e3;
+  --hata: #b3321c; /* mercan */
+  --hata-yumusak: #fbe6e0;
+
+  --odak: #1e4fa0;
+  --odak-halka: #1e4fa0;
+  --golge: 0 2px 8px rgba(27, 42, 65, 0.08);
+  --golge-buyuk: 0 8px 28px rgba(27, 42, 65, 0.14);
+
+  --harita-deniz: #e3eef4;
+  --harita-kara: #f3ecdd;
+  --harita-sinir: #cfc3ab;
+  --harita-vurgulu: #d7efec;
+
+  --seri-1: #0f7f7a;
+  --seri-2: #1e4fa0;
+  --seri-3: #c98a12;
+  --seri-4: #8a6bab;
+  --seri-5: #b3321c;
+  --seri-6: #a0603a;
+}
+
+/* ---------------------------------------------------------------------------
+   PALET B — "Yeşil Külliye" (Bursa Yeşilcami çinileri). Yalnızca açık temada.
+   Etkinleştirme: index.html → <html data-palet="yesil"> veya ?palet=yesil
+   --------------------------------------------------------------------------- */
+[data-tema='acik'][data-palet='yesil'] {
+  --harita-vurgulu: #e4f2ea;
+  --vurgu: #1f7a4d;
+  --vurgu-yumusak: #e4f2ea;
+  --vurgu-golge: #155836;
+  --vurgu-koyu: #155836;
+  --ikincil: #0f7f7a;
+  --ikincil-yumusak: #e3f2f0;
+  --ikincil-golge: #0a5a56;
+  --basari: #1a6b43;
+  --basari-yumusak: #e4f2ea;
+  --hata: #9c4520;
+  --hata-yumusak: #fbebe1;
+  --odak: #0f5f5b;
+  --odak-halka: #0f5f5b;
+  --seri-1: #1f7a4d;
+  --seri-2: #0f7f7a;
+  --seri-3: #c98a12;
+  --seri-4: #9c4520;
+}
+
+/* ---------------------------------------------------------------------------
+   PALET C — "Taş ve Kiremit" (Selçuklu kesme taşı ve tuğlası; başvuru PDF'i).
+   --------------------------------------------------------------------------- */
+[data-tema='acik'][data-palet='tas'] {
+  --zemin: #f6efe2;
+  --harita-vurgulu: #fbede5;
+  --vurgu: #b4532a;
+  --vurgu-yumusak: #fbede5;
+  --vurgu-golge: #85391a;
+  --vurgu-koyu: #85391a;
+  --ikincil: #14524b;
+  --ikincil-yumusak: #e6efed;
+  --ikincil-golge: #0c3833;
+  --kilit: #d9cdb6;
+  --kilit-golge: #b9aa8e;
+  --basari: #14524b;
+  --basari-yumusak: #e6efed;
+  --hata: #9b2335;
+  --hata-yumusak: #f8e4e7;
+  --odak: #14524b;
+  --odak-halka: #14524b;
+  --seri-1: #b4532a;
+  --seri-2: #14524b;
+  --seri-3: #c98a12;
+  --seri-4: #1b2a41;
+}
+
+/* ===========================================================================
+   TEMA: Koyu
+   =========================================================================== */
+[data-tema='koyu'] {
+  --zemin: #10161c;
+  --zemin-kart: #18212a;
+  --zemin-vurgu: #1f2a35;
+
+  --metin: #f2f5f7;
+  --metin-ikincil: #c3ccd6;
+  --metin-soluk: #9aa6b3;
+
+  --vurgu: #6fd3c4;
+  --vurgu-metin: #06231f;
+  --vurgu-yumusak: #14302c;
+  --vurgu-golge: #3a9c90;
+  --vurgu-koyu: #8ff0e2;
+
+  --ikincil: #8db4f0;
+  --ikincil-metin: #0b1a33;
+  --ikincil-yumusak: #17253a;
+  --ikincil-golge: #5f86c4;
+
+  --odul: #e0b352;
+  --odul-metin: #1b1405;
+  --odul-golge: #a5801f;
+  --odul-yumusak: #2e2515;
+
+  --kilit: #3a444e;
+  --kilit-golge: #2a323a;
+  --kilit-metin: #c3ccd6;
+
+  --sicak: #f0a184;
+  --sicak-yumusak: #33211a;
+
+  --altin-metin: #edc877;
+  --altin: #c99a3e;
+
+  --cizgi: #2c3944;
+  --cizgi-kalin: #3d4c59;
+
+  --basari: #6ddba0;
+  --basari-yumusak: #122c1f;
+  --uyari: #f0c274;
+  --uyari-yumusak: #2e2515;
+  --hata: #ff9b93;
+  --hata-yumusak: #33191a;
+
+  --odak: #8ff0e2;
+  --odak-halka: #8ff0e2;
+  --golge: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --golge-buyuk: 0 8px 28px rgba(0, 0, 0, 0.6);
+
+  --harita-deniz: #0c1a24;
+  --harita-kara: #1f2a35;
+  --harita-sinir: #3d4c59;
+  --harita-vurgulu: #14302c;
+
+  --seri-1: #e0b352;
+  --seri-2: #ef8f6d;
+  --seri-3: #56b3a8;
+  --seri-4: #7aa9db;
+  --seri-5: #b092d1;
+  --seri-6: #c58055;
+}
+
+/* ===========================================================================
+   TEMA: Yüksek kontrast (WCAG AAA hedefi)
+   Renk ayrımına hiç güvenilmez; kalın çerçeveler ve saf siyah/beyaz.
+   =========================================================================== */
+[data-tema='yuksek-kontrast'] {
+  --zemin: #000000;
+  --zemin-kart: #000000;
+  --zemin-vurgu: #141414;
+
+  --metin: #ffffff; /* 21:1 */
+  --metin-ikincil: #f2f2f2;
+  --metin-soluk: #dcdcdc;
+
+  --vurgu: #ffe14d; /* siyah üzerinde ~14:1 */
+  --vurgu-metin: #000000;
+  --vurgu-yumusak: #1a1a00;
+  --vurgu-golge: #ffffff;
+  --vurgu-koyu: #ffe14d;
+
+  --ikincil: #5ce1ff;
+  --ikincil-metin: #000000;
+  --ikincil-yumusak: #001a1f;
+  --ikincil-golge: #ffffff;
+
+  --odul: #ffe14d;
+  --odul-metin: #000000;
+  --odul-golge: #ffffff;
+  --odul-yumusak: #1a1a00;
+
+  --kilit: #333333;
+  --kilit-golge: #ffffff;
+  --kilit-metin: #ffffff;
+
+  --sicak: #ffb38a;
+  --sicak-yumusak: #1a0f08;
+
+  --altin-metin: #ffe14d;
+  --altin: #ffe14d;
+
+  --cizgi: #ffffff;
+  --cizgi-kalin: #ffffff;
+
+  --basari: #7dffb0;
+  --basari-yumusak: #001a0d;
+  --uyari: #ffd166;
+  --uyari-yumusak: #1a1400;
+  --hata: #ff9d9d;
+  --hata-yumusak: #1a0505;
+
+  --odak: #ffe14d;
+  --odak-halka: #ffffff;
+  --golge: none;
+  --golge-buyuk: none;
+
+  --harita-deniz: #000000;
+  --harita-kara: #1a1a1a;
+  --harita-sinir: #ffffff;
+  --harita-vurgulu: #1a1a00;
+
+  --seri-1: #ffe14d;
+  --seri-2: #ff9d5c;
+  --seri-3: #5ce1ff;
+  --seri-4: #b39dff;
+  --seri-5: #7dffb0;
+  --seri-6: #ff8fd0;
+}
+
+/* Yüksek kontrastta çerçeveler kalınlaşır. */
+[data-tema='yuksek-kontrast'] .kart,
+[data-tema='yuksek-kontrast'] .dugme,
+[data-tema='yuksek-kontrast'] .secenek {
+  border-width: 2px !important;
+}
+
+/* ===========================================================================
+   RENK KÖRLÜĞÜ PALETLERİ
+   Kategorik seriler Okabe-Ito güvenli paletine kaydırılır.
+   (Renk zaten tek başına anlam taşımaz; bu yalnızca ayrımı güçlendirir.)
+   =========================================================================== */
+[data-renk-korlugu='protanopi'],
+[data-renk-korlugu='döteranopi'] {
+  --seri-1: #e69f00;
+  --seri-2: #0072b2;
+  --seri-3: #56b4e9;
+  --seri-4: #009e73;
+  --seri-5: #cc79a7;
+  --seri-6: #7f6000;
+}
+
+[data-renk-korlugu='tritanopi'] {
+  --seri-1: #d55e00;
+  --seri-2: #0072b2;
+  --seri-3: #009e73;
+  --seri-4: #cc79a7;
+  --seri-5: #56b4e9;
+  --seri-6: #8c510a;
+}
+
+/* ===========================================================================
+   HAREKET AZALTMA
+   =========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --gecis-hizli: 0ms;
+    --gecis-normal: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+[data-hareket-azalt='true'] *,
+[data-hareket-azalt='true'] *::before,
+[data-hareket-azalt='true'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}

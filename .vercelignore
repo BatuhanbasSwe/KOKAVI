@@ -1,0 +1,6 @@
+data/research
+.pgdata
+deploy/ADMIN-PAROLA.txt
+tests
+docs
+*.tsbuildinfo

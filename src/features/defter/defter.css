@@ -1,0 +1,166 @@
+/* ===========================================================================
+   Kâşif Defteri — albüm görünümü ve defter temaları (Vakıf Çarşısı)
+   Temalar yalnızca jetonları yeniden eşler; yeni renk eklemez.
+   =========================================================================== */
+
+.defter-kok {
+  --defter-vurgu: var(--vurgu);
+  --defter-vurgu-golge: var(--vurgu-golge);
+  --defter-kare-zemin: var(--zemin-kart);
+  --defter-kare-cerceve: var(--odul);
+  --defter-kare-golge: var(--odul-golge);
+}
+
+.defter-kok[data-defter-tema='tema-ebru'] {
+  --defter-vurgu: var(--ikincil);
+  --defter-vurgu-golge: var(--ikincil-golge);
+  --defter-kare-zemin: var(--ikincil-yumusak);
+  --defter-kare-cerceve: var(--ikincil);
+  --defter-kare-golge: var(--ikincil-golge);
+}
+
+.defter-kok[data-defter-tema='tema-kalemisi'] {
+  --defter-vurgu: var(--hata);
+  --defter-vurgu-golge: color-mix(in srgb, var(--hata) 70%, #000);
+  --defter-kare-zemin: var(--odul-yumusak);
+  --defter-kare-cerceve: var(--hata);
+  --defter-kare-golge: var(--odul-golge);
+}
+
+.defter-ust {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--b-3);
+  flex-wrap: wrap;
+}
+
+.defter-ust h1 {
+  margin-bottom: var(--b-1);
+}
+
+.defter-sayac {
+  font-weight: 900;
+  color: var(--metin-ikincil);
+}
+
+.defter-sehirler {
+  display: flex;
+  gap: var(--b-2);
+  overflow-x: auto;
+  padding-bottom: var(--bas-derinlik);
+}
+
+.defter-sehir {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-md);
+  border: 2px solid var(--cizgi);
+  background: var(--zemin-kart);
+  color: var(--metin);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--cizgi);
+}
+
+.defter-sehir[aria-pressed='true'] {
+  background: var(--defter-vurgu);
+  border-color: var(--defter-vurgu);
+  color: var(--vurgu-metin);
+  box-shadow: 0 3px 0 var(--defter-vurgu-golge);
+}
+
+[data-tema='yuksek-kontrast'] .defter-sehir[aria-pressed='true'] {
+  color: #000;
+}
+
+.defter-cubuk .ilerleme-cubugu__dolgu {
+  background: var(--odul);
+}
+
+.defter-albumu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--b-3);
+}
+
+@media (min-width: 640px) {
+  .defter-albumu {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.defter-karesi {
+  width: 100%;
+  min-height: 116px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--b-2);
+  padding: var(--b-2);
+  border-radius: var(--kose-md);
+  text-align: center;
+  font: inherit;
+}
+
+.defter-karesi--acik {
+  background: var(--defter-kare-zemin);
+  border: 3px solid var(--defter-kare-cerceve);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--defter-kare-golge);
+  color: var(--metin);
+  cursor: pointer;
+}
+
+.defter-karesi--acik[aria-expanded='true'] {
+  transform: translateY(2px);
+}
+
+.defter-karesi--kapali {
+  background: var(--zemin-vurgu);
+  border: 2px dashed var(--cizgi-kalin);
+  color: var(--metin-soluk);
+}
+
+.defter-karesi__ikon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--kose-sm);
+}
+
+.defter-karesi--acik .defter-karesi__ikon {
+  background: var(--defter-vurgu);
+  color: var(--vurgu-metin);
+}
+
+[data-tema='yuksek-kontrast'] .defter-karesi--acik .defter-karesi__ikon {
+  color: #000;
+}
+
+.defter-karesi--kapali .defter-karesi__ikon {
+  background: var(--cizgi);
+  color: var(--kilit-metin);
+}
+
+.defter-karesi__ad {
+  font-size: var(--yazi-sm);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.defter-sayfasi--acik {
+  border-color: var(--defter-kare-cerceve);
+  border-width: 3px;
+}
+
+.defter-baglanti {
+  border-color: var(--ikincil);
+  background: var(--ikincil-yumusak);
+}

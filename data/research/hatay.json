@@ -1,0 +1,571 @@
+{
+  "arastirmaGrubu": "hatay",
+  "arastirmaTarihi": "2026-10-13",
+  "sehir": "Hatay",
+  "aciklama": "Hatay'daki GERÇEK vakıf eserleri üzerine doğrulanmış veri seti. Tür çeşitliliği gözetilmiştir: cami, medrese/mektep, hamam, çeşme, türbe/zaviye ve han/kervansaray. 2023 depremi bağlamı her eserde bugunNeOldu alanında belirtilmiştir.",
+  "envanterBaglami": {
+    "proje": "Vakıf Eserleri Envanter Projesi (Vakıf Katılım)",
+    "baslangicIli": "Hatay — projenin ilk durağı",
+    "baslangicYili": 2022,
+    "dogrulananRakamlar": {
+      "eserSayisi": 117,
+      "fotografKaresi": 2600
+    },
+    "kitap": "Hatay İli Vakıf Eserleri / Foundation Buildings of Hatay Province",
+    "kitapKunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', ISBN 9786259924717, İstanbul: Vakıf Katılım, 2023. Proje Yönetmeni: Berica Nevin Berberoğlu Şen; Metin Yazarları: Halil Agah, Prof. Dr. Nusret Çam, Berica Nevin Berberoğlu Şen; Editör: Özlem Çelik; Akademik Danışma Kurulu: Prof. Dr. Nusret Çam, Doç. Dr. Fuat Şancı. Kitap Türkçe ve İngilizce olarak hazırlanmıştır.",
+    "kitapUrl": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf",
+    "takvim": "Proje 2022 yılının Haziran-Temmuz aylarında hayata geçirildi. Saha fotoğraf çekimi 2022 yılının Eylül ayında başladı ve yaklaşık üç ay sürdü; fotoğraflama çalışması 2023'ün başında nihai haline geldi. Envanter sergisi DEPREMDEN BİR GÜN ÖNCE, 5 Şubat 2023'te açıldı. Kitap ise depremden sonra, 2023'te basıldı.",
+    "onem": "Fotoğraflama çalışması 6 Şubat 2023 depremlerinden hemen önce tamamlanmıştır; bu yönüyle envanter, deprem öncesi Antakya'nın son sistematik görsel ve tarihsel kaydı niteliğindedir. Vakıf Katılım Genel Müdürü Mehmet Ali Akben: 'depremden önce ... ilk envanter çalışmamıza da ... Hatay ilimizle başlamıştık. Ancak, yaşanan deprem sebebiyle maalesef fotoğraflayarak kayıt altına aldığımız birçok eser şu anda ya enkaz halinde ya da ağır hasarlı.'",
+    "dogrulamaNotu": "Kitabın tam metni (249 sayfalık PDF, 39 MB) indirilip okunmuştur. '117 eser' ve '2.600 fotoğraf karesi' rakamları birincil kaynak niteliğindeki röportajlardan doğrulanmıştır. NÜANS: İddiadaki 'çalışma depremden hemen önce tamamlandı' ifadesi FOTOĞRAF ÇEKİMİ için doğrudur; KİTABIN BASIMI ise depremden sonradır (2023)."
+  },
+  "depremGenelTablo": {
+    "olay": "6 Şubat 2023 Kahramanmaraş merkezli 7,7 ve 7,6 büyüklüğündeki depremler",
+    "hatayVakifEserHasar": "Kültür ve Turizm Bakanlığı Vakıflar Genel Müdürlüğü mülkiyetindeki 84 tescilli eser Hatay'da hasar almıştır.",
+    "turkiyeGeneli": "11 ilin tamamında depremden etkilenen toplam 377 vakıf eser tespit edilmiştir; bunlardan 31'i tamamen yıkılmış, 144'ü ağır, 104'ü orta ve 98'i hafif hasarlıdır. Üç yıl sonunda 33'ü Hatay'da olmak üzere 109 eser özgün haliyle ayağa kaldırılmıştır. Vakıflar Genel Müdürlüğüne maliyeti 15 milyar TL'dir. ÖNEMLİ: 377 ve 109 rakamları 11 İL TOPLAMIDIR, Hatay'a atfedilmemelidir; Hatay'ın payı 84 (hasarlı) ve 33'tür (ayağa kaldırılan).",
+    "vgmAralik2025Durumu": "Vakıflar Genel Müdürlüğünün 30 Aralık 2025 tarihli açıklamasına göre 73 vakıf eserinin restorasyonu tamamlanarak ibadete ve ziyarete açılmış, 176 vakıf eserinin restorasyon ve onarım çalışmaları planlı şekilde devam etmiştir. Hatay özelinde: 9 eserin açılışı gerçekleştirilmiş, 1 eserin restorasyonu tamamlanmış ve 82 eserde çalışmalar sürdürülmüştür. Antakya'da 11 eserin restorasyonu tamamlanmış, 4 eserin tamamlanmasının ardından ibadete ve ziyarete açılması planlanmıştır.",
+    "hatay2025YatirimProgrami": {
+      "kaynak": "T.C. Kültür ve Turizm Bakanlığı, Hatay 2025 Yatırım Programı, 21.01.2025",
+      "kalemler": [
+        {
+          "eser": "Habib-i Neccar Camii + Kuseyri Evi (2 adet)",
+          "odenenekTL": 280003001,
+          "not": "Tek kalemde birleşik; caminin tek başına maliyeti ayrıştırılamaz"
+        },
+        {
+          "eser": "Kurşunlu Han",
+          "odenenekTL": 105000000
+        },
+        {
+          "eser": "Şeyh Ali Camii",
+          "odenenekTL": 87000000
+        },
+        {
+          "eser": "Meydan Camii + Semerciler Camii",
+          "odenenekTL": 43160204,
+          "not": "İki eser tek kalemde"
+        },
+        {
+          "eser": "Kurtuluş Hamamı (Antakya)",
+          "odenenekTL": 29270000
+        }
+      ],
+      "isSuresi": "2023-2028",
+      "not": "Tutarlar ödenek olup harcama gerçekleşmesi değildir."
+    },
+    "tarihselKarsilastirma": "Depremlerin birinci yılında (04.02.2024) Vakıflar Genel Müdürlüğü sorumluluğundaki 105 eserden 71'inin hasarlı veya yıkık olduğu, 45'inde restorasyona başlandığı bildirilmişti.",
+    "kaynaklar": [
+      {
+        "kunye": "Anadolu Ajansı, 'Hatay'ın hasar gören vakıf eserleri restorasyon ve rekonstrüksiyonla ayağa kaldırılıyor', 3 Şubat 2026",
+        "url": "https://www.aa.com.tr/tr/6-subat-depremlerinin-ucuncu-yili/hatayin-hasar-goren-vakif-eserleri-restorasyon-ve-rekonstruksiyonla-ayaga-kaldiriliyor/3818670"
+      },
+      {
+        "kunye": "İhlas Haber Ajansı, 'Bakan Ersoy: 11 ilimizde başlattığımız 63 işi tamamlamış bulunuyoruz', 3 Şubat 2026",
+        "url": "https://www.iha.com.tr/hatay-haberleri/bakan-ersoy-11-ilimizde-baslattigimiz-63-isi-tamamlamis-bulunuyoruz-372773798"
+      },
+      {
+        "kunye": "Vakıflar Genel Müdürlüğü, 'Depremde zarar gören vakıf eserlerimiz 2025'te yeniden hayat buldu', 30 Aralık 2025",
+        "url": "https://www.vgm.gov.tr/haberler/depremde-zarar-goren-vakif-eserlerimiz-2025te-yeniden"
+      }
+    ]
+  },
+  "eserler": [
+    {
+      "id": "hatay-habib-i-neccar-camii-ve-kulliyesi",
+      "ad": "Habib-i Neccar Camii ve Külliyesi",
+      "sehir": "Hatay",
+      "ilce": "Antakya",
+      "tur": "Cami ve külliye (cami, medrese, şadırvan, türbeler)",
+      "koordinat": {
+        "lat": 36.201547,
+        "lng": 36.1655275
+      },
+      "koordinatKaynagi": "OpenStreetMap (way 102165117), Nominatim ile sorgulandı",
+      "bani": "Rivayete göre Hz. Ömer'in komutanlarından Ebû Ubeyde b. Cerrâh tarafından yaptırılmıştır; mevcut yapı Memlük Sultanı Baybars döneminde yenilenmiştir. Caminin günümüze ulaşan en eski kitabesi Baybars'ın 'el-Melikü'z-Zâhir' unvanını taşır.",
+      "baniDonem": "İslâmî fetih dönemi (rivayet) / Memlük dönemi yenilemesi",
+      "yapimYili": "636 (Vakıf Katılım kitabı) veya 638 (Kültür Portalı) — rivayet, inşa; mevcut yapının en eski kitabesi H.670 (M. 1271). Tamiratlar: 1474 (Memlükler), 1721, 1858, 1863 (Osmanlılar), 1986 ve 2002 (Vakıflar Genel Müdürlüğü restorasyonu)",
+      "vakfiyeAmaci": "16. yüzyılda Antakya'da Habîbü'n-Neccâr adını taşıyan İKİ AYRI VAKIF bulunuyordu: biri cami, diğeri makam ve imaret için kurulmuştu. Makam vakfı çerçevesinde oluşturulan imarette, makamı ziyarete gelenlerin yanı sıra medrese öğrencileri ile fakir ve dervişlere belirli vakitlerde ÜCRETSİZ YEMEK veriliyordu. 1550 tarihli evkaf defterinde caminin yıllık vakıf geliri 7.689 akçe olarak kayıtlıdır.",
+      "hizmet": "Cemaat ve ziyaretçiler; medrese öğrencileri; fakirler ve dervişler (imaretten ücretsiz yemek); vakıf personeli (mütevelli, imam, hatip, müezzin, ikinci müezzin, cüzhan, murakkî, ferrâş, çırakçı, câbi). Ayrıca günümüze ulaşan bir vakıf akarı kaydı vardır: Antakya 5. Mıntıka 457-468 parsellerdeki iş yerleri 'Habib-i Neccar Camii giderleri karşılanması için vakfedilen akar iş yerleri'dir.",
+      "bugunNeOldu": "6 Şubat 2023 depremlerinde AĞIR HASAR GÖRDÜ; Vakıf Katılım Genel Müdürü'nün ifadesiyle 'ağır hasarlı', basın haberlerinde 'adeta yerle bir olan' cami olarak anılmıştır; kuzey beden duvarı başta olmak üzere büyük hasar tespit edilmiştir. Restorasyon çalışmaları Eylül 2023'te başladı (Vakıflar Genel Müdürlüğü ve Konya Büyükşehir Belediyesi iş birliğiyle); ahşap kubbe 31 Ocak 2025'te yerleştirildi. Restorasyon tamamlanarak 27 Aralık 2025'te Cumhurbaşkanı tarafından İBADETE AÇILDI; yaklaşık 3 yıl aradan sonra ilk cuma namazı 2 Ocak 2026'da kılındı. BÜTÇE: Hatay 2025 Yatırım Programında (21.01.2025) 'Habib-i Neccar Camii + Kuseyri Evi (2 adet)' tek kalemde 280.003.001 TL olarak yer alır; bu nedenle caminin TEK BAŞINA restorasyon maliyeti ayrıştırılamamaktadır. Vakıf Katılım envanter kitabı depremden hemen önce tamamlandığı için yapının deprem öncesi durumunun son sistematik kaydıdır.",
+      "kulliye": "Cami; medrese (avlusunun kuzeyinde yedi, batısında dört hücre ve bir dershane); 19. yüzyıl şadırvanı (H.1270/M.1858 tarihli dört satırlık inşa kitabesi); Habib-i Neccar Türbesi ve Aziz Pavlos Türbesi. Caminin kuzeydoğu köşesinde yerin 4 metre altında Habib-i Neccar ile Şem'un Safa'nın, girişte ise Yuhanna ve Pavlos'un türbeleri bulunmaktadır. Medrese odaları avluyu çevreler.",
+      "gelirDagilimi": [
+        {
+          "kalem": "Vakıf personeli maaşları (mütevelli, imam, hatip, müezzin, ikinci müezzin, cüzhan, murakkî, ferrâş, çırakçı, câbi)",
+          "yuzde": 77,
+          "tip": "gider",
+          "kaynak": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları (1550 Tarihli Evkaf Defterine Göre)', Vakıflar Dergisi 43 (2015), s. 19 — 1550'de toplam 7.689 akçe gelirin 5.940 akçesi personel maaşına harcanıyordu"
+        },
+        {
+          "kalem": "Caminin yağ ve hasır ihtiyacı ile öngörülemeyen diğer masrafları",
+          "yuzde": 23,
+          "tip": "gider",
+          "kaynak": "Aynı kaynak — geriye kalan 1.749 akçe caminin önceden kestirilemeyen masrafları ile yağ ve hasır ihtiyacına ayrılmıştı"
+        },
+        {
+          "kalem": "Kuseyr'e bağlı Kozya köyü mahsul ve rüsûmunun tamamı",
+          "yuzde": 59,
+          "tip": "gelir",
+          "kaynak": "Aynı kaynak — 4.562 akçe"
+        },
+        {
+          "kalem": "Altunözü'ne bağlı Buhşîn köyü mahsulünün 3/24 kırat hissesi",
+          "yuzde": 21,
+          "tip": "gelir",
+          "kaynak": "Aynı kaynak — 1.627 akçe"
+        },
+        {
+          "kalem": "Antakya surları içinde bağ ve bahçeye dönüştürülen arazi kirasının 12/24 kırat hissesi",
+          "yuzde": 20,
+          "tip": "gelir",
+          "kaynak": "Aynı kaynak — 1.500 akçe"
+        }
+      ],
+      "gelirDagilimiDurumu": "belgeli",
+      "arsivNo": "TKA, Evkaf 556, s. 129a (Topkapı Sarayı Müzesi Arşivi, Evkaf Defteri nr. 556)",
+      "kaynaklar": [
+        {
+          "kunye": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları (1550 Tarihli Evkaf Defterine Göre)', Vakıflar Dergisi, S. 43, Haziran 2015, s. 18-19",
+          "url": "https://acikerisim.fsm.edu.tr/xmlui/bitstream/handle/11352/2214/%c3%87akar.pdf?isAllowed=y&sequence=1"
+        },
+        {
+          "kunye": "Kültür ve Turizm Bakanlığı, Kültür Portalı — 'Habibi Neccar Camisi' (Kaynak: Hatay İl Kültür ve Turizm Müdürlüğü)",
+          "url": "https://www.kulturportali.gov.tr/turkiye/hatay/gezilecekyer/habib-i-neccar-camii"
+        },
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 55-72 (HABİB-İ NECCAR CAMİİ VE KÜLLİYESİ)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Halil Sahillioğlu, 'ANTAKYA', TDV İslâm Ansiklopedisi, c. 3, 1991, s. 228-232",
+          "url": "https://islamansiklopedisi.org.tr/antakya"
+        },
+        {
+          "kunye": "Diyanet Haber, 'Habib-i Neccar Camii'nde 3 yıl aradan sonra ilk cuma namazı kılındı', 02.01.2026",
+          "url": "https://www.diyanethaber.com.tr/habib-i-neccar-camiinde-3-yil-aradan-sonra-ilk-cuma-namazi-kilindi"
+        },
+        {
+          "kunye": "Diyanet Haber, 'Depremde hasar alan Habib-i Neccar Camii'nin onarım çalışmaları sürüyor', 08.06.2025",
+          "url": "https://www.diyanethaber.com.tr/depremde-hasar-alan-habib-i-neccar-camiinin-onarim-calismalari-suruyor"
+        },
+        {
+          "kunye": "Karar, 'Anadolu'nun ilk camisi Habibi Neccar yeniden ibadete açıldı: Depremde yerle bir olan camii 3 yıl sonra yeniden ayakta'",
+          "url": "https://www.karar.com/guncel-haberler/anadolunun-ilk-camisi-habibi-neccar-yeniden-ibadete-acildi-depremde-2027241"
+        }
+      ],
+      "dogrulamaNotu": "DÜZELTİLEN / YANLIŞ OLABİLECEK NOKTALAR: (1) Bani konusunda 636 ve 638 olmak üzere iki farklı tarih verilmektedir (Vakıf Katılım kitabı 636, Kültür Portalı 638). (2) Ebû Ubeyde b. Cerrâh'a atfedilen ilk inşadan günümüze hiçbir buluntu kalmamıştır; bu atıf rivayete dayanır, belgeye değil. Çakar da vakfı kimin kurduğuna dair 'herhangi bir bilgi bulunmamaktadır' demektedir. (3) YÜZDE HESABI: Kaynakta doğrudan yüzde verilmemiştir. Yüzdeler, kaynakta AKÇE cinsinden verilen kalemlerin toplama oranlanmasıyla tarafımızca hesaplanmıştır. (4) GELİR/GİDER AYRIMI: Kaynak iki farklı büyüklüğü bildirmektedir — vakfa paranın NEREDEN geldiği (gelir kaynakları) ve gelirin NEREYE harcandığı (gider kalemleri). Bu iki taraf aynı paranın iki yüzü olduğu için tek dizide toplandıklarında toplam %200 eder. Bu nedenle her kaleme 'tip' alanı eklenmiştir: 'gelir' kalemleri kendi içinde %100 (59+21+20), 'gider' kalemleri kendi içinde %100 (77+23) etmektedir. (5) Vakfiyenin özgün arşiv numarası bulunamamıştır; verilen numara 1550 tarihli evkaf defteri kaydına aittir. (6) Deprem hasarının resmî teknik raporu (ağır hasar tespit belgesi) görülmemiştir; hasar durumu basın açıklamalarına dayanmaktadır. (7) Restorasyonun resmî tamamlanma tarihi olarak 27 Aralık 2025 verilmiştir; bu bilgi basın kaynaklıdır, Vakıflar Genel Müdürlüğü birincil kaydından teyit edilememiştir."
+    },
+    {
+      "id": "hatay-sokullu-mehmet-pasa-kulliyesi-medrese-ve-sibyan-mektebi",
+      "ad": "Sokullu Mehmed Paşa Külliyesi Medresesi (Hankah) ve Sıbyan Mektebi",
+      "sehir": "Hatay",
+      "ilce": "Payas",
+      "tur": "Medrese ve sıbyan mektebi (menzil külliyesi bünyesinde)",
+      "koordinat": {
+        "lat": 36.7543099,
+        "lng": 36.2038785
+      },
+      "koordinatKaynagi": "EBA (Eğitim Bilişim Ağı) okul dışı öğrenme mekân kaydı; OpenStreetMap/Nominatim kaydı (relation 7325781) ile uyumludur (36.7542462 / 36.2032996). Koordinat külliyenin bütününe aittir; medrese ve sıbyan mektebi külliyenin batı kanadında yer aldığı için yaklaşık değerdir.",
+      "bani": "Sokullu Mehmed Paşa (sadrazamlığı 1564-1578), II. Selim'in emriyle",
+      "baniDonem": "Osmanlı (Kanuni Sultan Süleyman ve II. Selim devri)",
+      "yapimYili": "İmar 1567'de başladı; 982/1574'te büyük çapta tamamlandı; 1580'lerin başında son halini aldı. Kervansaray taçkapısındaki kitabe 982/1574 tarihlidir. Arşiv vesikalarına göre eserin MİMAR SINAN olduğu belirtilmektedir (atıf; kesin belge niteliğinde değildir).",
+      "vakfiyeAmaci": "İstanbul–Şam–Hicaz yolunu kontrol altına almak, kervanların gidiş gelişlerindeki can güvenliğini sağlamak ve konar-göçer Türkmenlerin iskân edilmesi maksadıyla yapılan menzil külliyelerinden biridir. Külliye, ilim öğrenme, ibadet etme ve eğitim alma zaruretlerinin yanında sanat, zanaat, üretim ve temizlik gibi beşerî ihtiyaçları da karşılayacak şekilde inşa edilmiştir; yüzlerce çalışanı barındırıyordu.",
+      "hizmet": "Yolcular ve kervanlar (konaklama, dinlenme, beslenme, temizlik); hankah (medrese) ve sıbyan mektebinde eğitim görenler; arasta-bedestende dua kubbesi çevresinde toplanan esnaf; bölgeye yerleştirilen konar-göçer Türkmenler; külliye çalışanları. Ayrıca külliyenin bulunduğu bölgede halka vergi muafiyeti karşılığında DERBENDCİLİK görevi verilmiştir.",
+      "bugunNeOldu": "Külliye 6 Şubat 2023 depremlerini büyük ölçüde hasarsız atlattı ve depremzedelere yaklaşık 3-4 ay boyunca hamam ve misafirhane olarak hizmet verdi (günlük yaklaşık 2.500 kişiye hizmet); ardından turizme açıldı. 2024 itibarıyla külliyede 46 işletme faaliyet göstermektedir ve külliye ziyarete açıktır (08:30-19:00, giriş ücretsiz). ÖNEMLİ NÜANS VE KAYNAK ÇELİŞKİSİ: Külliye bütünü ayakta kalmış olsa da külliyeyle ilişkili Sarı Selim Camii'nin MİNARESİ ŞEREFEDEN İTİBAREN ÇÖKMÜŞTÜR (hakemli Sadhana makalesi, 2025: 'minaret collapsed from the balcony section'). Basın kaynakları BİRBİRİYLE ÇELİŞMEKTEDİR: AA'nın 10.02.2024 tarihli haberi külliye için 'depremleri hasarsız atlattı' derken, AA'nın 23.02.2023 tarihli haberi Sarı Selim Camii minaresinin 'kısmen zarar gördüğünü' yazmaktadır. Hakemli kaynak ile 2023 tarihli saha haberi ortaklaşa minare hasarını desteklediği için 'tamamen hasarsız' ifadesi bütünüyle doğru kabul edilmemiştir. Restorasyon geçmişi: 2006 (VGM), 2011 (49 yıllık kiralama ihalesi), 2012 (İller Bankası destekli onarım), 2024 (mikro kumlama). Medrese ve sıbyan mektebine ÖZEL bir deprem hasar tespiti bulunamamıştır; külliyeye ilişkin açılış töreni ve 2025-2026 restorasyon haberi de BULUNAMAMIŞTIR.",
+      "kulliye": "Külliye; arasta (48 dükkân, 115×15 m, ortada dua kubbesi), han/kervansaray (48×40 m), tabhâne (4 oda), imaret, hamam (çifte hamam), cami, hankah/medrese (21 hücre), sıbyan mektebi (yan yana kare planlı iki küçük mekân ve oyun bahçesi), 2 çeşme, köprü, iskele-gümrük ve tersane (1568) ile iki kaleden (Payas Kalesi ve Cin Kule) oluşmaktadır. Sıbyan mektebi hamamın ılıklık bölümünün batısında yer alır.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Mehmet Fatih Müderrisoğlu, 'SOKULLU MEHMED PAŞA KÜLLİYESİ (Payas)', TDV İslâm Ansiklopedisi, c. 37, 2009, s. 364-366",
+          "url": "https://islamansiklopedisi.org.tr/sokullu-mehmed-pasa-kulliyesi--payas"
+        },
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 95-120 (SOKULLU MEHMET PAŞA CAMİİ VE KÜLLİYESİ)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Museum With No Frontiers, Discover Islamic Art — 'Sokollu Mehmed Pasha Complex'",
+          "url": "https://islamicart.museumwnf.org/database_item.php?id=monument;ISL;tr;Mon01;26;tr"
+        },
+        {
+          "kunye": "Anadolu Ajansı, 'Hatay'da Mimar Sinan'ın inşa ettiği 450 yıllık külliye yeniden turistleri ağırlıyor'",
+          "url": "https://www.aa.com.tr/tr/kultur/hatayda-mimar-sinanin-insa-ettigi-450-yillik-kulliye-yeniden-turistleri-agirliyor/3133234"
+        },
+        {
+          "kunye": "Anadolu Ajansı, 'Hatay'ın depremleri hasarsız atlatan külliyesinde 46 işletme faaliyet gösteriyor'",
+          "url": "https://www.aa.com.tr/tr/yasam/hatayin-depremleri-hasarsiz-atlatan-kulliyesinde-46-isletme-faaliyet-gosteriyor/3247647"
+        },
+        {
+          "kunye": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları', Vakıflar Dergisi, S. 43, 2015, s. 22 (Payas İskelesi ve Payas kalesinin 1567-1571'de yeniden inşası)",
+          "url": "https://acikerisim.fsm.edu.tr/xmlui/bitstream/handle/11352/2214/%c3%87akar.pdf?isAllowed=y&sequence=1"
+        }
+      ],
+      "dogrulamaNotu": "DÜZELTMELER: (1) TARİH: '1574' eksiktir — imar 1567'de başlamış, 982/1574'te büyük çapta tamamlanmış, 1580'lerin başında son halini almıştır. (2) İLÇE STATÜSÜ: TDV maddesi (2009) Payas'ı 'Dörtyol ilçesine bağlı sahil beldesi' olarak tanımlar; ancak 6360 sayılı kanunla 2012'de Payas ayrı İLÇE olmuştur. Güncel doğru konum 'Hatay ili, Payas ilçesi'dir. (3) MİMAR: Mimar Sinan atfı arşiv vesikalarına dayandırılmakla birlikte kesin belge niteliğinde değildir. BULUNAMADI: (a) Payas vakfiyesinin ARŞİV NUMARASI hiçbir erişilebilir kaynakta yoktur. (b) Vakfın gelir dağılımı (yüzde/tutar/akçe), personel kadrosu ve maaşları, imaretin niceliksel hizmet kapasitesi bulunamamıştır; bu nedenle gelirDagilimi boş bırakılmıştır. (c) Kültür Portalı'nda külliyeye ait müstakil envanter kaydı ve envanter numarası bulunamamıştır. (d) Medrese ve sıbyan mektebine özel deprem hasar tespiti yoktur. (e) Medresenin ders programı ve müderris kadrosu bilgisi erişilen kaynaklarda yer almamaktadır. AÇIK UÇ: Payas vakfiyesini ayrıntılı inceleyen bir lisansüstü tezi bulunduğu tespit edilmiş (tezara.org/theses/890815) ancak tam metne erişilememiş ve künyesi doğrulanamamıştır; gelir dağılımı sorusunun cevabı büyük olasılıkla oradadır."
+    },
+    {
+      "id": "hatay-kurtulus-beyseri-hamami",
+      "ad": "Kurtuluş (Beyseri) Hamamı",
+      "sehir": "Hatay",
+      "ilce": "Antakya",
+      "tur": "Hamam",
+      "koordinat": {
+        "lat": 36.203985,
+        "lng": 36.167879
+      },
+      "koordinatKaynagi": "YAKLAŞIK: OpenStreetMap Nominatim, 'Kurtuluş, Antakya, Hatay' araması (highway/primary: Kurtuluş Caddesi); yapının kendisi değil, yakınındaki sokak/yerleşim; ilçe sınırı içinde",
+      "bani": "Hamam banisinin Bî'seri (Beyseri) olabileceği değerlendirilmektedir; Sultan Baybars'ın süt kardeşinin adının Bî'seri olduğu dikkate alınarak, Baybars'ın Antakya'da başlattığı imar faaliyetine kardeşinin de katılmış olabileceği belirtilmektedir. (Bu bir ÇIKARSAMADIR, belgeye dayanmaz.)",
+      "baniDonem": "Memlük dönemi",
+      "yapimYili": "Yapı üzerindeki kitabede hamamın ismi ve tarihi 'Beyseri 1364' olarak yazmaktadır. Ancak bu tarihin, hamamın önüne eklenen diğer binaların yapım tarihi olabileceği ihtimali de bulunmaktadır. Hamamın 1551 yılı kayıtlarında mevcut olduğu belirtilmiştir. Beyseri Hamamı üslup olarak Memlük mimarisi özelliklerini mukarnaslı kubbe geçişlerinde göstermektedir. TDV İslâm Ansiklopedisi, XVI. yüzyılda Antakya'da Meydan Hamamı, Cündî Hamamı, Beyseri Hamamı ve Mehmed Paşa vakfı bir diğer hamamın bulunduğunu kaydeder.",
+      "vakfiyeAmaci": "Antakya'nın klasik hamam vakıf geleneğine uygun olarak, mahalle halkının temizlik ihtiyacını karşılamak üzere kurulmuş bir vakıf hamamıdır. Hamamda dinî inanç gereği yapılmış bir DALMA HAVUZU bulunmaktadır; Yeni Hamam'da da aynı gerekçeyle dalma havuzuna yer verilmişken bugün muhtemelen ihtiyacın ortadan kalkması dolayısıyla bu bölüm yıkanma hücresine dönüştürülmüştür.",
+      "hizmet": "Antakya mahalle halkı (ücretli hamam hizmeti); vakıf geleneği çerçevesinde hamam gelirleriyle desteklenen hayır kurumları",
+      "bugunNeOldu": "Kurtuluş Caddesi'nin kuzeyinde, çevredeki binalar arasına sıkışmış halde bulunmaktadır; üç tarafı komşu binalarla çevrili olduğundan dış cepheleri hakkında bilgi edinilememektedir. Soyunmalık, ılıklık, sıcaklık ve külhan bölümlerinden oluşur; aydınlatma üst örtüde açılmış ışıklıklarla sağlanmıştır. 6 Şubat 2023 depremlerinde ZARAR GÖRMÜŞTÜR ve o tarihten beri KAPALIDIR; Vakıflar Genel Müdürlüğünün 34 eserlik onarım programına dahil edilmiştir (TBMM önerisi 7/39980, 05.02.2026). Hatay 2025 Yatırım Programında (21.01.2025) ANTAKYA kalemi altında 'Kurtuluş Hamamı' için 29.270.000 TL ödenek ayrılmıştır; işin süresi 2023-2028 olarak belirtilmiştir. Hasarın DERECESİ (ağır/orta/hafif) ve restorasyonun tamamlanma takvimi BULUNAMAMIŞTIR. (Genel bağlam: Vakıf Katılım Genel Müdürü, deprem sonrası değerlendirmesinde 'Kurtuluş Caddesi maalesef enkaz halinde' demiştir — bu ifade caddenin bütününe ilişkindir.)",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 466-467 (KURTULUŞ (BEYSERİ) HAMAMI)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Halil Sahillioğlu, 'ANTAKYA', TDV İslâm Ansiklopedisi, c. 3, 1991, s. 231 (XVI. yüzyılda Antakya'da Meydan Hamamı, Cündî Hamamı, Beyseri Hamamı ve Mehmed Paşa vakfı bir diğer hamam)",
+          "url": "https://islamansiklopedisi.org.tr/antakya"
+        },
+        {
+          "kunye": "T.C. Kültür ve Turizm Bakanlığı, Hatay 2025 Yatırım Programı (21.01.2025) — 'Kurtuluş Hamamı' kalemi, Antakya, 29.270.000 TL, 2023-2028",
+          "url": "https://www.vgm.gov.tr/"
+        },
+        {
+          "kunye": "Akşam, 'Hatay'daki restorasyona yol haritası' — Vakıf Katılım Genel Müdürü Mehmet Ali Akben ile röportaj, 20 Ocak 2024",
+          "url": "https://m.aksam.com.tr/cumartesi/hataydaki-restorasyona-yol-haritasi/haber-1440375"
+        },
+        {
+          "kunye": "Koordinat — YAKLAŞIK: OpenStreetMap Nominatim, 'Kurtuluş, Antakya, Hatay' araması (highway/primary: Kurtuluş Caddesi); yapının kendisi değil, yakınındaki sokak/yerleşim; ilçe sınırı içinde. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "BULUNAMADI / DİKKAT: (1) KOORDİNAT BULUNAMADI — OpenStreetMap/Nominatim'de 'Beyseri Hamamı' ve 'Kurtuluş Hamamı' kaydı yoktur; Kültür Portalı'nda da tescilli kaydına erişilememiştir. (2) Bani kesin değildir; kaynak 'olabileceğini söyleyebiliriz' ifadesiyle bir ÇIKARSAMA yapmaktadır, belge sunmamaktadır. (3) 'Beyseri 1364' kitabesinin hamamın kendisine mi yoksa önüne eklenen binalara mı ait olduğu belirsizdir. (4) AD KARIŞIKLIĞI — ÇOK ÖNEMLİ: Belen'deki Kanuni Sultan Süleyman Külliyesi'nin hamamı da kaynakta 'Kurtuluş Hamamı' başlığıyla geçmektedir. Bu kayıt, Antakya'da Kurtuluş Caddesi üzerindeki ve 'Beyseri 1364' kitabeli hamamı tanımlar; Belen'deki külliye hamamı (yapımı 1562-1566) ile KARIŞTIRILMAMALIDIR. (5) Vakfiyesine ve gelir dağılımına ilişkin hiçbir belge bulunamamıştır. (6) Vakıf Katılım kitabının içindekiler sayfasında eser 'KURTULUŞ (BEYHAN) HAMAMI' olarak yazılmışken, kitap içindeki bölüm başlığı 'KURTULUŞ (BEYSEN) HAMAMI' biçimindedir; her iki yazım da muhtemelen 'Beyseri' adının hatalı yazımıdır. 'Beyhan' adı erişilen hiçbir kaynakta geçmemektedir. (7) KURTULUŞ = BEYSERİ EŞLEŞTİRMESİ TAM DOĞRULANMAMIŞTIR: Resmî bütçe kalemi yalnızca 'Kurtuluş Hamamı' demekte ve ANTAKYA altında listelenmektedir; Vakıf Katılım kitabı ise Kurtuluş Caddesi'ndeki yapıyı 'Beyseri' kitabesiyle birlikte anmaktadır. İki kaydın AYNI YAPI olduğu kuvvetle muhtemel olmakla birlikte resmî bir belgeyle teyit edilememiştir. (8) Hasarın derecesi ve restorasyon takvimi bulunamamıştır."
+    },
+    {
+      "id": "hatay-kursunlu-han-cesmesi",
+      "ad": "Kurşunlu Han Çeşmesi",
+      "sehir": "Hatay",
+      "ilce": "Antakya",
+      "tur": "Çeşme (han-cami-çeşme manzumesi bünyesinde)",
+      "koordinat": {
+        "lat": 36.2030735,
+        "lng": 36.1638804
+      },
+      "koordinatKaynagi": "OpenStreetMap (way 1139735855, 'Kurşunlu Han (Kunduracı Çarşısı)'), Nominatim ile sorgulandı. Koordinat han yapısına aittir; çeşme hanın kuzeybatı köşesinde yer aldığı için yaklaşık değerdir.",
+      "bani": "Dersaadet Kapı Ağası Câfer Ağa",
+      "baniDonem": "Osmanlı (Kanuni Sultan Süleyman devri)",
+      "yapimYili": "1569. Kurşunlu Han'ın Sokullu ya da Köprülü Mehmet Paşa tarafından yaptırıldığına dair iddialar kaynakta desteklenmemekte; binaya KURŞUN TEMİN EDİLMESİ ve CAMİYE İMAM TAYİN EDİLMESİNE dair İKİ KAYIT, eserin Dersaadet Kapı Ağası Câfer Ağa'nın işi olduğunu ve 1569'da inşa edildiğini göstermektedir. Çakar da 'Cafer Ağa vakfına, daha sonraki yıllarda yine Antakya Şehri'nde inşa edilen bir cami (Kurşunlu Camii) de dâhil edilmiştir' demektedir.",
+      "vakfiyeAmaci": "Han, cami ve çeşmeden meydana gelen manzume, han bölgesinin ve çarşının su ihtiyacını karşılamak üzere kurulmuştur. Han bünyesindeki yapıya 1751'den itibaren sorumlu bir imam tayin edilmiştir; bu yapı, içinde minber bulunan ve Cuma namazı kılınan bir 'cami' değil, minaresi olan ve ezan okunan bir mescittir; ancak bu özellikleri dolayısıyla zamanla 'cami' olarak anılmaya başlanmıştır. Çeşme, hanın kuzeybatı köşesinde, beden duvarı içine gömülen sivri kemerli bir nişten ibarettir.",
+      "hizmet": "Han çevresindeki esnaf ve çarşı halkı; han yolcuları ve kervanlar; 1751'den itibaren cami/mescit cemaati (imam tayini). Han, konumu itibarıyla gece gündüz çok yoğun bir noktada bulunarak geniş bir nüfusu barındırmaktaydı. Çeşme, Hatay'da günümüze ulaşan 28 çeşmeden EN ESKİ TARİHLİ olanlarından biridir (16. yüzyıl sonu) ve bu yönüyle kamusal su hizmetinin en erken ayakta kalan örneklerindendir.",
+      "bugunNeOldu": "Kurşunlu Han 6 Şubat 2023 depremlerinde AĞIR HASAR ALMIŞTIR (Vakıf Katılım Genel Müdürü Mehmet Ali Akben: 'Kurşunlu Han ağır hasarlı'). İlk etapta restorasyona alınan abidevi yapılar arasındadır. Restorasyon çalışmaları sürmektedir; Hatay Valisi Mustafa Masatlı 1 Mart 2026'da restorasyonu süren tarihi yapıları yerinde incelemiştir. BÜTÇE: Hatay 2025 Yatırım Programında (21.01.2025) Kurşunlu Han için 105.000.000 TL ödenek ayrılmıştır; işin süresi 2023-2028'dir. 2025 yılında açılması planlanmış ancak bu hedef tutmamıştır; açılış tarihi BULUNAMAMIŞTIR. Çeşme ile han arasında malzeme türü, derz ve üslup açısından bir uyumsuzluk bulunmaması, çeşmenin 16. yüzyılda hanla birlikte inşa edildiğini düşündürmektedir.",
+      "kulliye": "Kurşunlu Han manzumesi: han (iki katlı, üç kapılı; alt katı sokaklara bakan dükkânlarla çevrili, iç avlu etrafında sıralanan odalar; doğu kanatta çift kapıyla girilen çapraz tonozlu ahır), cami/mescit (hanın güneydoğu köşesinde, kare planlı, tek kubbeyle örtülü harim ve kuzey-batı revaklı son cemaat yeri, şemsiye örtülü kısa gövdeli kalın minare) ve çeşme. Parsel: Hatay - Antakya 5. Mıntıka 260 parsel.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": "Hatay - Antakya 5. Mıntıka 260 parsel (vakıf taşınmaz kaydı; vakfiye arşiv numarası DEĞİLDİR)",
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 468-473 (KURŞUNLU HAN) ve s. 62 (çeşmelerin tarihlendirilmesi)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları', Vakıflar Dergisi, S. 43, 2015, s. 22",
+          "url": "https://acikerisim.fsm.edu.tr/xmlui/bitstream/handle/11352/2214/%c3%87akar.pdf?isAllowed=y&sequence=1"
+        },
+        {
+          "kunye": "Halil Sahillioğlu, 'ANTAKYA', TDV İslâm Ansiklopedisi, c. 3, 1991 (Hân-ı Sebîl ve Kapıağası Câfer Ağa Muallimhânesi)",
+          "url": "https://islamansiklopedisi.org.tr/antakya"
+        },
+        {
+          "kunye": "Akşam, 'Hatay'daki restorasyona yol haritası' — Vakıf Katılım Genel Müdürü Mehmet Ali Akben ile röportaj, 20 Ocak 2024 (deprem hasar listesi)",
+          "url": "https://m.aksam.com.tr/cumartesi/hataydaki-restorasyona-yol-haritasi/haber-1440375"
+        },
+        {
+          "kunye": "Habertürk, 'Hatay Valisi Mustafa Masatlı, restorasyonu süren tarihi yapıları inceledi'",
+          "url": "https://www.haberturk.com/hatay-haberleri/40703310-hatay-valisi-mustafa-masatli-restorasyonu-suren-tarihi-yapilari-inceledi"
+        }
+      ],
+      "dogrulamaNotu": "ÖNEMLİ NOT: Vakıf Katılım kitabı, Hatay'da günümüze ulaşan 28 çeşmeden EN ESKİ TARİHLİ olanlarının 16. yüzyıl sonundan Payas Sokullu Külliyesi'ndeki iki çeşme ile KURŞUNLU HAN'DAKİ ÇEŞME olduğunu belirtmektedir. BULUNAMADI: (1) Çeşmenin kendine ait bir VAKFİYE ARŞİV NUMARASI bulunamamıştır; 1569 tarihi ve Câfer Ağa atfı HANIN tamamına ilişkin kayıtlara dayanır, doğrudan çeşmeye değil. (2) Çeşmenin kitabesi bulunup bulunmadığı kaynakta belirtilmemiştir. (3) Gelir dağılımı belgesi bulunamamıştır. (4) Restorasyonun tamamlanma tarihi doğrulanamamıştır. ÖNEMLİ ÇIKARSAMA UYARISI: TDV İslâm Ansiklopedisi'ndeki 'Hân-ı Sebîl'in Câfer Ağa vakfı olduğu bilgisi ile Kurşunlu Han'ın AYNI YAPI olup olmadığı HİÇBİR KAYNAKTA AÇIKÇA YAZMAMAKTADIR; 'Hân-ı Sebîl' adı erişilen kaynakların hiçbirinde geçmemektedir. Kurşunlu Han = Hân-ı Sebîl eşitliği DOĞRULANMIŞ OLGU DEĞİL, yalnızca bir ÇIKARSAMADIR ve bu veri setine olgu olarak dahil edilmemiştir."
+    },
+    {
+      "id": "hatay-beyazid-i-bestami-turbesi-ve-tekkesi",
+      "ad": "Bâyezîd-i Bistâmî Türbesi ve Tekkesi",
+      "sehir": "Hatay",
+      "ilce": "Kırıkhan",
+      "tur": "Türbe ve tekke/zaviye (cami-türbe, çilehane ve medrese hücreleri)",
+      "koordinat": {
+        "lat": 36.5318446,
+        "lng": 36.3650089
+      },
+      "koordinatKaynagi": "OpenStreetMap (node 9551838476, 'Beyazıd-ı Bestami Türbesi'), Nominatim ile sorgulandı",
+      "bani": "Eski Rumeli Beylerbeyi Mustafa Şevki Paşa (Hatay Devleti'nin ilk ve tek Cumhurbaşkanı Tayfur Sökmen'in babası)",
+      "baniDonem": "Osmanlı (son dönem) / 19. yüzyıl",
+      "yapimYili": "1890",
+      "vakfiyeAmaci": "Meşhur vahdet-i vücutçu mutasavvıf Bâyezîd-i Bistâmî (Ebû Yezîd Tayfûr el-Bistâmî, 9. yüzyıl; vefat M. 848 veya 875) adına yaptırılmıştır. Yapı, 'Antakya ve çevresinde günümüze kadar ulaşan, hakkında en çok bilgi sahibi olunan TEKKE' olma özelliğini taşır. Dışa kapalı bir ÇİLEHANESİ bulunmaktadır; tekke/zaviye geleneği çerçevesinde hem ziyaret hem de tasavvufî çile ve ibadet mekânı olarak kurulmuştur.",
+      "hizmet": "Bölge halkının en çok ziyaret ettiği mekânlardan biri; dervişler ve mutasavvıflar (çilehane); medrese hücrelerinde eğitim görenler; bölgenin önemli inanç ve kültür merkezi olarak ziyaretçiler. Yapıdaki sandukalardan biri banisi Mustafa Şevki Paşa'ya, diğeri Bâyezîd-i Bistâmî'nin MAKAMINA aittir.",
+      "bugunNeOldu": "6 Şubat 2023 depremlerinde AĞIR HASAR GÖRDÜ. Vakıflar Genel Müdürlüğü restorasyon çalışmalarını TAMAMLADI ve türbe 24 TEMMUZ 2026'da düzenlenen programla ZİYARETE AÇILDI. Restorasyon kapsamında: türbe ve mescit bölümleri enjeksiyon ve TRM uygulamalarıyla güçlendirildi, taş tamamlama imalatları yapıldı; DEPREMDE YIKILAN MEDRESE, ONAYLI PROJESİNE UYGUN OLARAK YENİDEN İNŞA EDİLDİ; türbe ve medresenin ahşap doğrama ve döşemeleri ile WC birimlerindeki seramik imalatları tamamlandı; su kemeri, kale duvarları ve kaya kütleleri güçlendirildi, istinat duvarı inşa edildi; peyzaj ve yol düzenlemeleri tamamlandı. (AA'nın 3 Şubat 2026 tarihli haberinde türbe, restorasyonu 'hâlâ süren' yapılar arasında sayılmıştır; bu, restorasyonun 2026 başında devam ettiğini ve Temmuz 2026'da tamamlandığını gösterir.)",
+      "kulliye": "Cami-türbe (dikdörtgen giriş mekânı + beşik tonozla örtülü tek sahınlı harim, at nalı kemerli mihrap), dışa kapalı çilehane, beş hücreli medrese (üç hücre ikişer pencereli, iki hücre tek pencereli; beşik tonoz örtülü; batıdaki hücreye eyvan türü taç kapıdan girilir) ve hazire. Yapı, tarihî Darb-ı Sak (Darbısak) Kalesi'nin bulunduğu tepenin ovaya bakan güney yamacındadır.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Atayurt Gazetesi, 'Bâyezîd-i Bistâmî Türbesi yeniden ziyaretçileriyle buluşacak, Hatay'daki Bâyezîd-i Bistâmî Türbesi ayağa kaldırıldı', 23 Temmuz 2026",
+          "url": "https://atayurtgazetesi.com.tr/bayezid-i-bistami-turbesi-yeniden-ziyaretcileriyle-bulusacak-hataydaki-bayezid-i-bistami-turbesi-ayaga-kaldirildi/"
+        },
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 420-423 (BEYAZID-I BESTAMİ TÜRBESİ)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Anadolu Ajansı, 'Hatay'ın hasar gören vakıf eserleri restorasyon ve rekonstrüksiyonla ayağa kaldırılıyor', 3 Şubat 2026",
+          "url": "https://www.aa.com.tr/tr/6-subat-depremlerinin-ucuncu-yili/hatayin-hasar-goren-vakif-eserleri-restorasyon-ve-rekonstruksiyonla-ayaga-kaldiriliyor/3818670"
+        }
+      ],
+      "dogrulamaNotu": "MAKAM/TÜRBE AYRIMI — İKİ BAĞIMSIZ KAYNAKLA DOĞRULANDI: Vakıf Katılım kitabı 'Beyazıd-ı Bestami'nin doğduğu şehirde vefat ettiği ve vefatının gerçekleştiği yere defnedildiği sabittir' der; Atayurt Gazetesi de 'asıl kabrinin İran'ın Bistam kentinde olduğu, Kırıkhan'daki yapının ise onun adına yapılmış bir MAKAM TÜRBESİ olarak kabul edildiği'ni yazar. Dolayısıyla buradaki yapı GERÇEK MEZAR DEĞİL, MAKAM'dır. BULUNAMADI: (1) Vakfiye arşiv numarası bulunamamıştır. (2) Gelir dağılımı belgesi bulunamamıştır. (3) Tekkenin bağlı olduğu tarikat silsilesi ve şeyh listesi erişilen kaynaklarda yer almamaktadır. (4) Medresenin ders programı ve talebe sayısı bilinmemektedir. (5) TDV İslâm Ansiklopedisi ve Kültür Portalı'nda bu yapıya ait ayrı bir madde/kayıt bulunamamıştır. (6) Deprem öncesi ve sonrasına ait resmî teknik hasar raporu görülmemiştir."
+    },
+    {
+      "id": "hatay-kanuni-sultan-suleyman-kervansarayi",
+      "ad": "Kanuni Sultan Süleyman Kervansarayı (Belen Menzil Külliyesi)",
+      "sehir": "Hatay",
+      "ilce": "Belen",
+      "tur": "Han/kervansaray (menzil külliyesi: kervansaray, cami ve hamam)",
+      "koordinat": null,
+      "koordinatKaynagi": null,
+      "bani": "Kanuni Sultan Süleyman",
+      "baniDonem": "Osmanlı (Kanuni Sultan Süleyman devri)",
+      "yapimYili": "Kervansaray H. 957 (M. 1550); cami H. 960 (M. 1553); hamam 1562-1566 arası. Külliye yapıları 1550 ile 1566 yılları arasında sırasıyla kervansaray, cami ve hamam olarak birkaç sene arayla yapılmıştır. Hamam, külliyenin EN SON inşa edilen binasıdır; bu, bütün Selçuklu ve Osmanlı külliyelerinde ilk yapılan binanın hamam olduğu yönündeki genel kabule aykırıdır.",
+      "vakfiyeAmaci": "İstanbul–Şam–Hicaz şehirleri ile kervan yollarının emniyetini sağlamak, civar halkı daha geniş maddi-manevi imkânlara kavuşturmak, devletle bütünleştirmek ve İstanbul kültürü ile diğer şehir kültürlerini tanıştırmak için yapılmış menzil kervansaraylarından biridir. Belen geçidi eşkıya yatağı olması sebebiyle tüccar için oldukça emniyetsiz bir yerdi; Kanuni Sultan Süleyman burada bir HAN ve İMARET inşa ederek yolun emniyetini sağlamak istemiştir.",
+      "hizmet": "Yolcular, tüccarlar ve kervanlar (konaklama, dinlenme, beslenme); Belen Kasabası'nın yerli ve perakende halkı — bu halk DERVENDCİ yapılmış ve hizmetlerine karşılık olarak AVÂRIZ VERGİSİ İLE DİĞER ÖRFÎ VERGİLERDEN MUAF tutulmuştur. Belen'in kurulması ve burada han ve imaretin meydana getirilmesi Antakya ticaretini de olumlu yönde etkilemiş, Debbûs Mahallesi'nde bir han (Sabun Hanı) inşa edilmiştir. 1678'de kasabanın yedi mahallesi ile 380'i Müslüman ve 255'i Hıristiyan olmak üzere 635 yetişkin erkek nüfusu vardı.",
+      "bugunNeOldu": "6 Şubat 2023 depremlerinden AZ HASARLA KURTULMUŞTUR. Kervansaray daha önce 2004 yılında Vakıflar Genel Müdürlüğü tarafından restore edilmiştir. Eski taç kapıdan kalan orijinal tek unsur, birkaç parçaya bölündükten sonra yanlış şekilde birleştirildiği için yanlış okunan kitabesidir; eserin H. 957 (M. 1550) yılında Kanuni'nin emriyle inşa edildiğini belirten DÖRT SATIRLIK KİTABE ilk kez 2002 yılında Prof. Dr. Nusret Çam tarafından doğru okunarak 2019 tarihinde literatüre girmiştir. Kervansaray yukarıdan tepe ışıklıkları ve duvarlardaki üstlük mazgal pencerelerle aydınlatılmaktadır. Külliyenin deprem sonrası onarım ihtiyacı ve restorasyon takvimi doğrulanamamıştır.",
+      "kulliye": "Kervansaray, cami ve hamamdan (Kurtuluş Hamamı, yapımı 1562-1566) meydana gelmektedir. Arazinin oldukça engebeli olması sebebiyle külliye, Payas'taki kadar büyük ve teferruatlı yapılmamıştır. Kervansarayın yakınında bir 'Han Harabesi' de bulunmaktadır; bunun kervansarayın yardımcı bölümü olarak yapıldığı belirtilmektedir. Kervansaray planı: ortada iki sıra halinde doğu-batı doğrultusunda sıralanan dört ayağın taşıdığı çapraz tonoz örtülü kapalı mekân; boyuna dört, enine üç sahın; girişin iki yanında ikişerli yerleştirilmiş ve kubbeyle örtülmüş DÖRT oda.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": "BOA, KK, Mevkûfat 2684, s. 39b (Belen halkının derbendci yapılması ve vergi muafiyetine ilişkin kayıt; vakfiye arşiv numarası DEĞİLDİR)",
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 139-158 (KANUNİ SULTAN SÜLEYMAN KERVANSARAYI)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Enver Çakar, '16. Yüzyılda Antakya Vakıfları', Vakıflar Dergisi, S. 43, 2015, s. 21-22 (Belen'in kuruluşu, Kanuni'nin han ve imaret inşası, derbendci muafiyeti)",
+          "url": "https://acikerisim.fsm.edu.tr/xmlui/bitstream/handle/11352/2214/%c3%87akar.pdf?isAllowed=y&sequence=1"
+        },
+        {
+          "kunye": "Yusuf Halaçoğlu, 'Belen' maddesi (Çakar 2015 içinde atıf: Halaçoğlu 1992: 403 — Belen'de 1551 yılında bir han ve imaretin yanı sıra bir cami ve bir hamam da inşa edilmiştir)",
+          "url": "https://acikerisim.fsm.edu.tr/xmlui/bitstream/handle/11352/2214/%c3%87akar.pdf?isAllowed=y&sequence=1"
+        },
+        {
+          "kunye": "Diyanet Haber, 'Hatay'daki tarihi taş yapılar ve Belen'deki Türk Bayraklı Heykel depremden etkilenmedi', 6 Mart 2023",
+          "url": "https://www.diyanethaber.com.tr/hataydaki-tarihi-tas-yapilar-ve-belendeki-turk-bayrakli-heykel-depremden-etkilenmedi"
+        }
+      ],
+      "dogrulamaNotu": "BULUNAMADI / DİKKAT: (1) KOORDİNAT BULUNAMADI — OpenStreetMap/Nominatim'de Belen kervansarayına ait kayıt bulunamadı; Kültür Portalı ve TDV'de de resmî koordinat verilmemiştir. (2) VAKFİYE ARŞİV NUMARASI bulunamamıştır; verilen BOA numarası vakfiyeye değil, Belen halkının derbendci yapılmasına ve vergi muafiyetine ilişkin Mevkûfat kaydına aittir. (3) Külliyenin gelir dağılımı belgesi bulunamamıştır. (4) MİMAR KONUSUNDA İHTİLAF: Vakıf Katılım kitabı, Tuhfetü'l-Mimarîn'de Payas'taki külliyenin mimarının Koca Sinan gösterildiğini, ancak bazı sanat tarihçilerinin yapının mimarının Sinan olamayacağını söylediğini belirtir; kitap ayrıca Belen kervansarayının işçilik ve tezyinatının 'banisinin Muhteşem Süleyman, mimarının da Koca Sinan olması ile bağdaşamayacak kadar sade' olduğunu yazar. Bu nedenle mimar atfı belirsizdir. (5) Hamam kitabesindeki tarihin son rakamı tam okunamamaktadır; bu nedenle 1562-1566 aralığı verilmektedir. (6) Kervansaraydaki toplam oda sayısı kaynakta net olarak verilmemektedir. (7) Külliyenin deprem sonrası onarım takvimi ve resmî hasar tespit raporu doğrulanamamıştır; 'az hasarla kurtuldu' bilgisi basın kaynaklıdır."
+    },
+    {
+      "id": "hatay-ulu-camii-ve-kulliyesi",
+      "ad": "Ulu Camii ve Külliyesi (Antakya)",
+      "sehir": "Hatay",
+      "ilce": "Antakya",
+      "tur": "Cami ve külliye (medrese, yazlık mescit, şadırvan, türbeler, çeşme, imaret, vakıf dükkânlar)",
+      "koordinat": {
+        "lat": 36.201913,
+        "lng": 36.161998
+      },
+      "koordinatKaynagi": "OpenStreetMap Nominatim, 'Ulu Camii, Antakya' araması (amenity/place_of_worship: Antakya Ulu Camii); ilçe sınırı içinde doğrulandı",
+      "bani": "Kesin değil; minare kaidesindeki kitabe Memlük Sultanı Baybars dönemine aittir.",
+      "baniDonem": "Memlük dönemi (XIII. yüzyıl), sonraki dönemlerde eklemeler",
+      "yapimYili": "Kesin yapılış tarihi bilinmez; minare kaidesindeki satrançlı kûfî kitabe H. 670 / M. 1271 tarihlidir. Sanat tarihçileri eseri XIII. yüzyılın ikinci yarısının ortalarına tarihler.",
+      "vakfiyeAmaci": "Şehrin Müslümanlarının cuma namazını birlikte kılması için yapılan büyük cami; külliyede imaret ve vakıf dükkânlar bulunur. Envanter bir vakfiye metni vermez.",
+      "hizmet": "Antakya halkının cuma ve vakit namazları; medrese öğrencileri; imaret.",
+      "bugunNeOldu": "Envanter caminin 1705, 1791, 1835, 1849 ve 1876'daki onarımlarını ve 1986 ile 2002'de külliyenin bir bütün olarak Vakıflar Genel Müdürlüğü tarafından restore edildiğini bildirir. Envanter 6 Şubat 2023 depremleri sonrasındaki durumu bildirmez; güncel durum doğrulanmamıştır.",
+      "kulliye": "Cami, medrese, yazlık mescit, şadırvan, iki türbe, çeşme, imaret ve vakıf dükkânlar. Avlunun doğu ve kuzeyinde medrese odaları, güneyinde cami vardır; ikinci avluda iki türbe ve imaret bulunur.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 74-95 (ULU CAMİİ VE KÜLLİYESİ)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Ulu Camii, Antakya' araması (amenity/place_of_worship: Antakya Ulu Camii); ilçe sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Kitabedeki 1271 tarihi Baybars dönemine işaret eder; Baybars'ın Antakya'ya 1268'de hâkim olduğu envanterde belirtilir. Harimin doğu ve batı bölümleri arasındaki farklar yapının farklı dönemlerde yapıldığını gösterir. 2023 depremi sonrası durum doğrulanmamıştır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "hatay-senkoy-ahmet-kusayri-camii",
+      "ad": "Şenköy Ahmet Kusayri Camii",
+      "sehir": "Hatay",
+      "ilce": null,
+      "tur": "Cami (zaviye ve türbe ile)",
+      "koordinat": {
+        "lat": 36.046028,
+        "lng": 36.14498
+      },
+      "koordinatKaynagi": "OpenStreetMap Nominatim, 'Ahmet Kuseyri Camii' araması (amenity/place_of_worship: Şeyh Ahmet Kuseyri Camii); il sınırı içinde doğrulandı",
+      "bani": "Kesin değil. Külliye adını Halveti dervişi Ahmed Kusayri'den (öl. 1549) alır.",
+      "baniDonem": "Osmanlı",
+      "yapimYili": "En erken tarihli kitabe türbedeki üç satırlık Arapça kitabedir (1602'ye ait olduğu kabul edilir); caminin 1714 ve 1785'te onarıldığı kitabelerden anlaşılır.",
+      "vakfiyeAmaci": "Envanter bir vakfiye metni vermez. Rivayetlere göre Ahmed Kusayri memleketine dönünce yollar, medreseler, mescitler ve çeşmeler yaptırmıştır; Altınözü Kuseyr Çayı üzerindeki köprü de bunlar arasında sayılır.",
+      "hizmet": "Şenköy halkının ibadeti; zaviye ve türbe ziyaretçileri.",
+      "bugunNeOldu": "Antakya'nın 35 km güneyindeki Şenköy'de, meyilli arazide cami, zaviye ve türbeden oluşur. Minarenin yıkılan gövdesi 1957'de yeniden yapılmıştır. Envanter 6 Şubat 2023 depremleri sonrasındaki durumu bildirmez; güncel durum doğrulanmamıştır.",
+      "kulliye": "Cami, zaviye ve türbe.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 326-333 (ŞENKÖY AHMET KUSAYRİ CAMİİ)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Koordinat — OpenStreetMap Nominatim, 'Ahmet Kuseyri Camii' araması (amenity/place_of_worship: Şeyh Ahmet Kuseyri Camii); il sınırı içinde doğrulandı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Ahmed Kusayri'nin Kanuni ile görüştüğü ve eserler yaptırdığı bilgileri envanterde 'rivayete göre' ifadesiyle verilir. Envanter ilçeyi belirtmez. 2023 depremi sonrası durum doğrulanmamıştır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "hatay-yogunoluk-ermeni-kilisesi",
+      "ad": "Yoğunoluk Ermeni Kilisesi",
+      "sehir": "Hatay",
+      "ilce": "Samandağ",
+      "tur": "Kilise",
+      "koordinat": {
+        "lat": 36.137271,
+        "lng": 35.9754
+      },
+      "koordinatKaynagi": "YAKLAŞIK: OpenStreetMap Nominatim, 'Yoğunoluk, Samandağ' araması (place/village: Yoğunoluk); yapının kendisi değil, yakınındaki sokak/yerleşim; ilçe sınırı içinde",
+      "bani": "Envanter banisini belirtmez.",
+      "baniDonem": "Osmanlı (1774)",
+      "yapimYili": "Güney girişindeki kitabeye göre 1774'te küçük bir cemaat kilisesi olarak inşa edilmiştir.",
+      "vakfiyeAmaci": "Envanter bir vakfiye metni vermez.",
+      "hizmet": "Yoğunoluk köyündeki Ermeni cemaati.",
+      "bugunNeOldu": "1900'lü yıllarda bölgedeki Ermeni vatandaşların çeşitli yerlere dağılmasıyla cemaati kalmamış; köydeki Müslümanlar 1940'ta üzerine kiremit çatı ekleyerek yapıyı camiye dönüştürmüştür. 1990'da köy halkı kendi bütçesiyle kilisenin tam üstüne betonarme bir cami yapmıştır; envantere göre bu cami alttaki kilise için yapısal bir tehdit oluşturmamaktadır. Kilisenin zemininde büyük tahribat vardır, kuzey cephesi toprak altında kalmıştır. Envanter 6 Şubat 2023 depremleri sonrasındaki durumu bildirmez; güncel durum doğrulanmamıştır.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 452-455 (YOĞUNOLUK ERMENİ KİLİSESİ)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Koordinat — YAKLAŞIK: OpenStreetMap Nominatim, 'Yoğunoluk, Samandağ' araması (place/village: Yoğunoluk); yapının kendisi değil, yakınındaki sokak/yerleşim; ilçe sınırı içinde. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Kilise 280 m², üstteki cami 177 m²'dir; üç nefli kilise doğu-batı yönündedir. Derste olaylar envanterdeki ifadelerle, yorum katılmadan aktarılmıştır. 2023 depremi sonrası durum doğrulanmamıştır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "hatay-meydan-camii-ve-kulliyesi",
+      "ad": "Meydan Camii ve Külliyesi",
+      "sehir": "Hatay",
+      "ilce": "Antakya",
+      "tur": "Cami ve külliye (şadırvan, medrese, muvakkithane)",
+      "koordinat": {
+        "lat": 36.202745,
+        "lng": 36.162865
+      },
+      "koordinatKaynagi": "YAKLAŞIK: OpenStreetMap Nominatim, 'Meydan Camii, Antakya' araması yapının kendisini değil, yanındaki Antakya Uzun Çarşı'yı buldu",
+      "bani": "Envanter banisini belirtmez.",
+      "baniDonem": "Osmanlı",
+      "yapimYili": "Kesin yapılış tarihi bilinmez; yakınındaki aynı adlı hamamın 1527 tarihli Osmanlı sayımında geçmesi nedeniyle XVI. yüzyıla tarihlenmek istenir. Kesin bilinen, 1878'de esaslı bir onarım gördüğüdür.",
+      "vakfiyeAmaci": "Envanter bir vakfiye metni vermez. Şadırvanı, kitabesine göre 1906'da adı belirtilmeyen bir hayırsever yaptırmıştır.",
+      "hizmet": "Mahalle halkının ibadeti; medrese öğrencileri (yedi oda ve bir derslik); muvakkithane.",
+      "bugunNeOldu": "Muvakkithane olarak yapılan küçük mekân envanterin yazıldığı dönemde kitap satış yeri olarak kullanılıyordu. Envanter 6 Şubat 2023 depremleri sonrasındaki durumu bildirmez; güncel durum doğrulanmamıştır.",
+      "kulliye": "Cami, şadırvan, medrese odaları ve muvakkithane; hepsi ortadaki ağaçlı avlunun içindedir. Doğudaki eyvan biçimli kapının üstünde yuvarlak gövdeli, şemsiye külahlı minare yükselir.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 122-138 (MEYDAN CAMİİ VE KÜLLİYESİ)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Koordinat — YAKLAŞIK: OpenStreetMap Nominatim, 'Meydan Camii, Antakya' araması yapının kendisini değil, yanındaki Antakya Uzun Çarşı'yı buldu. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Antakya camilerinin çoğunun aksine son cemaat yerinde mihrabiye yoktur. 2023 depremi sonrası durum doğrulanmamıştır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "hatay-kantara-camii",
+      "ad": "Kantara Camii",
+      "sehir": "Hatay",
+      "ilce": "Antakya",
+      "tur": "Cami (medrese odaları ile)",
+      "koordinat": {
+        "lat": 36.198795,
+        "lng": 36.166644
+      },
+      "koordinatKaynagi": "YAKLAŞIK: OpenStreetMap Nominatim, 'Kantara, Antakya' araması (semt merkezi); cami araması başka bir camiyi (Ağca Camii) döndürdüğü için kullanılmadı",
+      "bani": "Mimarı, banisi ve inşa tarihi hakkında bilgi veren kitabe yoktur.",
+      "baniDonem": "Osmanlı",
+      "yapimYili": "Bilinmiyor. Avlu girişindeki 'Maşallah 1264' kitabesi yapının 1864'te ciddi bir onarım gördüğünü gösterir.",
+      "vakfiyeAmaci": "Envanter bir vakfiye metni vermez.",
+      "hizmet": "Mahalle halkının ibadeti; avlunun kuzeyinde medrese odaları vardır.",
+      "bugunNeOldu": "Minarenin altından geçen geçit 1906'da kapatılarak çeşmeye dönüştürülmüştür; kitabesine göre bu çeşmeyi Tevfik adlı bir hayırsever yaptırmıştır. Envanter 6 Şubat 2023 depremleri sonrasındaki durumu bildirmez; güncel durum doğrulanmamıştır.",
+      "kulliye": "Cami, medrese odaları, kapı üstündeki minare, çeşme, kuyu ve küçük bir hazire.",
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 264-271 (KANTARA CAMİİ)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        },
+        {
+          "kunye": "Koordinat — YAKLAŞIK: OpenStreetMap Nominatim, 'Kantara, Antakya' araması (semt merkezi); cami araması başka bir camiyi (Ağca Camii) döndürdüğü için kullanılmadı. Veri © OpenStreetMap katkıcıları (ODbL)",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "dogrulamaNotu": "Envanter caminin kapı üstündeki minaresi, çeşmesi ve kuyusuyla Antakya'nın bölgesel mimari geleneğine sadık olduğunu belirtir. Çeşmenin dört mısralık tarih kitabesini Sami adlı bir şair yazmıştır. 2023 depremi sonrası durum doğrulanmamıştır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    },
+    {
+      "id": "hatay-rum-ortodoks-kilisesi",
+      "ad": "Rum Ortodoks Kilisesi (Yayladağı)",
+      "sehir": "Hatay",
+      "ilce": "Yayladağı",
+      "tur": "Kilise",
+      "koordinat": null,
+      "koordinatKaynagi": null,
+      "bani": "Envanter banisini belirtmez.",
+      "baniDonem": "Osmanlı (XIX. yüzyılın son çeyreği olabilir)",
+      "yapimYili": "Kesin yapım tarihini bildiren kitabe yoktur; mimari ve bezeme özelliklerine göre XIX. yüzyılın son çeyreğinde yapılmış olabileceği düşünülür.",
+      "vakfiyeAmaci": "Envanter bir vakfiye metni vermez.",
+      "hizmet": "Yayladağı'ndaki Rum Ortodoks cemaati.",
+      "bugunNeOldu": "7,75 × 18,84 m ölçülerinde, tek nefli, dışa taşan apsisli bir kilisedir. Erken döneme ait desenli karo zemini ve ahşap tavanı özgün hâlini korur; batısında ahşap bir ara kat, kuzeybatı köşesinde vaftiz teknesi vardır. Envanter 6 Şubat 2023 depremleri sonrasındaki durumu bildirmez; güncel durum doğrulanmamıştır.",
+      "kulliye": null,
+      "gelirDagilimi": [],
+      "gelirDagilimiDurumu": "belge-bulunamadi",
+      "arsivNo": null,
+      "kaynaklar": [
+        {
+          "kunye": "Vakıf Katılım, 'Hatay İli Vakıf Eserleri', s. 450-451 (RUM ORTODOKS KİLİSESİ)",
+          "url": "https://www.vakifkatilim.com.tr/documents/KurumsalIletisim/hatay-vakif-eserleri.pdf"
+        }
+      ],
+      "dogrulamaNotu": "Yapım tarihi tahmindir. 2023 depremi sonrası durum doğrulanmamıştır. Bilgiler yalnızca Vakıf Katılım envanterinden alınmıştır."
+    }
+  ],
+  "genelDogrulamaNotlari": [
+    "DÜRÜSTLÜK BEYANI: Hiçbir bilgi uydurulmamıştır. Bir bilgi hiçbir kaynakta bulunamadığında alan null bırakılmış veya boş dizi ([]) olarak işaretlenmiş ve ilgili dogrulamaNotu alanında neyin bulunamadığı açıkça yazılmıştır.",
+    "YÖNTEM: Her bilgi için kaynak web_fetch ile AÇILIP OKUNMUŞTUR; arama motoru özetlerine güvenilmemiştir. Vakıf Katılım 'Hatay İli Vakıf Eserleri' kitabının tam metni (249 sayfalık PDF) indirilip metne dönüştürülerek doğrudan taranmıştır. Enver Çakar'ın Vakıflar Dergisi makalesinin tam metni de aynı şekilde indirilip okunmuştur. Koordinatlar OpenStreetMap/Nominatim üzerinden sorgulanmış, kaydı bulunmayanlar null bırakılmıştır. Vikipedi tek başına kaynak olarak kullanılmamıştır.",
+    "DELEGE ARAŞTIRMA ŞEFFAFLIĞI: Veri setindeki bazı kaynaklar (Akşam röportajı, Dünya Gazetesi, Anadolu Ajansı ve İhlas Haber Ajansı haberleri, Vakıflar Genel Müdürlüğü duyurusu, TDV'nin Payas maddesi) bu araştırma kapsamında görevlendirilen alt araştırma ajanları tarafından açılıp okunmuş ve birebir alıntılarla raporlanmıştır. Bunlardan Beyazıd-ı Bistâmî türbesine ilişkin Atayurt Gazetesi kaynağı ile Kültür Portalı ve Diyanet Haber kaynakları doğrudan tarafımızca da açılıp doğrulanmıştır.",
+    "ERİŞİLEMEYEN KAYNAKLAR: (1) 'Hatay Vakıfları' başlıklı akademik kitap (İksad Yayınevi, 2022) vakfiye ve muhasebe defterleri ışığında Belen kazası vakfiye/ilâm kayıtlarını içerdiği anlaşılmasına rağmen, yayıncı sitesi PDF yerine tek sayfalık bir web uygulaması kabuğu döndürdüğü için AÇILIP OKUNAMIŞTIR; bu kitaptaki vakfiye tarihleri ve arşiv numaraları veri setine DAHİL EDİLMEMİŞTİR. (2) kulturenvanteri.com Cloudflare doğrulaması nedeniyle erişilememiştir. (3) Vakıflar Genel Müdürlüğü'nün 30 Aralık 2025 tarihli haber sayfası HTML dönüştürme hatası verdiği için tam metni okunamamıştır; yalnızca başlık ve alt araştırma ajanının raporladığı alıntılar kullanılmıştır. (4) Anadolu Ajansı'nın bazı sayfaları gövde metni döndürmemektedir; bu durumlarda yalnızca başlık bilgisi kullanılmış ve bu durum ilgili kaynakta belirtilmiştir.",
+    "YÜZDE HESABI VE GELİR/GİDER AYRIMI UYARISI: gelirDagilimi alanındaki yüzdeler, kaynaklarda AKÇE cinsinden verilen kalemlerin toplama oranlanmasıyla hesaplanmıştır; kaynakların hiçbirinde doğrudan yüzde ifadesi geçmemektedir. Her kalem 'tip' alanıyla 'gelir' (vakfa para nereden geliyor: köy mahsulleri, rüsum, arazi/dükkân kirası) veya 'gider' (vakıf geliri nereye harcanıyor: personel maaşı, bakım, yakacak) olarak işaretlenmiştir. Bunun nedeni, bir vakfın gelir kaynakları ile gider kalemlerinin AYNI PARANIN İKİ YÜZÜ olmasıdır; tek dizide birleştirildiklerinde toplam %200 eder ve oran çubukları anlamsızlaşır. Kural: her 'tip' grubu KENDİ İÇİNDE %100 etmelidir. Altı eserden YALNIZCA Habib-i Neccar Camii için belgelenmiş gelir dağılımı bulunmuş ve bu kurala uygundur (gider: 77+23=100; gelir: 59+21+20=100). Diğer beş eser için belge bulunamadığından dizi boş bırakılmış ve durum 'belge-bulunamadi' olarak işaretlenmiştir; hiçbir yüzde UYDURULMAMIŞTIR.",
+    "DEPREM VERİSİNİN GÜCÜ VE DÜZELTMELER: Deprem sonrası durum bilgisi eserler arasında eşit güçte değildir. En güçlü doğrulananlar: Bâyezîd-i Bistâmî Türbesi (ağır hasar, medrese yıkıldı ve yeniden inşa edildi, restorasyon tamamlandı, 24 Temmuz 2026'da ziyarete açıldı) ve Habib-i Neccar Camii (ağır hasar, 27 Aralık 2025'te ibadete açıldı, 2 Ocak 2026'da ilk cuma namazı). Kurşunlu Han ve Kurtuluş Hamamı için hasar bilgisi resmî bütçe kalemleri ve basın kaynaklarıyla desteklenmektedir; Kurtuluş Hamamı'nda hasarın DERECESİ hâlâ bilinmemektedir ve bu, veri setinin en zayıf halkasıdır. HASSAS DÜZELTMELER: (1) Habib-i Neccar Camii'nin MİNARESİNİN YIKILDIĞI İDDİASI DOĞRULANAMAMIŞTIR; birebir minare yıkımı yalnızca Şeyh Ali Camii için doğrulanmıştır. Bu nedenle Habib-i Neccar kaydına minare yıkımı YAZILMAMIŞTIR. (2) 377 ve 109 rakamları 11 il toplamıdır; Hatay'ın payı 84 ve 33'tür. (3) Kurtuluş Hamamı resmî bütçede ANTAKYA altında listelenmektedir; 'Beyhan' adı hiçbir kaynakta geçmemektedir ve Kurtuluş = Beyseri eşleştirmesi resmî belgeyle teyit edilememiştir.",
+    "BAĞLAM NOTU: Vakıf Katılım'ın Vakıf Eserleri Envanter Projesi'nin Hatay ile başlaması ve fotoğraflama çalışmasının 6 Şubat 2023 depremlerinden hemen önce tamamlanması, bu envanteri deprem öncesi Antakya'nın son sistematik kaydı hâline getirmektedir. Envanter sergisinin depremden BİR GÜN ÖNCE (5 Şubat 2023) açılmış olması bu bağlamı ayrıca çarpıcı kılmaktadır."
+  ]
+}

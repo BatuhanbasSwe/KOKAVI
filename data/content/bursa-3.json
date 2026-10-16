@@ -1,0 +1,1843 @@
+{
+  "grup": "bursa-3",
+  "dersler": [
+    {
+      "eserId": "bursa-gazi-hudavendigar-kaplica-imareti",
+      "merak": {
+        "soru": "Bir imarete misafir gelen biri sence kaç gün kalabilirdi?",
+        "secenekler": [
+          "Üç gün. Daha fazlasına yönetici karar verirdi.",
+          "Bir hafta. Sonra yola çıkardı.",
+          "Sınır yoktu. İsteyen istediği kadar kalırdı."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi bu imaretin vakfiyesine bakalım."
+      },
+      "baglam": {
+        "baslik": "Üç günlük misafirlik",
+        "metin": "Bu imaret, Bursa'nın Çekirge semtinde. Sultan I. Murad'ın yaptırdığı yapıların bir parçası. İmaret, misafirlerin kalıp yemek yediği yerdi.\n\nBu yapıların vakfiyesi 1385'te yazıldı. İmarete âlimler, yolcular ve yoksullar gelirdi. Misafirler üç gün kalabilirdi. Daha uzun kalmalarına vakfın yöneticisi karar verirdi.\n\nMisafirler güzelce ağırlanırdı. Atlarına da bakılırdı. İmaretin iki fırını, bir ambarı ve bir ahırı vardı.",
+        "kavramlar": [
+          {
+            "ad": "İMARET",
+            "aciklama": "Misafirlerin, yolcuların ve yoksulların kalıp yemek yediği vakıf yapısı.",
+            "ornek": "Bu imarete âlimler, yolcular ve yoksullar gelirdi."
+          },
+          {
+            "ad": "MÜTEVELLİ",
+            "aciklama": "Vakfın işlerini yöneten kişi.",
+            "ornek": "Misafirin üç günden fazla kalmasına mütevelli karar verirdi."
+          },
+          {
+            "ad": "NÂZIR",
+            "aciklama": "Vakfın işlerinin doğru yapılıp yapılmadığını kontrol eden kişi.",
+            "ornek": "Bu vakıfta aşçıyı, kâtibi ve öteki görevlileri işe alan kişi nâzırdı."
+          }
+        ],
+        "kapanis": "Bu kurallar, imaretin de içinde olduğu bütün yapıların ortak vakfiyesinde yazılı. Peki misafir kaç gün kalmalı?"
+      },
+      "perspektif": {
+        "baslik": "Kazan kaynıyor",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1385. Çekirge'de vakfiye yazılıyor. İmaretin kazanı kaynıyor."
+          },
+          {
+            "kim": "KÂTİP",
+            "metin": "İmaret kime hizmet edecek? Âlimlere, din adamlarına... Bir de yoksul misafirlere."
+          },
+          {
+            "kim": "SULTAN I. MURAD",
+            "metin": "Misafirler güzelce ağırlansın. Atlarına da bakılsın. Ama kalmak için bir süre koyalım."
+          }
+        ],
+        "soru": "Misafirin kaç gün kalacağını vakfiyeye nasıl yazdırırdın?",
+        "secenekler": [
+          {
+            "metin": "Üç gün yazardım. Daha fazlasına yönetici karar verirdi.",
+            "sonuc": "Gerçekte de böyleydi! Misafir üç gün kalabilirdi. Daha uzun kalmasına mütevelli karar verirdi. Atlarına da bakılırdı.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Süre koymazdım. Herkes istediği kadar kalsın.",
+            "sonuc": "Vakfiyede üç gün yazıyor. Sınırsız kalmak yazılı değil.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Kimse kalmasın, sadece yemek dağıtılsın.",
+            "sonuc": "Bu imaret misafirlerin kalması için de kurulmuştu. Konaklamak, imaretin asıl işlerinden biriydi.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Bu imaret, Sultan I. Murad'ın Çekirge'deki yapılarından biri. Vakfiyesi 1385'te yazıldı. Misafirler üç gün kalır, atlarına bakılırdı. Eski bina yıkıldı ve 1900'lerin başında yeniden yapıldı. Bugün bir kültür merkezi.",
+        "rontgenSorusu": "Misafirin yemeğini, yatağını ve atının yemini ne karşılıyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu ekranda oran göstermez. İmarete ait müstakil bir vakfiye düzenlenmemiştir; hükümler külliyenin 1385 tarihli vakfiyesindedir ve envanter kaydındaki 'Vakfiye: Var' bilgisi bu anlamda yanıltıcı olabilir. Vakfiye metninin yayımı çevrimiçi erişilebilir olmadığı için personel ücretleri ve gelir kalemlerinin dağılımı alınamamıştır; oranlar hiçbir erişilebilir kaynakta yoktur. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "Mefail Hızlı, 'Bursa'da Selâtîn İmaretleri', Uludağ Üniversitesi İlâhiyat Fakültesi Dergisi, c. 10, sy. 1, 2001, s. 33-62 · T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'I. Murad (Hüdavendigar) İmareti', Envanter No A269 · Külliyenin vakfiyesi: M. Tayyib Gökbilgin, 'Murad I. Tesisleri ve Bursa İmareti Vakfiyesi', Türkiyat Mecmuası, c. X, İstanbul 1953, s. 217-234"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-gazi-hudavendigar-kaplica-imareti-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "İmarette çalışan biri mi, imarete ait bir yer mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "gorevli",
+                "ad": "Çalışanlar",
+                "aciklama": "Vakfiyede sayılan görevliler."
+              },
+              {
+                "id": "mal",
+                "ad": "İmarete ait yerler",
+                "aciklama": "İmaretin kendi bölümleri."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "İmam",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Hafız (Kur'an'ı ezbere bilen)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Câbî (kiraları toplayan)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Tabbâh (aşçı)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "Ferraş (temizlikçi)",
+                "kategoriId": "gorevli"
+              },
+              {
+                "metin": "İki fırın",
+                "kategoriId": "mal"
+              },
+              {
+                "metin": "Bir ambar",
+                "kategoriId": "mal"
+              },
+              {
+                "metin": "Bir ahır",
+                "kategoriId": "mal"
+              }
+            ]
+          },
+          "kaynak": "Mefail Hızlı, 'Bursa'da Selâtîn İmaretleri', Uludağ Üniversitesi İlâhiyat Fakültesi Dergisi, c. 10, sy. 1, 2001, s. 33-62"
+        },
+        {
+          "id": "bursa-gazi-hudavendigar-kaplica-imareti-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye doğru sırala.",
+            "dogruSira": [
+              "1365-66: Yapıların inşaatı başladı",
+              "1385: Vakfiye yazıldı",
+              "1400: Vakfiyenin bir kopyası çıkarıldı",
+              "1562: Padişahın bir emri kayda geçti",
+              "1904-1906: Eski bina yıkılıp yeniden yapıldı",
+              "1998-99: İmaret onarıldı",
+              "1999-2002: Turizm dairesi olarak kullanıldı"
+            ]
+          },
+          "kaynak": "Mefail Hızlı, 'Bursa'da Selâtîn İmaretleri', Uludağ Üniversitesi İlâhiyat Fakültesi Dergisi, c. 10, sy. 1, 2001, s. 33-62; T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'I. Murad (Hüdavendigar) İmareti', Envanter No A269"
+        },
+        {
+          "id": "bursa-gazi-hudavendigar-kaplica-imareti-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Vakfiyeye göre imarete gelen misafirler ___ gün kalabilirdi.",
+            "cevap": "üç",
+            "secenekler": [
+              "üç",
+              "yedi",
+              "on",
+              "bir"
+            ]
+          },
+          "kaynak": "Mefail Hızlı, 'Bursa'da Selâtîn İmaretleri', Uludağ Üniversitesi İlâhiyat Fakültesi Dergisi, c. 10, sy. 1, 2001, s. 33-62"
+        },
+        {
+          "id": "bursa-gazi-hudavendigar-kaplica-imareti-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Çekirge'de bir misafirhane. Buraya gelenler üç gün kalabilir, atlarına da bakılırdı. İki fırını, bir ambarı ve bir ahırı vardı.",
+            "secenekler": [
+              "Demirtaş (Timurtaş) Hamamı",
+              "Gazi Hüdavendigar (Kaplıca) İmareti",
+              "Irgandı Köprüsü (Kapalı Köprü)"
+            ],
+            "dogruIndex": 1
+          },
+          "kaynak": "Mefail Hızlı, 'Bursa'da Selâtîn İmaretleri', Uludağ Üniversitesi İlâhiyat Fakültesi Dergisi, c. 10, sy. 1, 2001, s. 33-62; T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'I. Murad (Hüdavendigar) İmareti', Envanter No A269"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-yildirim-bayezid-kulliyesi",
+      "merak": {
+        "soru": "600 yıl önce Bursa'da hasta olan biri nereye giderdi?",
+        "secenekler": [
+          "Vakfın yaptırdığı darüşşifaya",
+          "Hiçbir yere, hastane yoktu",
+          "Başka bir ülkeye"
+        ],
+        "kopru": "Tahminini not ettik! Yıldırım Bayezid'in külliyesinde bir darüşşifa, yani hastane vardı."
+      },
+      "baglam": {
+        "baslik": "Tepedeki külliye",
+        "metin": "Yıldırım Bayezid, 1391-1395 arasında Bursa'nın doğusundaki bir tepeye büyük bir külliye yaptırdı. Külliyede cami, medrese, hamam, imaret, han ve bir darüşşifa vardı. Çevresi sur gibi yüksek duvarlarla çevriliydi.\n\nSultan, Uludağ'dan çıkan Akçağlayan suyunu kemerlerle külliyeye getirtti. Bu kemerler 1900'lerin başındaki fotoğraflarda görülüyor.\n\nKülliyenin arsası önce Orhan Gazi Vakfı'na aitti. Bu vakfa karşılığında bir köy verildi. Sultan, vakfiyesinde bedesten ve dükkânları vakfetti. Bunların geliriyle külliye yaşayacaktı.",
+        "kavramlar": [
+          {
+            "ad": "DARÜŞŞİFA",
+            "aciklama": "Eskiden vakıfların kurduğu hastane.",
+            "ornek": "Yıldırım Bayezid Külliyesi'nde bir darüşşifa var."
+          },
+          {
+            "ad": "KÜLLİYE",
+            "aciklama": "Cami çevresinde birlikte yapılan okul, hastane, aşevi gibi yapıların hepsi.",
+            "ornek": "Yıldırım Bayezid Külliyesi'nde altıdan fazla yapı var."
+          },
+          {
+            "ad": "SU KEMERİ",
+            "aciklama": "Suyu uzak bir yerden şehre taşıyan kemerli yapı.",
+            "ornek": "Akçağlayan suyu külliyeye kemerlerle getirildi."
+          }
+        ],
+        "kapanis": "Bir külliye yüzyıllarca nasıl yaşar? Cevap vakfiyede."
+      },
+      "perspektif": {
+        "baslik": "Bir arsa, bir köy",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıldırım Bayezid külliyeyi bir tepeye yaptırmak istedi. Ama arsa Orhan Gazi Vakfı'na aitti."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Vakfiyeye göre bu arsa, Ortakızık Köyü ile takas edildi."
+          }
+        ],
+        "soru": "Takas ne demek, burada ne oldu?",
+        "secenekler": [
+          {
+            "metin": "Vakıf arsayı verdi, karşılığında bir köy aldı.",
+            "sonuc": "Doğru! Takas, bir şeyi başka bir şeyle değiştirmek demek. Orhan Gazi Vakfı hiçbir şey kaybetmedi.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Arsa vakıftan para karşılığı satın alındı.",
+            "sonuc": "Hayır. Vakfiyeye göre para değil, bir köy verildi: Ortakızık Köyü.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Arsa vakıftan karşılıksız alındı.",
+            "sonuc": "Hayır. Vakfın malı karşılıksız alınmadı; yerine bir köy verildi.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Yıldırım Bayezid Külliyesi 1391-1395'te yapıldı. İçinde cami, medrese, hamam, imaret, han ve darüşşifa vardı. Arsası bir köyle takas edildi; giderleri bedesten ve dükkânların geliriyle karşılandı.",
+        "rontgenSorusu": "Külliyenin giderleri neyle karşılanıyordu?",
+        "rontgenAciklama": "1400 tarihli vakfiyeye göre Bursa'daki 'Yeni Bedesten' ve dükkânlar gibi mülkler vakfedildi. Bu mülklerin geliri zaviye, iki medrese ve külliyenin diğer birimlerine harcanacaktı. Gelirin birimler arasında hangi oranla paylaştırıldığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 415-465 (YILDIRIM BAYEZİD KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-yildirim-bayezid-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Külliyede hangi yapı ne işe yarar? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "saglik",
+                "ad": "Sağlık ve temizlik",
+                "aciklama": "Vücudu iyileştiren ve temizleyen yapılar."
+              },
+              {
+                "id": "egitim",
+                "ad": "İbadet ve eğitim",
+                "aciklama": "Dua edilen ve okunan yapılar."
+              },
+              {
+                "id": "yolcu",
+                "ad": "Yolcu ve yiyecek",
+                "aciklama": "Konaklama ve yemek yapıları."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Darüşşifa",
+                "kategoriId": "saglik"
+              },
+              {
+                "metin": "Hamam",
+                "kategoriId": "saglik"
+              },
+              {
+                "metin": "Cami",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "Medrese",
+                "kategoriId": "egitim"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "yolcu"
+              },
+              {
+                "metin": "Han",
+                "kategoriId": "yolcu"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 415-465"
+        },
+        {
+          "id": "bursa-yildirim-bayezid-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1391-1395: Külliye yapıldı",
+              "1400: Vakfiyesi düzenlendi",
+              "2016: Medrese sağlık hizmetini bıraktı",
+              "2021-2023: Medrese onarıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 415-465"
+        },
+        {
+          "id": "bursa-yildirim-bayezid-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Eskiden vakıfların kurduğu hastaneye ___ denir.",
+            "cevap": "darüşşifa",
+            "secenekler": [
+              "darüşşifa",
+              "bedesten",
+              "kervansaray",
+              "medrese"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 415-465"
+        },
+        {
+          "id": "bursa-yildirim-bayezid-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bursa'nın doğusunda, tepede bir külliye. İçinde bir hastane var. Suyu Uludağ'dan kemerlerle getirildi. Arsası bir köyle takas edildi.",
+            "secenekler": [
+              "Yıldırım Bayezid Külliyesi",
+              "Emir Sultan Külliyesi",
+              "Orhan Bey Külliyesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 415-465"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-nilufer-hatun-imareti",
+      "merak": {
+        "soru": "Bir sultan annesi adına bir yapı yaptırdı. Sence bu yapı bugün ne olarak kullanılıyor?",
+        "secenekler": [
+          "Müze",
+          "Hastane",
+          "Okul"
+        ],
+        "kopru": "Tahminini not ettik! Bu yapı 600 yıldan uzun süredir ayakta."
+      },
+      "baglam": {
+        "baslik": "Bir annenin adı",
+        "metin": "Nilüfer Hatun İmareti İznik'te. Kapısındaki yazıya göre 1388'de yapıldı. Sultan I. Murad onu annesi Nilüfer Hatun adına yaptırdı.\n\nYapının ortasında büyük kubbeli bir salon var. İki yanında konukların kaldığı odalar bulunuyor. Önünde kemerli bir giriş bölümü var. Bu tür yapılar Osmanlı'nın ilk dönemlerinde yolculara ve konuklara hizmet ederdi.\n\n1955'te onarıldı ve İznik Müzesi oldu. Bugün adı Türk İslam Eserleri Müzesi. İçinde İznik çinileri ve eski paralar sergileniyor.",
+        "kavramlar": [
+          {
+            "ad": "İMARET",
+            "aciklama": "Vakfın kurduğu ve insanlara yemek ya da yer verdiği yapı.",
+            "ornek": "Nilüfer Hatun İmareti 1388'de yapıldı."
+          },
+          {
+            "ad": "TABHANE",
+            "aciklama": "Konukların kaldığı oda.",
+            "ornek": "İmaretin iki yanında tabhane odaları var."
+          },
+          {
+            "ad": "MÜZE",
+            "aciklama": "Eski eserlerin saklanıp sergilendiği yer.",
+            "ornek": "İmaret bugün bir müze."
+          }
+        ],
+        "kapanis": "Bir yapı yüzyıllar sonra yeni bir işe nasıl başlar?"
+      },
+      "perspektif": {
+        "baslik": "İmaretten müzeye",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Bu yapı bir zamanlar konuklara hizmet eden bir imaretti."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "1955'teki onarımdan sonra İznik Müzesi oldu. Bugün İznik çinileri burada sergileniyor."
+          }
+        ],
+        "soru": "Eski bir imaretin müze olmasının iyi yanı ne?",
+        "secenekler": [
+          {
+            "metin": "Yapı korunur ve herkes içine girip tarihi öğrenebilir.",
+            "sonuc": "Doğru! Kullanılan bir yapının bakımı yapılır. Müze olunca hem yapı hem içindeki eserler korunur.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hiçbir yararı yok, boş kalması daha iyi.",
+            "sonuc": "Boş kalan yapı harap olur. Kullanılması onu korur.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Yapının adı değişir, başka bir şey olmaz.",
+            "sonuc": "Daha fazlası olur: Yapı onarılır ve içinde çiniler, paralar sergilenir.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Nilüfer Hatun İmareti'ni Sultan I. Murad 1388'de annesi adına yaptırdı. Konuklara hizmet eden bir imaretti. Bugün İznik'te Türk İslam Eserleri Müzesi.",
+        "rontgenSorusu": "Bu imaretin giderleri nasıl karşılanıyordu?",
+        "rontgenAciklama": "Envanter imaretin bir vakfiyesinden ya da gelir kaynaklarından söz etmez. Belge olmadığı için uygulama bu eser için gelir dağılımı göstermez. Bilinen şey, imaretin I. Murad tarafından annesi Nilüfer Hatun adına yaptırıldığıdır.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 111-123 (NİLÜFER HATUN İMARETİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-nilufer-hatun-imareti-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "İmaretin binası mı, bugünkü müze mi? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "bina",
+                "ad": "İmaretin binası",
+                "aciklama": "1388'den kalan yapı."
+              },
+              {
+                "id": "muze",
+                "ad": "Bugünkü müze",
+                "aciklama": "İçeride sergilenenler."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Büyük kubbeli orta salon",
+                "kategoriId": "bina"
+              },
+              {
+                "metin": "İki yandaki konuk odaları",
+                "kategoriId": "bina"
+              },
+              {
+                "metin": "Kemerli giriş bölümü",
+                "kategoriId": "bina"
+              },
+              {
+                "metin": "İznik çinileri",
+                "kategoriId": "muze"
+              },
+              {
+                "metin": "Eski paralar (sikkeler)",
+                "kategoriId": "muze"
+              },
+              {
+                "metin": "Günlük yaşamı anlatan canlandırmalar",
+                "kategoriId": "muze"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 111-123"
+        },
+        {
+          "id": "bursa-nilufer-hatun-imareti-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1388: I. Murad imareti annesi adına yaptırdı",
+              "1955: Onarılıp İznik Müzesi oldu",
+              "Bugün: Türk İslam Eserleri Müzesi"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 111-123"
+        },
+        {
+          "id": "bursa-nilufer-hatun-imareti-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Sultan I. Murad bu imareti annesi ___ Hatun adına yaptırdı.",
+            "cevap": "Nilüfer",
+            "secenekler": [
+              "Nilüfer",
+              "Mükrime",
+              "Hundi",
+              "Gülçiçek"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 111-123"
+        },
+        {
+          "id": "bursa-nilufer-hatun-imareti-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "İznik'te 1388'de yapılmış bir imaret. Bir sultan onu annesi adına yaptırdı. Bugün içinde İznik çinileri sergilenen bir müze.",
+            "secenekler": [
+              "Nilüfer Hatun İmareti",
+              "Eşrefzâde Camii, Minaresi ve Haziresi",
+              "İshak Paşa Külliyesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 111-123"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-ii-murad-kulliyesi",
+      "merak": {
+        "soru": "Sultan II. Murad külliyesini nereye yaptırdı?",
+        "secenekler": [
+          "Çoğunlukla gayrimüslimlerin yaşadığı bir mahalleye",
+          "Sarayının bahçesine",
+          "Şehrin dışında ıssız bir yere"
+        ],
+        "kopru": "Tahminini not ettik! Bu seçim, vakfın kime hizmet ettiğini gösteriyor."
+      },
+      "baglam": {
+        "baslik": "Herkese açık külliye",
+        "metin": "Muradiye Külliyesi'ni Sultan II. Murad yaptırdı. İnşaat 1425'te başladı. Külliyede cami, medrese, hamam, imaret, sıbyan mektebi ve çeşme var. Bahçesinde de on üç türbe bulunuyor.\n\nSultan, 1430'daki vakfiyesiyle külliyenin giderleri için birçok mülk vakfetti. Bu yüzden ona \"Ebu'l-vakf\", yani vakıfların babası dendi.\n\nKülliye, çoğunlukla Müslüman olmayanların yaşadığı Simaviler Mahallesi'ne yapıldı. Envantere göre bu, Osmanlı'nın yardım ederken din farkı gözetmediğini gösteriyor. Mahalle de adını bu külliyeden aldı: Muradiye.",
+        "kavramlar": [
+          {
+            "ad": "SIBYAN MEKTEBİ",
+            "aciklama": "Küçük çocukların okuduğu ilkokul.",
+            "ornek": "Muradiye Külliyesi'nde bir sıbyan mektebi var."
+          },
+          {
+            "ad": "GAYRİMÜSLİM",
+            "aciklama": "Müslüman olmayan kişi.",
+            "ornek": "Külliye gayrimüslimlerin yaşadığı bir mahalleye yapıldı."
+          },
+          {
+            "ad": "VAKFİYE",
+            "aciklama": "Vakfın kurallarını ve mallarını yazan belge.",
+            "ornek": "II. Murad'ın vakfiyesi 1430 tarihli."
+          }
+        ],
+        "kapanis": "600 yıllık bir imaret bugün hâlâ yardım ediyor olabilir mi?"
+      },
+      "perspektif": {
+        "baslik": "İmaretin yeni görevi",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Külliyenin imareti eskiden ihtiyacı olanlara hizmet ederdi."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "2011'de onarıldı ve engelli rehabilitasyon merkezi oldu. 2020'de ise Sosyal Yardımlaşma Vakfı onu bir giyim mağazasına dönüştürdü."
+          }
+        ],
+        "soru": "Sence bu yeni görevler imaretin eski göreviyle nasıl bağlantılı?",
+        "secenekler": [
+          {
+            "metin": "İkisi de ihtiyacı olanlara yardım ediyor.",
+            "sonuc": "Doğru! İmaret 600 yıl sonra da yardım işinde kullanılıyor. Vakıf fikri yaşamaya devam ediyor.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hiçbir bağlantı yok.",
+            "sonuc": "Bağlantı var: Hem eski imaret hem bugünkü kullanım, ihtiyacı olan insanlara hizmet ediyor.",
+            "dogruMu": false
+          },
+          {
+            "metin": "İmaret artık sadece süs için duruyor.",
+            "sonuc": "Hayır. Yapı bugün de bir sosyal yardım vakfı tarafından kullanılıyor.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Muradiye Külliyesi'ni Sultan II. Murad 1425'te yaptırmaya başladı. Gayrimüslimlerin yaşadığı bir mahalleye kuruldu. İmareti bugün de bir sosyal yardım vakfı tarafından kullanılıyor.",
+        "rontgenSorusu": "Külliyenin giderleri neyle karşılanıyordu?",
+        "rontgenAciklama": "Sultan II. Murad, 14 Temmuz 1430 tarihli vakfiyesinde külliyenin giderleri için birçok mülk vakfetti. Bu mülklerin geliri cami, medrese, imaret ve mektebi yaşatıyordu. Gelirin hangi birime ne oranda gittiği envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 114-177 (II. MURAD KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-ii-murad-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Külliyede hangi yapı kime hizmet eder? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "cocuk",
+                "ad": "Çocuklar ve öğrenciler",
+                "aciklama": "Okuyanlar için."
+              },
+              {
+                "id": "herkes",
+                "ad": "Mahalle halkı",
+                "aciklama": "Herkes için."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Sıbyan mektebi",
+                "kategoriId": "cocuk"
+              },
+              {
+                "metin": "Medrese",
+                "kategoriId": "cocuk"
+              },
+              {
+                "metin": "Cami",
+                "kategoriId": "herkes"
+              },
+              {
+                "metin": "Hamam",
+                "kategoriId": "herkes"
+              },
+              {
+                "metin": "Çeşme",
+                "kategoriId": "herkes"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "herkes"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 114-177"
+        },
+        {
+          "id": "bursa-ii-murad-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1425: Külliyenin inşaatı başladı",
+              "1430: II. Murad vakfiyesini hazırladı",
+              "1451: II. Murad öldü ve Muradiye'ye gömüldü",
+              "2011: İmaret engelli rehabilitasyon merkezi oldu",
+              "2020: İmaret Sosyal Yardımlaşma Vakfı'nın giyim mağazası oldu"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 114-177"
+        },
+        {
+          "id": "bursa-ii-murad-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Küçük çocukların okuduğu ilkokula ___ mektebi denir.",
+            "cevap": "sıbyan",
+            "secenekler": [
+              "sıbyan",
+              "darüşşifa",
+              "bedesten",
+              "tabhane"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 114-177"
+        },
+        {
+          "id": "bursa-ii-murad-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bursa'daki son sultan külliyesi. Bahçesinde on üç türbe var. Gayrimüslimlerin yaşadığı bir mahalleye yapıldı. Yaptıran sultana 'vakıfların babası' denir.",
+            "secenekler": [
+              "II. Murad (Muradiye) Külliyesi",
+              "Yıldırım Bayezid Külliyesi",
+              "Orhan Bey Külliyesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 114-177"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-umur-bey-kulliyesi",
+      "merak": {
+        "soru": "Bir vakfiye kâğıtta kaybolabilir. Sence Umur Bey vakfiyesini korumak için ne yaptı?",
+        "secenekler": [
+          "Caminin duvarına taşa kazıttı.",
+          "Bir sandığa kilitledi.",
+          "Hiçbir şey yapmadı."
+        ],
+        "kopru": "Tahminini not ettik! Anadolu'da bunun çok az örneği var."
+      },
+      "baglam": {
+        "baslik": "Taşa yazılan vakfiye",
+        "metin": "Umur Bey, Osman Gazi'nin silah arkadaşı Aykut Alp'in torunuydu. Ankara Savaşı'nda yaralandı ve babasıyla birlikte esir düştü. Sonra Çelebi Mehmed'in yanında önemli görevler aldı. II. Murad zamanında vezir oldu.\n\nUmur Bey çok hayırsever biriydi. Vakıfları arasında 6 cami, 3 medrese, 8 hamam, 2 han, 2 kervansaray ve 1 imaret vardı. Toplam 25 yapı ve alan onun adıyla kayıtlı.\n\nBursa'daki camisinin girişinde iki büyük taş levha var. Bunlar taşa yazılmış vakfiyeler. 1454'te yazılıp duvara yerleştirildiler. Anadolu'da böyle taş vakfiyeler çok nadir.",
+        "kavramlar": [
+          {
+            "ad": "TAŞ VAKFİYE",
+            "aciklama": "Vakfın kurallarının taşa kazınarak duvara yerleştirildiği yazıt.",
+            "ornek": "Umur Bey Camii'nde iki taş vakfiye var."
+          },
+          {
+            "ad": "VEZİR",
+            "aciklama": "Padişaha yardım eden yüksek rütbeli devlet adamı.",
+            "ornek": "Umur Bey, II. Murad zamanında vezir oldu."
+          },
+          {
+            "ad": "SON CEMAAT YERİ",
+            "aciklama": "Caminin girişindeki, üstü örtülü ön bölüm.",
+            "ornek": "Taş vakfiyeler son cemaat yerinin duvarlarında."
+          }
+        ],
+        "kapanis": "Bir vakfiyeyi taşa yazmanın ne faydası olabilir?"
+      },
+      "perspektif": {
+        "baslik": "Herkesin görebileceği kurallar",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Umur Bey'in vakfiyesini Molla Hüsrev hazırladı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Aynı yıl, 1454'te, vakfiye taşa kazındı ve caminin girişine, herkesin göreceği yere yerleştirildi."
+          }
+        ],
+        "soru": "Sence vakfiyeyi caminin girişine yazmak neden iyi bir fikirdi?",
+        "secenekler": [
+          {
+            "metin": "Herkes vakfın kurallarını görebilir, kimse bunları değiştiremezdi.",
+            "sonuc": "Doğru! Taş, kâğıt gibi kaybolmaz. Kurallar herkesin gözü önünde durur.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Sadece süs olsun diye.",
+            "sonuc": "Süslü olabilir ama asıl amaç vakfın kurallarını korumak ve göstermekti.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Kâğıt bulunamadığı için.",
+            "sonuc": "Hayır. Vakfiye zaten kâğıda da yazılmıştı. Taşa yazmak onu korumak içindi.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Umur Bey, 25 yapı ve alandan oluşan büyük bir vakıf kurdu. Bursa'daki camisinin girişinde 1454'te taşa kazınmış iki vakfiye var. Anadolu'da bunun çok az örneği bulunuyor.",
+        "rontgenSorusu": "Umur Bey'in vakfında neler vardı?",
+        "rontgenAciklama": "Umur Bey'in vakfında 6 cami, 3 medrese, 8 hamam, 2 han, 2 kervansaray, 1 namazgâh, 1 imaret ve 2 mahalle vardı. Hamamlar ve hanlar gelir getirirken cami, medrese ve imaret hizmet veriyordu. Gelirin oranları envanterde yer almaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 317-337 (UMUR BEY KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-umur-bey-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Umur Bey'in vakfında: Gelir mi getirir, hizmet mi verir? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "gelir",
+                "ad": "Gelir getirir",
+                "aciklama": "Kira ya da ücret kazandırır."
+              },
+              {
+                "id": "hizmet",
+                "ad": "Hizmet verir",
+                "aciklama": "İnsanlara ücretsiz yarar sağlar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "8 hamam",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "2 han",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "6 cami",
+                "kategoriId": "hizmet"
+              },
+              {
+                "metin": "3 medrese",
+                "kategoriId": "hizmet"
+              },
+              {
+                "metin": "1 imaret",
+                "kategoriId": "hizmet"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 317-337"
+        },
+        {
+          "id": "bursa-umur-bey-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Umur Bey'in hayatını eskiden yeniye sırala.",
+            "dogruSira": [
+              "1402: Ankara Savaşı'nda yaralandı ve esir düştü",
+              "II. Murad zamanında vezir oldu",
+              "1454: Vakfiyesi taşa kazındı",
+              "1461: Umur Bey öldü"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 317-337"
+        },
+        {
+          "id": "bursa-umur-bey-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Vakfın kurallarının taşa kazınarak duvara konduğu yazıta taş ___ denir.",
+            "cevap": "vakfiye",
+            "secenekler": [
+              "vakfiye",
+              "kubbe",
+              "minare",
+              "kurna"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 317-337"
+        },
+        {
+          "id": "bursa-umur-bey-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Yıldırım'da bir cami. Girişinin iki yanındaki duvarlarda taşa yazılmış vakfiyeler var. Yaptıran vezirin 25 yapılık bir vakfı vardı.",
+            "secenekler": [
+              "Umur Bey Külliyesi",
+              "Emir Sultan Külliyesi",
+              "Hz. Üftâde Camii"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 317-337"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-dullar-evi",
+      "merak": {
+        "soru": "1916'da savaşlarda çok asker şehit oldu. Geride kalan eşleri ve çocukları için Bursa'da ne yapıldı?",
+        "secenekler": [
+          "Onlara bir yuva olsun diye bir vakıf kuruldu.",
+          "Hiçbir şey yapılmadı.",
+          "Hepsi başka şehre gönderildi."
+        ],
+        "kopru": "Tahminini not ettik! Bu vakfın binası bugün de duruyor."
+      },
+      "baglam": {
+        "baslik": "Kimsesiz kadınların yuvası",
+        "metin": "1900'lerin başında Balkan Savaşları, I. Dünya Savaşı ve Kurtuluş Savaşı oldu. Çok sayıda asker şehit düştü. Geride kalan eşleri ve çocukları barınacak yer arıyordu.\n\n1916'da Hacı Saffet Bey, Bursa'da Dullar Evi Vakfı'nı kurdu. Vakfın binasında 34 oda var. İçinde bir mutfak, bir hamam, bir bakkal ve bir simit fırını da var.\n\nBakkal ve fırın kiraya verildi. Bu kiralar vakfa gelir sağladı. Kurumun müdiresinin maaşı da bu paradan ödendi. Böylece vakıf kendi kendini yaşatabildi.",
+        "kavramlar": [
+          {
+            "ad": "ŞEHİT",
+            "aciklama": "Vatanı için savaşta hayatını kaybeden kişi.",
+            "ornek": "Vakıf, şehitlerin eşlerine yuva oldu."
+          },
+          {
+            "ad": "MÜDİRE",
+            "aciklama": "Bir kurumu yöneten kadın.",
+            "ornek": "Dullar Evi'nin müdiresinin maaşı fırının kirasından ödendi."
+          },
+          {
+            "ad": "KİRA",
+            "aciklama": "Bir yeri kullanmak için ödenen para.",
+            "ornek": "Bakkalın kirası vakfa gelir oldu."
+          }
+        ],
+        "kapanis": "Bir vakıf, dışarıdan para almadan nasıl yaşayabilir?"
+      },
+      "perspektif": {
+        "baslik": "Kendi kendini yaşatan vakıf",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Dullar Evi'nin içinde bir bakkal, bir hamurhane ve bir simit fırını vardı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Bunlar vakfa gelir sağlamak için yapılmıştı. Kurumun yönetmeliğinde 38 madde vardı; maaşların bu kiralardan ödeneceği de yazıyordu."
+          }
+        ],
+        "soru": "Sence vakfın kendi dükkânlarının olması neden önemliydi?",
+        "secenekler": [
+          {
+            "metin": "Vakıf düzenli bir gelirle yıllarca yaşayabilirdi.",
+            "sonuc": "Doğru! Vakıflar gelir getiren bir mal ile hizmet veren bir yapıyı birlikte kurar. Dullar Evi de böyleydi.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Kadınlar simit yiyebilsin diye.",
+            "sonuc": "Fırın aslında gelir için kiraya verildi. Asıl amaç vakfa düzenli para sağlamaktı.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Hiçbir önemi yoktu.",
+            "sonuc": "Çok önemliydi. Kiralar olmasa müdirenin maaşı ve binanın giderleri ödenemezdi.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Bursa Dullar Evi, 1916'da şehit eşleri ve kimsesiz kadınlar için kuruldu. Binadaki dükkân ve fırının kirası vakfı yaşattı. Bugün Alacahırka Aile Eğitim Merkezi.",
+        "rontgenSorusu": "Dullar Evi'nin geliri nereden geliyordu?",
+        "rontgenAciklama": "Binadaki bakkal dükkânı ve fırının kira gelirleri vakfa gelir sağlıyordu; yönetmeliğe göre müdirenin maaşı da bu gelirden ödeniyordu. Gelirin diğer giderlerle nasıl paylaştırıldığı envanterde yazmaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 109-113 (BURSA DULLAR EVİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-dullar-evi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Binada: Gelir mi getirir, kadınlara mı hizmet eder? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "gelir",
+                "ad": "Gelir getirir",
+                "aciklama": "Kiraya verilir."
+              },
+              {
+                "id": "hizmet",
+                "ad": "Kadınlara hizmet eder",
+                "aciklama": "Günlük yaşam için."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Bakkal dükkânı",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Simit fırını",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "34 oda",
+                "kategoriId": "hizmet"
+              },
+              {
+                "metin": "Mutfak",
+                "kategoriId": "hizmet"
+              },
+              {
+                "metin": "Hamam",
+                "kategoriId": "hizmet"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 109-113"
+        },
+        {
+          "id": "bursa-dullar-evi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "12 Temmuz 1916: Vakfiye yazıldı",
+              "12 Kasım 1916: Vakıf resmen tescil edildi",
+              "1999: Bina belediyeye verildi",
+              "Bina Alacahırka Aile Eğitim Merkezi oldu"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 109-113"
+        },
+        {
+          "id": "bursa-dullar-evi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Bir yeri kullanmak için ödenen paraya ___ denir.",
+            "cevap": "kira",
+            "secenekler": [
+              "kira",
+              "maaş",
+              "vergi",
+              "akçe"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 109-113"
+        },
+        {
+          "id": "bursa-dullar-evi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "1916'da şehit eşleri için kurulan bir vakıf binası. 34 odası, bir bakkalı ve bir simit fırını var. Bugün bir aile eğitim merkezi.",
+            "secenekler": [
+              "Bursa Dullar Evi",
+              "Nilüfer Hatun İmareti",
+              "Haraççıoğlu (Dârülkurrâ) Mektebi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 109-113"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-emir-sultan-kulliyesi",
+      "merak": {
+        "soru": "Bir külliyede çalışan 170 kişi öğle yemeğini nerede yerdi?",
+        "secenekler": [
+          "Külliyenin imaret mutfağında",
+          "Herkes evinden yemek getirirdi",
+          "Çarşıdaki lokantalarda"
+        ],
+        "kopru": "Tahminini not ettik! Bu külliyenin mutfağı çok kalabalıktı."
+      },
+      "baglam": {
+        "baslik": "Tepedeki külliye",
+        "metin": "Emir Sultan Külliyesi, Bursa'ya tepeden bakan bir yerde. Cami, imaret, türbe, hamam, mektep, kütüphane ve çeşmesi var. Bir de muvakkithane var: Namaz vakitlerinin hesaplandığı bir saat odası.\n\nCamiyi, Yıldırım Bayezid'in kızı Hundi Fatma Hatun, eşi Emîr Sultan adına yaptırdı. Emîr Sultan Buharalı bir âlimdi. 1429'da Bursa'da öldü ve buradaki türbesine gömüldü.\n\nKülliye yüzyıllar içinde farklı kişilerin eklemeleriyle büyüdü. 1600'lerin sonunda burada 170 görevli çalışıyordu. Hepsi imaret mutfağında pişen yemeklerden yiyordu.",
+        "kavramlar": [
+          {
+            "ad": "MUVAKKİTHANE",
+            "aciklama": "Namaz vakitlerinin hesaplandığı oda.",
+            "ornek": "Emir Sultan Külliyesi'nde bir muvakkithane var."
+          },
+          {
+            "ad": "İMARET",
+            "aciklama": "Vakfın yemek pişirip dağıttığı aşevi.",
+            "ornek": "Külliyenin görevlileri imarette yemek yerdi."
+          },
+          {
+            "ad": "MENKIBE",
+            "aciklama": "Bir velinin hayatı hakkında anlatılan olağanüstü hikâye.",
+            "ornek": "Hundi Hatun'un rüyası menkıbelerde anlatılır."
+          }
+        ],
+        "kapanis": "Tek bir kişi mi, birçok kişi mi? Bu vakfı kimler büyüttü?"
+      },
+      "perspektif": {
+        "baslik": "Birçok elin vakfı",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Külliyenin ilk vakfiyesi kayboldu. Ama 1470 tarihli bir vakfiye bugün de duruyor."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Bu vakfiyede Emîr Sultan, Hundi Hatun ve Fatih Sultan Mehmed'in vakıfları var. Yedi kişi daha vakfa bir şeyler eklemiş."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Köyler, bağlar, hanlar, hamamlar, değirmenler ve fırınlar vakfa gelir sağlıyordu."
+          }
+        ],
+        "soru": "Bu vakfiye bize ne öğretiyor?",
+        "secenekler": [
+          {
+            "metin": "Bir vakfı birçok kişi birlikte büyütebilir.",
+            "sonuc": "Doğru! Sultanlar, hanımlar ve tüccarlar bu vakfa ekleme yaptı. Vakıf herkesin katkısıyla büyüdü.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Vakfı sadece bir kişi kurabilir ve büyütebilir.",
+            "sonuc": "Bu vakıfta öyle olmadı. Vakfiyede on kişinin adı geçiyor.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Vakfın hiç geliri yoktu.",
+            "sonuc": "Çok geliri vardı: köyler, bağlar, hanlar, hamamlar, değirmenler ve fırınlar.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Emir Sultan Külliyesi'nin camisini Hundi Fatma Hatun, eşi Emîr Sultan adına yaptırdı. Külliye birçok kişinin katkısıyla büyüdü. 1600'lerin sonunda 170 görevli imaret mutfağında yemek yiyordu.",
+        "rontgenSorusu": "Bu vakfın geliri nereden geliyordu?",
+        "rontgenAciklama": "1470 tarihli vakfiyeye göre Bursa çevresi ile Edremit-Havran bölgesindeki köyler, bağlar, bahçeler, hanlar, hamamlar, değirmenler, evler, tuzlalar ve fırınlar vakfa gelir sağlıyordu. Vakfiye bu gelirin nasıl harcanacağını ayrıntılı yazsa da envanter oranları vermez; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 273-316 (EMİR SULTAN KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-emir-sultan-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Vakfa gelir mi getirir, külliyede hizmet mi verir? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "gelir",
+                "ad": "Gelir getirir",
+                "aciklama": "Vakfiyede sayılan gelir kaynakları."
+              },
+              {
+                "id": "hizmet",
+                "ad": "Külliyede hizmet verir",
+                "aciklama": "Külliyenin yapıları."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Değirmenler",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Tuzlalar",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "Bağlar ve bahçeler",
+                "kategoriId": "gelir"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "hizmet"
+              },
+              {
+                "metin": "Kütüphane",
+                "kategoriId": "hizmet"
+              },
+              {
+                "metin": "Muvakkithane",
+                "kategoriId": "hizmet"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 273-316"
+        },
+        {
+          "id": "bursa-emir-sultan-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1429: Emîr Sultan Bursa'da öldü",
+              "1470: Bugün elimizdeki vakfiye düzenlendi",
+              "1600'lerin sonu: Görevli sayısı 170'e ulaştı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 273-316"
+        },
+        {
+          "id": "bursa-emir-sultan-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Namaz vakitlerinin hesaplandığı odaya ___ denir.",
+            "cevap": "muvakkithane",
+            "secenekler": [
+              "muvakkithane",
+              "tabhane",
+              "darüşşifa",
+              "bedesten"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 273-316"
+        },
+        {
+          "id": "bursa-emir-sultan-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bursa'ya tepeden bakan bir külliye. Camisini bir sultan kızı, eşi adına yaptırdı. İçinde bir kütüphane ve bir muvakkithane var.",
+            "secenekler": [
+              "Emir Sultan Külliyesi",
+              "Yıldırım Bayezid Külliyesi",
+              "Umur Bey Külliyesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 273-316"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-orhan-bey-kulliyesi",
+      "merak": {
+        "soru": "Osmanlı'nın ilk külliyelerinden biri Bursa'da. Sence bugün bu külliyenin hamamında ne var?",
+        "secenekler": [
+          "Hediyelik eşya dükkânları",
+          "Hâlâ yıkanılıyor",
+          "Hiçbir şey, yıkıldı"
+        ],
+        "kopru": "Tahminini not ettik! Bu hamamın bugünkü adı 'Eski Aynalı Çarşı'."
+      },
+      "baglam": {
+        "baslik": "Osmanlı'nın ilk külliyelerinden",
+        "metin": "Orhan Bey, 1326'da Bursa'yı aldı ve burayı başkent yaptı. Sur dışında bir külliye yaptırarak şehri büyüttü. Külliyenin camisi 1339-1340'ta yapıldı.\n\nKülliyede cami, Emir Hanı, hamam, imaret ve mektep vardı. Bunlardan cami, Emir Hanı ve hamam bugüne ulaştı. İmaret ve mektep zamanla yok oldu.\n\n1360 tarihli vakfiyeye göre bazı köyler, bedesten, dükkânlar ve evler imarete vakfedildi. Hamam bugün \"Eski Aynalı Çarşı\" adıyla dükkânlara dönüştü. Caminin bir odası da 1863'te kütüphane yapıldı.",
+        "kavramlar": [
+          {
+            "ad": "BAŞKENT",
+            "aciklama": "Bir devletin yönetim merkezi olan şehir.",
+            "ornek": "Orhan Bey Bursa'yı başkent yaptı."
+          },
+          {
+            "ad": "KÜLLİYE",
+            "aciklama": "Cami çevresinde birlikte yapılan yapılar topluluğu.",
+            "ornek": "Orhan Bey Külliyesi Osmanlı'nın ilk külliyelerinden."
+          },
+          {
+            "ad": "SUR",
+            "aciklama": "Şehri çevreleyen kalın savunma duvarı.",
+            "ornek": "Orhan Bey külliyeyi surun dışına yaptırdı."
+          }
+        ],
+        "kapanis": "Bir külliye, şehrin büyüyeceği yönü nasıl belirler?"
+      },
+      "perspektif": {
+        "baslik": "Surun dışına",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Fetihten önce Bursa, kalenin içine sığan küçük bir şehirdi."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Orhan Bey külliyesini surun dışına yaptırdı. İnsanlar camiye, hana, hamama gelmeye başladı. Çarşı burada büyüdü."
+          }
+        ],
+        "soru": "Sence külliyeyi surun dışına yaptırmak şehri nasıl etkiledi?",
+        "secenekler": [
+          {
+            "metin": "Şehir külliyenin çevresinde büyüdü.",
+            "sonuc": "Doğru! Külliye bir çekim merkezi oldu. Bugünkü Bursa çarşısı bu bölgede büyüdü.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hiç etkilemedi, herkes kalede kaldı.",
+            "sonuc": "Etkiledi. Külliyenin çevresi çarşı ve hanlar bölgesine dönüştü.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Şehir küçüldü.",
+            "sonuc": "Tam tersi: Şehir büyüdü ve başkent oldu.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Orhan Bey Külliyesi Osmanlı'nın ilk külliyelerinden. Camisi 1339-1340'ta yapıldı. Bugün cami, Emir Hanı ve hamam ayakta; hamam 'Eski Aynalı Çarşı' adıyla dükkânlara dönüştü.",
+        "rontgenSorusu": "Orhan Gazi İmareti'nin giderleri neyle karşılanıyordu?",
+        "rontgenAciklama": "1360 tarihli, 28 sayfalık vakfiyeye göre bazı köyler, Eski Bedesten, bedesten çevresindeki dükkânlar, odalar, evler ve Bıçakçılar Hamamı imarete vakfedildi. Bu mülklerin geliri imareti yaşatıyordu. Gelirin oranları envanterde yer almaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 191-219 (ORHAN BEY KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-orhan-bey-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bugüne ulaştı mı, yok mu oldu? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "var",
+                "ad": "Bugüne ulaştı",
+                "aciklama": "Hâlâ ayakta."
+              },
+              {
+                "id": "yok",
+                "ad": "Yok oldu",
+                "aciklama": "Zamanla ortadan kalktı."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Orhan Camii",
+                "kategoriId": "var"
+              },
+              {
+                "metin": "Emir Hanı",
+                "kategoriId": "var"
+              },
+              {
+                "metin": "Orhan Hamamı",
+                "kategoriId": "var"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "yok"
+              },
+              {
+                "metin": "Mektep",
+                "kategoriId": "yok"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 191-219"
+        },
+        {
+          "id": "bursa-orhan-bey-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1326: Orhan Bey Bursa'yı aldı",
+              "1339-1340: Orhan Camii yapıldı",
+              "1360: Vakfiye düzenlendi",
+              "1584: Yangında hamam ve dükkânlar yandı",
+              "1863: Caminin bir odası kütüphane oldu"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 191-219"
+        },
+        {
+          "id": "bursa-orhan-bey-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Orhan Hamamı bugün \"Eski ___ Çarşı\" adıyla anılıyor.",
+            "cevap": "Aynalı",
+            "secenekler": [
+              "Aynalı",
+              "Kapalı",
+              "Uzun",
+              "Yeni"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 191-219"
+        },
+        {
+          "id": "bursa-orhan-bey-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Osmanlı'nın ilk külliyelerinden. Camisi Ulucami'nin doğusunda. Hamamı bugün dükkânlarla dolu bir çarşı. İmareti ve mektebi yok oldu.",
+            "secenekler": [
+              "Orhan Bey Külliyesi",
+              "II. Murad (Muradiye) Külliyesi",
+              "Yıldırım Bayezid Külliyesi"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 191-219"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-ishak-pasa-kulliyesi",
+      "merak": {
+        "soru": "Bir mezarın kime ait olduğunu, yüzyıllar sonra nasıl anlarız?",
+        "secenekler": [
+          "Mezar taşındaki yazıyı okuyarak",
+          "Mezarın büyüklüğüne bakarak",
+          "Hiçbir şekilde anlayamayız"
+        ],
+        "kopru": "Tahminini not ettik! İnegöl'deki bu külliyede tam olarak böyle bir bilmece çözüldü."
+      },
+      "baglam": {
+        "baslik": "İnegöl'ün külliyesi",
+        "metin": "İshak Paşa Külliyesi İnegöl çarşısının ortasında. İshak Paşa caminin ve diğer yapıların inşasını 1468-1469'da bitirdi. Medresesi ise 1482-1483'te yapıldı.\n\nİshak Paşa'nın 1486-1487 tarihli vakfiyeleri bugün Vakıflar Genel Müdürlüğü Arşivi'nde duruyor. Bu belgelere göre külliyede cami, imaret, zaviye, medrese, han, türbe ve ahırlar vardı.\n\nMedresenin on iki öğrenci odası var. Caminin doğusundaki türbeye halk \"Tâcunnisâ Sultan Türbesi\" der. Ama mezar taşları okununca ortadaki mezarın İshak Paşa'ya ait olduğu kesinleşti.",
+        "kavramlar": [
+          {
+            "ad": "ARŞİV",
+            "aciklama": "Eski belgelerin düzenli biçimde saklandığı yer.",
+            "ornek": "İshak Paşa'nın vakfiyeleri arşivde duruyor."
+          },
+          {
+            "ad": "MEZAR KİTABESİ",
+            "aciklama": "Mezar taşına yazılan ve ölen kişiyi tanıtan yazı.",
+            "ornek": "Mezar kitabesinden İshak Paşa'nın 1487'de öldüğü anlaşıldı."
+          },
+          {
+            "ad": "MEDRESE",
+            "aciklama": "Eskiden yükseköğrenim yapılan okul.",
+            "ornek": "İshak Paşa Medresesi'nin on iki odası var."
+          }
+        ],
+        "kapanis": "Bir türbenin halk arasındaki adı ile içindeki mezar farklı olabilir mi?"
+      },
+      "perspektif": {
+        "baslik": "Türbe kimin?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Halk bu türbeye 'Tâcunnisâ Sultan Hatun Türbesi' der."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Türbenin bir inşa kitabesi yok. Ama mezar taşları okunduğunda ortadaki mezarın İshak Paşa'ya ait olduğu kesinleşti."
+          }
+        ],
+        "soru": "Bu durumda en doğru söz hangisi?",
+        "secenekler": [
+          {
+            "metin": "Türbe halk arasında başka adla bilinse de ortadaki mezar İshak Paşa'nın.",
+            "sonuc": "Doğru! Halkın verdiği ad ile belgelerin söylediği farklı olabilir. Tarihçi ikisini de not eder.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Türbenin adı Tâcunnisâ olduğu için içinde İshak Paşa olamaz.",
+            "sonuc": "Olabilir. Mezar taşları ortadaki mezarın İshak Paşa'ya ait olduğunu gösteriyor.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Mezar taşları önemli değil.",
+            "sonuc": "Çok önemli. Bu bilmeceyi mezar taşları çözdü.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "İshak Paşa Külliyesi İnegöl çarşısının ortasında. Vakfiyeleri bugün arşivde duruyor. Türbedeki ortadaki mezarın İshak Paşa'ya ait olduğu mezar taşlarından anlaşıldı.",
+        "rontgenSorusu": "İshak Paşa'nın vakfı neleri kapsıyordu?",
+        "rontgenAciklama": "1486-1487 tarihli vakfiyelere göre vakıf; cami, imaret, zaviye, medrese, han, türbe ve ahırları kapsıyordu. Han gibi yapılar gelir getirirken cami, medrese ve imaret hizmet veriyordu. Gelirin oranları envanterde yer almaz; bu yüzden uygulama bu eser için oran göstermez.",
+        "kaynakKunye": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 141-153 (İSHAK PAŞA KÜLLİYESİ)"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-ishak-pasa-kulliyesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bugün ayakta mı, yalnızca vakfiyede mi geçiyor? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "ayakta",
+                "ad": "Bugün ayakta",
+                "aciklama": "Envanterde anlatılan yapılar."
+              },
+              {
+                "id": "vakfiye",
+                "ad": "Vakfiyede geçiyor",
+                "aciklama": "Belgelere göre bir zamanlar vardı."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Cami",
+                "kategoriId": "ayakta"
+              },
+              {
+                "metin": "Medrese",
+                "kategoriId": "ayakta"
+              },
+              {
+                "metin": "Türbe",
+                "kategoriId": "ayakta"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "vakfiye"
+              },
+              {
+                "metin": "Han",
+                "kategoriId": "vakfiye"
+              },
+              {
+                "metin": "Ahırlar",
+                "kategoriId": "vakfiye"
+              }
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 141-153"
+        },
+        {
+          "id": "bursa-ishak-pasa-kulliyesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye sırala.",
+            "dogruSira": [
+              "1468-1469: Cami ve külliye tamamlandı",
+              "1482-1483: Medrese yapıldı",
+              "1486-1487: Vakfiyeler yazıldı",
+              "1487: İshak Paşa öldü",
+              "1877: Cami onarıldı"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 141-153"
+        },
+        {
+          "id": "bursa-ishak-pasa-kulliyesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Eski belgelerin düzenli biçimde saklandığı yere ___ denir.",
+            "cevap": "arşiv",
+            "secenekler": [
+              "arşiv",
+              "müze",
+              "medrese",
+              "hazire"
+            ]
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 141-153"
+        },
+        {
+          "id": "bursa-ishak-pasa-kulliyesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "İnegöl çarşısının ortasında bir külliye. Medresesinde on iki oda var. Türbesindeki ortadaki mezarın kime ait olduğu mezar taşlarından anlaşıldı.",
+            "secenekler": [
+              "İshak Paşa Külliyesi",
+              "Nilüfer Hatun İmareti",
+              "Issız (Susuz) Han"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', III. Cilt (Nisan 2026), s. 141-153"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-muradiye-medresesi-cesmesi",
+      "merak": {
+        "soru": "Bir çeşmenin üstünde yazı yoksa, onu kimin yaptırdığını nasıl anlarız?",
+        "secenekler": [
+          "Medresenin hemen yanında, o yüzden aynı kişinin olabilir.",
+          "Taşının cinsine bakarak anlarız.",
+          "Suyun geldiği yöne bakarak anlarız."
+        ],
+        "kopru": "Tahminini not ettik! Şimdi bu çeşmenin kayıtlarına bakalım. Göreceksin, bazı yerler boş."
+      },
+      "baglam": {
+        "baslik": "Üstünde yazı olmayan çeşme",
+        "metin": "Bu çeşme, Muradiye Medresesi'nin hemen yanında. Mahallenin su ihtiyacı için yapılmış. Tuğladan yapılmış, önünde taştan büyük bir su teknesi var.\n\nEski yapıların üstünde çoğu zaman bir yazı olur. Bu yazı, yapıyı kimin ve ne zaman yaptırdığını söyler. Bu çeşmede böyle bir yazı yok.\n\nYanındaki yapılar 1425-1426'da yapıldı. Çeşme de büyük ihtimalle o zaman yapıldı. Kimin yaptırdığı ise kesin değil.",
+        "kavramlar": [
+          {
+            "ad": "ÇEŞME",
+            "aciklama": "Mahalleye su veren, musluklu küçük yapı.",
+            "ornek": "Muradiye Medresesi Çeşmesi bir mahalle çeşmesidir."
+          },
+          {
+            "ad": "KİTÂBE",
+            "aciklama": "Bir yapının üstüne yazılan yazı. Kimin, ne zaman yaptırdığını söyler.",
+            "ornek": "Bu çeşmenin kitâbesi yok."
+          },
+          {
+            "ad": "KÜLLİYE",
+            "aciklama": "Yan yana kurulan ve birbirine bağlı yapılar.",
+            "ornek": "Muradiye Külliyesi'nde cami, medrese, hamam, imaret, çeşme ve türbe var."
+          }
+        ],
+        "kapanis": "Bazı bilgileri kesin biliriz. Bazılarını ise ancak \"büyük ihtimalle\" diye söyleyebiliriz. Sen olsan nasıl yazardın?"
+      },
+      "perspektif": {
+        "baslik": "Kimlik kartına ne yazmalı?",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Medresenin yanında bir çeşme var. Teknesi taştan, kendisi tuğladan."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Üstünde yazı yok. Kayıtta \"yaptıran\" kısmı boş. Vakfiyesi de yok."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Tek bir ipucu var: Bu çeşme, Sultan II. Murad'ın yaptırdığı yapıların arasında sayılıyor."
+          }
+        ],
+        "soru": "Çeşmenin kimlik kartında \"yaptıran\" kısmına ne yazarsın?",
+        "secenekler": [
+          {
+            "metin": "\"Sultan II. Murad\" yazarım, kesinmiş gibi.",
+            "sonuc": "Kayıtta \"yaptıran\" kısmı boş. Çeşmenin üstünde yazı da yok. Bu yüzden kesin gibi yazmak yanlış olur.",
+            "dogruMu": false
+          },
+          {
+            "metin": "\"Büyük ihtimalle Sultan II. Murad\" yazarım.",
+            "sonuc": "Doğru! Bilgi sadece bir ipucuna dayanıyor. Bu yüzden \"büyük ihtimalle\" diye yazılır.",
+            "dogruMu": true
+          },
+          {
+            "metin": "Hiçbir şey yazmam, boş bırakırım.",
+            "sonuc": "Bilgiyi tamamen saklamak da doğru değil. Bir ipucu var. En doğrusu, ne kadar emin olduğumuzu söyleyerek yazmak.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Muradiye Medresesi Çeşmesi bir mahalle çeşmesi. Tuğladan yapılmış. Üstünde yazı olmadığı için kimin yaptırdığı kesin değil. Bugün suyu akıyor mu? Kaynaklar bu konuda bile farklı şeyler söylüyor.",
+        "rontgenSorusu": "Üstünde yazısı ve vakfiyesi olmayan bu çeşmenin masrafını ne karşılıyordu?",
+        "rontgenAciklama": "Bu çeşmenin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden bu ekranda oran gösterilmez. Çeşmenin kendine ait vakfiye şartı veya amacına dair bir kayıt bulunamamıştır; kimlerin yararlandığına dair bir vakfiye hükmü de yoktur. Kültür Portalı kaydında 'Vakfiye' alanı yok olarak işaretlidir.",
+        "kaynakKunye": "Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198 · T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Muradiye Medresesi Çeşmesi' Kültür Envanteri Anıt kaydı"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-muradiye-medresesi-cesmesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Çeşmenin bir parçası mı, külliyenin başka bir yapısı mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "cesme",
+                "ad": "Çeşmenin parçaları",
+                "aciklama": "Çeşmenin üzerindeki parçalar."
+              },
+              {
+                "id": "kulliye",
+                "ad": "Külliyenin yapıları",
+                "aciklama": "Çeşmenin dışındaki yapılar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Taştan büyük su teknesi",
+                "kategoriId": "cesme"
+              },
+              {
+                "metin": "Musluğun takıldığı düz taş",
+                "kategoriId": "cesme"
+              },
+              {
+                "metin": "Tek musluk",
+                "kategoriId": "cesme"
+              },
+              {
+                "metin": "İki su tası koyma yeri",
+                "kategoriId": "cesme"
+              },
+              {
+                "metin": "Medrese",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "Hamam",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "İmaret",
+                "kategoriId": "kulliye"
+              },
+              {
+                "metin": "Sultanın türbesi",
+                "kategoriId": "kulliye"
+              }
+            ]
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Muradiye Medresesi Çeşmesi' Kültür Envanteri Anıt kaydı (Pafta 121, Ada 933, Parsel 3); Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198"
+        },
+        {
+          "id": "bursa-muradiye-medresesi-cesmesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye doğru sırala.",
+            "dogruSira": [
+              "1421: Sultan II. Murad padişah oldu",
+              "1425-1426: Külliyenin yapıları yapıldı",
+              "1991: Çeşme koruma altına alındı",
+              "Bugün: Suyunun akıp akmadığı tartışmalı"
+            ]
+          },
+          "kaynak": "Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198; T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Muradiye Medresesi Çeşmesi' Kültür Envanteri Anıt kaydı"
+        },
+        {
+          "id": "bursa-muradiye-medresesi-cesmesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Çeşmenin su teknesi taştan, geri kalanı ___ yapılmıştır.",
+            "cevap": "tuğladan",
+            "secenekler": [
+              "tuğladan",
+              "mermerden",
+              "küfeki taşından",
+              "ahşaptan"
+            ]
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Muradiye Medresesi Çeşmesi' Kültür Envanteri Anıt kaydı"
+        },
+        {
+          "id": "bursa-muradiye-medresesi-cesmesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bir medresenin hemen yanında, köşede duran mahalle çeşmesi. Tuğladan yapılmış. Önünde taştan büyük bir su teknesi ve tek musluğu var. Üstünde yazı yok.",
+            "secenekler": [
+              "Muradiye Medresesi Çeşmesi",
+              "Muradiye Hamamı (II. Murad Hamamı, Bekçiyan Hamamı)",
+              "Yeşil Türbe (Çelebi Sultan Mehmed Türbesi)"
+            ],
+            "dogruIndex": 0
+          },
+          "kaynak": "Doğan Yavaş, 'Murâdiye Külliyesi', TDV İslâm Ansiklopedisi, C. 31 (2020), s. 196-198; T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Muradiye Medresesi Çeşmesi' Kültür Envanteri Anıt kaydı"
+        }
+      ]
+    },
+    {
+      "eserId": "bursa-besir-aga-cesmesi",
+      "merak": {
+        "soru": "Bu çeşmeyi yaptıranın adı Beşir. Saray hazinesinin sorumlusuymuş. Ama kaynaklar hangi Beşir olduğunda anlaşamıyor. Sence hangisi?",
+        "secenekler": [
+          "Sarayda çok önemli bir görevi olan Beşir Ağa.",
+          "Kayıtlarda adı yazan Beşir bin İbrahim.",
+          "Yakında başka bir çeşme yaptıran Küçük Beşir Ağa."
+        ],
+        "kopru": "Tahminini not ettik! Üç isim de kaynaklarda geçiyor. Hangisinin doğru olduğu kesin değil. Şimdi çeşmenin üstündeki yazıya bakalım."
+      },
+      "baglam": {
+        "baslik": "Yolu güzelleştiren çeşme",
+        "metin": "Beşir Ağa Çeşmesi, Bursa'da Emir Sultan Mezarlığı'nın girişinde. Herkesin su içebildiği bir meydan çeşmesi. 1743'te yapıldı.\n\nÇeşmenin üstünde bir yazı var. Bu yazıya kitâbe denir. Kitâbe, yaptıranın sarayın hazinesine baktığını söyler. Çeşmenin neden yapıldığını da anlatır: Emir Sultan'a giden yolu güzelleştirmek için.\n\nÇeşmenin suyu bugün de akıyor. Ama vakfiyesi bulunamadı. Yaptıranın tam olarak kim olduğu da hâlâ tartışmalı.",
+        "kavramlar": [
+          {
+            "ad": "ÇEŞME",
+            "aciklama": "İnsanlara su veren, musluklu küçük yapı.",
+            "ornek": "Beşir Ağa Çeşmesi'nden herkes su içebilir."
+          },
+          {
+            "ad": "KİTÂBE",
+            "aciklama": "Bir yapının üstüne yazılan yazı. Kimin, ne zaman, neden yaptırdığını söyler.",
+            "ornek": "Bu çeşmenin kitâbesi, yaptıranın saray hazinesine baktığını söyler."
+          },
+          {
+            "ad": "VAKFİYE",
+            "aciklama": "Bir vakfın kurallarını yazan belge.",
+            "ornek": "Kayıtlarda bu çeşmenin vakfiyesi olduğu yazıyor. Ama vakfiyenin kendisi bulunamadı."
+          }
+        ],
+        "kapanis": "Kitâbe, çeşmenin neden yapıldığını söylüyor. Ama yaptıranın kim olduğu tartışmalı. Sen olsan nasıl yazardın?"
+      },
+      "perspektif": {
+        "baslik": "Kitâbenin söylediği kadar",
+        "diyalog": [
+          {
+            "kim": "ANLATICI",
+            "metin": "Yıl 1743. Emir Sultan Mezarlığı'nın girişinde yeni bir çeşme yapıldı."
+          },
+          {
+            "kim": "TARİHÇİ",
+            "metin": "Kitâbede şöyle yazıyor: Bu güzel çeşme sultan adına, iyilik için yapıldı. Emir Sultan'ın yolu bu eserle güzelleşti."
+          },
+          {
+            "kim": "ANLATICI",
+            "metin": "Kitâbe, yaptıranın saray hazinesine baktığını söylüyor. Ama hangi Beşir olduğu hâlâ tartışmalı."
+          }
+        ],
+        "soru": "Çeşmenin kimlik kartında \"yaptıran\" kısmına ne yazarsın?",
+        "secenekler": [
+          {
+            "metin": "Kitâbenin söylediği kadarını yazarım. Adı kesinmiş gibi yazmam.",
+            "sonuc": "Doğru! Kitâbe sadece yaptıranın saray hazinesine baktığını söylüyor. Hangi Beşir olduğu kesin değil. Belgenin söylediği kadarını yazmak en doğrusu.",
+            "dogruMu": true
+          },
+          {
+            "metin": "\"Sarayın önemli adamı Beşir Ağa\" diye kesin yazarım.",
+            "sonuc": "Bazı kaynaklar böyle söylüyor. Ama o Beşir Ağa'nın vakfiyesinde Bursa hiç geçmiyor. Bu yüzden bu bilgi kesin değil.",
+            "dogruMu": false
+          },
+          {
+            "metin": "Hiçbir şey yazmam, boş bırakırım.",
+            "sonuc": "Kitâbe ve kayıtlar bir isim veriyor. Bilgiyi saklamak yerine, ne kadar emin olduğumuzu söyleyerek yazmak daha doğru.",
+            "dogruMu": false
+          }
+        ]
+      },
+      "yansima": {
+        "ozet": "Beşir Ağa Çeşmesi 1743'te yapıldı. Emir Sultan'a giden yolu güzelleştirmek için yapıldı. Suyu bugün de akıyor. Yaptıranın saray hazinesine baktığı biliniyor. Ama hangi Beşir olduğu kesin değil.",
+        "rontgenSorusu": "Bu çeşmenin suyunu ve bakımını ne karşılıyordu?",
+        "rontgenAciklama": "Bu eserin vakfiyesindeki gelir dağılımı oranları belgelenememiştir; bu yüzden uygulama bu ekranda oran göstermez. 'Vakfiye: Var' bilgisi yalnızca Kültür Portalı envanter kaydına dayanıyor; vakfiye metni, tarihi, şartları ve arşiv numarası hiçbir çevrimiçi kaynakta bulunamamıştır. Vakfiyedeki hizmet şartları da belgelenememiştir. Doğrulanmamış bilgi kesin bilgi olarak sunulmaz.",
+        "kaynakKunye": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Beşir Ağa Çeşmesi', Envanter No A14 · Ebru Çetinkaya, 'Bursa Çeşmeleri', Atatürk Üniversitesi Sosyal Bilimler Enstitüsü Yüksek Lisans Tezi, Erzurum 2012, katalog no 3.23, s. 39-42 · Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, Bursa Büyükşehir Belediyesi, 2. basım 2010"
+      },
+      "egzersizler": [
+        {
+          "id": "bursa-besir-aga-cesmesi-e1",
+          "tip": "eslestir",
+          "veri": {
+            "yonerge": "Bu bilgi kesin mi, yoksa tartışmalı mı? Eşleştir.",
+            "kategoriler": [
+              {
+                "id": "belgeli",
+                "ad": "Kesin bilgi",
+                "aciklama": "Belgelerde açıkça yazanlar."
+              },
+              {
+                "id": "belirsiz",
+                "ad": "Tartışmalı bilgi",
+                "aciklama": "Kaynakların anlaşamadığı ya da belgesi bulunamayanlar."
+              }
+            ],
+            "ogeler": [
+              {
+                "metin": "Yapım yılı: 1743",
+                "kategoriId": "belgeli"
+              },
+              {
+                "metin": "Yeri: Emir Sultan Mezarlığı'nın girişi",
+                "kategoriId": "belgeli"
+              },
+              {
+                "metin": "Kitâbe, yaptıranın saray hazinesine baktığını söylüyor",
+                "kategoriId": "belgeli"
+              },
+              {
+                "metin": "Suyu bugün de akıyor",
+                "kategoriId": "belgeli"
+              },
+              {
+                "metin": "Yaptıranın hangi Beşir olduğu",
+                "kategoriId": "belirsiz"
+              },
+              {
+                "metin": "Vakfiyesinde neler yazdığı",
+                "kategoriId": "belirsiz"
+              },
+              {
+                "metin": "Kayıtların hangi çeşmeyi anlattığı (yakında bir tane daha var)",
+                "kategoriId": "belirsiz"
+              }
+            ]
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Beşir Ağa Çeşmesi', Envanter No A14; Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1 (Beşir Ağa maddeleri ve 'Bursa Çeşmeleri' tablosu), Bursa Büyükşehir Belediyesi, 2. basım 2010"
+        },
+        {
+          "id": "bursa-besir-aga-cesmesi-e2",
+          "tip": "sirala",
+          "veri": {
+            "yonerge": "Olayları eskiden yeniye doğru sırala.",
+            "dogruSira": [
+              "1730: I. Mahmud padişah oldu",
+              "1743: Çeşme yapıldı",
+              "1840: Yakına ikinci bir Beşir Ağa Çeşmesi yapıldı",
+              "1977: Çeşme ilk kez koruma altına alındı",
+              "1991: Koruma kararı yenilendi"
+            ]
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Beşir Ağa Çeşmesi', Envanter No A14; Kâmil Kepecioğlu, Bursa Kütüğü, Cilt 1, Bursa Büyükşehir Belediyesi, 2. basım 2010"
+        },
+        {
+          "id": "bursa-besir-aga-cesmesi-e3",
+          "tip": "bosluk-doldur",
+          "veri": {
+            "yonerge": "Boşluğa doğru kelimeyi koy.",
+            "metin": "Yaptıranın saray hazinesine baktığı, çeşmenin üstündeki ___ yazıyor.",
+            "cevap": "kitâbede",
+            "secenekler": [
+              "kitâbede",
+              "vakfiyede",
+              "sicil defterinde",
+              "mühürde"
+            ]
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Beşir Ağa Çeşmesi', Envanter No A14; Ebru Çetinkaya, 'Bursa Çeşmeleri', Atatürk Üniversitesi Yüksek Lisans Tezi, Erzurum 2012, katalog no 3.23"
+        },
+        {
+          "id": "bursa-besir-aga-cesmesi-e4",
+          "tip": "eser-tani",
+          "veri": {
+            "yonerge": "Betimlemeyi oku ve eseri seç.",
+            "betimleme": "Bir mezarlığın girişinde, herkesin su içebildiği bir yapı. Suyu bugün de akıyor. Üstündeki yazı, yaptıranın saray hazinesine baktığını söylüyor.",
+            "secenekler": [
+              "Veled-i Yaniç Mescidi (Veled-i Yaniç Camii)",
+              "Beşir Ağa Çeşmesi",
+              "Demirtaş (Timurtaş) Hamamı"
+            ],
+            "dogruIndex": 1
+          },
+          "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Beşir Ağa Çeşmesi', Envanter No A14; Ebru Çetinkaya, 'Bursa Çeşmeleri', Atatürk Üniversitesi Yüksek Lisans Tezi, Erzurum 2012, katalog no 3.23, s. 39-42"
+        }
+      ]
+    }
+  ]
+}
