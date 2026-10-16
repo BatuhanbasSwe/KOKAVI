@@ -27,7 +27,7 @@ export default defineConfig({
       },
       workbox: {
         // Çevrimdışı ders desteği: uygulama kabuğu + ders verisi önbelleğe alınır.
-        globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}', 'maskot/*.webp'],
         // Eser fotoğrafları (~25 MB) ve arşiv (~23 MB) ilk yüklemeye girmez;
         // açıldıkça aşağıdaki çalışma zamanı önbelleğine alınır.
         globIgnores: ['gorseller/**', 'arsiv/**'],
