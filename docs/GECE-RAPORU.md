@@ -222,6 +222,17 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 **Test**: `tests/hayrat-akar.test.tsx` (4) — veri, tur dengesi, düğme+klavye akışı, axe.
 
+## 12. Hatalarımı çalış — `Hatalarımı çalış` commit'i
+
+- Derste **ipucu alınan** egzersiz, eser adı ve egzersizin kendisiyle cihaza yazılır (en fazla 30;
+  internetsiz de açılır). Öğrenme Yolu → Pratik'te **"Hatalarımı çalış · N soru seni bekliyor"**
+  kartı çıkar (liste boşsa kart görünmez).
+- `#/hatalar`: 5'erli tur. İpucusuz çözülen soru listeden **çıkar** ("✓ listeden çıktı"),
+  ipucuyla çözülen kalır ("↻ bir dahaki pratikte yine gelecek"). Ceza yok.
+- Pratik, kombo ve "kusursuz ders" sayacına karışmaz (ayrı çalıştırıcı).
+
+**Test**: `tests/hatalar.test.tsx` (3).
+
 ---
 
 ## Geri alma

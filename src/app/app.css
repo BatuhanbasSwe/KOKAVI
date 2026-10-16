@@ -961,3 +961,30 @@ body {
   font-size: var(--yazi-xs);
   color: var(--metin-ikincil);
 }
+
+/* --- Hatalarımı çalış ------------------------------------------------------- */
+.hatalar-giris {
+  justify-items: center;
+  text-align: center;
+}
+.hatalar-giris h1 {
+  margin: 0;
+}
+.hatalar-ozet {
+  display: grid;
+  gap: var(--b-1);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.hatalar-ozet li {
+  padding: var(--b-2) var(--b-3);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-vurgu);
+}
+.hatalar-ust .etiket,
+.hatalar-ust__eser {
+  margin: 0;
+}

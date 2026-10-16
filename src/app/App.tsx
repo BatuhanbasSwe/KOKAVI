@@ -23,6 +23,7 @@ import { OgretmenPaneli, SinifKoduGirisi } from '../features/ogretmen';
 import { GununEseriSayfasi } from '../features/gunun-eseri/GununEseriSayfasi';
 import { RozetBildirimi } from '../features/rozetler/Rozetler';
 import { HayratAkarSayfasi } from '../features/hayrat-akar/HayratAkarSayfasi';
+import { HatalarSayfasi } from '../features/hatalar/HatalarSayfasi';
 import { SertifikaSayfasi } from '../features/sertifika/SertifikaSayfasi';
 import { CanliGirisSayfasi, CanliOynaSayfasi } from '../features/canli/CanliOyuncu';
 import { CanliKurSayfasi, CanliYonetSayfasi } from '../features/canli/CanliYonetim';
@@ -58,6 +59,7 @@ const UST_SEKME: Partial<Record<string, string>> = {
   'arsiv-eser': 'harita',
   'gunun-eseri': 'yol',
   'hayrat-akar': 'yol',
+  hatalar: 'yol',
   sertifika: 'defter',
   canli: 'sinif',
   'canli-oyna': 'sinif',
@@ -135,6 +137,7 @@ function Kabuk() {
       sinif: 'Sınıf',
       'gunun-eseri': 'Günün Eseri',
       'hayrat-akar': 'Hayrat mı Akar mı?',
+      hatalar: 'Hatalarımı Çalış',
       sertifika: 'Sertifika',
       canli: 'Canlı Yarışma',
       'canli-kur': 'Canlı Yarışma Kur',
@@ -265,6 +268,7 @@ function Kabuk() {
         {rota.ad === 'sinif' && <CocukSinifSayfasi />}
         {rota.ad === 'gunun-eseri' && <GununEseriSayfasi />}
         {rota.ad === 'hayrat-akar' && <HayratAkarSayfasi />}
+        {rota.ad === 'hatalar' && <HatalarSayfasi />}
         {rota.ad === 'sertifika' && <SertifikaSayfasi sehirId={rota.sehirId} />}
         {rota.ad === 'canli' && <CanliGirisSayfasi />}
         {rota.ad === 'canli-kur' && <CanliKurSayfasi />}

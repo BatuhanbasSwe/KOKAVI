@@ -23,6 +23,7 @@ import { KonusanMaskot } from '../../app/Maskot';
 import { GununEseriDavet } from '../gunun-eseri/GununEseriDavet';
 import { TanitimTuru, tanitimGorulduMu } from './TanitimTuru';
 import { PratikKartlari } from './PratikKartlari';
+import { useHataSayisi } from '../hatalar/HatalarSayfasi';
 
 /** Zikzak: düğümler sırayla sola/sağa kayar (px). */
 const KAYMALAR = [0, -56, -84, -56, 0, 56, 84, 56];
@@ -154,6 +155,7 @@ function UniteYolu({
 export function YolSayfasi() {
   const { yol, yukleniyor, hata, ilerleme, tekrar } = useDurum();
   const seviye = useSeviye();
+  const hataSayisi = useHataSayisi();
   // İlk açılış turu: yalnızca hiç ders bitirmemiş, turu görmemiş kullanıcıya.
   const [tanitim, setTanitim] = useState(
     () => ilerleme.tamamlananDersler.length === 0 && !tanitimGorulduMu(),
@@ -229,6 +231,16 @@ export function YolSayfasi() {
             alt: 'Hizmet mi eder, gelir mi getirir?',
             simge: '⇄',
           },
+          ...(hataSayisi > 0
+            ? [
+                {
+                  href: '#/hatalar',
+                  baslik: 'Hatalarımı çalış',
+                  alt: `${hataSayisi} soru seni bekliyor`,
+                  simge: '↻',
+                },
+              ]
+            : []),
         ]}
       />
 

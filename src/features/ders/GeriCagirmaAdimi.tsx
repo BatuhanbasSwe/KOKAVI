@@ -11,6 +11,8 @@ import { EgzersizKabugu, IpucuBildirimi } from './EgzersizKabugu';
 import { IkonTekrar } from '../../app/Ikonlar';
 import { useEfekt } from '../../app/useEfekt';
 import { sayacArtir } from '../rozetler/rozetMantigi';
+import { hataEkle } from '../hatalar/hataDeposu';
+import { gunMetni } from '../../lib/tekrar';
 import type { TekrarGorevi } from './DersSayfasi';
 import { EslestirEgzersizi } from './EslestirEgzersizi';
 import { SiralaEgzersizi } from './SiralaEgzersizi';
@@ -87,6 +89,8 @@ interface AdimProps {
   /** Aralıklı tekrar: varsa ilk egzersiz önceki bir dersten gelir. */
   tekrarGorevi?: TekrarGorevi | null;
   onTekrarBitti?: (ipucusuz: boolean) => void;
+  /** "Hatalarımı çalış" listesinde gösterilecek eser adı. */
+  eserAdi?: string;
 }
 
 /**
@@ -153,6 +157,7 @@ export function GeriCagirmaAdimi({
   onIlerle,
   tekrarGorevi = null,
   onTekrarBitti,
+  eserAdi = '',
 }: AdimProps) {
   const ofset = tekrarGorevi ? 1 : 0;
 
@@ -167,8 +172,10 @@ export function GeriCagirmaAdimi({
   }, [kombo, cal]);
 
   /** Egzersiz bitti: ipucusuzsa kombo artar, değilse sıfırlanır. */
-  const egzersizBitti = (ipucusuz = !ipucuAlindi.current) => {
+  const egzersizBitti = (ipucusuz = !ipucuAlindi.current, egzersiz?: Egzersiz) => {
     ipucuAlindi.current = false;
+    // İpucu alınan egzersiz "Hatalarımı çalış" listesine (yalnızca cihazda).
+    if (!ipucusuz && egzersiz) hataEkle(egzersiz, eserAdi, gunMetni(new Date()));
     const yeniKombo = ipucusuz ? kombo + 1 : 0;
     setKombo(yeniKombo);
     // Son egzersiz de ipucusuz bittiyse: kusursuz ders (rozet sayacı, yalnızca cihazda).
@@ -227,7 +234,11 @@ export function GeriCagirmaAdimi({
 
       {/* key: egzersiz değişince iç durum (seçim, sıralama) sıfırlanır. */}
       <IpucuBildirimi.Provider value={ipucuGoruldu}>
-        <EgzersizCalistirici key={egzersiz.id} egzersiz={egzersiz} onBitti={() => egzersizBitti()} />
+        <EgzersizCalistirici
+          key={egzersiz.id}
+          egzersiz={egzersiz}
+          onBitti={() => egzersizBitti(undefined, egzersiz)}
+        />
       </IpucuBildirimi.Provider>
     </div>
   );
