@@ -384,6 +384,9 @@ export function HaritaSayfasi() {
               <span id="vakif-agi-aciklama" className="metin-soluk harita-ag-dugme__not">
                 Hanların ve hamamların kirası hangi camiyi, külliyeyi yaşatıyordu?
               </span>
+              <a className="harita-rota-bag" href="#/rota">
+                Keşif rotası oluştur →
+              </a>
             </div>
           )}
           <div

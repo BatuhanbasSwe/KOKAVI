@@ -274,6 +274,17 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 **Test**: `tests/vakif-agi.test.tsx` (2).
 
+## 16. Keşif rotası — `Keşif rotası` commit'i
+
+- Harita → **"Keşif rotası oluştur"** (`#/rota`): ilçe seç (en az 2 eserli ilçeler; Osmangazi 21,
+  Yıldırım 8, Antakya 6…) → eserler gezi sırasına dizilir (en yakın komşu + 2-opt, kesişmesiz).
+- Numaralı duraklar, durak arası mesafe ve süre, **"Gördüm"** kutuları, akan çizgili şema,
+  **Rotayı yazdır** (yalnızca rota basılır). 90 dk'yı aşan rotada "iki güne böl" önerisi.
+- Dürüstlük: mesafeler **kuş uçuşu** (yol ağı verisi yok), süre ×1,3 sokak payıyla tahmin; konumu
+  yaklaşık eserler işaretli; "bir yetişkinle olun, trafiğe dikkat" notu.
+
+**Test**: `tests/rota.test.tsx` (4).
+
 ---
 
 ## Geri alma

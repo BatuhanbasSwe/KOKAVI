@@ -21,6 +21,7 @@ export type Rota =
   | { ad: 'hatalar' }
   | { ad: 'zaman-tuneli' }
   | { ad: 'seri' }
+  | { ad: 'rota' }
   | { ad: 'sertifika'; sehirId: string }
   | { ad: 'canli' }
   | { ad: 'canli-kur' }
@@ -66,6 +67,8 @@ export function rotayiCoz(hash: string): Rota {
       return { ad: 'zaman-tuneli' };
     case 'seri':
       return { ad: 'seri' };
+    case 'rota':
+      return { ad: 'rota' };
     case 'sertifika':
       return parcalar[1] ? { ad: 'sertifika', sehirId: decodeURIComponent(parcalar[1]) } : { ad: 'defter' };
     case 'canli': {
