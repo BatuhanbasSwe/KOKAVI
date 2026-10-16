@@ -17,6 +17,7 @@ export type Rota =
   | { ad: 'carsi' }
   | { ad: 'sinif' }
   | { ad: 'gunun-eseri' }
+  | { ad: 'sertifika'; sehirId: string }
   | { ad: 'canli' }
   | { ad: 'canli-kur' }
   | { ad: 'canli-yonet'; pin: string }
@@ -53,6 +54,8 @@ export function rotayiCoz(hash: string): Rota {
       return { ad: 'sinif' };
     case 'gunun-eseri':
       return { ad: 'gunun-eseri' };
+    case 'sertifika':
+      return parcalar[1] ? { ad: 'sertifika', sehirId: decodeURIComponent(parcalar[1]) } : { ad: 'defter' };
     case 'canli': {
       // #/canli · #/canli/kur · #/canli/yonet/123456 · #/canli/oyna/123456
       const pin = /^\d{6}$/.test(parcalar[2] ?? '') ? parcalar[2]! : null;

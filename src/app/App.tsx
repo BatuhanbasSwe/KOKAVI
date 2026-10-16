@@ -22,6 +22,7 @@ import { KorumaliPanel } from '../features/panel/KorumaliPanel';
 import { OgretmenPaneli, SinifKoduGirisi } from '../features/ogretmen';
 import { GununEseriSayfasi } from '../features/gunun-eseri/GununEseriSayfasi';
 import { RozetBildirimi } from '../features/rozetler/Rozetler';
+import { SertifikaSayfasi } from '../features/sertifika/SertifikaSayfasi';
 import { CanliGirisSayfasi, CanliOynaSayfasi } from '../features/canli/CanliOyuncu';
 import { CanliKurSayfasi, CanliYonetSayfasi } from '../features/canli/CanliYonetim';
 import {
@@ -48,6 +49,17 @@ const GEZINME = [
   { yol: 'sinif', etiket: 'Sınıfım', kisa: 'Sınıfım', ad: 'sinif', Ikon: IkonSinif },
   { yol: 'ayarlar', etiket: 'Ayarlar', kisa: 'Ayarlar', ad: 'ayarlar', Ikon: IkonAyarlar },
 ] as const;
+
+/** Alt sayfanın gezinmede hangi sekmeyi seçili gösterdiği. */
+const UST_SEKME: Partial<Record<string, string>> = {
+  'panel-eser': 'panel',
+  arsiv: 'harita',
+  'arsiv-eser': 'harita',
+  'gunun-eseri': 'yol',
+  sertifika: 'defter',
+  canli: 'sinif',
+  'canli-oyna': 'sinif',
+};
 
 const YETISKIN_GEZINME = [
   { yol: 'ogretmen', etiket: 'Öğretmen paneli', ad: 'ogretmen' },
@@ -120,6 +132,7 @@ function Kabuk() {
       carsi: 'Vakıf Çarşısı',
       sinif: 'Sınıf',
       'gunun-eseri': 'Günün Eseri',
+      sertifika: 'Sertifika',
       canli: 'Canlı Yarışma',
       'canli-kur': 'Canlı Yarışma Kur',
       'canli-yonet': 'Canlı Yarışma',
@@ -141,17 +154,9 @@ function Kabuk() {
     if (rota.ad !== 'ders') anaIcerik.current?.focus();
   }, [rota]);
 
-  // Arşiv haritanın uzantısıdır: gezinmede "Harita" seçili görünür.
-  const aktifAd =
-    rota.ad === 'panel-eser'
-      ? 'panel'
-      : rota.ad === 'arsiv' || rota.ad === 'arsiv-eser'
-        ? 'harita'
-        : rota.ad === 'gunun-eseri'
-          ? 'yol'
-          : rota.ad === 'canli' || rota.ad === 'canli-oyna'
-          ? 'sinif'
-          : rota.ad;
+  // Alt sayfalar gezinmede ait oldukları sekmeyi seçili gösterir
+  // (arşiv → Harita, Günün Eseri → Yol, sertifika → Defter, yarışma → Sınıfım).
+  const aktifAd = UST_SEKME[rota.ad] ?? rota.ad;
   const odakModu = rota.ad === 'ders';
 
   return (
@@ -256,6 +261,7 @@ function Kabuk() {
         {rota.ad === 'carsi' && <CarsiSayfasi />}
         {rota.ad === 'sinif' && <CocukSinifSayfasi />}
         {rota.ad === 'gunun-eseri' && <GununEseriSayfasi />}
+        {rota.ad === 'sertifika' && <SertifikaSayfasi sehirId={rota.sehirId} />}
         {rota.ad === 'canli' && <CanliGirisSayfasi />}
         {rota.ad === 'canli-kur' && <CanliKurSayfasi />}
         {rota.ad === 'canli-yonet' && <CanliYonetSayfasi pin={rota.pin} />}

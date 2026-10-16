@@ -133,6 +133,22 @@ Başvuruda: **yok** (Duolingo'nun "tanışalım" ekranları).
 
 ---
 
+## 7. Şehir sertifikası — `Şehir sertifikası` commit'i
+
+Başvuruda: **yok** (öğretmen/aile için somut bir "bitirdim" belgesi).
+
+- Kâşif Defteri'nde *Sertifikalarım*: her şehir için düğme. Şehir bitmediyse `x/33` ve ilerleme
+  çubuğu; bittiyse **"Bursa: sertifikanı al"** → `#/sertifika/bursa`.
+- Sertifika: çini köşe yıldızları, mühür, "Tebrikler, [ad] — Bursa şehrindeki 33 vakıf eserinin
+  hepsini keşfettin!", tarih. **Yazdır** (yalnızca belge, yatay sayfa) ve **İndir (SVG)**.
+- 🔒 **Ad isteğe bağlı** ve yalnızca ekranda: kaydedilmez, sunucuya gitmez (testli). Boşsa "Genç Kâşif".
+- Kodda ham renk yok: ekranda jetonlar; indirirken o anki tema renkleri dosyaya işlenir.
+- Küçük temizlik: `App.tsx`'teki iç içe `?:` zinciri (`aktifAd`) bir eşleme tablosuna (`UST_SEKME`) çevrildi.
+
+**Test**: `tests/sertifika.test.tsx` (3) — kilit, gizlilik, axe.
+
+---
+
 ## Geri alma
 
 Bir özelliği istemezsen (örnek Günün Eseri):

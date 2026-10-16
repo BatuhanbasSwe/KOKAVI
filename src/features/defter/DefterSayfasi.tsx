@@ -17,6 +17,7 @@
  * gerçek <button>, öğrenilmeyenler metinle "henüz öğrenilmedi" diye okunur.
  */
 import { RozetPanosu } from '../rozetler/Rozetler';
+import { SertifikaBaglantilari } from '../sertifika/SertifikaBaglantilari';
 import { useEffect, useMemo, useState } from 'react';
 import type { Eser } from '@shared/types';
 import { api } from '../../lib/api';
@@ -253,6 +254,8 @@ export function DefterSayfasi() {
           ))}
         </section>
       )}
+
+      <SertifikaBaglantilari />
 
       <RozetPanosu />
     </div>
