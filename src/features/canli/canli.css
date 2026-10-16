@@ -23,7 +23,11 @@
   font-weight: 800;
   font-size: var(--yazi-sm);
 }
+.canli-katil > * {
+  min-width: 0;
+}
 .canli-katil__girdi {
+  width: 100%;
   min-height: 64px;
   padding: var(--b-2) var(--b-3);
   font: inherit;
