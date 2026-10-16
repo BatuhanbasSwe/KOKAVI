@@ -21,7 +21,7 @@ import type { YolIskeletiSehir } from './api';
 const DEPO_ANAHTARI = 'kokavi.ilerleme.v1';
 
 export const VARSAYILAN_AYARLAR: Ayarlar = {
-  tema: 'acik',
+  tema: 'koyu',
   renkKorlugu: 'yok',
   yaziBoyutu: 1,
   hareketAzalt: false,

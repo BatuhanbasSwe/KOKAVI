@@ -24,6 +24,7 @@ import {
   yolHesapla,
 } from '../lib/ilerleme';
 import { ayarlariUygula } from '../lib/erisilebilirlik';
+import { temaGocuUygula } from './temaGocu';
 import {
   dersiTakvimeEkle,
   gunMetni,
@@ -86,7 +87,10 @@ export function DurumSaglayici({ children }: { children: ReactNode }) {
    * yükleme efekti çalışıp DİSKTEN GELEN ESKİ kaydı yazıyor ve tamamlamayı
    * SİLİYORDU. `useState` başlatıcısı bu yarışı tamamen ortadan kaldırır.
    */
-  const [ilerleme, setIlerleme] = useState<Ilerleme>(() => ilerlemeYukle());
+  const [ilerleme, setIlerleme] = useState<Ilerleme>(() => {
+    const i = ilerlemeYukle();
+    return { ...i, ayarlar: temaGocuUygula(i.ayarlar) };
+  });
   const [yolIskeleti, setYolIskeleti] = useState<YolIskeletiSehir[]>([]);
   const [yukleniyor, setYukleniyor] = useState(true);
   const [hata, setHata] = useState<string | null>(null);
