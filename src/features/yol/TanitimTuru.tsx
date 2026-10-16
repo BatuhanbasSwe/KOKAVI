@@ -1,5 +1,5 @@
 /**
- * İlk açılış turu — Duolingo'daki "tanışalım" ekranları gibi, maskot Kâşif
+ * İlk açılış turu — Duolingo'daki "tanışalım" ekranları gibi, maskot Köstik
  * uygulamayı 4 kısa sayfada anlatır.
  *
  * Neden modal değil: tam ekran pencere odak tuzağı ve ekran okuyucu için
@@ -15,9 +15,9 @@ const ANAHTAR = 'kokavi-tanitim-v1';
 
 const SAYFALAR = [
   {
-    baslik: 'Merhaba, ben Kâşif!',
+    baslik: 'Merhaba, ben Köstik!',
     metin:
-      'Birlikte vakıf eserlerini keşfedeceğiz: camiler, hanlar, çeşmeler… Yüzlerce yıl önce insanlar bunları herkes için yaptırdı.',
+      'Ben meraklı bir köstebeğim: toprağın altını da üstünü de kazarım! Birlikte vakıf eserlerini keşfedeceğiz: camiler, hanlar, çeşmeler… Yüzlerce yıl önce insanlar bunları herkes için yaptırdı.',
   },
   {
     baslik: 'Her gün kısa bir ders',

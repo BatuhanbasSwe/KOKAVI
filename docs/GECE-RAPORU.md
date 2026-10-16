@@ -322,6 +322,19 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 **Test**: `tests/yol-zaman.test.tsx` + tur testi güncellendi.
 
+## 20. Maskot Köstik — `Maskot Köstik` commit'i
+
+- Çini yıldızı maskotun yerine attığın tasarımdaki **Köstik**: kırmızı desenli bandana (altın zikzak,
+  madalyon, yandan sarkan püskül), yuvarlak altın gözlük, pembe burun, ön dişler, bıyıklar, yelekli
+  omuzlar. Vektör (SVG) çizim: her boyutta net, dosya indirmez, çevrimdışı çalışır.
+- İfadeler görseldeki gibi: **meraklı** (varsayılan), **mutlu** (gözler kapalı gülüş), **şaşkın**,
+  **düşünceli** (ipucu anı). Göz kırpma ve süzülme animasyonu korunuyor.
+- Renkler `tokens.css`'te `--maskot-*` jetonları. Metinlerde maskotun adı **Köstik** oldu
+  ("Merhaba, ben Köstik! Ben meraklı bir köstebeğim…"). "Kâşif Defteri" gibi kullanıcının unvanları aynı.
+- Not: Görselin PNG dosyası bana ulaşmadı (sohbete yapıştırılan resim dosya olarak kaydedilmiyor).
+  Görseli olduğu gibi kullanmak istersen `public/maskot/` klasörüne koy; tur ve boş ekranlarda büyük
+  illüstrasyon olarak bağlarım.
+
 ---
 
 ## Geri alma

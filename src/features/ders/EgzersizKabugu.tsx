@@ -109,7 +109,7 @@ export function GeriBildirim({ tur, baslik, metin }: GeriBildirimVerisi) {
         <p className="ders-geri__baslik">{baslik}</p>
         <p className="ders-geri__metin">{metin}</p>
       </div>
-      {/* Kâşif tepki verir: doğruda sevinir, ipucunda düşünür (süs; anlam simge + metinde). */}
+      {/* Köstik tepki verir: doğruda sevinir, ipucunda düşünür (süs; anlam simge + metinde). */}
       <span className="ders-geri__maskot">
         <Maskot boyut={52} mutlu={dogru} dusunceli={!dogru} />
       </span>

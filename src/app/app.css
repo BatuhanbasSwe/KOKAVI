@@ -748,7 +748,7 @@ body {
   animation: maskot-suzul 3.2s ease-in-out infinite;
 }
 .maskot__gozler {
-  transform-origin: 60px 56px;
+  transform-origin: 60px 63px;
   animation: maskot-kirp 4.8s infinite;
 }
 .maskot--mutlu {
@@ -883,7 +883,7 @@ body {
   gap: var(--b-2);
 }
 @media (max-width: 480px) {
-  .tanitim {
+  .kart.tanitim {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;

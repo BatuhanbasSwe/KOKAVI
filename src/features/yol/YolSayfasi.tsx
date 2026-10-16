@@ -227,7 +227,7 @@ export function YolSayfasi() {
         <KonusanMaskot
           mesaj={
             tamamlanan === 0
-              ? 'Merhaba, ben Kâşif! İlk eserimizi birlikte keşfedelim mi?'
+              ? 'Merhaba, ben Köstik! İlk eserimizi birlikte keşfedelim mi?'
               : tamamlanan === toplamDers
                 ? 'Bütün eserleri keşfettin! Arşivde daha yüzlercesi var.'
                 : undefined

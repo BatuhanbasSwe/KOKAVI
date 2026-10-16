@@ -87,6 +87,22 @@
   --sicak-yumusak: #fdf3e6;
 
   --altin-metin: #7a5a1e; /* metin olarak kullanılabilir altın */
+
+  /* Maskot Köstik (çizim renkleri — her temada aynı; metin taşımaz) */
+  --maskot-kurk: #5c4a42;
+  --maskot-yuz: #8f786b;
+  --maskot-burun: #ef8f8c;
+  --maskot-bandana: #b0262b;
+  --maskot-bandana-koyu: #7d1a1e;
+  --maskot-desen: #e9b949;
+  --maskot-gozluk: #c99a2e;
+  --maskot-goz: #2a1c16;
+  --maskot-iris: #7a4a22;
+  --maskot-goz-beyaz: #ffffff;
+  --maskot-agiz: #6b2a24;
+  --maskot-biyik: #d9cbc2;
+  --maskot-yelek: #2f2626;
+  --maskot-gomlek: #efe6d6;
   --altin: #f2c14e; /* YALNIZCA dekoratif/dolgu */
 
   --cizgi: #e8dfcc;
