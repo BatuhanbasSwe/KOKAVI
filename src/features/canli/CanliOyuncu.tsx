@@ -7,7 +7,8 @@
  * CEZA YOK: Yanlış cevapta puan düşmez; doğru cevap ve kısa açıklaması
  * kaynağıyla gösterilir — yarışma da bir öğrenme anıdır.
  */
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
+import { useEfekt } from '@/app/useEfekt';
 import { git } from '@/lib/yonlendirme';
 import { Konfeti } from '@/app/Konfeti';
 import { Maskot } from '@/app/Maskot';
@@ -108,6 +109,15 @@ export function CanliOynaSayfasi({ pin }: { pin: string }) {
   );
   const [gonderiliyor, setGonderiliyor] = useState(false);
   const [cevapHatasi, setCevapHatasi] = useState<string | null>(null);
+  const cal = useEfekt();
+  // Aşama değişince bir kez ses: sonuç açıldı / oyun bitti.
+  const anAnahtari = veri ? `${veri.asama}-${veri.soru?.no ?? ''}` : '';
+  useEffect(() => {
+    if (!veri) return;
+    if (veri.asama === 'cevap' && veri.sonuc) cal(veri.sonuc.dogruMu ? 'dogru' : 'ipucu');
+    if (veri.asama === 'bitti') cal(veri.sira !== null && veri.sira <= 3 ? 'kutlama' : 'rozet');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anAnahtari]);
 
   if (!kimlik) {
     return (
@@ -138,6 +148,7 @@ export function CanliOynaSayfasi({ pin }: { pin: string }) {
     if (!d.soru || gonderiliyor) return;
     setGonderiliyor(true);
     setCevapHatasi(null);
+    cal('tik');
     try {
       await canliApi.cevapla(pin, kimlik!.oyuncuAnahtari, d.soru.no, secim);
       ayarla({ ...d, cevabim: secim });

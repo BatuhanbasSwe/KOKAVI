@@ -140,7 +140,7 @@ export function AyarlarSayfasi() {
 
         <AyarSatiri
           etiket="Sessiz mod"
-          aciklama="Sesli içerikleri kapatır. Derslerin tamamı ses olmadan bitirilebilir."
+          aciklama="Sesli anlatımı, doğru/yanlış seslerini ve titreşimi kapatır. Derslerin tamamı ses olmadan bitirilebilir."
         >
           <button
             type="button"

@@ -12,6 +12,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import type { KavramKarti } from '@shared/types';
 import { IkonIpucu, IkonTik } from '../../app/Ikonlar';
+import { useEfekt } from '../../app/useEfekt';
 
 /**
  * Ek ipucu (Vakıf Çarşısı, PDF s. 3: "ek ipucu"). Yalnızca bir yanlıştan
@@ -125,6 +126,12 @@ export function EgzersizKabugu({
   useEffect(() => {
     if (ipucuMu) ipucuGoruldu?.();
   }, [ipucuMu, geriBildirim, ipucuGoruldu]);
+
+  // Her yeni geri bildirimde bir kez: doğruya "ding", ipucuna yumuşak ton.
+  const cal = useEfekt();
+  useEffect(() => {
+    if (geriBildirim) cal(geriBildirim.tur === 'dogru' ? 'dogru' : 'ipucu');
+  }, [geriBildirim, cal]);
 
   return (
     <section className="ders-egzersiz" aria-label={`${tip} egzersizi`}>

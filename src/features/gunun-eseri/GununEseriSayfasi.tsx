@@ -13,6 +13,7 @@ import { useMemo, useState, type FormEvent } from 'react';
 import { useDurum } from '@/app/DurumSaglayici';
 import { Konfeti } from '@/app/Konfeti';
 import { Maskot } from '@/app/Maskot';
+import { useEfekt } from '@/app/useEfekt';
 import { gunAnahtari } from '@/lib/ilerleme';
 import {
   HAK,
@@ -54,6 +55,7 @@ export function GununEseriSayfasi() {
   const [girdi, setGirdi] = useState('');
   const [duyuru, setDuyuru] = useState('');
   const [kopyalandi, setKopyalandi] = useState(false);
+  const cal = useEfekt();
 
   const sonuclar: TahminSonucu[] = useMemo(
     () => tahminler.filter((t) => eserBul(t)).map((t) => degerlendir(t, hedef)),
@@ -86,6 +88,7 @@ export function GununEseriSayfasi() {
       depo.istatistikYaz(ist);
     }
     const e = eserBul(eserId)!;
+    cal(s.dogru ? 'kutlama' : 'ipucu');
     setDuyuru(
       s.dogru
         ? `Bildin! Günün eseri ${hedef.ad}.`

@@ -70,6 +70,23 @@ Bir test ilk dört ipucunun eserin adını ele vermediğini denetliyor; bu test 
 
 ---
 
+## 3. Ses efektleri ve titreşim — `Ses efektleri` commit'i
+
+Başvuruda: **dolaylı** (Duolingo hissi; "sessiz mod" taahhüdüne uyuyor).
+
+- Sesler **dosya değil**, Web Audio ile kodda sentezleniyor (indirme, lisans yok; çevrimdışı çalışır).
+- Doğru cevap: iki notalı "ding" + 30 ms titreşim. Yanlış (ipucu): alçak, yumuşak bir ton,
+  **titreşim yok** (ceza hissi vermesin). Ders sonu ve Günün Eseri'ni bilince: 4 notalı arpej.
+- Canlı yarışmada: cevaba dokununca "tık", sonuçta doğru/ipucu sesi, podyumda kutlama.
+- **Ayarlar → Sessiz mod** artık efektleri ve titreşimi de kapatıyor (açıklaması güncellendi).
+  **Hareketi azalt** titreşimi kapatıyor.
+- Ufak düzeltme: Sıralama egzersizi geri bildirim nesnesini her çizimde yeniden üretiyordu
+  (`useMemo` ile sabitlendi); yoksa ses tekrar tekrar çalardı.
+
+**Test**: `tests/efekt.test.ts` (5).
+
+---
+
 ## Geri alma
 
 Bir özelliği istemezsen (örnek Günün Eseri):
