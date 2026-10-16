@@ -162,38 +162,54 @@ export function BugunSayfasi() {
           </span>
         </Kutu>
 
-        <Kutu href="#/hayrat-akar" sira={sira++}>
-          <span className="mozaik__simge" aria-hidden="true">
-            <IkonDegistir boyut={22} />
+        <Kutu href="#/hayrat-akar" sira={sira++} sinif="mozaik__oge--foto">
+          <Foto className="mozaik__foto" src="/gorseller/bursa-koza-hani/k.webp" />
+          <span className="mozaik__karartma" aria-hidden="true" />
+          <span className="mozaik__icerik">
+            <span className="mozaik__simge" aria-hidden="true">
+              <IkonDegistir boyut={22} />
+            </span>
+            <span className="mozaik__ad">Hayrat mı Akar mı?</span>
+            <span className="mozaik__alt">Hizmet mi, gelir mi?</span>
           </span>
-          <span className="mozaik__ad">Hayrat mı Akar mı?</span>
-          <span className="mozaik__alt">Hizmet mi, gelir mi?</span>
         </Kutu>
 
         {hataSayisi > 0 && (
-          <Kutu href="#/hatalar" sira={sira++}>
-            <span className="mozaik__simge" aria-hidden="true">
-              <IkonTekrar boyut={22} />
+          <Kutu href="#/hatalar" sira={sira++} sinif="mozaik__oge--foto">
+            <Foto className="mozaik__foto" src="/gorseller/konya-ince-minareli-medrese/k.webp" />
+            <span className="mozaik__karartma" aria-hidden="true" />
+            <span className="mozaik__icerik">
+              <span className="mozaik__simge" aria-hidden="true">
+                <IkonTekrar boyut={22} />
+              </span>
+              <span className="mozaik__ad">Hatalarımı çalış</span>
+              <span className="mozaik__alt">{hataSayisi} soru seni bekliyor</span>
             </span>
-            <span className="mozaik__ad">Hatalarımı çalış</span>
-            <span className="mozaik__alt">{hataSayisi} soru seni bekliyor</span>
           </Kutu>
         )}
 
-        <Kutu href="#/canli" sira={sira++}>
-          <span className="mozaik__simge" aria-hidden="true">
-            <IkonSaat boyut={22} />
+        <Kutu href="#/canli" sira={sira++} sinif="mozaik__oge--foto">
+          <Foto className="mozaik__foto" src="/gorseller/hatay-kanuni-sultan-suleyman-kervansarayi/k.webp" />
+          <span className="mozaik__karartma" aria-hidden="true" />
+          <span className="mozaik__icerik">
+            <span className="mozaik__simge" aria-hidden="true">
+              <IkonSaat boyut={22} />
+            </span>
+            <span className="mozaik__ad">Canlı yarışma</span>
+            <span className="mozaik__alt">Sınıfınla aynı anda</span>
           </span>
-          <span className="mozaik__ad">Canlı yarışma</span>
-          <span className="mozaik__alt">Sınıfınla aynı anda</span>
         </Kutu>
 
-        <Kutu href="#/sinif" sira={sira++}>
-          <span className="mozaik__simge" aria-hidden="true">
-            <IkonSinif boyut={22} />
+        <Kutu href="#/sinif" sira={sira++} sinif="mozaik__oge--foto">
+          <Foto className="mozaik__foto" src="/gorseller/karatay-medresesi/k.webp" />
+          <span className="mozaik__karartma" aria-hidden="true" />
+          <span className="mozaik__icerik">
+            <span className="mozaik__simge" aria-hidden="true">
+              <IkonSinif boyut={22} />
+            </span>
+            <span className="mozaik__ad">Sınıfım</span>
+            <span className="mozaik__alt">{ilerleme.sinifKodu ? `Kod ${ilerleme.sinifKodu}` : 'Sınıf koduyla katıl'}</span>
           </span>
-          <span className="mozaik__ad">Sınıfım</span>
-          <span className="mozaik__alt">{ilerleme.sinifKodu ? `Kod ${ilerleme.sinifKodu}` : 'Sınıf koduyla katıl'}</span>
         </Kutu>
       </ul>
 

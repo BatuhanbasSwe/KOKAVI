@@ -194,13 +194,20 @@
   background: var(--zemin-vurgu);
 }
 
-.mozaik__oge--gizem .mozaik__simge {
+/* Fotoğraflı kutucuk: simge safran kutuda, metin fotoğrafın altında. */
+.mozaik__oge--gizem .mozaik__simge,
+.mozaik__oge--foto .mozaik__simge {
   color: var(--vurgu-metin);
   background: var(--vurgu);
 }
 
-.mozaik__oge--gizem .mozaik__icerik {
+.mozaik__oge--gizem .mozaik__icerik,
+.mozaik__oge--foto .mozaik__icerik {
   height: 100%;
+}
+
+.mozaik__oge--buyuk.mozaik__oge--foto .mozaik__simge {
+  margin-bottom: auto;
 }
 
 .mozaik__ad {
