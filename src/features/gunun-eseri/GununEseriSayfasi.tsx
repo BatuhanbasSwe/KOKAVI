@@ -15,6 +15,7 @@ import { Konfeti } from '@/app/Konfeti';
 import { Maskot } from '@/app/Maskot';
 import { useEfekt } from '@/app/useEfekt';
 import { ROZET_OLAYI } from '../rozetler/rozetMantigi';
+import { DinleDugmesi } from '../ders/DinleDugmesi';
 import { gunAnahtari } from '@/lib/ilerleme';
 import {
   HAK,
@@ -251,6 +252,10 @@ export function GununEseriSayfasi() {
           <p className="ge-son__ad">
             {hedef.ad} <span className="metin-soluk">· {hedef.sehir}</span>
           </p>
+          <DinleDugmesi
+            metin={`${hedef.ad}, ${hedef.sehir}. ${hedef.kullanim} ${hedef.zaman} ${hedef.yaptiran}`}
+            etiket="Eseri dinle"
+          />
           <p className="kaynak">Kaynak: {hedef.kaynak}</p>
           <div className="satir">
             {dersId && (

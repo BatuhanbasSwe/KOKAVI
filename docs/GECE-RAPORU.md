@@ -285,6 +285,17 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 **Test**: `tests/rota.test.tsx` (4).
 
+## 17. Eserin hikâyesini dinle — `Hikâyesini dinle` commit'i
+
+- **Meraklısına arşivi**'ndeki her eser sayfasında **"Hikâyesini dinle"**: eserin adı ve ekranda
+  görünen paragraflar Türkçe sesle okunur ("Devamını oku" açılınca o kısım da). Tekrar basınca durur.
+- **Günün Eseri** bitiş ekranında **"Eseri dinle"**: ad, şehir, ne için kullanıldığı, ne zaman ve
+  kim yaptırdığı okunur.
+- Dersteki mevcut "Dinle" düğmesi yeniden kullanıldı: sessiz modda ya da cihazda Türkçe ses yoksa
+  düğme hiç görünmez (testli). Okuma güçlüğü olan çocuklar için.
+
+**Test**: `tests/dinle.test.tsx` (2).
+
 ---
 
 ## Geri alma

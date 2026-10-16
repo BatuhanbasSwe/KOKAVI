@@ -6,6 +6,7 @@
  * bağlantı verilir; sonda aynı ilçeden başka eserler önerilir (keşif sürsün).
  */
 import { useEffect, useMemo, useState } from 'react';
+import { DinleDugmesi } from '../ders/DinleDugmesi';
 import { useDurum } from '../../app/DurumSaglayici';
 import { baslikAyarla } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, arsivMetni, IL_ADLARI, type ArsivEseri } from './arsivVeri';
@@ -107,6 +108,10 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
           </a>
         </div>
       ) : null}
+
+      {/* Okuma güçlüğü olan çocuklar için: görünen metni Türkçe sesle okur
+          (sessiz modda ya da Türkçe ses yoksa düğme hiç çıkmaz). */}
+      <DinleDugmesi metin={`${eser.ad}. ${gorunen.join(' ')}`} etiket="Hikâyesini dinle" />
 
       <div className="arsiv-metin">
         {gorunen.map((p) => (
