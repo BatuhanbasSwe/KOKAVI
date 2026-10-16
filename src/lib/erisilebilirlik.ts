@@ -24,9 +24,9 @@ export function ayarlariUygula(ayarlar: Ayarlar): void {
 
   // Tarayıcı arayüz rengi (adres çubuğu) temaya uysun
   const renkler: Record<Ayarlar['tema'], string> = {
-    acik: '#0F7F7A',
-    koyu: '#10161C',
-    'yuksek-kontrast': '#000000',
+    acik: '#f6f4ef',
+    koyu: '#0e1315',
+    'yuksek-kontrast': '#050607',
   };
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', renkler[ayarlar.tema]);
