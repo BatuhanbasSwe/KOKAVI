@@ -17,7 +17,7 @@ function gunAdi(gun: string): string {
   return `${g} ${AYLAR[a - 1]}`;
 }
 
-function useSeri() {
+export function useSeri() {
   const { ilerleme } = useDurum();
   const bugun = gunMetni(new Date());
   // ilerleme değişince (ders bitince) yeniden okunur.

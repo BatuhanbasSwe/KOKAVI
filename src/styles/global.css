@@ -542,6 +542,6 @@ svg {
 
 @media (max-width: 640px) {
   .sarmal {
-    width: min(100% - 1.25rem, 880px);
+    width: min(100% - 2rem, 880px);
   }
 }

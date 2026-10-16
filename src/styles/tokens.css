@@ -52,6 +52,9 @@
   --gecis-normal: 240ms;
   --yay: cubic-bezier(0.2, 1, 0.3, 1);
 
+  /* Fotoğraf üstü metin: her temada açık (altında --karartma vardır). */
+  --foto-metin: #f4f6f5;
+
   /* Maskot Köstik (çizim renkleri; her temada aynı, metin taşımaz) */
   --maskot-kurk: #5c4a42;
   --maskot-yuz: #8f786b;

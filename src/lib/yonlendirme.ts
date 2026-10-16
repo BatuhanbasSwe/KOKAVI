@@ -7,6 +7,9 @@
 import { useEffect, useState } from 'react';
 
 export type Rota =
+  | { ad: 'bugun' }
+  | { ad: 'kesfet' }
+  | { ad: 'profil' }
   | { ad: 'yol' }
   | { ad: 'ders'; dersId: string }
   | { ad: 'defter' }
@@ -36,9 +39,15 @@ export function rotayiCoz(hash: string): Rota {
   const temiz = hash.replace(/^#\/?/, '').split('?')[0] ?? '';
   const parcalar = temiz.split('/').filter(Boolean);
 
-  if (parcalar.length === 0) return { ad: 'yol' };
+  if (parcalar.length === 0) return { ad: 'bugun' };
 
   switch (parcalar[0]) {
+    case 'bugun':
+      return { ad: 'bugun' };
+    case 'kesfet':
+      return { ad: 'kesfet' };
+    case 'profil':
+      return { ad: 'profil' };
     case 'yol':
       return { ad: 'yol' };
     case 'ders':
