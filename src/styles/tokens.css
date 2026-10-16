@@ -12,7 +12,8 @@
 
 :root {
   /* --- Tipografi ------------------------------------------------------- */
-  --yazi-aile: "Nunito", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --yazi-aile: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --yazi-baslik: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
   /* Kullanıcı ayarıyla ölçeklenir (ayarlar ekranı --yazi-olcek'i değiştirir). */
   --yazi-olcek: 1;
   --yazi-xs: calc(0.75rem * var(--yazi-olcek));
