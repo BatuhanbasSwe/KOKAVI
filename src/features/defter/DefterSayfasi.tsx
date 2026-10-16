@@ -23,7 +23,7 @@ import type { Eser } from '@shared/types';
 import { api } from '../../lib/api';
 import { useDurum } from '../../app/DurumSaglayici';
 import { IkonTur } from '../../app/Ikonlar';
-import { kisaAd } from '../yol/YolSayfasi';
+import { kisaAd } from '../yol/kisaAd';
 import '../ders/ders.css'; // .ders-ayrinti (Büyükler için)
 import './defter.css';
 

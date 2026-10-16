@@ -15,138 +15,14 @@
  */
 import { useState } from 'react';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
-import { IkonKilit, IkonTekrar, YildizDugum, type YildizDurumu } from '../../app/Ikonlar';
+import { IkonKilit, IkonTekrar } from '../../app/Ikonlar';
 import { gunMetni, vadesiGelenler } from '../../lib/tekrar';
-import type { YolUnitesi } from '@shared/types';
 import { ZamanListesi } from '../zaman/ZamanListesi';
 import { gorunumOku, gorunumYaz, type YolGorunumu } from './yolGorunumu';
+import { FotografPatikasi } from './FotografPatikasi';
+import { kisaAd } from './kisaAd';
 
-/** Zikzak: düğümler sırayla sola/sağa kayar (px). */
-const KAYMALAR = [0, -56, -84, -56, 0, 56, 84, 56];
-
-/** "Yeşil Medrese (Sultaniye Medresesi; bugün …)" → "Yeşil Medrese" */
-export function kisaAd(eserAdi: string): string {
-  const kesik = eserAdi.split(' (')[0]?.trim();
-  return kesik && kesik.length > 0 ? kesik : eserAdi;
-}
-
-function UniteYolu({
-  unite,
-  sehirAdi,
-  guncelDersId,
-}: {
-  unite: YolUnitesi;
-  sehirAdi: string;
-  guncelDersId: string | null;
-}) {
-  const yuzde = unite.toplamSayi ? Math.round((unite.tamamlananSayi / unite.toplamSayi) * 100) : 0;
-  const bitti = !unite.kilitli && unite.toplamSayi > 0 && unite.tamamlananSayi === unite.toplamSayi;
-
-  return (
-    <section
-      className={`unite${unite.kilitli ? ' unite--kilitli' : ''}`}
-      aria-labelledby={`unite-${unite.uniteId}`}
-    >
-      <div className="unite-bandi">
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="unite-bandi__ust">
-            {sehirAdi}
-            {unite.aktif ? ' · şu an burada' : ''}
-            {unite.kilitli ? ' · kilitli' : ''}
-            {bitti ? ' · tamamlandı' : ''}
-          </div>
-          <h3 id={`unite-${unite.uniteId}`}>{unite.ad}</h3>
-          <div
-            className="ilerleme-cubugu"
-            role="progressbar"
-            aria-valuenow={yuzde}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label={`${sehirAdi} ${unite.ad} ilerlemesi: yüzde ${yuzde}`}
-          >
-            <div className="ilerleme-cubugu__dolgu" style={{ width: `${yuzde}%` }} />
-          </div>
-        </div>
-        <span className="unite-bandi__sayac">
-          {unite.kilitli ? <IkonKilit boyut={20} /> : null}
-          {unite.tamamlananSayi}/{unite.toplamSayi}
-        </span>
-      </div>
-
-      <ol className="yol-dugumleri" aria-label={`${unite.ad} dersleri`}>
-        {unite.dersler.map((ders, i) => {
-          const durum: YildizDurumu = unite.kilitli
-            ? 'kilitli'
-            : ders.tamamlandi
-              ? 'tamam'
-              : ders.dersId === guncelDersId
-                ? 'aktif'
-                : 'acik';
-          const durumMetni =
-            durum === 'kilitli'
-              ? 'kilitli, önceki üniteyi tamamla'
-              : durum === 'tamam'
-                ? 'tamamlandı'
-                : durum === 'aktif'
-                  ? 'sıradaki ders, başla'
-                  : 'başlayabilirsin';
-          const ad = kisaAd(ders.eserAdi);
-          const kayma = `${KAYMALAR[i % KAYMALAR.length]}px`;
-
-          const gorunum = (
-            <>
-              <YildizDugum durum={durum} tur={ders.tur} />
-              <span className="yol-dugumu__metin" aria-hidden="true">
-                <span className="yol-dugumu__ad">{ad}</span>
-                <span className="yol-dugumu__tur">{ders.tur}</span>
-              </span>
-            </>
-          );
-
-          return (
-            <li
-              key={ders.dersId}
-              className={`yol-dugumu yol-dugumu--${durum}`}
-              style={{ ['--sira' as string]: i }}
-            >
-              <div
-                className="yol-dugumu__icerik"
-                style={{ ['--kayma' as string]: kayma }}
-              >
-                {durum === 'aktif' ? (
-                  <>
-                    <span className="yol-dugumu__halka" aria-hidden="true" />
-                    <span className="yol-dugumu__balon" aria-hidden="true">
-                      BAŞLA
-                    </span>
-                  </>
-                ) : null}
-
-                {durum === 'kilitli' ? (
-                  <span
-                    className="yol-dugumu__baglanti"
-                    role="img"
-                    aria-label={`${ders.eserAdi}, ${ders.tur}, ${durumMetni}`}
-                  >
-                    {gorunum}
-                  </span>
-                ) : (
-                  <a
-                    className="yol-dugumu__baglanti"
-                    href={`#/ders/${encodeURIComponent(ders.dersId)}`}
-                    aria-label={`${ders.eserAdi}, ${ders.tur}, ${durumMetni}`}
-                  >
-                    {gorunum}
-                  </a>
-                )}
-              </div>
-            </li>
-          );
-        })}
-      </ol>
-    </section>
-  );
-}
+export { kisaAd };
 
 export function YolSayfasi() {
   const { yol, yukleniyor, hata, ilerleme, tekrar } = useDurum();
@@ -258,7 +134,7 @@ export function YolSayfasi() {
 
           <div className="yigin" style={{ gap: 'var(--b-4)' }}>
             {sehir.uniteler.map((unite) => (
-              <UniteYolu
+              <FotografPatikasi
                 key={unite.uniteId}
                 unite={unite}
                 sehirAdi={sehir.ad}

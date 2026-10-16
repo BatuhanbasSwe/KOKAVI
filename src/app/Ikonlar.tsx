@@ -193,44 +193,6 @@ export function IkonTur({ tur, boyut = 24, className, dolu }: IkonProps & { tur:
   );
 }
 
-/* --- Selçuklu sekiz köşeli yıldızı (öğrenme yolu düğümü) ----------------- */
-
-const YILDIZ_UST =
-  '40,2 50.5,12.5 65.5,12.5 65.5,27.5 76,38 65.5,48.5 65.5,63.5 50.5,63.5 40,74 29.5,63.5 14.5,63.5 14.5,48.5 4,38 14.5,27.5 14.5,12.5 29.5,12.5';
-const YILDIZ_ALT =
-  '40,8 50.5,18.5 65.5,18.5 65.5,33.5 76,44 65.5,54.5 65.5,69.5 50.5,69.5 40,80 29.5,69.5 14.5,69.5 14.5,54.5 4,44 14.5,33.5 14.5,18.5 29.5,18.5';
-
-export type YildizDurumu = 'tamam' | 'aktif' | 'acik' | 'kilitli';
-
-/**
- * Yol düğümü: iki üst üste yıldız (alttaki koyu = 3B gölge) + ortada ikon.
- * Durum renkle DEĞİL, ortadaki ikonla da ayrışır: onay, kilit, tür ikonu.
- */
-export function YildizDugum({ durum, tur, boyut = 80 }: { durum: YildizDurumu; tur?: string | null; boyut?: number }) {
-  const renk: Record<YildizDurumu, [string, string, string]> = {
-    tamam: ['var(--odul)', 'var(--odul-golge)', 'var(--odul-metin)'],
-    aktif: ['var(--vurgu)', 'var(--vurgu-golge)', 'var(--vurgu-metin)'],
-    acik: ['var(--vurgu)', 'var(--vurgu-golge)', 'var(--vurgu-metin)'],
-    kilitli: ['var(--kilit)', 'var(--kilit-golge)', 'var(--kilit-metin)'],
-  };
-  const [ust, alt, ikon] = renk[durum];
-  const Ic = durum === 'tamam' ? Check : durum === 'kilitli' ? Lock : turSimgesi(tur);
-  return (
-    <svg
-      className="yildiz-dugum"
-      width={boyut}
-      height={(boyut * 82) / 80}
-      viewBox="0 0 80 82"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <polygon points={YILDIZ_ALT} fill={alt} />
-      <polygon points={YILDIZ_UST} fill={ust} />
-      <Ic x={23} y={21} size={34} weight="bold" color={ikon} />
-    </svg>
-  );
-}
-
 /* --- Kâşif avatarları (Vakıf Çarşısı) ------------------------------------ */
 
 const AVATAR_SIMGELERI: Record<string, Icon> = {

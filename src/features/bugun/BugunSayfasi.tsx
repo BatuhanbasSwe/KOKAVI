@@ -29,7 +29,7 @@ import { useSeri } from '../seri/Seri';
 import { GUN_KISA, haftaGunleri } from '../seri/seriTakvimi';
 import { TanitimTuru, tanitimGorulduMu } from '../yol/TanitimTuru';
 import { gorunumOku, gorunumYaz } from '../yol/yolGorunumu';
-import { kisaAd } from '../yol/YolSayfasi';
+import { kisaAd } from '../yol/kisaAd';
 import { Foto, Kutu } from './Mozaik';
 import { siradakiDers } from './siradaki';
 
