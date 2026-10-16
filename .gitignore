@@ -12,3 +12,4 @@ deploy/ADMIN-PAROLA.txt
 kaynak/
 .playwright-mcp/
 *.tsbuildinfo
+.superpowers/
