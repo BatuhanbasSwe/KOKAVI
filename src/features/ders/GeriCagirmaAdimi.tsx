@@ -5,10 +5,11 @@
  * egzersiz tipi sırayla gelebilir. Bu bileşen sıradaki egzersizi tipine göre
  * doğru bileşene yönlendirir.
  */
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Egzersiz } from '@shared/types';
 import { EgzersizKabugu, IpucuBildirimi } from './EgzersizKabugu';
 import { IkonTekrar } from '../../app/Ikonlar';
+import { useEfekt } from '../../app/useEfekt';
 import type { TekrarGorevi } from './DersSayfasi';
 import { EslestirEgzersizi } from './EslestirEgzersizi';
 import { SiralaEgzersizi } from './SiralaEgzersizi';
@@ -125,6 +126,24 @@ function TekrarEgzersizi({
   );
 }
 
+/**
+ * Kombo: üst üste İPUCUSUZ çözülen egzersiz sayısı (Duolingo serisi gibi).
+ * Ceza yok: ipucu alınca sayaç sessizce sıfırlanır, hiçbir şey eksilmez.
+ */
+export function KomboBandi({ kombo }: { kombo: number }) {
+  if (kombo < 2) return null;
+  return (
+    <p className="ders-kombo" key={kombo}>
+      <span className="ders-kombo__alev" aria-hidden="true">
+        🔥
+      </span>
+      <span>
+        <strong>{kombo} egzersiz</strong> üst üste ilk denemede!
+      </span>
+    </p>
+  );
+}
+
 /** 04 · GERİ ÇAĞIRMA adımı: egzersizleri sırayla sunar. */
 export function GeriCagirmaAdimi({
   egzersizler,
@@ -136,6 +155,23 @@ export function GeriCagirmaAdimi({
 }: AdimProps) {
   const ofset = tekrarGorevi ? 1 : 0;
 
+  const [kombo, setKombo] = useState(0);
+  const ipucuAlindi = useRef(false);
+  const ipucuGoruldu = useCallback(() => {
+    ipucuAlindi.current = true;
+  }, []);
+  const cal = useEfekt();
+  useEffect(() => {
+    if (kombo >= 2) cal('kombo');
+  }, [kombo, cal]);
+
+  /** Egzersiz bitti: ipucusuzsa kombo artar, değilse sıfırlanır. */
+  const egzersizBitti = (ipucusuz = !ipucuAlindi.current) => {
+    ipucuAlindi.current = false;
+    setKombo((k) => (ipucusuz ? k + 1 : 0));
+    onIlerle();
+  };
+
   if (tekrarGorevi && sirasi === 0) {
     return (
       <div className="yigin">
@@ -143,7 +179,7 @@ export function GeriCagirmaAdimi({
           gorev={tekrarGorevi}
           onBitti={(ipucusuz) => {
             onTekrarBitti?.(ipucusuz);
-            onIlerle();
+            egzersizBitti(ipucusuz);
           }}
         />
       </div>
@@ -180,8 +216,14 @@ export function GeriCagirmaAdimi({
         </p>
       ) : null}
 
+      <div aria-live="polite">
+        <KomboBandi kombo={kombo} />
+      </div>
+
       {/* key: egzersiz değişince iç durum (seçim, sıralama) sıfırlanır. */}
-      <EgzersizCalistirici key={egzersiz.id} egzersiz={egzersiz} onBitti={onIlerle} />
+      <IpucuBildirimi.Provider value={ipucuGoruldu}>
+        <EgzersizCalistirici key={egzersiz.id} egzersiz={egzersiz} onBitti={() => egzersizBitti()} />
+      </IpucuBildirimi.Provider>
     </div>
   );
 }

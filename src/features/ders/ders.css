@@ -1329,3 +1329,44 @@
 .ders-sayfa {
   overflow-x: clip;
 }
+
+/* --- Kombo bandı: üst üste ipucusuz çözülen egzersizler ------------------- */
+.ders-kombo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-2);
+  margin: 0;
+  padding: var(--b-2) var(--b-4);
+  border-radius: var(--kose-tam);
+  background: var(--odul-yumusak);
+  border: 2px solid var(--odul-golge);
+  color: var(--metin);
+  font-weight: 700;
+  animation: ders-kombo-gir 520ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+.ders-kombo__alev {
+  font-size: 1.3em;
+  animation: ders-kombo-alev 900ms ease-in-out infinite alternate;
+}
+@keyframes ders-kombo-gir {
+  0% {
+    scale: 0.5;
+    opacity: 0;
+  }
+  70% {
+    scale: 1.08;
+    opacity: 1;
+  }
+}
+@keyframes ders-kombo-alev {
+  to {
+    scale: 1.2;
+    rotate: -8deg;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ders-kombo,
+  .ders-kombo__alev {
+    animation: none;
+  }
+}

@@ -87,6 +87,19 @@ Başvuruda: **dolaylı** (Duolingo hissi; "sessiz mod" taahhüdüne uyuyor).
 
 ---
 
+## 4. Kombo sayacı — `Kombo sayacı` commit'i
+
+Başvuruda: **yok** (Duolingo'daki "üst üste doğru" hissi).
+
+- Derste egzersizler üst üste **ipucu almadan** çözülünce "🔥 2 egzersiz üst üste ilk
+  denemede!" bandı yaylanarak çıkar, alev titrer, kombo sesi çalar.
+- İpucu alınınca sayaç sessizce sıfırlanır; elmas/puan **eksilmez** (ceza yok).
+- Önceki dersten gelen tekrar sorusu da sayılır.
+
+**Test**: `tests/kombo.test.tsx`.
+
+---
+
 ## Geri alma
 
 Bir özelliği istemezsen (örnek Günün Eseri):
