@@ -1,4 +1,4 @@
-# Kök Avı yeniden tasarım: "Fotoğraf Patikası" (koyu, oyunsu, şablonsuz)
+# Kök Avı yeniden tasarım: "Mozaik + Fotoğraf Patikası" (koyu, safran, şablonsuz)
 
 Tarih: 2026-10-16 · Durum: onaylandı (Batuhan, beyin fırtınası oturumu) · Branch: `gece-calismasi`
 
@@ -14,19 +14,21 @@ görüntüsünün kesinlikle olmaması (klasik gölgeli düğmeler, neon parılt
 **Ayarlar (design-taste-frontend):** çeşitlilik 6, hareket 7, yoğunluk 4.
 
 **Reddedilen yönler:** parşömen "Kâşif Haritası" (açık, bej/pirinç paleti = YZ varsayılanı), Neon Kâşif
-(mor + parıltı), Deste ve Mozaik (yol hissi zayıf). Seçilen: **Fotoğraf Patikası**.
+(mor + parıltı), Deste. Seçilen: **ana ekran Mozaik (Bugün) + Yol sekmesi Fotoğraf Patikası**.
+Turkuaz/yeşil vurgu kullanıcı tarafından reddedildi; vurgu **safran**.
 
 ## 2. Görsel sistem
 
 ### Renk (tek vurgu)
 - Zemin `#0e1315` (siyah değil, soğuk koyu), yüzey `#161d20`, yüzey-2 `#1d2629`, çizgi `#2a3539`.
 - Metin `#eef2f0`, ikincil `#9fb0ad` (koyu zeminde ≥ 4.5:1).
-- **Tek vurgu: kısık çini turkuazı `#3cbfae`** (üstündeki metin koyu `#062521`). Ana eylem, aktif
-  sekme, ilerleme, biten durak.
-- Anlamsal: sıcak `#f2a541` yalnızca seri/ödül; başarı ve uyarı mevcut anlamlarıyla.
+- **Tek vurgu: safran `#ffbf3c`** (üstündeki metin koyu `#2a1c00`). Ana eylem, aktif sekme,
+  ilerleme, biten durak, seri ve ödül. **Turkuaz ve yeşil arayüzden tamamen kalkar.**
+- Anlamsal: doğru cevap = safran + onay simgesi (renk tek başına değil); ipucu/bilgi = kısık
+  İznik mavisi `#8ea6ff` yalnızca metin/simge/kenar; hata ekranı yok (ceza yok).
 - **Neon/dış parıltı, mor, degrade metin yok.** Gölgeler zemine boyalı, siyah değil.
 - Tema: **koyu varsayılan**. Ayarlar'daki "açık" ve "yüksek kontrast" aynı jeton adlarıyla yeniden
-  tanımlanır (açık tema bej değil: kırık beyaz + aynı turkuaz). Bileşen tema bilmez.
+  tanımlanır (açık tema bej değil: kırık beyaz + aynı safran, üstünde koyu metin). Bileşen tema bilmez.
 
 ### Tipografi
 - Başlık: **Bricolage Grotesque** (700/800, `letter-spacing: -0.02em`). Gövde: **Figtree** (500/600/700).
@@ -57,14 +59,14 @@ Hepsi `prefers-reduced-motion` ve Ayarlar → "Hareketi azalt" ile durur. Yalnı
 
 ## 3. Bilgi mimarisi ve gezinme
 
-Alt sekme çubuğu **4 sekme**: **Yolculuk · Keşfet · Oyunlar · Defter**. Üst çubuk: logo, seri, elmas,
+Alt sekme çubuğu **4 sekme**: **Bugün · Yol · Keşfet · Defter**. Üst çubuk: logo, seri, elmas,
 **profil düğmesi**.
 
 | Sekme | Rota | İçerik |
 |---|---|---|
-| Yolculuk | `#/yol` | Fotoğraf patikası (Şehirlere göre / Zamana göre), tanıtım turu, tekrar kartı |
+| Bugün (ana) | `#/` ve `#/bugun` (yeni) | Mozaik: büyük "sıradaki ders" fotoğraf kutucuğu, seri, Günün Eseri (bulanık gizem), Hayrat mı Akar mı, Hatalarımı çalış, Canlı yarışma / Sınıfım, tanıtım turu |
+| Yol | `#/yol` | Fotoğraf patikası (Şehirlere göre / Zamana göre), tekrar kartı |
 | Keşfet | `#/kesfet` (yeni merkez) | Harita · Meraklısına arşivi · Zaman tüneli · Keşif rotası (kutucuklar) |
-| Oyunlar | `#/oyunlar` (yeni merkez) | Günün Eseri · Hayrat mı Akar mı · Hatalarımı çalış · Canlı yarışma · Sınıfım |
 | Defter | `#/defter` | İç sekmeler: Pullar · Rozetler · Seri · Belgeler (sertifikalar) |
 | Profil | `#/profil` (yeni) | Ayarlar özeti + Vakıf Çarşısı + Yetişkinler (öğretmen, içerik yönetimi, canlı yarışma kur) |
 
@@ -75,16 +77,20 @@ Alt sekme çubuğu **4 sekme**: **Yolculuk · Keşfet · Oyunlar · Defter**. Ü
 
 ## 4. Ekranlar
 
-1. **Yolculuk:** başlıkta şehir adı (Bricolage 28) + ünite adı + ince ilerleme çizgisi. Altında patika:
-   zigzag, durak = eserin kapak fotoğrafı (`k.webp`) dairesel madalyon. Bitti: renkli + turkuaz kenar +
+0. **Bugün (Mozaik):** üstte selam + elmas; 2 sütunlu karışık boyutlu kutucuklar: tam genişlik
+   "sıradaki ders" (eser fotoğrafı, alttan karartma, ad + safran "Derse devam"), seri (büyük sayı +
+   hafta kareleri), Günün Eseri (bulanık fotoğraf), Hayrat mı Akar mı, Hatalarımı çalış (varsa),
+   Canlı yarışma, Sınıfım. Kutucuklar yaylanarak sırayla gelir.
+1. **Yol:** başlıkta şehir adı (Bricolage 28) + ünite adı + ince ilerleme çizgisi. Altında patika:
+   zigzag, durak = eserin kapak fotoğrafı (`k.webp`) dairesel madalyon. Bitti: renkli + safran kenar +
    onay simgesi. Sıradaki: büyük (96px), ilerleme halkası, yanında ad + "Devam et". Kilitli: gri + kilit.
    Ünite başlıkları patikanın içinde sade bir satır. Köstik sıradaki durağın yanında küçük (konuşma
    balonu yalnızca tanıtımda / ilk ders).
 2. **Ders:** odak modu (gezinme yok); üstte kapat + bölümlü ilerleme; içerik kartları koyu yüzeyde;
-   seçenekler 56px satırlar (seçili: turkuaz kenar); sonuç **alttan yaylanan sayfa** (doğru: başarı rengi,
+   seçenekler 56px satırlar (seçili: safran kenar); sonuç **alttan yaylanan sayfa** (doğru: başarı rengi,
    ipucu: sıcak ton; Köstik tepkisi), "Devam" tam genişlik.
 3. **Ders sonu:** eser fotoğrafı pul olarak basılır, elmas sayacı sayar, seri ve deftere eklendi bilgisi.
-4. **Keşfet / Oyunlar merkezleri:** fotoğraf ve doku içeren karışık boyutlu kutucuklar (eşit üçlü kart
+4. **Keşfet merkezi:** fotoğraf ve doku içeren karışık boyutlu kutucuklar (eşit üçlü kart
    yok); Günün Eseri bulanık fotoğrafla "gizem".
 5. **Defter:** iç sekmeler; Pullar = 3 sütun fotoğraf pulları (tırtıklı kenar maskesi), kilitliler boş
    pul çerçevesi; Rozetler/Seri/Belgeler mevcut bileşenler yeni dille.
@@ -99,8 +105,8 @@ Alt sekme çubuğu **4 sekme**: **Yolculuk · Keşfet · Oyunlar · Defter**. Ü
   güncellenir.
 - **Temel bileşen stilleri:** `src/styles/global.css` (düğme, kart, seçenek, rozet, bildirim) yeni dile.
 - **Kabuk:** `src/app/App.tsx` 4 sekme + profil düğmesi; `app.css` yeniden.
-- **Yeni sayfalar:** `src/features/merkez/KesfetSayfasi.tsx`, `OyunlarSayfasi.tsx`, `src/features/profil/ProfilSayfasi.tsx`.
-- **Yolculuk:** `src/features/yol/` patika bileşeni (`FotografPatikasi.tsx`) yeniden; `YolSayfasi` sadeleşir.
+- **Yeni sayfalar:** `src/features/bugun/BugunSayfasi.tsx` (mozaik), `src/features/merkez/KesfetSayfasi.tsx`, `src/features/profil/ProfilSayfasi.tsx`.
+- **Yol:** `src/features/yol/` patika bileşeni (`FotografPatikasi.tsx`) yeniden; `YolSayfasi` sadeleşir.
 - **Ders:** `src/features/ders/ders.css` yeniden; `EgzersizKabugu` sonuç sayfası alttan kayar.
 - **Defter:** iç sekmeler (`DefterSayfasi`), pul bileşeni.
 - 🔴 bölgelere (server, shared, api, ilerleme, oturum) dokunulmaz.
