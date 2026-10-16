@@ -54,20 +54,20 @@
 .sertifika__muhur-yazi {
   fill: var(--odul-metin);
   font-family: var(--yazi-aile);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 30px;
 }
 .sertifika__ust {
   fill: var(--sicak);
   font-family: var(--yazi-aile);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 22px;
   letter-spacing: 4px;
 }
 .sertifika__baslik {
   fill: var(--vurgu-koyu);
   font-family: var(--yazi-aile);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 64px;
 }
 .sertifika__metin {
@@ -79,7 +79,7 @@
 .sertifika__ad {
   fill: var(--metin);
   font-family: var(--yazi-aile);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 52px;
 }
 .sertifika__cizgi {

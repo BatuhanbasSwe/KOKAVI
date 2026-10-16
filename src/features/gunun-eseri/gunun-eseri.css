@@ -46,7 +46,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  font-weight: 900;
+  font-weight: 800;
   background: var(--zemin-vurgu);
 }
 .ge-ipucu--acik .ge-ipucu__no {
@@ -61,9 +61,7 @@
 }
 .ge-ipucu__baslik {
   font-size: var(--yazi-xs);
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 800;
 }
 .ge-ipucu__metin {
   font-weight: 700;
@@ -107,7 +105,7 @@
   background: var(--basari-yumusak);
 }
 .ge-tahmin__ad {
-  font-weight: 900;
+  font-weight: 800;
 }
 .ge-rozetler {
   display: flex;
@@ -220,7 +218,7 @@
 .ge-son__ad {
   margin: 0;
   font-size: var(--yazi-lg);
-  font-weight: 900;
+  font-weight: 800;
 }
 .ge-son .kaynak {
   text-align: left;
@@ -250,7 +248,7 @@
 .ge-istatistik dd {
   margin: 0;
   font-size: var(--yazi-xl);
-  font-weight: 900;
+  font-weight: 800;
 }
 .ge-dagilim {
   display: grid;
@@ -267,7 +265,7 @@
 }
 .ge-dagilim__no {
   width: 1.5em;
-  font-weight: 900;
+  font-weight: 800;
 }
 .ge-dagilim__cubuk {
   flex: 1;
@@ -292,7 +290,7 @@
 }
 .ge-dagilim__sayi {
   min-width: 1.5em;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 /* Yol ekranındaki giriş kartı */
@@ -326,14 +324,14 @@
   background: var(--odul);
   color: var(--odul-metin);
   font-size: 1.6rem;
-  font-weight: 900;
+  font-weight: 800;
 }
 .ge-davet__metin {
   display: grid;
   flex: 1;
 }
 .ge-davet__baslik {
-  font-weight: 900;
+  font-weight: 800;
 }
 .ge-davet__alt {
   font-size: var(--yazi-sm);
@@ -341,7 +339,7 @@
 }
 .ge-davet__durum {
   flex: none;
-  font-weight: 900;
+  font-weight: 800;
   font-size: var(--yazi-sm);
 }
 

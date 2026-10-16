@@ -51,7 +51,7 @@
 .rota-sema__nokta text {
   fill: var(--vurgu-metin);
   font-family: var(--yazi-aile);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 11px;
 }
 .rota-sema__nokta--goruldu circle {
@@ -87,7 +87,7 @@
   border-radius: 50%;
   background: var(--vurgu);
   color: var(--vurgu-metin);
-  font-weight: 900;
+  font-weight: 800;
 }
 .rota-durak--goruldu .rota-durak__no {
   background: var(--basari);
@@ -98,7 +98,7 @@
   min-width: 0;
 }
 .rota-durak__ad {
-  font-weight: 900;
+  font-weight: 800;
 }
 .rota-durak__alt,
 .rota-durak__ara {

@@ -94,7 +94,7 @@
 .seri-istatistik dd {
   margin: 0;
   font-size: var(--yazi-2xl);
-  font-weight: 900;
+  font-weight: 800;
 }
 .seri-ay__ust {
   display: grid;
@@ -112,7 +112,7 @@
   height: 44px;
   font: inherit;
   font-size: 1.6rem;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1;
   color: var(--metin);
   background: var(--zemin-vurgu);

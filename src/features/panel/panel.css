@@ -84,8 +84,6 @@
 .panel__ist-etiket {
   font-size: var(--yazi-xs);
   font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--metin-ikincil);
 }
 
@@ -168,8 +166,6 @@
   background: var(--zemin-vurgu);
   font-size: var(--yazi-xs);
   font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--metin-ikincil);
   white-space: nowrap;
 }
@@ -646,8 +642,6 @@
   margin: 0 0 var(--b-2);
   font-size: var(--yazi-xs);
   font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--metin-soluk);
 }
 

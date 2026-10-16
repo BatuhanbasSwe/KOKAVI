@@ -93,7 +93,7 @@ a.zt-kart:hover {
   min-width: 0;
 }
 .zt-kart__yil {
-  font-weight: 900;
+  font-weight: 800;
   font-size: var(--yazi-lg);
   color: var(--sicak);
   font-variant-numeric: tabular-nums;
@@ -158,14 +158,12 @@ a.zt-kart:hover {
 }
 .zt-siradaki__etiket {
   font-size: var(--yazi-xs);
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 800;
   color: var(--sicak);
 }
 .zt-siradaki__ad {
   font-size: var(--yazi-lg);
-  font-weight: 900;
+  font-weight: 800;
 }
 .zt-oge--siradaki .zt-kart {
   border: 3px solid var(--vurgu);
@@ -183,7 +181,7 @@ a.zt-kart:hover {
   animation: zt-nabiz 1.4s ease-in-out infinite;
 }
 .zt-kart__siradaki {
-  font-weight: 900;
+  font-weight: 800;
   color: var(--vurgu-koyu);
 }
 .zt-kart__basla {
@@ -194,7 +192,7 @@ a.zt-kart:hover {
   background: var(--vurgu);
   color: var(--vurgu-metin);
   font-size: var(--yazi-xs);
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 0.06em;
 }
 @keyframes zt-nabiz {
@@ -216,7 +214,7 @@ a.zt-kart:hover {
 .yol-gorunum__dugme {
   min-height: 44px;
   font: inherit;
-  font-weight: 900;
+  font-weight: 800;
   color: var(--metin-ikincil);
   background: transparent;
   border: 0;

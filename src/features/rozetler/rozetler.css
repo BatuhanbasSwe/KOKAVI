@@ -24,7 +24,7 @@
 .rozet-gorsel__isaret {
   fill: var(--rozet-renk);
   font-family: var(--yazi-aile);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 15px;
 }
 .rozet-gorsel--kilitli .rozet-gorsel__yildiz {
@@ -70,7 +70,7 @@
   animation: rozet-parla 2.6s ease-in-out infinite;
 }
 .rozet-karti__ad {
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.2;
 }
 .rozet-karti__aciklama {
@@ -116,13 +116,11 @@
 }
 .rozet-bildirim__ust {
   font-size: var(--yazi-xs);
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 800;
   color: var(--sicak);
 }
 .rozet-bildirim__ad {
-  font-weight: 900;
+  font-weight: 800;
   font-size: var(--yazi-lg);
 }
 .rozet-bildirim__aciklama {
@@ -135,7 +133,7 @@
   height: 44px;
   font: inherit;
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: 800;
   color: var(--metin);
   background: transparent;
   border: 0;

@@ -32,7 +32,7 @@
   padding: var(--b-2) var(--b-3);
   font: inherit;
   font-size: var(--yazi-2xl);
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 0.3em;
   text-align: center;
   color: var(--metin);
@@ -119,7 +119,7 @@
 .canli-puan {
   padding: var(--b-1) var(--b-3);
   border-radius: var(--kose-tam);
-  font-weight: 900;
+  font-weight: 800;
 }
 .canli-takma-ad {
   background: var(--ikincil-yumusak);
@@ -245,7 +245,7 @@ button.canli-secenek:active:not(:disabled) {
 }
 .canli-secenek__isaret {
   color: var(--basari);
-  font-weight: 900;
+  font-weight: 800;
 }
 .canli-secenek__dagilim {
   display: flex;
@@ -313,7 +313,7 @@ button.canli-secenek:active:not(:disabled) {
   inset: 0;
   display: grid;
   place-items: center;
-  font-weight: 900;
+  font-weight: 800;
   font-size: var(--yazi-lg);
 }
 .canli-sayac--az .canli-sayac__dolgu {
@@ -363,7 +363,7 @@ button.canli-secenek:active:not(:disabled) {
   margin-inline: auto;
   border-radius: 50%;
   font-size: 44px;
-  font-weight: 900;
+  font-weight: 800;
   color: var(--zemin-kart);
   background: var(--basari);
   animation: canli-zipla 600ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
@@ -414,7 +414,7 @@ button.canli-secenek:active:not(:disabled) {
 .canli-pin__sayi {
   margin: 0;
   font-size: clamp(2.6rem, 12vw, 5rem);
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 0.08em;
   line-height: 1;
   color: var(--vurgu-koyu);
@@ -475,14 +475,14 @@ button.canli-secenek:active:not(:disabled) {
 }
 .canli-sira__no {
   min-width: 2.2em;
-  font-weight: 900;
+  font-weight: 800;
 }
 .canli-sira__ad {
   flex: 1;
   font-weight: 700;
 }
 .canli-sira__puan {
-  font-weight: 900;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
 
@@ -540,7 +540,7 @@ button.canli-secenek:active:not(:disabled) {
   outline-offset: 3px;
 }
 .canli-podyum__ad {
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.15;
   overflow-wrap: anywhere;
 }
@@ -551,7 +551,7 @@ button.canli-secenek:active:not(:disabled) {
 .canli-podyum__sira {
   align-self: end;
   font-size: var(--yazi-3xl);
-  font-weight: 900;
+  font-weight: 800;
   color: var(--metin-soluk);
 }
 

@@ -22,7 +22,7 @@
   background: var(--ikincil-yumusak);
   color: var(--ikincil-golge);
   font-size: var(--yazi-xl);
-  font-weight: 900;
+  font-weight: 800;
 }
 
 [data-tema='koyu'] .carsi-bakiye,
@@ -77,7 +77,7 @@
 }
 
 .carsi-urun__ad {
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .carsi-urun__aciklama {
@@ -93,7 +93,7 @@
   justify-content: center;
   gap: 4px;
   min-height: 44px;
-  font-weight: 900;
+  font-weight: 800;
   color: var(--vurgu-koyu);
 }
 

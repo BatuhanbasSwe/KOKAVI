@@ -76,7 +76,7 @@
   padding: var(--b-2) var(--b-3) var(--b-3);
 }
 .arsiv-kart__ad {
-  font-weight: 900;
+  font-weight: 800;
   line-height: var(--satir-baslik);
 }
 .arsiv-kart__alt {
@@ -91,7 +91,7 @@
   background: var(--odul);
   color: var(--odul-metin);
   font-size: var(--yazi-xs);
-  font-weight: 900;
+  font-weight: 800;
 }
 
 /* --- Eser sayfası ---------------------------------------------------------- */

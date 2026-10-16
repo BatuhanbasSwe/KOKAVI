@@ -40,7 +40,7 @@
 }
 
 .defter-sayac {
-  font-weight: 900;
+  font-weight: 800;
   color: var(--metin-ikincil);
 }
 
@@ -151,7 +151,7 @@
 
 .defter-karesi__ad {
   font-size: var(--yazi-sm);
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.2;
 }
 
