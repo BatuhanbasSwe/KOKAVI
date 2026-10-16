@@ -340,3 +340,24 @@ istekler farklı örneklere düşerse oda bölünebilir. **Finalde yarışma, la
 aynı Wi-Fi ile gösterilir:** `npm run dev:lan` (telefonlar laptopun IP'sine
 bağlanır; öğretmen ekranındaki QR kod bu adresi verir). Kalıcı çözüm gerekirse
 oda durumu tek bir paylaşılan depoya (ör. Redis) taşınır.
+
+---
+
+## 16. Günün Eseri, rozetler, kombo — oyunlaştırma nereye kadar?
+
+**Risk:** Oyunlaştırma çocukta kaygı, kıyas ve bağımlılık üretebilir; bu da
+"ceza yok" (§ kalp mekaniği) ilkesine ters düşer.
+
+**Kararlarımız:**
+
+- **Kaybetmek yok.** Rozet geri alınmaz; kombo ipucu alınca *sessizce* sıfırlanır,
+  hiçbir şey eksilmez; Günün Eseri'nde haklar bitse de eser tanıtılır ve derse
+  bağlantı verilir.
+- **Kıyas yok.** Rozet, seri ve Günün Eseri istatistiği yalnızca cihazda; sınıf
+  ya da arkadaş sıralaması yok. Tek sıralama canlı yarışmadadır ve takma adlarla,
+  oyun bitince silinir.
+- **Bilgi uydurulmaz.** Günün Eseri ipuçları envanterdeki bilginin çocuk diline
+  çevrilmiş hâlidir; yazım sırasında envanterde olmayan 9 ayrıntı çıkarıldı. Test,
+  ilk dört ipucunun eserin adını ele vermediğini denetler.
+- **Sessiz mod ve hareketi azalt** her yeni efekte uyar (ses, titreşim, animasyon).
+- **Kişisel veri yok.** Sertifikadaki ad isteğe bağlıdır, yalnızca ekranda durur.

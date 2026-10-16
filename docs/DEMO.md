@@ -92,3 +92,45 @@ sorusunun cevabını üründe görmeli.
 - [ ] Ekran okuyucu ile bir ders baştan sona dinlendi
 - [ ] Yönetim panelinden eser ekleme provası yapıldı
 - [ ] Üç üye de kendi bölümünü anlatabildiğini teyit etti
+
+---
+
+## EK (öneri, 16 Ekim gece çalışması): yeni özellikler için demo dilimleri
+
+> Ana senaryo **değiştirilmedi**. Aşağıdakiler süre kalırsa eklenebilecek ya da
+> mevcut dilimlerle değiştirilebilecek öneriler. Takım karar verir.
+> Not: ana senaryodaki "Konya/Kütahya/İzmir kilitli" ifadesi eski; Kütahya ve İzmir
+> içerikten çıkarıldı (yalnızca PDF'teki eserler). Senaryo donmadan güncellenmeli.
+
+| Süre | Ne gösterilir | Neden etkili |
+|---|---|---|
+| 0:40 | ⭐ **Canlı sınıf yarışması.** Laptop tahtaya yansıtılır (`#/canli/kur` → Bursa, 5 soru). Jüri üyelerine **QR kod** okutulur, telefonlarından "Turkuaz Kubbe" gibi takma adla katılırlar. 2 soru oynanır, podyum + konfeti. | Jüri **kendisi oynar**. "Ad sorulmadı, hiçbir şey kaydedilmedi" cümlesi gizlilik ilkesini canlı kanıtlar. |
+| 0:20 | **Günün Eseri.** Yol ekranındaki sarı kart → bir yanlış tahmin (şehir/tür/dönem karşılaştırması görünür) → yeni ipucu açılır. | Wordle tanıdık; "her yanlış yeni bir bilgi açar" = ceza yok ilkesi. |
+| 0:15 | **Kombo + ses.** Egzersizlerde üst üste doğru → "🔥 2 egzersiz üst üste" + "ding". | Duolingo hissi; Ayarlar → Sessiz mod ile hepsinin kapandığı gösterilir. |
+| 0:15 | **Rozet + sertifika.** Kâşif Defteri → Rozetlerim; tamamlanmış şehirde "sertifikanı al" → ad yazılır → Yazdır. | Somut çıktı: öğretmen/aile için. "Ad kaydedilmiyor." |
+
+### Canlı yarışma kurulumu (finalde)
+
+1. Laptop ve telefonlar **aynı Wi-Fi**'da olmalı (salon Wi-Fi'ı istemciler arası trafiği
+   engelliyorsa telefonun **kişisel erişim noktası** kullanılır).
+2. `npm run dev:lan` → konsolda `Network: http://192.168.x.x:5173` adresi çıkar.
+3. Tahta ekranı bu adresle açılır (`localhost` ile değil!), böylece QR kod doğru adresi verir.
+4. Windows güvenlik duvarı ilk açılışta Node için izin sorar → "Özel ağ" işaretlenir.
+5. ⚠ Vercel'deki canlı sürümde odalar örnekler arasında bölünebilir; yarışmayı **laptoptan** göster.
+
+### Yeni jüri soruları
+
+| Soru | Cevap | Kanıt |
+|---|---|---|
+| "Kahoot'ta çocuk adı/puanı saklanıyor mu?" | Hayır. Takma ad sunucudan gelir, oda yalnızca bellekte yaşar ve silinir. | `docs/KARARLAR.md` §15, `tests/canli.test.ts` |
+| "Yarışma 'ceza yok' ilkesine aykırı değil mi?" | Yanlış puan düşürmez; doğru cevap + açıklama + kaynak gösterilir. | `server/canli/oda.ts` |
+| "30 kişilik sınıf aynı ağdan bağlanınca ne olur?" | Hız sınırı IP+oyuncu başına; 30 cihazın saniyede bir yoklaması test edildi. | `tests/canli.test.ts` |
+| "Günün Eseri ipuçlarını kim yazdı?" | Envanterden çocuk diline biz çevirdik; test ilk ipuçlarının cevabı ele vermediğini denetler. | `scripts/gunun-eseri.py`, `tests/gunun-eseri.test.tsx` |
+| "Rozetler bağımlılık yaratmaz mı?" | Kaybedilmez, süre baskısı ve sıralama yok; yalnızca cihazda. | `src/features/rozetler/rozetMantigi.ts` |
+
+### Ek kontrol listesi
+
+- [ ] `npm run dev:lan` provası: en az 3 telefonla QR'dan katılım
+- [ ] Demo cihazında Günün Eseri o gün oynanmamış olsun (ya da `localStorage`'dan `kokavi-gunun-eseri-v1` silinsin)
+- [ ] Ses açık / kapalı (Sessiz mod) iki durumda da prova
+- [ ] Bir şehir tamamlanmış demo ilerlemesi (sertifika için)
