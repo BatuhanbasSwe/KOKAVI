@@ -82,5 +82,7 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./tests/setup.ts'],
     include: ['tests/**/*.test.{ts,tsx}'],
+    // axe denetimleri paralel yük altında 5 sn varsayılanı aşabiliyor
+    testTimeout: 20000,
   },
 });
