@@ -1370,3 +1370,47 @@
     animation: none;
   }
 }
+
+/* --- Geri bildirimde Kâşif'in tepkisi --------------------------------------- */
+.ders-geri__govde {
+  flex: 1;
+  min-width: 0;
+}
+.ders-geri__maskot {
+  flex: none;
+  margin-left: auto;
+  animation: ders-maskot-tepki 600ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+.ders-geri--ipucu .ders-geri__maskot {
+  animation-name: ders-maskot-dusun;
+}
+@keyframes ders-maskot-tepki {
+  0% {
+    scale: 0.4;
+    translate: 0 10px;
+  }
+  60% {
+    scale: 1.15;
+    translate: 0 -6px;
+  }
+}
+@keyframes ders-maskot-dusun {
+  0% {
+    rotate: 0deg;
+    opacity: 0;
+  }
+  50% {
+    rotate: -10deg;
+    opacity: 1;
+  }
+}
+@media (max-width: 360px) {
+  .ders-geri__maskot {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ders-geri__maskot {
+    animation: none;
+  }
+}

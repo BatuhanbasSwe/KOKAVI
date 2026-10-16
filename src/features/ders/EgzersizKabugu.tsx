@@ -13,6 +13,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import type { KavramKarti } from '@shared/types';
 import { IkonIpucu, IkonTik } from '../../app/Ikonlar';
 import { useEfekt } from '../../app/useEfekt';
+import { Maskot } from '../../app/Maskot';
 
 /**
  * Ek ipucu (Vakıf Çarşısı, PDF s. 3: "ek ipucu"). Yalnızca bir yanlıştan
@@ -104,10 +105,14 @@ export function GeriBildirim({ tur, baslik, metin }: GeriBildirimVerisi) {
       <span className="ders-geri__ikon" aria-hidden="true">
         {dogru ? <IkonTik boyut={22} /> : <IkonIpucu boyut={22} />}
       </span>
-      <div>
+      <div className="ders-geri__govde">
         <p className="ders-geri__baslik">{baslik}</p>
         <p className="ders-geri__metin">{metin}</p>
       </div>
+      {/* Kâşif tepki verir: doğruda sevinir, ipucunda düşünür (süs; anlam simge + metinde). */}
+      <span className="ders-geri__maskot">
+        <Maskot boyut={52} mutlu={dogru} dusunceli={!dogru} />
+      </span>
     </div>
   );
 }
