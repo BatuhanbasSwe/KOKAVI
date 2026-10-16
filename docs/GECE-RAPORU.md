@@ -244,6 +244,19 @@ Başvuruda: **dolaylı** (PWA; iş listesindeki "PWA mı APK mı" kararına yard
 
 **Test**: `tests/zaman-tuneli.test.tsx`.
 
+## 14. Seri takvimi — `Seri takvimi` commit'i
+
+- Öğrenme Yolu'nda **bu hafta** şeridi (Pzt–Paz; ders yapılan gün 🔥, bugün çerçeveli) +
+  olumlu davet: *"Bugün bir ders yaparsan serin 4 gün olur!"* / seri yoksa *"Yeni bir seri
+  başlatmak için bir ders yeter."* (suçlama yok — testli).
+- Üst çubuktaki 🔥 göstergesi artık **takvime bağlantı** (`#/seri`): ay takvimi (önceki aylara
+  gezilebilir), şu anki / en uzun seri, toplam ders günü.
+- Ders günleri ayrı bir cihaz kaydında; ilk açılışta mevcut seri geriye doğru günlere çevrilir
+  (eski kullanıcının takvimi boş başlamaz). Ders sonu bugünü işler.
+- Erişilebilirlik: takvim gerçek `<table>`; her hücre "16 Ekim, bugün: ders yapıldı" diye okunur.
+
+**Test**: `tests/seri-takvimi.test.tsx` (4).
+
 ---
 
 ## Geri alma

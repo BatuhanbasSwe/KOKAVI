@@ -25,6 +25,7 @@ import { RozetBildirimi } from '../features/rozetler/Rozetler';
 import { HayratAkarSayfasi } from '../features/hayrat-akar/HayratAkarSayfasi';
 import { HatalarSayfasi } from '../features/hatalar/HatalarSayfasi';
 import { ZamanTuneliSayfasi } from '../features/zaman/ZamanTuneliSayfasi';
+import { SeriSayfasi } from '../features/seri/Seri';
 import { SertifikaSayfasi } from '../features/sertifika/SertifikaSayfasi';
 import { CanliGirisSayfasi, CanliOynaSayfasi } from '../features/canli/CanliOyuncu';
 import { CanliKurSayfasi, CanliYonetSayfasi } from '../features/canli/CanliYonetim';
@@ -141,6 +142,7 @@ function Kabuk() {
       'hayrat-akar': 'Hayrat mı Akar mı?',
       hatalar: 'Hatalarımı Çalış',
       'zaman-tuneli': 'Zaman Tüneli',
+      seri: 'Keşif Serisi',
       sertifika: 'Sertifika',
       canli: 'Canlı Yarışma',
       'canli-kur': 'Canlı Yarışma Kur',
@@ -187,12 +189,18 @@ function Kabuk() {
             </a>
 
             <div className="gostergeler">
-              <span className="gosterge gosterge--seri" title="Keşif serisi">
+              <a
+                className="gosterge gosterge--seri"
+                href="#/seri"
+                title="Keşif serisi takvimi"
+                aria-current={aktifAd === 'seri' ? 'page' : undefined}
+              >
                 <IkonAlev />
                 <span className="sr-only">Keşif serisi:</span>
                 {ilerleme.seri.gunSayisi}
                 <span className="gosterge__birim"> gün</span>
-              </span>
+                <span className="sr-only"> — takvimi aç</span>
+              </a>
               <a
                 className="gosterge gosterge--elmas"
                 href="#/carsi"
@@ -273,6 +281,7 @@ function Kabuk() {
         {rota.ad === 'hayrat-akar' && <HayratAkarSayfasi />}
         {rota.ad === 'hatalar' && <HatalarSayfasi />}
         {rota.ad === 'zaman-tuneli' && <ZamanTuneliSayfasi />}
+        {rota.ad === 'seri' && <SeriSayfasi />}
         {rota.ad === 'sertifika' && <SertifikaSayfasi sehirId={rota.sehirId} />}
         {rota.ad === 'canli' && <CanliGirisSayfasi />}
         {rota.ad === 'canli-kur' && <CanliKurSayfasi />}

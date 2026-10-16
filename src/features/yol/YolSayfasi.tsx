@@ -23,6 +23,7 @@ import { KonusanMaskot } from '../../app/Maskot';
 import { GununEseriDavet } from '../gunun-eseri/GununEseriDavet';
 import { TanitimTuru, tanitimGorulduMu } from './TanitimTuru';
 import { PratikKartlari } from './PratikKartlari';
+import { SeriSeridi } from '../seri/Seri';
 import { useHataSayisi } from '../hatalar/HatalarSayfasi';
 
 /** Zikzak: düğümler sırayla sola/sağa kayar (px). */
@@ -220,6 +221,8 @@ export function YolSayfasi() {
           }
         />
       )}
+
+      <SeriSeridi />
 
       <GununEseriDavet />
 

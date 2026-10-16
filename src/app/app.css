@@ -73,6 +73,14 @@ body {
 
 .gosterge--seri {
   color: var(--altin-metin);
+  text-decoration: none;
+  min-height: 44px;
+  border: 2px solid transparent;
+}
+.gosterge--seri:hover,
+.gosterge--seri[aria-current='page'] {
+  border-color: var(--odul-golge);
+  background: var(--odul-yumusak);
 }
 
 .gosterge--elmas {

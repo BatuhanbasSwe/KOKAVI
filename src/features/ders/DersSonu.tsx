@@ -14,6 +14,8 @@ import { IkonDefter, IkonElmas, IkonAlev, IkonTekrar, IkonTur } from '../../app/
 import { kucukKapak } from './EserGalerisi';
 import { Konfeti } from '../../app/Konfeti';
 import { useEfekt } from '../../app/useEfekt';
+import { aktifGunEkle } from '../seri/seriTakvimi';
+import { gunMetni } from '../../lib/tekrar';
 
 const YILDIZ_UST =
   '60,6 75.8,21.8 98.2,21.8 98.2,44.2 114,60 98.2,75.8 98.2,98.2 75.8,98.2 60,114 44.2,98.2 21.8,98.2 21.8,75.8 6,60 21.8,44.2 21.8,21.8 44.2,21.8';
@@ -49,6 +51,7 @@ export function DersSonu({
   useEffect(() => {
     baslik.current?.focus();
     cal('kutlama');
+    aktifGunEkle(gunMetni(new Date())); // seri takvimine bugünü işle (cihazda)
     // Yalnızca açılışta bir kez.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
