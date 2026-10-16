@@ -17,8 +17,19 @@
 | 8 | Kâşif'in tepkileri | ❌ | Ders geri bildirim bandı |
 | 9 | Seviye rozetleri | ❌ | 6. ve 12. derste bildirim |
 | 10 | Uygulamayı yükle kartı | ~ (PWA) | Ayarlar |
+| 11 | Hayrat mı Akar mı? | ❌ (çekirdek kavram) | Yol → Bugün şeridi |
+| 12 | Hatalarımı çalış | ❌ | Yol → Bugün şeridi (ipucu aldıysan) |
+| 13 | Zaman tüneli | ❌ | Yol → Bugün şeridi |
+| 14 | Seri takvimi | ❌ | Yol'daki hafta şeridi; üst çubuk 🔥 → takvim |
+| 15 | Vakıf ağı haritası | ❌ (jüri için güçlü) | Harita → "Vakıf ağını göster" |
+| 16 | Keşif rotası | ❌ | Harita → "Keşif rotası oluştur" |
+| 17 | Hikâyesini dinle | ~ (sesli anlatım) | Arşiv eser sayfası, Günün Eseri sonu |
+| 18 | Sınıf raporu | ✅ (yarışmanın parçası) | Canlı yarışma bitince öğretmen ekranı |
+| 19 | Zamana göre öğrenme | ❌ | Yol'un üstündeki sekmeler + tanıtım turu |
+| 20 | Maskot Köstik | — | Her yerde |
+| 21 | Mobil arayüz revizyonu + DESIGN.md | — | Bütün uygulama |
 
-**Sonuç:** `npm run dogrula` yeşil — **23 test dosyası, 322 test** (gece öncesi 263), derleme
+**Sonuç (son durum):** `npm run dogrula` yeşil — **32 test dosyası, 347 test** (gece öncesi 263), derleme
 başarılı. Her ekran tarayıcıda telefon (390 px) ve masaüstünde, açık ve koyu temada
 denendi; konsol hatası yok, yatay taşma yok.
 
