@@ -166,3 +166,82 @@
     transform: scale(1);
   }
 }
+
+/* --- Köstik'e sor (kaynaklı soru-cevap) ------------------------------------ */
+.arsiv-sor {
+  justify-self: start;
+  animation: suzgec-ac 240ms var(--yay) both;
+}
+.sor-karti {
+  display: grid;
+  gap: var(--b-3);
+  border-color: var(--vurgu);
+  animation: suzgec-ac 280ms var(--yay) both;
+}
+.sor-karti__ust {
+  display: flex;
+  align-items: center;
+  gap: var(--b-3);
+}
+.sor-karti__soru {
+  min-width: 0;
+}
+.sor-karti__baslik {
+  margin: 0;
+  font-size: var(--yazi-lg);
+}
+.sor-karti__sorulan {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.sor-karti__govde {
+  display: grid;
+  gap: var(--b-2);
+}
+.sor-karti__cevap {
+  margin: 0;
+  font-size: var(--yazi-lg);
+  line-height: 1.55;
+}
+.sor-karti__no {
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--vurgu-koyu);
+}
+.sor-karti__kaynaklar,
+.sor-karti__oneriler {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--b-1);
+  font-size: var(--yazi-sm);
+  overflow-wrap: anywhere;
+}
+.sor-karti__kaynaklar a,
+.sor-karti__oneriler a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+}
+.sor-karti__not {
+  margin: 0;
+  font-size: var(--yazi-xs);
+}
+.esere-sor {
+  display: grid;
+  gap: var(--b-2);
+}
+.esere-sor__form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--b-2);
+}
+.esere-sor__form input {
+  width: 100%;
+  min-width: 0;
+}
+.esere-sor__form .dugme {
+  min-height: 48px;
+}

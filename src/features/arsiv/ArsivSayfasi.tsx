@@ -10,6 +10,8 @@
  */
 import { useEffect, useMemo, useState } from 'react';
 import { SuzgecPaneli } from '../../app/SuzgecPaneli';
+import { soruMu } from '../../lib/soruMu';
+import { SorKarti } from './SorKarti';
 import { git } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, IL_ADLARI, type ArsivEseri } from './arsivVeri';
 import './arsiv.css';
@@ -32,6 +34,9 @@ export function ArsivSayfasi() {
   const [tur, setTur] = useState('');
   const [arama, setArama] = useState('');
   const [gosterilen, setGosterilen] = useState(SAYFA);
+  // Kutuya soru yazılıp "Köstik'e sor"a basılınca sorulan soru (cevap kartı).
+  const [soru, setSoru] = useState<string | null>(null);
+  const soruYazildi = soruMu(arama);
 
   useEffect(() => {
     let iptal = false;
@@ -66,7 +71,8 @@ export function ArsivSayfasi() {
   );
 
   const sonuc = useMemo(() => {
-    const aranan = kucult(arama.trim());
+    // Soru yazılıyorsa ad araması yapılmaz (liste diğer süzgeçlerle kalır).
+    const aranan = soruMu(arama) ? '' : kucult(arama.trim());
     return liste.filter(
       (e) =>
         (!il || e.il === il) &&
@@ -112,7 +118,7 @@ export function ArsivSayfasi() {
         <div className="arsiv-arama">
           <div className="harita-filtre">
             <label className="sr-only" htmlFor="arsiv-arama">
-              Eser adı
+              Sor ya da ara
             </label>
             <input
               id="arsiv-arama"
@@ -120,7 +126,11 @@ export function ArsivSayfasi() {
               type="search"
               value={arama}
               onChange={(o) => setArama(o.target.value)}
-              placeholder="Eser ara: hamam, Ulu…"
+              onKeyDown={(o) => {
+                if (o.key === 'Enter' && soruYazildi) setSoru(arama.trim());
+              }}
+              placeholder="Ara ya da sor: Ulucami'de kaç kubbe var?"
+              aria-describedby="arsiv-sor-ipucu"
             />
           </div>
           <SuzgecPaneli
@@ -188,10 +198,20 @@ export function ArsivSayfasi() {
             </div>
           </SuzgecPaneli>
         </div>
+        {soruYazildi ? (
+          <button type="button" className="dugme dugme--kucuk arsiv-sor" onClick={() => setSoru(arama.trim())}>
+            Köstik'e sor
+          </button>
+        ) : null}
+        <p id="arsiv-sor-ipucu" className="sr-only">
+          Bir eser adı yaz ya da soru sor; soru sorarsan Köstik kaynaklarıyla cevaplar.
+        </p>
         <p className="harita-filtreler__durum" role="status" aria-live="polite">
           {durum}
         </p>
       </section>
+
+      {soru ? <SorKarti soru={soru} onKapat={() => setSoru(null)} /> : null}
 
       {hata ? <div className="bildirim bildirim--uyari">{hata} İnternet bağlantını kontrol et.</div> : null}
 

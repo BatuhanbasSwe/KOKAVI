@@ -7,6 +7,7 @@
  */
 import { useEffect, useMemo, useState } from 'react';
 import { DinleDugmesi } from '../ders/DinleDugmesi';
+import { EsereSor } from './SorKarti';
 import { useDurum } from '../../app/DurumSaglayici';
 import { baslikAyarla } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, arsivMetni, IL_ADLARI, type ArsivEseri } from './arsivVeri';
@@ -126,6 +127,8 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
           {acik ? 'Kısalt' : `Devamını oku (${paragraflar.length - KISA} paragraf daha)`}
         </button>
       ) : null}
+
+      <EsereSor eserId={eser.id} eserAd={eser.ad} />
 
       <footer className="arsiv-kaynak">
         <p style={{ margin: 0 }}>

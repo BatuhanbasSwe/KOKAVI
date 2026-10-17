@@ -142,6 +142,9 @@ export async function sunucuKur(secenekler: { sor?: SorSecenekleri } = {}) {
 }
 
 async function basla() {
+  // Yerel geliştirme: .env varsa (ör. ANTHROPIC_API_KEY) yükle. Dosya gitignore'da;
+  // Vercel'de değişkenler proje ayarlarından gelir.
+  if (existsSync('.env')) process.loadEnvFile('.env');
   const app = await sunucuKur();
   try {
     await app.listen({ port: PORT, host: HOST });
