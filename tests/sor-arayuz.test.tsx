@@ -1,7 +1,8 @@
 /**
- * "Köstik'e sor" arayüzü: soru yazınca düğme çıkar; cevap kartı cümle + kaynak
- * numarası + künye bağlantısı; "bilmiyorum" önerilerle; 503'te "kapalı" ve
- * liste çalışmaya devam eder. Eser sayfasında "Bu esere sor" eserId gönderir.
+ * Köstik sohbeti (yüzen pencere): her ekrandan açılır; cevap balonunda kaynak
+ * numarası ve künyeler; takip sorusu aynı eser üzerinden sürer; bilmiyorum ve
+ * kapalı mesajları; Arşiv ve eser sayfasından açılır; derste gizli; Esc kapatır
+ * ve odak düğmeye döner; axe ihlali yok.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen, within } from '@testing-library/react';
@@ -12,14 +13,19 @@ const LISTE = [
   { id: 'bursa-ulucami', ad: 'Ulucami', il: 'bursa', ilce: 'Osmangazi', tur: 'Cami', kaynak: 'Vakıf Katılım, s. 36', foto: false },
   { id: 'bursa-koza-hani', ad: 'Koza Hanı', il: 'bursa', ilce: 'Osmangazi', tur: 'Han', kaynak: 'Vakıf Katılım, s. 90', foto: false },
 ];
+const CEVAP = {
+  cumleler: [{ metin: 'Çatısında yirmi kubbe var.', kaynaklar: [1] }],
+  kaynaklar: [{ no: 1, eserId: 'bursa-ulucami', eserAd: 'Ulucami', kunye: 'Vakıf Katılım, s. 36' }],
+};
 
-let sorCevabi: { durum: number; govde: unknown } = { durum: 200, govde: {} };
+let sorCevabi: { durum: number; govde: unknown } = { durum: 200, govde: CEVAP };
 const sorIstekleri: unknown[] = [];
 
 beforeEach(() => {
   cleanup();
   localStorage.clear();
   sorIstekleri.length = 0;
+  sorCevabi = { durum: 200, govde: CEVAP };
   vi.stubGlobal(
     'fetch',
     vi.fn(async (u: RequestInfo | URL, ayar?: RequestInit) => {
@@ -42,70 +48,81 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllGlobals());
 
-async function arsiviAc() {
-  window.location.hash = '#/arsiv';
+async function ac(hash: string) {
+  window.location.hash = hash;
   const { App } = await import('../src/app/App');
-  const { container } = render(<App />);
-  await screen.findByText('2 eser bulundu.');
-  return container;
+  return render(<App />);
 }
 
-describe("Köstik'e sor", () => {
-  it('soru yazınca düğme çıkar; cevap kartı kaynak numarası ve künye bağlantısıyla; ihlalsiz', async () => {
-    sorCevabi = {
-      durum: 200,
-      govde: {
-        cumleler: [{ metin: 'Çatısında yirmi kubbe var.', kaynaklar: [1] }],
-        kaynaklar: [{ no: 1, eserId: 'bursa-ulucami', eserAd: 'Ulucami', kunye: 'Vakıf Katılım, s. 36' }],
-      },
-    };
-    const container = await arsiviAc();
-    const kutu = screen.getByRole('searchbox', { name: 'Sor ya da ara' });
-    await userEvent.type(kutu, 'Ulu');
-    expect(screen.queryByRole('button', { name: "Köstik'e sor" })).toBeNull();
-    await userEvent.type(kutu, "cami'de kaç kubbe var?");
-    // Soru yazılırken liste ad aramasıyla daralmaz.
-    expect(screen.getByText('2 eser bulundu.')).toBeInTheDocument();
-    await userEvent.click(screen.getByRole('button', { name: "Köstik'e sor" }));
+describe('Köstik sohbeti', () => {
+  it('her ekrandan açılır; cevap kaynak numarası ve künyelerle; takip sorusu aynı esere odaklanır; ihlalsiz', async () => {
+    const { container } = await ac('#/bugun');
+    await userEvent.click(await screen.findByRole('button', { name: "Köstik'e sor" }));
+    const pencere = screen.getByRole('dialog', { name: "Köstik'e sor" });
+    const alan = within(pencere).getByRole('textbox', { name: 'Sorunu yaz' });
+    expect(alan).toHaveFocus();
 
-    const kart = await screen.findByRole('region', { name: "Köstik'in cevabı" });
-    expect(await within(kart).findByText(/Çatısında yirmi kubbe var\./)).toBeInTheDocument();
-    expect(within(kart).getByText('(kaynak 1)')).toBeInTheDocument();
-    expect(within(kart).getByRole('link', { name: 'Ulucami' })).toHaveAttribute('href', '#/arsiv/bursa-ulucami');
+    await userEvent.click(within(pencere).getByRole('button', { name: "Ulucami'de kaç kubbe var?" }));
+    expect(await within(pencere).findByText(/Çatısında yirmi kubbe var\./)).toBeInTheDocument();
+    expect(within(pencere).getByText('(kaynak 1)')).toBeInTheDocument();
+    expect(within(pencere).getByRole('link', { name: 'Ulucami' })).toHaveAttribute('href', '#/arsiv/bursa-ulucami');
     expect(sorIstekleri.at(-1)).toEqual({ soru: "Ulucami'de kaç kubbe var?" });
+
+    // Takip sorusu: önceki cevabın eseri üzerinden
+    expect(within(pencere).getByText(/Konu: Ulucami/)).toBeInTheDocument();
+    await userEvent.type(alan, 'Peki kim yaptırdı?{Enter}');
+    await vi.waitFor(() => expect(sorIstekleri.at(-1)).toEqual({ soru: 'Peki kim yaptırdı?', eserId: 'bursa-ulucami' }));
 
     const s = await axe.run(container, {
       rules: { 'color-contrast': { enabled: false }, region: { enabled: false } },
       resultTypes: ['violations'],
     });
     expect(s.violations.map((v) => `${v.id}: ${v.nodes[0]?.html.slice(0, 100)}`)).toEqual([]);
+
+    // Esc kapatır, odak düğmeye döner
+    await userEvent.keyboard('{Escape}');
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(screen.getByRole('button', { name: "Köstik'e sor" })).toHaveFocus();
   });
 
-  it('bilmiyorum: tahmin etmez, eser önerir', async () => {
+  it('bilmiyorum: tahmin etmez, eser önerir; kapalıyken açıklar', async () => {
     sorCevabi = { durum: 200, govde: { bilmiyorum: true, oneriler: [{ eserId: 'bursa-koza-hani', eserAd: 'Koza Hanı' }] } };
-    await arsiviAc();
-    await userEvent.type(screen.getByRole('searchbox', { name: 'Sor ya da ara' }), 'Koza Hanı kaç odalı?{Enter}');
-    expect(await screen.findByText(/tahmin etmeyeceğim/)).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Koza Hanı' })).toHaveAttribute('href', '#/arsiv/bursa-koza-hani');
-  });
+    await ac('#/bugun');
+    await userEvent.click(await screen.findByRole('button', { name: "Köstik'e sor" }));
+    const pencere = screen.getByRole('dialog');
+    await userEvent.type(within(pencere).getByRole('textbox'), 'Koza Hanı kaç odalı?{Enter}');
+    expect(await within(pencere).findByText(/tahmin etmeyeceğim/)).toBeInTheDocument();
+    expect(within(pencere).getByRole('link', { name: 'Koza Hanı' })).toBeInTheDocument();
 
-  it('anahtar yoksa kapalı mesajı; liste çalışmaya devam eder', async () => {
     sorCevabi = { durum: 503, govde: { hata: 'kapali' } };
-    await arsiviAc();
-    await userEvent.type(screen.getByRole('searchbox', { name: 'Sor ya da ara' }), 'Ulucami kim yaptırdı?{Enter}');
-    expect(await screen.findByText(/şu an kapalı/)).toBeInTheDocument();
-    expect(screen.getByText('2 eser bulundu.')).toBeInTheDocument();
+    await userEvent.type(within(pencere).getByRole('textbox'), 'Ulucami ne zaman yapıldı?{Enter}');
+    expect(await within(pencere).findByText(/soru-cevap kapalı/)).toBeInTheDocument();
   });
 
-  it('eser sayfasında "Bu esere sor" eserId ile sorar', async () => {
-    sorCevabi = { durum: 200, govde: { bilmiyorum: true, oneriler: [] } };
-    window.location.hash = '#/arsiv/bursa-ulucami';
-    const { App } = await import('../src/app/App');
-    render(<App />);
-    const alan = await screen.findByRole('textbox', { name: 'Ulucami hakkında sorun' });
-    await userEvent.type(alan, 'Kim yaptırdı?');
-    await userEvent.click(screen.getByRole('button', { name: 'Sor' }));
-    await screen.findByText(/tahmin etmeyeceğim/);
-    expect(sorIstekleri.at(-1)).toEqual({ soru: 'Kim yaptırdı?', eserId: 'bursa-ulucami' });
+  it('Arşiv: soru yazınca "Köstik\'e sor" sohbeti açar ve soruyu gönderir; liste daralmaz', async () => {
+    await ac('#/arsiv');
+    await screen.findByText('2 eser bulundu.');
+    const kutu = screen.getByRole('searchbox', { name: 'Sor ya da ara' });
+    await userEvent.type(kutu, "Ulucami'de kaç kubbe var?");
+    expect(screen.getByText('2 eser bulundu.')).toBeInTheDocument();
+    const dugmeler = screen.getAllByRole('button', { name: "Köstik'e sor" });
+    await userEvent.click(dugmeler.find((d) => d.classList.contains('arsiv-sor'))!);
+    expect(await within(screen.getByRole('dialog')).findByText(/Çatısında yirmi kubbe/)).toBeInTheDocument();
+    expect(sorIstekleri.at(-1)).toEqual({ soru: "Ulucami'de kaç kubbe var?" });
+  });
+
+  it('eser sayfası: "Köstik\'e bu eseri sor" o esere odaklanır', async () => {
+    await ac('#/arsiv/bursa-ulucami');
+    await userEvent.click(await screen.findByRole('button', { name: "Köstik'e bu eseri sor" }));
+    const pencere = screen.getByRole('dialog');
+    expect(within(pencere).getByText(/Konu: Ulucami/)).toBeInTheDocument();
+    await userEvent.type(within(pencere).getByRole('textbox'), 'Kim yaptırdı?{Enter}');
+    await vi.waitFor(() => expect(sorIstekleri.at(-1)).toEqual({ soru: 'Kim yaptırdı?', eserId: 'bursa-ulucami' }));
+  });
+
+  it('ders sırasında düğme yok', async () => {
+    await ac('#/ders/bursa-u1-d1');
+    await new Promise((r) => setTimeout(r, 50));
+    expect(screen.queryByRole('button', { name: "Köstik'e sor" })).toBeNull();
   });
 });

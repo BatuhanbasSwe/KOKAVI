@@ -7,7 +7,7 @@
  */
 import { useEffect, useMemo, useState } from 'react';
 import { DinleDugmesi } from '../ders/DinleDugmesi';
-import { EsereSor } from './SorKarti';
+import { sohbetiAc } from '../sohbet/KostikSohbeti';
 import { YasiyorRozeti } from '../merkez/YasiyorRozeti';
 import { BuradayimDugmesi } from '../muhur/BuradayimDugmesi';
 import { api } from '../../lib/api';
@@ -156,7 +156,13 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
         <BuradayimDugmesi eserId={eser.ders} eserAd={eser.ad} koordinat={konum.koordinat} yaklasik={konum.yaklasik} />
       ) : null}
 
-      <EsereSor eserId={eser.id} eserAd={eser.ad} />
+      <button
+        type="button"
+        className="dugme dugme--ikincil arsiv-esere-sor"
+        onClick={() => sohbetiAc({ eserId: eser.id, eserAd: eser.ad })}
+      >
+        Köstik'e bu eseri sor
+      </button>
 
       <footer className="arsiv-kaynak">
         <p style={{ margin: 0 }}>

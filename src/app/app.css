@@ -198,6 +198,10 @@ body {
   .altbilgi {
     padding-bottom: calc(88px + env(safe-area-inset-bottom));
   }
+  /* Yüzen Köstik düğmesi (alt çubuğun üstünde) son içeriği örtmesin */
+  .ana:not(.ana--odak) {
+    padding-bottom: calc(156px + env(safe-area-inset-bottom));
+  }
   .ana--odak {
     padding-bottom: 0;
   }
@@ -210,7 +214,8 @@ body {
 
 .ana {
   flex: 1;
-  padding-block: var(--b-5) var(--b-7);
+  /* alt boşluk: sağ alttaki yüzen Köstik düğmesi son içeriği örtmesin */
+  padding-block: var(--b-5) 112px;
   outline: none;
 }
 

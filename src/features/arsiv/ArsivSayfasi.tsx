@@ -11,7 +11,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { SuzgecPaneli } from '../../app/SuzgecPaneli';
 import { soruMu } from '../../lib/soruMu';
-import { SorKarti } from './SorKarti';
+import { sohbetiAc } from '../sohbet/KostikSohbeti';
 import { git } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, IL_ADLARI, type ArsivEseri } from './arsivVeri';
 import './arsiv.css';
@@ -34,8 +34,6 @@ export function ArsivSayfasi() {
   const [tur, setTur] = useState('');
   const [arama, setArama] = useState('');
   const [gosterilen, setGosterilen] = useState(SAYFA);
-  // Kutuya soru yazılıp "Köstik'e sor"a basılınca sorulan soru (cevap kartı).
-  const [soru, setSoru] = useState<string | null>(null);
   const soruYazildi = soruMu(arama);
 
   useEffect(() => {
@@ -127,7 +125,7 @@ export function ArsivSayfasi() {
               value={arama}
               onChange={(o) => setArama(o.target.value)}
               onKeyDown={(o) => {
-                if (o.key === 'Enter' && soruYazildi) setSoru(arama.trim());
+                if (o.key === 'Enter' && soruYazildi) sohbetiAc({ soru: arama.trim() });
               }}
               placeholder="Ara ya da sor: Ulucami'de kaç kubbe var?"
               aria-describedby="arsiv-sor-ipucu"
@@ -199,7 +197,7 @@ export function ArsivSayfasi() {
           </SuzgecPaneli>
         </div>
         {soruYazildi ? (
-          <button type="button" className="dugme dugme--kucuk arsiv-sor" onClick={() => setSoru(arama.trim())}>
+          <button type="button" className="dugme dugme--kucuk arsiv-sor" onClick={() => sohbetiAc({ soru: arama.trim() })}>
             Köstik'e sor
           </button>
         ) : null}
@@ -211,7 +209,6 @@ export function ArsivSayfasi() {
         </p>
       </section>
 
-      {soru ? <SorKarti soru={soru} onKapat={() => setSoru(null)} /> : null}
 
       {hata ? <div className="bildirim bildirim--uyari">{hata} İnternet bağlantını kontrol et.</div> : null}
 

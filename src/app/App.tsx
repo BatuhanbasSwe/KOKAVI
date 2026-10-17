@@ -33,6 +33,7 @@ import { CanliKurSayfasi, CanliYonetSayfasi } from '../features/canli/CanliYonet
 import { BugunSayfasi } from '../features/bugun/BugunSayfasi';
 import { KesfetSayfasi } from '../features/merkez/KesfetSayfasi';
 import { YasayanSayfasi } from '../features/merkez/YasayanSayfasi';
+import { KostikSohbeti } from '../features/sohbet/KostikSohbeti';
 import { ProfilSayfasi } from '../features/profil/ProfilSayfasi';
 import { Avatar, IkonAlev, IkonDefter, IkonElmas, IkonEv, IkonPusula, IkonYol } from './Ikonlar';
 import './app.css';
@@ -317,6 +318,9 @@ function Kabuk() {
       </main>
 
       <RozetBildirimi />
+
+      {/* Her ekrandan açılan Köstik sohbeti (kaynaklı soru-cevap). */}
+      <KostikSohbeti rota={rota} />
 
       {!odakModu && (
         <footer className="altbilgi">
