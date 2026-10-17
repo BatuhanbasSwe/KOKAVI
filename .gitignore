@@ -13,3 +13,4 @@ kaynak/
 .playwright-mcp/
 *.tsbuildinfo
 .superpowers/
+.claude/scheduled_tasks.lock
