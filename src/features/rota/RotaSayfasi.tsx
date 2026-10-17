@@ -13,6 +13,7 @@ import { api } from '@/lib/api';
 import { IkonOk, IkonTik, IkonTur } from '@/app/Ikonlar';
 import { mesafe, mesafeMetni, rotaBol, rotaSirala, toplamMesafe, yolTarifiAdresi, yurumeDakika } from './rota';
 import type { RotaHaritasi } from './rotaHaritasi';
+import { BuradayimDugmesi } from '../muhur/BuradayimDugmesi';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './rota.css';
 
@@ -345,6 +346,12 @@ export function RotaSayfasi() {
                             <button type="button" className="rota-durak__goster" onClick={() => haritadaGoster(d)}>
                               Haritada göster<span className="sr-only">: {d.ad}</span>
                             </button>
+                            <BuradayimDugmesi
+                              eserId={d.id}
+                              eserAd={d.ad}
+                              koordinat={{ lat: d.lat, lng: d.lng }}
+                              yaklasik={d.yaklasik}
+                            />
                           </div>
                           <label className="rota-durak__gordum">
                             <input type="checkbox" checked={gordu} onChange={() => gordumDegistir(d.id)} />

@@ -9,6 +9,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { DinleDugmesi } from '../ders/DinleDugmesi';
 import { EsereSor } from './SorKarti';
 import { YasiyorRozeti } from '../merkez/YasiyorRozeti';
+import { BuradayimDugmesi } from '../muhur/BuradayimDugmesi';
+import { api } from '../../lib/api';
 import { useDurum } from '../../app/DurumSaglayici';
 import { baslikAyarla } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, arsivMetni, IL_ADLARI, type ArsivEseri } from './arsivVeri';
@@ -44,6 +46,26 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
   }, [arsivId]);
 
   const eser = liste.find((e) => e.id === arsivId) ?? null;
+
+  // Dersi olan eserin koordinatı (sahada mühür için); yaklaşık konumda mühür yok.
+  const [konum, setKonum] = useState<{ koordinat: { lat: number; lng: number } | null; yaklasik: boolean } | null>(null);
+  useEffect(() => {
+    if (!eser?.ders) return;
+    let iptal = false;
+    api
+      .eser(eser.ders)
+      .then((e) => {
+        if (!iptal)
+          setKonum({
+            koordinat: e.koordinat,
+            yaklasik: (e.kaynaklar ?? []).some((k) => k.kunye.includes('YAKLAŞIK')),
+          });
+      })
+      .catch(() => undefined);
+    return () => {
+      iptal = true;
+    };
+  }, [eser?.ders]);
   useEffect(() => {
     if (eser) baslikAyarla(eser.ad);
   }, [eser]);
@@ -128,6 +150,10 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
         <button type="button" className="dugme dugme--ikincil" aria-expanded={acik} onClick={() => setAcik((a) => !a)}>
           {acik ? 'Kısalt' : `Devamını oku (${paragraflar.length - KISA} paragraf daha)`}
         </button>
+      ) : null}
+
+      {konum && eser.ders ? (
+        <BuradayimDugmesi eserId={eser.ders} eserAd={eser.ad} koordinat={konum.koordinat} yaklasik={konum.yaklasik} />
       ) : null}
 
       <EsereSor eserId={eser.id} eserAd={eser.ad} />

@@ -29,6 +29,8 @@ import { api } from '../../lib/api';
 import { useDurum } from '../../app/DurumSaglayici';
 import { IkonTur } from '../../app/Ikonlar';
 import { kisaAd } from '../yol/kisaAd';
+import { muhurleriOku } from '../../lib/muhur';
+import '../muhur/muhur.css';
 import '../ders/ders.css'; // .ders-ayrinti (Büyükler için)
 import './defter.css';
 
@@ -140,6 +142,8 @@ function Belgeler() {
 
 function Pullar() {
   const { ilerleme, yol, carsi } = useDurum();
+  // Sahada mühür: "Buradayım" ile eserin yanında basılan damgalar (yalnızca cihazda).
+  const [muhurler] = useState(muhurleriOku);
   const [eserler, setEserler] = useState<Eser[]>([]);
   const [yukleniyor, setYukleniyor] = useState(true);
   const [hata, setHata] = useState<string | null>(null);
@@ -286,10 +290,20 @@ function Pullar() {
                       aria-controls="defter-sayfa-ayrinti"
                       onClick={() => setAcikSayfa(acikSayfa === eser.id ? null : eser.id)}
                     >
-                      <span className="defter-pul__kagit">
-                        <PulGorseli eserId={eser.id} tur={eser.tur} />
+                      <span className="defter-pul__sarmal">
+                        <span className="defter-pul__kagit">
+                          <PulGorseli eserId={eser.id} tur={eser.tur} />
+                        </span>
+                        {muhurler[eser.id] ? (
+                          <span className="muhur-damga" aria-hidden="true">
+                            Orada bulundum
+                          </span>
+                        ) : null}
                       </span>
-                      <span className="defter-pul__ad">{kisaAd(eser.ad)}</span>
+                      <span className="defter-pul__ad">
+                        {kisaAd(eser.ad)}
+                        {muhurler[eser.id] ? <span className="sr-only">, orada bulundun</span> : null}
+                      </span>
                     </button>
                   ) : (
                     <div className="defter-pul defter-pul--kapali">

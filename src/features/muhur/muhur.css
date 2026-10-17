@@ -1,0 +1,46 @@
+/* Sahada mühür */
+.muhur {
+  display: grid;
+  gap: var(--b-1);
+  justify-items: start;
+}
+.muhur__durum {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+.muhur--var {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-1);
+  margin: 0;
+  padding: 4px var(--b-3);
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--vurgu-koyu);
+  background: var(--vurgu-yumusak);
+  border: 1px solid var(--vurgu);
+  border-radius: var(--kose-tam);
+}
+
+/* Defter pulu üzerindeki "orada bulundum" damgası */
+.muhur-damga {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 2px;
+  font-family: var(--yazi-baslik);
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1.05;
+  text-align: center;
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+  border: 2px solid var(--zemin);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+}
