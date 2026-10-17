@@ -770,3 +770,57 @@ select.secim-dugmesi {
 .hatalar-ust__eser {
   margin: 0;
 }
+
+/* --- Açılır kapanır süzgeç paneli (Arşiv, Harita) ------------------------- */
+.arsiv-arama {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--b-2);
+  align-items: start;
+}
+.arsiv-arama > .suzgec {
+  display: contents;
+}
+.suzgec__dugme {
+  min-height: 48px;
+  padding: 0 var(--b-3);
+  white-space: nowrap;
+}
+.suzgec__dugme[aria-expanded='true'] {
+  border-color: var(--vurgu);
+}
+.suzgec__sayi {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-size: var(--yazi-xs);
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+  border-radius: var(--kose-tam);
+}
+.suzgec__panel {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--b-3);
+  justify-items: start;
+  animation: suzgec-ac 240ms var(--yay) both;
+}
+.suzgec__panel[hidden] {
+  display: none;
+}
+.suzgec__panel > .harita-filtreler__izgara {
+  width: 100%;
+  margin-top: 0;
+}
+@keyframes suzgec-ac {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

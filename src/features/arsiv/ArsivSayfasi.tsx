@@ -9,6 +9,7 @@
  * adı zaten eser adıdır.
  */
 import { useEffect, useMemo, useState } from 'react';
+import { SuzgecPaneli } from '../../app/SuzgecPaneli';
 import { git } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, IL_ADLARI, type ArsivEseri } from './arsivVeri';
 import './arsiv.css';
@@ -104,13 +105,13 @@ export function ArsivSayfasi() {
         </button>
       </div>
 
-      <section className="harita-filtreler" aria-labelledby="arsiv-filtre-basligi">
-        <h2 id="arsiv-filtre-basligi" className="harita-filtreler__baslik">
+      <section className="harita-filtreler arsiv-filtreler" aria-labelledby="arsiv-filtre-basligi">
+        <h2 id="arsiv-filtre-basligi" className="sr-only">
           Ara ve süz
         </h2>
-        <div className="harita-filtreler__izgara">
+        <div className="arsiv-arama">
           <div className="harita-filtre">
-            <label className="harita-filtre__etiket" htmlFor="arsiv-arama">
+            <label className="sr-only" htmlFor="arsiv-arama">
               Eser adı
             </label>
             <input
@@ -119,61 +120,73 @@ export function ArsivSayfasi() {
               type="search"
               value={arama}
               onChange={(o) => setArama(o.target.value)}
-              placeholder="ör. hamam, Ulu"
+              placeholder="Eser ara: hamam, Ulu…"
             />
           </div>
-          <div className="harita-filtre">
-            <label className="harita-filtre__etiket" htmlFor="arsiv-il">
-              Şehir
-            </label>
-            <select
-              id="arsiv-il"
-              className="harita-filtre__secim"
-              value={il}
-              onChange={(o) => {
-                setIl(o.target.value);
-                setIlce('');
-              }}
-            >
-              <option value="">Tümü</option>
-              {Object.entries(IL_ADLARI).map(([k, ad]) => (
-                <option key={k} value={k}>
-                  {ad}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="harita-filtre">
-            <label className="harita-filtre__etiket" htmlFor="arsiv-ilce">
-              İlçe
-            </label>
-            <select
-              id="arsiv-ilce"
-              className="harita-filtre__secim"
-              value={ilce}
-              onChange={(o) => setIlce(o.target.value)}
-            >
-              <option value="">Tümü</option>
-              {ilceler.map((i) => (
-                <option key={i} value={i}>
-                  {i}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="harita-filtre">
-            <label className="harita-filtre__etiket" htmlFor="arsiv-tur">
-              Tür
-            </label>
-            <select id="arsiv-tur" className="harita-filtre__secim" value={tur} onChange={(o) => setTur(o.target.value)}>
-              <option value="">Tümü</option>
-              {turler.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
-          </div>
+          <SuzgecPaneli
+            etkinSayisi={[il, ilce, tur].filter(Boolean).length}
+            baslangictaAcik={!!il}
+            onTemizle={() => {
+              setIl('');
+              setIlce('');
+              setTur('');
+            }}
+          >
+            <div className="harita-filtreler__izgara">
+              <div className="harita-filtre">
+                <label className="harita-filtre__etiket" htmlFor="arsiv-il">
+                  Şehir
+                </label>
+                <select
+                  id="arsiv-il"
+                  className="harita-filtre__secim"
+                  value={il}
+                  onChange={(o) => {
+                    setIl(o.target.value);
+                    setIlce('');
+                  }}
+                >
+                  <option value="">Tümü</option>
+                  {Object.entries(IL_ADLARI).map(([k, ad]) => (
+                    <option key={k} value={k}>
+                      {ad}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="harita-filtre">
+                <label className="harita-filtre__etiket" htmlFor="arsiv-ilce">
+                  İlçe
+                </label>
+                <select
+                  id="arsiv-ilce"
+                  className="harita-filtre__secim"
+                  value={ilce}
+                  onChange={(o) => setIlce(o.target.value)}
+                >
+                  <option value="">Tümü</option>
+                  {ilceler.map((i) => (
+                    <option key={i} value={i}>
+                      {i}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="harita-filtre">
+                <label className="harita-filtre__etiket" htmlFor="arsiv-tur">
+                  Tür
+                </label>
+                <select id="arsiv-tur" className="harita-filtre__secim" value={tur} onChange={(o) => setTur(o.target.value)}>
+                  <option value="">Tümü</option>
+                  {turler.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </SuzgecPaneli>
         </div>
         <p className="harita-filtreler__durum" role="status" aria-live="polite">
           {durum}
