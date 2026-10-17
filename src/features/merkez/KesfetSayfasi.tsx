@@ -5,6 +5,7 @@
 import { IkonHarita, IkonOk, IkonYol } from '../../app/Ikonlar';
 import { Foto, Kutu } from '../bugun/Mozaik';
 import { ESERLER } from '../gunun-eseri/oyun';
+import { YASAYANLAR } from './YasayanSayfasi';
 
 const EN_ESKI = [...ESERLER].sort((a, b) => a.yil - b.yil)[0];
 const SEHIR_SAYISI = new Set(ESERLER.map((e) => e.sehir)).size;
@@ -54,6 +55,15 @@ export function KesfetSayfasi() {
             <span className="mozaik__alt">
               {EN_ESKI ? `${EN_ESKI.yaklasik ? '~' : ''}${EN_ESKI.yil} yılından bugüne` : 'Yüzyıl yüzyıl'}
             </span>
+          </span>
+        </Kutu>
+
+        <Kutu href="#/kesfet/yasayan" sira={sira++} sinif="mozaik__oge--foto">
+          <Foto className="mozaik__foto" src="/gorseller/bursa-nasuh-pasa-hamami/k.webp" />
+          <span className="mozaik__karartma" aria-hidden="true" />
+          <span className="mozaik__icerik">
+            <span className="mozaik__ad">Hâlâ yaşıyor</span>
+            <span className="mozaik__alt">{YASAYANLAR.length} vakıf bugün de çalışıyor</span>
           </span>
         </Kutu>
 

@@ -8,6 +8,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { DinleDugmesi } from '../ders/DinleDugmesi';
 import { EsereSor } from './SorKarti';
+import { YasiyorRozeti } from '../merkez/YasiyorRozeti';
 import { useDurum } from '../../app/DurumSaglayici';
 import { baslikAyarla } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, arsivMetni, IL_ADLARI, type ArsivEseri } from './arsivVeri';
@@ -95,6 +96,7 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
 
       <header className="yigin" style={{ gap: 'var(--b-2)' }}>
         <h1 style={{ margin: 0 }}>{eser.ad}</h1>
+        <YasiyorRozeti eserId={eser.ders ?? eser.id} />
         <ul className="arsiv-cipler" aria-label="Künye">
           <li>{IL_ADLARI[eser.il]}</li>
           {eser.ilce ? <li>{eser.ilce}</li> : null}
