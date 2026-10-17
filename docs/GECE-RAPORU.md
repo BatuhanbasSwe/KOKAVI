@@ -392,6 +392,23 @@ Beyin fırtınasında senin seçimlerinle karar verildi (parşömen reddedildi �
 Bütün eski rotalar (`#/harita`, `#/sinif`, `#/ayarlar`, `#/carsi`, `#/seri`…) çalışıyor.
 `server/`, `shared/`, `api.ts`, `oturum.ts`'e dokunulmadı.
 
+## 23. Aşama 1 (PDF eksikleri) ve düzeltmeler (2026-10-17)
+
+Takım planı (`eksikler` dalı, `docs/plan/ILERLEYIS.md`) Aşama 1'deki dört iş Batuhan'da.
+
+| İş | Durum | Ne yapıldı |
+|---|---|---|
+| Dinle ve seç | ✅ | Betimleme açılışta bir kez okunur, metni "Altyazıyı göster" arkasında (PDF: altyazı ve sessiz mod). Sessiz modda yazılı "Eseri tanı". `tests/dinle-sec.test.tsx` |
+| Toplu TTS ses dosyaları | ⏳ karar bekliyor | Piper (çevrimdışı) ve Edge sesi yeterince insan gibi bulunmadı. Seslendirilecek metin 57 ders / 285 parça / ~84 bin karakter. Seçenekler: OpenAI TTS, Google Chirp 3 HD, ElevenLabs, insan kaydı |
+| Elmas harcama + veli onayı | ✅ | Çarşı harcamaları veli kapısından geçer (yazıyla çarpma sorusu, rakamla cevap; onay 10 dk). Ayarlar'dan kapatmak da onay ister. Gerçek para yok. `tests/veli-*.test.ts(x)` |
+| Erişilebilirlik doğrulaması | ✅ | Gerçek tarayıcıda axe (renk kontrastı dahil): 22 sayfa × 3 tema, 0 ihlal. %160 yazı × 360 px'te yatay taşma yok. Yüksek kontrast + büyük yazı + sessiz modla tam ders arayüzden bitiyor; ses/titreşim yok. `tests/erisilebilir-ders-akisi.test.tsx` |
+
+Ayrıca:
+- **Güvenlik:** `npm audit` 8 uyarı → 0 (maplibre-gl 6.14, @fastify/static 10.1.6, vitest 4.1.12). `tests/statik-sunum.test.ts` yol aşımını denetler.
+- **Keşif rotası:** gerçek sokak haritası, üst üste binen duraklar "10-15" grup etiketi, uzak duraklar ayrı yürüyüş bölümü, fotoğraflı durak listesi, OSM yol tarifi, "Gördüm" cihazda.
+- **Bugün → Yol:** "Başla / Derse devam" dersi açmaz; Yol sekmesinde sıradaki durağa kaydırır.
+- **Yol ortam rengi:** kaydırırken ortadaki eserin fotoğrafı bulanık ve soluk biçimde arka plana yayılır.
+
 ---
 
 ## Geri alma
