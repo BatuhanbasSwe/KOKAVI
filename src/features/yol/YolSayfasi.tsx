@@ -14,6 +14,7 @@
  * "Eser adı, tür, durum" biçimindedir; durum renk + ikon + metinle verilir.
  */
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
 import { IkonKilit, IkonTekrar } from '../../app/Ikonlar';
 import { gunMetni, vadesiGelenler } from '../../lib/tekrar';
@@ -21,6 +22,7 @@ import { ZamanListesi } from '../zaman/ZamanListesi';
 import { gorunumOku, gorunumYaz, type YolGorunumu } from './yolGorunumu';
 import { FotografPatikasi } from './FotografPatikasi';
 import { kisaAd } from './kisaAd';
+import { useOrtamRengi } from './ortamRengi';
 
 export { kisaAd };
 
@@ -46,6 +48,9 @@ export function YolSayfasi() {
     }, 350);
     return () => window.clearTimeout(zaman);
   }, [yolHazir, gorunum]);
+
+  // Kaydırırken ortadaki eserin fotoğraf rengi arka plana yayılır.
+  useOrtamRengi(yolHazir);
 
   if (yukleniyor && !yol) {
     return (
@@ -74,6 +79,8 @@ export function YolSayfasi() {
 
   return (
     <div className="yigin" style={{ gap: 'var(--b-5)' }}>
+      {/* body'ye taşınır: animasyonlu ata kutular sabit katmanı kendine bağlamasın. */}
+      {createPortal(<div className="ortam-zemin" aria-hidden="true" />, document.body)}
       <header className="yol-ozet">
         <h1 className="yol-ozet__baslik">Öğrenme Yolu</h1>
         <p className="yol-ozet__alt">

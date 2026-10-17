@@ -267,3 +267,34 @@ a.patika__baglanti:active .patika__cerceve {
     transform: translateX(calc(var(--kayma, 0) * 0.6));
   }
 }
+
+/* --- Ortam rengi: ortadaki eserin fotoğrafı arka plana yayılır ---------------
+   Adres JS'te yazılır (--ortam-foto). Katman sabit ve tıklanamaz; güçlü bulanıklık,
+   düşük opaklık ve aşağı doğru sönen maske: metin kontrastı değişmez.
+   Görsel değişince Chromium/Safari yumuşak geçiş yapar. */
+.ortam-zemin {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(to bottom, var(--zemin) 0%, var(--zemin) 45%, transparent 100%);
+  mask: linear-gradient(to bottom, var(--zemin) 0%, var(--zemin) 45%, transparent 100%);
+}
+.ortam-zemin::before {
+  content: '';
+  position: absolute;
+  inset: -15%;
+  background-image: var(--ortam-foto, none);
+  background-size: cover;
+  background-position: center;
+  filter: blur(56px) saturate(1.5);
+  opacity: 0.42;
+  transition: background-image 700ms ease;
+}
+[data-tema='acik'] .ortam-zemin::before {
+  opacity: 0.22;
+}
+[data-tema='yuksek-kontrast'] .ortam-zemin {
+  display: none;
+}
