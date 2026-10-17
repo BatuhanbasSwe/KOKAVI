@@ -10,7 +10,7 @@
  * klavye sırasına girmez (tabindex=-1, aria-hidden); aynı bilgi sayfadaki listede.
  * Tüm metinler textContent ile yazılır — veriden HTML enjekte edilmez.
  */
-import type maplibregl from 'maplibre-gl';
+import type * as maplibregl from 'maplibre-gl';
 import type { FeatureCollection, Geometry, Position } from 'geojson';
 
 type ML = typeof maplibregl;

@@ -133,7 +133,7 @@ export function RotaSayfasi() {
         if (iptal || !haritaKabi.current) return;
         const stil = getComputedStyle(document.documentElement);
         h = modul.rotaHaritasiKur(
-          maplibre.default ?? maplibre,
+          maplibre,
           haritaKabi.current,
           rota,
           (ad, yedek) => stil.getPropertyValue(ad).trim() || yedek,

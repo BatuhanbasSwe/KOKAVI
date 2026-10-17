@@ -237,7 +237,7 @@ export function HaritaSayfasi() {
       // Renkler tema jetonlarından okunur (açık / koyu / yüksek kontrast + palet).
       const stil = getComputedStyle(document.documentElement);
       try {
-        const h = bolgeHaritasiKur(maplibre.default ?? maplibre, haritaKabi.current, {
+        const h = bolgeHaritasiKur(maplibre, haritaKabi.current, {
           iller: (illerModulu as { default: unknown }).default as FeatureCollection,
           ilceler: (ilcelerModulu as { default: unknown }).default as FeatureCollection,
           eserler: haritaEserleri,

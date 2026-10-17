@@ -7,7 +7,7 @@
  * sayfadaki numaralı listede metin olarak durur. Karolar gelmezse (çevrimdışı)
  * işaretler ve çizgi düz zeminde yine görünür.
  */
-import type maplibregl from 'maplibre-gl';
+import type * as maplibregl from 'maplibre-gl';
 import type { Feature, LineString } from 'geojson';
 import { sokakKatmanlari } from '../harita/bolgeHaritasi';
 import { BOLUM_ESIGI, mesafe, type RotaNoktasi } from './rota';
