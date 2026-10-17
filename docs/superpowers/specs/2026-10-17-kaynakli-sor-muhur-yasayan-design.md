@@ -69,6 +69,16 @@ Arayüz: soru düğmesinin görünmesi, cevap kartı ve künyeler, bilmiyorum h�
 - Ders ve arşiv eser sayfasında rozet: "Bugün hâlâ cami olarak açık" (metin + simge).
 - `tests/icerik.test.ts` alanı doğrular: `durum` varsa `aciklama` ve `kaynak` zorunlu.
 
+## Uygulamada yapılan değişiklikler (2026-10-18)
+
+- **H:** veri `data/research` yerine ayrı `data/yasayan.json` dosyasında (ders içerik dosyalarını
+  okuyan seed/test karışmasın). Her kayıt `alinti` alanında eserin `bugunNeOldu` metninden **birebir**
+  bir cümle taşır; `tests/yasayan.test.ts` alıntının metinde geçtiğini ve künyenin eserin kendi
+  kaynaklarından olduğunu denetler. 17 eser işaretlendi ("ayaktadır" gibi belirsiz ifadeler hariç).
+- **G:** arşiv eser sayfasında yalnızca dersi olan eserlerde (koordinat yalnızca onlarda var);
+  ayrıca Keşif rotasının her durağında.
+- **B:** model `claude-haiku-5-5`, `effort: low`; Fastify fazla gövde alanlarını reddetmek yerine siler.
+
 ## Sıra
 
 B (en büyük fark) → H (veri işi, hızlı) → G. Her biri ayrı commit, `npm run dogrula` yeşil.

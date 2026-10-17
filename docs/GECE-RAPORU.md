@@ -409,6 +409,24 @@ Ayrıca:
 - **Bugün → Yol:** "Başla / Derse devam" dersi açmaz; Yol sekmesinde sıradaki durağa kaydırır.
 - **Yol ortam rengi:** kaydırırken ortadaki eserin fotoğrafı bulanık ve soluk biçimde arka plana yayılır.
 
+## 24. Farklılaşma: kaynaklı soru-cevap, hâlâ yaşayan vakıflar, sahada mühür (2026-10-18)
+
+Beyin fırtınasında Batuhan'ın seçtiği üç fark (diğer takımlar büyük olasılıkla serbest yapay zekâ
+sohbeti, harita ve quiz yapacak). Tasarım: `docs/superpowers/specs/2026-10-17-kaynakli-sor-muhur-yasayan-design.md`.
+
+| Özellik | Ne yapar | Nerede |
+|---|---|---|
+| **Köstik'e sor** | Arşivdeki kutuya soru yazılınca Claude (Haiku) **yalnızca** kendi kaynaklı verimizden (660 eser, 8 bin parça) en fazla 3 cümleyle, her cümlede kaynak numarasıyla cevaplar; kaynaksız cevap düşer, "bilmiyorum" der ve eser önerir. Soru saklanmaz; e-posta/telefon modele gitmez | `#/arsiv`, eser sayfasında "Bu esere sor"; `POST /api/sor` |
+| **Hâlâ yaşayan vakıflar** | 17 eser bugün de asıl işini yapıyor (cami ibadete açık, hamam çalışıyor, çeşmenin suyu akıyor, hanlarda ticaret sürüyor); her biri kaynak metinden birebir alıntıyla | Keşfet > "Hâlâ yaşıyor", ders ve arşiv sayfasında rozet |
+| **Sahada mühür** | Eserin yanında "Buradayım": konum bir kez ve yalnızca cihazda ölçülür, 150 m içinde deftere "orada bulundum" damgası; konum saklanmaz | Keşif rotası durakları, arşiv eser sayfası, Defter pulları |
+
+**Soru-cevabı açmak için:** Anthropic API anahtarı gerekir. Yerelde `.env.example` dosyasını `.env`
+olarak kopyalayıp `ANTHROPIC_API_KEY=` satırını doldurun (`.env` gitignore'da). Vercel'de proje
+ayarları > Environment Variables. Anahtar yokken özellik "şu an kapalı" der, arama çalışır.
+Maliyet: soru başına yaklaşık 0,001 $ (Haiku).
+
+Ayrıca: Arşiv ve Harita'daki süzgeçler açılır kapanır panele taşındı.
+
 ---
 
 ## Geri alma
