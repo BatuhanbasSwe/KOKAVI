@@ -36,6 +36,7 @@ import { eserBul } from '../gunun-eseri/oyun';
 import { IkonOk, IkonSikke } from '../../app/Ikonlar';
 import { EserSatiri } from './EserSatiri';
 import { BOS_FILTRELER, filtreleriCoz } from './filtreler';
+import { SuzgecPaneli } from '../../app/SuzgecPaneli';
 import './harita.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
@@ -237,7 +238,7 @@ export function HaritaSayfasi() {
       // Renkler tema jetonlarından okunur (açık / koyu / yüksek kontrast + palet).
       const stil = getComputedStyle(document.documentElement);
       try {
-        const h = bolgeHaritasiKur(maplibre.default ?? maplibre, haritaKabi.current, {
+        const h = bolgeHaritasiKur(maplibre, haritaKabi.current, {
           iller: (illerModulu as { default: unknown }).default as FeatureCollection,
           ilceler: (ilcelerModulu as { default: unknown }).default as FeatureCollection,
           eserler: haritaEserleri,
@@ -273,9 +274,16 @@ export function HaritaSayfasi() {
 
       {/* --- Filtreler: şehir ve eser türü --------------------------------- */}
       <section className="harita-filtreler" aria-labelledby="harita-filtre-basligi">
-        <h2 id="harita-filtre-basligi" className="harita-filtreler__baslik">
+        <h2 id="harita-filtre-basligi" className="sr-only">
           Filtreler
         </h2>
+        <SuzgecPaneli
+          etkinSayisi={[secilenSehir, secilenTur].filter(Boolean).length}
+          onTemizle={() => {
+            setSecilenSehir('');
+            setSecilenTur('');
+          }}
+        >
         <p className="harita-filtreler__aciklama metin-soluk">
           Yalnızca eseri olan şehir ve türler listelenir; parantez içindeki sayı o seçenekteki
           eser sayısıdır.
@@ -320,20 +328,8 @@ export function HaritaSayfasi() {
             </select>
           </div>
 
-          <div className="harita-filtre__eylem">
-            <button
-              type="button"
-              className="dugme dugme--ikincil harita-filtre__temizle"
-              onClick={() => {
-                setSecilenSehir('');
-                setSecilenTur('');
-              }}
-              disabled={!filtreVar}
-            >
-              Filtreleri temizle
-            </button>
-          </div>
         </div>
+        </SuzgecPaneli>
 
         {/*
           Sonuç sayısı kalıcı bir canlı bölgede duyurulur: bölge önceden var

@@ -23,6 +23,8 @@ import {
   type Urun,
 } from '../../lib/carsi';
 import { ELMAS_ODULU } from '@shared/types';
+import { veliOnayiGerekli } from '../../lib/veliOnayi';
+import { VeliKapisi } from './VeliKapisi';
 import './carsi.css';
 
 function FiyatDugmesi({
@@ -56,8 +58,16 @@ export function CarsiSayfasi() {
   const { ilerleme, carsi, satinAl, sec, yol, yolIskeleti } = useDurum();
   const [mesaj, setMesaj] = useState<string>('');
   const [indiriliyor, setIndiriliyor] = useState<string | null>(null);
+  // Veli kapısı bekleyen harcama (PDF: "Satın almalar veli onaylıdır").
+  const [bekleyen, setBekleyen] = useState<{ amac: string; eylem: () => void } | null>(null);
 
   const elmas = ilerleme.elmas;
+
+  /** Harcama isteği: veli onayı gerekiyorsa önce kapı açılır, onaydan sonra yapılır. */
+  function iste(amac: string, eylem: () => void) {
+    if (veliOnayiGerekli()) setBekleyen({ amac, eylem });
+    else eylem();
+  }
 
   function al(urun: Urun, sehirId?: string, basari?: string) {
     const sonuc = satinAl(urun, sehirId);
@@ -124,6 +134,21 @@ export function CarsiSayfasi() {
         </p>
       ) : null}
 
+      {bekleyen ? (
+        <VeliKapisi
+          amac={bekleyen.amac}
+          onOnay={() => {
+            const { eylem } = bekleyen;
+            setBekleyen(null);
+            eylem();
+          }}
+          onVazgec={() => {
+            setBekleyen(null);
+            setMesaj('Harcama yapılmadı; elmasların yerinde.');
+          }}
+        />
+      ) : null}
+
       {/* --- Avatar ------------------------------------------------------- */}
       <section aria-labelledby="carsi-avatar" className="yigin" style={{ gap: 'var(--b-3)' }}>
         <h2 id="carsi-avatar" className="carsi-baslik">Kâşif avatarın</h2>
@@ -145,7 +170,7 @@ export function CarsiSayfasi() {
                     Seç
                   </button>
                 ) : (
-                  <FiyatDugmesi fiyat={urun.fiyat} elmas={elmas} etiket={urun.ad} onAl={() => al(urun)} />
+                  <FiyatDugmesi fiyat={urun.fiyat} elmas={elmas} etiket={urun.ad} onAl={() => iste(`${urun.ad} avatarı · ${urun.fiyat} elmas`, () => al(urun))} />
                 )}
               </li>
             );
@@ -174,7 +199,7 @@ export function CarsiSayfasi() {
                     Seç
                   </button>
                 ) : (
-                  <FiyatDugmesi fiyat={urun.fiyat} elmas={elmas} etiket={`${urun.ad} teması`} onAl={() => al(urun)} />
+                  <FiyatDugmesi fiyat={urun.fiyat} elmas={elmas} etiket={`${urun.ad} teması`} onAl={() => iste(`${urun.ad} defter teması · ${urun.fiyat} elmas`, () => al(urun))} />
                 )}
               </li>
             );
@@ -197,7 +222,7 @@ export function CarsiSayfasi() {
           </p>
         </div>
         <div style={{ minWidth: 120 }}>
-          <FiyatDugmesi fiyat={IPUCU_PAKETI.fiyat} elmas={elmas} etiket={IPUCU_PAKETI.ad} onAl={() => al(IPUCU_PAKETI, undefined, '3 ek ipucu hakkın eklendi.')} />
+          <FiyatDugmesi fiyat={IPUCU_PAKETI.fiyat} elmas={elmas} etiket={IPUCU_PAKETI.ad} onAl={() => iste(`${IPUCU_PAKETI.ad} · ${IPUCU_PAKETI.fiyat} elmas`, () => al(IPUCU_PAKETI, undefined, '3 ek ipucu hakkın eklendi.'))} />
         </div>
       </section>
 
@@ -226,7 +251,7 @@ export function CarsiSayfasi() {
                       fiyat={CEVRIMDISI_FIYAT}
                       elmas={elmas}
                       etiket={`${s.ad} çevrimdışı paketi`}
-                      onAl={() => void cevrimdisiAl(s.sehirId, s.ad)}
+                      onAl={() => iste(`${s.ad} çevrimdışı paketi · ${CEVRIMDISI_FIYAT} elmas`, () => void cevrimdisiAl(s.sehirId, s.ad))}
                     />
                   )}
                 </span>
@@ -259,10 +284,12 @@ export function CarsiSayfasi() {
                     elmas={elmas}
                     etiket={`${s.ad} şehrini aç`}
                     onAl={() =>
-                      al(
-                        { id: `sehir-${s.sehirId}`, tur: 'sehir', ad: `${s.ad} paketi`, aciklama: '', fiyat: SEHIR_PAKETI_FIYAT },
-                        s.sehirId,
-                        `${s.ad} açıldı! Öğrenme yolunda seni bekliyor.`,
+                      iste(`${s.ad} şehir paketi · ${SEHIR_PAKETI_FIYAT} elmas`, () =>
+                        al(
+                          { id: `sehir-${s.sehirId}`, tur: 'sehir', ad: `${s.ad} paketi`, aciklama: '', fiyat: SEHIR_PAKETI_FIYAT },
+                          s.sehirId,
+                          `${s.ad} açıldı! Öğrenme yolunda seni bekliyor.`,
+                        ),
                       )
                     }
                   />

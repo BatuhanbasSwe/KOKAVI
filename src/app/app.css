@@ -198,6 +198,10 @@ body {
   .altbilgi {
     padding-bottom: calc(88px + env(safe-area-inset-bottom));
   }
+  /* Yüzen Köstik düğmesi (alt çubuğun üstünde) son içeriği örtmesin */
+  .ana:not(.ana--odak) {
+    padding-bottom: calc(156px + env(safe-area-inset-bottom));
+  }
   .ana--odak {
     padding-bottom: 0;
   }
@@ -210,7 +214,8 @@ body {
 
 .ana {
   flex: 1;
-  padding-block: var(--b-5) var(--b-7);
+  /* alt boşluk: sağ alttaki yüzen Köstik düğmesi son içeriği örtmesin */
+  padding-block: var(--b-5) 112px;
   outline: none;
 }
 
@@ -379,6 +384,16 @@ body {
   display: flex;
   gap: var(--b-2);
   flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.ayar-satiri > * {
+  min-width: 0;
+}
+
+select.secim-dugmesi {
+  max-width: 100%;
 }
 
 .secim-dugmesi {
@@ -759,4 +774,58 @@ body {
 .hatalar-ust .etiket,
 .hatalar-ust__eser {
   margin: 0;
+}
+
+/* --- Açılır kapanır süzgeç paneli (Arşiv, Harita) ------------------------- */
+.arsiv-arama {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--b-2);
+  align-items: start;
+}
+.arsiv-arama > .suzgec {
+  display: contents;
+}
+.suzgec__dugme {
+  min-height: 48px;
+  padding: 0 var(--b-3);
+  white-space: nowrap;
+}
+.suzgec__dugme[aria-expanded='true'] {
+  border-color: var(--vurgu);
+}
+.suzgec__sayi {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-size: var(--yazi-xs);
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+  border-radius: var(--kose-tam);
+}
+.suzgec__panel {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--b-3);
+  justify-items: start;
+  animation: suzgec-ac 240ms var(--yay) both;
+}
+.suzgec__panel[hidden] {
+  display: none;
+}
+.suzgec__panel > .harita-filtreler__izgara {
+  width: 100%;
+  margin-top: 0;
+}
+@keyframes suzgec-ac {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

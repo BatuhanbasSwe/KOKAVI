@@ -27,6 +27,7 @@ import { DersSonu } from './DersSonu';
 import { EserGalerisi, EserKapakAcilis } from './EserGalerisi';
 import { EkIpucuBaglami } from './EgzersizKabugu';
 import { IkonKapat, IkonTur } from '../../app/Ikonlar';
+import { YasiyorRozeti } from '../merkez/YasiyorRozeti';
 import {
   gunMetni,
   tekrarEgzersizSirasi,
@@ -291,6 +292,7 @@ export function DersSayfasi({ dersId }: Props) {
         <div>
           <h1 className="ders-baslik">{dersBasligi.split(' (')[0]}</h1>
           {eserAltBilgi ? <p className="ders-ust__alt">{eserAltBilgi}</p> : null}
+          <YasiyorRozeti eserId={ders.eserId} />
         </div>
       </header>
 

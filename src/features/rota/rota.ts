@@ -80,3 +80,42 @@ export function mesafeMetni(m: number): string {
 export function yurumeDakika(m: number): number {
   return Math.max(1, Math.round(((m * 1.3) / 4500) * 60));
 }
+
+/** İki durak arası bu mesafeden uzunsa yürünmez; rota orada yeni bölüme ayrılır. */
+export const BOLUM_ESIGI = 1500;
+
+export interface Bolum<T> {
+  /** Bölümün ilk durağının rotadaki sırası (0'dan). */
+  bas: number;
+  duraklar: T[];
+  /** Bölüm içindeki yürüyüş mesafesi (kuş uçuşu, metre). */
+  mesafe: number;
+  /** Bir önceki bölümün son durağından bu bölüme olan mesafe (araçla). */
+  oncekindenUzaklik: number;
+}
+
+/**
+ * Sıralı rotayı yürünebilir bölümlere ayırır: ardışık iki durak arası
+ * `esik`'ten uzunsa yeni bölüm başlar (arada araçla geçilir).
+ */
+export function rotaBol<T extends RotaNoktasi>(sira: T[], esik = BOLUM_ESIGI): Bolum<T>[] {
+  const bolumler: Bolum<T>[] = [];
+  sira.forEach((n, i) => {
+    const onceki = sira[i - 1];
+    const ara = onceki ? mesafe(onceki, n) : 0;
+    const son = bolumler[bolumler.length - 1];
+    if (!son || ara > esik) {
+      bolumler.push({ bas: i, duraklar: [n], mesafe: 0, oncekindenUzaklik: ara });
+    } else {
+      son.duraklar.push(n);
+      son.mesafe += ara;
+    }
+  });
+  return bolumler;
+}
+
+/** OpenStreetMap yaya yol tarifi (gerçek sokak yolu; yeni sekmede açılır). */
+export function yolTarifiAdresi(a: RotaNoktasi, b: RotaNoktasi): string {
+  const k = (n: RotaNoktasi) => `${n.lat.toFixed(6)},${n.lng.toFixed(6)}`;
+  return `https://www.openstreetmap.org/directions?engine=fossgis_osrm_foot&route=${k(a)}%3B${k(b)}`;
+}

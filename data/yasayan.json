@@ -1,0 +1,141 @@
+{
+  "aciklama": "Bugün hâlâ yapıldığı işi yapan vakıf eserleri. Her kayıt, eserin kaynak metninden birebir alıntıya dayanır (tests/yasayan.test.ts denetler).",
+  "eserler": [
+    {
+      "eserId": "bursa-ulucami",
+      "ad": "Ulucami",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ cami: insanlar burada namaz kılıyor.",
+      "alinti": "İbadete açıktır.",
+      "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 36-83 (ULUCAMİ)"
+    },
+    {
+      "eserId": "bursa-yesilcami-yesil-cami",
+      "ad": "Yeşilcami",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ cami olarak ibadete açık.",
+      "alinti": "Cami olarak ibadete açıktır",
+      "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Cami' Kültür Envanteri Anıt kaydı, Envanter No A29"
+    },
+    {
+      "eserId": "bursa-yesil-turbe-celebi-sultan-mehmed-turbesi",
+      "ad": "Yeşil Türbe",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ türbe olarak ziyarete açık.",
+      "alinti": "bugünkü kullanım ve önerilen kullanım 'Türbe' olarak işaretlidir",
+      "kaynak": "T.C. Kültür ve Turizm Bakanlığı Kültür Portalı, 'Yeşil Türbe (Çelebi Sultan Mehmet Türbesi)' Kültür Envanteri Anıt kaydı, Envanter No A58"
+    },
+    {
+      "eserId": "bursa-haraccioglu-darulkurra-mektebi",
+      "ad": "Haraççıoğlu",
+      "durum": "asil-islevinde",
+      "aciklama": "Kur'an okumayı öğretmek için kurulmuştu; bugün de bir Kur'an kursunun binası.",
+      "alinti": "Günümüzde Üftâde Kur'an Kursu'nun ek binası olarak kullanılmaktadır.",
+      "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 80-83 (HARAÇÇIOĞLU (DÂRÜLKURRÂ) MEKTEBİ)"
+    },
+    {
+      "eserId": "bursa-veled-i-yanic-mescidi-veled-i-yanic-camii",
+      "ad": "Veled-i Yaniç Mescidi",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün cami olarak ibadete açık.",
+      "alinti": "Bugün cami",
+      "kaynak": "T.C. Kültür ve Turizm Bakanlığı, Kültür Portalı / Kültür Envanteri Anıt kaydı: “Veled-i Yaniç Mescidi”, Envanter No A207"
+    },
+    {
+      "eserId": "bursa-hz-uftade-camii",
+      "ad": "Hz. Üftâde Camii",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ ibadete açık.",
+      "alinti": "İbadete açıktır.",
+      "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', I. Cilt (Nisan 2026), s. 447-455 (HZ. ÜFTÂDE CAMİİ)"
+    },
+    {
+      "eserId": "bursa-koza-hani",
+      "ad": "Koza Hanı",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ ticaret yapılıyor: üst katta ipekçi dükkânları var.",
+      "alinti": "Bursa Çarşısı'nın en yoğun ticaret alanlarından biridir",
+      "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 15-24 (KOZA HANI)"
+    },
+    {
+      "eserId": "bursa-ipek-hani-sultan-hani-han-i-harir",
+      "ad": "İpek Hanı",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün içinde birçok dükkân olan bir ticaret binası.",
+      "alinti": "Bugün içinde çok sayıda dükkânın bulunduğu, oldukça bakımlı bir ticarî binadır",
+      "kaynak": "Enis Karakaya, 'İpek Hanı', TDV İslâm Ansiklopedisi, C. 22 (2000), s. 368-369 (son güncelleme 14.02.2020)"
+    },
+    {
+      "eserId": "bursa-yildirim-bayezid-bedesteni",
+      "ad": "Yıldırım Bayezid Bedesteni",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ çarşı: Kapalıçarşı'nın bir parçası, kuyumcular burada.",
+      "alinti": "Bugün Bursa Kapalıçarşısı'nın bir bölümüdür",
+      "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 53-57 (YILDIRIM BAYEZİD BEDESTENİ)"
+    },
+    {
+      "eserId": "bursa-fidan-hani",
+      "ad": "Fidan Hanı",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün içinde 105 dükkân var; çoğunda kumaş ve giyim esnafı çalışıyor.",
+      "alinti": "Bugün handa 105 dükkân vardır",
+      "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 25-31 (FİDAN HANI)"
+    },
+    {
+      "eserId": "bursa-nasuh-pasa-hamami",
+      "ad": "Nasuh Paşa Hamamı",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ hamam olarak çalışıyor.",
+      "alinti": "Hâlâ hamam olarak çalışmaktadır.",
+      "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 143-150 (NASUH PAŞA HAMAMI)"
+    },
+    {
+      "eserId": "bursa-demirtas-timurtas-hamami",
+      "ad": "Demirtaş",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün de hamam olarak kullanılıyor.",
+      "alinti": "bugün de hamam olarak kullanılmaktadır",
+      "kaynak": "T.C. Kültür ve Turizm Bakanlığı, Kültür Portalı / Kültür Envanteri Anıt kaydı: “Demirtaş (Timurtaş) Hamamı”, Envanter No A21"
+    },
+    {
+      "eserId": "bursa-umur-bey-kulliyesi",
+      "ad": "Umur Bey Külliyesi",
+      "durum": "asil-islevinde",
+      "aciklama": "Camisi bugün hâlâ ibadete açık.",
+      "alinti": "Cami ibadete açıktır.",
+      "kaynak": "Vakıf Katılım, 'Bursa Vakıf Eserleri', II. Cilt (Nisan 2026), s. 317-337 (UMUR BEY KÜLLİYESİ)"
+    },
+    {
+      "eserId": "bursa-besir-aga-cesmesi",
+      "ad": "Beşir Ağa Çeşmesi",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ suyu akıyor.",
+      "alinti": "Ayakta ve suyu akan",
+      "kaynak": "T.C. Kültür ve Turizm Bakanlığı, Kültür Portalı / Kültür Envanteri Anıt kaydı: “Beşir Ağa Çeşmesi”, Envanter No A14"
+    },
+    {
+      "eserId": "konya-tahir-ile-zuhre-mescidi",
+      "ad": "Tahir ile Zühre",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ ibadete açık.",
+      "alinti": "ibadete açıktır",
+      "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 114-117 (TAHİR İLE ZÜHRE (DÖN BABA-PİR AHİ SULTAN) MESCİT VE TÜRBESİ)"
+    },
+    {
+      "eserId": "konya-sultan-alaeddin-camii",
+      "ad": "Sultan Alâeddin",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ ibadete açık.",
+      "alinti": "İbadete açıktır.",
+      "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 304-319 (SULTAN ALÂEDDİN (ULU) CAMİİ)"
+    },
+    {
+      "eserId": "konya-imaret-hasan-pasa-camii",
+      "ad": "İmaret",
+      "durum": "asil-islevinde",
+      "aciklama": "Bugün hâlâ ibadete açık.",
+      "alinti": "İbadete açıktır.",
+      "kaynak": "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (Kasım 2024), s. 336-345 (İMARET (HASAN PAŞA) CAMİİ)"
+    }
+  ]
+}

@@ -44,7 +44,18 @@ describe('Keşfet', () => {
     const hedefler = within(liste)
       .getAllByRole('link')
       .map((a) => a.getAttribute('href'));
-    expect(hedefler).toEqual(['#/harita', '#/arsiv', '#/zaman-tuneli', '#/rota']);
+    expect(hedefler).toEqual(['#/harita', '#/arsiv', '#/zaman-tuneli', '#/kesfet/yasayan', '#/rota']);
+    expect(await ihlaller(container)).toEqual([]);
+  });
+
+  it('Hâlâ yaşayan vakıflar: liste, her kayıtta açılır kaynak; Keşfet sekmesi seçili; ihlalsiz', async () => {
+    const container = await ac('#/kesfet/yasayan', /hâlâ yaşayan vakıflar/i);
+    const ogeler = screen.getAllByRole('heading', { level: 2 });
+    expect(ogeler.length).toBeGreaterThanOrEqual(10);
+    expect(screen.getByRole('heading', { level: 2, name: 'Nasuh Paşa Hamamı' })).toBeInTheDocument();
+    expect(screen.getByText('Hâlâ hamam olarak çalışmaktadır.', { exact: false })).toBeInTheDocument();
+    const nav = screen.getByRole('navigation', { name: /ana gezinme/i });
+    expect(within(nav).getByRole('link', { name: 'Keşfet' })).toHaveAttribute('aria-current', 'page');
     expect(await ihlaller(container)).toEqual([]);
   });
 });

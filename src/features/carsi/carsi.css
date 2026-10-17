@@ -172,3 +172,46 @@
   );
 }
 
+
+/* --- Veli kapısı (PDF: satın almalar veli onaylıdır) --------------------- */
+.kart.veli-kapisi {
+  display: grid;
+  gap: var(--b-2);
+  border-color: var(--vurgu);
+}
+.veli-kapisi__baslik {
+  margin: 0;
+  font-size: var(--yazi-xl);
+}
+.veli-kapisi__amac {
+  margin: 0;
+  font-weight: 700;
+  color: var(--vurgu-koyu);
+}
+.veli-kapisi__not,
+.veli-kapisi__ipucu {
+  margin: 0;
+  font-size: var(--yazi-sm);
+}
+.veli-kapisi__form {
+  display: grid;
+  gap: var(--b-2);
+  margin-top: var(--b-2);
+}
+.veli-kapisi__soru {
+  font-weight: 700;
+}
+.veli-kapisi__form input {
+  width: 100%;
+  min-width: 0;
+  font-size: var(--yazi-lg);
+}
+.veli-kapisi__hata {
+  margin: 0;
+  min-height: 1.4em;
+  font-size: var(--yazi-sm);
+  color: var(--hata);
+}
+.veli-kapisi__eylem {
+  gap: var(--b-2);
+}

@@ -166,3 +166,12 @@
     transform: scale(1);
   }
 }
+
+/* --- Köstik'e sor (kaynaklı soru-cevap) ------------------------------------ */
+.arsiv-sor {
+  justify-self: start;
+  animation: suzgec-ac 240ms var(--yay) both;
+}
+.arsiv-esere-sor {
+  justify-self: start;
+}

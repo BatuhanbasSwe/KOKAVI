@@ -23,13 +23,15 @@ import { yonetimUclari } from './routes/admin.ts';
 import { authUclari } from './routes/auth.ts';
 import { sinifUclari } from './routes/sinif.ts';
 import { canliUclari } from './routes/canli.ts';
+import { sorUclari, type SorSecenekleri } from './routes/sor.ts';
 import { suresiGecmisOturumlariTemizle, eskiDenemeleriTemizle } from './auth/oturum.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT ?? 8787);
 const HOST = process.env.HOST ?? '127.0.0.1';
 
-export async function sunucuKur() {
+/** `sor`: kaynaklı soru-cevap için test seçenekleri (sahte model). */
+export async function sunucuKur(secenekler: { sor?: SorSecenekleri } = {}) {
   const app = Fastify({
     logger: { level: process.env.LOG_LEVEL ?? 'info' },
     // Güvenlik: gövde boyutu sınırı — bellek tüketimi saldırısını engeller.
@@ -120,6 +122,7 @@ export async function sunucuKur() {
   await app.register(sinifUclari);
   await app.register(canliUclari);
   await app.register(genelUclar);
+  await app.register(sorUclari, secenekler.sor ?? {});
   await app.register(yonetimUclari);
 
   // Üretim derlemesi varsa istemciyi de servis et.
@@ -139,6 +142,9 @@ export async function sunucuKur() {
 }
 
 async function basla() {
+  // Yerel geliştirme: .env varsa (ör. ANTHROPIC_API_KEY) yükle. Dosya gitignore'da;
+  // Vercel'de değişkenler proje ayarlarından gelir.
+  if (existsSync('.env')) process.loadEnvFile('.env');
   const app = await sunucuKur();
   try {
     await app.listen({ port: PORT, host: HOST });

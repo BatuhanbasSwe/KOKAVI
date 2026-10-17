@@ -7,7 +7,10 @@
  * Şartname 5.1.4: erişilebilirlik özellikleri "çalışan ürüne entegre" olmalı.
  * Bu ekrandaki her ayar anında tüm ürüne uygulanır.
  */
+import { useState } from 'react';
 import { useDurum } from '../../app/DurumSaglayici';
+import { veliOnayiAcikMi, veliOnayiniAyarla } from '../../lib/veliOnayi';
+import { VeliKapisi } from '../carsi/VeliKapisi';
 import { YuklemeKarti } from './YuklemeKarti';
 import {
   RENK_KORLUGU_ETIKETLERI,
@@ -43,6 +46,8 @@ export function AyarlarSayfasi() {
   const temaSec = (tema: Ayarlar['tema']) => ayarGuncelle({ tema });
   const renkSec = (renk: Ayarlar['renkKorlugu']) => ayarGuncelle({ renkKorlugu: renk });
   const yaziYuzde = Math.round(ayarlar.yaziBoyutu * 100);
+  const [veliOnayi, setVeliOnayi] = useState(veliOnayiAcikMi);
+  const [kapatmaOnayi, setKapatmaOnayi] = useState(false);
 
   return (
     <div className="yigin" style={{ gap: 'var(--b-5)' }}>
@@ -83,9 +88,8 @@ export function AyarlarSayfasi() {
             type="button"
             className="secim-dugmesi"
             onClick={() => ayarGuncelle({ yaziBoyutu: yaziBoyutuAzalt(ayarlar.yaziBoyutu) })}
-            aria-label="Yazıyı küçült"
           >
-            A−
+            A− Küçült
           </button>
           <span
             className="secim-dugmesi"
@@ -98,9 +102,8 @@ export function AyarlarSayfasi() {
             type="button"
             className="secim-dugmesi"
             onClick={() => ayarGuncelle({ yaziBoyutu: yaziBoyutuArtir(ayarlar.yaziBoyutu) })}
-            aria-label="Yazıyı büyüt"
           >
-            A+
+            A+ Büyüt
           </button>
         </AyarSatiri>
 
@@ -209,6 +212,36 @@ export function AyarlarSayfasi() {
         <p className="metin-ikincil">
           Öğretmen sınıf kodu açar ve toplu ilerlemeyi görür; içerik ekibi eser ve ders ekler.
         </p>
+        <AyarSatiri
+          etiket="Harcamalarda veli onayı"
+          aciklama="Vakıf Çarşısı'nda elmas harcamadan önce bir yetişkin onaylar. Gerçek para yoktur. Kapatmak da onay ister."
+        >
+          <button
+            type="button"
+            className="secim-dugmesi"
+            aria-pressed={veliOnayi}
+            onClick={() => {
+              if (veliOnayi) setKapatmaOnayi(true);
+              else {
+                veliOnayiniAyarla(true);
+                setVeliOnayi(true);
+              }
+            }}
+          >
+            {veliOnayi ? 'Açık' : 'Kapalı'}
+          </button>
+        </AyarSatiri>
+        {kapatmaOnayi && (
+          <VeliKapisi
+            amac="Harcamalarda veli onayını kapatmak"
+            onOnay={() => {
+              veliOnayiniAyarla(false);
+              setVeliOnayi(false);
+              setKapatmaOnayi(false);
+            }}
+            onVazgec={() => setKapatmaOnayi(false)}
+          />
+        )}
         <div className="satir">
           <a className="dugme dugme--ikincil dugme--kucuk" href="#/ogretmen">
             Öğretmen paneli

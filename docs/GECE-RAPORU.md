@@ -392,6 +392,41 @@ Beyin fırtınasında senin seçimlerinle karar verildi (parşömen reddedildi �
 Bütün eski rotalar (`#/harita`, `#/sinif`, `#/ayarlar`, `#/carsi`, `#/seri`…) çalışıyor.
 `server/`, `shared/`, `api.ts`, `oturum.ts`'e dokunulmadı.
 
+## 23. Aşama 1 (PDF eksikleri) ve düzeltmeler (2026-10-17)
+
+Takım planı (`eksikler` dalı, `docs/plan/ILERLEYIS.md`) Aşama 1'deki dört iş Batuhan'da.
+
+| İş | Durum | Ne yapıldı |
+|---|---|---|
+| Dinle ve seç | ✅ | Betimleme açılışta bir kez okunur, metni "Altyazıyı göster" arkasında (PDF: altyazı ve sessiz mod). Sessiz modda yazılı "Eseri tanı". `tests/dinle-sec.test.tsx` |
+| Toplu TTS ses dosyaları | ⏳ karar bekliyor | Piper (çevrimdışı) ve Edge sesi yeterince insan gibi bulunmadı. Seslendirilecek metin 57 ders / 285 parça / ~84 bin karakter. Seçenekler: OpenAI TTS, Google Chirp 3 HD, ElevenLabs, insan kaydı |
+| Elmas harcama + veli onayı | ✅ | Çarşı harcamaları veli kapısından geçer (yazıyla çarpma sorusu, rakamla cevap; onay 10 dk). Ayarlar'dan kapatmak da onay ister. Gerçek para yok. `tests/veli-*.test.ts(x)` |
+| Erişilebilirlik doğrulaması | ✅ | Gerçek tarayıcıda axe (renk kontrastı dahil): 22 sayfa × 3 tema, 0 ihlal. %160 yazı × 360 px'te yatay taşma yok. Yüksek kontrast + büyük yazı + sessiz modla tam ders arayüzden bitiyor; ses/titreşim yok. `tests/erisilebilir-ders-akisi.test.tsx` |
+
+Ayrıca:
+- **Güvenlik:** `npm audit` 8 uyarı → 0 (maplibre-gl 6.14, @fastify/static 10.1.6, vitest 4.1.12). `tests/statik-sunum.test.ts` yol aşımını denetler.
+- **Keşif rotası:** gerçek sokak haritası, üst üste binen duraklar "10-15" grup etiketi, uzak duraklar ayrı yürüyüş bölümü, fotoğraflı durak listesi, OSM yol tarifi, "Gördüm" cihazda.
+- **Bugün → Yol:** "Başla / Derse devam" dersi açmaz; Yol sekmesinde sıradaki durağa kaydırır.
+- **Yol ortam rengi:** kaydırırken ortadaki eserin fotoğrafı bulanık ve soluk biçimde arka plana yayılır.
+
+## 24. Farklılaşma: kaynaklı soru-cevap, hâlâ yaşayan vakıflar, sahada mühür (2026-10-18)
+
+Beyin fırtınasında Batuhan'ın seçtiği üç fark (diğer takımlar büyük olasılıkla serbest yapay zekâ
+sohbeti, harita ve quiz yapacak). Tasarım: `docs/superpowers/specs/2026-10-17-kaynakli-sor-muhur-yasayan-design.md`.
+
+| Özellik | Ne yapar | Nerede |
+|---|---|---|
+| **Köstik'e sor** | Arşivdeki kutuya soru yazılınca Claude (Haiku) **yalnızca** kendi kaynaklı verimizden (660 eser, 8 bin parça) en fazla 3 cümleyle, her cümlede kaynak numarasıyla cevaplar; kaynaksız cevap düşer, "bilmiyorum" der ve eser önerir. Soru saklanmaz; e-posta/telefon modele gitmez | `#/arsiv`, eser sayfasında "Bu esere sor"; `POST /api/sor` |
+| **Hâlâ yaşayan vakıflar** | 17 eser bugün de asıl işini yapıyor (cami ibadete açık, hamam çalışıyor, çeşmenin suyu akıyor, hanlarda ticaret sürüyor); her biri kaynak metinden birebir alıntıyla | Keşfet > "Hâlâ yaşıyor", ders ve arşiv sayfasında rozet |
+| **Sahada mühür** | Eserin yanında "Buradayım": konum bir kez ve yalnızca cihazda ölçülür, 150 m içinde deftere "orada bulundum" damgası; konum saklanmaz | Keşif rotası durakları, arşiv eser sayfası, Defter pulları |
+
+**Soru-cevabı açmak için:** Anthropic API anahtarı gerekir. Yerelde `.env.example` dosyasını `.env`
+olarak kopyalayıp `ANTHROPIC_API_KEY=` satırını doldurun (`.env` gitignore'da). Vercel'de proje
+ayarları > Environment Variables. Anahtar yokken özellik "şu an kapalı" der, arama çalışır.
+Maliyet: soru başına yaklaşık 0,001 $ (Haiku).
+
+Ayrıca: Arşiv ve Harita'daki süzgeçler açılır kapanır panele taşındı.
+
 ---
 
 ## Geri alma

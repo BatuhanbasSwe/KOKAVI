@@ -8,7 +8,7 @@
  * PDF: "Yanlış → ipucu + tekrar turu" — yanlış seçenek ! ile işaretlenir,
  * ipucu verilir ve tekrar denenebilir. İki yanlıştan sonra cevap gösterilir.
  */
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import type { EserTaniVerisi } from '@shared/types';
 import { useDurum } from '../../app/DurumSaglayici';
 import { sesDestekleniyor } from '../../lib/ses';
@@ -28,6 +28,8 @@ export function EserTaniEgzersizi({
   const [secili, setSecili] = useState<number | null>(null);
   const [yanlislar, setYanlislar] = useState<number[]>([]);
   const [geriBildirim, setGeriBildirim] = useState<GeriBildirimVerisi | null>(null);
+  const [altyazi, setAltyazi] = useState(false);
+  const altyaziId = useId();
 
   const cozuldu = secili !== null && secili === veri.dogruIndex;
   const dogruCevap = veri.secenekler[veri.dogruIndex];
@@ -75,9 +77,11 @@ export function EserTaniEgzersizi({
 
   /*
    * PDF egzersiz tipi "Dinle ve seç: sesli anlatımı dinle, doğru eseri işaretle".
-   * Ses varsa betimleme dinletilir ve metni altyazı olarak durur; sessiz modda
-   * veya ses olmayan cihazda aynı egzersiz "Eseri tanı" olarak yazıyla çözülür
-   * (PDF: "ses olmadan da akışın tamamı bitirilebilir").
+   * Ses varsa betimleme açılışta bir kez okunur; metni "Altyazıyı göster"
+   * düğmesinin arkasındadır (PDF: "Altyazı ve sessiz mod"), böylece egzersiz
+   * gerçekten dinleyerek çözülür ama işitemeyen biri tek dokunuşla okuyabilir.
+   * Sessiz modda veya ses olmayan cihazda aynı egzersiz "Eseri tanı" olarak
+   * yazıyla çözülür (PDF: "ses olmadan da akışın tamamı bitirilebilir").
    */
   const sesli = !ayarlar.sessizMod && sesDestekleniyor();
 
@@ -89,11 +93,30 @@ export function EserTaniEgzersizi({
       geriBildirim={geriBildirim}
       onDevam={cozuldu ? onBitti : null}
     >
-      {sesli ? <DinleDugmesi metin={veri.betimleme} etiket="Betimlemeyi dinle" /> : null}
-      <blockquote className="kart ders-betimleme">
-        <p className="etiket">{sesli ? 'Altyazı' : 'Betimleme'}</p>
-        <p className="ders-betimleme__metin">{veri.betimleme}</p>
-      </blockquote>
+      {sesli ? (
+        <div className="satir ders-dinle-sec">
+          <DinleDugmesi metin={veri.betimleme} etiket="Betimlemeyi dinle" kendiligindenBasla />
+          <button
+            type="button"
+            className="dugme dugme--ikincil dugme--kucuk"
+            aria-expanded={altyazi}
+            aria-controls={altyaziId}
+            onClick={() => setAltyazi((a) => !a)}
+          >
+            {altyazi ? 'Altyazıyı gizle' : 'Altyazıyı göster'}
+          </button>
+        </div>
+      ) : null}
+      {!sesli || altyazi ? (
+        <blockquote className="kart ders-betimleme" id={altyaziId}>
+          <p className="etiket">{sesli ? 'Altyazı' : 'Betimleme'}</p>
+          <p className="ders-betimleme__metin">{veri.betimleme}</p>
+        </blockquote>
+      ) : (
+        <p className="metin-ikincil ders-dinle-sec__not" id={altyaziId}>
+          Önce dinle; işitemiyorsan altyazıyı açabilirsin.
+        </p>
+      )}
 
       <div className="yigin ders-secenekler" role="group" aria-label="Eser seçenekleri">
         {veri.secenekler.map((secenek, i) => {

@@ -281,4 +281,12 @@
   .mozaik__oge:last-child:nth-child(even) {
     grid-column: auto;
   }
+  /* 3 sütun: büyük kutu + sağdaki iki kutudan sonra son satırda boş hücre kalmasın.
+     (4. kutudan itibaren satırlar üçerli; son satırda 1 kalırsa tam genişlik, 2 kalırsa sonuncusu 2 sütun.) */
+  .mozaik__oge:nth-child(n + 4):last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+  }
+  .mozaik__oge:nth-child(n + 4):last-child:nth-child(3n + 2) {
+    grid-column: span 2;
+  }
 }

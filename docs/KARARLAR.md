@@ -143,6 +143,13 @@ gerektiriyor. Yani bu bir eksiklik değil, taahhüdün **öncelikli** karşılı
 TTS eklendiğinde aynı egzersiz sesli ipucuyla da sunulabilir — veri şeması
 değişmez.
 
+**Güncelleme (2026-10-17):** Cihazda Türkçe ses varsa egzersiz gerçek bir
+"Dinle ve seç"tir: betimleme açılışta bir kez okunur, metni "Altyazıyı göster"
+düğmesinin arkasındadır (PDF: "Altyazı ve sessiz mod"). Sessiz modda ya da ses
+olmayan cihazda yazılı "Eseri tanı" olarak kalır. Toplu üretilmiş ses dosyaları
+(PDF: "toplu Türkçe TTS") için ses motoru kararı bekliyor; geldiğinde yalnızca
+ses kaynağı değişir (`src/lib/ses.ts`). Test: `tests/dinle-sec.test.tsx`.
+
 ---
 
 ## 8. `work.gelir_dagilimi_durumu` neden var?

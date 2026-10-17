@@ -183,3 +183,22 @@ Her yanıtta: `Content-Security-Policy` (frame-ancestors `none`) ·
 
 Gövde sınırı **1 MB**. Gövdesiz `POST` istekleri içerik türü belirtilmese de
 kabul edilir; gövdesi olan bilinmeyen içerik türleri **415** ile reddedilir.
+
+## Kaynaklı soru-cevap — `POST /api/sor`
+
+"Köstik'e sor": çocuk Arşiv'de ya da eser sayfasında soru yazar; cevap **yalnızca** projedeki
+kaynaklı veriden (57 ders eserinin araştırma kaydı + 633 arşiv eserinin metni, `server/sor/korpus.json`)
+üretilir. Her cümle bir kaynağa dayanmak zorundadır; dayanmayan cevap düşürülür ve "bilmiyorum" döner.
+
+**Gövde:** `{ "soru": string (3-400), "eserId"?: string ([a-z0-9-]) }`
+
+**Cevap (200):**
+- `{ "cumleler": [{ "metin", "kaynaklar": [1] }], "kaynaklar": [{ "no", "eserId", "eserAd", "kunye" }] }`
+- ya da `{ "bilmiyorum": true, "oneriler": [{ "eserId", "eserAd" }] }`
+
+**Hatalar:** `400` geçersiz girdi · `429` hız sınırı (IP başına dakikada 10) · `502` model yanıt vermedi ·
+`503 { "hata": "kapali" }` `ANTHROPIC_API_KEY` tanımlı değil.
+
+**Gizlilik:** soru saklanmaz ve günlüğe yazılmaz; e-posta, telefon ve 7+ haneli sayılar modele gitmeden
+`[gizlendi]` olur. **Model:** `KOKAVI_SOR_MODEL` (varsayılan `claude-haiku-5-5`).
+**Korpus güncelleme:** içerik değişince `npm run korpus`, sonra `npm run build:vercel`.

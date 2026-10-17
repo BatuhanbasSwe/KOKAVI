@@ -13,3 +13,9 @@ kaynak/
 .playwright-mcp/
 *.tsbuildinfo
 .superpowers/
+.claude/scheduled_tasks.lock
+
+# Gizli anahtarlar (ANTHROPIC_API_KEY vb.) — asla commit etme
+.env
+.env.*
+!.env.example

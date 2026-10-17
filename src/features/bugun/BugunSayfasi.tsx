@@ -103,7 +103,7 @@ export function BugunSayfasi() {
 
       <ul className="mozaik" aria-label="Bugün yapabileceklerin">
         {siradaki ? (
-          <Kutu href={`#/ders/${encodeURIComponent(siradaki.dersId)}`} sira={sira++} sinif="mozaik__oge--buyuk">
+          <Kutu href="#/yol?odak=siradaki" sira={sira++} sinif="mozaik__oge--buyuk">
             <Foto className="mozaik__foto" src={`/gorseller/${siradaki.eserId}/1.webp`} />
             <span className="mozaik__karartma" aria-hidden="true" />
             <span className="mozaik__icerik">

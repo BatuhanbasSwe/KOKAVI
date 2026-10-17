@@ -32,6 +32,8 @@ import { CanliGirisSayfasi, CanliOynaSayfasi } from '../features/canli/CanliOyun
 import { CanliKurSayfasi, CanliYonetSayfasi } from '../features/canli/CanliYonetim';
 import { BugunSayfasi } from '../features/bugun/BugunSayfasi';
 import { KesfetSayfasi } from '../features/merkez/KesfetSayfasi';
+import { YasayanSayfasi } from '../features/merkez/YasayanSayfasi';
+import { KostikSohbeti } from '../features/sohbet/KostikSohbeti';
 import { ProfilSayfasi } from '../features/profil/ProfilSayfasi';
 import { Avatar, IkonAlev, IkonDefter, IkonElmas, IkonEv, IkonPusula, IkonYol } from './Ikonlar';
 import './app.css';
@@ -56,6 +58,7 @@ const UST_SEKME: Partial<Record<string, string>> = {
   'arsiv-eser': 'kesfet',
   'zaman-tuneli': 'kesfet',
   rota: 'kesfet',
+  yasayan: 'kesfet',
   'gunun-eseri': 'bugun',
   'hayrat-akar': 'bugun',
   hatalar: 'bugun',
@@ -131,6 +134,7 @@ function Kabuk() {
     const basliklar: Record<string, string> = {
       bugun: 'Bugün',
       kesfet: 'Keşfet',
+      yasayan: 'Hâlâ yaşayan vakıflar',
       profil: 'Profil',
       yol: 'Öğrenme Yolu',
       defter: 'Kâşif Defteri',
@@ -271,6 +275,7 @@ function Kabuk() {
       >
         {rota.ad === 'bugun' && <BugunSayfasi />}
         {rota.ad === 'kesfet' && <KesfetSayfasi />}
+        {rota.ad === 'yasayan' && <YasayanSayfasi />}
         {rota.ad === 'profil' && <ProfilSayfasi />}
         {rota.ad === 'yol' && <YolSayfasi />}
         {rota.ad === 'defter' && <DefterSayfasi />}
@@ -313,6 +318,9 @@ function Kabuk() {
       </main>
 
       <RozetBildirimi />
+
+      {/* Her ekrandan açılan Köstik sohbeti (kaynaklı soru-cevap). */}
+      <KostikSohbeti rota={rota} />
 
       {!odakModu && (
         <footer className="altbilgi">

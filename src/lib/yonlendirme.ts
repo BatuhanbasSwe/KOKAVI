@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 export type Rota =
   | { ad: 'bugun' }
   | { ad: 'kesfet' }
+  | { ad: 'yasayan' }
   | { ad: 'profil' }
   | { ad: 'yol' }
   | { ad: 'ders'; dersId: string }
@@ -45,7 +46,7 @@ export function rotayiCoz(hash: string): Rota {
     case 'bugun':
       return { ad: 'bugun' };
     case 'kesfet':
-      return { ad: 'kesfet' };
+      return parcalar[1] === 'yasayan' ? { ad: 'yasayan' } : { ad: 'kesfet' };
     case 'profil':
       return { ad: 'profil' };
     case 'yol':

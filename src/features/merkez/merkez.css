@@ -1,0 +1,95 @@
+/* Hâlâ yaşayan vakıflar */
+.yasayan__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--b-3);
+}
+.yasayan__oge {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--b-3);
+  padding: var(--b-3);
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-md);
+}
+.yasayan__foto {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border-radius: var(--kose-sm);
+  color: var(--metin-soluk);
+  background: var(--zemin-vurgu);
+}
+.yasayan__foto img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+.yasayan__govde {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.yasayan__ad {
+  margin: 0;
+  font-size: var(--yazi-lg);
+  overflow-wrap: anywhere;
+}
+.yasayan__yer,
+.yasayan__aciklama {
+  margin: 0;
+}
+.yasayan__yer {
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+.yasayan__aciklama {
+  font-weight: 600;
+  color: var(--vurgu-koyu);
+}
+.yasayan__kaynak summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+  cursor: pointer;
+}
+.yasayan__kaynak p {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  overflow-wrap: anywhere;
+}
+.yasayan__ders {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  font-weight: 700;
+  color: var(--vurgu-koyu);
+  text-decoration: none;
+}
+
+/* Ders ve arşiv sayfasındaki "bugün hâlâ…" rozeti */
+.yasiyor-rozet {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-1);
+  margin: 0;
+  padding: 4px var(--b-3);
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--vurgu-koyu);
+  background: var(--vurgu-yumusak);
+  border: 1px solid var(--vurgu);
+  border-radius: var(--kose-tam);
+  text-decoration: none;
+}

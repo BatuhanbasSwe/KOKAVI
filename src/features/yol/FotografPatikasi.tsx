@@ -85,7 +85,11 @@ export function FotografPatikasi({
                 ? 'aktif'
                 : 'acik';
           const ad = kisaAd(ders.eserAdi);
-          const etiket = `${ders.eserAdi}, ${ders.tur}, ${DURUM_METNI[durum]}`;
+          // Ad, ekranda görünen metinle aynı sırada başlar (WCAG 2.5.3): "Ulucami Devam et, …".
+          const etiket =
+            durum === 'aktif'
+              ? `${ad} Devam et, ${ders.eserAdi === ad ? '' : `${ders.eserAdi}, `}${ders.tur}, sıradaki ders`
+              : `${ders.eserAdi}, ${ders.tur}, ${DURUM_METNI[durum]}`;
           const kayma = KAYMALAR[i % KAYMALAR.length]!;
           const stil = { '--kayma': `${kayma}px`, '--sira': i } as CSSProperties;
 
@@ -113,6 +117,8 @@ export function FotografPatikasi({
               <span className="patika__ad" aria-hidden="true">
                 {ad}
               </span>
+              {/* Boşluk: görünen metin "Ulucami Devam et" olarak birleşsin (WCAG 2.5.3). */}
+              {durum === 'aktif' && ' '}
               {durum === 'aktif' && (
                 <span className="patika__devam" aria-hidden="true">
                   Devam et

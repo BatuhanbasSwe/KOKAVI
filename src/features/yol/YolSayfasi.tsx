@@ -13,7 +13,8 @@
  * Erişilebilirlik: düğümler gerçek <a> bağlantısıdır ve erişilebilir adı
  * "Eser adı, tür, durum" biçimindedir; durum renk + ikon + metinle verilir.
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
 import { IkonKilit, IkonTekrar } from '../../app/Ikonlar';
 import { gunMetni, vadesiGelenler } from '../../lib/tekrar';
@@ -21,6 +22,7 @@ import { ZamanListesi } from '../zaman/ZamanListesi';
 import { gorunumOku, gorunumYaz, type YolGorunumu } from './yolGorunumu';
 import { FotografPatikasi } from './FotografPatikasi';
 import { kisaAd } from './kisaAd';
+import { useOrtamRengi } from './ortamRengi';
 
 export { kisaAd };
 
@@ -33,6 +35,23 @@ export function YolSayfasi() {
     setGorunumDurum(g);
     gorunumYaz(g);
   };
+
+  // Bugün'deki "Başla / Derse devam" buraya `#/yol?odak=siradaki` ile gelir:
+  // sayfa sıradaki durağa kayar (kabuk önce en üste kaydırır, bu yüzden kısa gecikme).
+  const yolHazir = !!yol;
+  useEffect(() => {
+    if (!yolHazir || !window.location.hash.includes('odak=siradaki')) return;
+    const zaman = window.setTimeout(() => {
+      document
+        .querySelector('.patika__durak--aktif, .zt-siradaki')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+    return () => window.clearTimeout(zaman);
+  }, [yolHazir, gorunum]);
+
+  // Kaydırırken ortadaki eserin fotoğraf rengi arka plana yayılır.
+  useOrtamRengi(yolHazir);
+
   if (yukleniyor && !yol) {
     return (
       <p className="metin-soluk" role="status">
@@ -60,6 +79,8 @@ export function YolSayfasi() {
 
   return (
     <div className="yigin" style={{ gap: 'var(--b-5)' }}>
+      {/* body'ye taşınır: animasyonlu ata kutular sabit katmanı kendine bağlamasın. */}
+      {createPortal(<div className="ortam-zemin" aria-hidden="true" />, document.body)}
       <header className="yol-ozet">
         <h1 className="yol-ozet__baslik">Öğrenme Yolu</h1>
         <p className="yol-ozet__alt">
