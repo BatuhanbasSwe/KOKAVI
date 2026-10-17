@@ -1,147 +1,357 @@
 /* ===========================================================================
-   Keşif rotası — şema + numaralı durak listesi; yazdırırken yalnızca rota.
+   Keşif rotası: sokak haritası + bölüm bölüm numaralı durak listesi;
+   yazdırırken yalnızca rota listesi.
    =========================================================================== */
 .rota-ust h1 {
   margin: 0 0 var(--b-1);
 }
+
 .rota-secim {
   display: grid;
   gap: var(--b-1);
 }
 .rota-etiket {
-  font-weight: 800;
+  font-weight: 700;
 }
 .rota-secim__kutu {
+  width: 100%;
+  min-width: 0;
   min-height: 48px;
-  max-width: 100%;
   padding: 0 var(--b-3);
   font: inherit;
   color: var(--metin);
   background: var(--zemin-kart);
-  border: 2px solid var(--cizgi-kalin);
-  border-radius: var(--kose-md);
+  border: 1px solid var(--cizgi-kalin);
+  border-radius: var(--kose-sm);
 }
+
+/* --- Özet ----------------------------------------------------------------- */
 .rota-ozet {
   display: grid;
-  gap: var(--b-2);
+  gap: var(--b-3);
 }
 .rota-ozet__baslik,
 .rota-ozet__metin {
   margin: 0;
 }
-.rota-sema {
-  width: 100%;
-  max-height: 260px;
-  border-radius: var(--kose-md);
-  background: var(--zemin-vurgu);
+.rota-ozet__metin {
+  font-size: var(--yazi-sm);
 }
-.rota-sema__yol {
-  fill: none;
-  stroke: var(--sicak);
-  stroke-width: 3;
-  stroke-dasharray: 6 5;
-  stroke-linejoin: round;
-  animation: rota-yol 1.4s linear infinite;
+.rota-sayilar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--b-2);
+  margin: 0;
 }
-.rota-sema__nokta circle {
-  fill: var(--vurgu);
-  stroke: var(--zemin-kart);
-  stroke-width: 2;
+.rota-sayilar > div {
+  padding: var(--b-3);
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-sm);
 }
-.rota-sema__nokta text {
-  fill: var(--vurgu-metin);
-  font-family: var(--yazi-aile);
+.rota-sayilar dt {
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+.rota-sayilar dd {
+  margin: 2px 0 0;
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-xl);
   font-weight: 800;
-  font-size: 11px;
+  letter-spacing: -0.02em;
 }
-.rota-sema__nokta--goruldu circle {
-  fill: var(--basari);
+.rota-ilerleme {
+  height: 6px;
+  border-radius: var(--kose-tam);
+  background: var(--zemin-vurgu);
+  overflow: hidden;
+}
+.rota-ilerleme span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--vurgu);
+  transition: width var(--gecis-normal) var(--yay);
 }
 
-.rota-liste {
+/* --- Bölüm seçici ------------------------------------------------------- */
+.rota-bolumler {
+  display: flex;
+  gap: var(--b-2);
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.rota-bolum {
+  flex-shrink: 0;
+  display: grid;
+  justify-items: start;
+  min-height: 52px;
+  padding: var(--b-2) var(--b-3);
+  font: inherit;
+  font-family: var(--yazi-baslik);
+  font-weight: 700;
+  text-align: left;
+  color: var(--metin);
+  background: transparent;
+  border: 1px solid var(--cizgi-kalin);
+  border-radius: var(--kose-sm);
+  cursor: pointer;
+}
+.rota-bolum__alt {
+  font-family: var(--yazi-aile);
+  font-size: var(--yazi-xs);
+  font-weight: 600;
+  color: var(--metin-ikincil);
+}
+.rota-bolum[aria-pressed='true'] {
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+  border-color: var(--vurgu);
+}
+.rota-bolum[aria-pressed='true'] .rota-bolum__alt {
+  color: var(--vurgu-metin);
+}
+
+/* --- Harita ----------------------------------------------------------------- */
+.rota-harita {
+  position: relative;
+  height: min(58vh, 420px);
+  min-height: 280px;
+  overflow: hidden;
+  border-radius: var(--kose-md);
+  border: 1px solid var(--cizgi);
+  background: var(--harita-kara);
+}
+.rota-harita .maplibregl-ctrl-group {
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+  box-shadow: none;
+}
+.rota-harita .maplibregl-ctrl-group button {
+  width: 44px;
+  height: 44px;
+}
+.rota-harita .maplibregl-ctrl-group button + button {
+  border-top-color: var(--cizgi);
+}
+.rota-harita .maplibregl-ctrl-icon {
+  filter: invert(1);
+}
+[data-tema='acik'] .rota-harita .maplibregl-ctrl-icon {
+  filter: none;
+}
+
+.rota-isaret {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  font-family: var(--yazi-baslik);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--vurgu-metin);
+  background: var(--vurgu);
+  border: 2px solid var(--zemin);
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    width 160ms var(--yay),
+    height 160ms var(--yay),
+    background-color var(--gecis-hizli);
+  animation: rota-isaret-gel 420ms var(--yay) both;
+  animation-delay: calc(var(--sira, 0) * 30ms);
+}
+.rota-isaret--goruldu {
+  color: var(--metin);
+  background: var(--zemin-vurgu);
+  border-color: var(--vurgu);
+}
+.rota-isaret--secili {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  outline: 3px solid var(--metin);
+  outline-offset: 1px;
+}
+/* Üst üste binen duraklar: "10-15" grup etiketi; dokununca yakınlaşır */
+.rota-isaret--grup {
+  width: auto;
+  min-width: 30px;
+  padding: 0 9px;
+  border-radius: var(--kose-tam);
+  color: var(--vurgu-koyu);
+  background: var(--zemin-kart);
+  border-color: var(--vurgu);
+  white-space: nowrap;
+  animation: none;
+}
+@keyframes rota-isaret-gel {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* --- Bölümler ve durak listesi ---------------------------------------------- */
+.rota-bolum-govde {
   display: grid;
   gap: var(--b-2);
+}
+.rota-bolum-govde__baslik {
+  margin: var(--b-2) 0 0;
+  font-size: var(--yazi-lg);
+}
+.rota-arac {
+  margin: var(--b-2) 0 0;
+  padding: var(--b-2) var(--b-3);
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+  border: 1px dashed var(--cizgi-kalin);
+  border-radius: var(--kose-sm);
+}
+.rota-liste {
+  display: grid;
+  gap: 0;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .rota-durak {
+  display: grid;
+}
+.rota-durak__kart {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--b-3);
   padding: var(--b-3);
   border-radius: var(--kose-md);
-  border: 2px solid var(--cizgi);
+  border: 1px solid var(--cizgi);
   background: var(--zemin-kart);
+  transition:
+    border-color var(--gecis-hizli),
+    background-color var(--gecis-hizli);
 }
-.rota-durak--goruldu {
-  border-color: var(--basari);
-  background: var(--basari-yumusak);
+.rota-durak--goruldu .rota-durak__kart {
+  border-color: var(--vurgu);
+  background: var(--vurgu-yumusak);
+}
+.rota-durak--secili .rota-durak__kart {
+  outline: 2px solid var(--metin);
+  outline-offset: 2px;
 }
 .rota-durak__no {
   flex: none;
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--vurgu);
   color: var(--vurgu-metin);
+  font-family: var(--yazi-baslik);
   font-weight: 800;
 }
-.rota-durak--goruldu .rota-durak__no {
-  background: var(--basari);
+.rota-durak__foto {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  border-radius: var(--kose-sm);
+  color: var(--metin-soluk);
+  background: var(--zemin-vurgu);
+}
+.rota-durak__foto img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
 }
 .rota-durak__govde {
   display: grid;
   flex: 1;
   min-width: 0;
+  justify-items: start;
 }
 .rota-durak__ad {
-  font-weight: 800;
+  font-weight: 700;
+  line-height: 1.3;
 }
-.rota-durak__alt,
-.rota-durak__ara {
+.rota-durak__alt {
   font-size: var(--yazi-sm);
   color: var(--metin-ikincil);
 }
-.rota-durak__ara {
-  margin-top: var(--b-1);
+.rota-durak__goster {
+  min-height: 44px;
+  margin: -8px 0 -12px;
+  padding: 0;
+  font: inherit;
+  font-size: var(--yazi-sm);
   font-weight: 700;
+  color: var(--vurgu-koyu);
+  background: none;
+  border: 0;
+  cursor: pointer;
 }
 .rota-durak__gordum {
   flex: none;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--b-1);
-  min-height: 44px;
-  font-weight: 800;
+  justify-content: center;
+  gap: 2px;
+  min-width: 52px;
+  min-height: 52px;
+  font-size: var(--yazi-xs);
+  font-weight: 700;
   cursor: pointer;
 }
 .rota-durak__gordum input {
-  width: 22px;
-  height: 22px;
-  accent-color: var(--basari);
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  accent-color: var(--vurgu);
 }
+/* Durak arası: kesikli dikey çizgi + mesafe + yol tarifi */
+.rota-durak__ara {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 var(--b-3);
+  margin: 0;
+  padding: var(--b-2) 0 var(--b-2) calc(var(--b-3) + 15px);
+  margin-left: 15px;
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+  border-left: 2px dashed var(--cizgi-kalin);
+}
+.rota-durak__tarif {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  font-weight: 700;
+  color: var(--vurgu-koyu);
+  text-decoration: none;
+}
+.rota-durak__tarif:hover {
+  text-decoration: underline;
+}
+
 .rota-not {
   font-size: var(--yazi-sm);
 }
 
 /* Haritadaki bağlantı */
 .harita-rota-bag {
-  font-weight: 800;
+  font-weight: 700;
 }
 
-@keyframes rota-yol {
-  to {
-    stroke-dashoffset: -22;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .rota-sema__yol {
-    animation: none;
-  }
-}
 @media print {
   .ustbar,
   .altbilgi,
@@ -149,6 +359,10 @@
   .rota-secim,
   .rota-eylem,
   .rota-ust p,
+  .rota-bolumler,
+  .rota-harita,
+  .rota-durak__goster,
+  .rota-durak__tarif,
   .rozet-bildirim-kap,
   .atla-baglantisi {
     display: none !important;

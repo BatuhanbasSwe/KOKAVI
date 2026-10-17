@@ -109,7 +109,7 @@ function isaretciDugmesi(sinif: string): HTMLButtonElement {
 const BELIR = ['interpolate', ['linear'], ['zoom'], 8, 0, 9.6, 1] as const;
 
 /** OpenMapTiles şemasıyla su, park, bina ve yollar — tema jetonlarıyla. */
-function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecification[] {
+export function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecification[] {
   const yolGenisligi = (carpan: number) =>
     ['interpolate', ['exponential', 1.6], ['zoom'], 9, 0.4 * carpan, 13, 2 * carpan, 16, 9 * carpan] as unknown as number;
   const anaYol = ['match', ['get', 'class'], ['motorway', 'trunk', 'primary', 'secondary'], true, false];
