@@ -10,14 +10,29 @@ import { useDurum } from '../../app/DurumSaglayici';
 import { IkonDur, IkonHoparlor } from '../../app/Ikonlar';
 import { sesDestekleniyor, sesiDurdur, seslendir } from '../../lib/ses';
 
-export function DinleDugmesi({ metin, etiket = 'Dinle' }: { metin: string; etiket?: string }) {
+export function DinleDugmesi({
+  metin,
+  etiket = 'Dinle',
+  kendiligindenBasla = false,
+}: {
+  metin: string;
+  etiket?: string;
+  /** Dinleme egzersizi: bileşen açılınca bir kez kendiliğinden okur. */
+  kendiligindenBasla?: boolean;
+}) {
   const { ayarlar } = useDurum();
   const [okuyor, setOkuyor] = useState(false);
+  const sesli = !ayarlar.sessizMod && sesDestekleniyor();
 
-  // Bileşen kalkınca (adım değişince) konuşma da durur.
-  useEffect(() => () => sesiDurdur(), []);
+  useEffect(() => {
+    if (kendiligindenBasla && sesli && seslendir(metin, () => setOkuyor(false))) setOkuyor(true);
+    // Bileşen kalkınca (adım değişince) konuşma da durur.
+    return () => sesiDurdur();
+    // Yalnızca açılışta: metin değişince yeniden başlamaz.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  if (ayarlar.sessizMod || !sesDestekleniyor()) return null;
+  if (!sesli) return null;
 
   return (
     <button
