@@ -379,6 +379,16 @@ body {
   display: flex;
   gap: var(--b-2);
   flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.ayar-satiri > * {
+  min-width: 0;
+}
+
+select.secim-dugmesi {
+  max-width: 100%;
 }
 
 .secim-dugmesi {

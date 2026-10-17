@@ -143,10 +143,16 @@
   display: grid;
   gap: var(--b-2);
 }
+/* Büyük yazıda (%160) dar ekrandan taşmasın. */
+.ge-form > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 .ge-etiket {
   font-weight: 800;
 }
 .ge-girdi {
+  width: 100%;
   min-height: 52px;
   padding: 0 var(--b-3);
   font: inherit;

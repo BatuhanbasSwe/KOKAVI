@@ -78,6 +78,8 @@
 .rota-bolumler {
   display: flex;
   gap: var(--b-2);
+  min-width: 0;
+  max-width: 100%;
   overflow-x: auto;
   padding-bottom: 2px;
 }
@@ -201,6 +203,12 @@
   display: grid;
   gap: var(--b-2);
 }
+/* Büyük yazıda (%160) uzun eser adları kartı ekran dışına itmesin. */
+.rota-bolum-govde > *,
+.rota-liste > *,
+.rota-durak > * {
+  min-width: 0;
+}
 .rota-bolum-govde__baslik {
   margin: var(--b-2) 0 0;
   font-size: var(--yazi-lg);
@@ -281,6 +289,7 @@
 .rota-durak__ad {
   font-weight: 700;
   line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 .rota-durak__alt {
   font-size: var(--yazi-sm);

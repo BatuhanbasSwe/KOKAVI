@@ -128,7 +128,7 @@
   min-height: 44px;
   font-size: var(--yazi-sm);
   font-weight: 700;
-  color: var(--vurgu);
+  color: var(--vurgu-koyu);
   cursor: pointer;
 }
 

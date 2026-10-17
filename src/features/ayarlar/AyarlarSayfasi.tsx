@@ -88,9 +88,8 @@ export function AyarlarSayfasi() {
             type="button"
             className="secim-dugmesi"
             onClick={() => ayarGuncelle({ yaziBoyutu: yaziBoyutuAzalt(ayarlar.yaziBoyutu) })}
-            aria-label="Yazıyı küçült"
           >
-            A−
+            A− Küçült
           </button>
           <span
             className="secim-dugmesi"
@@ -103,9 +102,8 @@ export function AyarlarSayfasi() {
             type="button"
             className="secim-dugmesi"
             onClick={() => ayarGuncelle({ yaziBoyutu: yaziBoyutuArtir(ayarlar.yaziBoyutu) })}
-            aria-label="Yazıyı büyüt"
           >
-            A+
+            A+ Büyüt
           </button>
         </AyarSatiri>
 
