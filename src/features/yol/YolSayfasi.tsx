@@ -13,7 +13,7 @@
  * Erişilebilirlik: düğümler gerçek <a> bağlantısıdır ve erişilebilir adı
  * "Eser adı, tür, durum" biçimindedir; durum renk + ikon + metinle verilir.
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
 import { IkonKilit, IkonTekrar } from '../../app/Ikonlar';
 import { gunMetni, vadesiGelenler } from '../../lib/tekrar';
@@ -33,6 +33,20 @@ export function YolSayfasi() {
     setGorunumDurum(g);
     gorunumYaz(g);
   };
+
+  // Bugün'deki "Başla / Derse devam" buraya `#/yol?odak=siradaki` ile gelir:
+  // sayfa sıradaki durağa kayar (kabuk önce en üste kaydırır, bu yüzden kısa gecikme).
+  const yolHazir = !!yol;
+  useEffect(() => {
+    if (!yolHazir || !window.location.hash.includes('odak=siradaki')) return;
+    const zaman = window.setTimeout(() => {
+      document
+        .querySelector('.patika__durak--aktif, .zt-siradaki')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+    return () => window.clearTimeout(zaman);
+  }, [yolHazir, gorunum]);
+
   if (yukleniyor && !yol) {
     return (
       <p className="metin-soluk" role="status">

@@ -53,21 +53,22 @@ async function ac() {
 }
 
 describe('Bugün ekranı', () => {
-  it('açılışta Bugün; sıradaki ders büyük kutucukta, tek dokunuşla derse gider', async () => {
+  it('açılışta Bugün; sıradaki ders büyük kutucukta, dokununca Yol sekmesinde sıradaki durağa gider', async () => {
     const { mozaik } = await ac();
     const ders = await within(mozaik).findByRole('link', { name: /başla/i });
-    expect(ders.getAttribute('href')).toBe('#/ders/bursa-u1-d1');
+    expect(ders.getAttribute('href')).toBe('#/yol?odak=siradaki');
     expect(ders).toHaveTextContent('Ulucami');
   });
 
-  it('ders bitince düğme "Derse devam" olur ve bir sonraki derse gider', async () => {
+  it('ders bitince düğme "Derse devam" olur ve bir sonraki eseri gösterir', async () => {
     localStorage.setItem(
       'kokavi.ilerleme.v1',
       JSON.stringify({ tamamlananDersler: ['bursa-u1-d1'], seri: { gunSayisi: 1, sonTarih: null } }),
     );
     const { mozaik } = await ac();
     const ders = await within(mozaik).findByRole('link', { name: /derse devam/i });
-    expect(ders.getAttribute('href')).toBe('#/ders/bursa-u1-d2');
+    expect(ders.getAttribute('href')).toBe('#/yol?odak=siradaki');
+    expect(ders).toHaveTextContent('Koza Hanı');
   });
 
   it('günlük kutucuklar gerçek bağlantı; seri metinle söylenir', async () => {
