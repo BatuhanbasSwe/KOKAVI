@@ -35,6 +35,9 @@ export async function sunucuKur(secenekler: { sor?: SorSecenekleri } = {}) {
     logger: { level: process.env.LOG_LEVEL ?? 'info' },
     // Güvenlik: gövde boyutu sınırı — bellek tüketimi saldırısını engeller.
     bodyLimit: 1_048_576, // 1 MB
+    // Vercel önünde vekil var; gerçek istemci IP'si X-Forwarded-For'da.
+    // Yerelde kapalı: başlık taklidiyle hız sınırı atlatılamasın.
+    trustProxy: process.env.VERCEL === '1',
   });
 
   // --- Güvenlik başlıkları (şartname 5.1.5) --------------------------------
@@ -64,7 +67,8 @@ export async function sunucuKur(secenekler: { sor?: SorSecenekleri } = {}) {
     timeWindow: '1 minute',
     // Testler ve yerel demo sınırlanmasın; üretimde kapatılmaz.
     allowList: process.env.KOKAVI_RATE_LIMIT_OFF === '1' ? ['127.0.0.1', '::1'] : [],
-    errorResponseBuilder: () => ({
+    errorResponseBuilder: (_istek, baglam) => ({
+      statusCode: baglam.statusCode,
       hata: 'Çok fazla istek gönderildi. Lütfen biraz bekle.',
       kod: 'HIZ_SINIRI',
     }),
@@ -105,9 +109,16 @@ export async function sunucuKur(secenekler: { sor?: SorSecenekleri } = {}) {
 
   await app.register(cookie);
 
+  // İstemci aynı kaynaktan (Vite vekili / aynı alan adı) çağırır; başka
+  // kaynaklara çerezli erişim açılmaz.
   await app.register(cors, {
-    origin: true,
+    origin: false,
     credentials: true,
+  });
+
+  // API yanıtları (canlı oyun durumu, oturum) önbelleğe düşmesin.
+  app.addHook('onSend', async (istek, yanit) => {
+    if (istek.url.startsWith('/api/')) yanit.header('cache-control', 'no-store');
   });
 
   // Şema yoksa kur (ilk açılışta otomatik) — içerik + auth tabloları.

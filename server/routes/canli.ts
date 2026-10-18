@@ -178,8 +178,9 @@ export async function canliUclari(
     async (istek) => {
       const pin = pinAl(istek);
       const govde = (istek.body ?? {}) as Record<string, unknown>;
-      const soruNo = Number(govde.soruNo);
-      const secim = Number(govde.secim);
+      // Number(null) === 0 olur; yalnızca gerçek sayılar kabul edilir.
+      const soruNo = typeof govde.soruNo === 'number' ? govde.soruNo : NaN;
+      const secim = typeof govde.secim === 'number' ? govde.secim : NaN;
       if (!Number.isInteger(soruNo) || !Number.isInteger(secim)) {
         throw new CanliHata('GECERSIZ_CEVAP', '"soruNo" ve "secim" tam sayı olmalı.');
       }

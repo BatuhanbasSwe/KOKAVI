@@ -82,7 +82,7 @@ describe('canlı uçlar, girdi', () => {
 describe('canlı uçlar, bilinen açık', () => {
   // BULGU: Number(null) === 0. JSON'da NaN da null olur → boş cevap "0. seçenek" sayılır.
   // Düzeltme server/routes/canli.ts'te (typeof secim === 'number'); gelince `it` yapılmalı.
-  it.fails('secim null → 400 (0. seçenek sayılmamalı)', async () => {
+  it('secim null → 400 (0. seçenek sayılmamalı)', async () => {
     const { pin, sunucuAnahtari } = await oda();
     const k = await app.inject({ method: 'POST', url: `/api/canli/odalar/${pin}/katil`, remoteAddress: yeniIp() });
     await app.inject({ method: 'POST', url: `/api/canli/odalar/${pin}/basla`, remoteAddress: yeniIp(), headers: { 'x-canli-anahtar': sunucuAnahtari } });

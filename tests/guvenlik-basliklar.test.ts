@@ -1,9 +1,6 @@
 /**
  * Güvenlik başlıkları ve giriş hız sınırı — guvenlik.test.ts'yi tamamlar.
  * (Orada hız sınırı kapalı; burada açık.)
- *
- * `it.fails`: API yanıtlarında `Cache-Control: no-store` yok. Canlı durum ve
- * oturum yanıtları ara önbelleğe düşebilir. Düzeltme server/ onayı bekliyor.
  */
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { mkdtemp, rm } from 'node:fs/promises';
@@ -40,7 +37,7 @@ describe('güvenlik başlıkları (ek)', () => {
     expect(csp).not.toMatch(/script-src[^;]*\*/);
   });
 
-  it.fails('API yanıtları önbelleğe alınmaz (Cache-Control: no-store)', async () => {
+  it('API yanıtları önbelleğe alınmaz (Cache-Control: no-store)', async () => {
     const c = await app.inject({ method: 'GET', url: '/api/saglik' });
     expect(String(c.headers['cache-control'])).toContain('no-store');
   });
@@ -48,7 +45,7 @@ describe('güvenlik başlıkları (ek)', () => {
 
 describe('giriş hız sınırı', () => {
   // HATA: server/index.ts errorResponseBuilder statusCode döndürmüyor → 429 yerine 500.
-  it.fails("aynı IP'den 11. giriş denemesi 429 alır", async () => {
+  it("aynı IP'den 11. giriş denemesi 429 alır", async () => {
     const kodlar: number[] = [];
     for (let i = 0; i < 11; i++) {
       const c = await app.inject({
