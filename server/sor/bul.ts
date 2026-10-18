@@ -11,6 +11,10 @@ export interface Parca {
   eserAd: string;
   metin: string;
   kunye: string;
+  /** Yalnızca ders eserlerinde (toplu sorular için, toplu.ts): alan başlığı, şehir, tür. */
+  alan?: string;
+  sehir?: string;
+  tur?: string;
 }
 
 interface Dizin {

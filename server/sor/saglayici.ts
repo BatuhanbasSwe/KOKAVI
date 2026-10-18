@@ -14,5 +14,5 @@ export function saglayiciSec(ortam: Record<string, string | undefined> = process
 }
 
 /** Her istekte ortama bakar; anahtar sonradan eklenirse yeniden başlatmadan da geçerlidir. */
-export const secilenModelle: Cevaplayici = (soru, parcalar) =>
-  saglayiciSec() === 'gemini' ? geminiIleCevapla(soru, parcalar) : claudeIleCevapla(soru, parcalar);
+export const secilenModelle: Cevaplayici = (soru, parcalar, kapsam) =>
+  saglayiciSec() === 'gemini' ? geminiIleCevapla(soru, parcalar, kapsam) : claudeIleCevapla(soru, parcalar, kapsam);

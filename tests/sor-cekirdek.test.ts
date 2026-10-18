@@ -116,6 +116,11 @@ describe('cevap denetimi', () => {
   });
 
   it('bilmiyorum açıkça bildirilir', () => {
-    expect(cevapDenetle({ bilmiyorum: true, cumleler: [] }, 6)).toEqual({ bilmiyorum: true, cumleler: [] });
+    expect(cevapDenetle({ bilmiyorum: true, cumleler: [] }, 6)).toEqual({ bilmiyorum: true, konuDisi: false, cumleler: [] });
+    expect(cevapDenetle({ bilmiyorum: false, konuDisi: true, cumleler: [{ metin: 'x', kaynaklar: [1] }] }, 6)).toEqual({
+      bilmiyorum: true,
+      konuDisi: true,
+      cumleler: [],
+    });
   });
 });

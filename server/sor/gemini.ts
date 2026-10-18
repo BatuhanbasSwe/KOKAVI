@@ -11,7 +11,7 @@ import { z } from 'zod';
 import { CevapSemasi, SISTEM, kullaniciMesaji, type Cevaplayici } from './model.ts';
 import type { ModelCevabi } from './denetle.ts';
 
-const BILMIYORUM: ModelCevabi = { bilmiyorum: true, cumleler: [] };
+const BILMIYORUM: ModelCevabi = { bilmiyorum: true, konuDisi: false, cumleler: [] };
 
 /** Zod şemasından Gemini'nin kabul ettiği JSON Schema ($schema alanı atılır). */
 export function geminiSemasi(): Record<string, unknown> {
@@ -39,11 +39,11 @@ export function geminiCiktisiniCoz(metin: string | undefined, bitisNedeni: strin
 let istemci: GoogleGenAI | null = null;
 
 /** Gerçek Gemini çağrısı. */
-export const geminiIleCevapla: Cevaplayici = async (soru, parcalar) => {
+export const geminiIleCevapla: Cevaplayici = async (soru, parcalar, kapsam) => {
   istemci ??= new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
   const yanit = await istemci.models.generateContent({
     model: process.env.KOKAVI_GEMINI_MODEL ?? 'gemini-3.8-flash',
-    contents: kullaniciMesaji(soru, parcalar),
+    contents: kullaniciMesaji(soru, parcalar, kapsam),
     config: {
       systemInstruction: SISTEM,
       maxOutputTokens: 1024,

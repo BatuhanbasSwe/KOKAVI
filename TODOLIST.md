@@ -58,6 +58,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - Cevaplar yalnızca kaynak metinlerden üretilir ve her cümlede kaynak numarası olur. Kaynaksız cümle silinir, gerekirse cevap "bilmiyorum"a düşer.
   - Sorudaki kişisel veri gizlenir ve soru günlüğe yazılmaz.
   - Kod: `server/sor/`, `POST /api/sor`.
+- [x] **Prompt injection kalkanı ve toplu sorular.** Saldırı kalıpları modele gitmez, alakasız sorular kibarca geri çevrilir, cevaptaki her yıl kaynakta olmalı, sızıntı denetimi var. "Bursa'daki en eski 3 eser" gibi sıralama soruları cevaplanıyor. Gerekçe: [docs/KARARLAR.md](docs/KARARLAR.md) §17. Test: `tests/sor-kalkan.test.ts`
 - [x] **Hâlâ yaşayan vakıflar.** Bugün hâlâ işleyen 17 eser var; her birinde kaynak metinden birebir alıntı bulunur. Rota: `#/kesfet/yasayan`. Ders ve arşiv sayfasında "bugün hâlâ…" rozeti çıkar.
 - [x] **Sahada mühür ("Buradayım").** Konum bir kez ve yalnızca cihazda ölçülür. Esere 150 m içindeysen deftere damga basılır. Konum saklanmaz.
 - [x] **Daha önce bitenler:** canlı sınıf yarışması (Kahoot tarzı), sınıf raporu, Günün Eseri, vakıf ağı haritası, Meraklısına arşivi, şehir sertifikası, Hayrat mı Akar mı?, Hatalarımı çalış, seri takvimi. Ayrıntılar: GECE-RAPORU §1–20.
@@ -68,6 +69,8 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - ⚠️ Gemini API şartları 18 yaş altına yönelik uygulamalarda kullanımı yasaklıyor; ücretsiz kotada veriler Google'ın modellerini eğitmekte kullanılıyor. Hangisinin kullanılacağına takım karar vermeli.
   - Yerelde: `.env` dosyasına anahtar satırı yazılır (`.env.example` dosyasına bak). `.env.example`'a değil: o dosya git'e girer.
   - 18 Ekim: Batuhan'ın makinesinde Gemini anahtarıyla uçtan uca denendi; kaynaklı cevaplar doğru geliyor. Vercel'e henüz eklenmedi.
+  - ⚠️ Gemini ücretsiz kotası model başına günde yalnızca 20 istek (18 Ekim'de iki model için de doldu). Finalde bir sınıf birkaç dakikada tüketir: ücretli kota ya da Claude gerekir.
+- [ ] **Genel kavram soruları.** "Vakıf nedir?", "Akar ne demek?" gibi sorular için korpusta tanım metni yok; Köstik "bilmiyorum" diyor. Derslerin Bağlam adımındaki kaynaklı açıklamalar korpusa eklenebilir.
   - Vercel'de: Settings → Environment Variables.
   - Anahtar asla koda, commit'e ya da sohbete yazılmaz.
 - [ ] **Sahada mührü telefonda denemek.** Konum yalnızca https üzerinde çalışır; Vercel sürümünde denenmeli.

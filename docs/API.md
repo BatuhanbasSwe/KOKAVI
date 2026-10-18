@@ -195,8 +195,16 @@ kaynaklı veriden (57 ders eserinin araştırma kaydı + 633 arşiv eserinin met
 **Cevap (200):**
 - `{ "cumleler": [{ "metin", "kaynaklar": [1] }], "kaynaklar": [{ "no", "eserId", "eserAd", "kunye" }] }`
 - ya da `{ "bilmiyorum": true, "oneriler": [{ "eserId", "eserAd" }] }`
+- ya da `{ "bilmiyorum": true, "konuDisi": true, "oneriler": [] }`: soru konu dışı ya da bir yönlendirme girişimi
 
-**Hatalar:** `400` geçersiz girdi · `429` hız sınırı (IP başına dakikada 10) · `502` model yanıt vermedi ·
+**Toplu sorular:** "en eski / en yeni / sırala" sorularında ilgili şehir (ve tür) için ders eserlerinin bütün
+"Yapım" parçaları modele verilir (`server/sor/toplu.ts`); cevap kapsamı söyler.
+
+**Kalkan** (`server/sor/kalkan.ts`, gerekçe `docs/KARARLAR.md` §17): girdi temizliği, saldırı kalıpları modele gitmez,
+cevaptaki her sayı kaynakta olmalı, cümleler kaynakla örtüşmeli, sızıntı (kanarya, bağlantı, HTML) cevabı düşürür.
+
+**Hatalar:** `400` geçersiz girdi · `429` hız sınırı (IP başına dakikada 10) ya da `{ "hata": "cok-deneme" }`
+(15 dakikada 5 engellenen saldırı denemesi → 15 dakika bekleme) · `502` model yanıt vermedi ·
 `503 { "hata": "kapali" }` ne `GEMINI_API_KEY` ne `ANTHROPIC_API_KEY` tanımlı.
 
 **Gizlilik:** soru saklanmaz ve günlüğe yazılmaz; e-posta, telefon ve 7+ haneli sayılar modele gitmeden

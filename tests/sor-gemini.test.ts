@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 import { saglayiciSec } from '../server/sor/saglayici';
 import { geminiCiktisiniCoz, geminiSemasi } from '../server/sor/gemini';
 
-const BILMIYORUM = { bilmiyorum: true, cumleler: [] };
+const BILMIYORUM = { bilmiyorum: true, konuDisi: false, cumleler: [] };
 
 describe('sağlayıcı seçimi', () => {
   it('Gemini anahtarı önceliklidir; yoksa Claude; ikisi de yoksa kapalı', () => {
@@ -19,7 +19,7 @@ describe('sağlayıcı seçimi', () => {
 });
 
 describe('Gemini çıktısı', () => {
-  const iyi = { bilmiyorum: false, cumleler: [{ metin: 'Çatısında yirmi kubbe var.', kaynaklar: [1] }] };
+  const iyi = { bilmiyorum: false, konuDisi: false, cumleler: [{ metin: 'Çatısında yirmi kubbe var.', kaynaklar: [1] }] };
 
   it('şemaya uyan JSON aynen döner', () => {
     expect(geminiCiktisiniCoz(JSON.stringify(iyi), 'STOP')).toEqual(iyi);
@@ -34,13 +34,13 @@ describe('Gemini çıktısı', () => {
     expect(geminiCiktisiniCoz(undefined, 'STOP')).toEqual(BILMIYORUM);
     expect(geminiCiktisiniCoz('kubbe yirmi', 'STOP')).toEqual(BILMIYORUM);
     expect(geminiCiktisiniCoz('{"cevap":"yirmi"}', 'STOP')).toEqual(BILMIYORUM);
-    expect(geminiCiktisiniCoz('{"bilmiyorum":false,"cumleler":[{"metin":"x","kaynaklar":["1"]}]}', 'STOP')).toEqual(BILMIYORUM);
+    expect(geminiCiktisiniCoz('{"bilmiyorum":false,"konuDisi":false,"cumleler":[{"metin":"x","kaynaklar":["1"]}]}', 'STOP')).toEqual(BILMIYORUM);
   });
 
-  it('JSON şeması: $schema yok, iki alan zorunlu', () => {
+  it('JSON şeması: $schema yok, üç alan zorunlu', () => {
     const sema = geminiSemasi();
     expect(sema.$schema).toBeUndefined();
     expect(sema.type).toBe('object');
-    expect(sema.required).toEqual(['bilmiyorum', 'cumleler']);
+    expect(sema.required).toEqual(['bilmiyorum', 'konuDisi', 'cumleler']);
   });
 });

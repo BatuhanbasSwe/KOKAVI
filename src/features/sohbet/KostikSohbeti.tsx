@@ -92,6 +92,15 @@ function CevapBalonu({ sonuc }: { sonuc: SorSonucu | null }) {
       </>
     );
   }
+  if (sonuc.durum === 'konu-disi') {
+    return (
+      <p>
+        Ben yalnızca vakıf eserleri ve onların tarihi hakkında konuşabilirim. Mesela &quot;Koza Hanı&apos;nı kim
+        yaptırdı?&quot; ya da &quot;Bursa&apos;daki en eski eserler hangileri?&quot; diye sorabilirsin.
+      </p>
+    );
+  }
+  if (sonuc.durum === 'cok-deneme') return <p>Biraz dinlenelim. Birkaç dakika sonra yeniden sorabilirsin.</p>;
   if (sonuc.durum === 'kapali') return <p>Şu an soru-cevap kapalı. Arşivde arayarak da keşfedebilirsin.</p>;
   return <p>Şu an cevap veremedim. İnternet bağlantını kontrol edip tekrar dene.</p>;
 }

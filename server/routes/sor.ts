@@ -5,12 +5,19 @@
  * Claude, bkz. sor/saglayici.ts) yalnızca bu parçalardan cevaplar → denetim (kaynaksız cümle düşer) → künyeli cevap.
  * Gizlilik: soru hiçbir yere kaydedilmez ve günlüğe yazılmaz (yalnızca hata
  * türü loglanır). Anahtar yoksa 503 ve arayüz yalnızca aramayı gösterir.
+ *
+ * Prompt injection kalkanı (sor/kalkan.ts): girdi temizlenir, bilinen saldırı
+ * kalıpları modele gitmez, model çıktısı sızıntı ve dayanak açısından ayrıca
+ * denetlenir. "Sırala / en eski" soruları sor/toplu.ts ile cevaplanır.
  */
 import type { FastifyInstance } from 'fastify';
 import korpusJson from '../sor/korpus.json' with { type: 'json' };
 import { bul, type Parca } from '../sor/bul.ts';
 import { cevapDenetle } from '../sor/denetle.ts';
+import { createHash } from 'node:crypto';
 import { kisiselVeriTemizle } from '../sor/temizle.ts';
+import { DenemeSiniri, cevapGuvenliMi, girdiTemizle, saldiriMi, sayilariDogrula } from '../sor/kalkan.ts';
+import { topluParcalar, topluSoru } from '../sor/toplu.ts';
 import type { Cevaplayici } from '../sor/model.ts';
 import { saglayiciSec, secilenModelle } from '../sor/saglayici.ts';
 
@@ -36,7 +43,10 @@ function oneriler(parcalar: Parca[]) {
   return sonuc;
 }
 
+const KONU_DISI = { bilmiyorum: true, konuDisi: true, oneriler: [] };
+
 export async function sorUclari(app: FastifyInstance, secenekler: SorSecenekleri = {}): Promise<void> {
+  const deneme = new DenemeSiniri();
   const cevapla = secenekler.cevapla ?? secilenModelle;
   const anahtarVar = secenekler.anahtarVar ?? (() => saglayiciSec() !== null);
 
@@ -59,21 +69,42 @@ export async function sorUclari(app: FastifyInstance, secenekler: SorSecenekleri
     async (istek, cevap) => {
       if (!anahtarVar()) return cevap.code(503).send({ hata: 'kapali' });
       const govde = istek.body as { soru: string; eserId?: string };
-      const soru = kisiselVeriTemizle(govde.soru);
-      const parcalar = bul(korpus, soru, govde.eserId, PARCA_SAYISI);
+      // IP yalnızca özetiyle ve yalnızca bellekte tutulur (ısrarcıya fren).
+      const kimlik = createHash('sha256').update(istek.ip).digest('hex').slice(0, 16);
+      if (deneme.engelliMi(kimlik)) return cevap.code(429).send({ hata: 'cok-deneme' });
+
+      const temiz = girdiTemizle(govde.soru);
+      if (temiz.length < 3) return { bilmiyorum: true, oneriler: [] };
+      if (saldiriMi(temiz)) {
+        deneme.kaydet(kimlik);
+        istek.log.info({ tur: 'kalkan-girdi' }, 'soru kalkana takıldı');
+        return KONU_DISI;
+      }
+      const soru = kisiselVeriTemizle(temiz);
+
+      const toplu = topluSoru(soru);
+      const topluSonuc = toplu ? topluParcalar(korpus, toplu) : null;
+      const parcalar = topluSonuc?.parcalar ?? bul(korpus, soru, govde.eserId, PARCA_SAYISI);
       if (parcalar.length === 0) return { bilmiyorum: true, oneriler: [] };
 
       let model;
       try {
-        model = await cevapla(soru, parcalar);
+        model = await cevapla(soru, parcalar, topluSonuc?.kapsam);
       } catch (hata) {
         // Sorunun kendisi loglanmaz; yalnızca hata türü.
         istek.log.warn({ tur: hata instanceof Error ? hata.name : 'bilinmeyen' }, 'soru-cevap modeli yanıt vermedi');
         return cevap.code(502).send({ hata: 'model', oneriler: oneriler(parcalar) });
       }
 
-      const denetlenmis = cevapDenetle(model, parcalar.length);
-      if (!denetlenmis || denetlenmis.bilmiyorum) return { bilmiyorum: true, oneriler: oneriler(parcalar) };
+      const bicimli = cevapDenetle(model, parcalar.length);
+      if (bicimli?.konuDisi) return KONU_DISI;
+      if (!bicimli || bicimli.bilmiyorum) return { bilmiyorum: true, oneriler: oneriler(parcalar) };
+      const baglam = `${soru} ${topluSonuc?.kapsam ?? ''}`;
+      const denetlenmis = sayilariDogrula(bicimli, parcalar, baglam);
+      if (!denetlenmis || !cevapGuvenliMi(denetlenmis, parcalar, baglam)) {
+        istek.log.warn({ tur: 'kalkan-cikti' }, 'model cevabı kalkana takıldı');
+        return { bilmiyorum: true, oneriler: oneriler(parcalar) };
+      }
 
       // Yalnızca atıf yapılan parçalar, 1'den başlayarak yeniden numaralanır.
       const kullanilan = [...new Set(denetlenmis.cumleler.flatMap((c) => c.kaynaklar))].sort((a, b) => a - b);
