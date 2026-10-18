@@ -5,17 +5,14 @@
   right: 16px;
   bottom: calc(80px + env(safe-area-inset-bottom));
   z-index: 40;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--b-2);
-  padding: 4px var(--b-4) 4px 4px;
-  font: inherit;
-  font-family: var(--yazi-baslik);
-  font-weight: 700;
-  color: var(--vurgu-metin);
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
   background: var(--vurgu);
   border: 0;
-  border-radius: var(--kose-tam);
+  border-radius: 50%;
   box-shadow: var(--golge-buyuk);
   cursor: pointer;
   animation: sohbet-dugme-gel 420ms var(--yay) both;
@@ -26,6 +23,15 @@
 }
 .sohbet-dugme .maskot {
   box-shadow: none;
+}
+/* Yuvarlak düğme: yazı yalnızca ekran okuyucu için (içeriği örtmesin). */
+.sohbet-dugme__etiket {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 @keyframes sohbet-dugme-gel {
   from {

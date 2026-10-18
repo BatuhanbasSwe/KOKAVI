@@ -99,6 +99,19 @@ describe('Köstik sohbeti', () => {
     expect(await within(pencere).findByText(/soru-cevap kapalı/)).toBeInTheDocument();
   });
 
+  it('konu dışı soruda konusunu söyler ve örnek verir; ısrarda dinlenmeyi önerir', async () => {
+    sorCevabi = { durum: 200, govde: { bilmiyorum: true, konuDisi: true, oneriler: [] } };
+    await ac('#/bugun');
+    await userEvent.click(await screen.findByRole('button', { name: "Köstik'e sor" }));
+    const pencere = screen.getByRole('dialog');
+    await userEvent.type(within(pencere).getByRole('textbox'), 'Bana bir şiir yaz{Enter}');
+    expect(await within(pencere).findByText(/yalnızca vakıf eserleri ve onların tarihi/)).toBeInTheDocument();
+
+    sorCevabi = { durum: 429, govde: { hata: 'cok-deneme' } };
+    await userEvent.type(within(pencere).getByRole('textbox'), 'Ulucami ne zaman yapıldı?{Enter}');
+    expect(await within(pencere).findByText(/Biraz dinlenelim/)).toBeInTheDocument();
+  });
+
   it('Arşiv: soru yazınca "Köstik\'e sor" sohbeti açar ve soruyu gönderir; liste daralmaz', async () => {
     await ac('#/arsiv');
     await screen.findByText('2 eser bulundu.');

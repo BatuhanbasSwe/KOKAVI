@@ -12,6 +12,7 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { eserKimligi } from '../shared/slug.ts';
+import { normallestir } from '../server/sor/metin.ts';
 
 export interface Parca {
   id: string;
@@ -19,6 +20,10 @@ export interface Parca {
   eserAd: string;
   metin: string;
   kunye: string;
+  /** Yalnızca ders eserlerinde (toplu sorular için, toplu.ts): alan başlığı, şehir, tür. */
+  alan?: string;
+  sehir?: string;
+  tur?: string;
 }
 
 const ARASTIRMA = 'data/research';
@@ -102,7 +107,16 @@ function arastirmaParcalari(): Parca[] {
       for (const [baslik, deger] of alanlar) {
         if (!deger) continue;
         bol(`${e.ad} — ${baslik}: ${deger}`).forEach((metin, i) =>
-          parcalar.push({ id: `${eserId}#${baslik}#${i}`, eserId, eserAd: e.ad, metin, kunye }),
+          parcalar.push({
+            id: `${eserId}#${baslik}#${i}`,
+            eserId,
+            eserAd: e.ad,
+            metin,
+            kunye,
+            alan: baslik,
+            ...(e.sehir ? { sehir: normallestir(e.sehir) } : {}),
+            ...(e.tur ? { tur: e.tur } : {}),
+          }),
         );
       }
     }

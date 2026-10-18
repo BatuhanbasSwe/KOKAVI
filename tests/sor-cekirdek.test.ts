@@ -60,6 +60,24 @@ describe('bulma', () => {
     expect(sonuc[0]!.eserId).toBe('bursa-ulucami');
   });
 
+  it('soru bir eseri anıyorsa yalnızca o eserin parçaları, sorulan konuya göre', () => {
+    const sonuc = bul(korpus, 'Bursa Ulucami kaç kubbeli?', undefined, 6);
+    expect(new Set(sonuc.map((p) => p.eserId))).toEqual(new Set(['bursa-ulucami']));
+    expect(sonuc.some((p) => /yirmi kubbe|on dokuz kubbe/i.test(p.metin))).toBe(true);
+    // Türkçe ek: "Ulucami'de" de aynı eseri bulur.
+    expect(bul(korpus, "Ulucami'de kaç kubbe var?", undefined, 6)[0]!.eserId).toBe('bursa-ulucami');
+  });
+
+  it('aynı kelimeyle başlayan eserlerden adı en iyi eşleşen seçilir', () => {
+    const sonuc = bul(korpus, 'Yeşil Türbe neden yeşil?', undefined, 6);
+    expect(sonuc[0]!.eserId).toBe('bursa-yesil-turbe-celebi-sultan-mehmed-turbesi');
+  });
+
+  it('genel kelimeyle başlayan eser adı ("Vakıf Kültür Konakları") soruyu ele geçirmez', () => {
+    const sonuc = bul(korpus, 'Vakıf nedir?', undefined, 6);
+    expect(sonuc.filter((p) => p.eserAd.startsWith('Vakıf')).length).toBeLessThan(6);
+  });
+
   it('eserId verilirse o eser öne alınır', () => {
     const sonuc = bul(korpus, 'kim yaptırdı', 'bursa-koza-hani', 3);
     expect(sonuc[0]!.eserId).toBe('bursa-koza-hani');
@@ -98,6 +116,11 @@ describe('cevap denetimi', () => {
   });
 
   it('bilmiyorum açıkça bildirilir', () => {
-    expect(cevapDenetle({ bilmiyorum: true, cumleler: [] }, 6)).toEqual({ bilmiyorum: true, cumleler: [] });
+    expect(cevapDenetle({ bilmiyorum: true, cumleler: [] }, 6)).toEqual({ bilmiyorum: true, konuDisi: false, cumleler: [] });
+    expect(cevapDenetle({ bilmiyorum: false, konuDisi: true, cumleler: [{ metin: 'x', kaynaklar: [1] }] }, 6)).toEqual({
+      bilmiyorum: true,
+      konuDisi: true,
+      cumleler: [],
+    });
   });
 });

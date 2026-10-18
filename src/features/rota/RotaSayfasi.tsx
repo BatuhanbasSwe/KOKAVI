@@ -15,6 +15,7 @@ import { mesafe, mesafeMetni, rotaBol, rotaSirala, toplamMesafe, yolTarifiAdresi
 import type { RotaHaritasi } from './rotaHaritasi';
 import { BuradayimDugmesi } from '../muhur/BuradayimDugmesi';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { maplibreYukle } from '../../lib/maplibreYukle';
 import './rota.css';
 
 interface Durak {
@@ -130,7 +131,7 @@ export function RotaSayfasi() {
     let h: RotaHaritasi | null = null;
     void (async () => {
       try {
-        const [maplibre, modul] = await Promise.all([import('maplibre-gl'), import('./rotaHaritasi')]);
+        const [maplibre, modul] = await Promise.all([maplibreYukle(), import('./rotaHaritasi')]);
         if (iptal || !haritaKabi.current) return;
         const stil = getComputedStyle(document.documentElement);
         h = modul.rotaHaritasiKur(

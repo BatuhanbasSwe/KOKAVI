@@ -39,6 +39,7 @@ import { BOS_FILTRELER, filtreleriCoz } from './filtreler';
 import { SuzgecPaneli } from '../../app/SuzgecPaneli';
 import './harita.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { maplibreYukle } from '../../lib/maplibreYukle';
 
 const SEVIYELER: { ad: Seviye; etiket: string }[] = [
   { ad: 'il', etiket: 'İller' },
@@ -229,7 +230,7 @@ export function HaritaSayfasi() {
       // Altlık harita (il + ilçe sınırları) uygulamaya gömülüdür: dış karo
       // sunucusu yok, internetsiz de çalışır (mobil/çevrimdışı demo).
       const [maplibre, illerModulu, ilcelerModulu] = await Promise.all([
-        import('maplibre-gl'),
+        maplibreYukle(),
         import('./veri/turkiye-iller.json'),
         import('./veri/ilceler.json'),
       ]);

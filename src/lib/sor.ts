@@ -13,6 +13,8 @@ export interface SorKaynagi {
 export type SorSonucu =
   | { durum: 'cevap'; cumleler: { metin: string; kaynaklar: number[] }[]; kaynaklar: SorKaynagi[] }
   | { durum: 'bilmiyorum'; oneriler: { eserId: string; eserAd: string }[] }
+  | { durum: 'konu-disi' }
+  | { durum: 'cok-deneme' }
   | { durum: 'kapali' }
   | { durum: 'hata' };
 
@@ -24,10 +26,12 @@ export async function sor(soru: string, eserId?: string): Promise<SorSonucu> {
       body: JSON.stringify(eserId ? { soru, eserId } : { soru }),
     });
     if (yanit.status === 503) return { durum: 'kapali' };
+    if (yanit.status === 429) return { durum: 'cok-deneme' };
     const govde = (await yanit.json()) as Record<string, unknown>;
     if (yanit.ok && Array.isArray(govde.cumleler)) {
       return { durum: 'cevap', cumleler: govde.cumleler as never, kaynaklar: (govde.kaynaklar ?? []) as never };
     }
+    if (govde.konuDisi) return { durum: 'konu-disi' };
     if (govde.bilmiyorum || Array.isArray(govde.oneriler)) {
       return { durum: 'bilmiyorum', oneriler: (govde.oneriler ?? []) as never };
     }
