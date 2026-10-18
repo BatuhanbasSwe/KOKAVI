@@ -157,6 +157,28 @@ Gerekçe: `docs/KARARLAR.md` §17.
 
 > 📱 Telefonda eski hata ya da koyu harita görünürse sayfayı yenileyin veya uygulamayı kapatıp açın. PWA önbelleği yeni sürüme bir sonraki açılışta geçer.
 
+## 10. Canlı öğrenme yolu ve animasyonlar
+
+**İstek:** öğrenme yolu ve dersler daha animasyonlu ve eğlenceli olsun. Tasarım belgesi: [superpowers/specs/2026-10-18-canli-yol-animasyonlari-design.md](superpowers/specs/2026-10-18-canli-yol-animasyonlari-design.md).
+
+**İlkeler:**
+- **Ölçeklenebilir:** hiçbir animasyon esere özel çizim istemiyor; her yeni eser ve şehir kendiliğinden canlanıyor.
+- **Anlam taşıyor:** her hareket bir durumu anlatıyor (ilerleme, keşif, kazanç, başarı). Konuyla ilgisiz süs öğrenmeyi düşürdüğü için eklenmedi.
+- **Bağımlılık yok:** CSS ve Web Animations API kullanıldı.
+- **"Hareketi azalt":** sistem ya da uygulama ayarı açıksa hepsi kapanıyor.
+- **Erişilebilirlik:** animasyon katmanları ekran okuyucudan gizli.
+
+| Paket | Ne oluyor |
+|---|---|
+| 1. Yol canlanır | Madalyonları kıvrımlı bir yol bağlıyor (biten kısım altın, kalan kısım kesik çizgi). Ders bitince yola dönüldüğünde Köstik yol boyunca zıplayarak yeni durağa gidiyor, yol altınla doluyor. Yeni açılan ünitede kilitler kırılıyor, siyah-beyaz fotoğraflar renkleniyor |
+| 2. Kazanma anları | Ders sonunda elmaslar yıldızdan "Elmas" kartına uçuyor, kart sayarak artıyor. Üst çubukta elmas ve seri eski değerden sayıyor, "+N" süzülüyor, seri alevi tutuşuyor. Ünite bitince başlığa "Tamam" mührü basılıyor |
+| 3. Ders içi tepkiler | Doğru cevapta kart şişip kıvılcım saçıyor, yanlışta hafifçe kayıyor (ceza yok). Kombo büyüdükçe alev büyüyor. Seçenekler basınca yaylanıyor, adım çubuğundan parıltı geçiyor |
+| 4. Kaydırma şovu | Kaydırdıkça duraklar yaylanarak giriyor, ünite başlığı şerit gibi açılıyor, madalyon ve mozaik fotoğraflarında derinlik efekti var. CSS kaydırma zaman çizelgesiyle yapıldı; desteklemeyen tarayıcı durağan görüyor |
+
+**Kod:** `src/features/yol/yolSahnesi.ts` (testli saf yardımcılar), `FotografPatikasi.tsx`, `src/app/ArtanSayi.tsx`, `src/app/hareket.ts`, ilgili CSS dosyaları.
+
+**Testler:** `tests/yol-sahnesi.test.ts`, `tests/artan-sayi.test.tsx`, `tests/kazanma-anlari.test.tsx`. Bütün sahneler gerçek tarayıcıda kare kare doğrulandı.
+
 ---
 
 ## Nasıl denenir

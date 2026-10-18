@@ -54,6 +54,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - Bugün'deki "Başla" doğrudan derse değil, Yol'daki sıradaki durağa götürür.
   - Kaydırırken arka plan, ekrandaki eserin rengini alır.
 - [x] **Keşif rotası yenilendi.** Gerçek sokak haritası üzerinde çalışır. Yakın eserler gruplanır, uzun rotalar bölümlere ayrılır, yürüyüş tarifi için OSM'e bağlantı verir.
+- [x] **Canlı öğrenme yolu ve animasyonlar (18 Ekim).** Köstik yolda yürüyor, yol altınla doluyor, kilitler kırılıyor, elmaslar uçuyor, ünite mührü, ders içi kıvılcımlar, kaydırma şovu. Ölçeklenebilir (esere özel çizim yok), hareketi azalt ayarına uyuyor. Ayrıntı: [docs/CALISMA-RAPORU-2026-10-18.md](docs/CALISMA-RAPORU-2026-10-18.md) §10.
 - [x] **Süzgeç paneli.** Arşiv ve harita süzgeçleri açılır kapanır panelde.
 - [x] **Harita onarımı ve Google benzeri görünüm (18 Ekim).** MapLibre 6'ya geçişten beri worker yüklenemiyordu, harita boş çiziliyordu (yayındaki sürümde de); düzeltildi. Vakıf ağı haritası ve keşif rotası artık OpenFreeMap "Liberty" altlığıyla: Türkçe sokak, mahalle ve yer adları. İnternet yoksa gömülü il/ilçe haritasına düşer. Kod: `src/lib/maplibreYukle.ts`, `src/features/harita/altlik.ts`.
 - [x] **Kaynaklı soru-cevap (Köstik sohbeti).**
