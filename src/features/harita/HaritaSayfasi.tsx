@@ -40,6 +40,7 @@ import { SuzgecPaneli } from '../../app/SuzgecPaneli';
 import './harita.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { maplibreYukle } from '../../lib/maplibreYukle';
+import { altlikYukle } from './altlik';
 
 const SEVIYELER: { ad: Seviye; etiket: string }[] = [
   { ad: 'il', etiket: 'İller' },
@@ -227,12 +228,14 @@ export function HaritaSayfasi() {
     let iptal = false;
 
     void (async () => {
-      // Altlık harita (il + ilçe sınırları) uygulamaya gömülüdür: dış karo
-      // sunucusu yok, internetsiz de çalışır (mobil/çevrimdışı demo).
-      const [maplibre, illerModulu, ilcelerModulu] = await Promise.all([
+      // İl ve ilçe sınırları uygulamaya gömülüdür (internetsiz de çalışır).
+      // Ayrıntılı altlık (sokak ve yer adları, altlik.ts) gelmezse yalnızca
+      // gömülü sınırlarla çizilir.
+      const [maplibre, illerModulu, ilcelerModulu, altlik] = await Promise.all([
         maplibreYukle(),
         import('./veri/turkiye-iller.json'),
         import('./veri/ilceler.json'),
+        altlikYukle(),
       ]);
       if (iptal || !haritaKabi.current) return;
 
@@ -248,6 +251,7 @@ export function HaritaSayfasi() {
           renk: (ad, yedek) => stil.getPropertyValue(ad).trim() || yedek,
           onSeviye: setSeviye,
           ag: agCizgileri,
+          altlik,
         });
         haritaRef.current = h;
         temizle = h.temizle;

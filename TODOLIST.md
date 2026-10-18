@@ -21,6 +21,7 @@ Takım planından ([docs/plan/ILERLEYIS.md](https://github.com/BatuhanbasSwe/KOK
 - [x] **Elmas harcama + veli onayı (simüle).** Çarşı'da avatar, defter teması ve ek ipucu alınır. Her harcamadan önce yazıyla bir çarpma sorusu sorulur; onay 10 dakika geçerlidir. Ayarlar'dan kapatılabilir ama kapatmak da onay ister. "Ek sefer" ifadesinin yorumu: [docs/KARARLAR.md](docs/KARARLAR.md) §4. Test: `tests/veli-onayi.test.ts`, `tests/veli-kapisi.test.tsx`
 - [x] **Belge düzeltmeleri.** `docs/DEMO.md`'de şehirler (Hatay, Konya, Bursa), Hatay eser sayısı (12) ve erişilebilirlik kapsamı güncellendi. `docs/KARARLAR.md` §5'e PostgreSQL yerine PGlite, PostGIS yerine cihazda mesafe ve gömülü GeoJSON gerekçesi yazıldı. (Demo senaryosunun baştan yazımı aşağıda ayrı madde.)
 - [x] **npm audit açıkları.** Sunucu paketi (`@fastify/static`) dahil düzeltildi. `npm audit` sonucu: 0 açık.
+  - ⚠️ 18 Ekim: bu güncellemeden sonra Vercel'deki canlı API her istekte çöküyordu (`ERR_REQUIRE_ESM`): `@fastify/static` 10, ES modülü olan `content-disposition` 3'ü `require()` ile yüklüyor; yerel Node buna izin verdiği için görünmedi. Düzeltme: `package.json` `overrides` ile `content-disposition` 2.0.1 (aynı API, CommonJS) ve `@fastify/static` yalnızca gerektiğinde yükleniyor. Test: `tests/vercel-paketi.test.ts`.
 
 ## Başvuruya göre ek tespitler
 
@@ -53,6 +54,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - Kaydırırken arka plan, ekrandaki eserin rengini alır.
 - [x] **Keşif rotası yenilendi.** Gerçek sokak haritası üzerinde çalışır. Yakın eserler gruplanır, uzun rotalar bölümlere ayrılır, yürüyüş tarifi için OSM'e bağlantı verir.
 - [x] **Süzgeç paneli.** Arşiv ve harita süzgeçleri açılır kapanır panelde.
+- [x] **Harita onarımı ve Google benzeri görünüm (18 Ekim).** MapLibre 6'ya geçişten beri worker yüklenemiyordu, harita boş çiziliyordu (yayındaki sürümde de); düzeltildi. Vakıf ağı haritası ve keşif rotası artık OpenFreeMap "Liberty" altlığıyla: Türkçe sokak, mahalle ve yer adları. İnternet yoksa gömülü il/ilçe haritasına düşer. Kod: `src/lib/maplibreYukle.ts`, `src/features/harita/altlik.ts`.
 - [x] **Kaynaklı soru-cevap (Köstik sohbeti).**
   - Her ekrandan açılan yüzen bir sohbet penceresi; derste ve canlı oyunda gizli.
   - Cevaplar yalnızca kaynak metinlerden üretilir ve her cümlede kaynak numarası olur. Kaynaksız cümle silinir, gerekirse cevap "bilmiyorum"a düşer.

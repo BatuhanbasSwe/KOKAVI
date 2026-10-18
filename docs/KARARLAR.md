@@ -110,7 +110,11 @@ rota özelliği inşa etmek kapsam sapması olurdu.
 - **MapLibre kullanılır, sınırlar gömülü GeoJSON.** İl ve ilçe sınırları
   uygulamanın içinde gelir (`src/features/harita/veri/`, kaynak ve lisans
   `KAYNAK.md`'de). Böylece harita internetsiz de Türkiye'yi ve üç ilin ilçelerini
-  çizer. Yalnızca keşif rotasının sokak katmanı internetten (OpenFreeMap) gelir.
+  çizer. İnternet varsa iki harita da (vakıf ağı haritası ve keşif rotası)
+  OpenFreeMap'in "Liberty" altlığıyla çizilir: sokak, mahalle ve yer adları
+  Türkçe, Google Maps'e benzer bir görünüm. Anahtar, kota ve izleme yoktur
+  (Google Maps API anahtarı, kredi kartı ister ve çocuğun cihazından Google'a
+  istek gider; bu yüzden seçilmedi). Stil gelmezse gömülü altlığa düşülür.
 
 **Neden:** Kullanılmayan bir teknolojiyi "kullandık" demek dürüst olmazdı.
 PostgreSQL ve MapLibre taahhüdü gerçekten karşılanıyor; PostGIS ise ancak sunucu

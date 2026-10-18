@@ -1,6 +1,7 @@
 /**
- * Keşif rotası haritası: OpenFreeMap sokak karoları (uygulama renkleriyle),
- * numaralı durak işaretleri ve rota çizgisi. Yürüyüş bacakları kalın safran,
+ * Keşif rotası haritası: OpenFreeMap "Liberty" altlığı (sokak ve yer adlarıyla;
+ * gelmezse uygulama renkleriyle sokak karoları), numaralı durak işaretleri ve
+ * rota çizgisi. Yürüyüş bacakları kalın safran,
  * bölümler arası (araçla geçilen) bacaklar ince kesikli çizgi.
  *
  * Erişilebilirlik: işaretler süs (aria-hidden, odak almaz); aynı bilgi
@@ -10,6 +11,7 @@
 import type * as maplibregl from 'maplibre-gl';
 import type { Feature, LineString } from 'geojson';
 import { sokakKatmanlari } from '../harita/bolgeHaritasi';
+import { ALTLIK_ATFI, altligaEkle } from '../harita/altlik';
 import { BOLUM_ESIGI, mesafe, type RotaNoktasi } from './rota';
 
 type ML = typeof maplibregl;
@@ -39,6 +41,7 @@ export function rotaHaritasiKur(
   duraklar: HaritaDuragi[],
   renk: (ad: string, yedek: string) => string,
   onSec: (id: string) => void,
+  altlik: maplibregl.StyleSpecification | null = null,
 ): RotaHaritasi {
   const bacaklar: Feature<LineString, { arac: boolean }>[] = duraklar.slice(1).map((d, i) => {
     const onceki = duraklar[i]!;
@@ -49,47 +52,52 @@ export function rotaHaritasiKur(
     };
   });
 
+  const rotaKaynagi: maplibregl.StyleSpecification['sources'] = {
+    rota: { type: 'geojson', data: { type: 'FeatureCollection', features: bacaklar } },
+  };
+  const rotaKatmanlari: maplibregl.LayerSpecification[] = [
+    {
+      id: 'rota-arac',
+      type: 'line',
+      source: 'rota',
+      filter: ['==', ['get', 'arac'], true],
+      layout: { 'line-cap': 'round' },
+      paint: { 'line-color': renk('--metin-soluk', '#8a9a97'), 'line-width': 2, 'line-dasharray': [1, 2.5] },
+    },
+    {
+      id: 'rota-yuruyus-kenar',
+      type: 'line',
+      source: 'rota',
+      filter: ['==', ['get', 'arac'], false],
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: { 'line-color': renk('--zemin', '#000000'), 'line-width': 7 },
+    },
+    {
+      id: 'rota-yuruyus',
+      type: 'line',
+      source: 'rota',
+      filter: ['==', ['get', 'arac'], false],
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: { 'line-color': renk('--vurgu', '#ffbf3c'), 'line-width': 4 },
+    },
+  ];
+
   const harita = new ml.Map({
     container: kap,
-    style: {
-      version: 8,
-      sources: {
-        sokak: {
-          type: 'vector',
-          url: 'https://tiles.openfreemap.org/planet',
-          attribution: 'OpenFreeMap · © OpenMapTiles · © OpenStreetMap katkıcıları',
+    style: altlik
+      ? altligaEkle(altlik, rotaKaynagi, rotaKatmanlari)
+      : {
+          version: 8,
+          sources: {
+            sokak: { type: 'vector', url: 'https://tiles.openfreemap.org/planet', attribution: ALTLIK_ATFI },
+            ...rotaKaynagi,
+          },
+          layers: [
+            { id: 'zemin', type: 'background', paint: { 'background-color': renk('--harita-kara', '#1d2629') } },
+            ...sokakKatmanlari(renk),
+            ...rotaKatmanlari,
+          ],
         },
-        rota: { type: 'geojson', data: { type: 'FeatureCollection', features: bacaklar } },
-      },
-      layers: [
-        { id: 'zemin', type: 'background', paint: { 'background-color': renk('--harita-kara', '#1d2629') } },
-        ...sokakKatmanlari(renk),
-        {
-          id: 'rota-arac',
-          type: 'line',
-          source: 'rota',
-          filter: ['==', ['get', 'arac'], true],
-          layout: { 'line-cap': 'round' },
-          paint: { 'line-color': renk('--metin-soluk', '#8a9a97'), 'line-width': 2, 'line-dasharray': [1, 2.5] },
-        },
-        {
-          id: 'rota-yuruyus-kenar',
-          type: 'line',
-          source: 'rota',
-          filter: ['==', ['get', 'arac'], false],
-          layout: { 'line-cap': 'round', 'line-join': 'round' },
-          paint: { 'line-color': renk('--zemin', '#000000'), 'line-width': 7 },
-        },
-        {
-          id: 'rota-yuruyus',
-          type: 'line',
-          source: 'rota',
-          filter: ['==', ['get', 'arac'], false],
-          layout: { 'line-cap': 'round', 'line-join': 'round' },
-          paint: { 'line-color': renk('--vurgu', '#ffbf3c'), 'line-width': 4 },
-        },
-      ],
-    },
     bounds: kutu(duraklar),
     fitBoundsOptions: { padding: 48, maxZoom: 16 },
     maxZoom: 18,
