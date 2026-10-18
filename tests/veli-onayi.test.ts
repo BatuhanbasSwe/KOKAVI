@@ -42,8 +42,10 @@ describe('veli kapısı sorusu', () => {
 });
 
 describe('veli onayı kuralı', () => {
-  it('varsayılan açık; onay 10 dakika geçerli', () => {
-    expect(veliOnayiAcikMi()).toBe(true);
+  it('varsayılan kapalı (gerçek para yok); veli açınca sorulur, onay 10 dakika geçerli', () => {
+    expect(veliOnayiAcikMi()).toBe(false);
+    expect(veliOnayiGerekli(1_000)).toBe(false);
+    veliOnayiniAyarla(true);
     expect(veliOnayiGerekli(1_000)).toBe(true);
     onayKaydet(1_000);
     expect(onayGecerliMi(1_000 + ONAY_SURESI_MS - 1)).toBe(true);
@@ -52,9 +54,15 @@ describe('veli onayı kuralı', () => {
   });
 
   it('veli kapatınca sorulmaz; yeniden açılabilir', () => {
+    veliOnayiniAyarla(true);
     veliOnayiniAyarla(false);
     expect(veliOnayiGerekli()).toBe(false);
     veliOnayiniAyarla(true);
     expect(veliOnayiGerekli()).toBe(true);
+  });
+
+  it('eski "kapali" kaydı da kapalı sayılır', () => {
+    localStorage.setItem('kokavi-veli-onayi', 'kapali');
+    expect(veliOnayiAcikMi()).toBe(false);
   });
 });

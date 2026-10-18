@@ -214,7 +214,7 @@ export function AyarlarSayfasi() {
         </p>
         <AyarSatiri
           etiket="Harcamalarda veli onayı"
-          aciklama="Vakıf Çarşısı'nda elmas harcamadan önce bir yetişkin onaylar. Gerçek para yoktur. Kapatmak da onay ister."
+          aciklama="Açarsanız Vakıf Çarşısı'nda elmas harcamadan önce bir yetişkin onaylar. Gerçek para yoktur; elmaslar derslerle kazanılır. Açıldıktan sonra kapatmak onay ister."
         >
           <button
             type="button"

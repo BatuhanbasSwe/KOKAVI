@@ -2,11 +2,13 @@
  * Veli onayı (veli kapısı) — başvuru PDF'i s. 3: "Satın almalar platform kuralı
  * gereği veli onaylıdır." ve "tüm satın almalar veli onaylı".
  *
- * MVP'de gerçek parayla satın alma yoktur; elmas harcaması (Vakıf Çarşısı)
- * bu kuralın gösterildiği yerdir. Harcamadan önce bir yetişkin, yazıyla verilmiş
- * bir çarpma sorusunu rakamla cevaplar. Onay 10 dakika geçerlidir (yanındaki
- * veli birkaç alışverişi tek seferde onaylar). Kural Ayarlar'dan kapatılabilir;
- * kapatmak da onay ister.
+ * Kural gerçek parayla SATIN ALMAYI kapsar; MVP'de gerçek para yoktur. Çocuğun
+ * derslerle kazandığı elmasla yaptığı harcama bu yüzden varsayılan olarak
+ * sorusuz yapılır (18 Ekim kararı, KARARLAR.md §4). İsteyen veli Ayarlar'dan
+ * "Harcamalarda veli onayı"nı açar: o zaman harcamadan önce bir yetişkin,
+ * yazıyla verilmiş bir çarpma sorusunu rakamla cevaplar; onay 10 dakika
+ * geçerlidir. Açılmış kuralı kapatmak onay ister (çocuk kendisi kapatamaz).
+ * İleride gerçek parayla elmas satın alma eklenirse aynı kapı kullanılır.
  *
  * Gizlilik: hiçbir kişisel bilgi sorulmaz ya da saklanmaz. Ayar cihazda
  * (localStorage), onay zamanı yalnızca bu oturumda (sessionStorage) tutulur.
@@ -44,20 +46,21 @@ export function cevapDogruMu(girdi: string, soru: VeliSorusu): boolean {
   return /^\d+$/.test(temiz) && Number(temiz) === soru.cevap;
 }
 
+/** Varsayılan kapalı: yalnızca veli Ayarlar'dan açtıysa onay istenir. */
 export function veliOnayiAcikMi(): boolean {
   try {
-    return localStorage.getItem(AYAR_ANAHTARI) !== 'kapali';
+    return localStorage.getItem(AYAR_ANAHTARI) === 'acik';
   } catch {
-    return true; // depolama yoksa güvenli taraf: onay istenir
+    return false;
   }
 }
 
 export function veliOnayiniAyarla(acik: boolean): void {
   try {
-    if (acik) localStorage.removeItem(AYAR_ANAHTARI);
-    else localStorage.setItem(AYAR_ANAHTARI, 'kapali');
+    if (acik) localStorage.setItem(AYAR_ANAHTARI, 'acik');
+    else localStorage.removeItem(AYAR_ANAHTARI);
   } catch {
-    /* yazılamazsa varsayılan (açık) geçerli kalır */
+    /* yazılamazsa varsayılan (kapalı) geçerli kalır */
   }
 }
 

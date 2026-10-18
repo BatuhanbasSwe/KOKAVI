@@ -83,6 +83,17 @@ konfordur (tema, avatar, ek ipucu, çevrimdışı paket) — PDF'in kendi listes
 **Neden:** Organizasyon "PDF'te ne yazıyorsa onu yapın" dedi; PDF'te olmayan bir
 rota özelliği inşa etmek kapsam sapması olurdu.
 
+**Veli onayı (18 Ekim güncellemesi):** PDF *"Satın almalar platform kuralı gereği
+veli onaylıdır"* der. Bu cümle **gerçek parayla satın almayı** kapsar ("Elmas:
+ders bitirerek kazanılır, satın da alınabilir"). MVP'de gerçek para yoktur; çocuk
+derslerle kazandığı elmasla avatar ve tema alır. Bu harcamaya onay kapısı koymak
+çocuğun önüne PDF'in istemediği bir engel koymak olurdu. Kararımız:
+- Kazanılan elmasın harcaması **varsayılan olarak sorusuzdur**.
+- İsteyen veli Ayarlar'dan "Harcamalarda veli onayı"nı açar. Açılmış kuralı
+  kapatmak onay ister, yani çocuk kendisi kapatamaz.
+- Veli kapısı (yazıyla çarpma sorusu, 10 dakika geçerli) ileride gerçek parayla
+  elmas satın alma eklenirse aynen kullanılır.
+
 ---
 
 ## 5. PostgreSQL + PostGIS + MapLibre taahhüdü: neden PGlite ve gömülü GeoJSON?

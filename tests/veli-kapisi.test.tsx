@@ -1,8 +1,9 @@
 /**
- * Veli kapısı ekranı: Vakıf Çarşısı'nda elmas harcaması veli onayından geçer
- * (PDF: "Satın almalar platform kuralı gereği veli onaylıdır"); yanlış cevap
- * harcamaz, doğru cevap harcar, onay 10 dakika geçerlidir; kuralı kapatmak da
- * onay ister. axe ihlali yok.
+ * Veli kapısı ekranı. Varsayılan kapalı: çocuk derslerle kazandığı elmasla
+ * sorusuz harcar (gerçek para yok). Veli Ayarlar'dan açınca harcama onaydan
+ * geçer (PDF: "Satın almalar platform kuralı gereği veli onaylıdır"); yanlış
+ * cevap harcamaz, doğru cevap harcar, onay 10 dakika geçerlidir; açılmış
+ * kuralı kapatmak onay ister. axe ihlali yok.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
@@ -42,7 +43,15 @@ async function ac(hash: string, baslik: string) {
 }
 
 describe('veli kapısı', () => {
-  it('harcama önce veli onayı ister; yanlış cevap harcamaz, doğru cevap harcar; ihlalsiz', async () => {
+  it('varsayılanda sorulmaz: kazanılan elmas doğrudan harcanır', async () => {
+    await ac('#/carsi', 'Vakıf Çarşısı');
+    await userEvent.click(screen.getByRole('button', { name: 'Kubbe: 20 elmas' }));
+    expect(screen.queryByRole('heading', { name: 'Bir yetişkin onaylamalı' })).toBeNull();
+    expect(screen.getByLabelText('80 elmasın var')).toBeInTheDocument();
+  });
+
+  it('veli açtıysa harcama önce onay ister; yanlış cevap harcamaz, doğru cevap harcar; ihlalsiz', async () => {
+    localStorage.setItem('kokavi-veli-onayi', 'acik');
     const container = await ac('#/carsi', 'Vakıf Çarşısı');
     await userEvent.click(screen.getByRole('button', { name: 'Kubbe: 20 elmas' }));
 
@@ -73,6 +82,7 @@ describe('veli kapısı', () => {
   });
 
   it('vazgeçince elmas yerinde kalır', async () => {
+    localStorage.setItem('kokavi-veli-onayi', 'acik');
     await ac('#/carsi', 'Vakıf Çarşısı');
     await userEvent.click(screen.getByRole('button', { name: 'Kubbe: 20 elmas' }));
     await userEvent.click(screen.getByRole('button', { name: 'Vazgeç' }));
@@ -80,7 +90,8 @@ describe('veli kapısı', () => {
     expect(screen.getAllByText('Harcama yapılmadı; elmasların yerinde.').length).toBeGreaterThan(0);
   });
 
-  it('Ayarlar: kuralı kapatmak onay ister; kapalıyken çarşı sormaz', async () => {
+  it('Ayarlar: açılmış kuralı kapatmak onay ister; kapalıyken çarşı sormaz', async () => {
+    localStorage.setItem('kokavi-veli-onayi', 'acik');
     await ac('#/ayarlar', 'Ayarlar');
     const veliSatiri = screen.getByText('Harcamalarda veli onayı').closest('.ayar-satiri')!;
     const dugme = veliSatiri.querySelector('button')!;
@@ -89,6 +100,6 @@ describe('veli kapısı', () => {
     await userEvent.type(screen.getByRole('textbox', { name: 'Otuz çarpı altı kaç eder?' }), '180');
     await userEvent.click(screen.getByRole('button', { name: 'Onayla' }));
     expect(dugme).toHaveAttribute('aria-pressed', 'false');
-    expect(localStorage.getItem('kokavi-veli-onayi')).toBe('kapali');
+    expect(localStorage.getItem('kokavi-veli-onayi')).toBeNull();
   });
 });
