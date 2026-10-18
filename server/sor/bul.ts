@@ -13,6 +13,8 @@ export interface Parca {
   kunye: string;
   /** Yalnızca ders eserlerinde (toplu sorular için, toplu.ts): alan başlığı, şehir, tür. */
   alan?: string;
+  /** Yalnızca sözlük parçalarında (sozluk.ts): normalleştirilmiş kavram adı ("akar", "vakif mali"). */
+  kavram?: string;
   sehir?: string;
   tur?: string;
 }
@@ -134,8 +136,14 @@ export function bul(parcalar: Parca[], soru: string, eserId: string | undefined,
   // sorunun geri kalanı ("kubbe", "yaptırdı") belirler.
   const icerikKokleri = soruKokleri.filter((k) => !adKokleri.has(k));
 
+  // Sözlük parçaları (kavram tanımları) yalnızca tanım sorularında, sozluk.ts
+  // üzerinden gelir; eser sorularında gerçek bilginin yerini almasınlar.
   const puanlar = d.parcalar.map((p, i) =>
-    hedefler.has(p.eserId) ? HEDEF_PUANI + bm25(d, i, icerikKokleri) : bm25(d, i, soruKokleri),
+    p.alan === 'Sözlük'
+      ? 0
+      : hedefler.has(p.eserId)
+        ? HEDEF_PUANI + bm25(d, i, icerikKokleri)
+        : bm25(d, i, soruKokleri),
   );
 
   return d.parcalar

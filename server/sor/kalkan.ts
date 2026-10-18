@@ -166,6 +166,24 @@ export function cevapGuvenliMi(cevap: ModelCevabi, parcalar: Parca[], baglam = '
 }
 
 /**
+ * Çıktı kalkanı (rota bunu kullanır): sızıntı (kanarya, bağlantı, HTML) bir
+ * saldırı işaretidir ve cevabın TAMAMINI düşürür. Dayanaksız bir cümle ise
+ * (örneğin tek eserden genelleme) yalnızca kendisi atılır; dayanaklı cümleler
+ * kalır. Geriye cümle kalmazsa null.
+ */
+export function cevabiAyikla(cevap: ModelCevabi, parcalar: Parca[], baglam = ''): ModelCevabi | null {
+  if (cevap.cumleler.some((c) => c.metin.includes(KANARYA) || SIZINTI.some((r) => r.test(c.metin)))) return null;
+  const kalan = cevap.cumleler.filter((c) =>
+    dayanakli(
+      c.metin,
+      c.kaynaklar.map((n) => parcalar[n - 1]).filter((p): p is Parca => Boolean(p)),
+      baglam,
+    ),
+  );
+  return kalan.length ? { ...cevap, cumleler: kalan } : null;
+}
+
+/**
  * Israrcıya fren: aynı bağlantıdan 15 dakikada 5 engellenen deneme olursa
  * 15 dakika boyunca soru alınmaz. Yalnızca bellekte, IP'nin özeti tutulur.
  */

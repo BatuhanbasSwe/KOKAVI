@@ -8,7 +8,8 @@
  *
  * Prompt injection kalkanı (sor/kalkan.ts): girdi temizlenir, bilinen saldırı
  * kalıpları modele gitmez, model çıktısı sızıntı ve dayanak açısından ayrıca
- * denetlenir. "Sırala / en eski" soruları sor/toplu.ts ile cevaplanır.
+ * denetlenir. "Sırala / en eski" soruları sor/toplu.ts, "X nedir / ne demek"
+ * soruları sor/sozluk.ts (derslerin kavram açıklamaları öne) ile cevaplanır.
  */
 import type { FastifyInstance } from 'fastify';
 import korpusJson from '../sor/korpus.json' with { type: 'json' };
@@ -16,8 +17,9 @@ import { bul, type Parca } from '../sor/bul.ts';
 import { cevapDenetle } from '../sor/denetle.ts';
 import { createHash } from 'node:crypto';
 import { kisiselVeriTemizle } from '../sor/temizle.ts';
-import { DenemeSiniri, cevapGuvenliMi, girdiTemizle, saldiriMi, sayilariDogrula } from '../sor/kalkan.ts';
+import { DenemeSiniri, cevabiAyikla, girdiTemizle, saldiriMi, sayilariDogrula } from '../sor/kalkan.ts';
 import { topluParcalar, topluSoru } from '../sor/toplu.ts';
+import { kavramParcalari, tanimSorusuMu } from '../sor/sozluk.ts';
 import type { Cevaplayici } from '../sor/model.ts';
 import { saglayiciSec, secilenModelle } from '../sor/saglayici.ts';
 
@@ -84,7 +86,13 @@ export async function sorUclari(app: FastifyInstance, secenekler: SorSecenekleri
 
       const toplu = topluSoru(soru);
       const topluSonuc = toplu ? topluParcalar(korpus, toplu) : null;
-      const parcalar = topluSonuc?.parcalar ?? bul(korpus, soru, govde.eserId, PARCA_SAYISI);
+      const kavramlar = !topluSonuc && tanimSorusuMu(soru) ? kavramParcalari(korpus, soru) : [];
+      const parcalar =
+        topluSonuc?.parcalar ??
+        [...new Map([...kavramlar, ...bul(korpus, soru, govde.eserId, PARCA_SAYISI)].map((p) => [p.id, p])).values()].slice(
+          0,
+          PARCA_SAYISI,
+        );
       if (parcalar.length === 0) return { bilmiyorum: true, oneriler: [] };
 
       let model;
@@ -100,8 +108,9 @@ export async function sorUclari(app: FastifyInstance, secenekler: SorSecenekleri
       if (bicimli?.konuDisi) return KONU_DISI;
       if (!bicimli || bicimli.bilmiyorum) return { bilmiyorum: true, oneriler: oneriler(parcalar) };
       const baglam = `${soru} ${topluSonuc?.kapsam ?? ''}`;
-      const denetlenmis = sayilariDogrula(bicimli, parcalar, baglam);
-      if (!denetlenmis || !cevapGuvenliMi(denetlenmis, parcalar, baglam)) {
+      const sayili = sayilariDogrula(bicimli, parcalar, baglam);
+      const denetlenmis = sayili && cevabiAyikla(sayili, parcalar, baglam);
+      if (!denetlenmis) {
         istek.log.warn({ tur: 'kalkan-cikti' }, 'model cevabı kalkana takıldı');
         return { bilmiyorum: true, oneriler: oneriler(parcalar) };
       }

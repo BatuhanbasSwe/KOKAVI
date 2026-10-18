@@ -22,12 +22,15 @@ export interface Parca {
   kunye: string;
   /** Yalnızca ders eserlerinde (toplu sorular için, toplu.ts): alan başlığı, şehir, tür. */
   alan?: string;
+  /** Yalnızca sözlük parçalarında (sozluk.ts): normalleştirilmiş kavram adı ("akar", "vakif mali"). */
+  kavram?: string;
   sehir?: string;
   tur?: string;
 }
 
 const ARASTIRMA = 'data/research';
 const ARSIV = 'public/arsiv';
+const DERSLER = 'data/content';
 const CIKTI = 'server/sor/korpus.json';
 const EN_UZUN = 600;
 
@@ -148,9 +151,64 @@ function arsivParcalari(arastirmaEserleri: Set<string>): Parca[] {
   return parcalar;
 }
 
+/** "AKAR" → "Akar", "VAKIF MALI" → "Vakıf malı" (Türkçe büyük-küçük harf). */
+function cumleDuzeni(ad: string): string {
+  const kucuk = ad.toLocaleLowerCase('tr');
+  return kucuk.charAt(0).toLocaleUpperCase('tr') + kucuk.slice(1);
+}
+
+/**
+ * Sözlük: derslerin Bağlam adımındaki kavram açıklamaları (10-12 yaş dili).
+ * "Vakıf nedir?", "Akar ne demek?" gibi sorular için (sozluk.ts). Künye
+ * dürüsttür: açıklama bizim ders metnimizdir; yanında eserin kaynağı durur.
+ * Aynı kavram birden çok derste geçerse ilk açıklama alınır.
+ */
+interface DersKavrami {
+  ad: string;
+  aciklama: string;
+  ornek?: string;
+}
+
+function sozlukParcalari(): Parca[] {
+  const eserler = new Map<string, ArastirmaEseri>();
+  for (const dosya of readdirSync(ARASTIRMA).filter((f) => f.endsWith('.json'))) {
+    for (const e of (JSON.parse(readFileSync(join(ARASTIRMA, dosya), 'utf8')) as { eserler: ArastirmaEseri[] }).eserler) {
+      eserler.set(eserKimligi(e), e);
+    }
+  }
+  const parcalar: Parca[] = [];
+  const gorulen = new Set<string>();
+  for (const dosya of readdirSync(DERSLER).filter((f) => f.endsWith('.json')).sort()) {
+    const veri = JSON.parse(readFileSync(join(DERSLER, dosya), 'utf8')) as {
+      dersler: { eserId: string; baglam?: { kavramlar?: DersKavrami[] } }[];
+    };
+    for (const ders of veri.dersler) {
+      const eser = eserler.get(ders.eserId);
+      const kaynak = eser?.kaynaklar?.[0]?.kunye;
+      if (!eser || !kaynak) continue;
+      for (const k of ders.baglam?.kavramlar ?? []) {
+        const kavram = normallestir(k.ad);
+        if (!kavram || !k.aciklama || gorulen.has(kavram)) continue;
+        gorulen.add(kavram);
+        const ad = cumleDuzeni(k.ad);
+        parcalar.push({
+          id: `sozluk#${kavram.replace(/ /g, '-')}`,
+          eserId: ders.eserId,
+          eserAd: eser.ad,
+          metin: `${ad} — Sözlük: ${k.aciklama}${k.ornek ? ` Örnek: ${k.ornek}` : ''}`,
+          kunye: `Kök Avı ders metni (${eser.ad}, Bağlam adımı); eser kaynağı: ${kaynak}`,
+          alan: 'Sözlük',
+          kavram,
+        });
+      }
+    }
+  }
+  return parcalar;
+}
+
 export function korpusUret(): Parca[] {
   const arastirma = arastirmaParcalari();
-  return [...arastirma, ...arsivParcalari(new Set(arastirma.map((p) => p.eserId)))];
+  return [...arastirma, ...sozlukParcalari(), ...arsivParcalari(new Set(arastirma.map((p) => p.eserId)))];
 }
 
 if (process.argv[1]?.replace(/\\/g, '/').endsWith('scripts/korpus-uret.ts')) {

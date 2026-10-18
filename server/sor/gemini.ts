@@ -41,15 +41,17 @@ let istemci: GoogleGenAI | null = null;
 /** Gerçek Gemini çağrısı. */
 export const geminiIleCevapla: Cevaplayici = async (soru, parcalar, kapsam) => {
   istemci ??= new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  const model = process.env.KOKAVI_GEMINI_MODEL ?? 'gemini-3.8-flash';
   const yanit = await istemci.models.generateContent({
-    model: process.env.KOKAVI_GEMINI_MODEL ?? 'gemini-3.8-flash',
+    model,
     contents: kullaniciMesaji(soru, parcalar, kapsam),
     config: {
       systemInstruction: SISTEM,
       maxOutputTokens: 1024,
       responseMimeType: 'application/json',
       responseJsonSchema: geminiSemasi(),
-      thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
+      // thinkingLevel yalnızca Gemini 3+ modellerinde var; 2.x "not supported" der.
+      thinkingConfig: /^gemini-[12]\./.test(model) ? { thinkingBudget: 512 } : { thinkingLevel: ThinkingLevel.LOW },
     },
   });
   return geminiCiktisiniCoz(yanit.text, yanit.candidates?.[0]?.finishReason);

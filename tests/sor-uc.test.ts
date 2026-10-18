@@ -119,6 +119,15 @@ describe('POST /api/sor', () => {
     expect(modeleGiden.at(-1)!.soru).toBe('Ulucami nedir, mailim [gizlendi]');
     expect(loglar.join('\n')).not.toContain('ornek.com');
   });
+  it('kavram sorusu: sözlük parçası öne alınır, eser parçalarıyla birlikte gider', async () => {
+    siradakiCevap = { bilmiyorum: true, cumleler: [] };
+    await sor(app, { soru: 'Akar ne demek?' });
+    const giden = modeleGiden.at(-1)!;
+    expect(giden.parcalar[0]).toMatchObject({ alan: 'Sözlük', kavram: 'akar' });
+    expect(giden.parcalar.length).toBeLessThanOrEqual(6);
+    expect(new Set(giden.parcalar.map((p) => p.id)).size).toBe(giden.parcalar.length);
+  });
+
   // En sonda: bu test aynı bağlantıyı 15 dakika bekletir.
   it('saldırı modele gitmez; ısrar edene 429', async () => {
     const once = modeleGiden.length;

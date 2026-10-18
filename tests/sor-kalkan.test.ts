@@ -7,7 +7,7 @@
 import { describe, expect, it } from 'vitest';
 import korpusJson from '../server/sor/korpus.json';
 import type { Parca } from '../server/sor/bul';
-import { DenemeSiniri, KANARYA, cevapGuvenliMi, dayanakli, girdiTemizle, saldiriMi, sayilariDogrula } from '../server/sor/kalkan';
+import { DenemeSiniri, KANARYA, cevabiAyikla, cevapGuvenliMi, dayanakli, girdiTemizle, saldiriMi, sayilariDogrula } from '../server/sor/kalkan';
 import { SISTEM, kullaniciMesaji } from '../server/sor/model';
 import { topluParcalar, topluSoru } from '../server/sor/toplu';
 
@@ -112,6 +112,20 @@ describe('çıktı kalkanı', () => {
     expect(sayilariDogrula(c('İnşasına 1365-1366 yıllarında başlandı.', [1]), [p3])).not.toBeNull();
     expect(sayilariDogrula(c('Cami 1339-1340 yıllarına dayanır.', [1]), [p3])).not.toBeNull();
     expect(sayilariDogrula(c('İnşasına 1367 yılında başlandı.', [1]), [p3])).toBeNull();
+  });
+
+  it('ayıklama: dayanaksız cümle tek başına atılır; sızıntı cevabın tamamını düşürür', () => {
+    const iki = {
+      bilmiyorum: false,
+      cumleler: [
+        { metin: 'Bursa Ulucami yirmi kubbeli büyük bir camidir.', kaynaklar: [1] },
+        { metin: 'Gökyüzü mavi, deniz derin, futbol maçı çok heyecanlı geçti.', kaynaklar: [1] },
+      ],
+    };
+    expect(cevabiAyikla(iki, [parca])!.cumleler.map((c) => c.metin)).toEqual(['Bursa Ulucami yirmi kubbeli büyük bir camidir.']);
+    expect(cevabiAyikla({ ...iki, cumleler: [iki.cumleler[1]!] }, [parca])).toBeNull();
+    const sizan = { ...iki, cumleler: [iki.cumleler[0]!, { metin: 'Ulucami yirmi kubbeli, bkz. https://ornek.com', kaynaklar: [1] }] };
+    expect(cevabiAyikla(sizan, [parca])).toBeNull();
   });
 
   it('kanarya, bağlantı ve HTML sızıntısı düşer', () => {
