@@ -13,7 +13,7 @@ demosu yerine geçmez."* → **Canlı, çalışan ürün gösterilecek.**
 
 | Süre | Ne gösterilir | Kim anlatır |
 |---|---|---|
-| 0:00–0:20 | **Öğrenme yolu** açılır. Bursa Ünite 1/2 tamamlanmış, Ünite 3 "şu an burada", Konya/Kütahya/İzmir kilitli. Kuzey Yıldızı metriği gösterilir. | Ürün & Sistem Mimarisi |
+| 0:00–0:20 | **Öğrenme yolu** açılır (Bugün → "Başla", Yol sekmesinde sıradaki durağa kayar). Bursa Ünite 1/2 tamamlanmış, Ünite 3 "şu an burada", Konya ve Hatay üniteleri sırada. Kuzey Yıldızı metriği gösterilir. | Ürün & Sistem Mimarisi |
 | 0:20–0:50 | **Adım 01 Merak:** cezasız tahmin. Kasten "yanlış" bir seçenek işaretlenir → *"Hiçbir tahmin yanlış sayılmaz"* mesajı çıkar. | Ürün & Sistem Mimarisi |
 | 0:50–1:10 | **Adım 02 Bağlam:** HAYRAT / AKAR kavram kartları. Ürünün çekirdek fikri burada anlatılır. | Kullanıcı Deneyimi & Anlatı |
 | 1:10–1:30 | **Adım 03 Perspektif:** "Sen kervan tüccarısın" tek karar anı. | Kullanıcı Deneyimi & Anlatı |
@@ -23,9 +23,9 @@ demosu yerine geçmez."* → **Canlı, çalışan ürün gösterilecek.**
 | **2:40–2:55** | ⭐⭐ **HATAY ANI — duygusal zirve.** Habib-i Neccar'ın "bugün ne oldu" adımı: envanter fotoğrafları **depremden bir gün önce (5 Şubat 2023)** sergilenmişti; bir gün sonra bina yıkıldı. Uygulama, eserin **deprem öncesi son sistematik kaydını** gösterir. Sonra restorasyon ve **27 Aralık 2025'te yeniden ibadete açılış**. Cümle: *"Bu kayıt olmasaydı, o günü hatırlayan tek şey hafızamız olurdu."* | Kullanıcı Deneyimi & Anlatı |
 | 2:55–3:10 | **Ders sonu kutlaması** (+10 elmas, seri, deftere eklendi) ve **aralıklı tekrar**: sonraki derste "Tekrar zamanı: Yeşilcami dersinden hatırla" sorusu açılır. *"İpucusuz bildikçe 1, 3, 7, 14 gün sonra yeniden sorulur — öğrenilen kalıcı olur."* | Kullanıcı Deneyimi & Anlatı |
 | 3:10–3:25 | **Yönetim paneli:** giriş yapılır, yeni bir eser eklenir (**İngilizce ad + tarihçe dahil**), yayına alınır ve öğrenme yolunda belirdiği gösterilir (**CRUD** — şartname 5.1.1 zorunlu maddesi). | Ürün & Sistem Mimarisi |
-| 3:25–3:35 | **Harita + filtreler:** Bilgi Notu'nun istediği *"şehir ya da eser türüne göre filtreleme"*. "Hatay" seçilir → 6 eser. | Ürün & Sistem Mimarisi |
+| 3:25–3:35 | **Harita + filtreler:** Bilgi Notu'nun istediği *"şehir ya da eser türüne göre filtreleme"*. "Hatay" seçilir → 12 eser. | Ürün & Sistem Mimarisi |
 | 3:35–3:45 | **Öğretmen paneli:** sınıf kodu oluşturulur, toplu ilerleme gösterilir. *"Bu sayılar kaç öğrenci olduğunu göstermez — kimlik toplamıyoruz."* | Kullanıcı Deneyimi & Anlatı |
-| 3:45–3:55 | **Erişilebilirlik:** yüksek kontrast teması + yazı boyutu + klavye ile gezinme canlı açılır. axe-core ile 6 sayfada 0 ihlal olduğu belirtilir. | Kullanıcı Deneyimi & Anlatı |
+| 3:45–3:55 | **Erişilebilirlik:** yüksek kontrast teması + yazı boyutu + klavye ile gezinme canlı açılır. Gerçek tarayıcıda 22 ekran × 3 temada (koyu, açık, yüksek kontrast) axe-core ile 0 ihlal olduğu belirtilir. | Kullanıcı Deneyimi & Anlatı |
 | 3:55–4:05 | **Gizlilik:** "İlerleme sunucuya hiç gitmiyor" — tarayıcı ağ sekmesi gösterilir, hiçbir kullanıcı verisi gönderilmediği kanıtlanır. | Veri & İçerik Mühendisliği |
 
 > **Bu senaryo finalden 1 hafta önce donar.** Son 3 güne bırakılmaz.
@@ -56,7 +56,7 @@ sorusunun cevabını üründe görmeli.
 | "Çocuk verisini nasıl koruyorsunuz?" | Hiç toplamıyoruz. Mimari olarak: ilerleme sunucuya gitmez, sınıf kodu anonim. | `tests/api.test.ts` gizlilik testi + `tests/guvenlik.test.ts` §10 |
 | "Sınıf özelliği çocukları takip etmiyor mu?" | Hayır. Sunucu yalnızca sayaç tutar: "bu kodla bu ders kaç kez bitti". Kaç farklı öğrenci olduğu **bilinemez** — arayüz de iddia etmez. | `server/repo/sinif.ts` başlığı |
 | "Yönetim paneli güvenli mi?" | Tüm uçlar korumalı, parolalar scrypt, oturumlar httpOnly çerezde, kaba kuvvet kilitli. | `tests/guvenlik.test.ts` (67 test) |
-| "Erişilebilirlik gerçekten çalışıyor mu?" | axe-core ile 6 sayfada **0 ihlal**. | `tests/erisilebilirlik-denetim.test.tsx` |
+| "Erişilebilirlik gerçekten çalışıyor mu?" | Gerçek tarayıcıda 22 ekran × 3 tema, axe-core ile **0 ihlal**; %160 yazı boyutunda taşma yok. | `tests/erisilebilirlik-denetim.test.tsx`, `tests/erisilebilir-ders-akisi.test.tsx`, `tests/tema-kontrast.test.ts` |
 | "Hangi teknolojiyle yazdınız?" | React+TS PWA, Fastify, PostgreSQL (PGlite), MapLibre. | `README.md` yığın tablosu |
 | "Vakıf modelini anlatıyorsunuz, siz neden çocuktan elmas satıyorsunuz?" | Ana öğrenme yolu her zaman ücretsiz. Elmas harcaması yalnızca kozmetik/konfor; satın almalar veli onaylı. Gelirin yarısı kurumsal lisans ve hibe. | PDF sayfa 3 |
 | "Yeni şehir eklemek ne kadar sürer?" | Yazılım maliyeti sıfır: şehir parametreli mimari. Panelden şehir + ünite tanımlanır, içerik eklenir. | Canlı gösterim |
@@ -85,7 +85,7 @@ sorusunun cevabını üründe görmeli.
 - [ ] Örnek ilerleme yüklü (Ünite 1-2 tamamlanmış görünsün)
 - [ ] Yeşilcami dersi demo cihazında bitirilmiş (tekrar sorusu Yeşil Medrese'de çıksın)
 - [ ] Türkçe konuşma sesi kurulu ("Dinle" düğmesi görünüyor mu?)
-- [ ] Palet kararı `index.html`'e yazıldı
+- [ ] Koyu tema (varsayılan) ve açık tema ikisi de kontrol edildi
 - [ ] Yüksek kontrast teması test edildi
 - [ ] Klavye ile tüm akış gezildi (Tab/Enter)
 - [ ] Çevrimdışı mod provası yapıldı
@@ -99,8 +99,8 @@ sorusunun cevabını üründe görmeli.
 
 > Ana senaryo **değiştirilmedi**. Aşağıdakiler süre kalırsa eklenebilecek ya da
 > mevcut dilimlerle değiştirilebilecek öneriler. Takım karar verir.
-> Not: ana senaryodaki "Konya/Kütahya/İzmir kilitli" ifadesi eski; Kütahya ve İzmir
-> içerikten çıkarıldı (yalnızca PDF'teki eserler). Senaryo donmadan güncellenmeli.
+> Şehirler: yalnızca Vakıf Katılım verisindeki Hatay, Konya ve Bursa (57 ders).
+> Kütahya, İzmir ve Manisa içerikten çıkarıldı; gerekçe `docs/KARARLAR.md` §11.
 
 | Süre | Ne gösterilir | Neden etkili |
 |---|---|---|

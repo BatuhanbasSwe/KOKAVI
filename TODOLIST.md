@@ -19,7 +19,7 @@ Takım planından ([docs/plan/ILERLEYIS.md](https://github.com/BatuhanbasSwe/KOK
 - [x] **Erişilebilirlik doğrulaması.** Gerçek tarayıcıda 22 rota × 3 tema (koyu, açık, yüksek kontrast) axe ile tarandı: 0 ihlal. 360 px ekranda %160 yazı boyutunda taşma yok. Sessiz modla ders baştan sona bitiyor. Test: `tests/erisilebilir-ders-akisi.test.tsx`, `tests/tema-kontrast.test.ts`
 - [ ] **AI soru üretimi hattı.** Akış şöyle olmalı: içerik → AI taslak soru → insan onayı → yayın. İnsan onayı olmadan hiçbir soru yayına girmemeli. ⚠️ Henüz kimse almadı.
 - [x] **Elmas harcama + veli onayı (simüle).** Çarşı'da avatar, defter teması ve ek ipucu alınır. Her harcamadan önce yazıyla bir çarpma sorusu sorulur; onay 10 dakika geçerlidir. Ayarlar'dan kapatılabilir ama kapatmak da onay ister. "Ek sefer" ifadesinin yorumu: [docs/KARARLAR.md](docs/KARARLAR.md) §4. Test: `tests/veli-onayi.test.ts`, `tests/veli-kapisi.test.tsx`
-- [ ] **Belge düzeltmeleri.** `docs/DEMO.md`'deki eski şehir adları (Kütahya, İzmir) düzeltilecek. `docs/KARARLAR.md`'ye PostGIS yerine neden PGlite ve gömülü GeoJSON seçildiği yazılacak. — 🔧 Batuhan
+- [x] **Belge düzeltmeleri.** `docs/DEMO.md`'de şehirler (Hatay, Konya, Bursa), Hatay eser sayısı (12) ve erişilebilirlik kapsamı güncellendi. `docs/KARARLAR.md` §5'e PostgreSQL yerine PGlite, PostGIS yerine cihazda mesafe ve gömülü GeoJSON gerekçesi yazıldı. (Demo senaryosunun baştan yazımı aşağıda ayrı madde.)
 - [x] **npm audit açıkları.** Sunucu paketi (`@fastify/static`) dahil düzeltildi. `npm audit` sonucu: 0 açık.
 
 ## Başvuruya göre ek tespitler

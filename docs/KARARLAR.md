@@ -85,23 +85,36 @@ rota özelliği inşa etmek kapsam sapması olurdu.
 
 ---
 
-## 5. MapLibre ve PostGIS taahhüdü — ama üründe harita özelliği yok
+## 5. PostgreSQL + PostGIS + MapLibre taahhüdü: neden PGlite ve gömülü GeoJSON?
 
 **PDF'te:** Yığın satırı *"React + TypeScript (PWA) · Node/Fastify API ·
-PostgreSQL + **PostGIS** · **MapLibre** · toplu Türkçe TTS"* diyor. Ancak PDF'in
-özellik listesinde konum tabanlı hiçbir şey yok — ne "yakınımdaki eserler", ne
-rota, ne mesafe hesabı.
+**PostgreSQL + PostGIS** · **MapLibre** · toplu Türkçe TTS"* diyor. Ancak PDF'in
+özellik listesinde konum tabanlı sunucu sorgusu gerektiren bir şey yok.
 
-**Kararımız:**
-- **MapLibre kullanılır:** Kâşif Defteri ve eser listesi için bir harita sekmesi
-  eklendi. Böylece yığın taahhüdü dürüst kalır ve "Kâşif" çerçevesine hizmet eder.
-- **PostGIS kullanılmaz:** Konum tabanlı **sorgu** olmadığı için mekânsal indeks
-  işlevsiz olurdu. Koordinatlar düz `lat`/`lng` kolonlarında tutulur; PostGIS'e
-  geçiş tek migration'dır.
+**Kararımız (güncellendi, 18 Ekim 2026):**
 
-**Neden:** Kullanılmayan bir teknolojiyi "kullandık" demek dürüst olmazdı;
-tamamen çıkarmak da taahhütle çelişirdi. Haritayı gerçekten işe yarar bir yere
-koymak, iki taahhüdü de karşılayan en temiz çözüm.
+- **PostgreSQL → PGlite.** PGlite, WASM içinde çalışan gerçek PostgreSQL'dir.
+  Şema (`server/db/schema.sql`) ve SQL sorguları standart Postgres; üretimde
+  `pg` sürücüsüne geçiş tek dosyada (`server/db/index.ts`) yapılır. Gerekçe:
+  - Kurulum yok: `npm install` yeter, demo makinesinde veritabanı sunucusu
+    kurma ve çalışmama riski yok.
+  - Vercel'de tek paket: API ve hazır veri (`deploy/pgdata.tgz`) birlikte
+    yayınlanır, ayrı bir veritabanı hizmeti gerekmez.
+- **PostGIS kullanılmaz.** Üründe konum özellikleri var (vakıf ağı haritası,
+  keşif rotası, sahada mühür) ama hiçbiri sunucuda mekânsal sorgu yapmaz:
+  - Mesafeler cihazda hesaplanır (`src/features/rota/rota.ts` `mesafe()`).
+    Sahada mühür bunu kullanır ve konum hiçbir yere gönderilmez (gizlilik ilkesi, §6).
+  - Eser sayısı birkaç yüz; mekânsal indeksin hızlandıracağı bir sorgu yok.
+  - Koordinatlar düz `lat`/`lng` kolonlarında tutulur; PostGIS'e geçiş tek
+    migration'dır (`geography` kolonu + indeks).
+- **MapLibre kullanılır, sınırlar gömülü GeoJSON.** İl ve ilçe sınırları
+  uygulamanın içinde gelir (`src/features/harita/veri/`, kaynak ve lisans
+  `KAYNAK.md`'de). Böylece harita internetsiz de Türkiye'yi ve üç ilin ilçelerini
+  çizer. Yalnızca keşif rotasının sokak katmanı internetten (OpenFreeMap) gelir.
+
+**Neden:** Kullanılmayan bir teknolojiyi "kullandık" demek dürüst olmazdı.
+PostgreSQL ve MapLibre taahhüdü gerçekten karşılanıyor; PostGIS ise ancak sunucu
+tarafında konum sorgusu gerektiğinde değer katar ve geçiş yolu hazır.
 
 ---
 
