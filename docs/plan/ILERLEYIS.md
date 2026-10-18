@@ -37,7 +37,7 @@ Kaldırma yöntemi: her özellik ayrı commit → `git revert <commit>`.
 
 ## Aşama 3 — Öneriler (Aşama 1–2 bittikten sonra)
 
-1. **Canlı yarışma için kalıcı oda:** Odalar şu an bellekte, Vercel'de bölünebilir. Final demosu `npm run dev:lan` ile laptoptan yapılmalı ya da odalar DB'ye taşınmalı.
+1. ✅ **Canlı yarışma için kalıcı oda:** Odalar ortak depoda (Vercel'de Upstash Redis, yerelde bellek).
 2. **İçerik okuması:** Yeni 57 dersin metinleri bir insan tarafından 10–12 yaş diline göre okunmalı.
 3. **Demo senaryosu:** `docs/DEMO.md` yeni akışa göre baştan yazılmalı (Senaryo A + B, 3 dakika).
 4. **Dağıtım kararı:** PWA mı kalacak, APK mı olacak? Final öncesi netleşmeli.
