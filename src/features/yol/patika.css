@@ -175,7 +175,8 @@
     opacity: 0;
   }
 }
-.patika-unite--aciliyor .patika__madalyon img {
+/* Seçici bilerek güçlü: kaydırma derinliği kuralı renklenmeyi ezmesin. */
+.patika-unite.patika-unite--aciliyor .patika .patika__madalyon img {
   animation: renklen 1100ms ease-out both;
   animation-delay: calc(450ms + var(--sira, 0) * 140ms);
 }
@@ -474,5 +475,53 @@ a.patika__baglanti:active .patika__cerceve {
   }
   50% {
     transform: translateY(-1px);
+  }
+}
+
+/* --- Kaydırma şovu (CSS kaydırma zaman çizelgesi) ---------------------------
+   Kaydırdıkça duraklar yaylanarak girer, ünite başlığı şerit gibi açılır,
+   madalyon fotoğrafları hafif derinlik kazanır. JS yok; desteklemeyen tarayıcı
+   durağan ama eksiksiz görür. Kaydırmaya bağlı animasyonlarda süre olmadığı
+   için genel "hareketi azalt" kuralı onları durduramaz; bu yüzden yalnızca
+   hareket tercih edilirken ve uygulama ayarı kapalıyken açılır. Yol çizgisi
+   yerleşimden ölçüldüğü için bu hareketlerden etkilenmez. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    :root:not([data-hareket-azalt='true']) .patika__durak {
+      animation: durak-gel linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 75%;
+      animation-delay: 0s;
+    }
+    :root:not([data-hareket-azalt='true']) .patika__madalyon img {
+      scale: 1.22;
+      animation: madalyon-derinlik linear both;
+      animation-timeline: view();
+    }
+    :root:not([data-hareket-azalt='true']) .patika-unite__satir {
+      animation: serit-ac linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 90%;
+    }
+  }
+}
+@keyframes madalyon-derinlik {
+  from {
+    translate: 0 -9%;
+  }
+  to {
+    translate: 0 9%;
+  }
+}
+@keyframes serit-ac {
+  from {
+    opacity: 0.2;
+    clip-path: inset(0 100% 0 0);
+    translate: -12px 0;
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    translate: 0 0;
   }
 }

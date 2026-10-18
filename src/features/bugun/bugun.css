@@ -290,3 +290,26 @@
     grid-column: span 2;
   }
 }
+
+/* --- Kaydırma şovu: mozaik fotoğraflarında hafif derinlik (paralaks) ---------
+   `translate` ile (üzerine gelme büyütmesi `transform` ile, çakışmaz). Fotoğraf
+   kutudan biraz uzun: kayarken kenar boşluğu görünmez. Yalnızca hareket tercih
+   edilirken (kaydırmaya bağlı animasyonu genel kural durduramaz). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    :root:not([data-hareket-azalt='true']) .mozaik__foto {
+      inset: -10% 0;
+      height: 120%;
+      animation: mozaik-derinlik linear both;
+      animation-timeline: view();
+    }
+  }
+}
+@keyframes mozaik-derinlik {
+  from {
+    translate: 0 -7%;
+  }
+  to {
+    translate: 0 7%;
+  }
+}

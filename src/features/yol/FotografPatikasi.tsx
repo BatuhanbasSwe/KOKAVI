@@ -53,13 +53,23 @@ function useMadalyonMerkezleri(ol: RefObject<HTMLOListElement | null>) {
   const olc = useCallback(() => {
     const kap = ol.current;
     if (!kap) return;
-    const r = kap.getBoundingClientRect();
-    if (r.width === 0) return;
-    const noktalar = [...kap.querySelectorAll<HTMLElement>(':scope > li .patika__madalyon')].map((m) => {
-      const k = m.getBoundingClientRect();
-      return { x: k.left + k.width / 2 - r.left, y: k.top + k.height / 2 - r.top };
+    if (kap.offsetWidth === 0) return;
+    // Yerleşimden ölçülür (offset zinciri + durağın zikzak kayması). Giriş ve
+    // kaydırma animasyonları (translate/scale) ölçüyü etkilemez: yol yerinde kalır.
+    const noktalar = [...kap.querySelectorAll<HTMLElement>(':scope > li')].map((li) => {
+      const m = li.querySelector<HTMLElement>('.patika__madalyon');
+      if (!m) return { x: 0, y: 0 };
+      let x = m.offsetWidth / 2;
+      let y = m.offsetHeight / 2;
+      for (let o: HTMLElement | null = m; o && o !== li; o = o.offsetParent as HTMLElement | null) {
+        x += o.offsetLeft;
+        y += o.offsetTop;
+      }
+      const donusum = getComputedStyle(li).transform;
+      const kayma = typeof DOMMatrixReadOnly === 'undefined' || donusum === 'none' ? { e: 0, f: 0 } : new DOMMatrixReadOnly(donusum);
+      return { x: x + li.offsetLeft + kayma.e, y: y + li.offsetTop + kayma.f };
     });
-    setOlcu({ noktalar, w: r.width, h: r.height });
+    setOlcu({ noktalar, w: kap.offsetWidth, h: kap.offsetHeight });
   }, [ol]);
 
   useLayoutEffect(() => {
