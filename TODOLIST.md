@@ -73,6 +73,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - ⚠️ Gemini API şartları 18 yaş altına yönelik uygulamalarda kullanımı yasaklıyor; ücretsiz kotada veriler Google'ın modellerini eğitmekte kullanılıyor. Hangisinin kullanılacağına takım karar vermeli.
   - Yerelde: `.env` dosyasına anahtar satırı yazılır (`.env.example` dosyasına bak). `.env.example`'a değil: o dosya git'e girer.
   - 18 Ekim: Batuhan'ın makinesinde Gemini anahtarıyla uçtan uca denendi; kaynaklı cevaplar doğru geliyor. Vercel'e henüz eklenmedi.
+  - 18 Ekim (Abdullah): Gemini anahtarı yok. Karar bekleyene kadar Köstik sohbeti kapalı kalır ("şu an kapalı" der); demo bu haliyle güvenli.
   - ⚠️ Gemini ücretsiz kotası model başına günde yalnızca 20 istek (18 Ekim'de iki model için de doldu). Finalde bir sınıf birkaç dakikada tüketir: ücretli kota ya da Claude gerekir.
   - Vercel'de: Settings → Environment Variables.
   - Anahtar asla koda, commit'e ya da sohbete yazılmaz.
