@@ -117,10 +117,19 @@
   --golge-buyuk: 0 16px 40px rgba(4, 8, 10, 0.55);
   --karartma: rgba(8, 12, 13, 0.92); /* fotoğraf üstü metin için */
 
-  --harita-deniz: #0b1416;
-  --harita-kara: #1d2629;
-  --harita-sinir: #3a474c;
-  --harita-vurgulu: #2b2414;
+  /* Harita her temada açık renkli (Google benzeri; OpenFreeMap Liberty ile uyumlu).
+     Liberty yüklenemezse yedek altlık da bu renklerle çizilir. */
+  --harita-deniz: #a8cdf0;
+  --harita-kara: #f5f2ee;
+  --harita-sinir: #c9c3b8;
+  --harita-vurgulu: #fff1cc;
+  --harita-yerlesim: #ece8e1;
+  --harita-park: #d4ebc5;
+  --harita-su: #a8cdf0;
+  --harita-bina: #e2ddd5;
+  --harita-yol: #ffffff;
+  --harita-yol-kenar: #d3cdc2;
+  --harita-ana-yol: #fde6a2;
 
   --seri-1: #ffbf3c;
   --seri-2: #8ea6ff;
@@ -189,10 +198,19 @@
   --golge-buyuk: 0 12px 32px rgba(20, 25, 27, 0.14);
   --karartma: rgba(8, 12, 13, 0.88);
 
-  --harita-deniz: #e6ecee;
-  --harita-kara: #efede6;
-  --harita-sinir: #c9c6bd;
-  --harita-vurgulu: #fff3d6;
+  /* Harita her temada açık renkli (Google benzeri; OpenFreeMap Liberty ile uyumlu).
+     Liberty yüklenemezse yedek altlık da bu renklerle çizilir. */
+  --harita-deniz: #a8cdf0;
+  --harita-kara: #f5f2ee;
+  --harita-sinir: #c9c3b8;
+  --harita-vurgulu: #fff1cc;
+  --harita-yerlesim: #ece8e1;
+  --harita-park: #d4ebc5;
+  --harita-su: #a8cdf0;
+  --harita-bina: #e2ddd5;
+  --harita-yol: #ffffff;
+  --harita-yol-kenar: #d3cdc2;
+  --harita-ana-yol: #fde6a2;
 
   --seri-1: #c98a12;
   --seri-2: #2f4bc0;

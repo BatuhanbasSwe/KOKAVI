@@ -93,7 +93,7 @@ export function rotaHaritasiKur(
             ...rotaKaynagi,
           },
           layers: [
-            { id: 'zemin', type: 'background', paint: { 'background-color': renk('--harita-kara', '#1d2629') } },
+            { id: 'zemin', type: 'background', paint: { 'background-color': renk('--harita-kara', '#f5f2ee') } },
             ...sokakKatmanlari(renk),
             ...rotaKatmanlari,
           ],

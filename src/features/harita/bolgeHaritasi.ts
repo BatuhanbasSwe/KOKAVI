@@ -111,7 +111,7 @@ function isaretciDugmesi(sinif: string): HTMLButtonElement {
 /** Yakınlaştıkça beliren ayrıntı (zoom 8 → 9.6 arasında yumuşak geçiş). */
 const BELIR = ['interpolate', ['linear'], ['zoom'], 8, 0, 9.6, 1] as const;
 
-/** OpenMapTiles şemasıyla su, park, bina ve yollar — tema jetonlarıyla. */
+/** OpenMapTiles şemasıyla su, park, bina ve yollar — açık renkli harita jetonlarıyla (yedek altlık). */
 export function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpecification[] {
   const yolGenisligi = (carpan: number) =>
     ['interpolate', ['exponential', 1.6], ['zoom'], 9, 0.4 * carpan, 13, 2 * carpan, 16, 9 * carpan] as unknown as number;
@@ -124,7 +124,7 @@ export function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpeci
       'source-layer': 'landuse',
       minzoom: 8,
       filter: ['match', ['get', 'class'], ['residential', 'suburb', 'neighbourhood', 'commercial', 'retail'], true, false],
-      paint: { 'fill-color': renk('--zemin-vurgu', '#1d2629'), 'fill-opacity': BELIR as unknown as number },
+      paint: { 'fill-color': renk('--harita-yerlesim', '#ece8e1'), 'fill-opacity': BELIR as unknown as number },
     },
     {
       id: 'sokak-yesil',
@@ -132,7 +132,7 @@ export function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpeci
       source: 'sokak',
       'source-layer': 'park',
       minzoom: 8,
-      paint: { 'fill-color': renk('--vurgu-yumusak', '#2b2414'), 'fill-opacity': BELIR as unknown as number },
+      paint: { 'fill-color': renk('--harita-park', '#d4ebc5'), 'fill-opacity': BELIR as unknown as number },
     },
     {
       id: 'sokak-su',
@@ -140,7 +140,7 @@ export function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpeci
       source: 'sokak',
       'source-layer': 'water',
       minzoom: 8,
-      paint: { 'fill-color': renk('--harita-deniz', '#0b1416'), 'fill-opacity': BELIR as unknown as number },
+      paint: { 'fill-color': renk('--harita-su', '#a8cdf0'), 'fill-opacity': BELIR as unknown as number },
     },
     {
       id: 'sokak-bina',
@@ -148,7 +148,7 @@ export function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpeci
       source: 'sokak',
       'source-layer': 'building',
       minzoom: 13,
-      paint: { 'fill-color': renk('--cizgi', '#2a3539'), 'fill-opacity': 0.9 },
+      paint: { 'fill-color': renk('--harita-bina', '#e2ddd5'), 'fill-opacity': 0.9 },
     },
     {
       id: 'sokak-yol-kenar',
@@ -158,7 +158,7 @@ export function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpeci
       minzoom: 9,
       filter: ['match', ['get', 'class'], ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor'], true, false],
       layout: { 'line-cap': 'round', 'line-join': 'round' },
-      paint: { 'line-color': renk('--cizgi-kalin', '#3a474c'), 'line-width': yolGenisligi(1.5) },
+      paint: { 'line-color': renk('--harita-yol-kenar', '#d3cdc2'), 'line-width': yolGenisligi(1.5) },
     },
     {
       id: 'sokak-yol',
@@ -169,7 +169,7 @@ export function sokakKatmanlari(renk: Secenekler['renk']): maplibregl.LayerSpeci
       filter: ['match', ['get', 'class'], ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor'], true, false],
       layout: { 'line-cap': 'round', 'line-join': 'round' },
       paint: {
-        'line-color': ['case', anaYol, renk('--odul-yumusak', '#2b2414'), renk('--zemin-kart', '#161d20')] as unknown as string,
+        'line-color': ['case', anaYol, renk('--harita-ana-yol', '#fde6a2'), renk('--harita-yol', '#ffffff')] as unknown as string,
         'line-width': yolGenisligi(1),
       },
     },
@@ -287,7 +287,7 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
           sokak: { type: 'vector', url: 'https://tiles.openfreemap.org/planet', attribution: ALTLIK_ATFI },
         },
         layers: [
-          { id: 'deniz', type: 'background', paint: { 'background-color': renk('--harita-deniz', '#0b1416') } },
+          { id: 'deniz', type: 'background', paint: { 'background-color': renk('--harita-deniz', '#a8cdf0') } },
           {
             id: 'il-dolgu',
             type: 'fill',
@@ -300,15 +300,15 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
                 ['linear'],
                 ['zoom'],
                 8,
-                ['case', eserliMi, renk('--harita-vurgulu', '#2b2414'), renk('--harita-kara', '#1d2629')],
+                ['case', eserliMi, renk('--harita-vurgulu', '#fff1cc'), renk('--harita-kara', '#f5f2ee')],
                 10,
-                renk('--harita-kara', '#1d2629'),
+                renk('--harita-kara', '#f5f2ee'),
               ] as unknown as string,
             },
           },
           ...sokakKatmanlari(renk),
           ...ustKatmanlar.slice(0, 2),
-          { id: 'il-sinir', type: 'line', source: 'iller', paint: { 'line-color': renk('--harita-sinir', '#3a474c'), 'line-width': 0.8 } },
+          { id: 'il-sinir', type: 'line', source: 'iller', paint: { 'line-color': renk('--harita-sinir', '#c9c3b8'), 'line-width': 0.8 } },
           ...ustKatmanlar.slice(2),
         ],
       };
