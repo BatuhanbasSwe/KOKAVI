@@ -378,8 +378,15 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
     if (!sayi || sayi.toplam === 0) continue;
     const d = isaretciDugmesi('hm-ilce');
     d.style.setProperty('--boyut', `${Math.round(30 + 26 * Math.sqrt(sayi.toplam / enBuyuk))}px`);
-    d.append(ogeYap('span', 'hm-ilce__sayi', String(sayi.toplam)), ogeYap('span', 'hm-ilce__ad', p.ad));
-    if (sayi.ders > 0) d.classList.add('hm-ilce--dersli');
+    // Ders eseri olmayan ilçenin eserleri yalnızca Meraklısına arşivinde; arşivde
+    // koordinat yok. Bu balon eser seviyesinde de görünür kalır (yoksa yakınlaşınca
+    // harita boş kalır) ve anlamı yazıyla da söylenir: "· arşiv".
+    const arsivde = sayi.ders === 0;
+    d.append(
+      ogeYap('span', 'hm-ilce__sayi', String(sayi.toplam)),
+      ogeYap('span', 'hm-ilce__ad', arsivde ? `${p.ad} · arşiv` : p.ad),
+    );
+    d.classList.add(arsivde ? 'hm-ilce--arsiv' : 'hm-ilce--dersli');
     const k = kutu(f.geometry);
     // Küçük balon büyüğün altında kalmasın: sayısı az olan öne çıkar.
     const zIndex = String(1000 - sayi.toplam);
@@ -394,10 +401,16 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
       : [p.etiketLng, p.etiketLat];
     d.addEventListener('click', () => {
       const kamera = harita.cameraForBounds(k, { padding: 40 });
-      harita.easeTo({ center: odak, zoom: Math.max(kamera?.zoom ?? 0, ESER_ESIGI + 0.5), duration: 900 });
+      if (arsivde) {
+        // Haritada gösterilecek işaret yok: ilçeyi göster, eser seviyesine inme.
+        harita.easeTo({ center: [p.etiketLng, p.etiketLat], zoom: Math.min(kamera?.zoom ?? ESER_ESIGI, ESER_ESIGI - 0.4), duration: 700 });
+      } else {
+        harita.easeTo({ center: odak, zoom: Math.max(kamera?.zoom ?? 0, ESER_ESIGI + 0.5), duration: 900 });
+      }
       const ic = ogeYap('div', 'hm-popup');
       ic.append(ogeYap('strong', 'hm-popup__ad', `${p.ad}`));
       ic.append(ogeYap('span', 'hm-popup__alt', `${sayi.toplam} vakıf eseri · ${sayi.ders} ders`));
+      if (arsivde) ic.append(ogeYap('span', 'hm-popup__not', 'Bu eserlerin konumu henüz haritada yok; bilgileri arşivde.'));
       const a = ogeYap('a', 'hm-popup__bag', 'Meraklısına: arşivde gör →');
       a.href = `#/arsiv?il=${encodeURIComponent(p.il)}&ilce=${encodeURIComponent(p.ad)}`;
       ic.append(a);

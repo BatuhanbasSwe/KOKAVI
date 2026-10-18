@@ -79,6 +79,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
 - [ ] **Sahada mührü telefonda denemek.** Konum yalnızca https üzerinde çalışır; Vercel sürümünde denenmeli.
 - [ ] **PDF'lerden resmi içerik aktarmak.** Vakıf Katılım PDF'lerindeki metin ve görseller `data/` dosyalarına aktarılacak. Eser listesi yalnızca PDF'teki eserlerle sınırlanacak.
 - [ ] **Admin ve öğretmen paneli.** Şu an `#/panel` ve `#/ogretmen` rotaları var ve Profil'den açılıyor. Ayrı giriş noktası (`/admin`, `/ogretmen`) isteniyor mu? Takım karar verecek.
+- [ ] **Arşiv eserlerine konum.** Haritada fotoğraflı işaret yalnızca 57 ders eserinde var; arşivdeki diğer eserlerin (`public/arsiv/liste.json`) koordinatı yok. Bu ilçeler haritada "· arşiv" balonuyla gösteriliyor. Koordinatlar Vakıf Katılım PDF'lerinden ya da OpenStreetMap'ten kaynaklı eklenebilir.
 - [ ] **Canlı yarışma için kalıcı oda.** Odalar şu an bellekte tutuluyor; Vercel'de bölünebilir. Ya final demosu `npm run dev:lan` ile laptoptan yapılır ya da odalar veritabanına taşınır.
 - [ ] **İçerik okuması.** 57 dersin metinlerini bir insan 10–12 yaş diline göre okumalı.
 - [ ] **Hatay teyidi.** Deprem sonrası durumu "doğrulanmadı" olarak işaretli eserler için mentörden teyit istenmeli.

@@ -297,7 +297,7 @@
 .harita-kap--bolge[data-seviye='ilce'] .hm-eser,
 .harita-kap--bolge[data-seviye='ilce'] .hm-kume,
 .harita-kap--bolge[data-seviye='eser'] .hm-il,
-.harita-kap--bolge[data-seviye='eser'] .hm-ilce {
+.harita-kap--bolge[data-seviye='eser'] .hm-ilce:not(.hm-ilce--arsiv) {
   display: none;
 }
 
