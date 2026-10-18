@@ -21,6 +21,7 @@ Takım planından ([docs/plan/ILERLEYIS.md](https://github.com/BatuhanbasSwe/KOK
 - [x] **Elmas harcama + veli onayı (simüle).** Çarşı'da avatar, defter teması ve ek ipucu alınır. Her harcamadan önce yazıyla bir çarpma sorusu sorulur; onay 10 dakika geçerlidir. Ayarlar'dan kapatılabilir ama kapatmak da onay ister. "Ek sefer" ifadesinin yorumu: [docs/KARARLAR.md](docs/KARARLAR.md) §4. Test: `tests/veli-onayi.test.ts`, `tests/veli-kapisi.test.tsx`
 - [x] **Belge düzeltmeleri.** `docs/DEMO.md`'de şehirler (Hatay, Konya, Bursa), Hatay eser sayısı (12) ve erişilebilirlik kapsamı güncellendi. `docs/KARARLAR.md` §5'e PostgreSQL yerine PGlite, PostGIS yerine cihazda mesafe ve gömülü GeoJSON gerekçesi yazıldı. (Demo senaryosunun baştan yazımı aşağıda ayrı madde.)
 - [x] **npm audit açıkları.** Sunucu paketi (`@fastify/static`) dahil düzeltildi. `npm audit` sonucu: 0 açık.
+  - ⚠️ 18 Ekim: bu güncellemeden sonra Vercel'deki canlı API her istekte çöküyordu (`ERR_REQUIRE_ESM`): `@fastify/static` 10, ES modülü olan `content-disposition` 3'ü `require()` ile yüklüyor; yerel Node buna izin verdiği için görünmedi. Düzeltme: `package.json` `overrides` ile `content-disposition` 2.0.1 (aynı API, CommonJS) ve `@fastify/static` yalnızca gerektiğinde yükleniyor. Test: `tests/vercel-paketi.test.ts`.
 
 ## Başvuruya göre ek tespitler
 

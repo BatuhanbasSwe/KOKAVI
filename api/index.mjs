@@ -2726,7 +2726,6 @@ import cors from "@fastify/cors";
 import cookie from "@fastify/cookie";
 import helmet from "@fastify/helmet";
 import rateLimit from "@fastify/rate-limit";
-import fastifyStatic from "@fastify/static";
 import { existsSync } from "node:fs";
 import { fileURLToPath as fileURLToPath2 } from "node:url";
 import { dirname as dirname2, join as join2 } from "node:path";
@@ -2804,6 +2803,7 @@ async function sunucuKur(secenekler = {}) {
   await app.register(yonetimUclari);
   const distYolu = join2(__dirname2, "..", "dist");
   if (existsSync(distYolu)) {
+    const { default: fastifyStatic } = await import("@fastify/static");
     await app.register(fastifyStatic, { root: distYolu });
     app.setNotFoundHandler((istek, cevap) => {
       if (istek.url.startsWith("/api")) {

@@ -12,7 +12,6 @@ import cors from '@fastify/cors';
 import cookie from '@fastify/cookie';
 import helmet from '@fastify/helmet';
 import rateLimit from '@fastify/rate-limit';
-import fastifyStatic from '@fastify/static';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -125,9 +124,14 @@ export async function sunucuKur(secenekler: { sor?: SorSecenekleri } = {}) {
   await app.register(sorUclari, secenekler.sor ?? {});
   await app.register(yonetimUclari);
 
-  // Üretim derlemesi varsa istemciyi de servis et.
+  // Üretim derlemesi varsa istemciyi de servis et (yerel `npm start`).
+  // Dinamik içe aktarım: @fastify/static 10, ES modülü olan content-disposition
+  // 3'ü require() ile yükler; require(esm) desteklemeyen Node'da (Vercel) üst
+  // düzey içe aktarım fonksiyonu açılışta düşürür (ERR_REQUIRE_ESM). Vercel'de
+  // dist/ yoktur (dosyaları CDN sunar), paket hiç yüklenmez.
   const distYolu = join(__dirname, '..', 'dist');
   if (existsSync(distYolu)) {
+    const { default: fastifyStatic } = await import('@fastify/static');
     await app.register(fastifyStatic, { root: distYolu });
     app.setNotFoundHandler((istek, cevap) => {
       // SPA yönlendirmesi: /api dışındaki yollar index.html'e düşer.

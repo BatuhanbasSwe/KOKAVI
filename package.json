@@ -56,5 +56,10 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "overrides": {
+    "@fastify/static": {
+      "content-disposition": "2.0.1"
+    }
   }
 }
