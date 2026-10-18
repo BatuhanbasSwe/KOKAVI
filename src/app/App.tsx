@@ -22,6 +22,7 @@ import { KorumaliPanel } from '../features/panel/KorumaliPanel';
 import { OgretmenPaneli, SinifKoduGirisi } from '../features/ogretmen';
 import { GununEseriSayfasi } from '../features/gunun-eseri/GununEseriSayfasi';
 import { RozetBildirimi } from '../features/rozetler/Rozetler';
+import { ArtanSayi } from './ArtanSayi';
 import { HayratAkarSayfasi } from '../features/hayrat-akar/HayratAkarSayfasi';
 import { HatalarSayfasi } from '../features/hatalar/HatalarSayfasi';
 import { ZamanTuneliSayfasi } from '../features/zaman/ZamanTuneliSayfasi';
@@ -201,7 +202,7 @@ function Kabuk() {
               >
                 <IkonAlev />
                 <span className="sr-only">Keşif serisi:</span>
-                {ilerleme.seri.gunSayisi}
+                <ArtanSayi deger={ilerleme.seri.gunSayisi} anahtar="seri" />
                 <span className="gosterge__birim"> gün</span>
                 <span className="sr-only"> — takvimi aç</span>
               </a>
@@ -213,7 +214,7 @@ function Kabuk() {
               >
                 <IkonElmas />
                 <span className="sr-only">Elmas:</span>
-                {ilerleme.elmas}
+                <ArtanSayi deger={ilerleme.elmas} anahtar="elmas" />
                 <span className="sr-only"> — Vakıf Çarşısı'na git</span>
               </a>
               <a

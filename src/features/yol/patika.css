@@ -422,3 +422,57 @@ a.patika__baglanti:active .patika__cerceve {
 [data-tema='yuksek-kontrast'] .ortam-zemin {
   display: none;
 }
+
+/* --- Ünite mührü: bütün dersler bitince başlıkta "Tamam" mührü ---------------
+   Durum metinle de söylenir (sayaç "11/11 ders tamamlandı"); mühür süstür. */
+.patika-unite__muhur {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px 3px 8px;
+  border: 2px solid var(--vurgu-koyu);
+  border-radius: var(--kose-tam);
+  color: var(--vurgu-koyu);
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: rotate(-8deg);
+  box-shadow: inset 0 0 0 2px var(--zemin), inset 0 0 0 3px var(--vurgu-koyu);
+}
+.patika-unite__muhur--bekle {
+  visibility: hidden;
+}
+.patika-unite__muhur--bas {
+  animation: muhur-bas 700ms cubic-bezier(0.2, 0.9, 0.3, 1.2) 200ms both;
+}
+@keyframes muhur-bas {
+  0% {
+    opacity: 0;
+    transform: scale(2.6) rotate(-30deg);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(0.88) rotate(-6deg);
+  }
+  75% {
+    transform: scale(1.06) rotate(-9deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-8deg);
+  }
+}
+.patika-unite:has(.patika-unite__muhur--bas) .patika-unite__baslik {
+  animation: baslik-sars 380ms ease-out 560ms;
+}
+@keyframes baslik-sars {
+  25% {
+    transform: translateY(3px);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}

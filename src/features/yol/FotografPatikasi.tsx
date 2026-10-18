@@ -128,6 +128,11 @@ export function FotografPatikasi({
   const kimdenSira = sira(sahne.kimden);
   const yeniAcildi = sahne.yeniAcilan.includes(unite.uniteId);
   const goruldu = useGoruldu(bolum, yeniAcildi);
+  // Ünite mührü: bütün dersler bittiyse başlıkta durur; bu ziyarette bittiyse basılır.
+  const bitti = unite.toplamSayi > 0 && unite.tamamlananSayi === unite.toplamSayi;
+  const yeniBitti = sahne.yeniBiten.includes(unite.uniteId);
+  const baslik = useRef<HTMLElement>(null);
+  const muhurGoruldu = useGoruldu(baslik, yeniBitti);
   // Köstik yürürken duraktaki asıl Köstik gizlenir, varınca yeniden belirir.
   const [vardi, setVardi] = useState(false);
   const yuruyor = kimeSira >= 0 && !vardi;
@@ -238,7 +243,7 @@ export function FotografPatikasi({
       className={`patika-unite${unite.kilitli ? ' patika-unite--kilitli' : ''}${yeniAcildi ? (goruldu ? ' patika-unite--aciliyor' : ' patika-unite--acilacak') : ''}`}
       aria-labelledby={`unite-${unite.uniteId}`}
     >
-      <header className="patika-unite__baslik">
+      <header ref={baslik} className="patika-unite__baslik">
         <div className="patika-unite__satir">
           <h3 id={`unite-${unite.uniteId}`}>{unite.ad}</h3>
           <span className="patika-unite__sayac">
@@ -246,6 +251,15 @@ export function FotografPatikasi({
             {unite.tamamlananSayi}/{unite.toplamSayi}
             <span className="sr-only">{unite.kilitli ? ' (kilitli)' : ' ders tamamlandı'}</span>
           </span>
+          {bitti && (
+            <span
+              className={`patika-unite__muhur${yeniBitti ? (muhurGoruldu ? ' patika-unite__muhur--bas' : ' patika-unite__muhur--bekle') : ''}`}
+              aria-hidden="true"
+            >
+              <IkonTik boyut={14} />
+              Tamam
+            </span>
+          )}
         </div>
         <div
           className="patika-unite__cubuk"

@@ -829,3 +829,76 @@ select.secim-dugmesi {
     transform: none;
   }
 }
+
+/* ===========================================================================
+   Sayarak artan sayı (ArtanSayi): üst çubukta elmas ve seri artınca sayaç
+   zıplar, "+N" süzülür, seri alevi tutuşur. Hareketi azalt genel kuralı durdurur.
+   =========================================================================== */
+.artan-sayi {
+  position: relative;
+  display: inline-block;
+}
+.artan-sayi--zipla > span:first-child {
+  display: inline-block;
+  animation: sayi-zipla 520ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes sayi-zipla {
+  40% {
+    transform: scale(1.35) translateY(-2px);
+  }
+}
+.artan-sayi__arti {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  color: var(--vurgu-koyu);
+  white-space: nowrap;
+  pointer-events: none;
+  animation: arti-suzul 1300ms ease-out both;
+}
+@keyframes arti-suzul {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 6px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -2px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -22px) scale(1);
+  }
+}
+.gosterge--seri:has(.artan-sayi--zipla) svg {
+  transform-origin: 50% 90%;
+  animation: alev-tutus 900ms ease-out;
+}
+.gosterge--elmas:has(.artan-sayi--zipla) svg {
+  animation: elmas-parla 700ms ease-out;
+}
+@keyframes alev-tutus {
+  0% {
+    transform: scale(0.6);
+    filter: none;
+  }
+  35% {
+    transform: scale(1.45) rotate(-8deg);
+    filter: drop-shadow(0 0 6px var(--vurgu));
+  }
+  60% {
+    transform: scale(1.1) rotate(6deg);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes elmas-parla {
+  40% {
+    transform: scale(1.4) rotate(12deg);
+    filter: drop-shadow(0 0 6px var(--ikincil));
+  }
+}

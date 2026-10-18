@@ -1396,3 +1396,36 @@
     animation: none;
   }
 }
+
+/* --- Ders sonu: elmas yağmuru ve seri alevi ---------------------------------
+   Elmas taneleri yıldızdan "Elmas" kartına uçar (DersSonu, Web Animations).
+   Katman sabit, tıklanamaz, ekran okuyucudan gizli. */
+.elmas-yagmuru {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+.elmas-yagmuru__tane {
+  position: absolute;
+  top: -11px;
+  left: -11px;
+  color: var(--ikincil);
+  opacity: 0;
+  filter: drop-shadow(0 2px 6px var(--karartma));
+}
+.ders-sonu__kazanc--seri svg {
+  transform-origin: 50% 90%;
+  animation: alev-titre 700ms ease-in-out 1000ms 3;
+}
+@keyframes alev-titre {
+  25% {
+    transform: scale(1.25) rotate(-7deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(-3deg);
+  }
+}

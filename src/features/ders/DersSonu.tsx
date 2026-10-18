@@ -9,6 +9,8 @@
  * "hareketi azalt" ayarında kapanır (tokens.css).
  */
 import { useEffect, useRef } from 'react';
+import { ArtanSayi } from '../../app/ArtanSayi';
+import { canlandirilabilir } from '../../app/hareket';
 import type { EserFotograf } from '@shared/types';
 import { IkonDefter, IkonElmas, IkonAlev, IkonTekrar, IkonTur } from '../../app/Ikonlar';
 import { kucukKapak } from './EserGalerisi';
@@ -47,7 +49,46 @@ export function DersSonu({
   onDevam,
 }: Props) {
   const baslik = useRef<HTMLHeadingElement>(null);
+  const kok = useRef<HTMLDivElement>(null);
   const cal = useEfekt();
+
+  // Elmas yağmuru: elmaslar yıldızdan fışkırıp "Elmas" kartına uçar; her
+  // varışta kart zıplar ve kartın sayısı 0'dan yukarı sayar (ArtanSayi).
+  const ELMAS_ADEDI = Math.min(8, Math.max(0, kazanilanElmas));
+  useEffect(() => {
+    const kap = kok.current;
+    if (!ELMAS_ADEDI || !kap || !canlandirilabilir(kap)) return;
+    const z = window.setTimeout(() => {
+      const yildiz = kap.querySelector('.ders-sonu__yildiz')?.getBoundingClientRect();
+      const kart = kap.querySelector<HTMLElement>('.ders-sonu__kazanc--elmas');
+      const hedef = kart?.querySelector('svg')?.getBoundingClientRect();
+      if (!yildiz || !kart || !hedef) return;
+      const sx = yildiz.left + yildiz.width / 2;
+      const sy = yildiz.top + yildiz.height / 2;
+      const tx = hedef.left + hedef.width / 2;
+      const ty = hedef.top + hedef.height / 2;
+      kap.querySelectorAll<HTMLElement>('.elmas-yagmuru__tane').forEach((tane, i) => {
+        const aci = (Math.PI * 2 * i) / ELMAS_ADEDI;
+        const dx = Math.cos(aci) * 70;
+        const dy = Math.sin(aci) * 50 - 30;
+        const ucus = tane.animate(
+          [
+            { transform: `translate(${sx}px, ${sy}px) scale(0.3)`, opacity: 0 },
+            { transform: `translate(${sx + dx}px, ${sy + dy}px) scale(1.15)`, opacity: 1, offset: 0.35 },
+            { transform: `translate(${tx}px, ${ty}px) scale(0.6)`, opacity: 1, offset: 0.92 },
+            { transform: `translate(${tx}px, ${ty}px) scale(0.4)`, opacity: 0 },
+          ],
+          { duration: 950, delay: i * 70, easing: 'cubic-bezier(0.45, 0, 0.3, 1)', fill: 'both' },
+        );
+        ucus.onfinish = () =>
+          kart.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.08)' }, { transform: 'scale(1)' }], {
+            duration: 220,
+            easing: 'ease-out',
+          });
+      });
+    }, 350);
+    return () => window.clearTimeout(z);
+  }, [ELMAS_ADEDI]);
   useEffect(() => {
     baslik.current?.focus();
     cal('kutlama');
@@ -59,8 +100,17 @@ export function DersSonu({
   const kisaAd = eserAdi.split(' (')[0];
 
   return (
-    <div className="ders-sonu">
+    <div className="ders-sonu" ref={kok}>
       <Konfeti />
+      {ELMAS_ADEDI > 0 && (
+        <div className="elmas-yagmuru" aria-hidden="true">
+          {Array.from({ length: ELMAS_ADEDI }, (_, i) => (
+            <span key={i} className="elmas-yagmuru__tane">
+              <IkonElmas boyut={22} />
+            </span>
+          ))}
+        </div>
+      )}
       <svg
         className="ders-sonu__yildiz"
         width="160"
@@ -96,7 +146,7 @@ export function DersSonu({
           <span className="ders-sonu__kazanc-ust">Elmas</span>
           <span className="ders-sonu__kazanc-deger">
             <IkonElmas boyut={22} />
-            {kazanilanElmas > 0 ? `+${kazanilanElmas}` : '0'}
+            {kazanilanElmas > 0 ? <ArtanSayi deger={kazanilanElmas} baslangic={0} onek="+" gecikme={900} sure={700} /> : '0'}
           </span>
         </li>
         <li className="ders-sonu__kazanc ders-sonu__kazanc--seri">
