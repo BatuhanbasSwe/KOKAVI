@@ -13,7 +13,12 @@ export const ALTLIK_ATFI = 'OpenFreeMap · © OpenMapTiles · © OpenStreetMap k
 
 let onbellek: Promise<maplibregl.StyleSpecification | null> | null = null;
 
-export function altlikYukle(sureMs = 4000): Promise<maplibregl.StyleSpecification | null> {
+/**
+ * 10 sn: mobil veride ilk açılışta harita motoru, worker ve veri de aynı anda
+ * iner (4 sn LTE'de yetmedi). İnternet yoksa istek hemen düşer, beklenmez;
+ * stil bir kez gelince PWA önbelleğinden (kokavi-harita-karo) anında gelir.
+ */
+export function altlikYukle(sureMs = 10_000): Promise<maplibregl.StyleSpecification | null> {
   onbellek ??= (async () => {
     const iptal = new AbortController();
     const zamanlayici = setTimeout(() => iptal.abort(), sureMs);
