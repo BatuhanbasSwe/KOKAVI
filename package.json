@@ -18,7 +18,8 @@
     "typecheck": "tsc -b --noEmit",
     "dogrula": "npm run typecheck && npm run test && npm run build",
     "build:vercel": "esbuild deploy/vercel-giris.ts --bundle --platform=node --format=esm --target=node20 --outfile=api/index.mjs --packages=external && cp server/db/schema.sql server/db/auth-schema.sql api/",
-    "korpus": "tsx scripts/korpus-uret.ts"
+    "korpus": "tsx scripts/korpus-uret.ts",
+    "soru:taslak": "tsx scripts/soru-taslak.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.135.0",

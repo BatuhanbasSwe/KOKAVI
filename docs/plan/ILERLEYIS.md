@@ -10,7 +10,7 @@
 | 1 | Dinle ve seç egzersizi | Yeni tip derslerde çıkıyor, testi var, ekran okuyucuyla da çözülebiliyor | ⬜ |
 | 2 | Toplu TTS ses dosyaları | Her dersin ses dosyası var, internet kapalıyken çalıyor | ⬜ |
 | 3 | Erişilebilirlik doğrulaması | axe 0 ihlal; kontrast/yazı boyutu/sessiz modla tam ders bitiyor | ⬜ |
-| 4 | AI soru üretimi hattı | Script/panel taslak soru üretiyor, insan onayı olmadan yayına girmiyor | ⬜ |
+| 4 | AI soru üretimi hattı | Script/panel taslak soru üretiyor, insan onayı olmadan yayına girmiyor | ✅ |
 | 5 | Elmas harcama + veli onayı (simüle) | Elmasla şehir/ek sefer açılıyor; onay ekranı var | ⬜ |
 | 6 | Belge düzeltmeleri | DEMO.md şehirleri güncel; KARARLAR.md'de PostGIS gerekçesi | ⬜ |
 
