@@ -136,8 +136,8 @@ Gerekçe: `docs/KARARLAR.md` §17.
    - Bizim katmanlar (il vurgusu, ilçe yoğunluğu, vakıf ağı) yazıların altında kalıyor, adlar her zaman okunuyor.
 3. **Neden Google Maps değil:** API anahtarı ve kredi kartı ister, çocuğun cihazından Google'a istek gider ve çevrimdışı çalışmaz (Batuhan'ın kararı). Liberty anahtarsız, kotasız ve izlemesiz.
 4. **Her durumda beyaz:** Liberty yüklenemezse (internet yok, yavaş ağ) devreye giren yedek altlık da artık açık renkli. Harita jetonları `src/styles/tokens.css`'te.
-6. **"Yakınlaşınca yeni işaret gelmiyor" hatası:** ilçe balonundaki sayı arşivdeki bütün eserleri sayıyor, ama haritada işaret yalnızca konumu bilinen 57 ders eseri için var. Yalnızca arşiv eseri olan bir ilçeye (ör. Doğanhisar) yakınlaşınca balon kayboluyor, yerine bir şey gelmiyordu. Artık bu balonlar her yakınlıkta görünür kalıyor, adlarının yanında "· arşiv" yazıyor. Tıklayınca harita boş bir yere inmiyor; kartta "konumları henüz haritada yok" notu ve arşiv bağlantısı çıkıyor.
 5. **Bekleme süresi:** mobil veride ilk açılış için 4 saniyeden 10 saniyeye çıkarıldı. Stil bir kez gelince PWA önbelleğinden anında açılıyor.
+6. **"Yakınlaşınca yeni işaret gelmiyor" hatası:** ilçe balonundaki sayı arşivdeki bütün eserleri sayıyor, ama haritada işaret yalnızca konumu bilinen 57 ders eseri için var. Yalnızca arşiv eseri olan bir ilçeye (ör. Doğanhisar) yakınlaşınca balon kayboluyor, yerine bir şey gelmiyordu. Artık bu balonlar her yakınlıkta görünür kalıyor, adlarının yanında "· arşiv" yazıyor. Tıklayınca harita boş bir yere inmiyor; kartta "konumları henüz haritada yok" notu ve arşiv bağlantısı çıkıyor.
 
 ## 9. Canlı site (Vercel) onarımı
 
