@@ -5,7 +5,7 @@
  * egzersiz tipi sırayla gelebilir. Bu bileşen sıradaki egzersizi tipine göre
  * doğru bileşene yönlendirir.
  */
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import type { Egzersiz } from '@shared/types';
 import { EgzersizKabugu, IpucuBildirimi } from './EgzersizKabugu';
 import { IkonAlev, IkonTekrar } from '../../app/Ikonlar';
@@ -138,7 +138,7 @@ function TekrarEgzersizi({
 export function KomboBandi({ kombo }: { kombo: number }) {
   if (kombo < 2) return null;
   return (
-    <p className="ders-kombo" key={kombo}>
+    <p className="ders-kombo" key={kombo} style={{ '--kombo-olcek': 1 + Math.min(kombo - 2, 5) * 0.12 } as CSSProperties}>
       <span className="ders-kombo__alev" aria-hidden="true">
         <IkonAlev boyut={22} />
       </span>

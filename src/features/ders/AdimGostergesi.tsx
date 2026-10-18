@@ -48,7 +48,10 @@ export function AdimGostergesi({ aktifAdim }: { aktifAdim: number }) {
         aria-valuetext={`Adım ${aktifAdim}/${toplam}: ${suanki.ad}`}
       >
         <div className="cubuk" aria-hidden="true">
-          <div className="cubuk__dolgu cubuk__dolgu--d1" style={{ width: `${oran}%` }} />
+          <div className="cubuk__dolgu cubuk__dolgu--d1" style={{ width: `${oran}%` }}>
+            {/* Her yeni adımda parıltı yeniden geçer (anahtar değişir). */}
+            <span key={aktifAdim} className="cubuk__parilti" />
+          </div>
         </div>
       </div>
 

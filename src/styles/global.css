@@ -318,7 +318,7 @@ svg {
 }
 
 .secenek:active:not(:disabled) {
-  transform: scale(0.985);
+  transform: scale(0.97);
 }
 
 .secenek[aria-pressed='true'],
@@ -328,13 +328,66 @@ svg {
 }
 
 .secenek.secenek--dogru {
+  position: relative;
   border-color: var(--basari);
   background: var(--basari-yumusak);
+  animation: secenek-dogru 460ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Doğru: sağ kenardaki noktadan kıvılcımlar saçılır (yalnızca süs). */
+.secenek.secenek--dogru::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 28px;
+  width: 8px;
+  height: 8px;
+  margin: -4px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: kivilcim 650ms ease-out both;
+}
+@keyframes secenek-dogru {
+  45% {
+    transform: scale(1.03);
+  }
+}
+@keyframes kivilcim {
+  0% {
+    opacity: 1;
+    box-shadow:
+      0 0 0 0 var(--basari),
+      0 0 0 0 var(--odul),
+      0 0 0 0 var(--basari),
+      0 0 0 0 var(--odul),
+      0 0 0 0 var(--basari),
+      0 0 0 0 var(--odul);
+  }
+  100% {
+    opacity: 0;
+    box-shadow:
+      0 -38px 0 0 var(--basari),
+      33px -19px 0 0 var(--odul),
+      33px 19px 0 0 var(--basari),
+      0 38px 0 0 var(--odul),
+      -33px 19px 0 0 var(--basari),
+      -33px -19px 0 0 var(--odul);
+  }
 }
 
 .secenek.secenek--yanlis {
   border-color: var(--uyari);
   background: var(--uyari-yumusak);
+  /* Ceza değil, tepki: hafifçe yana kayar; ipucu zaten gelir. */
+  animation: secenek-durt 380ms ease-in-out;
+}
+@keyframes secenek-durt {
+  25% {
+    transform: translateX(-4px);
+  }
+  60% {
+    transform: translateX(3px);
+  }
 }
 
 .secenek:disabled {
@@ -484,6 +537,30 @@ svg {
   height: 100%;
   border-radius: var(--kose-tam);
   transition: width var(--gecis-normal) ease-out;
+}
+
+/* Adım ilerleme çubuğu: her yeni adımda üzerinden bir parıltı geçer. */
+.cubuk__dolgu:has(.cubuk__parilti) {
+  position: relative;
+  overflow: hidden;
+}
+.cubuk__parilti {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    color-mix(in srgb, var(--metin) 55%, transparent) 50%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+  animation: parilti-gec 900ms ease-out 250ms both;
+  pointer-events: none;
+}
+@keyframes parilti-gec {
+  to {
+    transform: translateX(100%);
+  }
 }
 
 .cubuk__dolgu--d1 {
