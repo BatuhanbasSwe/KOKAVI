@@ -21,7 +21,7 @@ describe('tema göçü (açık varsayılandan koyu varsayılana)', () => {
   });
 
   it('depolama kapalıysa ayar olduğu gibi döner', () => {
-    const casus = vi.spyOn(localStorage, 'getItem').mockImplementation(() => {
+    const casus = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new Error('kapalı');
     });
     try {
