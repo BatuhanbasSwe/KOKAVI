@@ -2,6 +2,7 @@
 
 > **Takımın ortak ilerleme listesi.** İnsan ya da AI ajanı fark etmez: işe başlamadan önce bunu oku.
 > Son güncelleme: 18 Ekim 2026 · Final: 7–8 Kasım 2026
+> Son çalışma raporu: [docs/CALISMA-RAPORU-2026-10-18.md](docs/CALISMA-RAPORU-2026-10-18.md) (18 Ekim'de yapılan her şey).
 >
 > **Kural:** Bir işi bitiren, kutusunu `[x]` yapar ve aynı commit'te bu dosyayı günceller.
 > Bir işe başlayan, satırın sonuna adını yazar (`— 🔧 Ad`). Böylece aynı işe iki kişi girmez.
@@ -60,6 +61,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - Cevaplar yalnızca kaynak metinlerden üretilir ve her cümlede kaynak numarası olur. Kaynaksız cümle silinir, gerekirse cevap "bilmiyorum"a düşer.
   - Sorudaki kişisel veri gizlenir ve soru günlüğe yazılmaz.
   - Kod: `server/sor/`, `POST /api/sor`.
+- [x] **Kavram soruları (sözlük).** "Vakıf nedir?", "Akar ne demek?" gibi sorular için derslerin 112 kavram açıklaması korpusta; tanım sorularında öne alınıyor. Kod: `server/sor/sozluk.ts`.
 - [x] **Prompt injection kalkanı ve toplu sorular.** Saldırı kalıpları modele gitmez, alakasız sorular kibarca geri çevrilir, cevaptaki her yıl kaynakta olmalı, sızıntı denetimi var. "Bursa'daki en eski 3 eser" gibi sıralama soruları cevaplanıyor. Gerekçe: [docs/KARARLAR.md](docs/KARARLAR.md) §17. Test: `tests/sor-kalkan.test.ts`
 - [x] **Hâlâ yaşayan vakıflar.** Bugün hâlâ işleyen 17 eser var; her birinde kaynak metinden birebir alıntı bulunur. Rota: `#/kesfet/yasayan`. Ders ve arşiv sayfasında "bugün hâlâ…" rozeti çıkar.
 - [x] **Sahada mühür ("Buradayım").** Konum bir kez ve yalnızca cihazda ölçülür. Esere 150 m içindeysen deftere damga basılır. Konum saklanmaz.
@@ -72,7 +74,6 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - Yerelde: `.env` dosyasına anahtar satırı yazılır (`.env.example` dosyasına bak). `.env.example`'a değil: o dosya git'e girer.
   - 18 Ekim: Batuhan'ın makinesinde Gemini anahtarıyla uçtan uca denendi; kaynaklı cevaplar doğru geliyor. Vercel'e henüz eklenmedi.
   - ⚠️ Gemini ücretsiz kotası model başına günde yalnızca 20 istek (18 Ekim'de iki model için de doldu). Finalde bir sınıf birkaç dakikada tüketir: ücretli kota ya da Claude gerekir.
-- [ ] **Genel kavram soruları.** "Vakıf nedir?", "Akar ne demek?" gibi sorular için korpusta tanım metni yok; Köstik "bilmiyorum" diyor. Derslerin Bağlam adımındaki kaynaklı açıklamalar korpusa eklenebilir.
   - Vercel'de: Settings → Environment Variables.
   - Anahtar asla koda, commit'e ya da sohbete yazılmaz.
 - [ ] **Sahada mührü telefonda denemek.** Konum yalnızca https üzerinde çalışır; Vercel sürümünde denenmeli.
