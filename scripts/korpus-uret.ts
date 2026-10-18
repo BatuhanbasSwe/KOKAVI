@@ -31,6 +31,7 @@ export interface Parca {
 const ARASTIRMA = 'data/research';
 const ARSIV = 'public/arsiv';
 const DERSLER = 'data/content';
+const SOZLUK_KAYNAKLARI = 'data/sozluk-kaynaklari.json';
 const CIKTI = 'server/sor/korpus.json';
 const EN_UZUN = 600;
 
@@ -160,7 +161,8 @@ function cumleDuzeni(ad: string): string {
 /**
  * Sözlük: derslerin Bağlam adımındaki kavram açıklamaları (10-12 yaş dili).
  * "Vakıf nedir?", "Akar ne demek?" gibi sorular için (sozluk.ts). Künye
- * dürüsttür: açıklama bizim ders metnimizdir; yanında eserin kaynağı durur.
+ * dürüsttür: açıklama bizim ders metnimizdir; yanında eserin kaynağı, temel
+ * kavramlarda ayrıca doğrulanmış TDV İslâm Ansiklopedisi maddesi durur.
  * Aynı kavram birden çok derste geçerse ilk açıklama alınır.
  */
 interface DersKavrami {
@@ -170,6 +172,9 @@ interface DersKavrami {
 }
 
 function sozlukParcalari(): Parca[] {
+  // Temel kavramlar için doğrulanmış ansiklopedi künyesi (data/sozluk-kaynaklari.json).
+  const ansiklopedi = (JSON.parse(readFileSync(SOZLUK_KAYNAKLARI, 'utf8')) as { kavramlar: Record<string, { kunye: string }> })
+    .kavramlar;
   const eserler = new Map<string, ArastirmaEseri>();
   for (const dosya of readdirSync(ARASTIRMA).filter((f) => f.endsWith('.json'))) {
     for (const e of (JSON.parse(readFileSync(join(ARASTIRMA, dosya), 'utf8')) as { eserler: ArastirmaEseri[] }).eserler) {
@@ -196,7 +201,9 @@ function sozlukParcalari(): Parca[] {
           eserId: ders.eserId,
           eserAd: eser.ad,
           metin: `${ad} — Sözlük: ${k.aciklama}${k.ornek ? ` Örnek: ${k.ornek}` : ''}`,
-          kunye: `Kök Avı ders metni (${eser.ad}, Bağlam adımı); eser kaynağı: ${kaynak}`,
+          kunye:
+            `Kök Avı ders metni (${eser.ad}, Bağlam adımı); eser kaynağı: ${kaynak}` +
+            (ansiklopedi[kavram] ? `; kavram kaynağı: ${ansiklopedi[kavram]!.kunye}` : ''),
           alan: 'Sözlük',
           kavram,
         });

@@ -61,7 +61,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - Cevaplar yalnızca kaynak metinlerden üretilir ve her cümlede kaynak numarası olur. Kaynaksız cümle silinir, gerekirse cevap "bilmiyorum"a düşer.
   - Sorudaki kişisel veri gizlenir ve soru günlüğe yazılmaz.
   - Kod: `server/sor/`, `POST /api/sor`.
-- [x] **Kavram soruları (sözlük).** "Vakıf nedir?", "Akar ne demek?" gibi sorular için derslerin 112 kavram açıklaması korpusta; tanım sorularında öne alınıyor. Kod: `server/sor/sozluk.ts`.
+- [x] **Kavram soruları (sözlük).** "Vakıf nedir?", "Akar ne demek?" gibi sorular için derslerin 112 kavram açıklaması korpusta; tanım sorularında öne alınıyor. Kod: `server/sor/sozluk.ts`. Temel 6 kavramda TDV İslâm Ansiklopedisi künyesi de var (`data/sozluk-kaynaklari.json`, her madde okunup doğrulandı).
 - [x] **Prompt injection kalkanı ve toplu sorular.** Saldırı kalıpları modele gitmez, alakasız sorular kibarca geri çevrilir, cevaptaki her yıl kaynakta olmalı, sızıntı denetimi var. "Bursa'daki en eski 3 eser" gibi sıralama soruları cevaplanıyor. Gerekçe: [docs/KARARLAR.md](docs/KARARLAR.md) §17. Test: `tests/sor-kalkan.test.ts`
 - [x] **Hâlâ yaşayan vakıflar.** Bugün hâlâ işleyen 17 eser var; her birinde kaynak metinden birebir alıntı bulunur. Rota: `#/kesfet/yasayan`. Ders ve arşiv sayfasında "bugün hâlâ…" rozeti çıkar.
 - [x] **Sahada mühür ("Buradayım").** Konum bir kez ve yalnızca cihazda ölçülür. Esere 150 m içindeysen deftere damga basılır. Konum saklanmaz.

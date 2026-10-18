@@ -7,6 +7,7 @@ import { describe, expect, it } from 'vitest';
 import korpusJson from '../server/sor/korpus.json';
 import { bul, type Parca } from '../server/sor/bul';
 import { kavramParcalari, tanimSorusuMu } from '../server/sor/sozluk';
+import sozlukKaynaklari from '../data/sozluk-kaynaklari.json';
 
 const korpus = korpusJson as Parca[];
 const sozluk = korpus.filter((p) => p.alan === 'Sözlük');
@@ -23,6 +24,23 @@ describe('sözlük korpusu', () => {
     for (const k of ['vakif', 'vakfiye', 'hayrat', 'akar', 'mutevelli', 'kulliye', 'imaret']) {
       expect(sozluk.some((p) => p.kavram === k), k).toBe(true);
     }
+  });
+});
+
+describe('temel kavramların ansiklopedi künyesi', () => {
+  it('altı temel kavram TDV İslâm Ansiklopedisi maddesiyle; her kayıt adresli ve alıntılı', () => {
+    const { kavramlar: kaynaklar } = sozlukKaynaklari as {
+      kavramlar: Record<string, { kunye: string; adres: string; alinti: string }>;
+    };
+    expect(Object.keys(kaynaklar).sort()).toEqual(['akar', 'hayrat', 'kulliye', 'mutevelli', 'vakfiye', 'vakif']);
+    for (const [kavram, k] of Object.entries(kaynaklar)) {
+      expect(k.adres, kavram).toMatch(/^https:\/\/islamansiklopedisi\.org\.tr\//);
+      expect(k.alinti.length, kavram).toBeGreaterThan(20);
+      const parca = sozluk.find((p) => p.kavram === kavram)!;
+      expect(parca.kunye, kavram).toContain(`; kavram kaynağı: ${k.kunye}`);
+    }
+    // Diğer kavramlarda ansiklopedi künyesi uydurulmaz.
+    expect(sozluk.find((p) => p.kavram === 'kubbe')!.kunye).not.toContain('kavram kaynağı');
   });
 });
 

@@ -1,0 +1,35 @@
+{
+  "aciklama": "Sözlükteki temel vakıf kavramları için TDV İslâm Ansiklopedisi künyeleri. Her madde 18 Ekim 2026'da islamansiklopedisi.org.tr'den açılıp okundu; 'alinti' maddeden birebir alınmıştır ve ders metnimizdeki açıklamayla uyuştuğu kontrol edilmiştir. 'akar' kavramı için TDV'nin AKAR maddesi kullanılmadı: o madde kelimeyi genel hukuk anlamında ('taşınmaz mal') tanımlıyor, vakıf geliri anlamını içermiyor. 'hayrat' için ayrı madde yok. İkisi de VAKIF maddesinin 2. bölümünde açıklanıyor.",
+  "kavramlar": {
+    "vakif": {
+      "kunye": "Hacı Mehmet Günay, \"Vakıf\", TDV İslâm Ansiklopedisi, c. 42 (İstanbul 2012), s. 475-479",
+      "adres": "https://islamansiklopedisi.org.tr/vakif",
+      "alinti": "bir malın mâliki tarafından dinî, içtimaî ve hayrî bir gayeye ebediyen tahsisi"
+    },
+    "vakfiye": {
+      "kunye": "Osman Gazi Özgüdenli, \"Vakfiye\", TDV İslâm Ansiklopedisi, c. 42 (İstanbul 2012), s. 465-467",
+      "adres": "https://islamansiklopedisi.org.tr/vakfiye",
+      "alinti": "Bir vakfın kurucusu tarafından düzenlenen vakfın işleyişiyle ilgili resmî belge."
+    },
+    "mutevelli": {
+      "kunye": "Nazif Öztürk, \"Mütevelli\", TDV İslâm Ansiklopedisi, c. 32 (İstanbul 2006), s. 217-220",
+      "adres": "https://islamansiklopedisi.org.tr/mutevelli",
+      "alinti": "vakfın işlerini idare etmek üzere görevlendirilen kimseyi ifade eder."
+    },
+    "kulliye": {
+      "kunye": "Ahmet Vefa Çobanoğlu, \"Külliye\", TDV İslâm Ansiklopedisi, c. 26 (İstanbul 2002), s. 542-544",
+      "adres": "https://islamansiklopedisi.org.tr/kulliye",
+      "alinti": "Değişik fonksiyonlardaki birkaç yapının bir arada yer alması ile oluşan binalar topluluğu."
+    },
+    "akar": {
+      "kunye": "Bahaeddin Yediyıldız, \"Vakıf\" (2. bölüm), TDV İslâm Ansiklopedisi, c. 42 (İstanbul 2012), s. 479-486",
+      "adres": "https://islamansiklopedisi.org.tr/vakif",
+      "alinti": "Akar/akarat kurumun ekonomik gücünü, hayır/hayrat ise vakfın doğrudan kamu hizmeti sunan bölümünü"
+    },
+    "hayrat": {
+      "kunye": "Bahaeddin Yediyıldız, \"Vakıf\" (2. bölüm), TDV İslâm Ansiklopedisi, c. 42 (İstanbul 2012), s. 479-486",
+      "adres": "https://islamansiklopedisi.org.tr/vakif",
+      "alinti": "Akar/akarat kurumun ekonomik gücünü, hayır/hayrat ise vakfın doğrudan kamu hizmeti sunan bölümünü"
+    }
+  }
+}

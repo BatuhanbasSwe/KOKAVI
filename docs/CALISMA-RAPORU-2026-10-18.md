@@ -117,6 +117,11 @@ Gerekçe: `docs/KARARLAR.md` §17.
   - "Hangi" ile "han" karışmaz.
 - **Eser sorularına karışmaz:** "Ulucami kaç kubbeli?" sorusunda "kubbe" tanımı gerçek bilginin yerini almaz.
 - **Künye dürüst:** "Kök Avı ders metni (Eser, Bağlam adımı); eser kaynağı: …".
+- **Ansiklopedi künyesi:** 6 temel kavram (vakıf, vakfiye, mütevelli, külliye, akar, hayrat) için TDV İslâm Ansiklopedisi maddesi eklendi (`data/sozluk-kaynaklari.json`).
+  - Her madde sitesinden açılıp okundu; maddeden alınan alıntı da dosyada duruyor.
+  - TDV'nin "Akar" maddesi kullanılmadı: kelimeyi genel hukuk anlamında ("taşınmaz mal") tanımlıyor, bizim "vakfa gelir getiren mal" anlamımızı içermiyor.
+  - "Hayrat" adlı bir madde yok. Akar ve hayrat için "Vakıf" maddesinin 2. bölümü (Bahaeddin Yediyıldız) gösteriliyor; iki terimi tam bizim anlamımızla açıklıyor.
+  - Diğer kavramlara ansiklopedi künyesi uydurulmadı (testli).
 - **Canlı örnekler:**
   - "Vakıf nedir?" → "Bir malın gelirini iyilik için ayırmak demektir."
   - "Hayrat ile akar arasındaki fark nedir?" → iki kavram da kaynaklı açıklandı.
@@ -190,3 +195,4 @@ npm run dev          # http://localhost:5173
 | `c7d3f3c` | Harita stili bekleme süresi 10 sn |
 | `78c3cf2` | Kavram soruları (sözlük), cümle bazında ayıklama, Gemini 2.x uyumu |
 | `a3c436e` | Harita her temada beyaz |
+| (bu commit) | Temel 6 kavrama TDV İslâm Ansiklopedisi künyesi |
