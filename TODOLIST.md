@@ -66,7 +66,8 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
 
 - [ ] **Soru-cevap için API anahtarı eklemek.** ⏳ Batuhan. Anahtar olmadan Köstik sohbeti "şu an kapalı" der. Kod iki modeli de destekliyor: `GEMINI_API_KEY` varsa Gemini, yoksa `ANTHROPIC_API_KEY` ile Claude.
   - ⚠️ Gemini API şartları 18 yaş altına yönelik uygulamalarda kullanımı yasaklıyor; ücretsiz kotada veriler Google'ın modellerini eğitmekte kullanılıyor. Hangisinin kullanılacağına takım karar vermeli.
-  - Yerelde: `.env` dosyasına anahtar satırı yazılır (`.env.example` dosyasına bak).
+  - Yerelde: `.env` dosyasına anahtar satırı yazılır (`.env.example` dosyasına bak). `.env.example`'a değil: o dosya git'e girer.
+  - 18 Ekim: Batuhan'ın makinesinde Gemini anahtarıyla uçtan uca denendi; kaynaklı cevaplar doğru geliyor. Vercel'e henüz eklenmedi.
   - Vercel'de: Settings → Environment Variables.
   - Anahtar asla koda, commit'e ya da sohbete yazılmaz.
 - [ ] **Sahada mührü telefonda denemek.** Konum yalnızca https üzerinde çalışır; Vercel sürümünde denenmeli.

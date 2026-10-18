@@ -2193,41 +2193,89 @@ function dizinle(parcalar) {
   const belgeSiklik = /* @__PURE__ */ new Map();
   for (const t of terimler) for (const k of new Set(t)) belgeSiklik.set(k, (belgeSiklik.get(k) ?? 0) + 1);
   const ortUzunluk = terimler.reduce((s, t) => s + t.length, 0) / Math.max(1, terimler.length);
-  const dizin = { parcalar, terimler, belgeSiklik, ortUzunluk, adlar: parcalar.map((p) => normallestir(p.eserAd)) };
+  const adlar = parcalar.map((p) => normallestir(p.eserAd));
+  const dizin = { parcalar, terimler, belgeSiklik, ortUzunluk, adlar, ozgulluk: /* @__PURE__ */ new Map() };
   onbellek.set(parcalar, dizin);
   return dizin;
 }
+function ozgulMu(d, ad) {
+  let oran = d.ozgulluk.get(ad);
+  if (oran === void 0) {
+    const k = kok(ad);
+    let toplam = 0;
+    let kendi = 0;
+    d.terimler.forEach((t, i) => {
+      if (!t.includes(k)) return;
+      toplam++;
+      if (d.adlar[i].split(" ")[0] === ad) kendi++;
+    });
+    oran = toplam ? kendi / toplam : 0;
+    d.ozgulluk.set(ad, oran);
+  }
+  return oran >= OZGULLUK_ESIGI;
+}
+function bm25(d, i, kokler) {
+  const t = d.terimler[i];
+  const N2 = d.parcalar.length;
+  let puan = 0;
+  for (const q of kokler) {
+    const tf = t.filter((k) => k === q).length;
+    if (!tf) continue;
+    const df = d.belgeSiklik.get(q) ?? 0;
+    const idf = Math.log(1 + (N2 - df + 0.5) / (df + 0.5));
+    puan += idf * (tf * 2.2 / (tf + 1.2 * (0.25 + 0.75 * (t.length / d.ortUzunluk))));
+  }
+  return puan;
+}
+function adSorudaMi(ad, soruKelimeleri) {
+  if (ad.length <= 2) return false;
+  if (ad.length === 3) return soruKelimeleri.has(ad);
+  for (const k of soruKelimeleri) if (k.startsWith(ad)) return true;
+  return false;
+}
+function hedefleriBul(d, soruKelimeleri, eserId) {
+  const adaylar = /* @__PURE__ */ new Map();
+  d.parcalar.forEach((p, i) => {
+    if (adaylar.has(p.eserId)) return;
+    const ad = d.adlar[i].split(" ")[0];
+    if (p.eserId === eserId || adSorudaMi(ad, soruKelimeleri) && ozgulMu(d, ad)) {
+      adaylar.set(p.eserId, kelimeler(d.adlar[i]).map(kok));
+    }
+  });
+  const adKokleri = /* @__PURE__ */ new Set();
+  const sehirler = [...adaylar.keys()].map((id) => id.split("-")[0]).filter((s) => soruKelimeleri.has(s));
+  if (sehirler.length) {
+    for (const id of adaylar.keys()) if (!sehirler.includes(id.split("-")[0])) adaylar.delete(id);
+    for (const s of sehirler) adKokleri.add(kok(s));
+  }
+  const soruKokleri = new Set([...soruKelimeleri].map(kok));
+  const eslesen = (id) => adaylar.get(id).filter((k) => soruKokleri.has(k)).length;
+  const enIyi = Math.max(0, ...[...adaylar.keys()].map(eslesen));
+  const hedefler = new Set([...adaylar.keys()].filter((id) => id === eserId || eslesen(id) === enIyi));
+  for (const id of hedefler) for (const k of adaylar.get(id)) adKokleri.add(k);
+  return { hedefler, adKokleri };
+}
 function bul(parcalar, soru, eserId, n) {
   const d = dizinle(parcalar);
-  const soruKokleri = [...new Set(kelimeler(soru).map(kok))];
+  const soruKelimeleri = kelimeler(soru);
+  const soruKokleri = [...new Set(soruKelimeleri.map(kok))];
   if (soruKokleri.length === 0) return [];
-  const soruNorm = normallestir(soru);
-  const N2 = d.parcalar.length;
-  const puanlar = d.parcalar.map((p, i) => {
-    const t = d.terimler[i];
-    let puan = 0;
-    for (const q of soruKokleri) {
-      const tf = t.filter((k) => k === q).length;
-      if (!tf) continue;
-      const df = d.belgeSiklik.get(q) ?? 0;
-      const idf = Math.log(1 + (N2 - df + 0.5) / (df + 0.5));
-      puan += idf * (tf * 2.2 / (tf + 1.2 * (0.25 + 0.75 * (t.length / d.ortUzunluk))));
-    }
-    if (puan === 0) return 0;
-    const ad = d.adlar[i].split(" ")[0];
-    if (ad.length > 2 && soruNorm.includes(ad)) puan += 2;
-    if (eserId && p.eserId === eserId) puan += 3;
-    return puan;
-  });
+  const { hedefler, adKokleri } = hedefleriBul(d, new Set(soruKelimeleri), eserId);
+  const icerikKokleri = soruKokleri.filter((k) => !adKokleri.has(k));
+  const puanlar = d.parcalar.map(
+    (p, i) => hedefler.has(p.eserId) ? HEDEF_PUANI + bm25(d, i, icerikKokleri) : bm25(d, i, soruKokleri)
+  );
   return d.parcalar.map((p, i) => ({ p, puan: puanlar[i] })).filter((x) => x.puan > 0).sort((a, b) => b.puan - a.puan).slice(0, n).map((x) => x.p);
 }
-var KOK, kok, onbellek;
+var KOK, kok, onbellek, HEDEF_PUANI, OZGULLUK_ESIGI;
 var init_bul = __esm({
   "server/sor/bul.ts"() {
     init_metin();
     KOK = 5;
     kok = (k) => k.slice(0, KOK);
     onbellek = /* @__PURE__ */ new WeakMap();
+    HEDEF_PUANI = 100;
+    OZGULLUK_ESIGI = 0.1;
   }
 });
 
