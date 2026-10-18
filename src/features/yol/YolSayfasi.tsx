@@ -13,7 +13,7 @@
  * Erişilebilirlik: düğümler gerçek <a> bağlantısıdır ve erişilebilir adı
  * "Eser adı, tür, durum" biçimindedir; durum renk + ikon + metinle verilir.
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
 import { IkonKilit, IkonTekrar } from '../../app/Ikonlar';
@@ -23,6 +23,8 @@ import { gorunumOku, gorunumYaz, type YolGorunumu } from './yolGorunumu';
 import { FotografPatikasi } from './FotografPatikasi';
 import { kisaAd } from './kisaAd';
 import { useOrtamRengi } from './ortamRengi';
+import { BOS_SAHNE, aniOku, aniYaz, sahneHesapla, yolAnisi, type YolSahnesi } from './yolSahnesi';
+import { hareketAzaltildiMi } from '../../app/hareket';
 
 export { kisaAd };
 
@@ -51,6 +53,19 @@ export function YolSayfasi() {
 
   // Kaydırırken ortadaki eserin fotoğraf rengi arka plana yayılır.
   useOrtamRengi(yolHazir);
+
+  // Canlı yol: son ziyaretten bu yana ders bittiyse Köstik ilerler, ünite
+  // açıldıysa kilit kırılır, ünite bittiyse mühür basılır. Bir kez hesaplanır;
+  // yeni durum hemen cihaza yazılır (sahne tekrar oynamaz).
+  const [sahne, setSahne] = useState<YolSahnesi>(BOS_SAHNE);
+  const sahneAlindi = useRef(false);
+  useEffect(() => {
+    if (!yol || sahneAlindi.current) return;
+    sahneAlindi.current = true;
+    const onceki = aniOku();
+    aniYaz(yolAnisi(yol));
+    if (!hareketAzaltildiMi()) setSahne(sahneHesapla(onceki, yol));
+  }, [yol]);
 
   if (yukleniyor && !yol) {
     return (
@@ -160,6 +175,7 @@ export function YolSayfasi() {
                 unite={unite}
                 sehirAdi={sehir.ad}
                 guncelDersId={yol.guncelDersId}
+                sahne={sahne}
               />
             ))}
           </div>
