@@ -16,6 +16,7 @@ import type { RotaHaritasi } from './rotaHaritasi';
 import { BuradayimDugmesi } from '../muhur/BuradayimDugmesi';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { maplibreYukle } from '../../lib/maplibreYukle';
+import { altlikYukle } from '../harita/altlik';
 import './rota.css';
 
 interface Durak {
@@ -131,7 +132,7 @@ export function RotaSayfasi() {
     let h: RotaHaritasi | null = null;
     void (async () => {
       try {
-        const [maplibre, modul] = await Promise.all([maplibreYukle(), import('./rotaHaritasi')]);
+        const [maplibre, modul, altlik] = await Promise.all([maplibreYukle(), import('./rotaHaritasi'), altlikYukle()]);
         if (iptal || !haritaKabi.current) return;
         const stil = getComputedStyle(document.documentElement);
         h = modul.rotaHaritasiKur(
@@ -143,6 +144,7 @@ export function RotaSayfasi() {
             setSecili(id);
             document.getElementById(`durak-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
           },
+          altlik,
         );
         haritaRef.current = h;
       } catch {

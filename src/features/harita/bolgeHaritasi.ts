@@ -5,13 +5,14 @@
  *   İlçeler (7 – 10.3)     ilçe sınırları yoğunluğa göre renklenir + sayı balonları
  *   Eserler (zoom ≥ 10.3)  fotoğraflı işaretler; üst üste binenler gruplanır
  *
- * Altlık çevrimdışıdır (il + ilçe GeoJSON gömülü). Yazı katmanı (glyph) olmadığı
- * için balon ve etiketler DOM işaretçisidir. Harita görsel bir özettir: işaretçiler
+ * Altlık: internet varsa OpenFreeMap "Liberty" (sokak ve yer adlarıyla, altlik.ts);
+ * yoksa gömülü il + ilçe GeoJSON. Balon ve etiketler DOM işaretçisidir. Harita görsel bir özettir: işaretçiler
  * klavye sırasına girmez (tabindex=-1, aria-hidden); aynı bilgi sayfadaki listede.
  * Tüm metinler textContent ile yazılır — veriden HTML enjekte edilmez.
  */
 import type * as maplibregl from 'maplibre-gl';
 import type { FeatureCollection, Geometry, Position } from 'geojson';
+import { ALTLIK_ATFI, altligaEkle } from './altlik';
 
 type ML = typeof maplibregl;
 export type Seviye = 'il' | 'ilce' | 'eser';
@@ -62,6 +63,8 @@ interface Secenekler {
   renk: (ad: string, yedek: string) => string;
   onSeviye: (seviye: Seviye) => void;
   ag?: AgCizgisi[];
+  /** Ayrıntılı altlık (altlik.ts); yoksa gömülü çevrimdışı altlık. */
+  altlik?: maplibregl.StyleSpecification | null;
 }
 
 const ILCE_ESIGI = 7;
@@ -186,123 +189,137 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
     }),
   };
 
-  const harita = new ml.Map({
-    container: kap,
-    style: {
-      version: 8,
-      sources: {
-        iller: { type: 'geojson', data: s.iller },
-        ilceler: { type: 'geojson', data: ilceler },
-        // Vakıf ağı: akar → hayrat hatları (başta gizli; düğmeyle açılır).
-        ag: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: (s.ag ?? []).map((c) => ({
-              type: 'Feature',
-              properties: { id: c.id },
-              geometry: { type: 'LineString', coordinates: [c.kaynak, c.hedef] },
-            })),
-          },
-        },
-        // Sokak ayrıntısı: OpenFreeMap vektör karoları (anahtarsız, OpenStreetMap
-        // verisi). Uygulamanın kendi renkleriyle çizilir; yazı katmanı yoktur.
-        // Karolar gelmezse (çevrimdışı) gömülü il/ilçe sınırları yine görünür.
-        sokak: {
-          type: 'vector',
-          url: 'https://tiles.openfreemap.org/planet',
-          attribution: 'OpenFreeMap · © OpenMapTiles · © OpenStreetMap katkıcıları',
-        },
+  const kaynaklar: maplibregl.StyleSpecification['sources'] = {
+    iller: { type: 'geojson', data: s.iller },
+    ilceler: { type: 'geojson', data: ilceler },
+    // Vakıf ağı: akar → hayrat hatları (başta gizli; düğmeyle açılır).
+    ag: {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: (s.ag ?? []).map((c) => ({
+          type: 'Feature',
+          properties: { id: c.id },
+          geometry: { type: 'LineString', coordinates: [c.kaynak, c.hedef] },
+        })),
       },
-      layers: [
-        { id: 'deniz', type: 'background', paint: { 'background-color': renk('--harita-deniz', '#0b1416') } },
+    },
+  };
+  const eserliMi = ['in', ['get', 'anahtar'], ['literal', eserliIller]];
+
+  /** İlçe yoğunluğu, sınırlar ve vakıf ağı: iki altlıkta da en üstte (yazıların altında). */
+  const ustKatmanlar: maplibregl.LayerSpecification[] = [
+    {
+      id: 'ilce-dolgu',
+      type: 'fill',
+      source: 'ilceler',
+      minzoom: ILCE_ESIGI - 0.6,
+      paint: {
+        'fill-color': renk('--vurgu', '#ffbf3c'),
+        // İlçe görünümünde yoğunluk; eser görünümünde sokaklar okunsun diye silikleşir.
+        'fill-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          9,
+          ['interpolate', ['linear'], ['get', 'sayi'], 0, 0.03, 1, 0.12, 10, 0.26, 60, 0.42],
+          11,
+          0.04,
+        ],
+      },
+    },
+    {
+      id: 'ilce-sinir',
+      type: 'line',
+      source: 'ilceler',
+      minzoom: ILCE_ESIGI - 0.6,
+      maxzoom: s.altlik ? 13 : 24,
+      paint: { 'line-color': renk('--vurgu-golge', '#b8862a'), 'line-width': 0.9, 'line-opacity': 0.6 },
+    },
+    {
+      id: 'eserli-il-sinir',
+      type: 'line',
+      source: 'iller',
+      filter: eserliMi as maplibregl.FilterSpecification,
+      paint: { 'line-color': renk('--vurgu', '#ffbf3c'), 'line-width': 1.8 },
+    },
+    {
+      id: 'ag-golge',
+      type: 'line',
+      source: 'ag',
+      layout: { visibility: 'none', 'line-cap': 'round' },
+      paint: { 'line-color': renk('--odul-golge', '#b8862a'), 'line-width': 7, 'line-opacity': 0.35 },
+    },
+    {
+      id: 'ag-cizgi',
+      type: 'line',
+      source: 'ag',
+      layout: { visibility: 'none', 'line-cap': 'butt' },
+      paint: {
+        'line-color': renk('--sicak', '#ffbf3c'),
+        'line-width': 3.5,
+        'line-dasharray': [0, 2, 2],
+      },
+    },
+  ];
+
+  const stil: maplibregl.StyleSpecification = s.altlik
+    ? // Ayrıntılı altlık (sokak ve yer adları); eserli iller Türkiye ölçeğinde hafif vurgulu.
+      altligaEkle(s.altlik, kaynaklar, [
         {
           id: 'il-dolgu',
           type: 'fill',
           source: 'iller',
-          paint: {
-            // Türkiye ölçeğinde eserli iller vurgulu; yakınlaşınca sokakların
-            // altında nötr kara rengine döner (zemin turkuaza boyanmasın).
-            'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              8,
-              [
-                'case',
-                ['in', ['get', 'anahtar'], ['literal', eserliIller]],
-                renk('--harita-vurgulu', '#2b2414'),
-                renk('--harita-kara', '#1d2629'),
-              ],
-              10,
-              renk('--harita-kara', '#1d2629'),
-            ],
-          },
-        },
-        ...sokakKatmanlari(renk),
-        {
-          id: 'ilce-dolgu',
-          type: 'fill',
-          source: 'ilceler',
-          minzoom: ILCE_ESIGI - 0.6,
+          filter: eserliMi as maplibregl.FilterSpecification,
+          maxzoom: 10,
           paint: {
             'fill-color': renk('--vurgu', '#ffbf3c'),
-            // İlçe görünümünde yoğunluk; eser görünümünde sokaklar okunsun diye silikleşir.
-            'fill-opacity': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              9,
-              ['interpolate', ['linear'], ['get', 'sayi'], 0, 0.03, 1, 0.12, 10, 0.26, 60, 0.42],
-              11,
-              0.04,
-            ],
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 6, 0.16, 9, 0],
           },
         },
-        {
-          id: 'ilce-sinir',
-          type: 'line',
-          source: 'ilceler',
-          minzoom: ILCE_ESIGI - 0.6,
-          paint: { 'line-color': renk('--vurgu-golge', '#b8862a'), 'line-width': 0.9, 'line-opacity': 0.6 },
+        ...ustKatmanlar,
+      ])
+    : {
+        // Çevrimdışı altlık: gömülü il/ilçe sınırları + (varsa) uygulama renkleriyle sokaklar.
+        version: 8,
+        sources: {
+          ...kaynaklar,
+          sokak: { type: 'vector', url: 'https://tiles.openfreemap.org/planet', attribution: ALTLIK_ATFI },
         },
-        {
-          id: 'il-sinir',
-          type: 'line',
-          source: 'iller',
-          paint: { 'line-color': renk('--harita-sinir', '#3a474c'), 'line-width': 0.8 },
-        },
-        {
-          id: 'eserli-il-sinir',
-          type: 'line',
-          source: 'iller',
-          filter: ['in', ['get', 'anahtar'], ['literal', eserliIller]],
-          paint: { 'line-color': renk('--vurgu', '#ffbf3c'), 'line-width': 1.8 },
-        },
-        {
-          id: 'ag-golge',
-          type: 'line',
-          source: 'ag',
-          layout: { visibility: 'none', 'line-cap': 'round' },
-          paint: { 'line-color': renk('--odul-golge', '#b8862a'), 'line-width': 7, 'line-opacity': 0.35 },
-        },
-        {
-          id: 'ag-cizgi',
-          type: 'line',
-          source: 'ag',
-          layout: { visibility: 'none', 'line-cap': 'butt' },
-          paint: {
-            'line-color': renk('--sicak', '#ffbf3c'),
-            'line-width': 3.5,
-            'line-dasharray': [0, 2, 2],
+        layers: [
+          { id: 'deniz', type: 'background', paint: { 'background-color': renk('--harita-deniz', '#0b1416') } },
+          {
+            id: 'il-dolgu',
+            type: 'fill',
+            source: 'iller',
+            paint: {
+              // Türkiye ölçeğinde eserli iller vurgulu; yakınlaşınca sokakların
+              // altında nötr kara rengine döner.
+              'fill-color': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                8,
+                ['case', eserliMi, renk('--harita-vurgulu', '#2b2414'), renk('--harita-kara', '#1d2629')],
+                10,
+                renk('--harita-kara', '#1d2629'),
+              ] as unknown as string,
+            },
           },
-        },
-      ],
-    },
+          ...sokakKatmanlari(renk),
+          ...ustKatmanlar.slice(0, 2),
+          { id: 'il-sinir', type: 'line', source: 'iller', paint: { 'line-color': renk('--harita-sinir', '#3a474c'), 'line-width': 0.8 } },
+          ...ustKatmanlar.slice(2),
+        ],
+      };
+
+  const harita = new ml.Map({
+    container: kap,
+    style: stil,
     center: [33.5, 39],
     zoom: 5,
     minZoom: 4.4,
-    maxZoom: 16,
+    maxZoom: s.altlik ? 18 : 16,
     attributionControl: false,
     maxBounds: [
       [22.5, 33.5],
@@ -317,6 +334,8 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
   });
   harita.addControl(new ml.NavigationControl({ showCompass: false }), 'top-right');
   harita.addControl(new ml.AttributionControl({ compact: true }), 'bottom-right');
+  // Atıf metni (i) düğmesinin arkasında kapalı başlar; harita alanını kaplamasın.
+  harita.on('load', () => kap.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show'));
 
   // --- İl kutuları (ilçelerden) ------------------------------------------
   const ilKutulari = new Map<string, [[number, number], [number, number]]>();

@@ -53,6 +53,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - Kaydırırken arka plan, ekrandaki eserin rengini alır.
 - [x] **Keşif rotası yenilendi.** Gerçek sokak haritası üzerinde çalışır. Yakın eserler gruplanır, uzun rotalar bölümlere ayrılır, yürüyüş tarifi için OSM'e bağlantı verir.
 - [x] **Süzgeç paneli.** Arşiv ve harita süzgeçleri açılır kapanır panelde.
+- [x] **Harita onarımı ve Google benzeri görünüm (18 Ekim).** MapLibre 6'ya geçişten beri worker yüklenemiyordu, harita boş çiziliyordu (yayındaki sürümde de); düzeltildi. Vakıf ağı haritası ve keşif rotası artık OpenFreeMap "Liberty" altlığıyla: Türkçe sokak, mahalle ve yer adları. İnternet yoksa gömülü il/ilçe haritasına düşer. Kod: `src/lib/maplibreYukle.ts`, `src/features/harita/altlik.ts`.
 - [x] **Kaynaklı soru-cevap (Köstik sohbeti).**
   - Her ekrandan açılan yüzen bir sohbet penceresi; derste ve canlı oyunda gizli.
   - Cevaplar yalnızca kaynak metinlerden üretilir ve her cümlede kaynak numarası olur. Kaynaksız cümle silinir, gerekirse cevap "bilmiyorum"a düşer.
