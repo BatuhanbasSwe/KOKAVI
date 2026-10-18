@@ -137,6 +137,7 @@ mvp/
 
 | Belge | Ne zaman okunur |
 |---|---|
+| `TODOLIST.md` | Her işe başlamadan önce: ne bitti, ne kaldı, kim ne yapıyor |
 | `docs/KARARLAR.md` | "Neden böyle yaptınız?" sorusuna cevap |
 | `docs/API.md` | İstemci yazarken |
 | `docs/VERI.md` | "Bu bilgiler nereden geliyor?" sorusuna cevap |

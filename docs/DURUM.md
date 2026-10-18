@@ -1,5 +1,7 @@
 # DURUM — Nerede kaldık, ne kaldı
 
+> ⚠️ **Eski belge (12 Ekim).** Güncel durum ve iş listesi için kök dizindeki [TODOLIST.md](../TODOLIST.md) dosyasına bak. Bu belge tarihçe olarak duruyor.
+
 > **Bu belge yeni bir oturumda işe devam etmek için yazıldı.**
 > Son güncelleme: 12 Ekim 2026 · Durum: **çalışır ve doğrulanmış MVP + güvenlik + veri**
 

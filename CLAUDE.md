@@ -2,6 +2,7 @@
 
 > Bu dosya, takım arkadaşlarının Claude oturumları için yazıldı. Kodu değiştirmeden önce sonuna kadar oku.
 > Kullanıcıyla **Türkçe**, kısa ve net konuş. Kod ve teknik terimler İngilizce kalabilir.
+> **İşe başlamadan önce [TODOLIST.md](TODOLIST.md) dosyasını oku:** neyin bittiği, neyin kaldığı ve kimin hangi işte olduğu orada. Bir işi bitirince oradaki kutuyu `[x]` yap.
 
 ## 1. Proje özeti
 
@@ -114,21 +115,19 @@ Bunlardan birini değiştirmek gerçekten gerekiyorsa dur, kullanıcıya nedenin
 2. Değişikliği küçük parçalar halinde yap.
 3. Yeni bir özellik eklediysen test de ekle.
 4. Bitirince `npm run dogrula` çalıştır. Hepsi yeşil değilse teslim etme.
-5. Kullanıcıya kısaca bildir: değişen dosyalar, ne yapıldığı, test sonucu.
+5. `TODOLIST.md`'de ilgili kutuyu işaretle (aynı commit'te).
+6. Kullanıcıya kısaca bildir: değişen dosyalar, ne yapıldığı, test sonucu.
 
-**Teslim (ZIP):** Proje git kullanmıyor. Değişiklikler ZIP ile kaptana (Abdulhamid) gönderiliyor.
-- ZIP'e yalnızca değiştirdiğin ya da eklediğin dosyaları, klasör yapısını koruyarak koy.
-- `node_modules/`, `.pgdata/`, `dist/` ve `deploy/ADMIN-PAROLA.txt` ZIP'e girmez.
-- ZIP'in yanına kısa bir not ekle: hangi dosyalar değişti, neden, `npm run seed` gerekiyor mu.
+**Teslim (git):** Depo `github.com/BatuhanbasSwe/KOKAVI`. ZIP artık kullanılmıyor.
+- Herkes kendi dalında çalışır, `main`'e PR ya da merge ile girer. Push'u kullanıcı kendisi yapar; sorulmadan push etme.
+- `node_modules/`, `.pgdata/`, `dist/`, `.env` ve `deploy/ADMIN-PAROLA.txt` commit'e girmez (`.gitignore`).
+- Commit mesajı: ne değişti, neden; `npm run seed` gerekiyorsa mesajda belirt.
 
-## 8. Yakın dönem iş listesi (kaptanla koordine et)
+## 8. İş listesi
 
-- PDF'lerdeki resmi metinleri ve görselleri `data/` dosyalarına aktarmak. Eser listesini yalnızca PDF'lerdeki eserlerle sınırlamak.
-- Kahoot tarzı canlı sınıf yarışması.
-- Admin ve öğretmen panelini ayrı rotaya taşımak (`/admin`, `/ogretmen`). Panel şu an Ayarlar'dan erişilebiliyor.
-- Dağıtım kararı: PWA olarak mı kalacak, APK'ya mı çevrilecek? Karar henüz verilmedi.
+Güncel liste [TODOLIST.md](TODOLIST.md) dosyasında: biten işler `[x]`, kalanlar `[ ]`.
 
-Aynı işe iki kişi girmesin: başlamadan önce kaptana hangi maddeyi aldığını söyle.
+Aynı işe iki kişi girmesin: başlamadan önce TODOLIST.md'deki satırın sonuna adını yaz (`— 🔧 Ad`) ve kaptana hangi maddeyi aldığını söyle.
 
 ## 9. Daha fazla bilgi
 
