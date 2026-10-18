@@ -23,6 +23,7 @@ if (typeof globalThis.localStorage?.clear !== 'function') {
 
 // maplibre-gl jsdom'da WebGL ister; testlerde modülü taklit et.
 vi.mock('maplibre-gl', () => ({
+  setWorkerUrl() {},
   Map: class {
     on() {}
     remove() {}
