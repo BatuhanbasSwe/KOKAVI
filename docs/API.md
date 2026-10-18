@@ -197,8 +197,8 @@ kaynaklı veriden (57 ders eserinin araştırma kaydı + 633 arşiv eserinin met
 - ya da `{ "bilmiyorum": true, "oneriler": [{ "eserId", "eserAd" }] }`
 
 **Hatalar:** `400` geçersiz girdi · `429` hız sınırı (IP başına dakikada 10) · `502` model yanıt vermedi ·
-`503 { "hata": "kapali" }` `ANTHROPIC_API_KEY` tanımlı değil.
+`503 { "hata": "kapali" }` ne `GEMINI_API_KEY` ne `ANTHROPIC_API_KEY` tanımlı.
 
 **Gizlilik:** soru saklanmaz ve günlüğe yazılmaz; e-posta, telefon ve 7+ haneli sayılar modele gitmeden
-`[gizlendi]` olur. **Model:** `KOKAVI_SOR_MODEL` (varsayılan `claude-haiku-5-5`).
+`[gizlendi]` olur. **Model:** `GEMINI_API_KEY` varsa Gemini (`KOKAVI_GEMINI_MODEL`, varsayılan `gemini-3.8-flash`), yoksa Claude (`KOKAVI_SOR_MODEL`, varsayılan `claude-haiku-5-5`). Seçim: `server/sor/saglayici.ts`.
 **Korpus güncelleme:** içerik değişince `npm run korpus`, sonra `npm run build:vercel`.

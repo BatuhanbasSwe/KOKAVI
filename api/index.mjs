@@ -2314,6 +2314,64 @@ Kurallar:
   }
 });
 
+// server/sor/gemini.ts
+import { GoogleGenAI, ThinkingLevel } from "@google/genai";
+import { z as z2 } from "zod";
+function geminiSemasi() {
+  const { $schema: _atla, ...sema } = z2.toJSONSchema(CevapSemasi);
+  return sema;
+}
+function geminiCiktisiniCoz(metin, bitisNedeni) {
+  if (bitisNedeni && bitisNedeni !== "STOP") return BILMIYORUM;
+  if (!metin) return BILMIYORUM;
+  let ham;
+  try {
+    ham = JSON.parse(metin);
+  } catch {
+    return BILMIYORUM;
+  }
+  const sonuc = CevapSemasi.safeParse(ham);
+  return sonuc.success ? sonuc.data : BILMIYORUM;
+}
+var BILMIYORUM, istemci2, geminiIleCevapla;
+var init_gemini = __esm({
+  "server/sor/gemini.ts"() {
+    init_model();
+    BILMIYORUM = { bilmiyorum: true, cumleler: [] };
+    istemci2 = null;
+    geminiIleCevapla = async (soru, parcalar) => {
+      istemci2 ??= new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const yanit = await istemci2.models.generateContent({
+        model: process.env.KOKAVI_GEMINI_MODEL ?? "gemini-3.8-flash",
+        contents: kullaniciMesaji(soru, parcalar),
+        config: {
+          systemInstruction: SISTEM,
+          maxOutputTokens: 1024,
+          responseMimeType: "application/json",
+          responseJsonSchema: geminiSemasi(),
+          thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
+        }
+      });
+      return geminiCiktisiniCoz(yanit.text, yanit.candidates?.[0]?.finishReason);
+    };
+  }
+});
+
+// server/sor/saglayici.ts
+function saglayiciSec(ortam = process.env) {
+  if (ortam.GEMINI_API_KEY) return "gemini";
+  if (ortam.ANTHROPIC_API_KEY) return "claude";
+  return null;
+}
+var secilenModelle;
+var init_saglayici = __esm({
+  "server/sor/saglayici.ts"() {
+    init_model();
+    init_gemini();
+    secilenModelle = (soru, parcalar) => saglayiciSec() === "gemini" ? geminiIleCevapla(soru, parcalar) : claudeIleCevapla(soru, parcalar);
+  }
+});
+
 // server/routes/sor.ts
 function oneriler(parcalar) {
   const gorulen = /* @__PURE__ */ new Set();
@@ -2327,8 +2385,8 @@ function oneriler(parcalar) {
   return sonuc;
 }
 async function sorUclari(app, secenekler = {}) {
-  const cevapla = secenekler.cevapla ?? claudeIleCevapla;
-  const anahtarVar = secenekler.anahtarVar ?? (() => Boolean(process.env.ANTHROPIC_API_KEY));
+  const cevapla = secenekler.cevapla ?? secilenModelle;
+  const anahtarVar = secenekler.anahtarVar ?? (() => saglayiciSec() !== null);
   app.post(
     "/api/sor",
     {
@@ -2382,7 +2440,7 @@ var init_sor = __esm({
     init_bul();
     init_denetle();
     init_temizle();
-    init_model();
+    init_saglayici();
     korpus = korpus_default;
     PARCA_SAYISI = 6;
   }

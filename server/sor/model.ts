@@ -1,5 +1,5 @@
 /**
- * Claude ile kaynaklı cevap: model YALNIZCA verilen numaralı parçalara dayanır,
+ * Claude ile kaynaklı cevap (Gemini sürümü: gemini.ts, seçim: saglayici.ts): model YALNIZCA verilen numaralı parçalara dayanır,
  * cevabı Zod şemasıyla yapılandırılmış JSON olarak döner. Denetim (denetle.ts)
  * kaynaksız cümleleri ayrıca düşürür.
  *
@@ -33,7 +33,7 @@ Kurallar:
 
 export type Cevaplayici = (soru: string, parcalar: Parca[]) => Promise<ModelCevabi>;
 
-function kullaniciMesaji(soru: string, parcalar: Parca[]): string {
+export function kullaniciMesaji(soru: string, parcalar: Parca[]): string {
   const liste = parcalar.map((p, i) => `[${i + 1}] (${p.eserAd}) ${p.metin}`).join('\n\n');
   return `Parçalar:\n\n${liste}\n\nSoru: ${soru}`;
 }

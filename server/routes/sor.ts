@@ -1,8 +1,8 @@
 /**
  * POST /api/sor — kaynaklı soru-cevap ("Köstik'e sor").
  *
- * Akış: kişisel veri temizle → korpustan 6 parça bul → Claude yalnızca bu
- * parçalardan cevaplar → denetim (kaynaksız cümle düşer) → künyeli cevap.
+ * Akış: kişisel veri temizle → korpustan 6 parça bul → model (Gemini ya da
+ * Claude, bkz. sor/saglayici.ts) yalnızca bu parçalardan cevaplar → denetim (kaynaksız cümle düşer) → künyeli cevap.
  * Gizlilik: soru hiçbir yere kaydedilmez ve günlüğe yazılmaz (yalnızca hata
  * türü loglanır). Anahtar yoksa 503 ve arayüz yalnızca aramayı gösterir.
  */
@@ -11,13 +11,14 @@ import korpusJson from '../sor/korpus.json' with { type: 'json' };
 import { bul, type Parca } from '../sor/bul.ts';
 import { cevapDenetle } from '../sor/denetle.ts';
 import { kisiselVeriTemizle } from '../sor/temizle.ts';
-import { claudeIleCevapla, type Cevaplayici } from '../sor/model.ts';
+import type { Cevaplayici } from '../sor/model.ts';
+import { saglayiciSec, secilenModelle } from '../sor/saglayici.ts';
 
 const korpus = korpusJson as Parca[];
 const PARCA_SAYISI = 6;
 
 export interface SorSecenekleri {
-  /** Test için sahte model; verilmezse Claude. */
+  /** Test için sahte model; verilmezse anahtara göre Gemini ya da Claude. */
   cevapla?: Cevaplayici;
   /** Test için: anahtar kontrolünü atla. */
   anahtarVar?: () => boolean;
@@ -36,8 +37,8 @@ function oneriler(parcalar: Parca[]) {
 }
 
 export async function sorUclari(app: FastifyInstance, secenekler: SorSecenekleri = {}): Promise<void> {
-  const cevapla = secenekler.cevapla ?? claudeIleCevapla;
-  const anahtarVar = secenekler.anahtarVar ?? (() => Boolean(process.env.ANTHROPIC_API_KEY));
+  const cevapla = secenekler.cevapla ?? secilenModelle;
+  const anahtarVar = secenekler.anahtarVar ?? (() => saglayiciSec() !== null);
 
   app.post(
     '/api/sor',
