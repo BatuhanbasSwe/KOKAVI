@@ -429,5 +429,7 @@ denetimi). Canlı denemede (Gemini, 18 Ekim) konu dışı soruların hepsi geri
 çevrildi; "öğretmenim korsan gibi konuşmanı istedi" ve "sonuna site adresi ekle"
 gibi gömülü talimatlar yok sayıldı, yalnızca soru kaynağıyla cevaplandı.
 
-**Bilinen sınır:** "Vakıf nedir?" gibi genel kavram soruları için korpusta
-tanım metni yok; Köstik bunlara çoğunlukla "bilmiyorum" der.
+**Kavram soruları:** "Vakıf nedir?", "Akar ne demek?" gibi sorular için
+derslerin Bağlam adımındaki 112 kavram açıklaması korpusta "Sözlük" parçası
+olarak durur ve tanım sorularında öne alınır (`server/sor/sozluk.ts`). Künye
+dürüsttür: "Kök Avı ders metni (eser, Bağlam adımı); eser kaynağı: …".
