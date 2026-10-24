@@ -1,7 +1,7 @@
-# TODOLIST — Kök Avı: ne yapıldı, ne kaldı
+﻿# TODOLIST — Kök Avı: ne yapıldı, ne kaldı
 
 > **Takımın ortak ilerleme listesi.** İnsan ya da AI ajanı fark etmez: işe başlamadan önce bunu oku.
-> Son güncelleme: 18 Ekim 2026 · Final: 7–8 Kasım 2026
+> Son güncelleme: 24 Ekim 2026 · Final: 7–8 Kasım 2026
 > Son çalışma raporu: [docs/CALISMA-RAPORU-2026-10-18.md](docs/CALISMA-RAPORU-2026-10-18.md) (18 Ekim'de yapılan her şey).
 >
 > **Kural:** Bir işi bitiren, kutusunu `[x]` yapar ve aynı commit'te bu dosyayı günceller.
@@ -23,6 +23,9 @@ Takım planından ([docs/plan/ILERLEYIS.md](https://github.com/BatuhanbasSwe/KOK
 - [x] **Belge düzeltmeleri.** `docs/DEMO.md`'de şehirler (Hatay, Konya, Bursa), Hatay eser sayısı (12) ve erişilebilirlik kapsamı güncellendi. `docs/KARARLAR.md` §5'e PostgreSQL yerine PGlite, PostGIS yerine cihazda mesafe ve gömülü GeoJSON gerekçesi yazıldı. (Demo senaryosunun baştan yazımı aşağıda ayrı madde.)
 - [x] **npm audit açıkları.** Sunucu paketi (`@fastify/static`) dahil düzeltildi. `npm audit` sonucu: 0 açık.
   - ⚠️ 18 Ekim: bu güncellemeden sonra Vercel'deki canlı API her istekte çöküyordu (`ERR_REQUIRE_ESM`): `@fastify/static` 10, ES modülü olan `content-disposition` 3'ü `require()` ile yüklüyor; yerel Node buna izin verdiği için görünmedi. Düzeltme: `package.json` `overrides` ile `content-disposition` 2.0.1 (aynı API, CommonJS) ve `@fastify/static` yalnızca gerektiğinde yükleniyor. Test: `tests/vercel-paketi.test.ts`.
+- [x] **`eksikler` dalı main'e birleştirildi (24 Ekim).** Canlı oda Redis deposu (`server/canli/depo.ts`), API sertleştirmeleri (CORS kapalı, `trustProxy`, `/api` için `no-store`, 429), AI soru taslak hattı (`scripts/soru-taslak.ts`) artık `main`'de. Doğrulama: 61 test dosyası / 573 test yeşil, build temiz.
+- [x] **Yayın DB'si ve API paketi yenilendi (24 Ekim).** `npm run seed` → 57 eser / 57 ders / 303 fotoğraf → `npm run pgdata:dump` → `deploy/pgdata.tgz` (4,8 MB) → `npm run build:vercel` → `api/index.mjs`. Uçtan uca doğrulandı: `/api/eserler` 57, `/api/dersler` 57, `/api/yol` 3 şehir / 5 ünite, `cache-control: no-store`, CORS kapalı. Prosedür: [docs/PDF-ENTEGRASYON.md](docs/PDF-ENTEGRASYON.md) §Yayın paketini yenileme.
+  - [ ] **Push + Vercel yayını:** commit hazır; `git push origin main` sonrası Vercel otomatik yayınlar (~1–2 dk). Yayın sonrası canlıda `GET /api/eserler` = 57 doğrulanmalı.
 
 ## Başvuruya göre ek tespitler
 
@@ -104,7 +107,7 @@ git push -u origin <senin-dalın>         # sonra GitHub'da PR aç ya da main'e 
 ```
 
 - Depo: `github.com/BatuhanbasSwe/KOKAVI`. Artık ZIP yok; her şey git üzerinden.
-- Son doğrulama (18 Ekim): 48 test dosyası, 461 test yeşil, build temiz.
+- Son doğrulama (24 Ekim, `main`): 61 test dosyası, 573 test yeşil, build temiz.
 - Kurallar ve dokunulmaması gereken dosyalar: [CLAUDE.md](CLAUDE.md).
 - Tasarım dili: [DESIGN.md](DESIGN.md) · Kararların gerekçeleri: [docs/KARARLAR.md](docs/KARARLAR.md) · API: [docs/API.md](docs/API.md)
 - Tasarım ve özellik planları: [docs/superpowers/specs/](docs/superpowers/specs/) ve [docs/superpowers/plans/](docs/superpowers/plans/)

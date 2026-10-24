@@ -1549,6 +1549,94 @@ var init_sinif2 = __esm({
   }
 });
 
+// server/canli/depo.ts
+function varsayilanDepo(simdi = Date.now) {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  return url && token ? new RedisDeposu(url, token) : new BellekDeposu(simdi);
+}
+var BellekDeposu, ONEK, CAS_BETIGI, RedisDeposu;
+var init_depo = __esm({
+  "server/canli/depo.ts"() {
+    BellekDeposu = class {
+      constructor(simdi = Date.now) {
+        this.simdi = simdi;
+      }
+      simdi;
+      kayitlar = /* @__PURE__ */ new Map();
+      gecerli(pin) {
+        const k = this.kayitlar.get(pin);
+        if (k && k.sonaErme <= this.simdi()) {
+          this.kayitlar.delete(pin);
+          return void 0;
+        }
+        return k;
+      }
+      async al(pin) {
+        const k = this.gecerli(pin);
+        return k ? { json: k.json, surum: k.surum } : null;
+      }
+      async yaz(pin, json, beklenenSurum, ttlMs) {
+        const k = this.gecerli(pin);
+        if ((k?.surum ?? 0) !== beklenenSurum) return false;
+        this.kayitlar.set(pin, { json, surum: beklenenSurum + 1, sonaErme: this.simdi() + ttlMs });
+        return true;
+      }
+      async sil(pin) {
+        this.kayitlar.delete(pin);
+      }
+      async sayi() {
+        for (const pin of [...this.kayitlar.keys()]) this.gecerli(pin);
+        return this.kayitlar.size;
+      }
+    };
+    ONEK = "kokavi:oda:";
+    CAS_BETIGI = `
+local eski = redis.call('GET', KEYS[1])
+local surum = 0
+if eski then surum = cjson.decode(eski).s end
+if surum ~= tonumber(ARGV[1]) then return 0 end
+redis.call('SET', KEYS[1], cjson.encode({s = surum + 1, d = ARGV[2]}), 'PX', ARGV[3])
+return 1
+`;
+    RedisDeposu = class {
+      constructor(url, token) {
+        this.url = url;
+        this.token = token;
+      }
+      url;
+      token;
+      async komut(...args) {
+        const yanit = await fetch(this.url, {
+          method: "POST",
+          headers: { Authorization: `Bearer ${this.token}`, "Content-Type": "application/json" },
+          body: JSON.stringify(args.map(String))
+        });
+        const govde = await yanit.json();
+        if (!yanit.ok || govde.error) throw new Error(`Redis hatas\u0131: ${govde.error ?? yanit.status}`);
+        return govde.result;
+      }
+      async al(pin) {
+        const ham = await this.komut("GET", ONEK + pin);
+        if (typeof ham !== "string") return null;
+        const { s, d } = JSON.parse(ham);
+        return { json: d, surum: s };
+      }
+      async yaz(pin, json, beklenenSurum, ttlMs) {
+        const sonuc = await this.komut("EVAL", CAS_BETIGI, 1, ONEK + pin, beklenenSurum, json, Math.max(1, Math.round(ttlMs)));
+        return Number(sonuc) === 1;
+      }
+      async sil(pin) {
+        await this.komut("DEL", ONEK + pin);
+      }
+      async sayi() {
+        const anahtarlar = await this.komut("KEYS", `${ONEK}*`);
+        return Array.isArray(anahtarlar) ? anahtarlar.length : 0;
+      }
+    };
+  }
+});
+
 // server/canli/oda.ts
 import { randomBytes as randomBytes3, randomInt as randomInt2, timingSafeEqual as timingSafeEqual2 } from "node:crypto";
 function anahtarEsit(beklenen, gelen) {
@@ -1568,9 +1656,34 @@ function siraHesapla(satirlar) {
     return { sira, takmaAd: s.takmaAd, puan: s.puan };
   });
 }
-var SINIRLAR, CanliHata, RENKLER, PARCALAR, yeniAnahtar, CanliOdalar;
+function kodla(oda) {
+  const j = {
+    ...oda,
+    sunucuAnahtari: oda.sunucuAnahtari.toString(),
+    oyuncular: [...oda.oyuncular].map(([k, o]) => [
+      k,
+      { takmaAd: o.takmaAd, cevaplar: [...o.cevaplar] }
+    ])
+  };
+  return JSON.stringify(j);
+}
+function coz(json) {
+  const j = JSON.parse(json);
+  return {
+    ...j,
+    sunucuAnahtari: Buffer.from(j.sunucuAnahtari),
+    oyuncular: new Map(
+      j.oyuncular.map(([k, o]) => [
+        k,
+        { takmaAd: o.takmaAd, cevaplar: new Map(o.cevaplar) }
+      ])
+    )
+  };
+}
+var SINIRLAR, CanliHata, RENKLER, PARCALAR, yeniAnahtar, YENIDEN_DENEME, CanliOdalar;
 var init_oda = __esm({
   "server/canli/oda.ts"() {
+    init_depo();
     SINIRLAR = {
       odaSayisi: 200,
       oyuncuSayisi: 80,
@@ -1621,42 +1734,74 @@ var init_oda = __esm({
       "Pencere"
     ];
     yeniAnahtar = () => randomBytes3(24).toString("base64url");
+    YENIDEN_DENEME = 100;
     CanliOdalar = class {
-      constructor(simdi = Date.now) {
+      constructor(simdi = Date.now, depo = varsayilanDepo(simdi)) {
         this.simdi = simdi;
+        this.depo = depo;
       }
       simdi;
-      odalar = /* @__PURE__ */ new Map();
-      get odaSayisi() {
-        return this.odalar.size;
+      depo;
+      async odaSayisi() {
+        return this.depo.sayi();
       }
-      kur(sorular, sureSn) {
-        this.temizle();
-        if (this.odalar.size >= SINIRLAR.odaSayisi) {
-          throw new CanliHata("KAPASITE", "\u015Eu an \xE7ok fazla oyun a\xE7\u0131k. Biraz sonra yeniden dene.");
+      async kur(sorular, sureSn) {
+        if (await this.depo.sayi() >= SINIRLAR.odaSayisi) {
+          throw new CanliHata(
+            "KAPASITE",
+            "\u015Eu an \xE7ok fazla oyun a\xE7\u0131k. Biraz sonra yeniden dene."
+          );
         }
-        let pin;
-        do
-          pin = String(randomInt2(1e5, 1e6));
-        while (this.odalar.has(pin));
         const anahtar = yeniAnahtar();
-        this.odalar.set(pin, {
-          pin,
-          sunucuAnahtari: Buffer.from(anahtar),
-          sorular,
-          sureMs: sureSn * 1e3,
-          asama: "lobi",
-          soruNo: 0,
-          soruBaslangic: 0,
-          sonErisim: this.simdi(),
-          bitis: null,
-          oyuncular: /* @__PURE__ */ new Map()
-        });
-        return { pin, sunucuAnahtari: anahtar };
+        for (; ; ) {
+          const pin = String(randomInt2(1e5, 1e6));
+          const oda = {
+            pin,
+            sunucuAnahtari: Buffer.from(anahtar),
+            sorular,
+            sureMs: sureSn * 1e3,
+            asama: "lobi",
+            soruNo: 0,
+            soruBaslangic: 0,
+            sonErisim: this.simdi(),
+            bitis: null,
+            oyuncular: /* @__PURE__ */ new Map()
+          };
+          if (await this.depo.yaz(pin, kodla(oda), 0, SINIRLAR.bosOdaMs)) {
+            return { pin, sunucuAnahtari: anahtar };
+          }
+        }
+      }
+      /** Odayı okur, `fn` ile işler, sürüm kontrollü geri yazar. CanliHata da yazımdan sonra fırlar. */
+      async islem(pin, fn) {
+        for (let i = 0; i < YENIDEN_DENEME; i++) {
+          const kayit = await this.depo.al(pin);
+          if (!kayit)
+            throw new CanliHata("ODA_YOK", "Bu PIN ile bir oyun bulunamad\u0131.");
+          const oda = coz(kayit.json);
+          oda.sonErisim = this.simdi();
+          let sonuc;
+          let hata;
+          try {
+            sonuc = fn(oda);
+          } catch (e) {
+            if (!(e instanceof CanliHata)) throw e;
+            hata = e;
+          }
+          const ttl = oda.bitis !== null ? Math.max(1, oda.bitis + SINIRLAR.bitenOdaMs - this.simdi()) : SINIRLAR.bosOdaMs;
+          if (await this.depo.yaz(pin, kodla(oda), kayit.surum, ttl)) {
+            if (hata) throw hata;
+            return sonuc;
+          }
+        }
+        throw new Error("Oda g\xFCncellenemedi: \xE7ok fazla e\u015Fzamanl\u0131 istek.");
       }
       katil(pin) {
-        const oda = this.odaAl(pin);
-        if (oda.asama === "bitti") throw new CanliHata("OYUN_BITTI", "Bu oyun bitti.");
+        return this.islem(pin, (oda) => this.katilIc(oda));
+      }
+      katilIc(oda) {
+        if (oda.asama === "bitti")
+          throw new CanliHata("OYUN_BITTI", "Bu oyun bitti.");
         if (oda.oyuncular.size >= SINIRLAR.oyuncuSayisi) {
           throw new CanliHata("ODA_DOLU", "Bu oyun dolu.");
         }
@@ -1666,76 +1811,102 @@ var init_oda = __esm({
         return { oyuncuAnahtari: anahtar, takmaAd };
       }
       basla(pin, anahtar) {
-        const oda = this.sunucuOdasi(pin, anahtar);
-        if (oda.asama !== "lobi") throw new CanliHata("ASAMA_UYGUN_DEGIL", "Oyun zaten ba\u015Flad\u0131.");
-        if (oda.oyuncular.size === 0) {
-          throw new CanliHata("OYUNCU_YOK", "Ba\u015Flamak i\xE7in en az bir oyuncu kat\u0131lmal\u0131.");
-        }
-        this.soruyaGec(oda, 0);
+        return this.islem(pin, (oda) => {
+          this.sunucuOdasi(oda, anahtar);
+          if (oda.asama !== "lobi")
+            throw new CanliHata("ASAMA_UYGUN_DEGIL", "Oyun zaten ba\u015Flad\u0131.");
+          if (oda.oyuncular.size === 0) {
+            throw new CanliHata(
+              "OYUNCU_YOK",
+              "Ba\u015Flamak i\xE7in en az bir oyuncu kat\u0131lmal\u0131."
+            );
+          }
+          this.soruyaGec(oda, 0);
+        });
       }
       /** Soru açıksa erken bitirir; sonuç gösteriliyorsa sonraki soruya ya da sona geçer. */
       sonraki(pin, anahtar) {
-        const oda = this.sunucuOdasi(pin, anahtar);
-        this.ilerlet(oda);
-        if (oda.asama === "soru") oda.asama = "cevap";
-        else if (oda.asama === "cevap") {
-          if (oda.soruNo + 1 < oda.sorular.length) this.soruyaGec(oda, oda.soruNo + 1);
-          else this.bitir(pin, anahtar);
-        } else throw new CanliHata("ASAMA_UYGUN_DEGIL", "\u015Eu an ilerletilecek bir soru yok.");
+        return this.islem(pin, (oda) => {
+          this.sunucuOdasi(oda, anahtar);
+          this.ilerlet(oda);
+          if (oda.asama === "soru") oda.asama = "cevap";
+          else if (oda.asama === "cevap") {
+            if (oda.soruNo + 1 < oda.sorular.length)
+              this.soruyaGec(oda, oda.soruNo + 1);
+            else this.bitirIc(oda);
+          } else
+            throw new CanliHata(
+              "ASAMA_UYGUN_DEGIL",
+              "\u015Eu an ilerletilecek bir soru yok."
+            );
+        });
       }
       bitir(pin, anahtar) {
-        const oda = this.sunucuOdasi(pin, anahtar);
+        return this.islem(pin, (oda) => {
+          this.sunucuOdasi(oda, anahtar);
+          this.bitirIc(oda);
+        });
+      }
+      bitirIc(oda) {
         oda.asama = "bitti";
         oda.bitis = this.simdi();
       }
       cevapla(pin, oyuncuAnahtari, soruNo, secim) {
-        const oda = this.odaAl(pin);
-        const oyuncu = oyuncuAnahtari ? oda.oyuncular.get(oyuncuAnahtari) : void 0;
-        if (!oyuncu) throw new CanliHata("YETKI_YOK", "Bu oyuna kat\u0131lmam\u0131\u015Fs\u0131n.");
-        const gecen = this.simdi() - oda.soruBaslangic;
-        if (oda.asama !== "soru" || soruNo !== oda.soruNo) {
-          throw new CanliHata("ASAMA_UYGUN_DEGIL", "Bu sorunun s\xFCresi ge\xE7ti.");
-        }
-        if (gecen > oda.sureMs + SINIRLAR.gecikmePayiMs) {
+        return this.islem(pin, (oda) => {
+          const oyuncu = oyuncuAnahtari ? oda.oyuncular.get(oyuncuAnahtari) : void 0;
+          if (!oyuncu) throw new CanliHata("YETKI_YOK", "Bu oyuna kat\u0131lmam\u0131\u015Fs\u0131n.");
+          const gecen = this.simdi() - oda.soruBaslangic;
+          if (oda.asama !== "soru" || soruNo !== oda.soruNo) {
+            throw new CanliHata("ASAMA_UYGUN_DEGIL", "Bu sorunun s\xFCresi ge\xE7ti.");
+          }
+          if (gecen > oda.sureMs + SINIRLAR.gecikmePayiMs) {
+            this.ilerlet(oda);
+            throw new CanliHata("SURE_DOLDU", "S\xFCre doldu.");
+          }
+          const soru = oda.sorular[oda.soruNo];
+          if (!Number.isInteger(secim) || secim < 0 || secim >= soru.secenekler.length) {
+            throw new CanliHata("GECERSIZ_CEVAP", "Ge\xE7ersiz se\xE7enek.");
+          }
+          if (oyuncu.cevaplar.has(soruNo)) {
+            throw new CanliHata("ZATEN_CEVAPLANDI", "Bu soruyu zaten cevaplad\u0131n.");
+          }
+          const oran = Math.min(1, Math.max(0, gecen / oda.sureMs));
+          const puan = secim === soru.dogruIndex ? Math.round(1e3 - 500 * oran) : 0;
+          oyuncu.cevaplar.set(soruNo, { secim, puan });
           this.ilerlet(oda);
-          throw new CanliHata("SURE_DOLDU", "S\xFCre doldu.");
-        }
-        const soru = oda.sorular[oda.soruNo];
-        if (!Number.isInteger(secim) || secim < 0 || secim >= soru.secenekler.length) {
-          throw new CanliHata("GECERSIZ_CEVAP", "Ge\xE7ersiz se\xE7enek.");
-        }
-        if (oyuncu.cevaplar.has(soruNo)) {
-          throw new CanliHata("ZATEN_CEVAPLANDI", "Bu soruyu zaten cevaplad\u0131n.");
-        }
-        const oran = Math.min(1, Math.max(0, gecen / oda.sureMs));
-        const puan = secim === soru.dogruIndex ? Math.round(1e3 - 500 * oran) : 0;
-        oyuncu.cevaplar.set(soruNo, { secim, puan });
-        this.ilerlet(oda);
+        });
       }
       sunucuDurumu(pin, anahtar) {
-        const oda = this.sunucuOdasi(pin, anahtar);
-        this.ilerlet(oda);
-        const soru = oda.sorular[oda.soruNo];
-        const dagilim = soru ? soru.secenekler.map(() => 0) : [];
-        let cevaplayan = 0;
-        for (const o of oda.oyuncular.values()) {
-          const c = o.cevaplar.get(oda.soruNo);
-          if (c) {
-            cevaplayan++;
-            dagilim[c.secim]++;
+        return this.islem(pin, (oda) => {
+          this.sunucuOdasi(oda, anahtar);
+          this.ilerlet(oda);
+          const soru = oda.sorular[oda.soruNo];
+          const dagilim = soru ? soru.secenekler.map(() => 0) : [];
+          let cevaplayan = 0;
+          for (const o of oda.oyuncular.values()) {
+            const c = o.cevaplar.get(oda.soruNo);
+            if (c) {
+              cevaplayan++;
+              dagilim[c.secim]++;
+            }
           }
-        }
-        const siralama = this.siralama(oda);
-        return {
-          pin: oda.pin,
-          asama: oda.asama,
-          oyuncular: [...oda.oyuncular.values()].map((o) => o.takmaAd),
-          soru: oda.asama === "soru" || oda.asama === "cevap" ? this.gorunum(oda) : null,
-          cevaplayan,
-          sonuc: oda.asama === "cevap" && soru ? { dogruIndex: soru.dogruIndex, aciklama: soru.aciklama, kaynak: soru.kaynak, dagilim } : null,
-          siralama: oda.asama === "bitti" ? siralama : siralama.slice(0, 5),
-          ...oda.asama === "bitti" ? { rapor: this.rapor(oda) } : {}
-        };
+          const siralama = this.siralama(oda);
+          return {
+            pin: oda.pin,
+            asama: oda.asama,
+            oyuncular: [...oda.oyuncular.values()].map((o) => o.takmaAd),
+            soru: oda.asama === "soru" || oda.asama === "cevap" ? this.gorunum(oda) : null,
+            cevaplayan,
+            sonuc: oda.asama === "cevap" && soru ? {
+              dogruIndex: soru.dogruIndex,
+              aciklama: soru.aciklama,
+              kaynak: soru.kaynak,
+              dagilim
+            } : null,
+            siralama: oda.asama === "bitti" ? siralama : siralama.slice(0, 5),
+            ...oda.asama === "bitti" ? { rapor: this.rapor(oda) } : {}
+          };
+        });
       }
       /** Soru soru anonim özet: yalnızca sayılar, hiçbir oyuncu adı yok. */
       rapor(oda) {
@@ -1755,54 +1926,46 @@ var init_oda = __esm({
         });
       }
       oyuncuDurumu(pin, oyuncuAnahtari) {
-        const oda = this.odaAl(pin);
-        const oyuncu = oyuncuAnahtari ? oda.oyuncular.get(oyuncuAnahtari) : void 0;
-        if (!oyuncu) throw new CanliHata("YETKI_YOK", "Bu oyuna kat\u0131lmam\u0131\u015Fs\u0131n.");
-        this.ilerlet(oda);
-        const siralama = this.siralama(oda);
-        const benim = siralama.find((s) => s.takmaAd === oyuncu.takmaAd);
-        const soru = oda.sorular[oda.soruNo];
-        const cevap = oyuncu.cevaplar.get(oda.soruNo) ?? null;
-        return {
-          pin: oda.pin,
-          asama: oda.asama,
-          takmaAd: oyuncu.takmaAd,
-          puan: benim.puan,
-          sira: oda.asama === "lobi" ? null : benim.sira,
-          oyuncuSayisi: oda.oyuncular.size,
-          soru: oda.asama === "soru" || oda.asama === "cevap" ? this.gorunum(oda) : null,
-          cevabim: oda.asama === "soru" || oda.asama === "cevap" ? cevap?.secim ?? null : null,
-          sonuc: oda.asama === "cevap" && soru ? {
-            dogruIndex: soru.dogruIndex,
-            aciklama: soru.aciklama,
-            kaynak: soru.kaynak,
-            dogruMu: cevap?.secim === soru.dogruIndex,
-            kazanilan: cevap?.puan ?? 0
-          } : null,
-          podyum: oda.asama === "bitti" ? siralama.filter((s) => s.sira <= 3).slice(0, 3) : []
-        };
+        return this.islem(pin, (oda) => {
+          const oyuncu = oyuncuAnahtari ? oda.oyuncular.get(oyuncuAnahtari) : void 0;
+          if (!oyuncu) throw new CanliHata("YETKI_YOK", "Bu oyuna kat\u0131lmam\u0131\u015Fs\u0131n.");
+          this.ilerlet(oda);
+          const siralama = this.siralama(oda);
+          const benim = siralama.find((s) => s.takmaAd === oyuncu.takmaAd);
+          const soru = oda.sorular[oda.soruNo];
+          const cevap = oyuncu.cevaplar.get(oda.soruNo) ?? null;
+          return {
+            pin: oda.pin,
+            asama: oda.asama,
+            takmaAd: oyuncu.takmaAd,
+            puan: benim.puan,
+            sira: oda.asama === "lobi" ? null : benim.sira,
+            oyuncuSayisi: oda.oyuncular.size,
+            soru: oda.asama === "soru" || oda.asama === "cevap" ? this.gorunum(oda) : null,
+            cevabim: oda.asama === "soru" || oda.asama === "cevap" ? cevap?.secim ?? null : null,
+            sonuc: oda.asama === "cevap" && soru ? {
+              dogruIndex: soru.dogruIndex,
+              aciklama: soru.aciklama,
+              kaynak: soru.kaynak,
+              dogruMu: cevap?.secim === soru.dogruIndex,
+              kazanilan: cevap?.puan ?? 0
+            } : null,
+            podyum: oda.asama === "bitti" ? siralama.filter((s) => s.sira <= 3).slice(0, 3) : []
+          };
+        });
       }
-      /** Süresi geçmiş odaları siler. Oda kurulurken çağrılır; testler de çağırabilir. */
-      temizle() {
-        const simdi = this.simdi();
-        for (const [pin, oda] of this.odalar) {
-          const bitti = oda.bitis !== null && simdi - oda.bitis > SINIRLAR.bitenOdaMs;
-          if (bitti || simdi - oda.sonErisim > SINIRLAR.bosOdaMs) this.odalar.delete(pin);
-        }
+      /** Süresi geçmiş odaları siler. Depo TTL ile kendisi siler; burada yalnızca sayımı tazeler. */
+      async temizle() {
+        await this.depo.sayi();
       }
       // --- iç yardımcılar ------------------------------------------------------
-      odaAl(pin) {
-        const oda = this.odalar.get(pin);
-        if (!oda) throw new CanliHata("ODA_YOK", "Bu PIN ile bir oyun bulunamad\u0131.");
-        oda.sonErisim = this.simdi();
-        return oda;
-      }
-      sunucuOdasi(pin, anahtar) {
-        const oda = this.odaAl(pin);
+      sunucuOdasi(oda, anahtar) {
         if (!anahtarEsit(oda.sunucuAnahtari, anahtar)) {
-          throw new CanliHata("YETKI_YOK", "Bu oyunu yaln\u0131zca kuran ki\u015Fi y\xF6netebilir.");
+          throw new CanliHata(
+            "YETKI_YOK",
+            "Bu oyunu yaln\u0131zca kuran ki\u015Fi y\xF6netebilir."
+          );
         }
-        return oda;
       }
       soruyaGec(oda, no) {
         oda.asama = "soru";
@@ -1842,7 +2005,9 @@ var init_oda = __esm({
         );
       }
       takmaAdUret(oda) {
-        const kullanilan = new Set([...oda.oyuncular.values()].map((o) => o.takmaAd));
+        const kullanilan = new Set(
+          [...oda.oyuncular.values()].map((o) => o.takmaAd)
+        );
         for (let deneme = 0; deneme < 40; deneme++) {
           const ad = `${RENKLER[randomInt2(RENKLER.length)]} ${PARCALAR[randomInt2(PARCALAR.length)]}`;
           if (!kullanilan.has(ad)) return ad;
@@ -1980,10 +2145,14 @@ async function veritabanindanSoruKaynagi(kapsam) {
   const fotolar = await sorgu(
     `SELECT DISTINCT ON (work_id) work_id, url, kaynak FROM work_photo ORDER BY work_id, sira`
   );
-  const sehirler = await sorgu(`SELECT id, ad FROM city`);
+  const sehirler = await sorgu(
+    `SELECT id, ad FROM city`
+  );
   return {
     dersler,
-    fotograflar: new Map(fotolar.map((f) => [f.work_id, { url: f.url, kaynak: f.kaynak }])),
+    fotograflar: new Map(
+      fotolar.map((f) => [f.work_id, { url: f.url, kaynak: f.kaynak }])
+    ),
     sehirAdlari: new Map(sehirler.map((s) => [s.id, s.ad]))
   };
 }
@@ -2002,7 +2171,8 @@ async function canliUclari(app, secenekler = {}) {
   });
   const pinAl = (istek) => {
     const { pin } = istek.params;
-    if (!PIN.test(pin)) throw new CanliHata("ODA_YOK", "PIN 6 rakamdan olu\u015Fur.");
+    if (!PIN.test(pin))
+      throw new CanliHata("ODA_YOK", "PIN 6 rakamdan olu\u015Fur.");
     return pin;
   };
   app.post(
@@ -2011,9 +2181,12 @@ async function canliUclari(app, secenekler = {}) {
     async (istek, cevap) => {
       const govde = istek.body ?? {};
       const kapsam = typeof govde.kapsam === "string" ? govde.kapsam : "hepsi";
-      const soruSayisi = Number(govde.soruSayisi ?? CANLI_SORU_SAYISI.varsayilan);
+      const soruSayisi = Number(
+        govde.soruSayisi ?? CANLI_SORU_SAYISI.varsayilan
+      );
       const sureSn = Number(govde.sureSn ?? CANLI_SURELER[0]);
-      if (!KAPSAM.test(kapsam)) return cevap.code(400).send({ hata: "Ge\xE7ersiz kapsam." });
+      if (!KAPSAM.test(kapsam))
+        return cevap.code(400).send({ hata: "Ge\xE7ersiz kapsam." });
       if (!Number.isInteger(soruSayisi) || soruSayisi < CANLI_SORU_SAYISI.en_az || soruSayisi > CANLI_SORU_SAYISI.en_cok) {
         return cevap.code(400).send({
           hata: `Soru say\u0131s\u0131 ${CANLI_SORU_SAYISI.en_az}\u2013${CANLI_SORU_SAYISI.en_cok} aras\u0131nda olmal\u0131.`
@@ -2022,18 +2195,28 @@ async function canliUclari(app, secenekler = {}) {
       if (!CANLI_SURELER.includes(sureSn)) {
         return cevap.code(400).send({ hata: `S\xFCre ${CANLI_SURELER.join(", ")} sn olabilir.` });
       }
-      const sorular = sorulariUret(await soruKaynagi(kapsam), soruSayisi);
+      const sorular = sorulariUret(
+        await soruKaynagi(kapsam),
+        soruSayisi
+      );
       if (sorular.length < CANLI_SORU_SAYISI.en_az) {
-        return cevap.code(422).send({ hata: "Bu se\xE7imde yar\u0131\u015Fma i\xE7in yeterli soru yok.", kod: "SORU_YOK" });
+        return cevap.code(422).send({
+          hata: "Bu se\xE7imde yar\u0131\u015Fma i\xE7in yeterli soru yok.",
+          kod: "SORU_YOK"
+        });
       }
-      const oda = odalar.kur(sorular, sureSn);
+      const oda = await odalar.kur(sorular, sureSn);
       const govdeCevap = { ...oda, soruSayisi: sorular.length };
       return cevap.code(201).send(govdeCevap);
     }
   );
   const yonetimSiniri = {
     config: {
-      rateLimit: { max: 240, timeWindow: "1 minute", keyGenerator: anahtarBasina("x-canli-anahtar") }
+      rateLimit: {
+        max: 240,
+        timeWindow: "1 minute",
+        keyGenerator: anahtarBasina("x-canli-anahtar")
+      }
     }
   };
   app.get(
@@ -2042,24 +2225,32 @@ async function canliUclari(app, secenekler = {}) {
     async (istek) => odalar.sunucuDurumu(pinAl(istek), baslik(istek, "x-canli-anahtar"))
   );
   for (const eylem of ["basla", "sonraki", "bitir"]) {
-    app.post(`/api/canli/odalar/:pin/${eylem}`, yonetimSiniri, async (istek) => {
-      const pin = pinAl(istek);
-      const anahtar = baslik(istek, "x-canli-anahtar");
-      odalar[eylem](pin, anahtar);
-      return odalar.sunucuDurumu(pin, anahtar);
-    });
+    app.post(
+      `/api/canli/odalar/:pin/${eylem}`,
+      yonetimSiniri,
+      async (istek) => {
+        const pin = pinAl(istek);
+        const anahtar = baslik(istek, "x-canli-anahtar");
+        await odalar[eylem](pin, anahtar);
+        return odalar.sunucuDurumu(pin, anahtar);
+      }
+    );
   }
   app.post(
     "/api/canli/odalar/:pin/katil",
     // Bir sınıf aynı IP'den katılır: 30–40 katılım rahat geçmeli, PIN taraması geçmemeli.
     { config: { rateLimit: { max: 60, timeWindow: "1 minute" } } },
-    async (istek, cevap) => cevap.code(201).send(odalar.katil(pinAl(istek)))
+    async (istek, cevap) => cevap.code(201).send(await odalar.katil(pinAl(istek)))
   );
   app.get(
     "/api/canli/odalar/:pin/oyuncu",
     {
       config: {
-        rateLimit: { max: 240, timeWindow: "1 minute", keyGenerator: anahtarBasina("x-canli-oyuncu") }
+        rateLimit: {
+          max: 240,
+          timeWindow: "1 minute",
+          keyGenerator: anahtarBasina("x-canli-oyuncu")
+        }
       }
     },
     async (istek) => odalar.oyuncuDurumu(pinAl(istek), baslik(istek, "x-canli-oyuncu"))
@@ -2068,18 +2259,25 @@ async function canliUclari(app, secenekler = {}) {
     "/api/canli/odalar/:pin/cevap",
     {
       config: {
-        rateLimit: { max: 60, timeWindow: "1 minute", keyGenerator: anahtarBasina("x-canli-oyuncu") }
+        rateLimit: {
+          max: 60,
+          timeWindow: "1 minute",
+          keyGenerator: anahtarBasina("x-canli-oyuncu")
+        }
       }
     },
     async (istek) => {
       const pin = pinAl(istek);
       const govde = istek.body ?? {};
-      const soruNo = Number(govde.soruNo);
-      const secim = Number(govde.secim);
+      const soruNo = typeof govde.soruNo === "number" ? govde.soruNo : NaN;
+      const secim = typeof govde.secim === "number" ? govde.secim : NaN;
       if (!Number.isInteger(soruNo) || !Number.isInteger(secim)) {
-        throw new CanliHata("GECERSIZ_CEVAP", '"soruNo" ve "secim" tam say\u0131 olmal\u0131.');
+        throw new CanliHata(
+          "GECERSIZ_CEVAP",
+          '"soruNo" ve "secim" tam say\u0131 olmal\u0131.'
+        );
       }
-      odalar.cevapla(pin, baslik(istek, "x-canli-oyuncu"), soruNo, secim);
+      await odalar.cevapla(pin, baslik(istek, "x-canli-oyuncu"), soruNo, secim);
       return { alindi: true };
     }
   );
@@ -2783,8 +2981,11 @@ async function sunucuKur(secenekler = {}) {
   const app = Fastify({
     logger: { level: process.env.LOG_LEVEL ?? "info" },
     // Güvenlik: gövde boyutu sınırı — bellek tüketimi saldırısını engeller.
-    bodyLimit: 1048576
+    bodyLimit: 1048576,
     // 1 MB
+    // Vercel önünde vekil var; gerçek istemci IP'si X-Forwarded-For'da.
+    // Yerelde kapalı: başlık taklidiyle hız sınırı atlatılamasın.
+    trustProxy: process.env.VERCEL === "1"
   });
   await app.register(helmet, {
     contentSecurityPolicy: {
@@ -2811,7 +3012,8 @@ async function sunucuKur(secenekler = {}) {
     timeWindow: "1 minute",
     // Testler ve yerel demo sınırlanmasın; üretimde kapatılmaz.
     allowList: process.env.KOKAVI_RATE_LIMIT_OFF === "1" ? ["127.0.0.1", "::1"] : [],
-    errorResponseBuilder: () => ({
+    errorResponseBuilder: (_istek, baglam) => ({
+      statusCode: baglam.statusCode,
       hata: "\xC7ok fazla istek g\xF6nderildi. L\xFCtfen biraz bekle.",
       kod: "HIZ_SINIRI"
     })
@@ -2839,8 +3041,11 @@ async function sunucuKur(secenekler = {}) {
   });
   await app.register(cookie);
   await app.register(cors, {
-    origin: true,
+    origin: false,
     credentials: true
+  });
+  app.addHook("onSend", async (istek, yanit) => {
+    if (istek.url.startsWith("/api/")) yanit.header("cache-control", "no-store");
   });
   await semaGarantiEt();
   await suresiGecmisOturumlariTemizle();
