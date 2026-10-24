@@ -129,6 +129,40 @@
   font-size: var(--yazi-sm);
 }
 
+/* Derssiz eser notu: metinli çip; anlam yalnızca renkle verilmez. */
+.arsiv-not {
+  justify-self: start;
+  margin: 0;
+  padding: 2px var(--b-3);
+  border-radius: var(--kose-tam);
+  background: var(--zemin-vurgu);
+  color: var(--metin-soluk);
+  font-size: var(--yazi-sm);
+  font-weight: 800;
+}
+
+/* Çocuk özeti: kısa ve okunaklı; tam metin altta katlanır. */
+.arsiv-ozet {
+  font-size: var(--yazi-lg);
+}
+
+/* "Büyükler için kaynak metni": başlık en az 44 px dokunma hedefi. */
+.arsiv-kaynak-metni > summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 800;
+  color: var(--vurgu-koyu);
+  cursor: pointer;
+}
+.arsiv-kaynak-metni[open] > summary {
+  margin-bottom: var(--b-2);
+}
+.arsiv-metin__not {
+  margin: var(--b-3) 0 0;
+  font-size: var(--yazi-xs);
+}
+
 .arsiv-ders {
   display: flex;
   flex-wrap: wrap;

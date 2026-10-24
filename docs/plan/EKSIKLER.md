@@ -1,14 +1,18 @@
 # Eksikler — Başvuru PDF'ine göre durum
 
+> ⚠️ **Bu belge 12–18 Ekim 2026 durumunu anlatır; güncel değildir.** Güncel PDF farkı:
+> [PDF-FARK-GUNCEL.md](../PDF-FARK-GUNCEL.md) (24 Ekim). Kütahya / İzmir / Manisa üniteleri
+> kapandı: uygulama artık **3 şehir (Bursa · Konya · Hatay), 57 ders** ile çalışıyor.
+>
 > Kaynak: `sunum/KokAvi_Başvuru.pdf` (3 sayfa). Kural: önce PDF'teki her şey biter, yeni özellik sonra gelir.
 
 ## 1. PDF'te olup eksik / yarım kalanlar
 
 | # | Özellik (PDF) | Şu anki durum | Yapılacak | Tahmini süre |
 |---|---|---|---|---|
-| 1 | **Dinle ve seç** egzersiz tipi | Derste "dinle" butonu var, ayrı egzersiz tipi yok | Sesli anlatımı dinle → doğru eseri işaretle egzersizi (tip + içerik + test) | 1–2 saat |
-| 2 | **Toplu Türkçe TTS** (dosya olarak saklanır, çevrimdışı çalışır) | Tarayıcının anlık sesi (Web Speech) kullanılıyor | Her ders için bir kez ses dosyası üret, `public/` altında sakla, PWA önbelleğine ekle | 2–3 saat |
-| 3 | **Erişilebilirlik** (WCAG 2.2 AA, yüksek kontrast, ölçeklenebilir yazı, sessiz mod) | Var, ama yeni koyu tema sonrası tam doğrulanmadı | axe 0 ihlal, yüksek kontrast + yazı boyutu + sessiz modla bütün akışı uçtan uca dene | 1 saat |
+| 1 | **Dinle ve seç** egzersiz tipi | ✅ Bitti (24 Ekim): ses kendiliğinden çalar, altyazı açılır/kapanır, sessiz modda "Eser tanı"ya düşer (`tests/dinle-sec.test.tsx`) | — | — |
+| 2 | **Toplu Türkçe TTS** (dosya olarak saklanır, çevrimdışı çalışır) | ⏳ Motor seçimi bekliyor; şu an tarayıcının anlık sesi (Web Speech) kullanılıyor | Her ders için bir kez ses dosyası üret, `public/` altında sakla, PWA önbelleğine ekle | 2–3 saat |
+| 3 | **Erişilebilirlik** (WCAG 2.2 AA, yüksek kontrast, ölçeklenebilir yazı, sessiz mod) | ✅ Bitti (24 Ekim): 22 rota × 3 temada axe 0 ihlal; yazı boyutu ve sessiz mod uçtan uca doğrulandı | — | — |
 | 4 | **AI ile soru üretimi** (içerik hattı: içerik → AI soru → insan kontrolü → yayın) | Sorular script / elle yazılmış | Soru taslağı üreten script veya panel adımı + "insan onayı" durumu | ✅ `scripts/soru-taslak.ts` |
 | 5 | **Elmas harcama** (yeni şehir paketi, ek sefer) + **veli onayı** | Elmas kazanılıyor; harcama yeri sınırlı | Elmasla şehir/ek sefer açma; satın alma ekranında simüle veli onayı (gerçek para yok) | 1–2 saat |
 
@@ -17,7 +21,7 @@
 | Özellik (PDF) | Neden şimdi yok | Ne yapılacak |
 |---|---|---|
 | Premium abonelik, kurumsal lisans, gerçek ödeme | İş modeli kalemi; MVP'de beklenmez | Sunumda anlatılır |
-| Kütahya / İzmir / Manisa üniteleri | Vakıf Katılım verisi yalnızca Hatay, Konya, Bursa | `docs/DEMO.md`'deki eski şehir adları düzeltilir |
+| ~~Kütahya / İzmir / Manisa üniteleri~~ | ✅ Kapatıldı (24 Ekim): uygulama 3 şehir (Bursa · Konya · Hatay); bu üniteler ne veride ne arayüzde var | — |
 | PostgreSQL + PostGIS | PGlite + gömülü GeoJSON yeterli, kurulumsuz çalışıyor | Gerekçe `docs/KARARLAR.md`'ye yazılır |
 
 ## 3. PDF'te olmayan, ekstra eklenen özellikler

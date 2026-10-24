@@ -45,6 +45,8 @@ describe('Keşfet', () => {
       .getAllByRole('link')
       .map((a) => a.getAttribute('href'));
     expect(hedefler).toEqual(['#/harita', '#/arsiv', '#/zaman-tuneli', '#/kesfet/yasayan', '#/rota']);
+    // Arşiv kutusu çocuk akışını öne çıkarır, envanter ölçeğini korur.
+    expect(screen.getByText('Büyükler için · yüzlerce eser')).toBeInTheDocument();
     expect(await ihlaller(container)).toEqual([]);
   });
 

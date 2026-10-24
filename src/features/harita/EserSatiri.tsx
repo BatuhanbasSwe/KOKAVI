@@ -7,6 +7,10 @@
  *  - Türkçe ve İngilizce tarihçe (`tarihce`, `tarihceEn`),
  *  - fotoğraf galerisi (`fotograflar`) ve sergi bilgileri (`sergiler`).
  *
+ * Tarihçe 10–12 yaş için kısa bir özet olarak basılır (ilk iki cümle, en fazla
+ * ~260 karakter); tam Türkçe metin "Tarihçeyi oku" altında katlanır, İngilizce
+ * metin ayrı `details` içinde kalır.
+ *
  * Erişilebilirlik (WCAG 2.2 AA):
  *  - Her `<img>` etiketlidir; metin `altMetin` alanından gelir (SC 1.1.1).
  *    Alan boş gelirse görselin bağlamını taşıyan bir metin üretilir; hiçbir
@@ -15,9 +19,7 @@
  *  - Anlam yalnızca renkle verilmez: her rozetin yanında metni vardır.
  */
 import type { Eser, EserFotograf } from '@shared/types';
-
-/** Bu uzunluğu aşan tarihçe katlanır; kısa metin doğrudan okunur. */
-const TARIHCE_KATLAMA_ESIGI = 280;
+import { cocukOzeti } from '../arsiv/ozet';
 
 /** Boş/eksik metni `null`'a indirger; boş dize arayüzde yer kaplamaz. */
 function doluMetin(deger: string | null | undefined): string | null {
@@ -77,7 +79,9 @@ export function EserSatiri({ eser, defterinde }: EserSatiriProps) {
   const fotograflar = siraliFotograflar(Array.isArray(eser.fotograflar) ? eser.fotograflar : []);
   const sergiler = Array.isArray(eser.sergiler) ? eser.sergiler : [];
 
-  const tarihceKatlanir = tarihce !== null && tarihce.length > TARIHCE_KATLAMA_ESIGI;
+  // Tarihçenin çocuk özeti; tam metin yalnızca özetten uzunsa katlanır.
+  const tarihceOzeti = tarihce ? cocukOzeti([tarihce]).ozet : '';
+  const tarihceKatlanir = tarihce !== null && tarihceOzeti.length > 0 && tarihce.length > tarihceOzeti.length;
 
   return (
     <li className="kart kart--duz harita-eser">
@@ -100,16 +104,13 @@ export function EserSatiri({ eser, defterinde }: EserSatiriProps) {
         ) : null}
       </div>
 
-      {/* --- Tarihçe: Türkçe ve İngilizce iki dilli ------------------------- */}
-      {tarihce ? (
-        tarihceKatlanir ? (
-          <details className="harita-eser__katlanmis">
-            <summary>Tarihçeyi oku</summary>
-            <p className="harita-eser__tarihce">{tarihce}</p>
-          </details>
-        ) : (
+      {/* --- Tarihçe: kısa çocuk özeti, tam metin katlanmış ------------------ */}
+      {tarihceOzeti ? <p className="harita-eser__tarihce">{tarihceOzeti}</p> : null}
+      {tarihce && tarihceKatlanir ? (
+        <details className="harita-eser__katlanmis">
+          <summary>Tarihçeyi oku</summary>
           <p className="harita-eser__tarihce">{tarihce}</p>
-        )
+        </details>
       ) : null}
 
       {tarihceEn ? (

@@ -1,4 +1,4 @@
-﻿# TODOLIST — Kök Avı: ne yapıldı, ne kaldı
+# TODOLIST — Kök Avı: ne yapıldı, ne kaldı
 
 > **Takımın ortak ilerleme listesi.** İnsan ya da AI ajanı fark etmez: işe başlamadan önce bunu oku.
 > Son güncelleme: 24 Ekim 2026 · Final: 7–8 Kasım 2026
@@ -25,7 +25,13 @@ Takım planından ([docs/plan/ILERLEYIS.md](https://github.com/BatuhanbasSwe/KOK
   - ⚠️ 18 Ekim: bu güncellemeden sonra Vercel'deki canlı API her istekte çöküyordu (`ERR_REQUIRE_ESM`): `@fastify/static` 10, ES modülü olan `content-disposition` 3'ü `require()` ile yüklüyor; yerel Node buna izin verdiği için görünmedi. Düzeltme: `package.json` `overrides` ile `content-disposition` 2.0.1 (aynı API, CommonJS) ve `@fastify/static` yalnızca gerektiğinde yükleniyor. Test: `tests/vercel-paketi.test.ts`.
 - [x] **`eksikler` dalı main'e birleştirildi (24 Ekim).** Canlı oda Redis deposu (`server/canli/depo.ts`), API sertleştirmeleri (CORS kapalı, `trustProxy`, `/api` için `no-store`, 429), AI soru taslak hattı (`scripts/soru-taslak.ts`) artık `main`'de. Doğrulama: 61 test dosyası / 573 test yeşil, build temiz.
 - [x] **Yayın DB'si ve API paketi yenilendi (24 Ekim).** `npm run seed` → 57 eser / 57 ders / 303 fotoğraf → `npm run pgdata:dump` → `deploy/pgdata.tgz` (4,8 MB) → `npm run build:vercel` → `api/index.mjs`. Uçtan uca doğrulandı: `/api/eserler` 57, `/api/dersler` 57, `/api/yol` 3 şehir / 5 ünite, `cache-control: no-store`, CORS kapalı. Prosedür: [docs/PDF-ENTEGRASYON.md](docs/PDF-ENTEGRASYON.md) §Yayın paketini yenileme.
-  - [ ] **Push + Vercel yayını:** commit hazır; `git push origin main` sonrası Vercel otomatik yayınlar (~1–2 dk). Yayın sonrası canlıda `GET /api/eserler` = 57 doğrulanmalı.
+  - [x] **Push + Vercel yayını (24 Ekim).** `main` push edildi (`3434fd1`) ve yeni Vercel projesi `kokavi`'ye yayın yapıldı: **https://kokavi-one.vercel.app**. Canlı doğrulandı: `/api/eserler` 57, `/api/dersler` 57, `/api/yol` 3 şehir / 5 ünite, `cache-control: no-store`, yabancı Origin'e CORS başlığı yok, `/arsiv/liste.json` 633. (Eski `kokavi.vercel.app` başka hesapta ve eski 25 eserlik sürümü gösteriyor.)
+
+## 24 Ekim — çocuk metni, yayın ve PDF farkı
+
+- [x] **Arşiv/Keşfet çocuk metni düzeltmesi.** Uzun envanter paragrafları (medyan ~2.300, en uzun ~111.000 karakter) çocuk arayüzünden kaldırıldı: `src/features/arsiv/ozet.ts` ilk 2 cümle / en fazla 260 karakterlik özet üretir, İngilizce çeviri paragraflarını ayıklar; tam Türkçe metin "Büyükler için kaynak metni" altında katlanır. Arşiv kartlarında "Dersi var" yıldızı, derssiz eserlerde "Dersi yok · yalnızca keşif" notu var. Harita tarihçesi de kısa özete indirildi. Test: `tests/ozet.test.ts`, `tests/arsiv-cocuk-metni.test.tsx`, `tests/eser-satiri-ozet.test.tsx`.
+- [x] **Başvuru PDF'i güncel fark raporu.** 95 bağlayıcı unsurun 53 sayılabilirinin 22'si VAR / 23'ü KISMİ / 8'i YOK; PDF'te olmayan 24 büyük özellik sınıflandırıldı; demo için P0/P1/P2 listesi çıkarıldı: [docs/PDF-FARK-GUNCEL.md](docs/PDF-FARK-GUNCEL.md).
+- [ ] **P1 fark işleri** (yukarıdaki rapor §8): toplu TTS ses dosyaları · 5 yeni resmî arşiv no (18/57) · sınıfça külliye hedefi · WCAG 2.2 AA tarama betiği · doküman sayılarının tek gerçek duruma hizalanması.
 
 ## Başvuruya göre ek tespitler
 
@@ -107,7 +113,8 @@ git push -u origin <senin-dalın>         # sonra GitHub'da PR aç ya da main'e 
 ```
 
 - Depo: `github.com/BatuhanbasSwe/KOKAVI`. Artık ZIP yok; her şey git üzerinden.
-- Son doğrulama (24 Ekim, `main`): 61 test dosyası, 573 test yeşil, build temiz.
+- Kişisel kopya (24 Ekim, Abdullah): `github.com/abdkayaa/hackathon` — aynı `main` ağacı.
+- Son doğrulama (24 Ekim, `main`): **64 test dosyası, 589 test yeşil**, typecheck + build temiz. Yayın: https://kokavi-one.vercel.app (57 eser / 57 ders / 3 şehir / 5 ünite doğrulandı).
 - Kurallar ve dokunulmaması gereken dosyalar: [CLAUDE.md](CLAUDE.md).
 - Tasarım dili: [DESIGN.md](DESIGN.md) · Kararların gerekçeleri: [docs/KARARLAR.md](docs/KARARLAR.md) · API: [docs/API.md](docs/API.md)
 - Tasarım ve özellik planları: [docs/superpowers/specs/](docs/superpowers/specs/) ve [docs/superpowers/plans/](docs/superpowers/plans/)

@@ -1,4 +1,4 @@
-﻿# UI/UX Devir Teslimi
+# UI/UX Devir Teslimi
 
 > Bu belge, arayüzü yeniden tasarlayacak ekibe/ajana verilir.
 > **Amaç:** yeni arayüz, çalışan backend'i ve doğrulanmış erişilebilirlik
@@ -131,7 +131,7 @@ npm run dogrula     # tip kontrolü + 228 test + build
 | `#/ders/:id` | `features/ders/DersSayfasi.tsx` | 5 adım + 4 egzersiz tipi |
 | `#/defter` | `features/defter/DefterSayfasi.tsx` | Kâşif Defteri, bani bağlantıları |
 | `#/harita` | `features/harita/HaritaSayfasi.tsx` | MapLibre + metin eşdeğeri |
-| `#/sinif` | `features/sinif/SinifSayfasi.tsx` | Sınıf kodu (cihaz-yerel) |
+| `#/sinif` | `app/App.tsx` (`CocukSinifSayfasi`) | Sınıf kodu (cihaz-yerel) |
 | `#/ayarlar` | `features/ayarlar/AyarlarSayfasi.tsx` | Erişilebilirlik ayarları |
 | `#/panel` | `features/panel/KorumaliPanel.tsx` | Giriş + yönetim CRUD |
 | `#/ogretmen` | `features/ogretmen/OgretmenPaneli.tsx` | Sınıf oluştur, ilerleme gör |

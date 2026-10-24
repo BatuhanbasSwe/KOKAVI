@@ -149,7 +149,7 @@ Kod yalnızca cihazda saklanır. Öğretmen yalnızca **toplu** ilerleme görür
 toplamak KVKK açısından en yüksek riskli tasarım olurdu. Anonim kod, sınıf
 özelliğini korurken bu riski sıfırlar.
 
-**Kodda:** `src/features/sinif/SinifSayfasi.tsx`; karışması kolay harfler
+**Kodda:** `src/app/App.tsx` (`CocukSinifSayfasi`); karışması kolay harfler
 (I, O, 0, 1) alfabeden çıkarılmıştır.
 
 ---

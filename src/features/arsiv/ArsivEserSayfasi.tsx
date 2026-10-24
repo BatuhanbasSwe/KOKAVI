@@ -1,9 +1,11 @@
 /**
- * Arşivde tek eser — envanter metni, fotoğraf, kaynak.
+ * Arşivde tek eser — çocuk özeti, fotoğraf, kaynak.
  *
- * Metin PDF'ten otomatik aktarıldığı için uzun olabilir: ilk paragraflar
- * gösterilir, gerisi "Devamını oku" ile açılır. Eserin dersi varsa derse
- * bağlantı verilir; sonda aynı ilçeden başka eserler önerilir (keşif sürsün).
+ * Envanter metni PDF'ten otomatik aktarıldığı için çok uzundur. Çocuğa yalnızca
+ * ilk iki cümlelik kısa özet gösterilir; İngilizce çeviri paragrafları hiç
+ * basılmaz ve tam Türkçe metin "Büyükler için kaynak metni" altında katlanır.
+ * Eserin dersi varsa derse bağlantı verilir; yoksa bunun keşif eseri olduğu
+ * söylenir. Sonda aynı ilçeden başka eserler önerilir (keşif sürsün).
  */
 import { useEffect, useMemo, useState } from 'react';
 import { DinleDugmesi } from '../ders/DinleDugmesi';
@@ -14,22 +16,19 @@ import { api } from '../../lib/api';
 import { useDurum } from '../../app/DurumSaglayici';
 import { baslikAyarla } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, arsivMetni, IL_ADLARI, type ArsivEseri } from './arsivVeri';
+import { cocukOzeti } from './ozet';
 import './arsiv.css';
 import { IkonYildiz } from '../../app/Ikonlar';
-
-const KISA = 3;
 
 export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
   const { yol } = useDurum();
   const [liste, setListe] = useState<ArsivEseri[]>([]);
   const [paragraflar, setParagraflar] = useState<string[] | null>(null);
   const [hata, setHata] = useState<string | null>(null);
-  const [acik, setAcik] = useState(false);
 
   useEffect(() => {
     let iptal = false;
     setParagraflar(null);
-    setAcik(false);
     setHata(null);
     Promise.all([arsivListesi(), arsivMetni(arsivId)])
       .then(([l, p]) => {
@@ -85,6 +84,9 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
     [eser, liste],
   );
 
+  // İngilizce çeviriler ayıklanır; çocuğa ilk iki cümlelik özet kalır.
+  const { ozet, kalan } = useMemo(() => cocukOzeti(paragraflar ?? []), [paragraflar]);
+
   if (hata) {
     return (
       <div className="kart yigin">
@@ -104,8 +106,6 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
     );
   }
 
-  const gorunen = acik ? paragraflar : paragraflar.slice(0, KISA);
-
   return (
     <article className="yigin arsiv-eser" style={{ gap: 'var(--b-4)' }}>
       <a className="arsiv-geri" href="#/arsiv">
@@ -124,6 +124,8 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
           {eser.ilce ? <li>{eser.ilce}</li> : null}
           <li>{eser.tur}</li>
         </ul>
+        {/* Derssiz eserler Keşfet'ten girilen arşivde çoğunlukta; ayrım görünür olsun. */}
+        {eser.ders ? null : <p className="arsiv-not">Dersi yok · yalnızca keşif</p>}
       </header>
 
       {dersId ? (
@@ -137,19 +139,32 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
         </div>
       ) : null}
 
-      {/* Okuma güçlüğü olan çocuklar için: görünen metni Türkçe sesle okur
-          (sessiz modda ya da Türkçe ses yoksa düğme hiç çıkmaz). */}
-      <DinleDugmesi metin={`${eser.ad}. ${gorunen.join(' ')}`} etiket="Hikâyesini dinle" />
+      {/* Okuma güçlüğü olan çocuklar için: YALNIZCA kısa özeti Türkçe sesle
+          okur (sessiz modda ya da Türkçe ses yoksa düğme hiç çıkmaz). */}
+      {ozet ? <DinleDugmesi metin={`${eser.ad}. ${ozet}`} etiket="Hikâyesini dinle" /> : null}
 
-      <div className="arsiv-metin">
-        {gorunen.map((p) => (
-          <p key={p}>{p}</p>
-        ))}
+      <div className="arsiv-metin arsiv-ozet">
+        {ozet ? (
+          <p style={{ margin: 0 }}>{ozet}</p>
+        ) : (
+          <p className="metin-soluk" style={{ margin: 0 }}>
+            Bu eser için Türkçe kısa metin bulunamadı.
+          </p>
+        )}
       </div>
-      {paragraflar.length > KISA ? (
-        <button type="button" className="dugme dugme--ikincil" aria-expanded={acik} onClick={() => setAcik((a) => !a)}>
-          {acik ? 'Kısalt' : `Devamını oku (${paragraflar.length - KISA} paragraf daha)`}
-        </button>
+
+      {/* Tam Türkçe metin yetişkinler için katlanır; İngilizce paragraflar
+          hiç gösterilmez (kalan yalnızca Türkçe paragraflardan oluşur). */}
+      {kalan.length > 0 ? (
+        <details className="arsiv-kaynak-metni">
+          <summary>Büyükler için kaynak metni</summary>
+          <div className="arsiv-metin">
+            {kalan.map((paragraf, sira) => (
+              <p key={`${sira}-${paragraf.slice(0, 24)}`}>{paragraf}</p>
+            ))}
+          </div>
+          <p className="metin-soluk arsiv-metin__not">Metin PDF'ten otomatik aktarılmıştır; yazım hataları olabilir.</p>
+        </details>
       ) : null}
 
       {konum && eser.ders ? (
@@ -167,9 +182,6 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
       <footer className="arsiv-kaynak">
         <p style={{ margin: 0 }}>
           <strong>Kaynak:</strong> {eser.kaynak}
-        </p>
-        <p className="metin-soluk" style={{ margin: 0 }}>
-          Metin PDF'ten otomatik aktarılmıştır; yazım hataları olabilir.
         </p>
       </footer>
 

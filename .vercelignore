@@ -1,3 +1,8 @@
+# Yüklemeye girmeyecekler: Vercel uzak sunucuda `npm ci && vite build` çalıştırır,
+# yerel node_modules/dist/.pgdata yüklenirse 390 MB'lık gereksiz paket oluşur.
+node_modules
+dist
+coverage
 data/research
 .pgdata
 deploy/ADMIN-PAROLA.txt

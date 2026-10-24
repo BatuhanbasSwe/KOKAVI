@@ -2,6 +2,11 @@
 
 > Jüri "bu bilgiler nereden geliyor?" diye sorduğunda bu belge cevaptır.
 > Ölçüm tarihi: 12 Ekim 2026 · Kaynak dosyalar: `data/research/*.json`
+>
+> ⚠️ **Ölçüm 12 Ekim'deki 19 eserlik set içindir.** 24 Ekim itibarıyla güncel veri:
+> **57 ders eseri** (Bursa 33 · Konya 12 · Hatay 12), 57 ders / 228 egzersiz, 303 fotoğraf,
+> 633 arşiv eseri. Bursa ve Konya kitapları resmî PDF'ten; Hatay metinleri resmî Hatay
+> envanter PDF'inden. Aşağıdaki sayılar tarihçe olarak duruyor.
 
 ---
 

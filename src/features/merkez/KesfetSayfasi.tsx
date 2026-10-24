@@ -43,7 +43,7 @@ export function KesfetSayfasi() {
           <span className="mozaik__karartma" aria-hidden="true" />
           <span className="mozaik__icerik">
             <span className="mozaik__ad">Meraklısına arşivi</span>
-            <span className="mozaik__alt">Yüzlerce vakıf eseri</span>
+            <span className="mozaik__alt">Büyükler için · yüzlerce eser</span>
           </span>
         </Kutu>
 

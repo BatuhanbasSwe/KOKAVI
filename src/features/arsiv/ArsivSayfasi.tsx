@@ -1,8 +1,10 @@
 /**
  * Meraklısına — envanterdeki tüm vakıf eserleri (ders olsun olmasın).
  *
- * Görev ve puan yok; yalnızca keşif. Haritadaki ilçe balonundan
- * `#/arsiv?il=bursa&ilce=Osmangazi` ile gelinirse filtre dolu açılır.
+ * Görev ve puan yok; yalnızca keşif. Kartlardaki yıldızlı çip ("Dersi var")
+ * uygulamada dersi olan eserleri işaretler; gerisi arşiv/keşif eseridir.
+ * Haritadaki ilçe balonundan `#/arsiv?il=bursa&ilce=Osmangazi` ile gelinirse
+ * filtre dolu açılır.
  *
  * Erişilebilirlik: görünür etiketli filtreler, sonuç sayısı canlı bölgede,
  * kartlar gerçek <a>. Fotoğraf süs olarak işaretlidir (alt=""): bağlantının
@@ -93,7 +95,8 @@ export function ArsivSayfasi() {
           <span className="etiket">Meraklısına</span>
           <h1>Vakıf Eserleri Arşivi</h1>
           <p className="metin-ikincil" style={{ margin: 0 }}>
-            Envanterdeki {liste.length || 'tüm'} eserin hepsi burada. Görev yok, puan yok — sadece keşif.
+            Envanterdeki {liste.length || 'tüm'} eserin hepsi burada; yıldızlı olanların bir dersi var,
+            diğerleri yalnızca keşif.
           </p>
         </div>
         <button
