@@ -122,7 +122,7 @@ zamana göre öğrenme (ana yolu dağıtıyor) · kombo/ses/titreşim/konfeti (s
    "varsayımdır" notu ve hibe hariç senaryo eklenmeli.
 8. **Doküman sayıları tutarsız** (README/DURUM/VERI/UI-DEVIR/API farklı test-ders sayıları
    veriyordu) — bu belge ve güncellenen `DURUM.md`/`VERI.md`/`plan/EKSIKLER.md` ile
-   hizalanmaya başlandı; teslim öncesi tüm sayılar 57/57/228/303/633 ve 64 dosya/589 test
+   hizalanmaya başlandı; teslim öncesi tüm sayılar 57/57/228/303/633 ve 65 dosya/595 test
    ile eşlenmeli.
 
 ## 8. Final demo (7–8 Kasım) öncelikleri

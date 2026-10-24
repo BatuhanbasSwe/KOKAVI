@@ -115,7 +115,7 @@ git push -u origin <senin-dalın>         # sonra GitHub'da PR aç ya da main'e 
 
 - Depo: `github.com/BatuhanbasSwe/KOKAVI`. Artık ZIP yok; her şey git üzerinden.
 - Kişisel kopya (24 Ekim, Abdullah): `github.com/abdkayaa/hackathon` — aynı `main` ağacı.
-- Son doğrulama (24 Ekim, `main`): **64 test dosyası, 589 test yeşil**, typecheck + build temiz. Yayın: https://kokavi-one.vercel.app (57 eser / 57 ders / 3 şehir / 5 ünite doğrulandı).
+- Son doğrulama (24 Ekim, `main`): **65 test dosyası, 595 test yeşil**, typecheck + build temiz. Yayın: https://kokavi-one.vercel.app (57 eser / 57 ders / 3 şehir / 5 ünite doğrulandı).
 - Kurallar ve dokunulmaması gereken dosyalar: [CLAUDE.md](CLAUDE.md).
 - Tasarım dili: [DESIGN.md](DESIGN.md) · Kararların gerekçeleri: [docs/KARARLAR.md](docs/KARARLAR.md) · API: [docs/API.md](docs/API.md)
 - Tasarım ve özellik planları: [docs/superpowers/specs/](docs/superpowers/specs/) ve [docs/superpowers/plans/](docs/superpowers/plans/)
