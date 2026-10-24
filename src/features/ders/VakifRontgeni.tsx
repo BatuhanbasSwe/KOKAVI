@@ -12,6 +12,7 @@
  *  - Her kalemin kaynağı ve varsa vakfiye arşiv numarası görünür.
  */
 import type { Eser } from '@shared/types';
+import { arsivKaydiMetni } from '../../lib/arsivKaydi';
 import { kalemEtiketi } from './kalemEtiketleri';
 import { cubukSinifi, gelirKalemleriniSirala, gelirBelgeliMi, yuzdeYaz } from './yardimci';
 
@@ -25,10 +26,16 @@ interface Props {
   eserHatasi: string | null;
 }
 
-/** Vakfiye arşiv numarası — PDF: "her değer arşiv numarasıyla gösterilir". */
+/**
+ * Vakfiye/arşiv kaydı — PDF: "her değer arşiv numarasıyla gösterilir".
+ *
+ * `arsivNo` alanında gerçek referans yerine "numara bulunamadı" notu olabilir;
+ * bu durumda hiçbir şey gösterilmez, yanıltıcı "arşiv no" başlığı basılmaz.
+ */
 function ArsivBilgisi({ arsivNo }: { arsivNo: string | null }) {
-  if (!arsivNo) return null;
-  return <p className="kaynak ders-rontgen__arsiv">Vakfiye arşiv no: {arsivNo}</p>;
+  const kayit = arsivKaydiMetni(arsivNo);
+  if (!kayit) return null;
+  return <p className="kaynak ders-rontgen__arsiv">Vakfiye/arşiv kaydı: {kayit}</p>;
 }
 
 export function VakifRontgeni({ eser, eserYukleniyor, eserHatasi }: Props) {
@@ -173,7 +180,7 @@ export function VakifRontgeni({ eser, eserYukleniyor, eserHatasi }: Props) {
         Kaynaklar kaybolmaz, geri çekilir: çocuk ekranı sade kalır, tek dokunuşla
         tüm künye açılır (şartname 5.1.3 — kaynak bilgisi gösterilmeli).
       */}
-      {eser.kaynaklar.length > 0 || eser.arsivNo || kalemler.some((k) => k.kaynak) ? (
+      {eser.kaynaklar.length > 0 || arsivKaydiMetni(eser.arsivNo) || kalemler.some((k) => k.kaynak) ? (
         <details className="ders-ayrinti">
           <summary>
             Bu bilgi nereden?

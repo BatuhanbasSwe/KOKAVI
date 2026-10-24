@@ -61,7 +61,7 @@ külliye akışı, vakfiye/arşiv no kapsamı ve PDF'teki bazı iddiaların kayn
 | E-02 eşleştirmede sürükle-bırak | Dokun/klavye var, HTML5 sürükle-bırak yok |
 | E-04 sırala: vakfiye gelir dağılımı | 57 sırala sorusu var; içerik kronoloji, gelir dağılımı değil |
 | E-05 otomatik soru üretimi | AI taslak hattı var (`npm run soru:taslak`); yayına bağlı değil, sorular elle yazılı |
-| E-06 / E-07 Vakıf Röntgeni her değer vakfiyeden | Gelir oranı belgeli 4/57; arşiv no 13/57; 15 eserde resmî cilt künyesi yok |
+| E-06 / E-07 Vakıf Röntgeni her değer vakfiyeden | Gelir oranı belgeli 4/57; arşiv kaydı 13/57 ama bunların 7'si "numara bulunamadı" notu → gerçek referans 6/57; 15 eserde resmî cilt künyesi yok |
 | A-01 / I-05 her ders TTS, toplu dosya, çevrimdışı | Cihaz sesi var, **0 ses dosyası**; motor seçimi bekliyor (TODOLIST) |
 | A-02 / A-03 / A-05 WCAG 2.2 AA, %200 yazı | Alt metin + klavye var; NVDA/VoiceOver kaydı, %200 testi ve AA denetim raporu yok |
 | O-06 özerklik: eseri çocuk seçer | Ünite içinde serbest; şehir/ünite sıralı kilit (`KARARLAR.md` §3) |
@@ -69,6 +69,12 @@ külliye akışı, vakfiye/arşiv no kapsamı ve PDF'teki bazı iddiaların kayn
 | I-02 insan kontrolü | `--yayinla` yalnız adıyla onaylananı alır; kontrol listesi / ret oranı yok |
 | T-05 planlanan yığın | React/TS/Fastify/PGlite/MapLibre var; **PostGIS yok** (`KARARLAR.md` §5), toplu TTS yok |
 | P-06 / Y-04 pilot ölçüm | Sertifika var; 3 pilot okul ve "şehri tamamlayan öğrenci oranı" ölçümü yok |
+
+> **Arşiv numarası sayımı (düzeltme, 24 Ekim):** `arsivNo` alanı 13 eserde dolu görünüyor,
+> ama bunların 7'si gerçek numara değil, "Vakıflar Genel Müdürlüğü arşiv numarası
+> bulunamadı" gibi bir arama notu. **Gerçek arşiv referansı 6/57** (Konya 3 · Hatay 3;
+> Bursa'da 0). Arayüz artık yalnız gerçek kaydı "Vakfiye/arşiv kaydı" başlığıyla gösteriyor
+> (`src/lib/arsivKaydi.ts`), "bulunamadı" notunu arşiv numarası gibi basmıyor.
 
 ## 5. Yok olanlar
 
@@ -105,7 +111,8 @@ zamana göre öğrenme (ana yolu dağıtıyor) · kombo/ses/titreşim/konfeti (s
    "doğrulanmış" sıfatı kaldırılmalı veya 1 niyet mektubu eklenmeli.
 3. **"g = 0,28"** — g tanımsız, kaynak/örneklem yok; tam künye verilmeli veya sayı çıkarılmalı.
    Endacott & Brooks yılı da eksik.
-4. **"Her değer vakfiye belgesinden + arşiv numarasıyla"** — arşiv no 13/57, oran 4/57;
+4. **"Her değer vakfiye belgesinden + arşiv numarasıyla"** — gerçek arşiv referansı 6/57
+   (13 kaydın 7'si "numara bulunamadı" notu taşıyor), oran 4/57;
    sunumda "belgelenen her değer" denmeli.
 5. **"Her ders TTS ile dinlenebilir; toplu üretilir, çevrimdışı"** — cihaz sesi var, dosya
    yok; "cihaz sesiyle dinlenebilir; toplu dosya planlanan" olarak düzeltilmeli.
@@ -129,7 +136,7 @@ zamana göre öğrenme (ana yolu dağıtıyor) · kombo/ses/titreşim/konfeti (s
 
 **P1 — PDF sözü, kısmi kanıt**
 - [ ] Toplu TTS: 57 dersin ses dosyaları `public/ses/` + PWA cache (ya da sunumda "planlanan").
-- [ ] Arşiv no kapsamı: en az 5 yeni resmî arşiv no → 18/57, Vakıf Röntgeni'nde görünür.
+- [ ] Arşiv referansı kapsamı: en az 5 yeni gerçek arşiv referansı → 6/57'den 11/57'ye; Vakıf Röntgeni'nde görünür.
 - [ ] Sınıfça külliye: anonim sınıf sayacı ortak hedef gösterir; 2 cihazla doğrulanır.
 - [ ] WCAG 2.2 AA tekrarlanabilir tarama betiği + JSON çıktı (22 rota × 3 tema).
 - [ ] Doküman sayıları ve kırık bağlantılar tek gerçek duruma hizalanır.

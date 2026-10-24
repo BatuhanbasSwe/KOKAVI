@@ -31,7 +31,8 @@ Takım planından ([docs/plan/ILERLEYIS.md](https://github.com/BatuhanbasSwe/KOK
 
 - [x] **Arşiv/Keşfet çocuk metni düzeltmesi.** Uzun envanter paragrafları (medyan ~2.300, en uzun ~111.000 karakter) çocuk arayüzünden kaldırıldı: `src/features/arsiv/ozet.ts` ilk 2 cümle / en fazla 260 karakterlik özet üretir, İngilizce çeviri paragraflarını ayıklar; tam Türkçe metin "Büyükler için kaynak metni" altında katlanır. Arşiv kartlarında "Dersi var" yıldızı, derssiz eserlerde "Dersi yok · yalnızca keşif" notu var. Harita tarihçesi de kısa özete indirildi. Test: `tests/ozet.test.ts`, `tests/arsiv-cocuk-metni.test.tsx`, `tests/eser-satiri-ozet.test.tsx`.
 - [x] **Başvuru PDF'i güncel fark raporu.** 95 bağlayıcı unsurun 53 sayılabilirinin 22'si VAR / 23'ü KISMİ / 8'i YOK; PDF'te olmayan 24 büyük özellik sınıflandırıldı; demo için P0/P1/P2 listesi çıkarıldı: [docs/PDF-FARK-GUNCEL.md](docs/PDF-FARK-GUNCEL.md).
-- [ ] **P1 fark işleri** (yukarıdaki rapor §8): toplu TTS ses dosyaları · 5 yeni resmî arşiv no (18/57) · sınıfça külliye hedefi · WCAG 2.2 AA tarama betiği · doküman sayılarının tek gerçek duruma hizalanması.
+- [x] **Arşiv no dürüstlük düzeltmesi (24 Ekim).** `arsivNo` alanı 13 eserde doluydu ama 7'si "numara bulunamadı" notuydu; arayüz bunu "Vakfiye arşiv no: …" diye basıyordu. Yeni `src/lib/arsivKaydi.ts` yalnız gerçek referansı gösterir, uzun künyeyi kısaltır; sahte/yanıltıcı numara görünmez. Gerçek referans: **6/57** (Konya 3 · Hatay 3). Test: `tests/arsiv-kaydi.test.ts`.
+- [ ] **P1 fark işleri** (yukarıdaki rapor §8): toplu TTS ses dosyaları · 5 yeni gerçek arşiv referansı (6/57 → 11/57) · sınıfça külliye hedefi · WCAG 2.2 AA tarama betiği · doküman sayılarının tek gerçek duruma hizalanması.
 
 ## Başvuruya göre ek tespitler
 
@@ -39,7 +40,7 @@ Aykuutt'un tespitleri (`pdf-eksikleri-ve-guvenlıkuyarıları` dalı).
 
 - [ ] **Bursa eser sayısı.** Başvuruda 80 eser hedefleniyor; veride şu an 33 eser var. ⏳ Vakıf Katılım PDF'lerine bağlı.
 - [ ] **Sınıfça külliye akışı.** Sınıfın külliyeyi birlikte tamamlaması ve Vakıf Röntgeni'ni beraber görmesi henüz yok.
-- [ ] **Vakfiye arşiv numaraları.** 57 eserin yalnızca 13'ünde arşiv numarası var. ⏳ Kaynağa bağlı; numara uydurulmaz.
+- [ ] **Vakfiye arşiv numaraları.** 57 eserin 13'ünde `arsivNo` alanı dolu; bunların 7'si "numara bulunamadı" notu → **gerçek referans 6/57** (Konya 3 · Hatay 3). ⏳ Kaynağa bağlı; numara uydurulmaz.
 - [x] **npm audit uyarıları.** Yukarıdaki Aşama 1 maddesiyle kapandı.
 
 ## Aşama 2: PDF'te olmayan özellikler için kararlar

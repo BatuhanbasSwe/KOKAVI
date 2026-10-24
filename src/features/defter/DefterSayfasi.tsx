@@ -26,6 +26,7 @@ import { SeriSayfasi } from '../seri/Seri';
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import type { Eser } from '@shared/types';
 import { api } from '../../lib/api';
+import { arsivKaydiMetni } from '../../lib/arsivKaydi';
 import { useDurum } from '../../app/DurumSaglayici';
 import { IkonTur } from '../../app/Ikonlar';
 import { kisaAd } from '../yol/kisaAd';
@@ -350,7 +351,9 @@ function Pullar() {
                         <strong>Neden yaptırıldı:</strong> {acikEser.vakfiyeAmaci}
                       </p>
                     )}
-                    {acikEser.arsivNo && <p className="kaynak">Vakfiye arşiv no: {acikEser.arsivNo}</p>}
+                    {arsivKaydiMetni(acikEser.arsivNo) && (
+                      <p className="kaynak">Vakfiye/arşiv kaydı: {arsivKaydiMetni(acikEser.arsivNo)}</p>
+                    )}
                     {acikEser.gelirDagilimiDurumu === 'belge-bulunamadi' && (
                       <p className="kaynak">Gelir dağılımı belgelenememiştir.</p>
                     )}
