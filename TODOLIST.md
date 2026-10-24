@@ -18,7 +18,7 @@ Takım planından ([docs/plan/ILERLEYIS.md](https://github.com/BatuhanbasSwe/KOK
 - [x] **Dinle ve seç egzersizi.** Ses kendiliğinden çalar, altyazı açılıp kapanabilir. Sessiz modda "Eseri tanı"ya düşer. Ekran okuyucuyla da çözülebilir. Test: `tests/dinle-sec.test.tsx`
 - [ ] **Toplu TTS ses dosyaları.** ⏳ Motor kararını Batuhan verecek. Piper ve Edge yeterince insan gibi bulunmadı. Adaylar: OpenAI gpt-4o-mini-tts, Google Chirp 3 HD, ElevenLabs, insan kaydı. Seslendirilecek metin: 57 ders, 285 parça, yaklaşık 100 dakika. Bitince ses dosyaları `public/` altına girer ve PWA önbelleğine eklenir. — Batuhan
 - [x] **Erişilebilirlik doğrulaması.** Gerçek tarayıcıda 22 rota × 3 tema (koyu, açık, yüksek kontrast) axe ile tarandı: 0 ihlal. 360 px ekranda %160 yazı boyutunda taşma yok. Sessiz modla ders baştan sona bitiyor. Test: `tests/erisilebilir-ders-akisi.test.tsx`, `tests/tema-kontrast.test.ts`
-- [ ] **AI soru üretimi hattı.** Akış şöyle olmalı: içerik → AI taslak soru → insan onayı → yayın. İnsan onayı olmadan hiçbir soru yayına girmemeli. ⚠️ Henüz kimse almadı.
+- [x] **AI soru üretimi hattı.** Akış: içerik → AI taslak soru → insan onayı → yayın. İnsan onayı olmadan hiçbir soru yayına girmemeli. ✅ `npm run soru:taslak` → `data/taslak-sorular/`, `--yayinla` yalnızca adıyla onaylananları alır.
 - [x] **Elmas harcama + veli onayı (simüle).** Çarşı'da avatar, defter teması ve ek ipucu alınır. Her harcamadan önce yazıyla bir çarpma sorusu sorulur; onay 10 dakika geçerlidir. Ayarlar'dan kapatılabilir ama kapatmak da onay ister. **18 Ekim:** kazanılan elmas gerçek para olmadığı için onay varsayılan olarak kapalı; veli isterse açar (KARARLAR §4). "Ek sefer" ifadesinin yorumu: [docs/KARARLAR.md](docs/KARARLAR.md) §4. Test: `tests/veli-onayi.test.ts`, `tests/veli-kapisi.test.tsx`
 - [x] **Belge düzeltmeleri.** `docs/DEMO.md`'de şehirler (Hatay, Konya, Bursa), Hatay eser sayısı (12) ve erişilebilirlik kapsamı güncellendi. `docs/KARARLAR.md` §5'e PostgreSQL yerine PGlite, PostGIS yerine cihazda mesafe ve gömülü GeoJSON gerekçesi yazıldı. (Demo senaryosunun baştan yazımı aşağıda ayrı madde.)
 - [x] **npm audit açıkları.** Sunucu paketi (`@fastify/static`) dahil düzeltildi. `npm audit` sonucu: 0 açık.
@@ -74,6 +74,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
   - ⚠️ Gemini API şartları 18 yaş altına yönelik uygulamalarda kullanımı yasaklıyor; ücretsiz kotada veriler Google'ın modellerini eğitmekte kullanılıyor. Hangisinin kullanılacağına takım karar vermeli.
   - Yerelde: `.env` dosyasına anahtar satırı yazılır (`.env.example` dosyasına bak). `.env.example`'a değil: o dosya git'e girer.
   - 18 Ekim: Batuhan'ın makinesinde Gemini anahtarıyla uçtan uca denendi; kaynaklı cevaplar doğru geliyor. Vercel'e henüz eklenmedi.
+  - 18 Ekim (Abdullah): Gemini anahtarı yok. Karar bekleyene kadar Köstik sohbeti kapalı kalır ("şu an kapalı" der); demo bu haliyle güvenli.
   - ⚠️ Gemini ücretsiz kotası model başına günde yalnızca 20 istek (18 Ekim'de iki model için de doldu). Finalde bir sınıf birkaç dakikada tüketir: ücretli kota ya da Claude gerekir.
   - Vercel'de: Settings → Environment Variables.
   - Anahtar asla koda, commit'e ya da sohbete yazılmaz.
@@ -81,7 +82,7 @@ Ayrıntılar [docs/GECE-RAPORU.md](docs/GECE-RAPORU.md) §21–24 ve [DESIGN.md]
 - [ ] **PDF'lerden resmi içerik aktarmak.** Vakıf Katılım PDF'lerindeki metin ve görseller `data/` dosyalarına aktarılacak. Eser listesi yalnızca PDF'teki eserlerle sınırlanacak.
 - [ ] **Admin ve öğretmen paneli.** Şu an `#/panel` ve `#/ogretmen` rotaları var ve Profil'den açılıyor. Ayrı giriş noktası (`/admin`, `/ogretmen`) isteniyor mu? Takım karar verecek.
 - [ ] **Arşiv eserlerine konum.** Haritada fotoğraflı işaret yalnızca 57 ders eserinde var; arşivdeki diğer eserlerin (`public/arsiv/liste.json`) koordinatı yok. Bu ilçeler haritada "· arşiv" balonuyla gösteriliyor. Koordinatlar Vakıf Katılım PDF'lerinden ya da OpenStreetMap'ten kaynaklı eklenebilir.
-- [ ] **Canlı yarışma için kalıcı oda.** Odalar şu an bellekte tutuluyor; Vercel'de bölünebilir. Ya final demosu `npm run dev:lan` ile laptoptan yapılır ya da odalar veritabanına taşınır.
+- [x] **Canlı yarışma için kalıcı oda.** Odalar `server/canli/depo.ts` üzerinden ortak depoda: Vercel'de Upstash Redis (`UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`), yerelde bellek. Sürümlü yazma (CAS) ile eşzamanlı cevap kaybolmaz. Test: `tests/canli-cok-ornek.test.ts`.
 - [ ] **İçerik okuması.** 57 dersin metinlerini bir insan 10–12 yaş diline göre okumalı.
 - [ ] **Hatay teyidi.** Deprem sonrası durumu "doğrulanmadı" olarak işaretli eserler için mentörden teyit istenmeli.
 - [ ] **Demo senaryosu.** `docs/DEMO.md` yeni akışa göre baştan yazılmalı (Senaryo A + B, 3 dakika).
