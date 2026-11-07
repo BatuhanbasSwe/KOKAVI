@@ -12,8 +12,13 @@
  * Sonuç: "bu kodla bu ders kaç kez tamamlandı" bilinir; "kaç farklı öğrenci"
  * BİLİNEMEZ ve bilinmediği için arayüz de iddia etmez. Sayaç, tekrar
  * tamamlamalarla şişebilir — bu yüzden etiket "toplam tamamlama"dır.
+ *
+ * İSTEĞE BAĞLI TAKMA AD (07.11.2026): Çocuk katılırken takma ad yazarsa
+ * sunucu ona rastgele bir öğrenci kimliği verir ve o kimliğin bitirdiği
+ * dersler ayrıca tutulur (öğretmen ve yönetici öğrenci öğrenci görür).
+ * Gerçek ad, cihaz kimliği, IP yine tutulmaz; sınıftan çıkınca silinir.
  */
-import { randomInt } from 'node:crypto';
+import { randomInt, randomUUID } from 'node:crypto';
 import { sorgu, tekSorgu, veritabaniAl } from '../db/index.ts';
 import { KULLIYE_GRUPLARI } from '../../shared/kulliyeler.ts';
 import type { GelirDurumu, GelirKalemi, GelirTipi } from '../../shared/types.ts';
@@ -143,7 +148,7 @@ export async function sinifDurumDegistir(kod: string, aktif: boolean): Promise<b
  * Kimlik ALINMAZ. Aynı dersin tekrar tamamlanması sayacı artırır; bu yüzden
  * sonuç "farklı öğrenci sayısı" değil "toplam tamamlama"dır.
  */
-export async function tamamlamaKaydet(kod: string, dersId: string): Promise<boolean> {
+export async function tamamlamaKaydet(kod: string, dersId: string, ogrenciId?: string | null): Promise<boolean> {
   const sinif = await sinifGetir(kod);
   if (!sinif || !sinif.aktif) return false;
 
@@ -159,7 +164,161 @@ export async function tamamlamaKaydet(kod: string, dersId: string): Promise<bool
      DO UPDATE SET sayi = class_progress.sayi + 1, updated_at = NOW()`,
     [sinif.kod, dersId.slice(0, 120)],
   );
+
+  // Takma adla katılmış öğrenci: kendi satırına da yaz (kimlik bu sınıfta kayıtlıysa).
+  if (ogrenciId) {
+    const kayitli = await tekSorgu(`SELECT 1 FROM class_student WHERE kod = $1 AND ogrenci_id = $2`, [
+      sinif.kod,
+      ogrenciId.slice(0, 64),
+    ]);
+    if (kayitli) {
+      await db.query(
+        `INSERT INTO class_student_progress (kod, ogrenci_id, ders_id, sayi)
+         VALUES ($1, $2, $3, 1)
+         ON CONFLICT (kod, ogrenci_id, ders_id)
+         DO UPDATE SET sayi = class_student_progress.sayi + 1, son_at = NOW()`,
+        [sinif.kod, ogrenciId.slice(0, 64), dersId.slice(0, 120)],
+      );
+    }
+  }
   return true;
+}
+
+// ---------------------------------------------------------------------------
+// İsteğe bağlı takma adlı katılım
+// ---------------------------------------------------------------------------
+
+/** Takma ad: 2-20 karakter; harf, rakam, boşluk, nokta, tire, alt çizgi. */
+export function takmaAdTemizle(ham: unknown): string | null {
+  if (typeof ham !== 'string') return null;
+  const ad = ham.normalize('NFC').replace(/\s+/g, ' ').trim();
+  if (ad.length < 2 || ad.length > 20) return null;
+  if (!/^[\p{L}\p{N} ._-]+$/u.test(ad)) return null;
+  return ad;
+}
+
+/** Yeni öğrenci kimliği üretir (sunucu tarafında, rastgele). */
+export function ogrenciKimligiUret(): string {
+  return randomUUID();
+}
+
+/** Takma adlı öğrenciyi sınıfa ekler. Sınıf yoksa ya da kapalıysa false. */
+export async function ogrenciEkle(kod: string, ogrenciId: string, takmaAd: string): Promise<boolean> {
+  const sinif = await sinifGetir(kod);
+  if (!sinif || !sinif.aktif) return false;
+  const db = await veritabaniAl();
+  await db.query(
+    `INSERT INTO class_student (kod, ogrenci_id, takma_ad) VALUES ($1, $2, $3)
+     ON CONFLICT (kod, ogrenci_id) DO UPDATE SET takma_ad = EXCLUDED.takma_ad`,
+    [sinif.kod, ogrenciId.slice(0, 64), takmaAd.slice(0, 20)],
+  );
+  return true;
+}
+
+/** Öğrenci sınıftan çıkınca kaydı ve ilerlemesi silinir. */
+export async function ogrenciSil(kod: string, ogrenciId: string): Promise<boolean> {
+  const normal = koduNormalle(kod);
+  if (!normal) return false;
+  const db = await veritabaniAl();
+  const sonuc = await db.query(`DELETE FROM class_student WHERE kod = $1 AND ogrenci_id = $2`, [
+    normal,
+    ogrenciId.slice(0, 64),
+  ]);
+  return (sonuc.affectedRows ?? 0) > 0;
+}
+
+export interface OgrenciOzeti {
+  takmaAd: string;
+  katildi: string;
+  /** Bitirdiği farklı ders sayısı. */
+  tamamlananDers: number;
+  sonEtkinlik: string | null;
+  sonEser: string | null;
+}
+
+/** Bir sınıfın takma adlı öğrencileri, en çok ders bitirenden başlayarak. */
+export async function sinifOgrencileri(kod: string): Promise<OgrenciOzeti[]> {
+  const normal = koduNormalle(kod);
+  if (!normal) return [];
+  const satirlar = await sorgu<{
+    takma_ad: string;
+    created_at: string;
+    tamamlanan: number;
+    son_at: string | null;
+    son_eser: string | null;
+  }>(
+    `SELECT s.takma_ad, s.created_at,
+            COUNT(p.ders_id)::int AS tamamlanan,
+            MAX(p.son_at) AS son_at,
+            (SELECT w.ad FROM class_student_progress p2
+               JOIN lesson l ON l.id = p2.ders_id
+               JOIN work w ON w.id = l.work_id
+              WHERE p2.kod = s.kod AND p2.ogrenci_id = s.ogrenci_id
+              ORDER BY p2.son_at DESC LIMIT 1) AS son_eser
+       FROM class_student s
+       LEFT JOIN class_student_progress p ON p.kod = s.kod AND p.ogrenci_id = s.ogrenci_id
+      WHERE s.kod = $1
+      GROUP BY s.kod, s.ogrenci_id, s.takma_ad, s.created_at
+      ORDER BY tamamlanan DESC, s.takma_ad`,
+    [normal],
+  );
+  return satirlar.map((x) => ({
+    takmaAd: x.takma_ad,
+    katildi: new Date(x.created_at).toISOString(),
+    tamamlananDers: Number(x.tamamlanan),
+    sonEtkinlik: x.son_at ? new Date(x.son_at).toISOString() : null,
+    sonEser: x.son_eser,
+  }));
+}
+
+export interface YonetimSinifRaporu {
+  kod: string;
+  ad: string;
+  aktif: boolean;
+  createdAt: string;
+  ogretmen: string;
+  toplamTamamlama: number;
+  tamamlananDersCesidi: number;
+  /** En çok bitirilen 3 eser (anonim sayaçtan). */
+  enCok: { eserAdi: string; sayi: number }[];
+  ogrenciler: OgrenciOzeti[];
+}
+
+/** Yönetici paneli: bütün sınıflar, anonim sayaçlar ve takma adlı öğrenciler. */
+export async function tumSiniflarRaporu(): Promise<YonetimSinifRaporu[]> {
+  const siniflar = await sorgu<{
+    kod: string;
+    ad: string;
+    aktif: boolean;
+    created_at: string;
+    ogretmen: string | null;
+  }>(
+    `SELECT c.kod, c.ad, c.aktif, c.created_at, u.ad AS ogretmen
+       FROM class_code c LEFT JOIN app_user u ON u.id = c.ogretmen_id
+      ORDER BY c.created_at DESC`,
+  );
+  return Promise.all(
+    siniflar.map(async (c) => {
+      const ozet = await sinifIlerlemesi(c.kod);
+      const enCok = await sorgu<{ eser_adi: string; sayi: number }>(
+        `SELECT w.ad AS eser_adi, p.sayi
+           FROM class_progress p JOIN lesson l ON l.id = p.ders_id JOIN work w ON w.id = l.work_id
+          WHERE p.kod = $1 ORDER BY p.sayi DESC, w.ad LIMIT 3`,
+        [c.kod],
+      );
+      return {
+        kod: c.kod,
+        ad: c.ad,
+        aktif: c.aktif,
+        createdAt: new Date(c.created_at).toISOString(),
+        ogretmen: c.ogretmen ?? 'Silinmiş kullanıcı',
+        toplamTamamlama: ozet?.toplamTamamlama ?? 0,
+        tamamlananDersCesidi: ozet?.tamamlananDersCesidi ?? 0,
+        enCok: enCok.map((x) => ({ eserAdi: x.eser_adi, sayi: Number(x.sayi) })),
+        ogrenciler: await sinifOgrencileri(c.kod),
+      };
+    }),
+  );
 }
 
 export async function sinifIlerlemesi(kod: string): Promise<SinifIlerlemesi | null> {

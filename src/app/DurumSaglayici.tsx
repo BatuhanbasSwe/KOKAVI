@@ -23,6 +23,7 @@ import {
   seviyeHesapla,
   yolHesapla,
 } from '../lib/ilerleme';
+import { sinifOgrencisiOku } from '../lib/sinifOgrencisi';
 import { ayarlariUygula } from '../lib/erisilebilirlik';
 import { temaGocuUygula } from './temaGocu';
 import {
@@ -200,10 +201,12 @@ export function DurumSaglayici({ children }: { children: ReactNode }) {
       // Kimlik, cihaz bilgisi veya ilerleme ayrıntısı GÖNDERİLMEZ.
       // Ateşle-unut: başarısız olsa da çocuğun deneyimi kesintiye uğramaz.
       if (yeniTamamlandi && mevcut.sinifKodu) {
+        // Takma adla katıldıysa (isteğe bağlı) sunucunun verdiği rastgele kimlik de gider.
+        const ogrenci = sinifOgrencisiOku(mevcut.sinifKodu);
         void fetch('/api/sinif/tamamla', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ kod: mevcut.sinifKodu, dersId }),
+          body: JSON.stringify({ kod: mevcut.sinifKodu, dersId, ...(ogrenci ? { ogrenciId: ogrenci.ogrenciId } : {}) }),
         }).catch(() => {
           /* çevrimdışı veya sınıf kapanmış — sessizce yut */
         });

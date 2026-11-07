@@ -4,8 +4,9 @@
  * PDF Senaryo B: "Öğretmen sınıf kodunu açar. Sınıf birlikte bir külliyeyi
  * tamamlar." Çocuk bu ekranda öğretmenin tahtaya yazdığı kodu girer.
  *
- * 🔒 GİZLİLİK: Bu ekran sunucuya YALNIZCA kodu gönderir. İsim, e-posta,
- * cihaz kimliği veya konum gönderilmez ve saklanmaz. Karşılığında yalnızca
+ * 🔒 GİZLİLİK: Bu ekran sunucuya kodu ve İSTEĞE BAĞLI bir takma adı gönderir.
+ * Gerçek isim, e-posta, cihaz kimliği veya konum gönderilmez ve saklanmaz.
+ * Takma ad yazılırsa öğretmen ve yönetici ilerlemeyi o takma adla görür. Karşılığında yalnızca
  * toplu sayaçlar gelir; bu yüzden ekranda "kaç kişi" değil "toplam tamamlama"
  * yazar ve bu ayrım çocuğa açıkça anlatılır.
  *
@@ -32,6 +33,7 @@ import {
   type KatilimBilgisi,
 } from './api';
 import { CanliBolge, KatilimGizlilikNotu } from './parcalar';
+import { sinifOgrencisiYaz, takmaAdGecerliMi } from '@/lib/sinifOgrencisi';
 import './ogretmen.css';
 
 export interface SinifKoduGirisiProps {
@@ -50,6 +52,9 @@ export function SinifKoduGirisi({ onKatildi }: SinifKoduGirisiProps) {
   const [hata, setHata] = useState<HataDurumu | null>(null);
   const [sorgulaniyor, setSorgulaniyor] = useState(false);
   const [katilim, setKatilim] = useState<KatilimBilgisi | null>(null);
+  const [takmaAd, setTakmaAd] = useState('');
+  const [takmaAdHatasi, setTakmaAdHatasi] = useState<string | null>(null);
+  const [kayitliTakmaAd, setKayitliTakmaAd] = useState<string | null>(null);
 
   async function gonder(olay: FormEvent<HTMLFormElement>) {
     olay.preventDefault();
@@ -69,12 +74,29 @@ export function SinifKoduGirisi({ onKatildi }: SinifKoduGirisiProps) {
       return;
     }
 
+    if (takmaAd.trim() !== '' && !takmaAdGecerliMi(takmaAd)) {
+      setTakmaAdHatasi('Takma ad 2-20 karakter olmalı; harf, rakam ve boşluk kullan.');
+      setHata({ ozet: 'Takma ad uygun değil.', ayrinti: null });
+      return;
+    }
+
     setHata(null);
+    setTakmaAdHatasi(null);
     setSorgulaniyor(true);
     try {
       const bilgi = await katilimApi.sinifiSorgula(girdi);
+      // İsteğe bağlı takma ad: sunucu rastgele bir öğrenci kimliği verir.
+      if (takmaAd.trim() !== '') {
+        const o = await katilimApi.takmaAdlaKatil(bilgi.kod, takmaAd.trim());
+        sinifOgrencisiYaz({ kod: bilgi.kod, ogrenciId: o.ogrenciId, takmaAd: o.takmaAd });
+        setKayitliTakmaAd(o.takmaAd);
+      } else {
+        sinifOgrencisiYaz(null);
+        setKayitliTakmaAd(null);
+      }
       setKatilim(bilgi);
       setGirdi('');
+      setTakmaAd('');
       onKatildi?.(bilgi.kod);
     } catch (e) {
       setKatilim(null);
@@ -114,6 +136,12 @@ export function SinifKoduGirisi({ onKatildi }: SinifKoduGirisiProps) {
               </h2>
               <p className="metin-ikincil">
                 Sınıf kodu: <strong>{katilim.kod}</strong>
+                {kayitliTakmaAd ? (
+                  <>
+                    {' '}
+                    · Takma adın: <strong>{kayitliTakmaAd}</strong>
+                  </>
+                ) : null}
               </p>
             </div>
 
@@ -167,6 +195,28 @@ export function SinifKoduGirisi({ onKatildi }: SinifKoduGirisiProps) {
                 onChange={(olay) => {
                   setGirdi(sinifKoduBicimle(olay.target.value));
                   setHata(null);
+                }}
+              />
+            )}
+          </Alan>
+
+          <Alan
+            id="katilim-takma-ad"
+            etiket="Takma ad (isteğe bağlı)"
+            hata={takmaAdHatasi}
+            ipucu="Gerçek adını yazma; örneğin Mavi Kartal. Yazarsan öğretmenin ilerlemeni bu adla görür. Boş bırakırsan tamamen anonim kalırsın."
+          >
+            {(o) => (
+              <input
+                {...o}
+                type="text"
+                value={takmaAd}
+                maxLength={20}
+                autoComplete="off"
+                spellCheck={false}
+                onChange={(olay) => {
+                  setTakmaAd(olay.target.value);
+                  setTakmaAdHatasi(null);
                 }}
               />
             )}

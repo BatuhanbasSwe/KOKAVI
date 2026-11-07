@@ -22,6 +22,11 @@ import {
   sinifDurumDegistir,
   tamamlamaKaydet,
   koduNormalle,
+  takmaAdTemizle,
+  ogrenciKimligiUret,
+  ogrenciEkle,
+  ogrenciSil,
+  sinifOgrencileri,
 } from '../repo/sinif.ts';
 import { oturumGerekli } from '../auth/koruma.ts';
 import { gunlukYaz } from '../yonetim/gunluk.ts';
@@ -92,13 +97,15 @@ export async function sinifUclari(app: FastifyInstance): Promise<void> {
         const govde = (istek.body ?? {}) as Record<string, unknown>;
         const kod = zorunlu(govde.kod, 'kod');
         const dersId = zorunlu(govde.dersId, 'dersId');
+        // İsteğe bağlı: takma adla katılmış öğrencinin sunucu kimliği.
+        const ogrenciId = typeof govde.ogrenciId === 'string' ? govde.ogrenciId.slice(0, 64) : null;
 
-        const tamam = await tamamlamaKaydet(kod, dersId);
+        const tamam = await tamamlamaKaydet(kod, dersId, ogrenciId);
         if (!tamam) {
           return cevap.code(404).send({ hata: 'Sınıf kodu veya ders bulunamadı.' });
         }
         // İşlem günlüğü: sayaç bütün sunucu örneklerinde birleşsin.
-        await gunlukYaz({ t: 'sinif-tamamla', d: { kod, dersId } });
+        await gunlukYaz({ t: 'sinif-tamamla', d: { kod, dersId, ogrenciId } });
         return { tamam: true };
       } catch (hata) {
         if (hata instanceof DogrulamaHatasi) {
@@ -108,6 +115,39 @@ export async function sinifUclari(app: FastifyInstance): Promise<void> {
       }
     },
   );
+
+  /**
+   * İSTEĞE BAĞLI takma adla katılım. Gönderilen tek şey takma ad; sunucu
+   * rastgele bir öğrenci kimliği üretip döner (çocuğun cihazında saklanır).
+   */
+  app.post(
+    '/api/sinif/:kod/ogrenci',
+    { config: { rateLimit: { max: 20, timeWindow: '1 minute' } } },
+    async (istek, cevap) => {
+      const { kod } = istek.params as { kod: string };
+      const takmaAd = takmaAdTemizle(((istek.body ?? {}) as Record<string, unknown>).takmaAd);
+      if (!takmaAd) {
+        return cevap.code(400).send({ hata: 'Takma ad 2-20 karakter olmalı; harf, rakam ve boşluk kullan.' });
+      }
+      const ogrenciId = ogrenciKimligiUret();
+      if (!(await ogrenciEkle(kod, ogrenciId, takmaAd))) {
+        return cevap.code(404).send({ hata: 'Böyle bir sınıf kodu yok.', kod: 'SINIF_YOK' });
+      }
+      const normal = koduNormalle(kod)!;
+      await gunlukYaz({ t: 'sinif-ogrenci-ekle', d: { kod: normal, ogrenciId, takmaAd } });
+      return cevap.code(201).send({ ogrenciId, takmaAd });
+    },
+  );
+
+  /** Sınıftan çıkınca takma ad ve ilerlemesi silinir (kimliği bilen silebilir). */
+  app.delete('/api/sinif/:kod/ogrenci/:ogrenciId', async (istek, cevap) => {
+    const { kod, ogrenciId } = istek.params as { kod: string; ogrenciId: string };
+    const normal = koduNormalle(kod);
+    if (!normal) return cevap.code(400).send({ hata: 'Geçersiz sınıf kodu biçimi.' });
+    await ogrenciSil(normal, ogrenciId);
+    await gunlukYaz({ t: 'sinif-ogrenci-sil', d: { kod: normal, ogrenciId: ogrenciId.slice(0, 64) } });
+    return { tamam: true };
+  });
 
   // -----------------------------------------------------------------------
   // Öğretmen — giriş zorunlu
@@ -160,7 +200,9 @@ export async function sinifUclari(app: FastifyInstance): Promise<void> {
     }
 
     const detay = await sinifDetayliIlerleme(normal);
-    return detay ?? cevap.code(404).send({ hata: 'Sınıf bulunamadı.' });
+    if (!detay) return cevap.code(404).send({ hata: 'Sınıf bulunamadı.' });
+    // Takma adla katılan öğrenciler (katılmayanlar yalnızca anonim sayaçta).
+    return { ...detay, ogrenciler: await sinifOgrencileri(normal) };
   });
 
   app.patch('/api/ogretmen/siniflar/:kod', { preHandler: oturumGerekli }, async (istek, cevap) => {

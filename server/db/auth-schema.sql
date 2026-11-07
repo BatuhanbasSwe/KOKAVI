@@ -88,3 +88,33 @@ CREATE TABLE IF NOT EXISTS class_progress (
   updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   PRIMARY KEY (kod, ders_id)
 );
+
+-- --------------------------------------------------------------------------
+-- Takma adlı sınıf katılımı (07.11.2026, İSTEĞE BAĞLI)
+--
+-- Çocuk sınıfa katılırken isterse bir TAKMA AD yazar; yazmazsa yalnızca yukarıdaki
+-- anonim sayaç işler. Takma adla katılanların ilerlemesi öğretmen ve yönetici
+-- panelinde öğrenci öğrenci görünür.
+--   * `ogrenci_id` sunucunun ürettiği rastgele bir kimliktir; cihaz kimliği,
+--     IP, e-posta, gerçek ad, yaş SAKLANMAZ.
+--   * Arayüz gerçek ad yazılmamasını açıkça ister.
+--   * Çocuk sınıftan çıkınca bu kayıtlar silinir (ON DELETE CASCADE).
+-- --------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS class_student (
+  kod         TEXT NOT NULL REFERENCES class_code(kod) ON DELETE CASCADE,
+  ogrenci_id  TEXT NOT NULL,
+  takma_ad    TEXT NOT NULL,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (kod, ogrenci_id)
+);
+
+CREATE TABLE IF NOT EXISTS class_student_progress (
+  kod         TEXT NOT NULL,
+  ogrenci_id  TEXT NOT NULL,
+  ders_id     TEXT NOT NULL,
+  sayi        INTEGER NOT NULL DEFAULT 0,
+  ilk_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  son_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (kod, ogrenci_id, ders_id),
+  FOREIGN KEY (kod, ogrenci_id) REFERENCES class_student(kod, ogrenci_id) ON DELETE CASCADE
+);

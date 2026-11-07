@@ -22,6 +22,7 @@ import { baslikAyarla, git } from '../../lib/yonlendirme';
 import { MetinGirdisi, OnayKutusu } from './Alan';
 import { EserFormu } from './EserFormu';
 import { KullaniciYonetimi } from './KullaniciYonetimi';
+import { SinifRaporu } from './SinifRaporu';
 import { OnayDiyalogu } from './OnayDiyalogu';
 import { UniteYonetimi } from './UniteYonetimi';
 import { VeriTablosu } from './VeriTablosu';
@@ -32,10 +33,11 @@ import './panel.css';
 const YENI_KAYIT = 'yeni';
 
 /** Panelin liste görünümündeki sekmeler. */
-type PanelBolumu = 'icerik' | 'kullanicilar';
+type PanelBolumu = 'icerik' | 'siniflar' | 'kullanicilar';
 
 const SEKMELER: { anahtar: PanelBolumu; etiket: string }[] = [
   { anahtar: 'icerik', etiket: 'İçerik' },
+  { anahtar: 'siniflar', etiket: 'Sınıflar ve öğrenciler' },
   { anahtar: 'kullanicilar', etiket: 'Kullanıcılar' },
 ];
 
@@ -186,7 +188,9 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
         ? 'Yeni eser ekle'
         : bolum === 'kullanicilar'
           ? 'Kullanıcı yönetimi'
-          : 'Yönetim paneli';
+          : bolum === 'siniflar'
+            ? 'Sınıflar ve öğrenciler'
+            : 'Yönetim paneli';
     baslikAyarla(baslik);
     // Uygulama kabuğu rota değişiminde genel başlığı ("Yönetim Paneli") yazar;
     // panelin daha açıklayıcı başlığı bir mikro görev sonra son sözü söyler.
@@ -321,7 +325,9 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
           <p className="metin-ikincil" style={{ margin: 0 }}>
             {bolum === 'kullanicilar'
               ? 'Yönetici ve öğretmen hesaplarını yönetin. Çocuklar için hesap açılmaz; öğrenciler cihaz-yerel anonim profille ilerler.'
-              : 'Vakıf eserlerini ekleyin, düzenleyin ve yayın durumunu yönetin. Her kayıt kaynağıyla birlikte saklanır; oran belgelenmemişse uygulama bunu açıkça söyler.'}
+              : bolum === 'siniflar'
+                ? 'Bütün sınıfların ilerlemesi: anonim sınıf sayaçları ve takma adla katılan öğrenciler.'
+                : 'Vakıf eserlerini ekleyin, düzenleyin ve yayın durumunu yönetin. Her kayıt kaynağıyla birlikte saklanır; oran belgelenmemişse uygulama bunu açıkça söyler.'}
           </p>
         </div>
       </div>
@@ -553,6 +559,17 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
           onOnay={() => void eserSil()}
           onKapat={() => setSilinecek(null)}
         />
+      </div>
+
+      {/* --- Sınıflar ve öğrenciler (yönetici) ------------------------------- */}
+      <div
+        className="panel__sekme-icerik"
+        id="panel-bolum-siniflar"
+        role="tabpanel"
+        aria-labelledby="panel-sekme-siniflar"
+        hidden={bolum !== 'siniflar'}
+      >
+        {bolum === 'siniflar' && <SinifRaporu />}
       </div>
 
       {/* --- Kullanıcı yönetimi (yönetici) ----------------------------------- */}

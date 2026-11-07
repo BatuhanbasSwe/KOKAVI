@@ -26,6 +26,7 @@ import {
 } from '../repo/yol.ts';
 import { dersKaydet, dersSil, dersGetir, type DersGirdisi } from '../repo/ders.ts';
 import { yoneticiGerekli } from '../auth/koruma.ts';
+import { tumSiniflarRaporu } from '../repo/sinif.ts';
 import { gunlukYaz } from '../yonetim/gunluk.ts';
 import type { EgzersizTipi } from '../../shared/types.ts';
 
@@ -92,6 +93,9 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
   app.addHook('preHandler', yoneticiGerekli);
 
   app.get('/api/yonetim/istatistik', async () => istatistikler());
+
+  /** Bütün sınıflar: anonim sayaçlar + takma adlı öğrenciler (yalnızca yönetici). */
+  app.get('/api/yonetim/siniflar', async () => tumSiniflarRaporu());
 
   // --- Şehir ---------------------------------------------------------------
   app.post('/api/yonetim/sehirler', async (istek, cevap) => {

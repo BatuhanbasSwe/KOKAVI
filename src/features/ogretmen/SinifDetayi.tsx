@@ -12,6 +12,7 @@ import { useCallback, useEffect, useState } from 'react';
 import {
   hataMetni,
   ogretmenApi,
+  tarihBicimle,
   type KulliyeIlerlemesi,
   type SinifDetayCevabi,
 } from './api';
@@ -238,6 +239,44 @@ export function SinifDetayi({ kod, aktif, onDurumDegisti, onGeri }: SinifDetayiP
               </button>
             </div>
           </div>
+
+          <section className="kart ogretmen__bolum" aria-labelledby="sinif-ogrenciler-baslik">
+            <h3 id="sinif-ogrenciler-baslik">Takma adla katılan öğrenciler</h3>
+            {(veri.ogrenciler ?? []).length === 0 ? (
+              <p className="metin-ikincil" style={{ margin: 0 }}>
+                Henüz takma adla katılan yok. Takma ad isteğe bağlıdır; yazmayanlar yalnızca toplam sayaçta görünür.
+              </p>
+            ) : (
+              <div
+                className="ogretmen__tablo-kaydirma"
+                role="region"
+                aria-label="Öğrenciler (yatay kaydırılabilir tablo)"
+                tabIndex={0}
+              >
+                <table className="ogretmen__tablo">
+                  <caption className="sr-only">Takma adla katılan öğrenciler</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Takma ad</th>
+                      <th scope="col">Bitirdiği ders</th>
+                      <th scope="col">Son bitirdiği eser</th>
+                      <th scope="col">Son etkinlik</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(veri.ogrenciler ?? []).map((o, i) => (
+                      <tr key={`${o.takmaAd}-${i}`}>
+                        <th scope="row">{o.takmaAd}</th>
+                        <td>{o.tamamlananDers}</td>
+                        <td>{o.sonEser ?? 'Henüz yok'}</td>
+                        <td>{o.sonEtkinlik ? tarihBicimle(o.sonEtkinlik) : 'Henüz yok'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
 
           {veri.uniteler.length === 0 ? (
             <p className="bildirim bildirim--bilgi">

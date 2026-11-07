@@ -858,3 +858,39 @@
   }
 }
 
+
+/* --- Sınıflar ve öğrenciler (SinifRaporu) -------------------------------------- */
+.sinif-raporu__ozet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(9rem * var(--yazi-olcek))), 1fr));
+  gap: var(--b-3);
+  margin: 0;
+}
+.sinif-raporu__ozet dt {
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+.sinif-raporu__ozet dd {
+  margin: 0;
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-2xl);
+  font-weight: 800;
+}
+.sinif-raporu__sinif summary {
+  display: grid;
+  gap: 2px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.sinif-raporu__ad {
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-lg);
+  font-weight: 800;
+}
+.sinif-raporu__alt {
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+.sinif-raporu__govde {
+  margin-top: var(--b-3);
+}

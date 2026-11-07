@@ -100,11 +100,35 @@ export interface SinifOzeti extends Sinif {
   ozet: SinifIlerlemesi | null;
 }
 
+/** Takma adla katılan öğrencinin özeti (öğretmen ve yönetici görür). */
+export interface OgrenciOzeti {
+  takmaAd: string;
+  katildi: string;
+  tamamlananDers: number;
+  sonEtkinlik: string | null;
+  sonEser: string | null;
+}
+
 /** `GET /api/ogretmen/siniflar/:kod` gövdesi. */
 export interface SinifDetayCevabi {
   ilerleme: SinifIlerlemesi;
   uniteler: UniteIlerlemesi[];
   kulliyeler: KulliyeIlerlemesi[];
+  /** Takma adla katılanlar; katılmayanlar yalnızca anonim sayaçta. */
+  ogrenciler?: OgrenciOzeti[];
+}
+
+/** `GET /api/yonetim/siniflar` satırı (yalnızca yönetici). */
+export interface YonetimSinifRaporu {
+  kod: string;
+  ad: string;
+  aktif: boolean;
+  createdAt: string;
+  ogretmen: string;
+  toplamTamamlama: number;
+  tamamlananDersCesidi: number;
+  enCok: { eserAdi: string; sayi: number }[];
+  ogrenciler: OgrenciOzeti[];
 }
 
 /** `GET /api/sinif/:kod` gövdesi — çocuğun gördüğü anonim özet. */
@@ -197,6 +221,20 @@ export const katilimApi = {
    */
   sinifRontgeni: (kod: string) =>
     iste<SinifRontgenCevabi>(`/sinif/${encodeURIComponent(kod)}/rontgen`),
+
+  /** İsteğe bağlı takma adla katılım; sunucu rastgele bir öğrenci kimliği döner. */
+  takmaAdlaKatil: (kod: string, takmaAd: string) =>
+    iste<{ ogrenciId: string; takmaAd: string }>(`/sinif/${encodeURIComponent(kod)}/ogrenci`, {
+      method: 'POST',
+      body: JSON.stringify({ takmaAd }),
+    }),
+};
+
+// --- Yönetici -----------------------------------------------------------------
+
+export const yonetimSinifApi = {
+  /** Bütün sınıflar: anonim sayaçlar + takma adlı öğrenciler. */
+  raporGetir: () => iste<YonetimSinifRaporu[]>('/yonetim/siniflar'),
 };
 
 // ---------------------------------------------------------------------------

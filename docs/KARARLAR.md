@@ -472,3 +472,24 @@ dürüsttür: "Kök Avı ders metni (eser, Bağlam adımı); eser kaynağı: …
    Hareketi azalt ve sessiz mod zaten kapsıyor; demo anlatısında yer almaz.
 8. **Zaman tüneli kaldırılmış kalır.** Rota kodda durur, çocuk gezinmesinde
    görünmez.
+
+---
+
+## Sınıfta isteğe bağlı takma ad (07.11.2026)
+
+**İstek:** Yönetici (ve öğretmen) öğrencilerin ilerlemesini görmek istiyor.
+
+**Karar:** İki katman. (1) Anonim sınıf sayacı eskisi gibi her zaman çalışır.
+(2) Çocuk sınıfa katılırken **isterse** bir takma ad yazar ("Mavi Kartal");
+sunucu ona rastgele bir öğrenci kimliği verir, bu kimlik yalnızca çocuğun
+cihazında saklanır ve ders bitince sınıf koduyla birlikte gönderilir.
+Yönetim paneli → "Sınıflar ve öğrenciler" bütün sınıfları, öğretmen paneli
+kendi sınıfını takma ad bazında gösterir.
+
+**Gizlilik sınırları:** Takma ad zorunlu değil; arayüz gerçek ad yazılmamasını
+açıkça ister. Gerçek ad, e-posta, cihaz kimliği, IP, yaş tutulmaz. Çocuk
+Ayarlar'dan sınıftan çıkınca takma adı ve ilerlemesi sunucudan silinir.
+Başvurudaki "kişisel veri toplanmaz, sınıf kodu anonim" sözü takma ad
+yazmayan öğrenci için aynen geçerlidir. Kod: `server/repo/sinif.ts`,
+`src/lib/sinifOgrencisi.ts`, `src/features/panel/SinifRaporu.tsx`.
+Test: `tests/sinif-ogrenci.test.ts`.

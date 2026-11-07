@@ -25,7 +25,7 @@ import { redisAyari, redisKomut } from '../redis.ts';
 import { eserKaydet, eserSil, type EserGirdisi } from '../repo/eser.ts';
 import { sehirKaydet, uniteKaydet, uniteSil, kulliyeKaydet } from '../repo/yol.ts';
 import { dersKaydet, dersSil, type DersGirdisi } from '../repo/ders.ts';
-import { sinifEkle, sinifDurumDegistir, tamamlamaKaydet } from '../repo/sinif.ts';
+import { sinifEkle, sinifDurumDegistir, tamamlamaKaydet, ogrenciEkle, ogrenciSil } from '../repo/sinif.ts';
 import {
   kullaniciDurumDegistir,
   kullaniciEkleHashli,
@@ -52,7 +52,9 @@ export type Islem =
   | { id: string; t: 'kullanici-parola'; d: { id: string; parolaHash: string } }
   | { id: string; t: 'sinif-ekle'; d: { kod: string; ogretmenId: string; ad: string } }
   | { id: string; t: 'sinif-durum'; d: { kod: string; aktif: boolean } }
-  | { id: string; t: 'sinif-tamamla'; d: { kod: string; dersId: string } };
+  | { id: string; t: 'sinif-tamamla'; d: { kod: string; dersId: string; ogrenciId?: string | null } }
+  | { id: string; t: 'sinif-ogrenci-ekle'; d: { kod: string; ogrenciId: string; takmaAd: string } }
+  | { id: string; t: 'sinif-ogrenci-sil'; d: { kod: string; ogrenciId: string } };
 
 /** `id` sunucu tarafından üretilir; çağıran yalnızca tür + veri verir. */
 type Dagit<T> = T extends unknown ? Omit<T, 'id'> : never;
@@ -138,7 +140,13 @@ export async function islemUygula(islem: Islem): Promise<void> {
       await sinifDurumDegistir(islem.d.kod, islem.d.aktif);
       return;
     case 'sinif-tamamla':
-      await tamamlamaKaydet(islem.d.kod, islem.d.dersId);
+      await tamamlamaKaydet(islem.d.kod, islem.d.dersId, islem.d.ogrenciId);
+      return;
+    case 'sinif-ogrenci-ekle':
+      await ogrenciEkle(islem.d.kod, islem.d.ogrenciId, islem.d.takmaAd);
+      return;
+    case 'sinif-ogrenci-sil':
+      await ogrenciSil(islem.d.kod, islem.d.ogrenciId);
       return;
   }
 }

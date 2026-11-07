@@ -19,3 +19,6 @@ kaynak/
 .env
 .env.*
 !.env.example
+
+# Kenara alınmış eski yerel veritabanları
+.pgdata-*/

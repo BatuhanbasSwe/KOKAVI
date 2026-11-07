@@ -10,6 +10,7 @@
 import { useState } from 'react';
 import { useDurum } from '../../app/DurumSaglayici';
 import { veliOnayiAcikMi, veliOnayiniAyarla } from '../../lib/veliOnayi';
+import { sinifOgrencisiniSil } from '../../lib/sinifOgrencisi';
 import { VeliKapisi } from '../carsi/VeliKapisi';
 import { YuklemeKarti } from './YuklemeKarti';
 import {
@@ -207,7 +208,10 @@ export function AyarlarSayfasi() {
             </span>
           </div>
           {ilerleme.sinifKodu && (
-            <button type="button" className="dugme dugme--ikincil" onClick={() => sinifKoduAyarla(null)}>
+            <button type="button" className="dugme dugme--ikincil" onClick={() => {
+                void sinifOgrencisiniSil();
+                sinifKoduAyarla(null);
+              }}>
               Bağlantıyı kes
             </button>
           )}
