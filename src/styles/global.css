@@ -669,3 +669,39 @@ svg {
     padding-block: var(--b-6) 96px;
   }
 }
+
+/* Harita üstü "geri dön" düğmesi (keşif rotası: "Rotayı göster"; vakıf ağı
+   haritası: "En yakın esere git"). Haritanın sol üstünde, 44px dokunma hedefi. */
+.harita-geri-don {
+  position: absolute;
+  z-index: 3;
+  top: var(--b-2);
+  left: var(--b-2);
+  min-height: 44px;
+  padding: 0 var(--b-4);
+  font: inherit;
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--ikincil-metin);
+  background: var(--ikincil);
+  border: 0;
+  border-radius: var(--kose-tam);
+  box-shadow: 0 3px 0 var(--ikincil-golge);
+  cursor: pointer;
+}
+.harita-geri-don:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+.harita-geri-don[hidden] {
+  display: none;
+}
+/* Boş bölge uyarısı da sol üstte (altta kalırsa telefonda menünün arkasına düşer);
+   sağdaki yakınlaştırma düğmelerine değmez. */
+.harita-geri-don--alt {
+  max-width: calc(100% - 64px - var(--b-2));
+  text-align: left;
+  line-height: 1.25;
+  padding-block: var(--b-2);
+}

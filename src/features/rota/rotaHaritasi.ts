@@ -13,6 +13,7 @@ import type { Feature, LineString } from 'geojson';
 import { sokakKatmanlari } from '../harita/bolgeHaritasi';
 import { ALTLIK_ATFI, altligaEkle } from '../harita/altlik';
 import { BOLUM_ESIGI, mesafe, type RotaNoktasi } from './rota';
+import { ekrandaKumele, grupEtiketi } from '../harita/kumele';
 
 type ML = typeof maplibregl;
 
@@ -135,54 +136,57 @@ export function rotaHaritasiKur(
   });
 
   // Ekranda üst üste binen duraklar tek bir grup etiketinde birleşir ("10-15");
-  // gruba dokununca harita yakınlaşır ve duraklar ayrılır. Her yakınlaşmada yeniden hesaplanır.
-  const YAKIN = 50;
+  // gruba dokununca harita yakınlaşır ve duraklar ayrılır. Gruplar etiketleri de
+  // çakışmayacak şekilde birleşir (kumele.ts). Her yakınlaşmada yeniden hesaplanır.
+  const YAKIN = 56;
   let gruplar: maplibregl.Marker[] = [];
   function yerlestir() {
     gruplar.forEach((m) => m.remove());
     gruplar = [];
     const ekran = duraklar.map((d) => harita.project([d.lng, d.lat]));
-    const atandi = new Array<boolean>(duraklar.length).fill(false);
-    for (let i = 0; i < duraklar.length; i++) {
-      if (atandi[i]) continue;
-      const uyeler = [i];
-      atandi[i] = true;
-      for (let j = i + 1; j < duraklar.length; j++) {
-        if (atandi[j]) continue;
-        // Yalnızca grubun ilk durağına uzaklık: zincirleme (bütün rotanın tek gruba düşmesi) olmaz.
-        if (Math.hypot(ekran[i]!.x - ekran[j]!.x, ekran[i]!.y - ekran[j]!.y) < YAKIN) {
-          uyeler.push(j);
-          atandi[j] = true;
-        }
-      }
+    for (const uyeler of ekrandaKumele(ekran, YAKIN)) {
       uyeler.forEach((u) => (isaretler.get(duraklar[u]!.id)!.style.display = uyeler.length > 1 ? 'none' : ''));
       if (uyeler.length < 2) continue;
-      const sirali = [...uyeler].sort((a, b) => a - b);
-      const ardisik = sirali.every((n, k) => k === 0 || n === sirali[k - 1]! + 1);
       const el = document.createElement('div');
       el.className = 'rota-isaret rota-isaret--grup';
       const daire = document.createElement('span');
       daire.className = 'rota-isaret__daire';
-      daire.textContent = ardisik
-        ? `${sirali[0]! + 1}-${sirali[sirali.length - 1]! + 1}`
-        : `${sirali.length} durak`;
+      daire.textContent = grupEtiketi(uyeler);
       el.append(daire);
       el.setAttribute('aria-hidden', 'true');
-      const uyeDuraklar = sirali.map((u) => duraklar[u]!);
+      const uyeDuraklar = uyeler.map((u) => duraklar[u]!);
       el.addEventListener('click', (olay) => {
         olay.stopPropagation();
         harita.fitBounds(kutu(uyeDuraklar), { padding: 80, maxZoom: 19 });
       });
-      const merkez = kutu(uyeDuraklar);
-      gruplar.push(
-        new ml.Marker({ element: el })
-          .setLngLat([(merkez[0][0] + merkez[1][0]) / 2, (merkez[0][1] + merkez[1][1]) / 2])
-          .addTo(harita),
-      );
+      const lng = uyeDuraklar.reduce((t, d) => t + d.lng, 0) / uyeDuraklar.length;
+      const lat = uyeDuraklar.reduce((t, d) => t + d.lat, 0) / uyeDuraklar.length;
+      gruplar.push(new ml.Marker({ element: el }).setLngLat([lng, lat]).addTo(harita));
     }
   }
   harita.on('load', yerlestir);
   harita.on('zoomend', yerlestir);
+
+  // Rotadan kopmasın: uzaklaştırma rotanın çevresiyle sınırlı (bütün şehre
+  // açılıp rota kaybolmasın); kaydırma da rotanın etrafında kalır.
+  const rotaKutusu = kutu(duraklar);
+  harita.once('load', () => {
+    const kamera = harita.cameraForBounds(rotaKutusu, { padding: 48 });
+    if (kamera?.zoom != null) harita.setMinZoom(Math.max(3, Math.min(kamera.zoom - 2, 15)));
+    const pay = Math.max(0.03, (rotaKutusu[1][0] - rotaKutusu[0][0]) * 1.5, (rotaKutusu[1][1] - rotaKutusu[0][1]) * 1.5);
+    harita.setMaxBounds([
+      [rotaKutusu[0][0] - pay, rotaKutusu[0][1] - pay],
+      [rotaKutusu[1][0] + pay, rotaKutusu[1][1] + pay],
+    ]);
+  });
+
+  // "Rotayı göster": nereye kaydırılırsa kaydırılsın tek dokunuşla bütün rota.
+  const geriDon = document.createElement('button');
+  geriDon.type = 'button';
+  geriDon.className = 'harita-geri-don';
+  geriDon.textContent = 'Rotayı göster';
+  geriDon.addEventListener('click', () => harita.fitBounds(rotaKutusu, { padding: 48, maxZoom: 16 }));
+  kap.append(geriDon);
 
   return {
     guncelle({ gorulen, secili, odak }) {
@@ -198,6 +202,7 @@ export function rotaHaritasiKur(
       }
     },
     temizle() {
+      geriDon.remove();
       gruplar.forEach((m) => m.remove());
       markerlar.forEach((m) => m.remove());
       harita.remove();

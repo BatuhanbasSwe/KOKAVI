@@ -689,3 +689,9 @@
 .harita-eser__kunye {
   overflow-wrap: anywhere;
 }
+
+/* Üst üste binen ilçe balonundan önceliği düşük olan gizlenir (bolgeHaritasi.ts). */
+.hm-carpisma {
+  visibility: hidden;
+  pointer-events: none;
+}

@@ -13,6 +13,7 @@
 import type * as maplibregl from 'maplibre-gl';
 import type { FeatureCollection, Geometry, Position } from 'geojson';
 import { ALTLIK_ATFI, altligaEkle } from './altlik';
+import { ekrandaKumele } from './kumele';
 
 type ML = typeof maplibregl;
 export type Seviye = 'il' | 'ilce' | 'eser';
@@ -365,13 +366,23 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
     d.style.setProperty('--gecikme', `${(gecikme += 120)}ms`);
     d.append(ogeYap('span', 'hm-il__ad', sayi.ad), ogeYap('span', 'hm-il__sayi', `${sayi.toplam} eser`));
     if (sayi.ders > 0) d.append(ogeYap('span', 'hm-il__ders', `${sayi.ders} ders`));
-    d.addEventListener('click', () => harita.fitBounds(k, { padding: 32, maxZoom: 9.2 }));
+    // İlin tamamı görünsün ama en az ilçe seviyesine inilsin: küçük ekranda
+    // fitBounds eşiğin altında kalıyor, tıklayınca hiçbir şey değişmemiş gibi oluyordu.
+    d.addEventListener('click', () => {
+      const kamera = harita.cameraForBounds(k, { padding: 32 });
+      harita.easeTo({
+        center: [(k[0][0] + k[1][0]) / 2, (k[0][1] + k[1][1]) / 2],
+        zoom: Math.min(9.2, Math.max(kamera?.zoom ?? 0, ILCE_ESIGI + 0.4)),
+        duration: 900,
+      });
+    });
     isaretciler.push(
       new ml.Marker({ element: d }).setLngLat([(k[0][0] + k[1][0]) / 2, (k[0][1] + k[1][1]) / 2]).addTo(harita),
     );
   }
 
   // --- 2) İlçe balonları ---------------------------------------------------
+  const ilceBalonlari: { d: HTMLElement; oncelik: number }[] = [];
   const enBuyuk = Math.max(1, ...[...s.ilceSayilari.values()].map((v) => v.toplam));
   for (const f of s.ilceler.features) {
     const p = f.properties as { il: string; ad: string; etiketLng: number; etiketLat: number };
@@ -419,6 +430,8 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
     });
     const m = new ml.Marker({ element: d }).setLngLat([p.etiketLng, p.etiketLat]).addTo(harita);
     m.getElement().style.zIndex = zIndex;
+    // Çakışmada dersli ve kalabalık ilçe önde kalır.
+    ilceBalonlari.push({ d, oncelik: (arsivde ? 0 : 100000) + sayi.toplam });
     isaretciler.push(m);
   }
 
@@ -473,26 +486,65 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
     kumeler = [];
     eserIsaretleri.forEach(({ d }) => d.classList.remove('hm-gizli'));
     if (harita.getZoom() < ESER_ESIGI) return;
-    const noktalar = eserIsaretleri.map((x) => ({ x, p: harita.project([x.e.lng, x.e.lat]) }));
-    const kullanildi = new Set<number>();
-    noktalar.forEach((a, i) => {
-      if (kullanildi.has(i)) return;
-      const grup = [i];
-      noktalar.forEach((b, j) => {
-        if (j !== i && !kullanildi.has(j) && Math.hypot(a.p.x - b.p.x, a.p.y - b.p.y) < 48) grup.push(j);
-      });
-      if (grup.length < 2) return;
-      grup.forEach((j) => {
-        kullanildi.add(j);
-        noktalar[j]!.x.d.classList.add('hm-gizli');
-      });
-      const lng = grup.reduce((t, j) => t + noktalar[j]!.x.e.lng, 0) / grup.length;
-      const lat = grup.reduce((t, j) => t + noktalar[j]!.x.e.lat, 0) / grup.length;
+    // Etiketleri de çakışmayacak biçimde grupla (kumele.ts).
+    const ekran = eserIsaretleri.map((x) => harita.project([x.e.lng, x.e.lat]));
+    for (const grup of ekrandaKumele(ekran, 48)) {
+      if (grup.length < 2) continue;
+      grup.forEach((j) => eserIsaretleri[j]!.d.classList.add('hm-gizli'));
+      const lng = grup.reduce((t, j) => t + eserIsaretleri[j]!.e.lng, 0) / grup.length;
+      const lat = grup.reduce((t, j) => t + eserIsaretleri[j]!.e.lat, 0) / grup.length;
       const d = isaretciDugmesi('hm-kume');
       d.textContent = String(grup.length);
       d.addEventListener('click', () => harita.easeTo({ center: [lng, lat], zoom: Math.min(harita.getZoom() + 2, 16) }));
       kumeler.push(new ml.Marker({ element: d }).setLngLat([lng, lat]).addTo(harita));
-    });
+    }
+  };
+
+  // --- Boş bölge: yakınlaşınca ekranda hiç eser yoksa kullanıcı kaybolmasın ---
+  const enYakinDugmesi = document.createElement('button');
+  enYakinDugmesi.type = 'button';
+  enYakinDugmesi.className = 'harita-geri-don harita-geri-don--alt';
+  enYakinDugmesi.textContent = 'Burada ders eseri yok · En yakın esere git';
+  enYakinDugmesi.hidden = true;
+  kap.append(enYakinDugmesi);
+  const enYakinEser = () => {
+    const m = harita.getCenter();
+    let en: (typeof eserIsaretleri)[number] | undefined;
+    let enMesafe = Infinity;
+    for (const x of eserIsaretleri) {
+      const d = (x.e.lng - m.lng) ** 2 + (x.e.lat - m.lat) ** 2;
+      if (d < enMesafe) {
+        enMesafe = d;
+        en = x;
+      }
+    }
+    return en;
+  };
+  enYakinDugmesi.addEventListener('click', () => {
+    const x = enYakinEser();
+    if (x) harita.easeTo({ center: [x.e.lng, x.e.lat], zoom: Math.max(harita.getZoom(), ESER_ESIGI + 0.5), duration: 900 });
+  });
+  // İlçe balonları üst üste binmesin: öncelik sırasıyla yerleştir, çakışanı gizle
+  // (sayısı ve adı yakınlaşınca ya da komşu balona dokununca görünür).
+  const ilceCakismasi = () => {
+    ilceBalonlari.forEach(({ d }) => d.classList.remove('hm-carpisma'));
+    const yerlesen: DOMRect[] = [];
+    for (const { d } of [...ilceBalonlari].sort((a, b) => b.oncelik - a.oncelik)) {
+      if (d.offsetParent === null || getComputedStyle(d).visibility === 'hidden') continue;
+      const b = d.getBoundingClientRect();
+      if (b.width === 0) continue;
+      const carpar = yerlesen.some(
+        (y) => Math.min(b.right, y.right) - Math.max(b.left, y.left) > 2 && Math.min(b.bottom, y.bottom) - Math.max(b.top, y.top) > 2,
+      );
+      if (carpar) d.classList.add('hm-carpisma');
+      else yerlesen.push(b);
+    }
+  };
+
+  const bosBolgeDenetle = () => {
+    const sinir = harita.getBounds();
+    const gorunen = eserIsaretleri.some((x) => sinir.contains([x.e.lng, x.e.lat]));
+    enYakinDugmesi.hidden = eserIsaretleri.length === 0 || harita.getZoom() < ILCE_ESIGI || gorunen;
   };
 
   // --- Seviye: kap üzerindeki data-seviye ile CSS gösterir/gizler -------------
@@ -507,10 +559,15 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
     }
   };
   harita.on('zoom', seviyeGuncelle);
-  harita.on('moveend', kumele);
+  harita.on('moveend', () => {
+    kumele();
+    bosBolgeDenetle();
+    ilceCakismasi();
+  });
   harita.on('load', () => {
     seviyeGuncelle();
     kumele();
+    ilceCakismasi();
   });
   seviyeGuncelle();
 
@@ -581,6 +638,7 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
       kumeler.forEach((m) => m.remove());
       isaretciler.forEach((m) => m.remove());
       hedefIsaretleri.forEach((m) => m.remove());
+      enYakinDugmesi.remove();
       harita.remove();
     },
   };
