@@ -129,7 +129,7 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
       {eser.foto ? (
         <img
           className="arsiv-eser__resim"
-          src={arsivFotoUrl(eser.id)}
+          src={arsivFotoUrl(eser)}
           alt={`${eser.ad} fotoğrafı`}
           decoding="async"
           onError={(olay) => {
@@ -226,7 +226,7 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
                   {k.foto ? (
                     <img
                       className="arsiv-kart__resim"
-                      src={arsivFotoUrl(k.id)}
+                      src={arsivFotoUrl(k)}
                       alt=""
                       loading="lazy"
                       onError={(olay) => {

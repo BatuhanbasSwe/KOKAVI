@@ -25,6 +25,8 @@ import { redisAyari, redisKomut } from '../redis.ts';
 import { eserKaydet, eserSil, type EserGirdisi } from '../repo/eser.ts';
 import { sehirKaydet, uniteKaydet, uniteSil, kulliyeKaydet } from '../repo/yol.ts';
 import { dersKaydet, dersSil, type DersGirdisi } from '../repo/ders.ts';
+import { arsivEkiKaydet, arsivEkiSil, arsivFotoKaydet } from '../repo/arsiv.ts';
+import type { ArsivGirdisi } from '../arsiv/dogrula.ts';
 import { sinifEkle, sinifDurumDegistir, tamamlamaKaydet, ogrenciEkle, ogrenciSil } from '../repo/sinif.ts';
 import {
   kullaniciDurumDegistir,
@@ -54,7 +56,10 @@ export type Islem =
   | { id: string; t: 'sinif-durum'; d: { kod: string; aktif: boolean } }
   | { id: string; t: 'sinif-tamamla'; d: { kod: string; dersId: string; ogrenciId?: string | null } }
   | { id: string; t: 'sinif-ogrenci-ekle'; d: { kod: string; ogrenciId: string; takmaAd: string } }
-  | { id: string; t: 'sinif-ogrenci-sil'; d: { kod: string; ogrenciId: string } };
+  | { id: string; t: 'sinif-ogrenci-sil'; d: { kod: string; ogrenciId: string } }
+  | { id: string; t: 'arsiv-kaydet'; d: ArsivGirdisi }
+  | { id: string; t: 'arsiv-foto'; d: { id: string; veri: string | null } }
+  | { id: string; t: 'arsiv-sil'; d: { id: string } };
 
 /** `id` sunucu tarafından üretilir; çağıran yalnızca tür + veri verir. */
 type Dagit<T> = T extends unknown ? Omit<T, 'id'> : never;
@@ -147,6 +152,15 @@ export async function islemUygula(islem: Islem): Promise<void> {
       return;
     case 'sinif-ogrenci-sil':
       await ogrenciSil(islem.d.kod, islem.d.ogrenciId);
+      return;
+    case 'arsiv-kaydet':
+      await arsivEkiKaydet(islem.d);
+      return;
+    case 'arsiv-foto':
+      await arsivFotoKaydet(islem.d.id, islem.d.veri);
+      return;
+    case 'arsiv-sil':
+      await arsivEkiSil(islem.d.id);
       return;
   }
 }

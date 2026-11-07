@@ -894,3 +894,90 @@
 .sinif-raporu__govde {
   margin-top: var(--b-3);
 }
+
+/* --- Arşiv yönetimi --------------------------------------------------------- */
+.arsiv-yonetimi__kart {
+  gap: var(--b-3);
+}
+.arsiv-yonetimi__baslik {
+  margin: 0;
+  font-size: var(--yazi-lg);
+}
+.arsiv-yonetimi__dosya {
+  cursor: pointer;
+}
+.arsiv-yonetimi__dosya:focus-within {
+  outline: 3px solid var(--odak, var(--vurgu));
+  outline-offset: 2px;
+}
+.arsiv-yonetimi__dosya[aria-disabled='true'] {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.arsiv-yonetimi__onizleme {
+  padding: var(--b-3);
+  border: 2px dashed var(--cizgi);
+  border-radius: var(--kose-md);
+  gap: var(--b-2);
+}
+.arsiv-yonetimi__adlar {
+  margin: 0;
+  padding-left: 1.2em;
+}
+.arsiv-yonetimi__bicim summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.arsiv-yonetimi__ornek {
+  overflow-x: auto;
+  padding: var(--b-3);
+  border-radius: var(--kose-md);
+  background: var(--zemin-vurgu);
+  font-size: var(--yazi-sm);
+}
+.arsiv-yonetimi__foto-sec {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--b-3);
+}
+.arsiv-yonetimi__onizleme-resim {
+  width: 160px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--kose-md);
+  border: 2px solid var(--cizgi);
+}
+.arsiv-yonetimi__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--b-2);
+}
+.arsiv-yonetimi__oge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--b-3);
+}
+.arsiv-yonetimi__kucuk-resim {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--kose-md);
+  background: var(--zemin-vurgu);
+}
+.arsiv-yonetimi__oge-metin {
+  flex: 1 1 14rem;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.arsiv-yonetimi__oge-ad {
+  font-weight: 700;
+}

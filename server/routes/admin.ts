@@ -28,6 +28,8 @@ import { dersKaydet, dersSil, dersGetir, type DersGirdisi } from '../repo/ders.t
 import { yoneticiGerekli } from '../auth/koruma.ts';
 import { tumSiniflarRaporu } from '../repo/sinif.ts';
 import { gunlukYaz } from '../yonetim/gunluk.ts';
+import { arsivEkiKaydet, arsivEkiSil, arsivEkleriListele, arsivFotoKaydet } from '../repo/arsiv.ts';
+import { ArsivHatasi, AZAMI_KAYIT, arsivKaydiDogrula, fotoAyikla, iceAktarmaListesi } from '../arsiv/dogrula.ts';
 import type { EgzersizTipi } from '../../shared/types.ts';
 
 const GECERLI_TIPLER: EgzersizTipi[] = ['eslestir', 'sirala', 'bosluk-doldur', 'eser-tani'];
@@ -96,6 +98,75 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
 
   /** Bütün sınıflar: anonim sayaçlar + takma adlı öğrenciler (yalnızca yönetici). */
   app.get('/api/yonetim/siniflar', async () => tumSiniflarRaporu());
+
+  // --- Arşiv (Meraklısına): JSON ile toplu ekleme + dosyadan fotoğraf ------
+  app.get('/api/yonetim/arsiv', async () => arsivEkleriListele());
+
+  /**
+   * Tek tık içe aktarma: dizi ya da {eserler:[…]} (data/research biçimi).
+   * Kayıtlar tek tek doğrulanır; hatalı olan atlanır, diğerleri eklenir ve
+   * her satırın sonucu döner. Aynı kimlik varsa güncellenir.
+   * Gövde sınırı 8 MB (panel büyük dosyaları parçalara bölerek gönderir).
+   */
+  app.post('/api/yonetim/arsiv/ice-aktar', { bodyLimit: 8 * 1024 * 1024 }, async (istek, cevap) => {
+    try {
+      const { kayitlar, varsayilan } = iceAktarmaListesi(istek.body);
+      if (kayitlar.length === 0) return cevap.code(400).send({ hata: 'Dosyada kayıt yok.' });
+      if (kayitlar.length > AZAMI_KAYIT) {
+        return cevap.code(400).send({ hata: `Bir seferde en fazla ${AZAMI_KAYIT} kayıt aktarılabilir.` });
+      }
+      const sonuclar: { sira: number; id: string | null; ad: string | null; durum: 'eklendi' | 'guncellendi' | 'hata'; hata?: string }[] = [];
+      for (const [i, ham] of kayitlar.entries()) {
+        const adHam = (ham as { ad?: unknown } | null)?.ad;
+        const ad = typeof adHam === 'string' ? adHam : null;
+        try {
+          const girdi = arsivKaydiDogrula(ham, varsayilan);
+          const durum = await arsivEkiKaydet(girdi);
+          await gunlukYaz({ t: 'arsiv-kaydet', d: girdi });
+          sonuclar.push({ sira: i + 1, id: girdi.id, ad: girdi.ad, durum });
+        } catch (hata) {
+          if (!(hata instanceof ArsivHatasi)) throw hata;
+          sonuclar.push({ sira: i + 1, id: null, ad, durum: 'hata', hata: hata.message });
+        }
+      }
+      return {
+        eklenen: sonuclar.filter((s) => s.durum === 'eklendi').length,
+        guncellenen: sonuclar.filter((s) => s.durum === 'guncellendi').length,
+        hatali: sonuclar.filter((s) => s.durum === 'hata').length,
+        sonuclar,
+      };
+    } catch (hata) {
+      if (hata instanceof ArsivHatasi) return cevap.code(400).send({ hata: hata.message });
+      return hataYanit(cevap, hata);
+    }
+  });
+
+  /** Fotoğrafı dosyadan değiştirir: { veri: "data:image/webp;base64,…" } ya da { veri: null } (kaldır). */
+  app.put('/api/yonetim/arsiv/:id/foto', { bodyLimit: 4 * 1024 * 1024 }, async (istek, cevap) => {
+    try {
+      const { id } = istek.params as { id: string };
+      const ham = (istek.body as { veri?: unknown } | null)?.veri ?? null;
+      const veri = ham === null ? null : fotoAyikla(ham).fotoVeri;
+      if (veri === undefined) return cevap.code(400).send({ hata: 'Fotoğraf bir dosya (data URL) olmalı.' });
+      if (!(await arsivFotoKaydet(id, veri))) return cevap.code(404).send({ hata: 'Arşiv kaydı bulunamadı' });
+      await gunlukYaz({ t: 'arsiv-foto', d: { id, veri } });
+      return { tamam: true };
+    } catch (hata) {
+      if (hata instanceof ArsivHatasi) return cevap.code(400).send({ hata: hata.message });
+      return hataYanit(cevap, hata);
+    }
+  });
+
+  app.delete('/api/yonetim/arsiv/:id', async (istek, cevap) => {
+    try {
+      const { id } = istek.params as { id: string };
+      if (!(await arsivEkiSil(id))) return cevap.code(404).send({ hata: 'Arşiv kaydı bulunamadı' });
+      await gunlukYaz({ t: 'arsiv-sil', d: { id } });
+      return { tamam: true };
+    } catch (hata) {
+      return hataYanit(cevap, hata);
+    }
+  });
 
   // --- Şehir ---------------------------------------------------------------
   app.post('/api/yonetim/sehirler', async (istek, cevap) => {

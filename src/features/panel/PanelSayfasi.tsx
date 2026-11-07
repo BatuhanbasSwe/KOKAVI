@@ -23,6 +23,7 @@ import { MetinGirdisi, OnayKutusu } from './Alan';
 import { EserFormu } from './EserFormu';
 import { KullaniciYonetimi } from './KullaniciYonetimi';
 import { SinifRaporu } from './SinifRaporu';
+import { ArsivYonetimi } from './ArsivYonetimi';
 import { OnayDiyalogu } from './OnayDiyalogu';
 import { UniteYonetimi } from './UniteYonetimi';
 import { VeriTablosu } from './VeriTablosu';
@@ -33,10 +34,11 @@ import './panel.css';
 const YENI_KAYIT = 'yeni';
 
 /** Panelin liste görünümündeki sekmeler. */
-type PanelBolumu = 'icerik' | 'siniflar' | 'kullanicilar';
+type PanelBolumu = 'icerik' | 'arsiv' | 'siniflar' | 'kullanicilar';
 
 const SEKMELER: { anahtar: PanelBolumu; etiket: string }[] = [
   { anahtar: 'icerik', etiket: 'İçerik' },
+  { anahtar: 'arsiv', etiket: 'Arşiv' },
   { anahtar: 'siniflar', etiket: 'Sınıflar ve öğrenciler' },
   { anahtar: 'kullanicilar', etiket: 'Kullanıcılar' },
 ];
@@ -559,6 +561,17 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
           onOnay={() => void eserSil()}
           onKapat={() => setSilinecek(null)}
         />
+      </div>
+
+      {/* --- Arşiv: JSON ile toplu ekleme, dosyadan fotoğraf ------------------ */}
+      <div
+        className="panel__sekme-icerik"
+        id="panel-bolum-arsiv"
+        role="tabpanel"
+        aria-labelledby="panel-sekme-arsiv"
+        hidden={bolum !== 'arsiv'}
+      >
+        {bolum === 'arsiv' && <ArsivYonetimi />}
       </div>
 
       {/* --- Sınıflar ve öğrenciler (yönetici) ------------------------------- */}

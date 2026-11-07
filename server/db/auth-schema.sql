@@ -118,3 +118,26 @@ CREATE TABLE IF NOT EXISTS class_student_progress (
   PRIMARY KEY (kod, ogrenci_id, ders_id),
   FOREIGN KEY (kod, ogrenci_id) REFERENCES class_student(kod, ogrenci_id) ON DELETE CASCADE
 );
+
+-- --------------------------------------------------------------------------
+-- Arşive panelden eklenen eserler ("Meraklısına" arşivi)
+--   Statik arşiv (public/arsiv/) envanter kitaplarından üretilir. Vakıf
+--   Katılım'dan yeni JSON/fotoğraf geldikçe yönetici buraya ekler; arşiv
+--   sayfası statik listeyle birleştirir (aynı kimlik → bu kayıt geçerli).
+--   İçerik tablolarından ayrı tutulur: seed bu tabloyu silmez.
+-- --------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS archive_item (
+  id          TEXT PRIMARY KEY,
+  ad          TEXT NOT NULL,
+  il          TEXT NOT NULL,
+  il_ad       TEXT NOT NULL,
+  ilce        TEXT,
+  tur         TEXT NOT NULL,
+  kaynak      TEXT NOT NULL,
+  paragraflar JSONB NOT NULL DEFAULT '[]'::jsonb,
+  foto_url    TEXT,
+  foto_veri   TEXT,
+  ders        TEXT,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

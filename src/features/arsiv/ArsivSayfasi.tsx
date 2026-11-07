@@ -224,7 +224,7 @@ export function ArsivSayfasi() {
               {e.foto ? (
                 <img
                   className="arsiv-kart__resim"
-                  src={arsivFotoUrl(e.id)}
+                  src={arsivFotoUrl(e)}
                   alt=""
                   loading="lazy"
                   decoding="async"

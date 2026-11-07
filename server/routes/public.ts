@@ -2,6 +2,7 @@
  * Genel (okuma) uçları — istemcinin içerik için kullandığı API.
  * Bu uçlar HİÇBİR kullanıcı verisi almaz veya saklamaz.
  */
+import { arsivEkleriListele, arsivFotoGetir, arsivMetniGetir } from '../repo/arsiv.ts';
 import type { FastifyInstance } from 'fastify';
 import { eserleriListele, eserGetir, filtreSecenekleri } from '../repo/eser.ts';
 import { sehirleriListele, uniteListele, kulliyeListele, yolIskeleti } from '../repo/yol.ts';
@@ -18,6 +19,28 @@ export async function genelUclar(app: FastifyInstance): Promise<void> {
   // "gunluk": yönetim yazmalarının (eser/kullanıcı/sınıf) örnekler arasında
   // paylaşılıp paylaşılmadığını gösterir. "kapali" ise Vercel'de yazma yapan
   // örnek ile okuyan örnek ayrışabilir; Upstash bağlanmalı.
+  // --- Arşive panelden eklenen eserler (statik arşivle birleştirilir) ------
+  app.get('/api/arsiv/ekler', async () => arsivEkleriListele());
+
+  app.get('/api/arsiv/ekler/:id/metin', async (istek, cevap) => {
+    const { id } = istek.params as { id: string };
+    const paragraflar = await arsivMetniGetir(id);
+    if (!paragraflar) return cevap.code(404).send({ hata: 'Kayıt bulunamadı' });
+    return { paragraflar };
+  });
+
+  app.get('/api/arsiv/foto/:id', async (istek, cevap) => {
+    const { id } = istek.params as { id: string };
+    const foto = await arsivFotoGetir(id);
+    if (!foto) return cevap.code(404).send({ hata: 'Fotoğraf yok' });
+    // Adres ?v=<sürüm> taşır; fotoğraf değişince adres de değişir.
+    return cevap
+      .header('Content-Type', foto.tur)
+      .header('Cache-Control', 'public, max-age=86400')
+      .header('X-Content-Type-Options', 'nosniff')
+      .send(foto.veri);
+  });
+
   app.get('/api/saglik', async () => ({
     durum: 'calisiyor',
     depo: depoDurumu().tur,
