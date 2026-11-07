@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200">
+  <!-- Sade "tarihi eserler" karosu: krem zemin, kenarlarda az sayıda büyük ve soluk eser.
+       İki ton: gövde (#e6d7bb) + gölge yüzü (#dccaa8), kubbe/çatı turkuaz (#9fd3cc / #8cc6be).
+       Orta şerit (x 260-540) yol ve duraklar için boş. Dikey tekrar eder. -->
+  <rect width="800" height="1200" fill="#f6efe2"/>
+
+  <!-- Hafif zemin dalgaları -->
+  <g fill="#f0e6d3">
+    <ellipse cx="130" cy="330" rx="170" ry="60"/>
+    <ellipse cx="680" cy="640" rx="170" ry="60"/>
+    <ellipse cx="120" cy="980" rx="160" ry="56"/>
+  </g>
+
+  <!-- 1 · Cami: büyük kubbe, iki yarım kubbe, iki minare (sol üst) -->
+  <g transform="translate(140 300)">
+    <rect x="-110" y="-20" width="220" height="80" fill="#e6d7bb"/>
+    <rect x="-110" y="-20" width="70" height="80" fill="#dccaa8"/>
+    <path d="M-60 -20 A60 60 0 0 1 60 -20Z" fill="#9fd3cc"/>
+    <path d="M-60 -20 A60 60 0 0 1 0 -80 Q-26 -50 -28 -20Z" fill="#8cc6be"/>
+    <path d="M-104 -20 A28 28 0 0 1 -48 -20Z" fill="#8cc6be"/>
+    <path d="M48 -20 A28 28 0 0 1 104 -20Z" fill="#9fd3cc"/>
+    <rect x="-2" y="-102" width="4" height="22" fill="#d8b46a"/>
+    <path d="M-24 60 V18 A24 24 0 0 1 24 18 V60Z" fill="#d1bd96"/>
+    <g>
+      <rect x="-142" y="-140" width="16" height="200" fill="#e6d7bb"/>
+      <rect x="-146" y="-80" width="24" height="7" fill="#dccaa8"/>
+      <path d="M-143 -140 L-134 -178 L-125 -140Z" fill="#8cc6be"/>
+    </g>
+    <g>
+      <rect x="126" y="-140" width="16" height="200" fill="#e6d7bb"/>
+      <rect x="122" y="-80" width="24" height="7" fill="#dccaa8"/>
+      <path d="M125 -140 L134 -178 L143 -140Z" fill="#9fd3cc"/>
+    </g>
+  </g>
+
+  <!-- 2 · Han: iki katlı kemerli cephe (sağ) -->
+  <g transform="translate(670 600)">
+    <rect x="-120" y="-70" width="240" height="140" fill="#e6d7bb"/>
+    <rect x="-120" y="-70" width="240" height="14" fill="#dccaa8"/>
+    <g fill="#d1bd96">
+      <path d="M-100 -10 V-34 A12 12 0 0 1 -76 -34 V-10Z"/>
+      <path d="M-60 -10 V-34 A12 12 0 0 1 -36 -34 V-10Z"/>
+      <path d="M-20 -10 V-34 A12 12 0 0 1 4 -34 V-10Z"/>
+      <path d="M20 -10 V-34 A12 12 0 0 1 44 -34 V-10Z"/>
+      <path d="M60 -10 V-34 A12 12 0 0 1 84 -34 V-10Z"/>
+      <path d="M-100 60 V30 A14 14 0 0 1 -72 30 V60Z"/>
+      <path d="M72 60 V30 A14 14 0 0 1 100 30 V60Z"/>
+    </g>
+    <path d="M-30 70 V20 A30 30 0 0 1 30 20 V70Z" fill="#cdb68c"/>
+    <path d="M-34 -70 A34 20 0 0 1 34 -70Z" fill="#9fd3cc"/>
+  </g>
+
+  <!-- 3 · Taş köprü: tek büyük kemer, altında ince dere (sol) -->
+  <g transform="translate(130 760)">
+    <path d="M-160 40 Q-80 30 0 44 T170 36" stroke="#bfe3e6" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <path d="M-110 30 Q0 -40 110 30 V44 H70 A70 54 0 0 0 -70 44 H-110Z" fill="#e6d7bb"/>
+    <path d="M-110 30 Q0 -40 110 30 L104 36 Q0 -28 -104 36Z" fill="#dccaa8"/>
+  </g>
+
+  <!-- 4 · Türbe: sekizgen gövde, sivri kubbe (sağ alt) -->
+  <g transform="translate(680 950)">
+    <rect x="-46" y="-30" width="92" height="80" fill="#e6d7bb"/>
+    <rect x="-46" y="-30" width="30" height="80" fill="#dccaa8"/>
+    <path d="M-46 -30 Q-46 -84 0 -104 Q46 -84 46 -30Z" fill="#9fd3cc"/>
+    <path d="M-46 -30 Q-46 -84 0 -104 Q-20 -70 -16 -30Z" fill="#8cc6be"/>
+    <path d="M-14 50 V14 A14 14 0 0 1 14 14 V50Z" fill="#d1bd96"/>
+  </g>
+
+  <!-- 5 · Çeşme: kemerli duvar çeşmesi (sol alt) -->
+  <g transform="translate(150 1110)">
+    <rect x="-56" y="-60" width="112" height="90" fill="#e6d7bb"/>
+    <rect x="-64" y="-70" width="128" height="12" fill="#dccaa8"/>
+    <path d="M-30 30 V-16 A30 30 0 0 1 30 -16 V30Z" fill="#9fd3cc"/>
+    <rect x="-36" y="22" width="72" height="12" fill="#d1bd96"/>
+  </g>
+
+  <!-- Birkaç selvi: sakin ritim -->
+  <g fill="#b9d3b0">
+    <path d="M300 160 C312 180 314 214 300 236 C286 214 288 180 300 160Z"/>
+    <path d="M510 440 C522 460 524 494 510 516 C496 494 498 460 510 440Z"/>
+    <path d="M520 1000 C532 1020 534 1054 520 1076 C506 1054 508 1020 520 1000Z"/>
+  </g>
+
+  <!-- Seyrek sekiz köşeli yıldız (çini) izleri -->
+  <g fill="#e9dcc3">
+    <path d="M620 160 l6 14 l14 6 l-14 6 l-6 14 l-6 -14 l-14 -6 l14 -6z"/>
+    <path d="M300 580 l5 12 l12 5 l-12 5 l-5 12 l-5 -12 l-12 -5 l12 -5z"/>
+    <path d="M560 830 l5 12 l12 5 l-12 5 l-5 12 l-5 -12 l-12 -5 l12 -5z"/>
+  </g>
+</svg>

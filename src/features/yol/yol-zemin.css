@@ -212,3 +212,18 @@ body:has(.yol-zemin--siluet) .patika__yol-iz {
   stroke-width: 6;
 }
 
+
+/* 0 · Tarihi eserler (sade): krem zemin, kenarlarda soluk cami/han/köprü/türbe/çeşme */
+.yol-zemin--tarihi {
+  background: #f6efe2 url('/yol-zemin/tarihi.svg') center top / 800px auto repeat-y;
+}
+@media (max-width: 600px) {
+  .yol-zemin--tarihi {
+    background-size: 560px auto;
+  }
+}
+body:has(.yol-zemin--tarihi) .patika__yol-iz {
+  stroke: #e3d3b4;
+  stroke-width: 30;
+  stroke-dasharray: none;
+}

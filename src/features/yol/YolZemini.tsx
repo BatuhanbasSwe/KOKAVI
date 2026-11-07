@@ -12,10 +12,11 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export type YolZeminiAdi = 'foto' | 'cini' | 'cayir' | 'gokyuzu' | 'parsomen' | 'gece' | 'siluet';
+export type YolZeminiAdi = 'foto' | 'tarihi' | 'cini' | 'cayir' | 'gokyuzu' | 'parsomen' | 'gece' | 'siluet';
 
 export const YOL_ZEMINLERI: { ad: YolZeminiAdi; etiket: string }[] = [
   { ad: 'foto', etiket: 'Fotoğraf (şimdiki)' },
+  { ad: 'tarihi', etiket: 'Tarihi eserler (sade)' },
   { ad: 'cini', etiket: 'Çini desen' },
   { ad: 'cayir', etiket: 'Oyun çayırı' },
   { ad: 'gokyuzu', etiket: 'Gökyüzü' },
