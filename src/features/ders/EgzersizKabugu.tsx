@@ -9,6 +9,7 @@
  *    role="status" ile duyuru birlikte kullanılır (WCAG 1.4.1 / 4.1.3).
  *  - Yanlışta suçlayıcı dil yok; "ipucu" tonunda bilgilendirme yapılır.
  */
+import { Maskot } from '../../app/Maskot';
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import type { KavramKarti } from '@shared/types';
 import { IkonIpucu, IkonTik } from '../../app/Ikonlar';
@@ -101,8 +102,11 @@ export function GeriBildirim({ tur, baslik, metin }: GeriBildirimVerisi) {
   const dogru = tur === 'dogru';
   return (
     <div className={`ders-geri ders-geri--${dogru ? 'dogru' : 'ipucu'}`} role="status">
-      <span className="ders-geri__ikon" aria-hidden="true">
-        {dogru ? <IkonTik boyut={22} /> : <IkonIpucu boyut={22} />}
+      <span className="ders-geri__maskot">
+        <Maskot boyut={52} mutlu={dogru} dusunceli={!dogru} />
+        <span className="ders-geri__ikon" aria-hidden="true">
+          {dogru ? <IkonTik boyut={16} /> : <IkonIpucu boyut={16} />}
+        </span>
       </span>
       <div className="ders-geri__govde">
         <p className="ders-geri__baslik">{baslik}</p>

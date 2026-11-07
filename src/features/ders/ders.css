@@ -1586,3 +1586,18 @@
     transition: none;
   }
 }
+
+/* Köstik geri bildirimde: portre + köşede küçük durum rozeti */
+.ders-geri__maskot {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+}
+.ders-geri__maskot .ders-geri__ikon {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 0 0 2px var(--zemin-kart);
+}

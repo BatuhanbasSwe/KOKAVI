@@ -9,6 +9,7 @@
  * Erişilebilirlik: öneriler gerçek düğmeler; karşılaştırma rozetleri simge +
  * METİN taşır; sonuçlar tek kalıcı canlı bölgeden duyurulur.
  */
+import { Maskot } from '../../app/Maskot';
 import { useMemo, useState, type FormEvent } from 'react';
 import { useDurum } from '@/app/DurumSaglayici';
 import { Konfeti } from '@/app/Konfeti';
@@ -126,7 +127,7 @@ export function GununEseriSayfasi() {
       </div>
 
       <header className="ge-ust">
-        
+        <Maskot boyut={64} mutlu={kazandi} saskin={bitti && !kazandi} />
         <div>
           <p className="etiket">Günün Eseri #{gun + 1}</p>
           <h1 className="ge-ust__baslik">Bugünün eserini bul!</h1>

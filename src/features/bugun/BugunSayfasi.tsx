@@ -10,6 +10,7 @@
  * Erişilebilirlik: her kutucuk tek bir gerçek <a>; fotoğraflar süs (alt="")
  * çünkü eser adı bağlantı metninde yazılıdır. Durum metinle söylenir.
  */
+import { Maskot } from '../../app/Maskot';
 import { useState } from 'react';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
 import { gunAnahtari } from '../../lib/ilerleme';
@@ -75,6 +76,7 @@ export function BugunSayfasi() {
   return (
     <div className="bugun">
       <header className="bugun__ust">
+        <Maskot boyut={64} mutlu={toplamDers > 0 && tamamlanan === toplamDers} />
         <div className="bugun__selam">
           <h1 className="bugun__baslik">Merhaba, kâşif!</h1>
           <p className="bugun__soz">

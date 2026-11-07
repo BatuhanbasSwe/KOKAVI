@@ -912,3 +912,33 @@ dialog.tanitim .tanitim__eylem {
     padding-bottom: calc(52px + 1.25rem * var(--yazi-olcek) + var(--b-3) + env(safe-area-inset-bottom));
   }
 }
+
+/* --- Maskot: Köstik (daire portre) ------------------------------------------ */
+.maskot {
+  flex: none;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--zemin-vurgu);
+  box-shadow: 0 0 0 3px var(--vurgu);
+  animation: maskot-gel 420ms var(--yay) both;
+}
+.maskot img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+.maskot--mutlu {
+  animation: maskot-zipla 700ms cubic-bezier(0.2, 1.6, 0.4, 1) 2;
+}
+@keyframes maskot-gel {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes maskot-zipla {
+  0%, 100% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(-10px) scale(1.06); }
+}
+[data-hareket-azalt='true'] .maskot { animation: none; }
+@media (prefers-reduced-motion: reduce) { .maskot { animation: none; } }
