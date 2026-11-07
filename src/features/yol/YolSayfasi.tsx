@@ -14,7 +14,6 @@
  * "Eser adı, tür, durum" biçimindedir; durum renk + ikon + metinle verilir.
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
 import { IkonKilit, IkonTekrar } from '../../app/Ikonlar';
 import { gunMetni, vadesiGelenler } from '../../lib/tekrar';
@@ -23,6 +22,8 @@ import { tercihleriOku } from '../../lib/tercihler';
 import { ZamanListesi } from '../zaman/ZamanListesi';
 import { gorunumOku, gorunumYaz, type YolGorunumu } from './yolGorunumu';
 import { FotografPatikasi } from './FotografPatikasi';
+import { YolZemini } from './YolZemini';
+import './yol-zemin.css';
 import { kisaAd } from './kisaAd';
 import { useOrtamRengi } from './ortamRengi';
 import { BOS_SAHNE, aniOku, aniYaz, sahneHesapla, yolAnisi, type YolSahnesi } from './yolSahnesi';
@@ -107,8 +108,8 @@ export function YolSayfasi() {
 
   return (
     <div className="yigin yol-sayfa" style={{ gap: 'var(--b-5)' }}>
-      {/* body'ye taşınır: animasyonlu ata kutular sabit katmanı kendine bağlamasın. */}
-      {createPortal(<div className="ortam-zemin" aria-hidden="true" />, document.body)}
+      {/* Zemin body'ye taşınır (YolZemini). DENEYSEL arka plan seçicisi: tarz seçilince kaldırılacak. */}
+      <YolZemini />
       <header className="yol-ozet">
         <h1 className="yol-ozet__baslik">Öğrenme Yolu</h1>
         <p className="yol-ozet__alt">
