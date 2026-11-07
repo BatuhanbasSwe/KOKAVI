@@ -2,12 +2,12 @@
  * İlk açılış turu — Duolingo'daki "tanışalım" ekranları gibi, uygulamayı
  * 4 kısa sayfada anlatır.
  *
- * Neden modal değil: tam ekran pencere odak tuzağı ve ekran okuyucu için
- * ek risk getirir; tur yol sayfasının üstünde bir kart olarak durur, "Atla"
- * ile tek dokunuşta kapanır. Yalnızca hiç ders bitirmemiş yeni kullanıcıya,
- * bir kez gösterilir (cihazda hatırlanır).
+ * İlk açılışta ekranın ortasında pencere (pop-up) olarak açılır. Tarayıcının
+ * yerleşik <dialog> öğesi kullanılır: odak pencerede kalır, arka plan
+ * ekran okuyucudan gizlenir, Esc "Atla" gibi kapatır, kapanınca odak geri
+ * döner. Yalnızca yeni kullanıcıya, bir kez gösterilir (cihazda hatırlanır).
  */
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { YolGorunumu } from './yolGorunumu';
 
 const ANAHTAR = 'kokavi-tanitim-v1';
@@ -47,6 +47,17 @@ export function TanitimTuru({ onBitti }: { onBitti: (secim?: YolGorunumu) => voi
   const [sayfa, setSayfa] = useState(0);
   const son = sayfa === SAYFALAR.length - 1;
   const s = SAYFALAR[sayfa]!;
+  const pencere = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const d = pencere.current;
+    if (!d || d.open) return;
+    try {
+      d.showModal();
+    } catch {
+      d.setAttribute('open', ''); // showModal yoksa (eski tarayıcı) yine görünür
+    }
+  }, []);
 
   function kapat(secim?: YolGorunumu) {
     try {
@@ -58,7 +69,15 @@ export function TanitimTuru({ onBitti }: { onBitti: (secim?: YolGorunumu) => voi
   }
 
   return (
-    <section className="kart tanitim" aria-labelledby="tanitim-baslik" aria-roledescription="tanıtım">
+    <dialog
+      ref={pencere}
+      className="kart tanitim"
+      aria-labelledby="tanitim-baslik"
+      onCancel={(o) => {
+        o.preventDefault(); // Esc = Atla
+        kapat();
+      }}
+    >
       <div className="tanitim__govde" key={sayfa} aria-live="polite">
         <p className="etiket">
           Tanışalım · {sayfa + 1}/{SAYFALAR.length}
@@ -94,6 +113,6 @@ export function TanitimTuru({ onBitti }: { onBitti: (secim?: YolGorunumu) => voi
           </>
         )}
       </div>
-    </section>
+    </dialog>
   );
 }

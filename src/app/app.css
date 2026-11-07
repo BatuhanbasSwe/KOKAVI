@@ -613,7 +613,32 @@ select.secim-dugmesi {
   }
 }
 
-/* --- İlk açılış turu (yol sayfası) ------------------------------------------ */
+/* --- İlk açılış turu: ortada açılan pencere (<dialog>) ----------------------- */
+dialog.tanitim {
+  width: min(440px, calc(100vw - 2 * var(--b-4)));
+  max-height: calc(100dvh - 2 * var(--b-4));
+  overflow-y: auto;
+  margin: auto;
+  padding: var(--b-5);
+  color: var(--metin);
+  box-shadow: 0 var(--bas-derinlik-buyuk) 0 var(--vurgu-golge);
+  justify-items: center;
+  text-align: center;
+  animation: tanitim-ac 420ms var(--yay) both;
+}
+dialog.tanitim::backdrop {
+  background: color-mix(in srgb, var(--karartma) 70%, transparent);
+  backdrop-filter: blur(3px);
+}
+dialog.tanitim .tanitim__eylem {
+  justify-content: center;
+}
+@keyframes tanitim-ac {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.94);
+  }
+}
 .kart.tanitim {
   display: grid;
   grid-template-columns: 1fr;
