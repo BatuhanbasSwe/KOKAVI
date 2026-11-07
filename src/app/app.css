@@ -216,7 +216,7 @@ body {
   }
   /* Alt çubuk ve güvenli alan: son içerik örtülmesin */
   .ana:not(.ana--odak) {
-    padding-bottom: calc(156px + env(safe-area-inset-bottom));
+    padding-bottom: var(--b-6); /* alt çubuk payını altbilgi verir (88px) */
   }
   .ana--odak {
     padding-bottom: 0;
@@ -231,7 +231,7 @@ body {
 .ana {
   flex: 1;
   /* alt boşluk: alt çubuk son içeriği örtmesin */
-  padding-block: var(--b-5) 112px;
+  padding-block: var(--b-5) var(--b-6);
   outline: none;
 }
 
@@ -878,4 +878,12 @@ select.secim-dugmesi {
   font-size: var(--yazi-xs);
   font-weight: 700;
   color: var(--metin-ikincil);
+}
+
+/* Telefon: dipnot alttaki sabit menünün (yazı boyutuyla uzar) arkasında kalmasın. (Bu kural .altbilgi
+   temel kuralından sonra gelmeli; önce gelirse padding-block onu ezer.) */
+@media (max-width: 720px) {
+  .altbilgi {
+    padding-bottom: calc(52px + 1.25rem * var(--yazi-olcek) + var(--b-3) + env(safe-area-inset-bottom));
+  }
 }
