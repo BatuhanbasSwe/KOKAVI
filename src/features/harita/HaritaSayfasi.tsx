@@ -42,7 +42,6 @@ import './harita.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { maplibreYukle } from '../../lib/maplibreYukle';
 import { altlikYukle } from './altlik';
-import { HARITA_TEMALARI, haritaTemasiOku, haritaTemasiUygula, haritaTemasiYaz, type HaritaTemasiAdi } from './haritaTemasi';
 
 const SEVIYELER: { ad: Seviye; etiket: string }[] = [
   { ad: 'il', etiket: 'İller' },
@@ -62,7 +61,6 @@ export function HaritaSayfasi() {
   const [filtreHatasi, setFiltreHatasi] = useState<string | null>(null);
   const [arsiv, setArsiv] = useState<ArsivEseri[]>([]);
   const [seviye, setSeviye] = useState<Seviye>('il');
-  const [haritaTemasi, setHaritaTemasi] = useState<HaritaTemasiAdi>(haritaTemasiOku);
   const { ilerleme, yol } = useDurum();
 
   // --- Arşiv (tüm envanter eserleri): il/ilçe sayıları için ------------------
@@ -265,7 +263,7 @@ export function HaritaSayfasi() {
           ilceSayilari,
           renk: (ad, yedek) => stil.getPropertyValue(ad).trim() || yedek,
           onSeviye: setSeviye,
-          altlik: haritaTemasiUygula(altlik, haritaTemasi),
+          altlik,
         });
         temizle = h.temizle;
       } catch {
@@ -277,7 +275,7 @@ export function HaritaSayfasi() {
       iptal = true;
       temizle?.();
     };
-  }, [haritaVar, haritaEserleri, ilSayilari, ilceSayilari, haritaTemasi]);
+  }, [haritaVar, haritaEserleri, ilSayilari, ilceSayilari]);
 
   return (
     <div className="yigin" style={{ gap: 'var(--b-5)' }}>
@@ -424,27 +422,6 @@ export function HaritaSayfasi() {
               </li>
             ))}
           </ol>
-          {/* DENEYSEL: harita arka planı denemeleri (haritaTemasi.ts) */}
-          <div className="harita-tema" role="group" aria-label="Harita görünümü (deneysel)">
-            <span className="harita-tema__etiket">Harita görünümü <span className="etiket">deneysel</span></span>
-            <div className="secim-grubu">
-              {(Object.keys(HARITA_TEMALARI) as HaritaTemasiAdi[]).map((t) => (
-                <button
-                  key={t}
-                  type="button"
-                  className="secim-dugmesi"
-                  aria-pressed={haritaTemasi === t}
-                  title={HARITA_TEMALARI[t].aciklama}
-                  onClick={() => {
-                    haritaTemasiYaz(t);
-                    setHaritaTemasi(t);
-                  }}
-                >
-                  {HARITA_TEMALARI[t].ad}
-                </button>
-              ))}
-            </div>
-          </div>
           <div
             className="harita-kap harita-kap--bolge"
             ref={haritaKabi}

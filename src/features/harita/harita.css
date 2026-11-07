@@ -695,17 +695,3 @@
   visibility: hidden;
   pointer-events: none;
 }
-
-/* DENEYSEL: harita görünümü seçici */
-.harita-tema {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--b-2) var(--b-3);
-}
-.harita-tema__etiket {
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--b-2);
-}
