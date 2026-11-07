@@ -40,7 +40,8 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* Yazı büyüdükçe kutucuk daralmaz: sütun sayısı azalır. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(9rem * var(--yazi-olcek))), 1fr));
   gap: var(--b-3);
 }
 

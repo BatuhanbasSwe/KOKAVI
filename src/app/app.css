@@ -823,3 +823,59 @@ select.secim-dugmesi {
     filter: drop-shadow(0 0 6px var(--ikincil));
   }
 }
+
+/* --- Yazı boyutu ayarı: adım düğmeleri, hazır seçenekler, canlı önizleme ---- */
+.ayar-satiri--yazi {
+  display: grid;
+  gap: var(--b-3);
+}
+.yazi-ayari {
+  display: grid;
+  gap: var(--b-3);
+  min-width: 0;
+}
+.yazi-ayari__adim {
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+}
+.yazi-ayari__adim .secim-dugmesi {
+  min-width: 56px;
+  font-family: var(--yazi-baslik);
+  font-weight: 800;
+}
+.yazi-ayari__adim .secim-dugmesi:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.yazi-ayari__deger {
+  min-width: 4.5ch;
+  text-align: center;
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-lg);
+  font-weight: 800;
+}
+.yazi-ayari__hazir {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+}
+.yazi-ayari__hazir .secim-dugmesi {
+  flex: 1 1 auto;
+}
+.yazi-ayari__onizleme {
+  display: grid;
+  gap: var(--b-1);
+  margin: 0;
+  padding: var(--b-3) var(--b-4);
+  font-size: var(--yazi-md);
+  line-height: var(--satir-govde);
+  background: var(--zemin-vurgu);
+  border-radius: var(--kose-sm);
+  overflow-wrap: anywhere;
+}
+.yazi-ayari__onizleme-etiket {
+  font-size: var(--yazi-xs);
+  font-weight: 700;
+  color: var(--metin-ikincil);
+}

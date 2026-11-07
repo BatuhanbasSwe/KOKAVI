@@ -66,6 +66,10 @@ body {
   color: var(--metin);
   background: var(--zemin);
   -webkit-font-smoothing: antialiased;
+  /* Büyük yazı ayarında (%200) uzun kelime dar kutudan taşmasın: gerekirse
+     heceden bölünür (lang="tr"). */
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 h1,

@@ -15,6 +15,9 @@ import { YuklemeKarti } from './YuklemeKarti';
 import {
   RENK_KORLUGU_ETIKETLERI,
   TEMA_ETIKETLERI,
+  YAZI_EN_BUYUK,
+  YAZI_EN_KUCUK,
+  YAZI_HAZIR,
   yaziBoyutuArtir,
   yaziBoyutuAzalt,
 } from '../../lib/erisilebilirlik';
@@ -80,32 +83,58 @@ export function AyarlarSayfasi() {
           ))}
         </AyarSatiri>
 
-        <AyarSatiri
-          etiket="Yazı boyutu"
-          aciklama="Tüm uygulamada geçerlidir. Tarayıcı yakınlaştırmasına gerek kalmaz."
-        >
-          <button
-            type="button"
-            className="secim-dugmesi"
-            onClick={() => ayarGuncelle({ yaziBoyutu: yaziBoyutuAzalt(ayarlar.yaziBoyutu) })}
-          >
-            A− Küçült
-          </button>
-          <span
-            className="secim-dugmesi"
-            style={{ display: 'inline-flex', alignItems: 'center', cursor: 'default' }}
-            aria-live="polite"
-          >
-            %{yaziYuzde}
-          </span>
-          <button
-            type="button"
-            className="secim-dugmesi"
-            onClick={() => ayarGuncelle({ yaziBoyutu: yaziBoyutuArtir(ayarlar.yaziBoyutu) })}
-          >
-            A+ Büyüt
-          </button>
-        </AyarSatiri>
+        <div className="ayar-satiri ayar-satiri--yazi">
+          <div>
+            <span className="ayar-satiri__etiket" id="yazi-boyutu-etiket">
+              Yazı boyutu
+            </span>
+            <span className="ayar-satiri__aciklama">
+              Tüm uygulamada geçerlidir: %{Math.round(YAZI_EN_KUCUK * 100)} ile %{Math.round(YAZI_EN_BUYUK * 100)} arası. Tarayıcı yakınlaştırmasına gerek kalmaz.
+            </span>
+          </div>
+          <div className="yazi-ayari" role="group" aria-labelledby="yazi-boyutu-etiket">
+            <div className="yazi-ayari__adim">
+              <button
+                type="button"
+                className="secim-dugmesi"
+                aria-label="Yazıyı küçült"
+                disabled={ayarlar.yaziBoyutu <= YAZI_EN_KUCUK + 0.001}
+                onClick={() => ayarGuncelle({ yaziBoyutu: yaziBoyutuAzalt(ayarlar.yaziBoyutu) })}
+              >
+                A−
+              </button>
+              <output className="yazi-ayari__deger" aria-live="polite">
+                %{yaziYuzde}
+              </output>
+              <button
+                type="button"
+                className="secim-dugmesi"
+                aria-label="Yazıyı büyüt"
+                disabled={ayarlar.yaziBoyutu >= YAZI_EN_BUYUK - 0.001}
+                onClick={() => ayarGuncelle({ yaziBoyutu: yaziBoyutuArtir(ayarlar.yaziBoyutu) })}
+              >
+                A+
+              </button>
+            </div>
+            <div className="yazi-ayari__hazir">
+              {YAZI_HAZIR.map((h) => (
+                <button
+                  key={h.ad}
+                  type="button"
+                  className="secim-dugmesi"
+                  aria-pressed={Math.abs(ayarlar.yaziBoyutu - h.deger) < 0.001}
+                  onClick={() => ayarGuncelle({ yaziBoyutu: h.deger })}
+                >
+                  {h.ad}
+                </button>
+              ))}
+            </div>
+            <p className="yazi-ayari__onizleme">
+              <span className="yazi-ayari__onizleme-etiket">Önizleme</span>
+              Bursa Ulucami'nin çatısında yirmi kubbe var.
+            </p>
+          </div>
+        </div>
 
         <AyarSatiri
           etiket="Renk körlüğü paleti"

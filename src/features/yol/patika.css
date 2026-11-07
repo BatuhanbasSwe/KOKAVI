@@ -613,3 +613,15 @@ a.patika__baglanti:active .patika__devam {
     height: 112px;
   }
 }
+
+/* Büyük yazıda ünite başlığındaki ad, sayaç ve mühür alt satıra geçebilir. */
+.patika-unite__satir {
+  flex-wrap: wrap;
+}
+.patika-unite__satir h3 {
+  min-width: 0;
+  flex: 1 1 12ch;
+}
+.patika__ad {
+  max-width: min(150px, 40vw);
+}

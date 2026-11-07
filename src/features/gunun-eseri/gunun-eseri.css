@@ -329,7 +329,7 @@
   border-radius: var(--kose-md);
   background: var(--odul);
   color: var(--odul-metin);
-  font-size: 1.6rem;
+  font-size: calc(1.6rem * var(--yazi-olcek));
   font-weight: 800;
 }
 .ge-davet__metin {
@@ -397,7 +397,7 @@
   flex: 1 1 100%;
 }
 .ge-ipucu:not(.ge-ipucu--acik) {
-  flex: 0 0 calc((100% - 2 * var(--b-2)) / 3);
+  flex: 1 0 max(calc((100% - 2 * var(--b-2)) / 3 - 1px), calc(6.5rem * var(--yazi-olcek)));
   min-width: 0;
   align-items: center;
   padding: var(--b-2);
@@ -410,10 +410,8 @@
   min-width: 0;
 }
 .ge-ipucu:not(.ge-ipucu--acik) .ge-ipucu__baslik {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   font-size: var(--yazi-xs);
+  line-height: 1.25;
 }
 .ge-ipucu:not(.ge-ipucu--acik) .ge-ipucu__kilit {
   order: -1;

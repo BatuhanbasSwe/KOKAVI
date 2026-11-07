@@ -24,7 +24,7 @@
 
 .defter-sekmeler {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(4.5rem * var(--yazi-olcek))), 1fr));
   gap: 4px;
   padding: 4px;
   border-radius: var(--kose-sm);
@@ -155,13 +155,14 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Telefonda 3, geniş ekranda 4 sütun; yazı büyüdükçe sütun azalır. */
+  grid-template-columns: repeat(auto-fill, minmax(max(calc((100% - 2 * var(--b-3)) / 3 - 1px), calc(6.5rem * var(--yazi-olcek))), 1fr));
   gap: var(--b-4) var(--b-3);
 }
 
 @media (min-width: 640px) {
   .defter-albumu {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(max(calc((100% - 3 * var(--b-3)) / 4 - 1px), calc(6.5rem * var(--yazi-olcek))), 1fr));
   }
 }
 

@@ -60,10 +60,10 @@ describe('ayarlariUygula — ayarlar gerçekten DOM’a yazılıyor', () => {
 
   it('yazı boyutu güvenli aralığa sınırlanır', () => {
     ayarlariUygula(ayar({ yaziBoyutu: 99 }));
-    expect(Number(document.documentElement.style.getPropertyValue('--yazi-olcek'))).toBeLessThanOrEqual(1.6);
+    expect(Number(document.documentElement.style.getPropertyValue('--yazi-olcek'))).toBeLessThanOrEqual(2);
 
     ayarlariUygula(ayar({ yaziBoyutu: 0.01 }));
-    expect(Number(document.documentElement.style.getPropertyValue('--yazi-olcek'))).toBeGreaterThanOrEqual(0.85);
+    expect(Number(document.documentElement.style.getPropertyValue('--yazi-olcek'))).toBeGreaterThanOrEqual(0.75);
   });
 });
 
@@ -80,6 +80,7 @@ describe('yazı boyutu adımları', () => {
 
   it('A− en yakın alt adıma iner', () => {
     expect(yaziBoyutuAzalt(1)).toBe(0.85);
+    expect(yaziBoyutuAzalt(0.85)).toBe(0.75);
     expect(yaziBoyutuAzalt(1.15)).toBe(1);
   });
 
@@ -107,5 +108,15 @@ describe('etiket sözlükleri eksiksiz', () => {
     for (const anahtar of ['yok', 'protanopi', 'döteranopi', 'tritanopi'] as const) {
       expect(RENK_KORLUGU_ETIKETLERI[anahtar]).toBeTruthy();
     }
+  });
+});
+
+describe('yazı boyutu aralığı (%75 - %200)', () => {
+  it('sekiz adım, sıralı; hazır seçenekler aralığın içinde ve adımlardan biri', async () => {
+    const { YAZI_ADIMLARI, YAZI_EN_KUCUK, YAZI_EN_BUYUK, YAZI_HAZIR } = await import('../src/lib/erisilebilirlik');
+    expect(YAZI_EN_KUCUK).toBe(0.75);
+    expect(YAZI_EN_BUYUK).toBe(2);
+    expect([...YAZI_ADIMLARI].sort((a, b) => a - b)).toEqual(YAZI_ADIMLARI);
+    for (const h of YAZI_HAZIR) expect(YAZI_ADIMLARI).toContain(h.deger);
   });
 });

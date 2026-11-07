@@ -54,7 +54,7 @@
 }
 .seri-gun__isaret {
   min-height: 1.5em;
-  font-size: 1.1rem;
+  font-size: calc(1.1rem * var(--yazi-olcek));
   line-height: 1.5em;
 }
 .seri-gun--aktif {
@@ -111,7 +111,7 @@
   width: 44px;
   height: 44px;
   font: inherit;
-  font-size: 1.6rem;
+  font-size: calc(1.6rem * var(--yazi-olcek));
   font-weight: 800;
   line-height: 1;
   color: var(--metin);
@@ -132,7 +132,8 @@
   table-layout: fixed;
 }
 .seri-tablo th {
-  font-size: var(--yazi-xs);
+  /* Hücre genişliği sabit (7 gün): gün kısaltması en fazla %125 büyür. */
+  font-size: calc(0.75rem * min(var(--yazi-olcek), 1.25));
   color: var(--metin-ikincil);
 }
 .seri-hucre {

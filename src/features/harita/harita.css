@@ -155,6 +155,7 @@
 }
 
 .harita-eser__baslik-satiri {
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
 }
@@ -676,4 +677,15 @@
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+}
+
+/* Büyük yazıda liste kartı ızgaradan taşmasın; uzun künye/bağlantı bölünür. */
+.harita-listesi > * {
+  min-width: 0;
+}
+.harita-eser__kimlik {
+  flex: 1 1 12rem;
+}
+.harita-eser__kunye {
+  overflow-wrap: anywhere;
 }

@@ -18,8 +18,8 @@ export function ayarlariUygula(ayarlar: Ayarlar): void {
   kok.dataset.hareketAzalt = String(ayarlar.hareketAzalt);
   kok.dataset.sessizMod = String(ayarlar.sessizMod);
 
-  // Ölçeklenebilir yazı boyutu (0.85 – 1.6 arası sınırlanır)
-  const olcek = Math.min(1.6, Math.max(0.85, ayarlar.yaziBoyutu));
+  // Ölçeklenebilir yazı boyutu (%75 – %200 arası sınırlanır)
+  const olcek = Math.min(YAZI_EN_BUYUK, Math.max(YAZI_EN_KUCUK, ayarlar.yaziBoyutu));
   kok.style.setProperty('--yazi-olcek', String(olcek));
 
   // Tarayıcı arayüz rengi (adres çubuğu) temaya uysun
@@ -33,7 +33,17 @@ export function ayarlariUygula(ayarlar: Ayarlar): void {
 }
 
 /** Yazı boyutunu adım adım değiştirir (ayarlar ekranındaki A- / A+ düğmeleri). */
-export const YAZI_ADIMLARI = [0.85, 1, 1.15, 1.3, 1.45, 1.6];
+export const YAZI_ADIMLARI = [0.75, 0.85, 1, 1.15, 1.3, 1.5, 1.75, 2];
+export const YAZI_EN_KUCUK = YAZI_ADIMLARI[0]!;
+export const YAZI_EN_BUYUK = YAZI_ADIMLARI[YAZI_ADIMLARI.length - 1]!;
+
+/** Ayarlar ekranındaki hazır seçenekler. */
+export const YAZI_HAZIR = [
+  { ad: 'Küçük', deger: 0.85 },
+  { ad: 'Normal', deger: 1 },
+  { ad: 'Büyük', deger: 1.3 },
+  { ad: 'Çok büyük', deger: 1.75 },
+] as const;
 
 export function yaziBoyutuArtir(mevcut: number): number {
   return YAZI_ADIMLARI.find((a) => a > mevcut + 0.001) ?? YAZI_ADIMLARI[YAZI_ADIMLARI.length - 1]!;

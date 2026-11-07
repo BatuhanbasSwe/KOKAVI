@@ -1417,7 +1417,7 @@
 
 /* --- Tahta modu (okulda tek cihaz, projeksiyon) --------------------------- */
 .ders-sayfa--tahta {
-  font-size: 1.125rem;
+  font-size: calc(1.125rem * var(--yazi-olcek));
 }
 .ders-sayfa--tahta .ders-baslik {
   font-size: clamp(2rem, 3.2vw, 3rem);
@@ -1477,7 +1477,7 @@
   border-radius: var(--kose-sm);
   background: var(--zemin-kart);
   color: var(--metin);
-  font-size: 0.8rem;
+  font-size: calc(0.8rem * var(--yazi-olcek));
   font-weight: 700;
 }
 .gecmis-karsilastirma__etiket--eski {
