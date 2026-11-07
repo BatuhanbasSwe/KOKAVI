@@ -136,6 +136,42 @@ export function GununEseriSayfasi() {
         </div>
       </header>
 
+      {!bitti && (
+        <form className="kart ge-form" onSubmit={gonder}>
+          <label className="ge-etiket" htmlFor="ge-girdi">
+            Eserin adını yaz
+          </label>
+          <div className="ge-girdi-kutu">
+            <input
+              id="ge-girdi"
+              className="ge-girdi"
+              autoComplete="off"
+              value={girdi}
+              onChange={(o) => setGirdi(o.target.value)}
+              aria-describedby="ge-oneri-bilgi"
+            />
+            {oneriler.length > 0 && (
+              <ul className="ge-oneriler" aria-label="Önerilen eserler">
+                {oneriler.map((e) => (
+                  <li key={e.eserId}>
+                    <button type="button" className="ge-oneri" onClick={() => tahminEt(e.eserId)}>
+                      <span>{e.ad}</span>
+                      <span className="ge-oneri__sehir">{e.sehir}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <p id="ge-oneri-bilgi" className="metin-soluk ge-oneri-bilgi">
+            Yazdıkça eserler çıkar; birine dokunarak tahmin et.
+          </p>
+          {girdi.trim() !== '' && oneriler.length === 0 && (
+            <p className="metin-soluk">Bu adla bir ders eseri yok. Başka türlü yazmayı dene.</p>
+          )}
+        </form>
+      )}
+
       <ol className="ge-ipuclari" aria-label="İpuçları">
         {tumIpuclari.map((ip, i) => {
           const acik = i < acikIpucu;
@@ -148,8 +184,8 @@ export function GununEseriSayfasi() {
                 <span className="ge-ipucu__baslik">{ip.baslik}</span>
                 {!acik ? (
                   <span className="ge-ipucu__kilit">
-                    <IkonKilit boyut={14} className="ge-ipucu__kilit-ikon" />{' '}
-                    {i}. yanlış tahminden sonra açılır
+                    <IkonKilit boyut={14} className="ge-ipucu__kilit-ikon" />
+                    <span className="sr-only">{i}. yanlış tahminden sonra açılır</span>
                   </span>
                 ) : ip.tur === 'foto' ? (
                   <img
@@ -205,39 +241,7 @@ export function GununEseriSayfasi() {
         </section>
       )}
 
-      {!bitti ? (
-        <form className="kart ge-form" onSubmit={gonder}>
-          <label className="ge-etiket" htmlFor="ge-girdi">
-            Eserin adını yaz
-          </label>
-          <input
-            id="ge-girdi"
-            className="ge-girdi"
-            autoComplete="off"
-            value={girdi}
-            onChange={(o) => setGirdi(o.target.value)}
-            aria-describedby="ge-oneri-bilgi"
-          />
-          <p id="ge-oneri-bilgi" className="metin-soluk ge-oneri-bilgi">
-            Yazdıkça aşağıda eserler çıkar; birine dokunarak tahmin et.
-          </p>
-          {oneriler.length > 0 && (
-            <ul className="ge-oneriler" aria-label="Önerilen eserler">
-              {oneriler.map((e) => (
-                <li key={e.eserId}>
-                  <button type="button" className="ge-oneri" onClick={() => tahminEt(e.eserId)}>
-                    <span>{e.ad}</span>
-                    <span className="ge-oneri__sehir">{e.sehir}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-          {girdi.trim() !== '' && oneriler.length === 0 && (
-            <p className="metin-soluk">Bu adla bir ders eseri yok. Başka türlü yazmayı dene.</p>
-          )}
-        </form>
-      ) : (
+      {bitti ? (
         <section className={`kart yigin ge-son${kazandi ? ' ge-son--kazandi' : ''}`} aria-labelledby="ge-son-baslik">
           {kazandi && <Konfeti />}
           <h2 id="ge-son-baslik" className="ge-son__baslik">
@@ -302,7 +306,7 @@ export function GununEseriSayfasi() {
             })}
           </ol>
         </section>
-      )}
+      ) : null}
     </div>
   );
 }

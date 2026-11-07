@@ -107,6 +107,22 @@ export function BugunSayfasi() {
         </div>
       )}
 
+      {tercihYok && (
+        <a className="tanisma" href="#/baslangic">
+          <span className="tanisma__simge" aria-hidden="true">
+            <IkonYildiz boyut={26} />
+          </span>
+          <span className="tanisma__metin">
+            <span className="tanisma__baslik">Seni tanıyalım</span>
+            <span className="tanisma__alt">4 kısa soru, 1 dakika. Sıradaki dersi ilgine göre seçelim.</span>
+          </span>
+          <span className="tanisma__eylem">
+            Cevapla
+            <IkonOk boyut={18} />
+          </span>
+        </a>
+      )}
+
       <ul className="mozaik" aria-label="Bugün yapabileceklerin">
         {siradaki ? (
           <Kutu href="#/yol?odak=siradaki" sira={sira++} sinif="mozaik__oge--buyuk">
@@ -136,19 +152,6 @@ export function BugunSayfasi() {
             </span>
           </Kutu>
         ) : null}
-
-        {tercihYok && (
-          <Kutu href="#/baslangic" sira={sira++} sinif="mozaik__oge--buyuk mozaik__oge--duz">
-            <span className="mozaik__icerik">
-              <span className="mozaik__ust">4 kısa soru · 1 dakika</span>
-              <span className="mozaik__eser">Seni tanıyalım</span>
-              <span className="mozaik__eylem">
-                Cevapla
-                <IkonOk boyut={18} />
-              </span>
-            </span>
-          </Kutu>
-        )}
 
         <Kutu href="#/seri" sira={sira++} sinif="mozaik__oge--seri">
           <span className="mozaik__sayi">

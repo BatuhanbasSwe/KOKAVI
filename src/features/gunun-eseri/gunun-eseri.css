@@ -368,3 +368,60 @@
     animation: none !important;
   }
 }
+
+/* --- Tek ekran düzeni: tahmin kutusu üstte, öneriler açılır liste,
+       kilitli ipuçları tek satır rozet (07.11.2026). ------------------------ */
+.ge-girdi-kutu {
+  position: relative;
+}
+.ge-girdi-kutu .ge-oneriler {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: min(320px, 50vh);
+  overflow-y: auto;
+  padding: var(--b-2);
+  background: var(--zemin-kart);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-md);
+  box-shadow: var(--golge-buyuk);
+}
+.ge-ipuclari {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+}
+.ge-ipucu--acik {
+  flex: 1 1 100%;
+}
+.ge-ipucu:not(.ge-ipucu--acik) {
+  flex: 0 0 calc((100% - 2 * var(--b-2)) / 3);
+  min-width: 0;
+  align-items: center;
+  padding: var(--b-2);
+  gap: var(--b-2);
+}
+.ge-ipucu:not(.ge-ipucu--acik) .ge-ipucu__govde {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+.ge-ipucu:not(.ge-ipucu--acik) .ge-ipucu__baslik {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--yazi-xs);
+}
+.ge-ipucu:not(.ge-ipucu--acik) .ge-ipucu__kilit {
+  order: -1;
+  display: inline-flex;
+  color: var(--metin-soluk);
+}
+.ge-ipucu:not(.ge-ipucu--acik) .ge-ipucu__no {
+  width: 24px;
+  height: 24px;
+  font-size: var(--yazi-xs);
+}

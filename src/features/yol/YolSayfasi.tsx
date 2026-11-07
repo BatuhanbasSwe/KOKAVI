@@ -106,7 +106,7 @@ export function YolSayfasi() {
   const bekleyenTekrar = vadesiGelenler(tekrar, gunMetni(new Date()));
 
   return (
-    <div className="yigin" style={{ gap: 'var(--b-5)' }}>
+    <div className="yigin yol-sayfa" style={{ gap: 'var(--b-5)' }}>
       {/* body'ye taşınır: animasyonlu ata kutular sabit katmanı kendine bağlamasın. */}
       {createPortal(<div className="ortam-zemin" aria-hidden="true" />, document.body)}
       <header className="yol-ozet">

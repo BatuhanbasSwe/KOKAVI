@@ -361,3 +361,77 @@
 .mozaik__oge--seri .mozaik__sayi {
   color: var(--sicak);
 }
+
+/* --- "Seni tanıyalım" şeridi: mozaiğin üstünde tek satır, lapis zemin --------- */
+.tanisma {
+  display: flex;
+  align-items: center;
+  gap: var(--b-3);
+  padding: var(--b-3) var(--b-4);
+  color: var(--unite-2-metin);
+  text-decoration: none;
+  background: var(--unite-2);
+  border-radius: var(--kose-md);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--unite-2-golge);
+  margin-bottom: var(--bas-derinlik);
+  transition:
+    transform var(--gecis-bas) var(--cikis),
+    box-shadow var(--gecis-bas) var(--cikis);
+  animation: mozaik-gel 520ms var(--yay) both;
+}
+.tanisma:active {
+  transform: translateY(var(--bas-derinlik));
+  box-shadow: 0 0 0 var(--unite-2-golge);
+}
+.tanisma:focus-visible {
+  outline-offset: 3px;
+}
+.tanisma__simge {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: var(--odul-metin);
+  background: var(--odul);
+  box-shadow: 0 3px 0 var(--odul-golge);
+}
+.tanisma__metin {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.tanisma__baslik {
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-lg);
+  font-weight: 800;
+  line-height: 1.15;
+}
+.tanisma__alt {
+  font-size: var(--yazi-sm);
+  line-height: 1.35;
+}
+.tanisma__eylem {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-1);
+  min-height: 44px;
+  padding: 0 var(--b-4);
+  font-family: var(--yazi-baslik);
+  font-weight: 700;
+  color: var(--odul-metin);
+  background: var(--odul);
+  border-radius: var(--kose-sm);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--odul-golge);
+}
+@media (max-width: 480px) {
+  .tanisma {
+    flex-wrap: wrap;
+  }
+  .tanisma__eylem {
+    margin-left: calc(52px + var(--b-3));
+  }
+}

@@ -588,3 +588,28 @@ a.patika__baglanti:active .patika__devam {
     translate: 0 0;
   }
 }
+
+/* --- Masaüstü: Duolingo'daki gibi ortada dar bir yol sütunu ------------------
+   Geniş ekranda yol tüm genişliğe yayılmaz; telefondaki "seviye haritası"
+   görünümü korunur, duraklar biraz büyür ve zikzak belirginleşir. */
+@media (min-width: 720px) {
+  .yol-sayfa {
+    width: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+  .patika {
+    gap: var(--b-6);
+  }
+  .patika__durak {
+    transform: translateX(calc(var(--kayma, 0) * 1.25));
+  }
+  .patika__madalyon {
+    width: 88px;
+    height: 88px;
+  }
+  .patika__durak--aktif .patika__madalyon {
+    width: 112px;
+    height: 112px;
+  }
+}
