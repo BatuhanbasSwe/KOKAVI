@@ -120,11 +120,14 @@ export function FotografPatikasi({
   sehirAdi,
   guncelDersId,
   sahne = BOS_SAHNE,
+  renkNo = 1,
 }: {
   unite: YolUnitesi;
   sehirAdi: string;
   guncelDersId: string | null;
   sahne?: YolSahnesi;
+  /** Ünitenin renk sırası (1-5): başlık şeridi ve sıradaki durağın halkası. */
+  renkNo?: number;
 }) {
   const yuzde = unite.toplamSayi ? Math.round((unite.tamamlananSayi / unite.toplamSayi) * 100) : 0;
   const bolum = useRef<HTMLElement>(null);
@@ -205,7 +208,7 @@ export function FotografPatikasi({
   return (
     <section
       ref={bolum}
-      className={`patika-unite${unite.kilitli ? ' patika-unite--kilitli' : ''}${yeniAcildi ? (goruldu ? ' patika-unite--aciliyor' : ' patika-unite--acilacak') : ''}`}
+      className={`patika-unite patika-unite--renk-${renkNo}${unite.kilitli ? ' patika-unite--kilitli' : ''}${yeniAcildi ? (goruldu ? ' patika-unite--aciliyor' : ' patika-unite--acilacak') : ''}`}
       aria-labelledby={`unite-${unite.uniteId}`}
     >
       <header ref={baslik} className="patika-unite__baslik">

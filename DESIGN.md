@@ -4,58 +4,53 @@
 > Gerçek değerler `src/styles/tokens.css` içindedir; bu dosya *nasıl kullanılacağını* anlatır.
 > Bileşen kodunda ham renk yok: yalnızca jetonlar.
 
-## 1. İlkeler
+## 1. İlkeler ("Çini Oyun", 07.11.2026)
 
-1. **Koyu, tek vurgu.** Varsayılan tema koyu. Tek vurgu rengi **safran** (`--vurgu`): ana eylem,
-   aktif sekme, ilerleme, biten durak, seri ve ödül. **Turkuaz ve yeşil arayüzde yok**
-   (`tests/tema-kontrast.test.ts` bunu denetler).
-2. **Fotoğraf öne.** Eser fotoğrafları arayüzün asıl rengidir: Bugün mozaiği, Yol madalyonları,
-   Defter pulları. Fotoğraf üstündeki metin her zaman `--karartma` geçişi + `--foto-metin` ile.
-3. **İlk ekran = sıradaki eylem.** Bugün sekmesinde büyük fotoğraflı "sıradaki ders" kutucuğu,
-   tek dokunuşla derse girer.
-4. **Ceza yok, kıyas yok.** Doğru: safran + onay simgesi. İpucu: kısık İznik mavisi (`--uyari`)
-   + ampul simgesi. Kırmızı "hata" ekranı yok. Sıralama yalnızca canlı yarışmada, takma adla.
-5. **Renk tek başına anlam taşımaz.** Her durumda simge + metin (WCAG 1.4.1).
-6. **Şablon görüntüsü yok.** Neon/parıltı, mor, degrade metin, büyük harfli etiket, emoji,
-   em-dash, elle çizilmiş simge yok.
+1. **Açık, renkli, oyunsu.** Varsayılan tema açık. 9-14 yaş için Duolingo hissi: kalın,
+   basılabilir düğme ve kartlar (altta düz "dudak"), yuvarlak yazı tipi, canlı renkler.
+2. **Renklerin görevi sabit.** Ana eylem **çini turkuazı** (`--vurgu`); ödül, seri, elmas,
+   biten durak ve altın yol **safran** (`--odul`); bilgi/ipucu **lapis** (`--ikincil`, `--uyari`).
+3. **Her ünite kendi rengini taşır.** Öğrenme yolunda üniteler sırayla turkuaz, lapis, nar,
+   safran, lale (`--unite-1..5` + `-metin` + `-golge`): başlık şeridi, sıradaki durağın halkası
+   ve "Devam et" düğmesi. Kilitli ünite gri.
+4. **Fotoğraf öne.** Eser fotoğrafları mozaik, madalyon ve pullarda; üstündeki metin `--karartma` ile.
+5. **Ceza yok, kıyas yok.** Doğru: turkuaz + onay simgesi. İpucu: lapis + ampul. Kırmızı hata ekranı yok.
+6. **Renk tek başına anlam taşımaz.** Her durumda simge + metin (WCAG 1.4.1).
+7. **Yapma:** neon/parıltı, mor, degrade metin, emoji, em-dash, elle çizilmiş simge.
 
-## 2. Renk (koyu varsayılan)
+## 2. Renk (açık varsayılan)
 
-| Rol | Jeton | Koyu | Not |
+| Rol | Jeton | Açık | Not |
 |---|---|---|---|
-| Zemin | `--zemin` | `#000000` | tam siyah; yüzeyler soğuk koyu gri |
-| Yüzey | `--zemin-kart` | `#161d20` | kart, liste |
-| Yüzey 2 | `--zemin-vurgu` | `#1d2629` | simge kutusu, girdi, ikincil düğme |
-| Çizgi | `--cizgi` / `--cizgi-kalin` | `#2a3539` / `#3a474c` | 1px |
-| Metin | `--metin` / `--metin-ikincil` / `--metin-soluk` | `#eef2f0` / `#a9b8b5` / `#8a9a97` | hepsi kartta ≥ 4.5:1 |
-| Vurgu | `--vurgu` + `--vurgu-metin` | `#ffbf3c` + `#2a1c00` | dolgu; üstünde koyu metin |
-| Vurgu (metin olarak) | `--vurgu-koyu` | `#ffd27a` | açık temada `#8a5b00` |
-| İpucu/bilgi | `--uyari`, `--ikincil` | `#8ea6ff` | yalnızca metin, simge, kenar |
+| Zemin / kart | `--zemin` / `--zemin-kart` | `#f6f8fc` / `#ffffff` | kartta 2px çizgi + 4px alt kenar |
+| Metin | `--metin` / `--metin-ikincil` | `#1c2433` / `#4a5468` | ≥ 4.5:1 |
+| Ana eylem | `--vurgu` + `--vurgu-metin` | `#1fc2b3` + `#04211e` | metin olarak `--vurgu-koyu` `#0a6d64` |
+| Ödül | `--odul` + `--odul-metin` | `#ffc233` + `#3a2700` | seri, elmas, altın yol |
+| Bilgi | `--ikincil` | `#3557d6` | beyaz metinle |
+| Ünite | `--unite-1..5` | turkuaz, lapis, nar, safran, lale | her birinin metin çifti ≥ 4.5:1 |
 
-- **Açık tema:** kırık beyaz `#f6f4ef` (bej değil) + aynı safran. Safran açık zeminde metin
-  olamaz; metin olarak `--vurgu-koyu` kullanılır.
-- **Yüksek kontrast:** `#050607` zemin, beyaz metin, `#ffd000` vurgu, 2px çerçeveler.
-- **Yeni renk gerekiyorsa** üç temaya birden jeton ekleyin; kontrast testi yeni çifti ölçsün.
+- **Koyu tema:** `#0d1418` zemin, aynı renk görevleri. **Yüksek kontrast:** siyah-beyaz-sarı; üniteler sarıya iner.
+- Yeni renk gerekiyorsa üç temaya birden jeton ekleyin; `tests/tema-kontrast.test.ts` ölçer.
 
 ## 3. Tipografi
 
-- Başlık: **Bricolage Grotesque** 700/800, `letter-spacing: -0.02em` (`--yazi-baslik`).
-- Gövde: **Figtree** 500/600/700 (`--yazi-aile`).
+- Başlık: **Baloo 2** 700/800 (`--yazi-baslik`), yuvarlak ve oyunsu.
+- Gövde: **Nunito** 500-800 (`--yazi-aile`).
 - İkisi de OFL, `public/fonts/` altında yerel woff2 (latin + latin-ext: ğ ş ı İ).
 - Telefon ölçeği: h1 28 · h2 22 · h3 18 · gövde 16 · küçük 13. `--yazi-olcek` ile büyür.
-- 900 ağırlık ve büyük harfli küçük etiket kullanılmaz.
 
 ## 4. Şekil ve derinlik (kilitli)
 
 | Öğe | Köşe |
 |---|---|
-| Düğme, girdi, simge kutusu | `--kose-sm` 12px |
+| Düğme, girdi, simge kutusu | `--kose-sm` 16px |
 | Kart, mozaik kutucuğu | `--kose-md` 20px |
 | Alt sonuç sayfası, büyük yüzey | `--kose-lg` 24px |
 | Madalyon, maskot, hap | tam daire |
 
-- Düğmeler **gölgesiz**, düz dolgu; basınca `scale(.97)`.
-- Kart: yüzey + 1px çizgi; gölge yok. Kart yalnızca hiyerarşi gerekiyorsa.
+- Düğme, kart ve mozaik kutucuğu **basılabilir**: düz dolgu + altta bulanıksız kalın kenar
+  (`--bas-derinlik` 5px); basınca o kadar aşağı iner.
+- Kart: yüzey + 2px çizgi + 4px alt kenar.
 
 ## 5. Bileşenler
 
@@ -88,13 +83,13 @@ Yalnızca `transform`/`opacity`; eğri `--yay`. Hepsi `prefers-reduced-motion` v
 |---|---|
 | Sayfa/sekme değişimi | içerik 8px kayarak gelir |
 | Mozaik, patika | kutucuk/duraklar sırayla yaylanır (60-70ms arayla) |
-| Sıradaki durak | halka çizilir, madalyon yavaş nefes alır (tek döngü) |
+| Sıradaki durak | ünite renginde halka çizilir, durak "beni seç" der gibi zıplar |
 | Cevap | sonuç sayfası alttan yaylanır, Köstik tepki verir |
 | Defter | yeni pul "basılır" |
 
 ## 8. Yapma
 
 - Ham hex/rgba (jeton dışı), turkuaz/yeşil vurgu, mor, neon parıltı.
-- Gölgeli "3B" düğme, büyük harf etiket, eşit üçlü kart dizisi.
+- Bulanık gölgeli düğme (dudak düz ve bulanıksız olmalı), büyük harf etiket, eşit üçlü kart dizisi.
 - Emoji, em-dash, elle çizilmiş SVG simge.
 - 44px'ten küçük dokunma hedefi; `div` üzerinde `onClick`.

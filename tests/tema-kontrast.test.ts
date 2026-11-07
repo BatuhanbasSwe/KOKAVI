@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest';
 
 /**
  * Tema jetonlarının kontrast denetimi (WCAG 2.2). tokens.css doğrudan okunur;
- * her tema bloğunda metin/zemin çiftleri ölçülür. Ayrıca turkuaz/yeşil vurgunun
- * geri gelmemesi denetlenir (kullanıcı kararı: tek vurgu safran).
+ * her tema bloğunda metin/zemin çiftleri ölçülür. Ayrıca ünite renklerinin
+ * şerit metniyle kontrastı ölçülür ("Çini Oyun" paleti, 07.11.2026).
  */
 const css = readFileSync('src/styles/tokens.css', 'utf8');
 
@@ -28,15 +28,6 @@ function parlaklik(hex: string): number {
 function oran(a: string, b: string): number {
   const [l1, l2] = [parlaklik(a), parlaklik(b)].sort((x, y) => y - x);
   return (l1 + 0.05) / (l2 + 0.05);
-}
-
-function ton(hex: string): number {
-  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
-  const max = Math.max(r, g, b);
-  const d = max - Math.min(r, g, b);
-  if (d === 0) return 0;
-  const h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
-  return (h * 60 + 360) % 360;
 }
 
 const TEMALAR = [
@@ -68,15 +59,14 @@ describe('tema kontrastı', () => {
     });
   }
 
-  it('vurgu turkuaz ya da yeşil değil (hiçbir temada)', () => {
-    for (const [secici] of TEMALAR) {
-      const h = ton(blok(secici).vurgu);
-      expect(h < 60 || h > 200, `${secici} ton ${h}`).toBe(true);
+  it('ünite renkleri: şerit metni her ünitede okunur (>= 4.5:1)', () => {
+    const kok = blok(':root');
+    for (let n = 1; n <= 5; n++) {
+      const zemin = kok[`unite-${n}`];
+      const metin = kok[`unite-${n}-metin`];
+      expect(zemin && metin, `--unite-${n}`).toBeTruthy();
+      expect(oran(metin!, zemin!), `--unite-${n}`).toBeGreaterThanOrEqual(4.5);
     }
-  });
-
-  it('eski turkuaz değerleri jetonlarda kalmadı', () => {
-    expect(css).not.toMatch(/#(0f7f7a|3cbfae|6fd3c4|0a5a56|1cb0a6|2fc4b8)/i);
   });
 });
 

@@ -85,11 +85,16 @@
   color: var(--metin);
   text-decoration: none;
   background: var(--zemin-kart);
-  border: 1px solid var(--cizgi);
+  border: 2px solid var(--cizgi);
   border-radius: var(--kose-md);
+  /* Çini Oyun: kutucuklar da basılabilir; altta kalın düz kenar. */
+  --dudak: var(--cizgi);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--dudak);
+  margin-bottom: var(--bas-derinlik);
   -webkit-tap-highlight-color: transparent;
   transition:
     transform 140ms var(--yay),
+    box-shadow 140ms var(--yay),
     border-color var(--gecis-hizli);
 }
 
@@ -98,7 +103,8 @@
 }
 
 .mozaik__kutu:active {
-  transform: scale(0.97);
+  transform: translateY(var(--bas-derinlik));
+  box-shadow: 0 0 0 var(--dudak);
 }
 
 .mozaik__kutu:focus-visible {
@@ -149,8 +155,28 @@
   color: var(--foto-metin);
 }
 
+/* Fotoğrafsız büyük kutucuk ("Seni tanıyalım", arşiv): renkli lapis zemin. */
+.mozaik__oge--duz .mozaik__kutu {
+  --dudak: var(--unite-2-golge);
+  background: var(--unite-2);
+  border-color: var(--unite-2-golge);
+  min-height: 0;
+  aspect-ratio: auto;
+}
 .mozaik__oge--duz .mozaik__icerik {
-  color: var(--metin);
+  color: var(--unite-2-metin);
+}
+.mozaik__oge--duz .mozaik__eylem {
+  color: var(--odul-metin);
+  background: var(--odul);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--odul-golge);
+}
+
+/* Seri kutucuğu: sıcak safran zemin. */
+.mozaik__oge--seri .mozaik__kutu {
+  --dudak: var(--odul-golge);
+  background: var(--odul-yumusak);
+  border-color: var(--odul);
 }
 
 .mozaik__ust {
@@ -181,6 +207,7 @@
   color: var(--vurgu-metin);
   background: var(--vurgu);
   border-radius: var(--kose-sm);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--vurgu-golge);
 }
 
 .mozaik__simge {
@@ -199,6 +226,23 @@
 .mozaik__oge--foto .mozaik__simge {
   color: var(--vurgu-metin);
   background: var(--vurgu);
+  box-shadow: 0 3px 0 var(--vurgu-golge);
+}
+/* Her kutucuk simgesi ayrı bir çini rengi alır. */
+.mozaik__oge--gizem .mozaik__simge {
+  color: var(--unite-5-metin);
+  background: var(--unite-5);
+  box-shadow: 0 3px 0 var(--unite-5-golge);
+}
+.mozaik__oge--foto .mozaik__simge {
+  color: var(--unite-3-metin);
+  background: var(--unite-3);
+  box-shadow: 0 3px 0 var(--unite-3-golge);
+}
+.mozaik__oge--foto + .mozaik__oge--foto .mozaik__simge {
+  color: var(--unite-2-metin);
+  background: var(--unite-2);
+  box-shadow: 0 3px 0 var(--unite-2-golge);
 }
 
 .mozaik__oge--gizem .mozaik__icerik,
@@ -258,7 +302,7 @@
 }
 
 .mozaik__gun--aktif {
-  background: var(--vurgu);
+  background: var(--odul-golge);
 }
 
 .mozaik__gun--bugun {
@@ -312,4 +356,8 @@
   to {
     translate: 0 7%;
   }
+}
+
+.mozaik__oge--seri .mozaik__sayi {
+  color: var(--sicak);
 }

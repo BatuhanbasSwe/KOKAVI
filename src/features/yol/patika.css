@@ -1,14 +1,49 @@
 /* Fotoğraf patikası: madalyonlu zikzak yol. */
 
 .patika-unite {
+  --unite: var(--unite-1);
+  --unite-metin: var(--unite-1-metin);
+  --unite-golge: var(--unite-1-golge);
   display: grid;
   gap: var(--b-4);
 }
+.patika-unite--renk-2 {
+  --unite: var(--unite-2);
+  --unite-metin: var(--unite-2-metin);
+  --unite-golge: var(--unite-2-golge);
+}
+.patika-unite--renk-3 {
+  --unite: var(--unite-3);
+  --unite-metin: var(--unite-3-metin);
+  --unite-golge: var(--unite-3-golge);
+}
+.patika-unite--renk-4 {
+  --unite: var(--unite-4);
+  --unite-metin: var(--unite-4-metin);
+  --unite-golge: var(--unite-4-golge);
+}
+.patika-unite--renk-5 {
+  --unite: var(--unite-5);
+  --unite-metin: var(--unite-5-metin);
+  --unite-golge: var(--unite-5-golge);
+}
+/* Kilitli ünite rengini açılınca kazanır. */
+.patika-unite--kilitli {
+  --unite: var(--kilit);
+  --unite-metin: var(--kilit-metin);
+  --unite-golge: var(--kilit-golge);
+}
 
+/* Ünite başlığı: Duolingo'daki gibi renkli, basılı duran kalın şerit. */
 .patika-unite__baslik {
   display: grid;
   gap: var(--b-2);
-  padding-bottom: var(--b-2);
+  padding: var(--b-3) var(--b-4) var(--b-4);
+  color: var(--unite-metin);
+  background: var(--unite);
+  border-radius: var(--kose-md);
+  box-shadow: 0 var(--bas-derinlik-buyuk) 0 var(--unite-golge);
+  margin-bottom: var(--bas-derinlik-buyuk);
 }
 
 .patika-unite__satir {
@@ -20,7 +55,8 @@
 
 .patika-unite__satir h3 {
   margin: 0;
-  font-size: var(--yazi-lg);
+  font-size: var(--yazi-xl);
+  color: inherit;
 }
 
 .patika-unite__sayac {
@@ -28,15 +64,15 @@
   align-items: center;
   gap: 4px;
   font-family: var(--yazi-baslik);
-  font-weight: 700;
-  color: var(--metin-ikincil);
+  font-weight: 800;
+  color: inherit;
   white-space: nowrap;
 }
 
 .patika-unite__cubuk {
-  height: 6px;
+  height: 10px;
   border-radius: var(--kose-tam);
-  background: var(--zemin-vurgu);
+  background: color-mix(in srgb, var(--unite-metin) 22%, transparent);
   overflow: hidden;
 }
 
@@ -44,12 +80,12 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: var(--vurgu);
-  transition: width var(--gecis-normal);
+  background: var(--unite-metin);
+  transition: width 700ms var(--yay);
 }
 
 .patika-unite--kilitli .patika-unite__satir h3 {
-  color: var(--metin-ikincil);
+  color: inherit;
 }
 
 /* --- Duraklar ------------------------------------------------------------- */
@@ -94,7 +130,7 @@
   opacity: 0.5;
 }
 .patika__yol-altin {
-  stroke: var(--vurgu);
+  stroke: var(--odul);
   stroke-width: 9;
 }
 /* Bu ziyarette biten parça: sahne başlayana dek boş, sonra altınla dolar. */
@@ -257,10 +293,10 @@ a.patika__baglanti:active .patika__devam {
   text-wrap: balance;
 }
 
-/* Biten: safran kenar + onay rozeti */
+/* Biten: altın kenar + onay rozeti (ödül rengi) */
 .patika__durak--tamam .patika__madalyon {
-  --dudak: var(--vurgu-golge);
-  border-color: var(--vurgu);
+  --dudak: var(--odul-golge);
+  border-color: var(--odul);
 }
 
 .patika__rozet {
@@ -272,8 +308,8 @@ a.patika__baglanti:active .patika__devam {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  color: var(--vurgu-metin);
-  background: var(--vurgu);
+  color: var(--odul-metin);
+  background: var(--odul);
   border: 3px solid var(--zemin);
 }
 
@@ -301,9 +337,30 @@ a.patika__baglanti:active .patika__devam {
 .patika__durak--aktif .patika__madalyon {
   width: 100px;
   height: 100px;
-  --dudak: var(--vurgu-golge);
+  --dudak: var(--unite-golge);
   border-color: var(--zemin);
-  animation: nefes 2.6s ease-in-out 700ms infinite;
+}
+
+/* Sıradaki durak "beni seç" der gibi zıplar (çerçeve zıplar; madalyon basılınca
+   ayrıca iner, iki hareket çakışmaz). Hareketi azalt ayarında durur. */
+.patika__durak--aktif .patika__cerceve {
+  animation: zipla 1.8s var(--yay) 900ms infinite;
+}
+@keyframes zipla {
+  0%,
+  55%,
+  100% {
+    translate: 0 0;
+  }
+  20% {
+    translate: 0 -12px;
+  }
+  35% {
+    translate: 0 0;
+  }
+  43% {
+    translate: 0 -5px;
+  }
 }
 
 .patika__halka {
@@ -326,7 +383,7 @@ a.patika__baglanti:active .patika__devam {
 }
 
 .patika__halka-cizgi {
-  stroke: var(--vurgu);
+  stroke: var(--unite);
   stroke-linecap: round;
   stroke-dasharray: 100;
   stroke-dashoffset: 0;
@@ -361,7 +418,7 @@ a.patika__baglanti:active .patika__devam {
 }
 
 .patika__devam {
-  --dudak: var(--vurgu-golge);
+  --dudak: var(--unite-golge);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -370,8 +427,8 @@ a.patika__baglanti:active .patika__devam {
   padding: 0 var(--b-5);
   font-family: var(--yazi-baslik);
   font-weight: 700;
-  color: var(--vurgu-metin);
-  background: var(--vurgu);
+  color: var(--unite-metin);
+  background: var(--unite);
   border-radius: var(--kose-sm);
   box-shadow: 0 var(--bas-derinlik) 0 var(--dudak);
   transition:
@@ -387,7 +444,7 @@ a.patika__baglanti:active .patika__devam {
   left: 50%;
   width: 14px;
   height: 14px;
-  background: var(--vurgu);
+  background: var(--unite);
   border-radius: 3px 0 0 0;
   transform: translateX(-50%) rotate(45deg);
 }
@@ -437,16 +494,17 @@ a.patika__baglanti:active .patika__devam {
   align-items: center;
   gap: 4px;
   padding: 3px 10px 3px 8px;
-  border: 2px solid var(--vurgu-koyu);
+  border: 2px solid var(--odul-golge);
   border-radius: var(--kose-tam);
-  color: var(--vurgu-koyu);
+  color: var(--odul-metin);
+  background: var(--odul);
   font-family: var(--yazi-baslik);
   font-size: var(--yazi-xs);
   font-weight: 800;
   letter-spacing: 0.08em;
   white-space: nowrap;
   transform: rotate(-8deg);
-  box-shadow: inset 0 0 0 2px var(--zemin), inset 0 0 0 3px var(--vurgu-koyu);
+  box-shadow: inset 0 0 0 2px var(--odul), inset 0 0 0 3px var(--odul-golge);
 }
 .patika-unite__muhur--bekle {
   visibility: hidden;

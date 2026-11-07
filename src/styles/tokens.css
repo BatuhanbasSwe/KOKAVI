@@ -9,14 +9,14 @@
    2. Gövde metni hedefi >= 7:1, ikincil metin >= 4.5:1 (WCAG AA).
       tests/tema-kontrast.test.ts bu oranları her temada ölçer.
    3. Dokunma hedefi en az 44x44 px (WCAG 2.2 SC 2.5.8 hedefi aşılar).
-   4. Tek vurgu: safran. Turkuaz/yeşil arayüzde yok (tasarım kararı,
-      docs/superpowers/specs/2026-10-16-kok-avi-yeniden-tasarim-design.md).
+   4. "Çini Oyun" (07.11.2026 kararı): ana eylem çini turkuazı, ödül/seri/elmas
+      safran, bilgi lapis. Her ünite kendi rengini taşır (--unite-*).
    =========================================================================== */
 
 :root {
   /* --- Tipografi ------------------------------------------------------- */
-  --yazi-aile: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --yazi-baslik: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --yazi-aile: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --yazi-baslik: "Baloo 2", "Nunito", system-ui, sans-serif;
   /* Kullanıcı ayarıyla ölçeklenir (ayarlar ekranı --yazi-olcek'i değiştirir). */
   --yazi-olcek: 1;
   --yazi-xs: calc(0.75rem * var(--yazi-olcek));
@@ -40,13 +40,13 @@
   --b-7: 3rem;
 
   /* --- Şekil (kilitli): düğme/girdi 12 · kart 20 · büyük yüzey 24 · hap tam */
-  --kose-sm: 12px;
+  --kose-sm: 16px;
   --kose-md: 20px;
   --kose-lg: 24px;
   --kose-tam: 999px;
   /* Basılabilir "dudak": düğme, seçenek ve durakların altında düz, bulanıksız
      bir kenar. Basınca öğe bu kadar aşağı iner ve dudak kaybolur. */
-  --bas-derinlik: 4px;
+  --bas-derinlik: 5px;
   --bas-derinlik-buyuk: 6px;
 
   /* --- Hareket --------------------------------------------------------- */
@@ -56,6 +56,25 @@
   /* ease-out-quint: geri sekme yok, hızlı başlar yumuşak durur. */
   --cikis: cubic-bezier(0.22, 1, 0.36, 1);
   --gecis-bas: 90ms;
+
+  /* --- Ünite renkleri (Çini Oyun) ------------------------------------
+     Öğrenme yolunda her ünite sırayla bir renk alır: başlık şeridi, sıradaki
+     durağın halkası. Metin çiftleri >= 4.5:1 (tests/tema-kontrast.test.ts). */
+  --unite-1: #1fc2b3; /* çini turkuazı */
+  --unite-1-metin: #04211e;
+  --unite-1-golge: #138f84;
+  --unite-2: #3557d6; /* lapis */
+  --unite-2-metin: #ffffff;
+  --unite-2-golge: #2440a8;
+  --unite-3: #d0343a; /* nar */
+  --unite-3-metin: #ffffff;
+  --unite-3-golge: #9e2328;
+  --unite-4: #ffc233; /* safran */
+  --unite-4-metin: #3a2700;
+  --unite-4-golge: #d6950b;
+  --unite-5: #c2367a; /* lale */
+  --unite-5-metin: #ffffff;
+  --unite-5-golge: #8f2458;
 
   /* Fotoğraf üstü metin: her temada açık (altında --karartma vardır). */
   --foto-metin: #f4f6f5;
@@ -69,32 +88,32 @@
 [data-tema='koyu'] {
   color-scheme: dark;
 
-  --zemin: #000000; /* tam siyah (kullanıcı kararı) */
-  --zemin-kart: #161d20;
-  --zemin-vurgu: #1d2629;
+  --zemin: #0d1418; /* tam siyah (kullanıcı kararı) */
+  --zemin-kart: #16212a;
+  --zemin-vurgu: #1e2b35;
 
   --metin: #eef2f0;
   --metin-ikincil: #a9b8b5;
   --metin-soluk: #8a9a97;
 
-  --vurgu: #ffbf3c; /* safran */
-  --vurgu-metin: #2a1c00;
-  --vurgu-yumusak: #2b2414;
-  --vurgu-golge: #b8862a;
-  --vurgu-koyu: #ffd27a; /* metin olarak kullanılan vurgu */
+  --vurgu: #3dd6c6; /* safran */
+  --vurgu-metin: #03201d;
+  --vurgu-yumusak: #0f2a28;
+  --vurgu-golge: #1f9488;
+  --vurgu-koyu: #7fe7dc; /* metin olarak kullanılan vurgu */
 
   --ikincil: #8ea6ff; /* kısık İznik mavisi */
   --ikincil-metin: #0a1230;
   --ikincil-yumusak: #1a2140;
   --ikincil-golge: #5f78d0;
 
-  --odul: #ffbf3c;
-  --odul-metin: #2a1c00;
-  --odul-golge: #b8862a;
+  --odul: #ffc233;
+  --odul-metin: #3a2700;
+  --odul-golge: #d6950b;
   --odul-yumusak: #2b2414;
 
-  --kilit: #2e383c;
-  --kilit-golge: #222a2d;
+  --kilit: #2a3741;
+  --kilit-golge: #1c262e;
   --kilit-metin: #a9b8b5;
 
   --sicak: #ffbf3c;
@@ -103,19 +122,19 @@
   --altin-metin: #ffd27a;
   --altin: #ffbf3c; /* YALNIZCA dekoratif/dolgu */
 
-  --cizgi: #2a3539;
-  --cizgi-kalin: #3a474c;
+  --cizgi: #2a3a45;
+  --cizgi-kalin: #3a4c58;
 
-  --basari: #ffbf3c; /* doğru = safran + onay simgesi */
-  --basari-yumusak: #2b2414;
+  --basari: #7fe7dc; /* doğru = safran + onay simgesi */
+  --basari-yumusak: #0f2a28;
   --uyari: #8ea6ff; /* ipucu = mavi + ampul simgesi */
   --uyari-yumusak: #1a2140;
   --hata: #ff8a7a;
   --hata-metin: #2a0a05;
   --hata-yumusak: #3a1a16;
 
-  --odak: #ffd27a;
-  --odak-halka: #ffd27a;
+  --odak: #7fe7dc;
+  --odak-halka: #7fe7dc;
   /* Gölgeler zemin tonuna boyalı */
   --golge: 0 6px 18px rgba(4, 8, 10, 0.45);
   --golge-buyuk: 0 16px 40px rgba(4, 8, 10, 0.55);
@@ -135,7 +154,7 @@
   --harita-yol-kenar: #d3cdc2;
   --harita-ana-yol: #fde6a2;
 
-  --seri-1: #ffbf3c;
+  --seri-1: #3dd6c6;
   --seri-2: #8ea6ff;
   --seri-3: #ff8a7a;
   --seri-4: #e0a8cf;
@@ -152,55 +171,55 @@
 [data-tema='acik'] {
   color-scheme: light;
 
-  --zemin: #f6f4ef;
+  --zemin: #f6f8fc;
   --zemin-kart: #ffffff;
-  --zemin-vurgu: #ecebe5;
+  --zemin-vurgu: #eef2f8;
 
-  --metin: #14191b;
-  --metin-ikincil: #4a5558;
-  --metin-soluk: #5c6669;
+  --metin: #1c2433;
+  --metin-ikincil: #4a5468;
+  --metin-soluk: #5a6478;
 
-  --vurgu: #ffbf3c;
-  --vurgu-metin: #2a1c00;
-  --vurgu-yumusak: #fff3d6;
-  --vurgu-golge: #c98a12;
-  --vurgu-koyu: #8a5b00;
+  --vurgu: #1fc2b3;
+  --vurgu-metin: #04211e;
+  --vurgu-yumusak: #d9f6f2;
+  --vurgu-golge: #138f84;
+  --vurgu-koyu: #0a6d64;
 
-  --ikincil: #2f4bc0;
+  --ikincil: #3557d6;
   --ikincil-metin: #ffffff;
-  --ikincil-yumusak: #e8ecff;
-  --ikincil-golge: #223790;
+  --ikincil-yumusak: #e6ecff;
+  --ikincil-golge: #2440a8;
 
-  --odul: #ffbf3c;
-  --odul-metin: #2a1c00;
-  --odul-golge: #c98a12;
-  --odul-yumusak: #fff3d6;
+  --odul: #ffc233;
+  --odul-metin: #3a2700;
+  --odul-golge: #d6950b;
+  --odul-yumusak: #fff3cf;
 
-  --kilit: #d9d7d0;
-  --kilit-golge: #bdbab2;
-  --kilit-metin: #4a4a44;
+  --kilit: #e3e7ee;
+  --kilit-golge: #c6ccd6;
+  --kilit-metin: #4a5468;
 
-  --sicak: #8a5b00;
-  --sicak-yumusak: #fff3d6;
+  --sicak: #b23c0a;
+  --sicak-yumusak: #ffedd5;
 
   --altin-metin: #8a5b00;
-  --altin: #ffbf3c;
+  --altin: #ffc233;
 
-  --cizgi: #e4e2db;
-  --cizgi-kalin: #c9c6bd;
+  --cizgi: #e3e7ee;
+  --cizgi-kalin: #cbd2dd;
 
-  --basari: #8a5b00;
-  --basari-yumusak: #fff3d6;
-  --uyari: #2f4bc0;
-  --uyari-yumusak: #e8ecff;
-  --hata: #b3321c;
+  --basari: #0a6d64;
+  --basari-yumusak: #d9f6f2;
+  --uyari: #3557d6;
+  --uyari-yumusak: #e6ecff;
+  --hata: #d0343a;
   --hata-metin: #ffffff;
-  --hata-yumusak: #fbe6e0;
+  --hata-yumusak: #fde8e8;
 
-  --odak: #2f4bc0;
-  --odak-halka: #2f4bc0;
-  --golge: 0 4px 14px rgba(20, 25, 27, 0.08);
-  --golge-buyuk: 0 12px 32px rgba(20, 25, 27, 0.14);
+  --odak: #3557d6;
+  --odak-halka: #3557d6;
+  --golge: 0 4px 14px rgba(28, 36, 51, 0.08);
+  --golge-buyuk: 0 12px 32px rgba(28, 36, 51, 0.14);
   --karartma: rgba(8, 12, 13, 0.88);
 
   /* Harita her temada açık renkli (Google benzeri; OpenFreeMap Liberty ile uyumlu).
@@ -217,12 +236,12 @@
   --harita-yol-kenar: #d3cdc2;
   --harita-ana-yol: #fde6a2;
 
-  --seri-1: #c98a12;
-  --seri-2: #2f4bc0;
-  --seri-3: #b3321c;
-  --seri-4: #9a4f86;
-  --seri-5: #5a6b73;
-  --seri-6: #a0603a;
+  --seri-1: #12a594;
+  --seri-2: #3557d6;
+  --seri-3: #d0343a;
+  --seri-4: #c2367a;
+  --seri-5: #5a6478;
+  --seri-6: #d6950b;
 }
 
 /* ===========================================================================
@@ -294,6 +313,25 @@
   --seri-4: #ff8fd0;
   --seri-5: #ffffff;
   --seri-6: #ffb38a;
+}
+
+/* Yüksek kontrastta ünite renkleri tek renge iner: sarı zemin, siyah metin. */
+[data-tema='yuksek-kontrast'] {
+  --unite-1: #ffd000;
+  --unite-2: #ffd000;
+  --unite-3: #ffd000;
+  --unite-4: #ffd000;
+  --unite-5: #ffd000;
+  --unite-1-metin: #000000;
+  --unite-2-metin: #000000;
+  --unite-3-metin: #000000;
+  --unite-4-metin: #000000;
+  --unite-5-metin: #000000;
+  --unite-1-golge: #ffffff;
+  --unite-2-golge: #ffffff;
+  --unite-3-golge: #ffffff;
+  --unite-4-golge: #ffffff;
+  --unite-5-golge: #ffffff;
 }
 
 /* Yüksek kontrastta çerçeveler kalınlaşır. */

@@ -30,6 +30,13 @@ import { hareketAzaltildiMi } from '../../app/hareket';
 
 export { kisaAd };
 
+/** Üniteler şehirden bağımsız sırayla 5 renkten birini alır (Çini Oyun). */
+function uniteRengi(sehirler: { uniteler: { uniteId: string }[] }[], sehirSira: number, uniteId: string): number {
+  const onceki = sehirler.slice(0, sehirSira).reduce((t, s) => t + s.uniteler.length, 0);
+  const icinde = sehirler[sehirSira]!.uniteler.findIndex((u) => u.uniteId === uniteId);
+  return ((onceki + icinde) % 5) + 1;
+}
+
 export function YolSayfasi() {
   const { yol, yukleniyor, hata, ilerleme, tekrar } = useDurum();
   const seviye = useSeviye();
@@ -158,7 +165,7 @@ export function YolSayfasi() {
 
       {gorunum === 'zaman' && <ZamanListesi mod="yol" ilgiler={ilgiler} />}
 
-      {gorunum === 'sehir' && yol.sehirler.map((sehir) => (
+      {gorunum === 'sehir' && yol.sehirler.map((sehir, sehirSira) => (
         <section key={sehir.sehirId} aria-labelledby={`sehir-${sehir.sehirId}`}>
           <div className="sehir-basligi">
             <h2 id={`sehir-${sehir.sehirId}`}>
@@ -183,6 +190,7 @@ export function YolSayfasi() {
                 sehirAdi={sehir.ad}
                 guncelDersId={kisiselId ?? yol.guncelDersId}
                 sahne={sahne}
+                renkNo={uniteRengi(yol.sehirler, sehirSira, unite.uniteId)}
               />
             ))}
           </div>

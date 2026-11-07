@@ -92,21 +92,30 @@
   display: block;
 }
 
-/* 5 adım = 5 bölüm: maske yalnızca saydamlık okur, renk taşımaz. */
+/* Duolingo gibi kalın, yuvarlak çubuk; dolgunun üstünde parlak bir şerit. */
 .ders-ilerleme__cubuk .cubuk {
-  height: 10px;
+  height: 16px;
   border: 0;
-  border-radius: 0;
+  border-radius: var(--kose-tam);
   background: var(--zemin-vurgu);
-  -webkit-mask: repeating-linear-gradient(90deg, var(--zemin) 0 calc(20% - 4px), transparent calc(20% - 4px) 20%);
-  mask: repeating-linear-gradient(90deg, var(--zemin) 0 calc(20% - 4px), transparent calc(20% - 4px) 20%);
 }
 
 .ders-ilerleme__cubuk .cubuk__dolgu {
+  position: relative;
   background: var(--vurgu);
-  border-radius: 0;
+  border-radius: var(--kose-tam);
   min-width: 16px;
-  transition: width 420ms var(--yay);
+  transition: width 520ms var(--yay);
+}
+.ders-ilerleme__cubuk .cubuk__dolgu::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  right: 8px;
+  height: 4px;
+  border-radius: var(--kose-tam);
+  background: color-mix(in srgb, var(--foto-metin) 45%, transparent);
 }
 
 .ders-ilerleme__liste {
