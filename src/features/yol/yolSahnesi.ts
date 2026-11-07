@@ -2,9 +2,9 @@
  * Canlı yol: saf yardımcılar (DOM'a bağlı değil, testli).
  *
  *  - egriYolu / egriNoktalari: iki madalyon arasındaki kıvrımlı yol.
- *  - ziplayanNoktalar: Köstik'in yol boyunca zıplayarak yürüyüşü.
+ *  - ziplayanNoktalar: yol boyunca zıplayan ilerleme noktaları.
  *  - sahneHesapla: Yol'a dönüldüğünde hangi sahne oynayacak (ders bitti →
- *    Köstik ilerler, ünite açıldı → kilit kırılır, ünite bitti → mühür).
+ *    yol altınla dolar, ünite açıldı → kilit kırılır, ünite bitti → mühür).
  *
  * "Son görülen yol" cihazda tutulur (localStorage); kişisel veri değildir.
  */
@@ -56,9 +56,9 @@ export interface YolAnisi {
 }
 
 export interface YolSahnesi {
-  /** Bitirilen ders (Köstik buradan yürür); yoksa null. */
+  /** Bitirilen ders (yol buradan ilerler); yoksa null. */
   kimden: string | null;
-  /** Yeni sıradaki ders (Köstik buraya gelir). */
+  /** Yeni sıradaki ders (yol buraya kadar dolar). */
   kime: string | null;
   /** Bu ziyarette kilidi açılan üniteler. */
   yeniAcilan: string[];

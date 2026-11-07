@@ -1,6 +1,6 @@
 /**
- * İlk açılış turu — Duolingo'daki "tanışalım" ekranları gibi, maskot Köstik
- * uygulamayı 4 kısa sayfada anlatır.
+ * İlk açılış turu — Duolingo'daki "tanışalım" ekranları gibi, uygulamayı
+ * 4 kısa sayfada anlatır.
  *
  * Neden modal değil: tam ekran pencere odak tuzağı ve ekran okuyucu için
  * ek risk getirir; tur yol sayfasının üstünde bir kart olarak durur, "Atla"
@@ -8,21 +8,20 @@
  * bir kez gösterilir (cihazda hatırlanır).
  */
 import { useState } from 'react';
-import { Maskot } from '@/app/Maskot';
 import type { YolGorunumu } from './yolGorunumu';
 
 const ANAHTAR = 'kokavi-tanitim-v1';
 
 const SAYFALAR = [
   {
-    baslik: 'Merhaba, ben Köstik!',
+    baslik: 'Kök Avı’na hoş geldin!',
     metin:
-      'Ben meraklı bir köstebeğim: toprağın altını da üstünü de kazarım! Birlikte vakıf eserlerini keşfedeceğiz: camiler, hanlar, çeşmeler… Yüzlerce yıl önce insanlar bunları herkes için yaptırdı.',
+      'Birlikte vakıf eserlerini keşfedeceğiz: camiler, hanlar, çeşmeler… Yüzlerce yıl önce insanlar bunları herkes için yaptırdı.',
   },
   {
     baslik: 'Her gün kısa bir ders',
     metin:
-      'Her ders 5 adım: Merak, Bağlam, Perspektif, Egzersiz ve Yansıma. Yanlış yapmaktan korkma — ceza yok, sadece ipucu var!',
+      'Her ders 5 adım: Merak, Bağlam, Perspektif, Egzersiz ve Yansıma. Yanlış yapmaktan korkma; ceza yok, sadece ipucu var!',
   },
   {
     baslik: 'Elmas, seri ve rozet',
@@ -60,9 +59,6 @@ export function TanitimTuru({ onBitti }: { onBitti: (secim?: YolGorunumu) => voi
 
   return (
     <section className="kart tanitim" aria-labelledby="tanitim-baslik" aria-roledescription="tanıtım">
-      <div className="tanitim__maskot" key={`m-${sayfa}`}>
-        <Maskot boyut={84} mutlu={son} />
-      </div>
       <div className="tanitim__govde" key={sayfa} aria-live="polite">
         <p className="etiket">
           Tanışalım · {sayfa + 1}/{SAYFALAR.length}

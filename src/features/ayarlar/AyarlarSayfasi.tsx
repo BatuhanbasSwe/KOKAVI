@@ -167,7 +167,7 @@ export function AyarlarSayfasi() {
           <li>Kişisel veri toplanmaz. Ad, e-posta, telefon veya konum istenmez.</li>
           <li>İlerlemen yalnızca bu cihazda saklanır; sunucuya gönderilmez.</li>
           <li>Reklam ve profilleme yoktur.</li>
-          <li>Sınıf kodu anonimdir — kimliğini göstermez, yalnızca toplu ilerleme paylaşılır.</li>
+          <li>Sınıf kodu anonimdir: kimliğini göstermez, yalnızca toplu ilerleme paylaşılır.</li>
         </ul>
 
         <div className="ayar-satiri" style={{ marginTop: 'var(--b-3)' }}>

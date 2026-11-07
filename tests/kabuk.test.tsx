@@ -98,12 +98,13 @@ describe('uygulama kabuğu — erişilebilirlik', () => {
     await kabuguRenderEt();
     const nav = screen.getByRole('navigation', { name: /ana gezinme/i });
     const baglantilar = [...nav.querySelectorAll('a')];
-    // Çocuğun ana gezinmesi: Bugün, Yol, Keşfet, Defter.
+    // Ana gezinme: Bugün, Yol, Keşfet, Defter, Ayarlar (Giriş artık Profil içinde).
     expect(baglantilar.map((a) => a.getAttribute('href'))).toEqual([
       '#/bugun',
       '#/yol',
       '#/kesfet',
       '#/defter',
+      '#/ayarlar',
     ]);
     for (const b of baglantilar) expect(b.tagName).toBe('A');
   });
@@ -118,14 +119,16 @@ describe('uygulama kabuğu — erişilebilirlik', () => {
     await kabuguRenderEt('#/profil');
     const nav = screen.getByRole('navigation', { name: /ana gezinme/i });
     const yollar = [...nav.querySelectorAll('a')].map((a) => a.getAttribute('href'));
-    // Yetişkin girişleri çocuğun ana gezinmesinde DEĞİL, profildeki ayrı gezinmede.
+    // Yetişkin girişleri çocuğun ana gezinmesinde DEĞİL, profildeki giriş bölümünde.
     expect(yollar).not.toContain('#/ogretmen');
     expect(yollar).not.toContain('#/panel');
-    const yetiskin = await screen.findByRole('navigation', { name: /yetişkinler için/i });
-    const yetiskinYollari = [...yetiskin.querySelectorAll('a')].map((a) => a.getAttribute('href'));
-    expect(yetiskinYollari).toContain('#/ogretmen'); // öğretmen: sınıf oluşturur
-    expect(yetiskinYollari).toContain('#/canli/kur'); // öğretmen: canlı yarışma kurar
-    expect(yetiskinYollari).toContain('#/panel'); // yönetici: içerik yönetir
+    const secenekler = await screen.findByRole('navigation', { name: /giriş seçenekleri/i });
+    const girisYollari = [...secenekler.querySelectorAll('a')].map((a) => a.getAttribute('href'));
+    expect(girisYollari).toContain('#/canli'); // öğrenci: PIN ile yarışmaya katılır
+    expect(girisYollari).toContain('#/ogretmen'); // öğretmen: sınıf oluşturur
+    expect(girisYollari).toContain('#/panel'); // yönetici: içerik yönetir
+    // Canlı yarışma kurma demo/panele taşındı; çocuk ve yetişkin gezinmesinde yok.
+    expect(girisYollari).not.toContain('#/canli/kur');
     // Çocuk sınıf ekranına profilden de ulaşır.
     expect(screen.getByRole('link', { name: /sınıfım/i }).getAttribute('href')).toBe('#/sinif');
   });

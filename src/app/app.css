@@ -1,5 +1,5 @@
 /* Uygulama kabuğu düzeni: üst çubuk (marka, seri, elmas, profil) ve
-   4 sekmeli gezinme (mobilde altta sabit, geniş ekranda üstte). */
+   5 sekmeli gezinme (mobilde altta sabit, geniş ekranda üstte). */
 
 body {
   display: flex;
@@ -76,8 +76,24 @@ body {
   color: var(--vurgu-koyu);
 }
 
+/* Profil düğmesi: avatar tek başına tıklanabilir gibi durmuyordu; çerçeve ve
+   sağ ok ile "düğme" olduğu açıkça görünür (dokunma hedefi 44px korunur). */
 .gosterge--profil {
-  padding: 0 4px;
+  gap: 2px;
+  padding: 3px 8px 3px 3px;
+  border: 2px solid var(--cizgi);
+  background: var(--zemin-kart);
+  border-radius: var(--kose-tam);
+}
+
+.gosterge--profil:hover,
+.gosterge--profil[aria-current='page'] {
+  border-color: var(--vurgu);
+  background: var(--zemin-kart);
+}
+
+.gosterge__ok {
+  color: var(--metin-ikincil);
 }
 
 .gosterge__birim {
@@ -172,7 +188,7 @@ body {
   .gezinme__ic {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 0;
   }
   .gezinme__baglanti {
@@ -198,7 +214,7 @@ body {
   .altbilgi {
     padding-bottom: calc(88px + env(safe-area-inset-bottom));
   }
-  /* Yüzen Köstik düğmesi (alt çubuğun üstünde) son içeriği örtmesin */
+  /* Alt çubuk ve güvenli alan: son içerik örtülmesin */
   .ana:not(.ana--odak) {
     padding-bottom: calc(156px + env(safe-area-inset-bottom));
   }
@@ -214,7 +230,7 @@ body {
 
 .ana {
   flex: 1;
-  /* alt boşluk: sağ alttaki yüzen Köstik düğmesi son içeriği örtmesin */
+  /* alt boşluk: alt çubuk son içeriği örtmesin */
   padding-block: var(--b-5) 112px;
   outline: none;
 }
@@ -533,11 +549,11 @@ select.secim-dugmesi {
 }
 
 /* ===========================================================================
-   Duolingo tarzı hareket — yol, maskot
+   Duolingo tarzı hareket — yol
    "Hareketi azalt" (sistem + uygulama ayarı) tokens.css'teki genel kuralla durur.
    =========================================================================== */
 .yol-dugumu {
-  animation: yol-gir 460ms calc(var(--sira, 0) * 55ms) cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  animation: yol-gir 460ms calc(var(--sira, 0) * 55ms) var(--cikis) both;
 }
 @keyframes yol-gir {
   from {
@@ -597,96 +613,14 @@ select.secim-dugmesi {
   }
 }
 
-/* --- Maskot (Köstik daire portresi) ----------------------------------------- */
-.maskot {
-  flex: none;
-  display: inline-block;
-  overflow: hidden;
-  border-radius: 50%;
-  background: var(--zemin-vurgu);
-  box-shadow: 0 0 0 2px var(--vurgu);
-  animation: maskot-gel 420ms var(--yay) both;
-}
-.maskot img {
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  object-fit: cover;
-}
-.maskot--mutlu {
-  animation: maskot-zipla 700ms cubic-bezier(0.2, 1.6, 0.4, 1) 2;
-}
-@keyframes maskot-gel {
-  from {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes maskot-zipla {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  40% {
-    transform: translateY(-10px) scale(1.06);
-  }
-}
-
-.konusan-maskot {
-  display: flex;
-  align-items: center;
-  gap: var(--b-3);
-}
-.konusan-maskot__balon {
-  position: relative;
-  margin: 0;
-  padding: var(--b-3) var(--b-4);
-  border: 1px solid var(--cizgi);
-  border-radius: var(--kose-md);
-  background: var(--zemin-kart);
-  font-weight: 700;
-  animation: balon-ac 420ms 200ms cubic-bezier(0.2, 1.5, 0.4, 1) both;
-  transform-origin: left center;
-}
-.konusan-maskot__balon::before {
-  content: '';
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  width: 16px;
-  height: 16px;
-  background: var(--zemin-kart);
-  border-left: 2px solid var(--cizgi);
-  border-bottom: 2px solid var(--cizgi);
-  transform: translateY(-50%) rotate(45deg);
-}
-@keyframes balon-ac {
-  from {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 /* --- İlk açılış turu (yol sayfası) ------------------------------------------ */
 .kart.tanitim {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   gap: var(--b-3) var(--b-4);
   align-items: center;
   border: 3px solid var(--vurgu);
   background: var(--vurgu-yumusak);
-}
-.tanitim__maskot {
-  grid-row: span 2;
-  animation: tanitim-zipla 600ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
 }
 .tanitim__govde {
   animation: tanitim-kay 360ms ease-out both;
@@ -722,24 +656,11 @@ select.secim-dugmesi {
 }
 @media (max-width: 480px) {
   .kart.tanitim {
-    grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
   }
-  .tanitim__maskot {
-    grid-row: auto;
-  }
   .tanitim__eylem {
     justify-content: center;
-  }
-}
-@keyframes tanitim-zipla {
-  0% {
-    scale: 0.6;
-    opacity: 0;
-  }
-  70% {
-    scale: 1.1;
   }
 }
 @keyframes tanitim-kay {
@@ -840,7 +761,7 @@ select.secim-dugmesi {
 }
 .artan-sayi--zipla > span:first-child {
   display: inline-block;
-  animation: sayi-zipla 520ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: sayi-zipla 520ms var(--cikis);
 }
 @keyframes sayi-zipla {
   40% {

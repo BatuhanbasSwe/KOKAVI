@@ -27,6 +27,15 @@
   font-weight: 800;
   font-size: 15px;
 }
+.rozet-gorsel__halka {
+  stroke: var(--zemin-kart);
+  stroke-width: 2.5;
+  opacity: 0.85;
+}
+.rozet-gorsel--kilitli .rozet-gorsel__halka {
+  stroke: var(--cizgi-kalin);
+  stroke-dasharray: none;
+}
 .rozet-gorsel--kilitli .rozet-gorsel__yildiz {
   fill: var(--zemin-vurgu);
   stroke: var(--cizgi-kalin);
@@ -54,7 +63,7 @@
   gap: var(--b-1);
   padding: var(--b-3) var(--b-2);
   text-align: center;
-  border: 2px dashed var(--cizgi-kalin);
+  border: 2px solid var(--cizgi);
   border-radius: var(--kose-md);
   background: var(--zemin);
   color: var(--metin-soluk);
@@ -104,10 +113,10 @@
   color: var(--metin);
   box-shadow: var(--golge-buyuk);
   pointer-events: auto;
-  animation: rozet-gir 600ms cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  animation: rozet-gir 600ms var(--cikis) both;
 }
 .rozet-bildirim .rozet-gorsel {
-  animation: rozet-don 900ms 200ms cubic-bezier(0.2, 1.2, 0.4, 1) both;
+  animation: rozet-don 900ms 200ms var(--cikis) both;
 }
 .rozet-bildirim__metin {
   display: grid;

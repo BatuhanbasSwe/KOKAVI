@@ -200,6 +200,8 @@ svg {
   border: 1px solid var(--cizgi);
   border-radius: var(--kose-md);
   padding: var(--b-4);
+  box-shadow: none;
+  cursor: default;
 }
 
 .kart--duz {
@@ -207,10 +209,13 @@ svg {
 }
 
 /* ---------------------------------------------------------------------------
-   Düğmeler: düz dolgu, gölge yok, büyük harf yok. Basınca hafif küçülür.
-   En az 44px dokunma hedefi (WCAG 2.2 SC 2.5.8); ana düğme 52px.
+   Düğmeler: "basılabilir dudak". Düz dolgu + altında aynı tonun koyusu
+   (--bas-derinlik kalınlığında). Basınca düğme dudağın üstüne iner.
+   Basılamaz olan düz ve dudaksızdır. En az 44px (WCAG 2.2 SC 2.5.8); ana 52px.
    --------------------------------------------------------------------------- */
 .dugme {
+  --dudak: var(--vurgu-golge);
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -225,46 +230,53 @@ svg {
   line-height: 1.2;
   color: var(--vurgu-metin);
   background: var(--vurgu);
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: var(--kose-sm);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--dudak);
   text-decoration: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
   transition:
-    transform 120ms var(--yay),
-    background-color var(--gecis-hizli);
+    transform var(--gecis-bas) var(--cikis),
+    box-shadow var(--gecis-bas) var(--cikis),
+    background-color var(--gecis-hizli),
+    filter var(--gecis-hizli);
 }
 
 .dugme:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--vurgu) 88%, var(--metin));
+  filter: brightness(1.06);
 }
 
 .dugme:active:not(:disabled) {
-  transform: scale(0.97);
+  transform: translateY(var(--bas-derinlik));
+  box-shadow: 0 0 0 var(--dudak);
 }
 
 .dugme:disabled {
-  opacity: 0.5;
+  --dudak: var(--kilit-golge);
+  color: var(--metin-soluk);
+  background: var(--zemin-vurgu);
+  border-color: var(--cizgi);
   cursor: not-allowed;
 }
 
 .dugme--ikincil {
-  background: var(--zemin-vurgu);
+  --dudak: var(--cizgi-kalin);
+  background: var(--zemin-kart);
   color: var(--metin);
-  border-color: var(--cizgi);
+  border-color: var(--cizgi-kalin);
 }
 
 .dugme--ikincil:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--zemin-vurgu) 80%, var(--metin));
+  filter: none;
+  background: var(--zemin-vurgu);
 }
 
 .dugme--mavi {
+  --dudak: var(--ikincil-golge);
   background: var(--ikincil);
   color: var(--ikincil-metin);
-}
-
-.dugme--mavi:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--ikincil) 88%, var(--metin));
 }
 
 .dugme--kucuk {
@@ -278,20 +290,18 @@ svg {
 }
 
 .dugme--tehlike {
+  --dudak: color-mix(in srgb, var(--hata) 60%, var(--zemin));
   background: var(--hata);
   color: var(--hata-metin);
 }
 
-.dugme--tehlike:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--hata) 88%, var(--metin));
-}
-
 /* ---------------------------------------------------------------------------
-   Seçenek düğmesi (ders seçenekleri, egzersiz öğeleri): 56px satır.
-   Seçili: safran kenar. Doğru: safran + onay simgesi. Yanlış: mavi ipucu
-   tonu (ceza yok). Anlam ASLA yalnızca renkle verilmez (WCAG 1.4.1).
+   Seçenek düğmesi (ders seçenekleri, egzersiz öğeleri): 56px satır, nötr dudak.
+   Seçili: safran kenar + safran dudak. Doğru: safran + onay simgesi.
+   Yanlış: mavi ipucu tonu (ceza yok). Anlam ASLA yalnızca renkle verilmez.
    --------------------------------------------------------------------------- */
 .secenek {
+  --dudak: var(--cizgi-kalin);
   display: flex;
   align-items: center;
   gap: var(--b-3);
@@ -303,14 +313,17 @@ svg {
   text-align: left;
   color: var(--metin);
   background: var(--zemin-kart);
-  border: 1.5px solid var(--cizgi);
+  border: 2px solid var(--cizgi-kalin);
   border-radius: var(--kose-sm);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--dudak);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
   transition:
     border-color var(--gecis-hizli),
     background-color var(--gecis-hizli),
-    transform 120ms var(--yay);
+    box-shadow var(--gecis-bas) var(--cikis),
+    transform var(--gecis-bas) var(--cikis);
 }
 
 .secenek:hover:not(:disabled) {
@@ -318,20 +331,23 @@ svg {
 }
 
 .secenek:active:not(:disabled) {
-  transform: scale(0.97);
+  transform: translateY(var(--bas-derinlik));
+  box-shadow: 0 0 0 var(--dudak);
 }
 
 .secenek[aria-pressed='true'],
 .secenek--secili {
+  --dudak: var(--vurgu-golge);
   border-color: var(--vurgu);
   background: var(--vurgu-yumusak);
 }
 
 .secenek.secenek--dogru {
+  --dudak: var(--vurgu-golge);
   position: relative;
   border-color: var(--basari);
   background: var(--basari-yumusak);
-  animation: secenek-dogru 460ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: secenek-dogru 220ms var(--cikis);
 }
 
 /* Doğru: sağ kenardaki noktadan kıvılcımlar saçılır (yalnızca süs). */
@@ -345,11 +361,11 @@ svg {
   margin: -4px;
   border-radius: 50%;
   pointer-events: none;
-  animation: kivilcim 650ms ease-out both;
+  animation: kivilcim 600ms var(--cikis) both;
 }
 @keyframes secenek-dogru {
-  45% {
-    transform: scale(1.03);
+  from {
+    transform: scale(0.97);
   }
 }
 @keyframes kivilcim {
@@ -376,22 +392,38 @@ svg {
 }
 
 .secenek.secenek--yanlis {
+  --dudak: var(--ikincil-golge);
   border-color: var(--uyari);
   background: var(--uyari-yumusak);
   /* Ceza değil, tepki: hafifçe yana kayar; ipucu zaten gelir. */
-  animation: secenek-durt 380ms ease-in-out;
+  animation: secenek-durt 240ms var(--cikis);
 }
 @keyframes secenek-durt {
-  25% {
+  30% {
     transform: translateX(-4px);
   }
-  60% {
+  65% {
     transform: translateX(3px);
   }
 }
 
 .secenek:disabled {
-  cursor: default;
+  --dudak: var(--kilit-golge);
+  color: var(--metin-ikincil);
+  background: var(--zemin-vurgu);
+  cursor: not-allowed;
+}
+
+/* Cevaplandıktan sonra kilitlenen doğru/ipucu seçeneği rengini korur. */
+.secenek.secenek--dogru:disabled,
+.secenek.secenek--yanlis:disabled {
+  color: var(--metin);
+}
+.secenek.secenek--dogru:disabled {
+  background: var(--basari-yumusak);
+}
+.secenek.secenek--yanlis:disabled {
+  background: var(--uyari-yumusak);
 }
 
 /* ---------------------------------------------------------------------------
@@ -453,8 +485,8 @@ svg {
 .kaynak {
   font-size: var(--yazi-sm);
   color: var(--metin-soluk);
-  border-left: 2px solid var(--cizgi-kalin);
-  padding-left: var(--b-3);
+  padding-top: var(--b-2);
+  border-top: 1px solid var(--cizgi);
   line-height: 1.5;
 }
 
@@ -463,13 +495,13 @@ svg {
 }
 
 /* ---------------------------------------------------------------------------
-   Uyarı kutuları: zemin yumuşak ton, solda renkli şerit; metin okunur renkte.
+   Uyarı kutuları: yumuşak zemin + tam çevre kenar; metin okunur renkte.
+   Anlam metinle verilir (renk yalnızca destek).
    --------------------------------------------------------------------------- */
 .bildirim {
   border-radius: var(--kose-sm);
   padding: var(--b-3) var(--b-4);
-  border: 1px solid var(--cizgi);
-  border-left-width: 4px;
+  border: 2px solid var(--cizgi);
   font-size: var(--yazi-sm);
   color: var(--metin);
   background: var(--zemin-kart);
@@ -620,5 +652,17 @@ svg {
 @media (max-width: 640px) {
   .sarmal {
     width: min(100% - 2rem, 880px);
+  }
+}
+
+/* Masaüstü: mobil sütun genişliğinde sıkışmasın. Ders/tahta odak modu
+   (.ana--odak) kendi 640px okuma ölçüsünü korur; canlı yarışma gibi ekranlar
+   kendi medya sorgularında daha da genişler. */
+@media (min-width: 1024px) {
+  .sarmal {
+    width: min(100% - 4rem, 960px);
+  }
+  .ana:not(.ana--odak) {
+    padding-block: var(--b-6) 96px;
   }
 }

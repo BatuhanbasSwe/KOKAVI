@@ -13,7 +13,6 @@ import { IkonSaat, IkonTekrar, IkonTik } from '@/app/Ikonlar';
 import { sayacArtir } from '../rozetler/rozetMantigi';
 import { git } from '@/lib/yonlendirme';
 import { Konfeti } from '@/app/Konfeti';
-import { Maskot } from '@/app/Maskot';
 import type { CanliOyuncuDurumu } from '@shared/canli';
 import { CanliApiHatasi, PIN_BICIMI, canliApi, canliDepo } from './canliApi';
 import { Duyuru, GeriSayim, Podyum, SEKILLER, SekilRozeti, useYoklama } from './parcalar';
@@ -98,7 +97,7 @@ export function CanliGirisSayfasi() {
     <div className="yigin canli">
       <CanliKatilFormu />
       <p className="metin-soluk">
-        Öğretmen misin? <a href="#/canli/kur">Sınıfın için bir yarışma kur</a>.
+        Öğretmen misin? <a href="#/ogretmen">Öğretmen girişinden yarışma kur</a>.
       </p>
     </div>
   );
@@ -239,7 +238,7 @@ function OyuncuAsamasi({
   if (d.asama === 'lobi') {
     return (
       <section className="kart canli-bekle" aria-labelledby="canli-baslik">
-        <Maskot boyut={96} />
+        
         <h1 id="canli-baslik">Hazırsın!</h1>
         <p>
           Senin takma adın <strong>{d.takmaAd}</strong>. Öğretmenin oyunu başlatınca sorular burada

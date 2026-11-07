@@ -6,4 +6,5 @@
  */
 export { OgretmenPaneli } from './OgretmenPaneli';
 export { SinifKoduGirisi } from './SinifKoduGirisi';
+export { SinifRontgenSayfasi } from './SinifRontgenSayfasi';
 export type { SinifKoduGirisiProps } from './SinifKoduGirisi';

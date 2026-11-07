@@ -1,12 +1,11 @@
 /**
- * 01 · MERAK — "Cezasız tahmin".
+ * 01 · MERAK — tahmin.
  *
  * PDF: "Hiçbir tahmin yanlış sayılmaz." Çocuk önce tahmin eder, sonra köprü
  * metniyle asıl bilgiye geçilir. Bu adımda doğru/yanlış geri bildirimi YOKTUR.
  */
 import { useState } from 'react';
 import type { MerakAdimi as MerakVerisi } from '@shared/types';
-import { DinleDugmesi } from './DinleDugmesi';
 
 interface Props {
   merak: MerakVerisi;
@@ -21,10 +20,9 @@ export function MerakAdimi({ merak, onDevam }: Props) {
     <div className="yigin">
       <div className="ders-soru-kutusu">
         <h3 className="ders-soru">{merak.soru}</h3>
-        <DinleDugmesi metin={merak.soru} />
       </div>
       <p className="metin-soluk">
-        Aklına ilk geleni seç. Burada yanlış cevap yok — sadece tahmin.
+        Aklına ilk geleni seç. Burada yanlış cevap yok, sadece tahmin.
       </p>
 
       <div className="yigin ders-secenekler" role="group" aria-label="Tahmin seçenekleri">

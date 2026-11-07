@@ -1,5 +1,9 @@
 /**
- * Harita — vakıf eserlerinin coğrafi görünümü, filtreler ve zengin liste.
+ * Harita — vakıf eserlerinin coğrafi görünümü, filtreler ve konum listesi.
+ *
+ * Ürün kararı (26 Ekim): harita "bu eser Türkiye'nin neresinde?" sorusunu
+ * yanıtlar. Liste yalnızca ad + tür/ilçe/yıl taşır; tarihçe, İngilizce metin,
+ * galeri ve sergiler burada gösterilmez (Meraklısına arşivinde durur).
  *
  * Bilgi Notu: "Mümkün olması hâlinde eserlerin harita üzerinde gösterilmesi ve
  * kullanıcıların şehir ya da eser türüne göre filtreleme yapabilmesi."
@@ -20,20 +24,17 @@ import type { FeatureCollection } from 'geojson';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Eser } from '@shared/types';
 import { api, type FiltreSecenekleri } from '@/lib/api';
+import { kategoriBul, kategoriSayilari, type Kategori } from '../../lib/kategori';
 import { useDurum } from '../../app/DurumSaglayici';
+import { IkonTik } from '../../app/Ikonlar';
 import { arsivListesi, ilceAdi, IL_ADLARI, type ArsivEseri } from '../arsiv/arsivVeri';
 import { kucukKapak } from '../ders/EserGalerisi';
 import {
   bolgeHaritasiKur,
-  type AgCizgisi,
-  type BolgeHaritasi,
   type BolgeSayisi,
   type HaritaEseri,
   type Seviye,
 } from './bolgeHaritasi';
-import { VAKIF_BAGLARI } from './vakifAgi';
-import { eserBul } from '../gunun-eseri/oyun';
-import { IkonOk, IkonSikke } from '../../app/Ikonlar';
 import { EserSatiri } from './EserSatiri';
 import { BOS_FILTRELER, filtreleriCoz } from './filtreler';
 import { SuzgecPaneli } from '../../app/SuzgecPaneli';
@@ -53,6 +54,7 @@ export function HaritaSayfasi() {
   const [secenekler, setSecenekler] = useState<FiltreSecenekleri>(BOS_FILTRELER);
   const [secilenSehir, setSecilenSehir] = useState('');
   const [secilenTur, setSecilenTur] = useState('');
+  const [secilenKategori, setSecilenKategori] = useState<Kategori | ''>('');
   const [eserler, setEserler] = useState<Eser[]>([]);
   const [yukleniyor, setYukleniyor] = useState(true);
   const [hata, setHata] = useState<string | null>(null);
@@ -100,10 +102,11 @@ export function HaritaSayfasi() {
         // Sunucu beklenmedik gövde dönerse arayüz çökmesin: şekil doğrulanır.
         if (!iptal) setSecenekler(filtreleriCoz(ham));
       })
-      .catch((e: unknown) => {
+      .catch(() => {
         if (!iptal) {
           setSecenekler(BOS_FILTRELER);
-          setFiltreHatasi(e instanceof Error ? e.message : 'Filtre seçenekleri yüklenemedi.');
+          // Ham `fetch` hatası ("FetchEvent.respondWith...") çocuğa gösterilmez.
+          setFiltreHatasi('Filtre seçenekleri şu an yüklenemedi.');
         }
       });
     return () => {
@@ -122,10 +125,14 @@ export function HaritaSayfasi() {
       .then((liste) => {
         if (!iptal) setEserler(Array.isArray(liste) ? liste : []);
       })
-      .catch((e: unknown) => {
+      .catch(() => {
         if (!iptal) {
           setEserler([]);
-          setHata(e instanceof Error ? e.message : 'Eserler yüklenemedi');
+          setHata(
+            typeof navigator !== 'undefined' && navigator.onLine === false
+              ? 'İnternet yok. Harita gömülü sınırlarla açıldı; eser listesi bağlanınca gelir.'
+              : 'Eser listesi şu an yüklenemedi. Biraz sonra yeniden dene.',
+          );
         }
       })
       .finally(() => {
@@ -137,7 +144,31 @@ export function HaritaSayfasi() {
     };
   }, [secilenSehir, secilenTur]);
 
-  const filtreVar = secilenSehir !== '' || secilenTur !== '';
+  const filtreVar = secilenSehir !== '' || secilenTur !== '' || secilenKategori !== '';
+
+  /**
+   * Kategori rozetleri: sunucudan gelen ham tür sayıları kategoriye toplanır.
+   * Filtre seçenekleri yüklenemezse eldeki eser listesinden sayılır; böylece
+   * kategori seçimi bozuk/eksik filtre cevabında da kullanılabilir.
+   */
+  const kategoriSecenekleri = useMemo(() => {
+    const kaynak = secenekler.turler.length
+      ? secenekler.turler
+      : eserler.map((eser) => ({ tur: eser.tur, sayi: 1 }));
+    return kategoriSayilari(kaynak);
+  }, [secenekler.turler, eserler]);
+
+  /**
+   * Kategori süzgeci TAMAMEN istemcide uygulanır: seçim değişince sunucuya
+   * yeni istek gitmez. Şehir ve ham tür süzgeçleriyle birlikte çalışır.
+   */
+  const filtreliEserler = useMemo(
+    () =>
+      secilenKategori === ''
+        ? eserler
+        : eserler.filter((eser) => kategoriBul(eser.tur) === secilenKategori),
+    [eserler, secilenKategori],
+  );
 
   const secilenSehirAdi = useMemo(() => {
     if (secilenSehir === '') return '';
@@ -146,15 +177,17 @@ export function HaritaSayfasi() {
 
   /** Canlı bölge metni — SC 4.1.3. Örn. "Bursa, Cami: 3 eser bulundu." */
   const durumMetni = useMemo(() => {
-    if (hata) return 'Eserler yüklenemedi.';
+    if (hata) return 'Eser listesi yüklenemedi.';
     if (yukleniyor) return 'Eserler yükleniyor…';
 
-    const secimler = [secilenSehirAdi, secilenTur].filter((secim) => secim !== '');
-    if (secimler.length === 0) return `Tüm eserler: ${eserler.length} eser listelendi.`;
-    return `${secimler.join(', ')}: ${eserler.length} eser bulundu.`;
-  }, [hata, yukleniyor, secilenSehirAdi, secilenTur, eserler.length]);
+    const secimler = [secilenSehirAdi, secilenKategori, secilenTur].filter((secim) => secim !== '');
+    // Kategori adı ham tür adıyla aynı olabilir ("Cami"); aynı söz tekrarlanmasın.
+    const tekilSecimler = [...new Set(secimler)];
+    if (tekilSecimler.length === 0) return `Tüm eserler: ${filtreliEserler.length} eser listelendi.`;
+    return `${tekilSecimler.join(', ')}: ${filtreliEserler.length} eser bulundu.`;
+  }, [hata, yukleniyor, secilenSehirAdi, secilenKategori, secilenTur, filtreliEserler.length]);
 
-  const konumlular = useMemo(() => eserler.filter((e) => e.koordinat !== null), [eserler]);
+  const konumlular = useMemo(() => filtreliEserler.filter((e) => e.koordinat !== null), [filtreliEserler]);
 
   /** Haritaya gidecek eserler: fotoğraf, ders ve ilerleme bilgisiyle. */
   const haritaEserleri = useMemo<HaritaEseri[]>(
@@ -193,37 +226,17 @@ export function HaritaSayfasi() {
       }
     };
     for (const a of arsiv) ekle(a.il, ilceAdi(a.ilce), 'toplam');
-    for (const e of eserler) ekle(e.sehirId, ilceAdi(e.ilce), 'ders');
+    for (const e of filtreliEserler) ekle(e.sehirId, ilceAdi(e.ilce), 'ders');
     // Arşiv yüklenemezse toplam en az ders sayısı kadar olsun
     for (const v of [...il.values(), ...ilce.values()]) v.toplam = Math.max(v.toplam, v.ders);
     return { ilSayilari: il, ilceSayilari: ilce };
-  }, [arsiv, eserler]);
+  }, [arsiv, filtreliEserler]);
 
-  // Vakıf ağı: akar → hayrat çizgileri (konumu bilinen bağlar).
-  const [agAcik, setAgAcik] = useState(false);
-  const haritaRef = useRef<BolgeHaritasi | null>(null);
-  const agCizgileri = useMemo<AgCizgisi[]>(() => {
-    const konum = new Map(haritaEserleri.map((e) => [e.id, [e.lng, e.lat] as [number, number]]));
-    return VAKIF_BAGLARI.flatMap((b) => {
-      const kaynak = konum.get(b.akarId);
-      const hedef = b.hedef.eserId
-        ? konum.get(b.hedef.eserId)
-        : b.hedef.lng !== undefined && b.hedef.lat !== undefined
-          ? ([b.hedef.lng, b.hedef.lat] as [number, number])
-          : undefined;
-      return kaynak && hedef
-        ? [{ id: b.akarId, kaynak, hedef, hedefAd: b.hedef.ad, yaklasik: !!b.hedef.yaklasik }]
-        : [];
-    });
-  }, [haritaEserleri]);
-  const agAcikRef = useRef(agAcik);
-  agAcikRef.current = agAcik;
-  useEffect(() => {
-    haritaRef.current?.agGoster(agAcik);
-  }, [agAcik]);
+  // Eser listesi gelmese de (çevrimdışı) gömülü sınırlarla harita açılır.
+  const haritaVar = konumlular.length > 0 || ilSayilari.size > 0;
 
   useEffect(() => {
-    if (!haritaKabi.current || konumlular.length === 0) return;
+    if (!haritaKabi.current || !haritaVar) return;
     let temizle: (() => void) | undefined;
     let iptal = false;
 
@@ -250,12 +263,9 @@ export function HaritaSayfasi() {
           ilceSayilari,
           renk: (ad, yedek) => stil.getPropertyValue(ad).trim() || yedek,
           onSeviye: setSeviye,
-          ag: agCizgileri,
           altlik,
         });
-        haritaRef.current = h;
         temizle = h.temizle;
-        if (agAcikRef.current) h.agGoster(true);
       } catch {
         // Harita çizilemezse (WebGL yok vb.) sayfa ve liste çalışmaya devam eder.
       }
@@ -263,10 +273,9 @@ export function HaritaSayfasi() {
 
     return () => {
       iptal = true;
-      haritaRef.current = null;
       temizle?.();
     };
-  }, [konumlular.length, haritaEserleri, ilSayilari, ilceSayilari, agCizgileri]);
+  }, [haritaVar, haritaEserleri, ilSayilari, ilceSayilari]);
 
   return (
     <div className="yigin" style={{ gap: 'var(--b-5)' }}>
@@ -283,15 +292,16 @@ export function HaritaSayfasi() {
           Filtreler
         </h2>
         <SuzgecPaneli
-          etkinSayisi={[secilenSehir, secilenTur].filter(Boolean).length}
+          etkinSayisi={[secilenSehir, secilenTur, secilenKategori].filter(Boolean).length}
           onTemizle={() => {
             setSecilenSehir('');
             setSecilenTur('');
+            setSecilenKategori('');
           }}
         >
         <p className="harita-filtreler__aciklama metin-soluk">
           Yalnızca eseri olan şehir ve türler listelenir; parantez içindeki sayı o seçenekteki
-          eser sayısıdır.
+          eser sayısıdır. Süzgeçler birlikte çalışır.
         </p>
 
         <div className="harita-filtreler__izgara">
@@ -334,6 +344,47 @@ export function HaritaSayfasi() {
           </div>
 
         </div>
+
+        {/*
+          Kategori (çocuk diliyle "Ne arıyorsun?"): ham tür metinleri
+          (ör. "Cami ve külliye (cami, medrese, şadırvan...)") 11 sabit
+          kategoriye indirgenir. Süzgeç TAMAMEN istemcide çalışır; seçim
+          değişince yeni istek gitmez. Seçim sayısı Süz düğmesinde ve canlı
+          bölgede metinle de söylenir (renk tek başına anlam taşımaz).
+        */}
+        {kategoriSecenekleri.length > 0 ? (
+          <div className="harita-filtre__kategori">
+            <p className="harita-filtre__grup-basligi" id="harita-kategori-basligi">
+              Ne arıyorsun?
+            </p>
+            <div
+              className="harita-filtre__cipler"
+              role="group"
+              aria-labelledby="harita-kategori-basligi"
+            >
+              {kategoriSecenekleri.map(({ kategori, sayi }) => {
+                const secili = secilenKategori === kategori;
+                return (
+                  <button
+                    key={kategori}
+                    type="button"
+                    className="harita-filtre__cip"
+                    aria-pressed={secili}
+                    onClick={() => setSecilenKategori(secili ? '' : kategori)}
+                  >
+                    {secili ? <IkonTik boyut={16} /> : null}
+                    {kategori}
+                    {' '}
+                    <span className="harita-filtre__cip-sayi">
+                      {sayi}
+                      <span className="sr-only"> eser</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ) : null}
         </SuzgecPaneli>
 
         {/*
@@ -357,7 +408,7 @@ export function HaritaSayfasi() {
         </div>
       )}
 
-      {konumlular.length > 0 && (
+      {haritaVar && (
         <div className="yigin" style={{ gap: 'var(--b-2)' }}>
           {/* Yakınlaştırma seviyesi: görsel ipucu (harita gibi süs; liste eşdeğer) */}
           <ol className="harita-seviye" aria-hidden="true">
@@ -371,26 +422,6 @@ export function HaritaSayfasi() {
               </li>
             ))}
           </ol>
-          {agCizgileri.length > 0 && (
-            <div className="harita-ag-dugme">
-              <button
-                type="button"
-                className={`dugme${agAcik ? '' : ' dugme--ikincil'}`}
-                aria-pressed={agAcik}
-                aria-describedby="vakif-agi-aciklama"
-                onClick={() => setAgAcik((a) => !a)}
-              >
-                <span aria-hidden="true">⇢ </span>
-                {agAcik ? 'Vakıf ağını gizle' : 'Vakıf ağını göster'}
-              </button>
-              <span id="vakif-agi-aciklama" className="metin-soluk harita-ag-dugme__not">
-                Hanların ve hamamların kirası hangi camiyi, külliyeyi yaşatıyordu?
-              </span>
-              <a className="harita-rota-bag" href="#/rota">
-                Keşif rotası oluştur →
-              </a>
-            </div>
-          )}
           <div
             className="harita-kap harita-kap--bolge"
             ref={haritaKabi}
@@ -406,47 +437,17 @@ export function HaritaSayfasi() {
         </div>
       )}
 
-      {/* Vakıf ağının metin eşdeğeri (harita çizgileri yalnızca görsel özet) */}
-      <section aria-labelledby="vakif-agi-baslik" className="kart vakif-agi">
-        <h2 id="vakif-agi-baslik" className="vakif-agi__baslik">
-          Para nereye akıyordu?
-        </h2>
-        <p className="metin-ikincil vakif-agi__giris">
-          Vakıfta bir yapı kira getirir (<strong>akar</strong>), o kira başka bir yapıyı yaşatır
-          (<strong>hayrat</strong>). Bazen yüzlerce kilometre öteyi!
-        </p>
-        <ul className="vakif-agi__liste">
-          {VAKIF_BAGLARI.map((b) => (
-            <li key={b.akarId} className="vakif-agi__bag">
-              <span className="vakif-agi__akar">{eserBul(b.akarId)?.kisaAd ?? b.akarId}</span>
-              <span className="vakif-agi__ok" aria-hidden="true">
-                <IkonSikke boyut={18} />
-                <IkonOk boyut={18} />
-              </span>
-              <span className="vakif-agi__hayrat">
-                {b.hedef.ad} <span className="metin-soluk">({b.hedef.yer})</span>
-              </span>
-              <span className="vakif-agi__cumle">{b.cumle}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="metin-soluk vakif-agi__kaynak">
-          Kaynak: Vakıf Katılım envanterleri (eserlerin vakfiye bilgisi). Hedef konumları: ©
-          OpenStreetMap katkıcıları; Gelibolu ve Demirtaş Camii yaklaşık.
-        </p>
-      </section>
-
       {/* Haritanın erişilebilir eşdeğeri — zorunlu (WCAG 1.1.1) */}
       <section aria-labelledby="harita-liste-basligi" aria-busy={yukleniyor}>
         <h2 id="harita-liste-basligi" className="bolum-basligi">
           Eserler
           <span className="metin-soluk" style={{ fontWeight: 400 }}>
-            {eserler.length} kayıt
+            {filtreliEserler.length} kayıt
           </span>
         </h2>
 
         <ul className="harita-listesi">
-          {eserler.map((eser) => (
+          {filtreliEserler.map((eser) => (
             <EserSatiri
               key={eser.id}
               eser={eser}
@@ -455,12 +456,12 @@ export function HaritaSayfasi() {
           ))}
         </ul>
 
-        {!yukleniyor && !hata && eserler.length === 0 ? (
+        {!yukleniyor && !hata && filtreliEserler.length === 0 ? (
           <div className="bildirim bildirim--bilgi">
             {filtreVar ? (
               <>
-                <strong>Bu filtreyle eser bulunamadı.</strong> Farklı bir şehir veya eser türü
-                seçin ya da filtreleri temizleyin.
+                <strong>Bu süzgeçle eser bulunamadı.</strong> Farklı bir şehir, eser türü veya
+                "Ne arıyorsun?" seçin; ya da süzgeçleri temizleyin.
               </>
             ) : (
               <>

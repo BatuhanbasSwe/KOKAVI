@@ -83,4 +83,26 @@ describe('cocukOzeti', () => {
     const paragraflar = ['Birinci cümle. İkinci cümle.', 'The tomb is located in Bursa.', 'Üçüncü cümle.'];
     expect(cocukOzeti(paragraflar)).toEqual(cocukOzeti(paragraflar));
   });
+
+  it('baştaki eser başlığı + İngilizce ad satırını atlar (drop cap/başlık sızması)', () => {
+    const { ozet } = cocukOzeti([
+      'narlı (Karabaçak-Voyvoda) Camii ÇINARLI (KARABAÇAK-VOYVODA) MOSQUE',
+      'Yenişehir ilçesi Gündoğan Mahallesi’nde yer almaktadır. Vakfiye kayıtlarından banisinin Sungur Paşa olduğu anlaşılmaktadır.',
+    ]);
+
+    expect(ozet.startsWith('Yenişehir ilçesi')).toBe(true);
+    expect(ozet).not.toContain('narlı');
+    expect(ozet).not.toContain('MOSQUE');
+  });
+
+  it('gövde yarım cümleyle başlıyorsa ilk tam cümleden başlar', () => {
+    const { ozet } = cocukOzeti([
+      'MUSTAFA ŞEVKİ PAŞACAMİİ VE KÜLLİYESİ MUSTAFA ŞEVKİ PASHA MOSQUE AND COMPLEX',
+      'hücrelerinin güney ucunda, kübik kaide üzerinde yükselen minarenin yanında kapı bulunur.',
+      'Geniş bir avluya sahip olan Külliye, iki sahınlı cami ve medreseden oluşur. Avlu duvarı sonradan eklenmiştir.',
+    ]);
+
+    expect(ozet.startsWith('Geniş bir avluya')).toBe(true);
+    expect(ozet).not.toContain('hücrelerinin');
+  });
 });

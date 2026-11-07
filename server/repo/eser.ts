@@ -339,7 +339,10 @@ export async function eserKaydet(girdi: EserGirdisi): Promise<Eser> {
   const durum: GelirDurumu =
     girdi.gelirDagilimiDurumu ?? (kalemler.some((k) => k.yuzde !== null) ? 'belgeli' : 'belge-bulunamadi');
 
-  await db.query(
+  // Eser + gelir kalemleri TEK transaction: kalem yazımı hata verirse eski
+  // kayıt (ve eski kalemler) korunur. Yarım kayıt oluşmaz.
+  await db.transaction(async (tx) => {
+    await tx.query(
     `INSERT INTO work (
         id, ad, ad_en, sehir_id, kulliye_id, tur, ilce, lat, lng,
         bani, bani_donem, yapim_yili, vakfiye_amaci, hizmet, bugun_ne_oldu,
@@ -396,14 +399,15 @@ export async function eserKaydet(girdi: EserGirdisi): Promise<Eser> {
   );
 
   // Gelir kalemleri: tam yeniden yazma (panelde sıralama/yüzde düzenlenebilir).
-  await db.query(`DELETE FROM income_item WHERE work_id = $1`, [girdi.id]);
+  await tx.query(`DELETE FROM income_item WHERE work_id = $1`, [girdi.id]);
   for (const [i, k] of kalemler.entries()) {
-    await db.query(
+    await tx.query(
       `INSERT INTO income_item (work_id, kalem, yuzde, tip, kaynak, sira)
        VALUES ($1,$2,$3,$4,$5,$6)`,
       [girdi.id, k.kalem, k.yuzde, k.tip ?? null, k.kaynak ?? null, i],
     );
   }
+  });
 
   const sonuc = await eserGetir(girdi.id);
   if (!sonuc) throw new Error('Eser kaydedilemedi');

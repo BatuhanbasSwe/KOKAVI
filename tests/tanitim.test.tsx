@@ -15,7 +15,7 @@ describe('tanıtım turu', () => {
   it('4 sayfa İleri ile ilerler; son sayfada öğrenme sırası seçilir ve hatırlanır', async () => {
     const bitti = vi.fn();
     render(<TanitimTuru onBitti={bitti} />);
-    expect(screen.getByRole('heading', { name: 'Merhaba, ben Köstik!' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Kök Avı’na hoş geldin!' })).toBeInTheDocument();
     for (let i = 0; i < 3; i++) await userEvent.click(screen.getByRole('button', { name: 'İleri' }));
     expect(screen.getByText('Tanışalım · 4/4')).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Atla' })).toBeNull();

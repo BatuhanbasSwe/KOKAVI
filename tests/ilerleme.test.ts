@@ -236,7 +236,7 @@ describe('ilerlemeYukle — bozuk kayıt dayanıklılığı', () => {
     const yuklenen = ilerlemeYukle();
     expect(yuklenen.elmas).toBe(40);
     expect(yuklenen.tamamlananDersler).toEqual([]);
-    expect(yuklenen.ayarlar.tema).toBe('koyu');
+    expect(yuklenen.ayarlar.tema).toBe('acik');
     expect(yuklenen.seri.gunSayisi).toBe(0);
   });
 

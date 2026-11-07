@@ -27,13 +27,17 @@ export type Rota =
   | { ad: 'seri' }
   | { ad: 'rota' }
   | { ad: 'sertifika'; sehirId: string }
+  | { ad: 'giris' }
   | { ad: 'canli' }
   | { ad: 'canli-kur' }
   | { ad: 'canli-yonet'; pin: string }
   | { ad: 'canli-oyna'; pin: string }
+  | { ad: 'tahta'; kod: string; dersId: string }
+  | { ad: 'sinif-rontgen'; kod: string }
   | { ad: 'ogretmen' }
   | { ad: 'panel' }
   | { ad: 'panel-eser'; eserId: string }
+  | { ad: 'baslangic' }
   | { ad: 'bulunamadi'; yol: string };
 
 export function rotayiCoz(hash: string): Rota {
@@ -61,6 +65,8 @@ export function rotayiCoz(hash: string): Rota {
       return parcalar[1]
         ? { ad: 'arsiv-eser', arsivId: decodeURIComponent(parcalar[1]) }
         : { ad: 'arsiv' };
+    case 'baslangic':
+      return { ad: 'baslangic' };
     case 'ayarlar':
       return { ad: 'ayarlar' };
     case 'carsi':
@@ -81,6 +87,8 @@ export function rotayiCoz(hash: string): Rota {
       return { ad: 'rota' };
     case 'sertifika':
       return parcalar[1] ? { ad: 'sertifika', sehirId: decodeURIComponent(parcalar[1]) } : { ad: 'defter' };
+    case 'giris':
+      return { ad: 'giris' };
     case 'canli': {
       // #/canli · #/canli/kur · #/canli/yonet/123456 · #/canli/oyna/123456
       const pin = /^\d{6}$/.test(parcalar[2] ?? '') ? parcalar[2]! : null;
@@ -88,6 +96,20 @@ export function rotayiCoz(hash: string): Rota {
       if (parcalar[1] === 'yonet' && pin) return { ad: 'canli-yonet', pin };
       if (parcalar[1] === 'oyna' && pin) return { ad: 'canli-oyna', pin };
       return { ad: 'canli' };
+    }
+    case 'tahta': {
+      // #/tahta/<kod>/<dersId> · #/tahta/<kod>/rontgen
+      // Röntgen, ders kimliğiyle çakışmasın diye ayrı rota adı taşır.
+      if (parcalar[1] && parcalar[2] === 'rontgen') {
+        return { ad: 'sinif-rontgen', kod: decodeURIComponent(parcalar[1]) };
+      }
+      return parcalar[1] && parcalar[2]
+        ? {
+            ad: 'tahta',
+            kod: decodeURIComponent(parcalar[1]),
+            dersId: decodeURIComponent(parcalar[2]),
+          }
+        : { ad: 'ogretmen' };
     }
     case 'ogretmen':
       return { ad: 'ogretmen' };

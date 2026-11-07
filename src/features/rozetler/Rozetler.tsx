@@ -17,10 +17,11 @@ import {
   sayaclariOku,
   tumRozetler,
   type Rozet,
+  type RozetGirdisi,
 } from './rozetMantigi';
 import './rozetler.css';
 
-/** Sekiz köşeli çini yıldızı; ortasında kısa işaret. */
+/** Madalyon: sekiz köşeli çini yıldızı, iç halka, ortada kısa işaret (kilitliyse kilit). */
 export function RozetGorseli({ rozet, acik, boyut = 64 }: { rozet: Rozet; acik: boolean; boyut?: number }) {
   return (
     <svg
@@ -36,6 +37,7 @@ export function RozetGorseli({ rozet, acik, boyut = 64 }: { rozet: Rozet; acik: 
         d="M32 2 40.6 11.2 53.2 10.8 52.8 23.4 62 32 52.8 40.6 53.2 53.2 40.6 52.8 32 62 23.4 52.8 10.8 53.2 11.2 40.6 2 32 11.2 23.4 10.8 10.8 23.4 11.2Z"
       />
       <circle className="rozet-gorsel__ic" cx="32" cy="32" r="17" />
+      <circle className="rozet-gorsel__halka" cx="32" cy="32" r="20" fill="none" />
       {acik ? (
         <text className="rozet-gorsel__isaret" x="32" y="33" textAnchor="middle" dominantBaseline="middle">
           {rozet.isaret}
@@ -51,8 +53,7 @@ export function RozetGorseli({ rozet, acik, boyut = 64 }: { rozet: Rozet; acik: 
 }
 
 /** Rozet girdisini canlı tutar: ilerleme değişince ve sayaç olayında yeniden hesaplar. */
-function useKazanilanRozetler() {
-  const { yol: yuklenenYol } = useDurum();
+export function useKazanilanRozetler() {
   const { ilerleme, yol } = useDurum();
   const [surum, setSurum] = useState(0);
   useEffect(() => {
@@ -64,17 +65,10 @@ function useKazanilanRozetler() {
       window.removeEventListener('storage', yenile);
     };
   }, []);
-  return useMemo(
-    () => ({
-      hazir: yuklenenYol !== null,
-      liste: tumRozetler(yol),
-      kazanilan: kazanilanlar({
-        ilerleme,
-        yol,
-        sayaclar: sayaclariOku(),
-        gununEseri: gununEseriOzeti(),
-      }),
-    }),
+  return useMemo(() => {
+    const girdi: RozetGirdisi = { ilerleme, yol, sayaclar: sayaclariOku(), gununEseri: gununEseriOzeti() };
+    return { hazir: yol !== null, liste: tumRozetler(yol), kazanilan: kazanilanlar(girdi), girdi };
+  },
     // surum: sayaç olayı geldiğinde depodan yeniden okumak için.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [ilerleme, yol, surum],

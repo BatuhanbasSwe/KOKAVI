@@ -142,6 +142,34 @@ describe('canlı yarışma ekranları', () => {
     expect(await screen.findByText('Cevabın alındı!')).toBeInTheDocument();
   });
 
+  it('tek tük "oda yok" yanıtı ekranı bozmaz; istek kısa sürede yeniden denenir', async () => {
+    // Yayında istek başka bir sunucu örneğine düşünce bir an 404 gelebilir.
+    // İstemci bunu yeniden dener; öğrenci "Oyun bulunamadı" ekranı görmez.
+    let kalan404 = 2;
+    const oncekiFetch = globalThis.fetch;
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (girdi: RequestInfo | URL, secenek?: RequestInit) => {
+        if (String(girdi).includes('/oyuncu') && kalan404 > 0) {
+          kalan404 -= 1;
+          return new Response(
+            JSON.stringify({ hata: 'Bu PIN ile bir oyun bulunamadı.', kod: 'ODA_YOK' }),
+            { status: 404, headers: { 'Content-Type': 'application/json' } },
+          );
+        }
+        return oncekiFetch(girdi, secenek);
+      }),
+    );
+    sessionStorage.setItem(
+      `kokavi-canli-oyna-${PIN}`,
+      JSON.stringify({ oyuncuAnahtari: 'oyuncu-anahtari', takmaAd: 'Turkuaz Kubbe' }),
+    );
+    const { container } = await ac(`#/canli/oyna/${PIN}`);
+    await screen.findByRole('heading', { name: /Bursa'nın/ }, { timeout: 5000 });
+    expect(screen.queryByText('Oyun bulunamadı')).not.toBeInTheDocument();
+    expect(await ihlaller(container)).toEqual([]);
+  });
+
   it('yanlış cevapta puan düşmez; doğru cevap ve kaynak gösterilir', async () => {
     oyuncuDurumu = {
       ...oyuncuDurumu,

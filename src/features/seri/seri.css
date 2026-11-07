@@ -45,7 +45,7 @@
   padding: var(--b-1) 0;
   border-radius: var(--kose-sm);
   background: var(--zemin-vurgu);
-  animation: seri-gir 360ms calc(var(--sira, 0) * 50ms) cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  animation: seri-gir 360ms calc(var(--sira, 0) * 50ms) var(--cikis) both;
 }
 .seri-gun__ad {
   font-size: var(--yazi-xs);

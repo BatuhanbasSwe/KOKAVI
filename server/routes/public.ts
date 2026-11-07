@@ -6,9 +6,25 @@ import type { FastifyInstance } from 'fastify';
 import { eserleriListele, eserGetir, filtreSecenekleri } from '../repo/eser.ts';
 import { sehirleriListele, uniteListele, kulliyeListele, yolIskeleti } from '../repo/yol.ts';
 import { dersleriListele, dersGetir } from '../repo/ders.ts';
+import { depoDurumu } from '../canli/depo.ts';
+import { gunlukEtkinMi } from '../yonetim/gunluk.ts';
+import { redisAyari } from '../redis.ts';
 
 export async function genelUclar(app: FastifyInstance): Promise<void> {
-  app.get('/api/saglik', async () => ({ durum: 'calisiyor', zaman: new Date().toISOString() }));
+  // "depo": canlı yarışma odalarının ortak depoda mı (redis) yoksa her sunucu
+  // örneğinin belleğinde mi (bellek) tutulduğunu gösterir. Yayında "bellek"
+  // görünüyorsa canlı yarışma örnekler arasında bölünür; env bağlanmalı.
+  //
+  // "gunluk": yönetim yazmalarının (eser/kullanıcı/sınıf) örnekler arasında
+  // paylaşılıp paylaşılmadığını gösterir. "kapali" ise Vercel'de yazma yapan
+  // örnek ile okuyan örnek ayrışabilir; Upstash bağlanmalı.
+  app.get('/api/saglik', async () => ({
+    durum: 'calisiyor',
+    depo: depoDurumu().tur,
+    gunluk: gunlukEtkinMi() ? 'redis' : 'kapali',
+    oturumDeposu: redisAyari() ? 'redis' : 'yerel',
+    zaman: new Date().toISOString(),
+  }));
 
   app.get('/api/sehirler', async () => sehirleriListele());
 

@@ -124,6 +124,57 @@ export function kazanilanlar(g: RozetGirdisi): Set<string> {
   return k;
 }
 
+/** Bir rozete ne kadar yaklaşıldığı: profildeki ilerleme çubukları için. */
+export interface RozetIlerlemesi {
+  simdi: number;
+  hedef: number;
+}
+
+/**
+ * Saf fonksiyon. `simdi` hedefte kırpılır; böylece çubuk taşmaz.
+ * Kural: `kazanilanlar(g).has(r.id)` ⇔ `simdi >= hedef` (testle korunur).
+ */
+export function rozetIlerlemesi(rozet: Rozet, g: RozetGirdisi): RozetIlerlemesi {
+  const n = g.ilerleme.tamamlananDersler.length;
+  const sehirler = g.yol?.sehirler ?? [];
+  const sinirla = (simdi: number, hedef: number): RozetIlerlemesi => ({ simdi: Math.min(simdi, hedef), hedef });
+  if (rozet.kategori === 'sehir') {
+    const s = sehirler.find((x) => `sehir-${x.sehirId}` === rozet.id);
+    // Dersi olmayan şehir hiç kazanılmaz: hedef 1, şimdi 0.
+    return s && s.toplamSayi > 0 ? sinirla(s.tamamlananSayi, s.toplamSayi) : { simdi: 0, hedef: 1 };
+  }
+  switch (rozet.id) {
+    case 'ilk-ders':
+      return sinirla(n, 1);
+    case 'bes-ders':
+      return sinirla(n, 5);
+    case 'seviye-kalfa':
+      return sinirla(n, SEVIYE_ESIKLERI[1]!.esik);
+    case 'seviye-usta':
+      return sinirla(n, SEVIYE_ESIKLERI[2]!.esik);
+    case 'yirmi-ders':
+      return sinirla(n, 20);
+    case 'tum-dersler': {
+      const toplam = sehirler.reduce((t, s) => t + s.toplamSayi, 0);
+      return toplam > 0 ? sinirla(n, toplam) : { simdi: 0, hedef: 1 };
+    }
+    case 'seri-3':
+      return sinirla(g.ilerleme.seri.gunSayisi, 3);
+    case 'seri-7':
+      return sinirla(g.ilerleme.seri.gunSayisi, 7);
+    case 'kusursuz':
+      return sinirla(g.sayaclar.kusursuzDers, 1);
+    case 'dedektif':
+      return sinirla(g.gununEseri.ilkTahmin, 1);
+    case 'gunluk-5':
+      return sinirla(g.gununEseri.kazanilan, 5);
+    case 'podyum':
+      return sinirla(g.sayaclar.podyum, 1);
+    default:
+      return { simdi: 0, hedef: 1 };
+  }
+}
+
 // --- Cihaz deposu -------------------------------------------------------------
 
 const SAYAC = 'kokavi-rozet-sayaclari-v1';

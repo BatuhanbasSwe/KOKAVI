@@ -4,12 +4,11 @@
  * Kullanıcı şikâyeti: "Keşfet > Meraklısına arşivi > eser detayı" yetişkin
  * envanter paragraflarını (İngilizce çevirileriyle birlikte) kocaman basıyordu.
  * Bu testler: kısa özet görünür, İngilizce hiç basılmaz, tam Türkçe metin
- * "Büyükler için kaynak metni" altında katlanır, "Dinle" yalnızca özeti okur,
+ * "Büyükler için kaynak metni" altında katlanır, Dinle düğmesi yok,
  * derssiz/dersli ayrımı görünür.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen, within } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 const konusulan: string[] = [];
 
@@ -113,7 +112,7 @@ async function ac(hash: string) {
 }
 
 describe('arşiv eser sayfası: çocuk metni', () => {
-  it('özet gösterir; İngilizce hiç basılmaz; tam Türkçe metin details içinde; Dinle yalnızca özeti okur', async () => {
+  it('özet gösterir; İngilizce hiç basılmaz; tam Türkçe metin details içinde; Dinle düğmesi yok', async () => {
     const { container } = await ac('#/arsiv/arsiv-derssiz');
     await screen.findByRole('heading', { level: 1, name: 'Derssiz Eser' });
 
@@ -139,11 +138,8 @@ describe('arşiv eser sayfası: çocuk metni', () => {
     // Özetin tekrarı tam metinde bulunur; asıl tam metin kısaltılmamıştır.
     expect(within(details as HTMLElement).getByText('Kısa Türkçe cümle. İkinci Türkçe cümle.')).toBeInTheDocument();
 
-    // "Dinle" yalnızca özeti okur; üçüncü cümleyi ve İngilizceyi okumaz.
-    await userEvent.click(screen.getByRole('button', { name: /Hikâyesini dinle/ }));
-    expect(konusulan[0]).toBe('Derssiz Eser. Kısa Türkçe cümle. İkinci Türkçe cümle.');
-    expect(konusulan[0]).not.toContain('Üçüncü');
-    expect(konusulan[0]).not.toContain('The mosque');
+    // Dinle düğmesi kaldırıldı.
+    expect(screen.queryByRole('button', { name: /dinle/i })).toBeNull();
   });
 
   it('dersli eserde mevcut ders kutusu kalır; "dersi yok" notu çıkmaz', async () => {

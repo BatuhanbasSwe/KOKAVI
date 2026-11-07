@@ -11,22 +11,24 @@
  * POST   /api/yonetim/kullanicilar
  * PATCH  /api/yonetim/kullanicilar/:id
  */
+import { randomUUID } from 'node:crypto';
 import type { FastifyInstance, FastifyReply } from 'fastify';
 import {
   girisYap,
   oturumBitir,
   kullanicilariListele,
-  kullaniciOlustur,
+  kullaniciEkleHashli,
+  kullaniciParolaHashGuncelle,
   kullaniciVarMi,
   kullaniciGetir,
   kullaniciDurumDegistir,
-  kullaniciParolaDegistir,
   basarisizDenemeSayisi,
   OTURUM_SURESI_MS,
   type Rol,
 } from '../auth/oturum.ts';
 import { belirtecAl, OTURUM_CEREZ_ADI, oturumGerekli, yoneticiGerekli } from '../auth/koruma.ts';
-import { parolaZayifMi } from '../auth/parola.ts';
+import { parolaHashle, parolaZayifMi } from '../auth/parola.ts';
+import { gunlukYaz } from '../yonetim/gunluk.ts';
 
 /** Kaba kuvvet eşiği: 15 dakikada 10 başarısız deneme → kilit. */
 const BASARISIZ_ESIK = 10;
@@ -76,7 +78,7 @@ export async function authUclari(app: FastifyInstance): Promise<void> {
     },
     async (istek, cevap) => {
       try {
-        const govde = istek.body as Record<string, unknown>;
+        const govde = (istek.body ?? {}) as Record<string, unknown>;
         const email = emailDogrula(zorunlu(govde.email, 'email'));
         const parola = zorunlu(govde.parola, 'parola');
 
@@ -132,7 +134,7 @@ export async function authUclari(app: FastifyInstance): Promise<void> {
   // --- Kendi parolasını değiştir -------------------------------------------
   app.post('/api/auth/parola', { preHandler: oturumGerekli }, async (istek, cevap) => {
     try {
-      const govde = istek.body as Record<string, unknown>;
+      const govde = (istek.body ?? {}) as Record<string, unknown>;
       const yeni = zorunlu(govde.yeniParola, 'yeniParola');
 
       const sorunlar = parolaZayifMi(yeni);
@@ -140,7 +142,13 @@ export async function authUclari(app: FastifyInstance): Promise<void> {
         return cevap.code(400).send({ hata: 'Parola zayıf.', detay: sorunlar });
       }
 
-      await kullaniciParolaDegistir(istek.kullanici!.id, yeni);
+      const parolaHash = parolaHashle(yeni);
+      await kullaniciParolaHashGuncelle(istek.kullanici!.id, parolaHash);
+      // İşlem günlüğü: parola değişikliği bütün sunucu örneklerine yayılsın.
+      await gunlukYaz({
+        t: 'kullanici-parola',
+        d: { id: istek.kullanici!.id, parolaHash },
+      });
       cevap.clearCookie(OTURUM_CEREZ_ADI, { path: '/' });
       return { tamam: true, mesaj: 'Parola değişti. Yeniden giriş yapmalısın.' };
     } catch (hata) {
@@ -155,7 +163,7 @@ export async function authUclari(app: FastifyInstance): Promise<void> {
 
   app.post('/api/yonetim/kullanicilar', { preHandler: yoneticiGerekli }, async (istek, cevap) => {
     try {
-      const govde = istek.body as Record<string, unknown>;
+      const govde = (istek.body ?? {}) as Record<string, unknown>;
       const email = emailDogrula(zorunlu(govde.email, 'email'));
       const ad = zorunlu(govde.ad, 'ad');
       const parola = zorunlu(govde.parola, 'parola');
@@ -172,7 +180,19 @@ export async function authUclari(app: FastifyInstance): Promise<void> {
         return cevap.code(409).send({ hata: 'Bu e-posta ile bir hesap zaten var.' });
       }
 
-      const kullanici = await kullaniciOlustur({ email, ad, parola, rol });
+      const parolaHash = parolaHashle(parola);
+      const kullanici = await kullaniciEkleHashli({
+        id: randomUUID(),
+        email,
+        ad,
+        parolaHash,
+        rol,
+      });
+      // İşlem günlüğü: yeni kullanıcı bütün sunucu örneklerinde giriş yapabilsin.
+      await gunlukYaz({
+        t: 'kullanici-ekle',
+        d: { id: kullanici.id, email: kullanici.email, ad: kullanici.ad, parolaHash, rol },
+      });
       return cevap.code(201).send(kullanici);
     } catch (hata) {
       return hataYanit(cevap, hata);
@@ -182,7 +202,7 @@ export async function authUclari(app: FastifyInstance): Promise<void> {
   app.patch('/api/yonetim/kullanicilar/:id', { preHandler: yoneticiGerekli }, async (istek, cevap) => {
     try {
       const { id } = istek.params as { id: string };
-      const govde = istek.body as Record<string, unknown>;
+      const govde = (istek.body ?? {}) as Record<string, unknown>;
 
       // Yönetici kendi hesabını kapatamaz — kendini kilitleme koruması.
       if (id === istek.kullanici!.id && govde.aktif === false) {
@@ -196,6 +216,8 @@ export async function authUclari(app: FastifyInstance): Promise<void> {
       }
 
       await kullaniciDurumDegistir(id, govde.aktif);
+      // İşlem günlüğü: pasifleştirme/etkinleştirme tüm sunucu örneklerine yayılsın.
+      await gunlukYaz({ t: 'kullanici-durum', d: { id, aktif: govde.aktif } });
       // Hesap kapatıldıysa açık oturumları da düşür.
       if (!govde.aktif) {
         const { kullaniciOturumlariniBitir } = await import('../auth/oturum.ts');

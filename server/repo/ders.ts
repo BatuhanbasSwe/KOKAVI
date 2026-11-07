@@ -133,7 +133,10 @@ export interface DersGirdisi {
 export async function dersKaydet(girdi: DersGirdisi): Promise<Ders> {
   const db = await veritabaniAl();
 
-  await db.query(
+  // Ders + egzersizler TEK transaction: çakışan egzersiz kimliği gibi bir hata
+  // olursa eski ders/egzersizler korunur; yarım kayıt oluşmaz.
+  await db.transaction(async (tx) => {
+    await tx.query(
     `INSERT INTO lesson (id, unit_id, work_id, sira, merak, baglam, perspektif, yansima, updated_at)
      VALUES ($1,$2,$3,$4,$5,$6,$7,$8, now())
      ON CONFLICT (id) DO UPDATE SET
@@ -152,14 +155,15 @@ export async function dersKaydet(girdi: DersGirdisi): Promise<Ders> {
     ],
   );
 
-  await db.query(`DELETE FROM exercise WHERE lesson_id = $1`, [girdi.id]);
+  await tx.query(`DELETE FROM exercise WHERE lesson_id = $1`, [girdi.id]);
   for (const [i, e] of girdi.egzersizler.entries()) {
-    await db.query(
+    await tx.query(
       `INSERT INTO exercise (id, lesson_id, tip, sira, veri, kaynak)
        VALUES ($1,$2,$3,$4,$5,$6)`,
       [e.id, girdi.id, e.tip, i, JSON.stringify(e.veri), e.kaynak ?? null],
     );
   }
+  });
 
   const sonuc = await dersGetir(girdi.id);
   if (!sonuc) throw new Error('Ders kaydedilemedi');

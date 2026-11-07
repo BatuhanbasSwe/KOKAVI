@@ -12,10 +12,8 @@
 import { useMemo, useState, type FormEvent } from 'react';
 import { useDurum } from '@/app/DurumSaglayici';
 import { Konfeti } from '@/app/Konfeti';
-import { Maskot } from '@/app/Maskot';
 import { useEfekt } from '@/app/useEfekt';
 import { ROZET_OLAYI } from '../rozetler/rozetMantigi';
-import { DinleDugmesi } from '../ders/DinleDugmesi';
 import { IkonKilit } from '@/app/Ikonlar';
 import { gunAnahtari } from '@/lib/ilerleme';
 import {
@@ -128,7 +126,7 @@ export function GununEseriSayfasi() {
       </div>
 
       <header className="ge-ust">
-        <Maskot boyut={64} mutlu={kazandi} />
+        
         <div>
           <p className="etiket">Günün Eseri #{gun + 1}</p>
           <h1 className="ge-ust__baslik">Bugünün eserini bul!</h1>
@@ -253,10 +251,6 @@ export function GununEseriSayfasi() {
           <p className="ge-son__ad">
             {hedef.ad} <span className="metin-soluk">· {hedef.sehir}</span>
           </p>
-          <DinleDugmesi
-            metin={`${hedef.ad}, ${hedef.sehir}. ${hedef.kullanim} ${hedef.zaman} ${hedef.yaptiran}`}
-            etiket="Eseri dinle"
-          />
           <p className="kaynak">Kaynak: {hedef.kaynak}</p>
           <div className="satir">
             {dersId && (

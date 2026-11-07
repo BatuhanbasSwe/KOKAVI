@@ -17,7 +17,7 @@ import {
   type EgzersizOrtakProps,
   type GeriBildirimVerisi,
 } from './EgzersizKabugu';
-import { turkceNormalize } from './yardimci';
+import { karistir, turkceNormalize } from './yardimci';
 
 export function BoslukDoldurEgzersizi({
   veri,
@@ -32,7 +32,9 @@ export function BoslukDoldurEgzersizi({
   const [yanlisSecenekler, setYanlisSecenekler] = useState<string[]>([]);
   const [geriBildirim, setGeriBildirim] = useState<GeriBildirimVerisi | null>(null);
 
-  const secenekler = veri.secenekler ?? [];
+  // İçerikte doğru cevap hep ilk sırada yazılı; karıştırmazsak çocuk okumadan
+  // ilk şıkka basarak geçer. Sıra bir kez, ilk çizimde belirlenir.
+  const [secenekler] = useState(() => karistir(veri.secenekler ?? []));
   const secenekli = secenekler.length > 0;
   const bitti = cozuldu || cevapGosterildi;
 
@@ -59,7 +61,7 @@ export function BoslukDoldurEgzersizi({
     setGeriBildirim({
       tur: 'ipucu',
       baslik: 'Doğru cevap',
-      metin: `«${veri.cevap}» — şimdi devam edebilirsin.`,
+      metin: `«${veri.cevap}» doğru. Şimdi devam edebilirsin.`,
     });
   }
 

@@ -36,6 +36,8 @@ interface Props {
   onDevam: () => void;
   /** Eserin kapak fotoğrafı; varsa defter kartında "pul" gibi görünür. */
   kapak?: EserFotograf | null;
+  /** Tahta modu: çocuk ödülü yerine sınıf külliyesi mesajı gösterilir. */
+  tahtaSinifKodu?: string;
 }
 
 export function DersSonu({
@@ -47,6 +49,7 @@ export function DersSonu({
   seriGun,
   tekrarSonucMetni,
   onDevam,
+  tahtaSinifKodu,
 }: Props) {
   const baslik = useRef<HTMLHeadingElement>(null);
   const kok = useRef<HTMLDivElement>(null);
@@ -92,7 +95,7 @@ export function DersSonu({
   useEffect(() => {
     baslik.current?.focus();
     cal('kutlama');
-    aktifGunEkle(gunMetni(new Date())); // seri takvimine bugünü işle (cihazda)
+    if (!tahtaSinifKodu) aktifGunEkle(gunMetni(new Date())); // seri takvimine bugünü işle (cihazda)
     // Yalnızca açılışta bir kez.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -101,7 +104,7 @@ export function DersSonu({
 
   return (
     <div className="ders-sonu" ref={kok}>
-      <Konfeti />
+      {!tahtaSinifKodu && <Konfeti />}
       {ELMAS_ADEDI > 0 && (
         <div className="elmas-yagmuru" aria-hidden="true">
           {Array.from({ length: ELMAS_ADEDI }, (_, i) => (
@@ -134,13 +137,34 @@ export function DersSonu({
 
       <div className="ders-sonu__baslik">
         <h1 ref={baslik} tabIndex={-1}>
-          Ders tamam!
+          {tahtaSinifKodu ? 'Sınıf dersi tamam!' : 'Ders tamam!'}
         </h1>
         <p className="metin-ikincil">
-          {kisaAd} artık senin defterinde. Vakfın parasını nereden kazandığını biliyorsun.
+          {tahtaSinifKodu
+            ? `${kisaAd} sınıf külliyesine işlendi. Sınıfla birlikte keşfettiniz.`
+            : `${kisaAd} artık senin defterinde. Vakfın parasını nereden kazandığını biliyorsun.`}
         </p>
       </div>
 
+      {tahtaSinifKodu ? (
+        <div className="ders-sonu__tekrar" role="status">
+          <div>
+            <p>
+              <strong>Sınıf külliyesi güncellendi.</strong> Öğretmen panelinden sınıfın ilerlemesini
+              ve Vakıf Röntgeni&apos;ni birlikte açabilirsiniz.
+            </p>
+            <p>
+              <a
+                className="dugme dugme--ikincil"
+                href={`#/tahta/${encodeURIComponent(tahtaSinifKodu)}/rontgen`}
+              >
+                Sınıf Röntgeni&apos;ni tahtada aç
+              </a>
+            </p>
+          </div>
+        </div>
+      ) : (
+        <>
       <ul className="ders-sonu__kazanclar" aria-label="Kazandıkların">
         <li className="ders-sonu__kazanc ders-sonu__kazanc--elmas">
           <span className="ders-sonu__kazanc-ust">Elmas</span>
@@ -198,10 +222,12 @@ export function DersSonu({
           </p>
         </div>
       </div>
+        </>
+      )}
 
       <div className="ders-eylem">
         <button type="button" className="dugme dugme--genis" onClick={onDevam}>
-          Devam et
+          {tahtaSinifKodu ? 'Öğretmen paneline dön' : 'Devam et'}
         </button>
       </div>
     </div>

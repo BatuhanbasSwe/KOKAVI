@@ -117,6 +117,39 @@
   background: var(--defter-vurgu);
 }
 
+/* --- Kategori kırılımı ------------------------------------------------------
+   Pullar ham türden bağımsız kategorilere bölünür ("Cami", "Medrese"...).
+   Başlık h3; üstünde şehir bölümünün h2'si var, başlık sırası bozulmaz. */
+.defter-kategoriler {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-4);
+}
+
+.defter-kategori {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+}
+
+.defter-kategori__baslik {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+  /* global h3 ölçeği (masaüstü 22px, telefon 18px) korunur; yalnızca alt
+     boşluk flex gap'e bırakılır. */
+  margin: 0;
+}
+
+.defter-kategori__sayac {
+  font-size: var(--yazi-sm);
+  font-weight: 400;
+  color: var(--metin-soluk);
+  font-variant-numeric: tabular-nums;
+}
+
 .defter-albumu {
   list-style: none;
   margin: 0;
@@ -198,10 +231,33 @@ button.defter-pul:active .defter-pul__kagit {
   object-fit: cover;
 }
 
-/* Öğrenilmemiş: boş pul çerçevesi */
+/* Öğrenilmemiş: soluk çerçeve, fotoğraf bulanık, ortada kilit */
 .defter-pul--kapali .defter-pul__kagit {
   background: var(--cizgi-kalin);
-  opacity: 0.6;
+}
+
+.defter-pul__resim--bulanik {
+  position: relative;
+}
+
+.defter-pul__resim--bulanik img {
+  filter: blur(6px) grayscale(0.5);
+  transform: scale(1.15); /* bulanık kenarlarda boşluk kalmasın */
+  opacity: 0.75;
+}
+
+.defter-pul__kilit {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--metin);
+  background: var(--zemin);
+  box-shadow: var(--golge);
 }
 
 .defter-pul--kapali .defter-pul__ad {
@@ -233,6 +289,15 @@ button.defter-pul:active .defter-pul__kagit {
 .defter-sayfasi--acik {
   border-color: var(--defter-vurgu);
   border-width: 2px;
+}
+
+/* Açılan eserin yüksek çözünürlüklü fotoğrafı */
+.defter-sayfasi__foto {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--kose-sm);
 }
 
 .defter-baglanti {

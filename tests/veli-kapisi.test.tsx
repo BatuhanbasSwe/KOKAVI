@@ -34,11 +34,11 @@ beforeEach(() => {
 
 afterEach(() => vi.restoreAllMocks());
 
-async function ac(hash: string, baslik: string) {
+async function ac(hash: string, baslik: string | RegExp) {
   window.location.hash = hash;
   const { App } = await import('../src/app/App');
   const { container } = render(<App />);
-  await screen.findByRole('heading', { level: 1, name: baslik });
+  await screen.findByRole('heading', { name: baslik });
   return container;
 }
 

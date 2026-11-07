@@ -25,6 +25,7 @@ import { KullaniciYonetimi } from './KullaniciYonetimi';
 import { OnayDiyalogu } from './OnayDiyalogu';
 import { UniteYonetimi } from './UniteYonetimi';
 import { VeriTablosu } from './VeriTablosu';
+import { panelHataMesaji } from './yardimci';
 import './panel.css';
 
 /** Yeni kayıt formunu açan rota son eki. */
@@ -130,6 +131,9 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
   /** Liste görünümündeki aktif sekme: içerik veya kullanıcı yönetimi. */
   const [bolum, setBolum] = useState<PanelBolumu>('icerik');
 
+  /** "Verileri yenile" ünite bölümünü de tazeler (aynı ekranda iki sayı kalmasın). */
+  const [uniteTazele, setUniteTazele] = useState(0);
+
   // --- Veri -----------------------------------------------------------------
   const [istatistik, setIstatistik] = useState<Istatistik | null>(null);
   const [eserler, setEserler] = useState<Eser[]>([]);
@@ -164,7 +168,7 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
       setKulliyeler(kulliyeSonuc);
       setYuklemeHatasi(null);
     } catch (hata: unknown) {
-      setYuklemeHatasi(hata instanceof Error ? hata.message : 'Panel verileri yüklenemedi.');
+      setYuklemeHatasi(panelHataMesaji(hata, 'Panel verileri yüklenemedi.'));
     } finally {
       if (!sessiz) setYukleniyor(false);
     }
@@ -245,7 +249,7 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
     } catch (hata: unknown) {
       setBildirim({
         tur: 'hata',
-        metin: hata instanceof Error ? hata.message : 'Eser silinemedi.',
+        metin: panelHataMesaji(hata, 'Eser silinemedi.'),
       });
       setSilinecek(null);
     } finally {
@@ -351,7 +355,10 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
           <button
             type="button"
             className="dugme dugme--ikincil"
-            onClick={() => void yukle(true)}
+            onClick={() => {
+              void yukle(true);
+              setUniteTazele((sayi) => sayi + 1);
+            }}
             disabled={yukleniyor}
           >
             Verileri yenile
@@ -472,7 +479,7 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
                     eser.yayinda ? (
                       <span className="rozet rozet--yayinda">Yayında</span>
                     ) : (
-                      <span className="rozet rozet--taslak">Taslak — yayında değil</span>
+                      <span className="rozet rozet--taslak">Taslak: yayında değil</span>
                     ),
                 },
                 {
@@ -520,7 +527,10 @@ export function PanelSayfasi({ eserId }: PanelSayfasiProps) {
         </section>
 
         {/* --- Üniteler (PDF KATMAN 04 taahhüdü) ----------------------------- */}
-        <UniteYonetimi />
+        <UniteYonetimi
+          tazeleAnahtari={uniteTazele}
+          onVeriDegisti={() => void yukle(true)}
+        />
 
         <OnayDiyalogu
           acik={silinecek !== null}

@@ -36,6 +36,18 @@ KITAP = {
     "konya-envanteri-2_cilt-web.pdf": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (2024)",
 }
 
+# Resmî PDF'lerde otomatik sayfa çıkarımı iki kartta bir yaprak kaymış.
+# Lead doğrulaması (27 Ekim 2026, PyMuPDF başlık eşleşmesi):
+#   Konya I. Cilt PDF 138 (kitap s. 272-273) → Topraklık Hasan Efendi Camii
+#   Konya I. Cilt PDF 151 (kitap s. 298-299) → Tatköy Merkez Camii
+# Künye, kaynak PDF'teki gerçek başlık sayfasına göre elle düzeltilir.
+SAYFA_DUZELTMESI = {
+    "konya-topraklik-hasan-efendi-camii":
+        "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (2024), s. 272-273",
+    "konya-tatkoy-merkez-camii":
+        "Vakıf Katılım, 'Konya Vakıf Eserleri', I. Cilt (2024), s. 298-299",
+}
+
 TURLER = [("külliye", "Külliye"), ("cami", "Cami"), ("mescid", "Mescit"), ("mescit", "Mescit"),
           ("medrese", "Medrese"), ("darülhadis", "Medrese"), ("mektep", "Mektep"), ("mektebi", "Mektep"),
           ("türbe", "Türbe"), ("kümbet", "Türbe"), ("makam", "Türbe"), ("ziyaret", "Türbe"), ("mezar", "Türbe"),
@@ -120,6 +132,9 @@ def main() -> int:
     liste, sayac = [], Counter()
     for e in eserler:
         aid = e["klasor"].replace("/", "-")
+        # Kitap başlığında şehir adı geçince kimlik "bursa-bursa-…" olabiliyor;
+        # tek öneke indir (dosya adları da buna göre üretilir).
+        aid = re.sub(r"^(bursa|konya|hatay)-\1-", r"\1-", aid)
         _, ham = em.eser_metni(e["klasor"])
         paragraflar = temiz_paragraflar(ham)
         ilce = (e["ilce"] or "").strip() or None
@@ -129,6 +144,10 @@ def main() -> int:
             ilce = min(konumlar)[1] if konumlar else None
         sayfalar = e["sayfalar"]
         kaynak = f"{KITAP[e['pdf']]}, s. {2 * sayfalar[0] - 2}-{2 * sayfalar[-1] - 1}"
+        # Resmî PDF'te otomatik sayfa çıkarımı iki kartta bir yaprak kaymış.
+        # Lead doğrulaması (27 Ekim 2026): başlık Konya I. Cilt PDF 138 →
+        # s. 272-273; PDF 151 → s. 298-299. Künye elle düzeltilir.
+        kaynak = SAYFA_DUZELTMESI.get(aid, kaynak)
         foto = False
         if e["gorseller"]:
             buyuk = [g for g in e["gorseller"] if min(g["px"]) >= 400] or e["gorseller"]
@@ -139,6 +158,26 @@ def main() -> int:
             foto = True
         kayit = {"id": aid, "ad": tr_baslik(e["ad"]), "il": e["il"], "ilce": ilce, "tur": tur(e["ad"]),
                  "kaynak": kaynak, "foto": foto}
+        # konya-konut tek eser değil: Konya II. Cilt s. 292-333'teki 42 sayfalık
+        # "Konut" bölümü. Kart adı bunu söylesin (çocuk/veli yanılmasın).
+        if aid == "konya-konut":
+            kayit["ad"] = "Konut bölümü (42 sayfa)"
+            kayit["tur"] = "Bölüm"
+        # Bir kart tek derse bağlanabildiği için külliye kartlarında kardeş
+        # dersleri ayrıca taşırız (arşiv sayfası "İlgili dersler" diye gösterir).
+        if aid == "bursa-ii-murad-kulliyesi":
+            kayit["ders"] = "bursa-ii-murad-kulliyesi"
+            kayit["ilgiliDersler"] = [
+                "bursa-muradiye-hamami-ii-murad-hamami-bekciyan-hamami",
+                "bursa-muradiye-medresesi-cesmesi",
+            ]
+        elif aid == "bursa-yesil-celebi-mehmed-kulliyesi":
+            kayit["ilgiliDersler"] = [
+                "bursa-yesil-medrese-sultaniye-medresesi-bugun-bursa-tu",
+                "bursa-yesil-turbe-celebi-sultan-mehmed-turbesi",
+            ]
+        elif aid == "bursa-emir-sultan-kulliyesi":
+            kayit["ilgiliDersler"] = ["bursa-besir-aga-cesmesi"]
         if e["klasor"] in klasor_ders:
             kayit["ders"] = klasor_ders[e["klasor"]]
         liste.append(kayit)

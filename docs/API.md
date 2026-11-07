@@ -4,10 +4,18 @@ Temel adres: `http://127.0.0.1:8787` · Tüm istek/yanıt gövdesi **JSON**.
 Oturum, `kokavi_oturum` adlı **httpOnly çerezde** tutulur (tarayıcı istemcisi
 `credentials: 'include'` göndermelidir).
 
+**Ortak oturum deposu:** Vercel'de her sunucu örneği ayrı geçici PGlite
+kopyasıyla çalıştığı için oturum yalnızca yerel tabloda tutulamaz. Upstash Redis
+bağlıysa oturum kaydı Redis'te tutulur (`/api/saglik` → `oturumDeposu: "redis"`);
+Redis yoksa yerel `session` tablosu kullanılır (`"yerel"`). Aynı depo, yönetim
+yazmalarını (eser/kullanıcı/sınıf/sayaç) sunucu örnekleri arasında paylaşır
+(`gunluk: "redis"`); yoksa yalnızca yazan örnek görür (`"kapali"`).
+
 CLI/test istemcileri alternatif olarak `Authorization: Bearer <belirtec>`
 başlığını kullanabilir (`POST /api/auth/giris` yanıtındaki `belirtec`).
 
-**Hata biçimi:** `{ "hata": "Türkçe mesaj", "kod"?: "MAKINE_KODU", "detay"?: [...] }`
+**Hata biçimi:** `{ "hata": "Türkçe mesaj", "kod"?: "MAKINE_KODU", "detay"?: [...] }`.
+500 yanıtları istemciye ham hata metni (`detay`) DÖNDÜRMEZ; ayrıntı yalnız sunucu günlüğündedir.
 
 | Kod | Anlam |
 |---|---|
@@ -15,7 +23,7 @@ başlığını kullanabilir (`POST /api/auth/giris` yanıtındaki `belirtec`).
 | 401 | Giriş yapılmamış (`GIRIS_GEREKLI`) |
 | 403 | Yetki yok (`YETKI_YOK`) |
 | 404 | Kayıt bulunamadı |
-| 409 | Çakışma (e-posta zaten var) |
+| 409 | Çakışma (e-posta zaten var; POST ile var olan kimlik) |
 | 415 | Desteklenmeyen içerik türü (gövdeli istekte) |
 | 429 | Hız sınırı / kaba kuvvet kilidi (`HIZ_SINIRI`, `COK_FAZLA_DENEME`) |
 
@@ -25,7 +33,7 @@ başlığını kullanabilir (`POST /api/auth/giris` yanıtındaki `belirtec`).
 
 | Metot | Yol | Dönüş |
 |---|---|---|
-| `GET` | `/api/saglik` | `{ durum: "calisiyor", zaman: ISO }` |
+| `GET` | `/api/saglik` | `{ durum: "calisiyor", depo: "redis" \| "bellek", gunluk: "redis" \| "kapali", oturumDeposu: "redis" \| "yerel", zaman: ISO }` — `depo` canlı yarışma odalarının, `gunluk` yönetim yazmalarının, `oturumDeposu` oturumların ortak depoda mı tutulduğunu söyler; yayında `bellek`/`kapali`/`yerel` ise istek farklı sunucu örneklerine düştüğünde veri bölünür |
 | `GET` | `/api/yol` | `{ sehirler: YolSehri[] }` — öğrenme yolu iskeleti |
 | `GET` | `/api/sehirler` | `Sehir[]` |
 | `GET` | `/api/uniteler?sehir=<id>` | `Unite[]` |
@@ -68,16 +76,20 @@ harf, bir büyük harf, bir rakam, tek karakter tekrarı değil.
 | `GET` | `/api/yonetim/kullanicilar` | `Kullanici[]` |
 | `POST` | `/api/yonetim/kullanicilar` | `{email, ad, parola, rol}` · 409 e-posta var |
 | `PATCH` | `/api/yonetim/kullanicilar/:id` | `{aktif}` — kendi hesabını kapatamaz |
-| `POST` | `/api/yonetim/sehirler` | `{id, ad, sira, aktif?}` |
-| `POST` | `/api/yonetim/uniteler` | `{id, sehirId, ad, sira, aciklama?}` |
+| `POST` | `/api/yonetim/sehirler` | `{id, ad, sira, aktif?}` · var olan kimlik → 409 |
+| `POST` | `/api/yonetim/uniteler` | `{id, sehirId, ad, sira, aciklama?}` · var olan kimlik → 409 |
 | `DELETE` | `/api/yonetim/uniteler/:id` | — |
-| `POST` | `/api/yonetim/kulliyeler` | `{id, ad, sehirId, bani?, aciklama?}` |
-| `POST` | `/api/yonetim/eserler` | `EserGirdisi` — aşağıya bakın |
-| `PUT` | `/api/yonetim/eserler/:id` | `EserGirdisi` |
-| `DELETE` | `/api/yonetim/eserler/:id` | Gelir kalemleri CASCADE silinir |
-| `POST` | `/api/yonetim/dersler` | `DersGirdisi` — en az 1 egzersiz zorunlu |
-| `PUT` | `/api/yonetim/dersler/:id` | `DersGirdisi` |
+| `POST` | `/api/yonetim/kulliyeler` | `{id, ad, sehirId, bani?, aciklama?}` · var olan kimlik → 409 |
+| `POST` | `/api/yonetim/eserler` | `EserGirdisi` — aşağıya bakın · **var olan kimlik → 409** (upsert yalnız PUT'ta) |
+| `PUT` | `/api/yonetim/eserler/:id` | `EserGirdisi` · 404 |
+| `DELETE` | `/api/yonetim/eserler/:id` | Gelir kalemleri, fotoğraflar, dersler CASCADE silinir |
+| `POST` | `/api/yonetim/dersler` | `DersGirdisi` — en az 1 egzersiz zorunlu · var olan kimlik → 409 |
+| `PUT` | `/api/yonetim/dersler/:id` | `DersGirdisi` · 404 |
 | `DELETE` | `/api/yonetim/dersler/:id` | — |
+
+> POST = yeni kayıt; var olan kimlik 409 döner ve ESKİ kayıt korunur (sessiz
+> veri ezme yok). Ders ve eser yazımları tek transaction'dır: egzersiz/kalem
+> yazımı hata verirse eski kayıt olduğu gibi kalır.
 
 ### `EserGirdisi`
 
@@ -142,10 +154,18 @@ Başka tip → 400. Egzersizsiz ders → 400.
 | Metot | Yol | Gövde | Dönüş |
 |---|---|---|---|
 | `GET` | `/api/sinif/:kod` | — | `{kod, ad, toplamTamamlama, tamamlananDersCesidi}` · 404 |
+| `GET` | `/api/sinif/:kod/rontgen` | — | Sınıfın birlikte gördüğü eserlerin Vakıf Röntgeni: `{kod, ad, toplamTamamlama, tamamlananDersCesidi, kulliyeler, eserler}` · 404 |
 | `POST` | `/api/sinif/tamamla` | `{kod, dersId}` | `{tamam:true}` · 404 · 429 |
 
 > 🔒 **Kimlik alınmaz.** Sunucu yalnızca sayaç tutar: "bu kodla bu ders kaç kez
 > tamamlandı". Kaç farklı öğrenci olduğu **bilinemez** ve arayüz de iddia etmez.
+>
+> `rontgen` ucu öğretmen oturumu **istemez** (tahtada sınıf koduyla açılır).
+> Dönen veri yalnızca toplu sayaçlar + yayın içeriğidir: `kulliyeler` (hedef
+> külliye ilerlemesi) ve `eserler` (tamamlanan derslerin eser adı, türü,
+> gelir/gider kalemleri, dürüstlük durumu). Sınıf kapalı olsa da geçmiş görünür.
+> Külliye bağları `shared/kulliyeler.ts` içinde yalnız kaynakta belgelenmiş
+> olanlardır; eşleşen yayın dersi yoksa grup listeye girmez.
 
 ---
 
@@ -155,7 +175,7 @@ Başka tip → 400. Egzersizsiz ders → 400.
 |---|---|---|---|
 | `GET` | `/api/ogretmen/siniflar` | — | `(Sinif & {ozet})[]` — yalnızca kendi sınıfları |
 | `POST` | `/api/ogretmen/siniflar` | `{ad}` | 201 `Sinif` (kod otomatik: `XYZ-2345`) |
-| `GET` | `/api/ogretmen/siniflar/:kod` | — | `{ilerleme, uniteler}` · 403 başkasının sınıfı |
+| `GET` | `/api/ogretmen/siniflar/:kod` | — | `{ilerleme, uniteler, kulliyeler}` · 403 başkasının sınıfı |
 | `PATCH` | `/api/ogretmen/siniflar/:kod` | `{aktif}` | `{tamam:true}` · 403 |
 
 Kod biçimi `XYZ-2345`. Sunucu normalleştirir (küçük harf, boşluk, tiresiz giriş kabul).
@@ -184,29 +204,6 @@ Her yanıtta: `Content-Security-Policy` (frame-ancestors `none`) ·
 Gövde sınırı **1 MB**. Gövdesiz `POST` istekleri içerik türü belirtilmese de
 kabul edilir; gövdesi olan bilinmeyen içerik türleri **415** ile reddedilir.
 
-## Kaynaklı soru-cevap — `POST /api/sor`
+## Kaldırılan uç — Köstik kaynaklı soru-cevap (`POST /api/sor`)
 
-"Köstik'e sor": çocuk Arşiv'de ya da eser sayfasında soru yazar; cevap **yalnızca** projedeki
-kaynaklı veriden (57 ders eserinin araştırma kaydı + 633 arşiv eserinin metni, `server/sor/korpus.json`)
-üretilir. Her cümle bir kaynağa dayanmak zorundadır; dayanmayan cevap düşürülür ve "bilmiyorum" döner.
-
-**Gövde:** `{ "soru": string (3-400), "eserId"?: string ([a-z0-9-]) }`
-
-**Cevap (200):**
-- `{ "cumleler": [{ "metin", "kaynaklar": [1] }], "kaynaklar": [{ "no", "eserId", "eserAd", "kunye" }] }`
-- ya da `{ "bilmiyorum": true, "oneriler": [{ "eserId", "eserAd" }] }`
-- ya da `{ "bilmiyorum": true, "konuDisi": true, "oneriler": [] }`: soru konu dışı ya da bir yönlendirme girişimi
-
-**Toplu sorular:** "en eski / en yeni / sırala" sorularında ilgili şehir (ve tür) için ders eserlerinin bütün
-"Yapım" parçaları modele verilir (`server/sor/toplu.ts`); cevap kapsamı söyler.
-
-**Kalkan** (`server/sor/kalkan.ts`, gerekçe `docs/KARARLAR.md` §17): girdi temizliği, saldırı kalıpları modele gitmez,
-cevaptaki her sayı kaynakta olmalı, cümleler kaynakla örtüşmeli, sızıntı (kanarya, bağlantı, HTML) cevabı düşürür.
-
-**Hatalar:** `400` geçersiz girdi · `429` hız sınırı (IP başına dakikada 10) ya da `{ "hata": "cok-deneme" }`
-(15 dakikada 5 engellenen saldırı denemesi → 15 dakika bekleme) · `502` model yanıt vermedi ·
-`503 { "hata": "kapali" }` ne `GEMINI_API_KEY` ne `ANTHROPIC_API_KEY` tanımlı.
-
-**Gizlilik:** soru saklanmaz ve günlüğe yazılmaz; e-posta, telefon ve 7+ haneli sayılar modele gitmeden
-`[gizlendi]` olur. **Model:** `GEMINI_API_KEY` varsa Gemini (`KOKAVI_GEMINI_MODEL`, varsayılan `gemini-3.8-flash`), yoksa Claude (`KOKAVI_SOR_MODEL`, varsayılan `claude-haiku-5-5`). Seçim: `server/sor/saglayici.ts`.
-**Korpus güncelleme:** içerik değişince `npm run korpus`, sonra `npm run build:vercel`.
+Köstik sohbeti başvuru PDF'inde beyan edilmediği için **26 Ekim 2026'da kaldırıldı**; organizatör kuralı "PDF'te olmayan büyük özellik eklenmez". İstemci sohbeti, sunucu ucu (`server/sor/`, `POST /api/sor`) ve testleri repodan çıkarıldı. Maskot Köstik (marka) ve ders içi maskot tepkileri kalır.

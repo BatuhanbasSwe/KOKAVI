@@ -17,6 +17,12 @@ export interface ArsivEseri {
   foto: boolean;
   /** Bu eserin uygulamada bir dersi varsa eser kimliği */
   ders?: string;
+  /**
+   * Bu kartla ilişkili başka dersler (külliye içindeki yapılar, avlusundaki
+   * çeşme gibi). Bir kart yalnızca tek derse bağlanabildiği için kardeş
+   * dersler burada durur; arşiv sayfası bunları ayrı bağlantı olarak gösterir.
+   */
+  ilgiliDersler?: string[];
 }
 
 export const IL_ADLARI: Record<string, string> = { bursa: 'Bursa', konya: 'Konya', hatay: 'Hatay' };

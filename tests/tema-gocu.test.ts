@@ -2,16 +2,16 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { temaGocuUygula } from '../src/app/temaGocu';
 import { VARSAYILAN_AYARLAR } from '../src/lib/ilerleme';
 
-describe('tema göçü (açık varsayılandan koyu varsayılana)', () => {
+describe('tema göçü (koyu varsayılandan açık varsayılana)', () => {
   beforeEach(() => localStorage.clear());
 
-  it('yeni varsayılan koyu', () => {
-    expect(VARSAYILAN_AYARLAR.tema).toBe('koyu');
+  it('yeni varsayılan açık', () => {
+    expect(VARSAYILAN_AYARLAR.tema).toBe('acik');
   });
 
-  it('eski varsayılan açık bir kez koyuya taşınır, sonra kullanıcı seçimine dokunulmaz', () => {
-    expect(temaGocuUygula({ ...VARSAYILAN_AYARLAR, tema: 'acik' }).tema).toBe('koyu');
-    expect(temaGocuUygula({ ...VARSAYILAN_AYARLAR, tema: 'acik' }).tema).toBe('acik');
+  it('eski varsayılan koyu bir kez açığa taşınır, sonra kullanıcı seçimine dokunulmaz', () => {
+    expect(temaGocuUygula({ ...VARSAYILAN_AYARLAR, tema: 'koyu' }).tema).toBe('acik');
+    expect(temaGocuUygula({ ...VARSAYILAN_AYARLAR, tema: 'koyu' }).tema).toBe('koyu');
   });
 
   it('yüksek kontrast seçimi korunur', () => {
@@ -25,7 +25,7 @@ describe('tema göçü (açık varsayılandan koyu varsayılana)', () => {
       throw new Error('kapalı');
     });
     try {
-      expect(temaGocuUygula({ ...VARSAYILAN_AYARLAR, tema: 'acik' }).tema).toBe('acik');
+      expect(temaGocuUygula({ ...VARSAYILAN_AYARLAR, tema: 'koyu' }).tema).toBe('koyu');
     } finally {
       casus.mockRestore();
     }

@@ -8,6 +8,10 @@
  *
  * PDF: "Yanlış → ipucu + tekrar turu" — kontrol sonrası doğru yerdeki öğeler ✓,
  * yeri değişmesi gerekenler ! ile işaretlenir; sıralama sıfırlanmaz.
+ *
+ * TARİH GİZLEME: Öğelerin başındaki tarih ("1339: ...") ilk denemede gizlidir.
+ * Çocuk sayıları değil, derste öğrendiği olay akışını sıralar. İlk kontrolden
+ * sonra tarihler ipucu olarak açılır (dayanak: docs/EGZERSIZ-ANALIZI.md).
  */
 import { useMemo, useState } from 'react';
 import type { SiralaVerisi } from '@shared/types';
@@ -16,7 +20,7 @@ import {
   type EgzersizOrtakProps,
   type GeriBildirimVerisi,
 } from './EgzersizKabugu';
-import { karistirFarkli } from './yardimci';
+import { karistirFarkli, tarihAyir } from './yardimci';
 
 export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<SiralaVerisi>) {
   // Doğru sıra gizli kalır: arayüz karıştırılmış (ve çözülmemiş) sırayla başlar.
@@ -25,6 +29,10 @@ export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<Si
   const [yanlisSayisi, setYanlisSayisi] = useState(0);
   const [hareketDuyurusu, setHareketDuyurusu] = useState('');
   const [geriBildirim, setGeriBildirim] = useState<GeriBildirimVerisi | null>(null);
+  const tarihliMi = useMemo(
+    () => veri.dogruSira.some((oge) => tarihAyir(oge).tarih !== null),
+    [veri.dogruSira],
+  );
 
   const cozuldu =
     sira.length === veri.dogruSira.length && sira.every((oge, i) => oge === veri.dogruSira[i]);
@@ -45,7 +53,8 @@ export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<Si
     yeni[indeks] = sira[hedef];
     yeni[hedef] = tasinan;
     setSira(yeni);
-    setHareketDuyurusu(`«${tasinan}» ${hedef + 1}. sıraya taşındı.`);
+    const tasinanMetin = yanlisSayisi > 0 ? tasinan : tarihAyir(tasinan).olay;
+    setHareketDuyurusu(`«${tasinanMetin}» ${hedef + 1}. sıraya taşındı.`);
   }
 
   function kontrolEt() {
@@ -63,16 +72,19 @@ export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<Si
     setKontrolEdildi(true);
 
     const dogruYerde = sira.filter((oge, i) => oge === veri.dogruSira[i]).length;
-    const ilkIpucu = veri.dogruSira[0];
+    const ilkIpucu = veri.dogruSira[0] ? tarihAyir(veri.dogruSira[0]).olay : '';
 
     setGeriBildirim({
       tur: 'ipucu',
       baslik: `Henüz tam değil (${dogruYerde}/${sira.length} öğe doğru yerde)`,
       metin:
+        (tarihliMi && yeniYanlis === 1 ? 'İpucu olarak tarihleri açtık. ' : '') +
         '“✓ doğru yerde” yazanlara dokunma; “! yeri değişmeli” olanları Yukarı/Aşağı düğmeleriyle taşı.' +
         (yeniYanlis >= 2 && ilkIpucu ? ` İpucu: En üstte «${ilkIpucu}» olmalı.` : ''),
     });
   }
+
+  const tarihlerAcik = yanlisSayisi > 0 || cozuldu;
 
   // Sabit nesne: her çizimde yenisi üretilirse geri bildirim sesi tekrar tekrar çalar.
   const gosterilecekGeri: GeriBildirimVerisi | null = useMemo(
@@ -81,10 +93,13 @@ export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<Si
         ? {
             tur: 'dogru',
             baslik: 'Sıralama doğru!',
-            metin: 'Öğeleri belgelenen sıraya göre dizdin.',
+            metin:
+              tarihliMi && yanlisSayisi === 0
+                ? 'Tarihlere bakmadan, olayların akışını hatırlayarak dizdin.'
+                : 'Öğeleri belgelenen sıraya göre dizdin.',
           }
         : geriBildirim,
-    [cozuldu, geriBildirim],
+    [cozuldu, geriBildirim, tarihliMi, yanlisSayisi],
   );
 
   return (
@@ -101,13 +116,17 @@ export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<Si
       }
     >
       <p className="metin-soluk">
-        Yukarı/Aşağı düğmeleriyle öğeleri istediğin sıraya koy, sonra kontrol et.
+        {tarihliMi && !tarihlerAcik
+          ? 'Tarihler gizli: derste öğrendiklerini hatırlayarak sırala. İlk kontrolden sonra tarihler ipucu olarak açılır.'
+          : 'Yukarı/Aşağı düğmeleriyle öğeleri istediğin sıraya koy, sonra kontrol et.'}
       </p>
 
       <ol className="ders-sirala">
         {sira.map((oge, i) => {
           const dogruYerde = kontrolEdildi && oge === veri.dogruSira[i];
           const yanlisYerde = kontrolEdildi && !dogruYerde;
+          const { tarih, olay } = tarihAyir(oge);
+          const gorunen = tarihlerAcik || !tarih ? oge : olay;
 
           return (
             <li className="ders-sirala__satir" key={oge}>
@@ -116,7 +135,17 @@ export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<Si
               </span>
 
               <span className="ders-sirala__metin">
-                <span>{oge}</span>
+                <span>
+                  {tarih && tarihlerAcik ? (
+                    <>
+                      <span className="ders-sirala__tarih">{tarih}</span>
+                      {': '}
+                      {olay}
+                    </>
+                  ) : (
+                    gorunen
+                  )}
+                </span>
                 {dogruYerde ? (
                   <span className="ders-sirala__isaret ders-sirala__isaret--dogru">
                     <span aria-hidden="true">✓</span> doğru yerde
@@ -134,7 +163,7 @@ export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<Si
                   type="button"
                   className="dugme dugme--ikincil ders-sirala__dugme"
                   aria-disabled={i === 0}
-                  aria-label={`«${oge}» öğesini yukarı taşı`}
+                  aria-label={`«${gorunen}» öğesini yukarı taşı`}
                   onClick={() => tasi(i, -1)}
                 >
                   <span aria-hidden="true">↑</span> Yukarı
@@ -143,7 +172,7 @@ export function SiralaEgzersizi({ veri, kaynak, onBitti }: EgzersizOrtakProps<Si
                   type="button"
                   className="dugme dugme--ikincil ders-sirala__dugme"
                   aria-disabled={i === sira.length - 1}
-                  aria-label={`«${oge}» öğesini aşağı taşı`}
+                  aria-label={`«${gorunen}» öğesini aşağı taşı`}
                   onClick={() => tasi(i, 1)}
                 >
                   <span aria-hidden="true">↓</span> Aşağı

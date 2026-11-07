@@ -343,7 +343,8 @@ export function bolgeHaritasiKur(ml: ML, kap: HTMLElement, s: Secenekler): Bolge
     ilKutulari.set(il, birlestir(s.ilceler.features.filter((f) => (f.properties as { il: string }).il === il).map((f) => kutu(f.geometry))));
   }
   const tumKutu = birlestir([...ilKutulari.values()]);
-  harita.fitBounds(tumKutu, { padding: 36, maxZoom: 6.4, duration: 0 });
+  // Veri hiç gelmediyse (çevrimdışı ilk açılış) kutu ters kalır: Türkiye görünümünde kal.
+  if (tumKutu[0][0] <= tumKutu[1][0]) harita.fitBounds(tumKutu, { padding: 36, maxZoom: 6.4, duration: 0 });
 
   const isaretciler: maplibregl.Marker[] = [];
   let acikPopup: maplibregl.Popup | null = null;

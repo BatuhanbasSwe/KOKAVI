@@ -80,6 +80,72 @@
   color: var(--metin-ikincil);
 }
 
+/* Kategori çipleri ("Ne arıyorsun?"): istemci tarafı süzgeç.
+   Dokunma hedefi ≥ 44px (SC 2.5.8); seçim yalnızca renkle değil, onay simgesi
+   ve aria-pressed ile de bildirilir (SC 1.4.1). */
+.harita-filtre__kategori {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+  margin-top: var(--b-3);
+}
+
+/* Görünür grup başlığı ("Ne arıyorsun?"). Etiket gibi davranır, form
+   kontrolü olmadığı için role="group"un aria-labelledby'si olur. */
+.harita-filtre__grup-basligi {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+}
+
+.harita-filtre__cipler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+}
+
+.harita-filtre__cip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-1);
+  min-height: 44px;
+  padding: var(--b-2) var(--b-3);
+  font: inherit;
+  font-size: var(--yazi-md);
+  font-weight: 700;
+  color: var(--metin);
+  background: var(--zemin-vurgu);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-tam);
+  cursor: pointer;
+  transition:
+    background-color var(--gecis-hizli),
+    border-color var(--gecis-hizli),
+    color var(--gecis-hizli);
+}
+
+.harita-filtre__cip:hover {
+  border-color: var(--vurgu);
+}
+
+.harita-filtre__cip[aria-pressed='true'] {
+  color: var(--vurgu-koyu);
+  background: var(--vurgu-yumusak);
+  border-color: var(--vurgu);
+}
+
+.harita-filtre__cip-sayi {
+  font-size: var(--yazi-xs);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .harita-filtre__cip {
+    transition: none;
+  }
+}
+
 /* --- Eser satırı ---------------------------------------------------------- */
 
 .harita-eser {
@@ -270,7 +336,7 @@
   cursor: pointer;
   border: 0;
   padding: 0;
-  animation: hm-belir 420ms var(--gecikme, 0ms) cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  animation: hm-belir 420ms var(--gecikme, 0ms) var(--cikis) both;
 }
 /* ÖNEMLİ: MapLibre işaretçiyi inline `transform` ile konumlar. Animasyon ve
    hover burada `transform` KULLANMAZ; bağımsız `scale`/`translate` özellikleri
@@ -537,7 +603,7 @@
   white-space: nowrap;
   box-shadow: var(--golge);
   pointer-events: none;
-  animation: hm-hedef-gir 500ms cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  animation: hm-hedef-gir 500ms var(--cikis) both;
 }
 @keyframes hm-hedef-gir {
   from {

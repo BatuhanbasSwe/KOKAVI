@@ -115,7 +115,7 @@ npm run dogrula     # tip kontrolü + 228 test + build
 
 ### Arayüz değişince kırılabilecek testler ve ne yapmalı
 
-- **`tests/kabuk.test.tsx`** — gezinme öğe sayısını (5: Yol, Defter, Harita, Sınıfım, Ayarlar) ve yetişkin gezinmesini kontrol eder.
+- **`tests/kabuk.test.tsx`** — gezinme öğelerini (5: Bugün, Yol, Keşfet, Defter, Ayarlar) ve Profil içindeki "Giriş seçenekleri" gezinmesini kontrol eder.
   Gezinmeyi değiştirirseniz bu testi güncelleyin; atlama bağlantısı ve
   `aria-current` kontrollerini **silmeyin**.
 - **`tests/erisilebilirlik-denetim.test.tsx`** — sayfa başına bir `<h1>`/`<h2>`
@@ -172,7 +172,7 @@ Bu sözleşmeye uyularak yapıldı: `server/**`, `shared/**`, `src/lib/api.ts`,
 | Koyu varsayılan tema, tek vurgu safran (2026-10-16 yeniden tasarım; palet denemesi kaldırıldı) | `src/styles/tokens.css` |
 | Bricolage Grotesque + Figtree (gömülü, OFL), düz gölgesiz düğmeler, programatik odak çerçevesi kaldırıldı (`[tabindex='-1']`) | `src/styles/global.css`, `public/fonts/` |
 | Phosphor simgeleri (emoji yok), fotoğraf madalyonlu yol | `src/app/Ikonlar.tsx`, `src/features/yol/FotografPatikasi.tsx` |
-| Alt sekme çubuğu, ders odak modu, "Yetişkinler için" gezinmesi | `src/app/App.tsx`, `src/app/app.css` |
+| Alt sekme çubuğu (5 sekme), ders odak modu, Profil içindeki giriş/çarşı bölümleri | `src/app/App.tsx`, `src/app/app.css`, `src/features/profil/ProfilSayfasi.tsx` |
 | Zikzak öğrenme yolu, tekrar kartı | `src/features/yol/YolSayfasi.tsx` |
 | Alt geri bildirim paneli, Dinle düğmesi, ders sonu ekranı, katlanır kaynaklar | `src/features/ders/*` |
 | Aralıklı tekrar (Leitner, cihazda) | `src/lib/tekrar.ts`, `DurumSaglayici.tsx`, `GeriCagirmaAdimi.tsx` |

@@ -10,6 +10,7 @@
  */
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { sorgu, tekSorgu, veritabaniAl } from '../db/index.ts';
+import { redisAyari, redisKomut } from '../redis.ts';
 import { parolaHashle, parolaDogrula } from './parola.ts';
 
 export type Rol = 'admin' | 'ogretmen';
@@ -55,6 +56,70 @@ function tokenOzeti(token: string): string {
 }
 
 // ---------------------------------------------------------------------------
+// Ortak (Redis) oturum deposu
+//
+// Vercel'de her sunucu örneği ayrı bir geçici PGlite kopyasıyla çalıştığı için
+// oturum kaydı yalnızca o örnekte kalıyordu: giriş bir örnekte yapılıyor, sonraki
+// istek başka bir örneğe düşünce "Bu işlem için giriş yapmalısın." hatası
+// görünüyordu. Oturumlar Redis'te tutulunca bütün örnekler aynı oturumu görür.
+// Redis yoksa (yerel geliştirme/testler) yerel `session` tablosu kullanılmaya
+// devam eder — davranış değişmez.
+// ---------------------------------------------------------------------------
+
+const OTURUM_ONEK = 'kokavi:oturum:';
+const KULLANICI_OTURUM_ONEK = 'kokavi:oturum:kullanici:';
+
+interface RedisOturum {
+  kullaniciId: string;
+  bitis: string;
+}
+
+/** Oturumu Redis'e yazar. Hata olsa bile girişi engellemez (yerel kayıt yeterli). */
+async function redisOturumYaz(
+  tokenHash: string,
+  kullaniciId: string,
+  gecerlilikSonu: Date,
+): Promise<void> {
+  try {
+    const kalanMs = Math.max(1000, gecerlilikSonu.getTime() - Date.now());
+    await redisKomut(
+      'SET',
+      OTURUM_ONEK + tokenHash,
+      JSON.stringify({ kullaniciId, bitis: gecerlilikSonu.toISOString() } satisfies RedisOturum),
+      'PX',
+      kalanMs,
+    );
+    // Kullanıcının açık oturumlarını toplu iptal edebilmek için ters indeks.
+    await redisKomut('SADD', KULLANICI_OTURUM_ONEK + kullaniciId, tokenHash);
+    await redisKomut('PEXPIRE', KULLANICI_OTURUM_ONEK + kullaniciId, OTURUM_SURESI_MS);
+  } catch (hata) {
+    console.warn('[oturum] Redis oturumu yazılamadı:', hata);
+  }
+}
+
+async function redisOturumSil(tokenHash: string): Promise<void> {
+  if (!redisAyari()) return;
+  try {
+    await redisKomut('DEL', OTURUM_ONEK + tokenHash);
+  } catch {
+    /* Redis erişilemez: yerel temizlik yine yapılır. */
+  }
+}
+
+async function redisKullaniciOturumlariniSil(userId: string): Promise<void> {
+  if (!redisAyari()) return;
+  try {
+    const anahtarlar = await redisKomut<string[]>('SMEMBERS', KULLANICI_OTURUM_ONEK + userId);
+    if (Array.isArray(anahtarlar)) {
+      for (const anahtar of anahtarlar) await redisKomut('DEL', OTURUM_ONEK + anahtar);
+    }
+    await redisKomut('DEL', KULLANICI_OTURUM_ONEK + userId);
+  } catch {
+    /* Redis erişilemez: yerel temizlik yine yapılır. */
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Kullanıcılar
 // ---------------------------------------------------------------------------
 
@@ -74,6 +139,31 @@ export async function kullaniciOlustur(girdi: {
   );
 
   const olusan = await kullaniciGetir(id);
+  if (!olusan) throw new Error('Kullanıcı oluşturulamadı');
+  return olusan;
+}
+
+/**
+ * Kimliği ve parola özeti hazır bir kullanıcıyı ekler.
+ *
+ * Yönetim işlem günlüğü (`server/yonetim/gunluk.ts`) başka bir sunucu
+ * örneğinde aynı kullanıcıyı birebir oluşturabilsin diye kimlik ve parola
+ * özeti dışarıdan verilir; rastgele kimlik üretilmez.
+ */
+export async function kullaniciEkleHashli(girdi: {
+  id: string;
+  email: string;
+  ad: string;
+  parolaHash: string;
+  rol: Rol;
+}): Promise<Kullanici> {
+  const db = await veritabaniAl();
+  await db.query(
+    `INSERT INTO app_user (id, email, ad, parola_hash, rol, aktif)
+     VALUES ($1, $2, $3, $4, $5, TRUE)`,
+    [girdi.id, girdi.email.trim(), girdi.ad.trim(), girdi.parolaHash, girdi.rol],
+  );
+  const olusan = await kullaniciGetir(girdi.id);
   if (!olusan) throw new Error('Kullanıcı oluşturulamadı');
   return olusan;
 }
@@ -109,14 +199,28 @@ export async function kullaniciDurumDegistir(id: string, aktif: boolean): Promis
 }
 
 export async function kullaniciParolaDegistir(id: string, yeniParola: string): Promise<boolean> {
+  return kullaniciParolaHashGuncelle(id, parolaHashle(yeniParola));
+}
+
+/**
+ * Parola özetini günceller ve kullanıcının TÜM oturumlarını düşürür.
+ * Günlükten gelen işlemler özeti hazır verdiği için ayrı bir sürüm gerekir.
+ */
+export async function kullaniciParolaHashGuncelle(id: string, parolaHash: string): Promise<boolean> {
   const db = await veritabaniAl();
   const sonuc = await db.query(
     `UPDATE app_user SET parola_hash = $2, updated_at = NOW() WHERE id = $1`,
-    [id, parolaHashle(yeniParola)],
+    [id, parolaHash],
   );
-  // Parola değişince tüm oturumlar düşer — çalınmış oturum varsa kapanır.
-  await db.query(`DELETE FROM session WHERE user_id = $1`, [id]);
+  await oturumlariTemizle(id);
   return (sonuc.affectedRows ?? 0) > 0;
+}
+
+/** Kullanıcının açık oturumlarını hem yerelde hem Redis'te kapatır. */
+async function oturumlariTemizle(userId: string): Promise<void> {
+  const db = await veritabaniAl();
+  await db.query(`DELETE FROM session WHERE user_id = $1`, [userId]);
+  await redisKullaniciOturumlariniSil(userId);
 }
 
 // ---------------------------------------------------------------------------
@@ -162,40 +266,94 @@ export async function girisYap(
   await db.query(`UPDATE app_user SET son_giris = NOW() WHERE id = $1`, [satir.id]);
   await girisDenemesiKaydet(email, true);
 
+  // Ortak depoya da yaz: sonraki istek başka bir sunucu örneğine düşse bile
+  // oturum geçerli olsun. Redis yoksa/başarısızsa yerel oturum yine çalışır.
+  await redisOturumYaz(tokenOzeti(token), satir.id, gecerlilikSonu);
+
   return { token, gecerlilikSonu, kullanici: kullaniciyaCevir(satir) };
 }
 
-/** Belirteci doğrular; süresi dolmuşsa siler ve null döner. */
+/**
+ * Belirteci doğrular; süresi dolmuşsa siler ve null döner.
+ *
+ * Redis yapılandırılmışsa oturum oradan okunur (bütün sunucu örnekleri aynı
+ * oturumu görür). Redis'te YOKLUK geçersizlik demektir: çıkış/parola değişimi
+ * başka bir örnekte yapıldıysa bu örnekteki eski yerel kayıt oturumu diriltmez.
+ * Yalnızca Redis'e hiç ulaşılamazsa yerel `session` tablosuna düşülür.
+ */
 export async function oturumDogrula(token: string): Promise<Kullanici | null> {
   if (!token || token.length < 20) return null;
+  const ozet = tokenOzeti(token);
 
+  if (redisAyari()) {
+    let kayit: string | null = null;
+    try {
+      kayit = await redisKomut<string>('GET', OTURUM_ONEK + ozet);
+    } catch {
+      // Redis erişilemez: yerel doğrulamaya düş, kullanıcıyı kilitleme.
+      return yerelOturumDogrula(ozet);
+    }
+
+    if (!kayit) return null;
+
+    let bilgi: RedisOturum;
+    try {
+      bilgi = JSON.parse(kayit) as RedisOturum;
+    } catch {
+      await redisOturumSil(ozet);
+      return null;
+    }
+
+    if (new Date(bilgi.bitis).getTime() < Date.now()) {
+      await oturumBitir(token);
+      return null;
+    }
+
+    const kullanici = await kullaniciGetir(bilgi.kullaniciId);
+    if (!kullanici || !kullanici.aktif) {
+      await oturumBitir(token);
+      return null;
+    }
+    return kullanici;
+  }
+
+  return yerelOturumDogrula(ozet);
+}
+
+/** Yerel `session` tablosundan doğrulama (Redis'siz ortamlar). */
+async function yerelOturumDogrula(tokenHash: string): Promise<Kullanici | null> {
   const satir = await tekSorgu<{ user_id: string; expires_at: string }>(
     `SELECT user_id, expires_at FROM session WHERE token_hash = $1`,
-    [tokenOzeti(token)],
+    [tokenHash],
   );
   if (!satir) return null;
 
   if (new Date(satir.expires_at).getTime() < Date.now()) {
-    await oturumBitir(token);
+    await yerelOturumBitir(tokenHash);
     return null;
   }
 
   const kullanici = await kullaniciGetir(satir.user_id);
   if (!kullanici || !kullanici.aktif) {
-    await oturumBitir(token);
+    await yerelOturumBitir(tokenHash);
     return null;
   }
   return kullanici;
 }
 
-export async function oturumBitir(token: string): Promise<void> {
+async function yerelOturumBitir(tokenHash: string): Promise<void> {
   const db = await veritabaniAl();
-  await db.query(`DELETE FROM session WHERE token_hash = $1`, [tokenOzeti(token)]);
+  await db.query(`DELETE FROM session WHERE token_hash = $1`, [tokenHash]);
+}
+
+export async function oturumBitir(token: string): Promise<void> {
+  const ozet = tokenOzeti(token);
+  await yerelOturumBitir(ozet);
+  await redisOturumSil(ozet);
 }
 
 export async function kullaniciOturumlariniBitir(userId: string): Promise<void> {
-  const db = await veritabaniAl();
-  await db.query(`DELETE FROM session WHERE user_id = $1`, [userId]);
+  await oturumlariTemizle(userId);
 }
 
 /** Süresi dolmuş oturumları temizler (sunucu açılışında çağrılır). */

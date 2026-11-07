@@ -15,6 +15,8 @@
  */
 import { randomInt } from 'node:crypto';
 import { sorgu, tekSorgu, veritabaniAl } from '../db/index.ts';
+import { KULLIYE_GRUPLARI } from '../../shared/kulliyeler.ts';
+import type { GelirDurumu, GelirKalemi, GelirTipi } from '../../shared/types.ts';
 
 /** Karışması kolay karakterler (I, O, 0, 1) çıkarılmış alfabe. */
 const ALFABE = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -69,6 +71,21 @@ export async function sinifOlustur(ogretmenId: string, ad: string): Promise<Sini
     if (olusan) return olusan;
   }
   throw new Error('Sınıf kodu üretilemedi, tekrar dene.');
+}
+
+/**
+ * Kimliği hazır bir sınıf kaydı ekler.
+ *
+ * Yönetim işlem günlüğü (`server/yonetim/gunluk.ts`) sınıf kaydını başka bir
+ * sunucu örneğinde birebir oluşturabilsin diye kod dışarıdan verilir.
+ */
+export async function sinifEkle(kod: string, ogretmenId: string, ad: string): Promise<void> {
+  const db = await veritabaniAl();
+  await db.query(
+    `INSERT INTO class_code (kod, ogretmen_id, ad) VALUES ($1, $2, $3)
+     ON CONFLICT (kod) DO NOTHING`,
+    [kod, ogretmenId, ad.trim().slice(0, 120)],
+  );
 }
 
 export async function sinifGetir(kod: string): Promise<Sinif | null> {
@@ -174,32 +191,132 @@ export interface UniteIlerlemesi {
   uniteId: string;
   uniteAdi: string;
   sehirAdi: string;
-  dersler: { dersId: string; eserAdi: string; sira: number; sayi: number }[];
+  dersler: { dersId: string; eserId: string; eserAdi: string; sira: number; sayi: number }[];
   tamamlananDersCesidi: number;
   toplamDers: number;
 }
 
 /**
- * Ders bazlı sınıf ilerlemesini ünite/şehir kırılımıyla döner.
- * Öğretmen paneli bunu kullanır.
+ * Sınıfın bir külliyedeki ilerlemesi.
+ *
+ * PDF Senaryo B: "Sınıf birlikte bir külliyeyi tamamlar." Külliyeler
+ * `shared/kulliyeler.ts` içinde YALNIZCA kaynakta belgelenmiş bağlarla tanımlı;
+ * burada uydurma grup üretilmez. Eşleşen yayın dersi yoksa grup listeye girmez.
  */
-export async function sinifDetayliIlerleme(kod: string): Promise<{
-  ilerleme: SinifIlerlemesi;
-  uniteler: UniteIlerlemesi[];
-} | null> {
-  const ilerleme = await sinifIlerlemesi(kod);
-  if (!ilerleme) return null;
+export interface KulliyeIlerlemesi {
+  id: string;
+  ad: string;
+  sehirId: string;
+  toplamDers: number;
+  tamamlananDersCesidi: number;
+  /** Sınıfın sıradaki hedefi mi? (yol sırasına göre ilk tamamlanmamış külliye) */
+  hedefMi: boolean;
+  tamamlandiMi: boolean;
+}
 
-  const satirlar = await sorgu<{
-    unite_id: string;
-    unite_ad: string;
-    sehir_ad: string;
-    ders_id: string;
-    eser_adi: string;
-    sira: number;
-  }>(
+/** Birlikte açılan Vakıf Röntgeni'ndeki tek eser. */
+export interface SinifRontgenEseri {
+  dersId: string;
+  eserId: string;
+  eserAdi: string;
+  tur: string;
+  sehirAdi: string;
+  uniteAdi: string;
+  gelirDagilimiDurumu: GelirDurumu;
+  gelirKalemleri: GelirKalemi[];
+  /** Dersin Yansıma adımındaki resmî kaynak künyesi (varsa). */
+  kaynakKunye: string | null;
+}
+
+/** `GET /api/sinif/:kod/rontgen` gövdesi — yalnız anonim sayaçlar + yayın içeriği. */
+export interface SinifRontgeni {
+  kod: string;
+  ad: string;
+  toplamTamamlama: number;
+  tamamlananDersCesidi: number;
+  kulliyeler: KulliyeIlerlemesi[];
+  eserler: SinifRontgenEseri[];
+}
+
+/** Yayındaki derslerin yol sırasındaki kimlik çifti. */
+export interface YayindakiDers {
+  dersId: string;
+  eserId: string;
+}
+
+/**
+ * Yol sırasına göre külliye ilerlemesini hesaplar.
+ *
+ * `hedefMi`: yol sırasında ilk tamamlanmamış külliye. Sınıf bir külliyeyi
+ * bitirince hedef otomatik olarak bir sonrakine geçer; öğretmen seçim yapmaz.
+ * Hiçbir grup eşleşmezse boş dizi döner (arayüz külliye kartını göstermez).
+ */
+export function kulliyeleriHesapla(
+  dersler: readonly YayindakiDers[],
+  dersSayilari: Record<string, number>,
+): KulliyeIlerlemesi[] {
+  const hesaplanan: (KulliyeIlerlemesi & { ilkSira: number })[] = [];
+
+  for (const grup of KULLIYE_GRUPLARI) {
+    let ilkSira = Number.POSITIVE_INFINITY;
+    let toplamDers = 0;
+    let tamamlanan = 0;
+
+    dersler.forEach((ders, sira) => {
+      if (!grup.eserIdler.includes(ders.eserId)) return;
+      toplamDers += 1;
+      ilkSira = Math.min(ilkSira, sira);
+      if ((dersSayilari[ders.dersId] ?? 0) > 0) tamamlanan += 1;
+    });
+
+    if (toplamDers === 0) continue;
+    hesaplanan.push({
+      id: grup.id,
+      ad: grup.ad,
+      sehirId: grup.sehirId,
+      toplamDers,
+      tamamlananDersCesidi: tamamlanan,
+      hedefMi: false,
+      tamamlandiMi: false,
+      ilkSira,
+    });
+  }
+
+  hesaplanan.sort((a, b) => a.ilkSira - b.ilkSira);
+  const hedef = hesaplanan.find((grup) => grup.tamamlananDersCesidi < grup.toplamDers);
+
+  return hesaplanan.map(({ ilkSira: _ilkSira, ...grup }) => ({
+    ...grup,
+    hedefMi: hedef?.id === grup.id,
+    tamamlandiMi: grup.tamamlananDersCesidi >= grup.toplamDers,
+  }));
+}
+
+/** Yayındaki bir dersin yol sırası, ünitesi, eseri ve kaynağı. */
+interface DersSatiri {
+  unite_id: string;
+  unite_ad: string;
+  sehir_ad: string;
+  ders_id: string;
+  eser_id: string;
+  eser_adi: string;
+  tur: string;
+  gelir_dagilimi_durumu: GelirDurumu;
+  kaynak_kunye: string | null;
+  sira: number;
+}
+
+/**
+ * Yayındaki dersleri yol sırasıyla getirir.
+ * Öğretmen paneli, sınıf Röntgeni ve külliye hesabı AYNI sırayı kullanır.
+ */
+async function yayindakiDersleriGetir(): Promise<DersSatiri[]> {
+  return sorgu<DersSatiri>(
     `SELECT u.id AS unite_id, u.ad AS unite_ad, c.ad AS sehir_ad,
-            l.id AS ders_id, w.ad AS eser_adi, l.sira
+            l.id AS ders_id, w.id AS eser_id, w.ad AS eser_adi, w.tur,
+            w.gelir_dagilimi_durumu,
+            (l.yansima->>'kaynakKunye') AS kaynak_kunye,
+            l.sira
        FROM lesson l
        JOIN unit u ON u.id = l.unit_id
        JOIN city c ON c.id = u.sehir_id
@@ -207,9 +324,25 @@ export async function sinifDetayliIlerleme(kod: string): Promise<{
       WHERE w.yayinda = TRUE AND c.aktif = TRUE
       ORDER BY c.sira, u.sira, l.sira`,
   );
+}
+
+/**
+ * Ders bazlı sınıf ilerlemesini ünite/şehir kırılımıyla döner.
+ * Öğretmen paneli bunu kullanır; ayrıca hedef külliye hesabı da buradadır.
+ */
+export async function sinifDetayliIlerleme(kod: string): Promise<{
+  ilerleme: SinifIlerlemesi;
+  uniteler: UniteIlerlemesi[];
+  kulliyeler: KulliyeIlerlemesi[];
+} | null> {
+  const ilerleme = await sinifIlerlemesi(kod);
+  if (!ilerleme) return null;
+
+  const satirlar = await yayindakiDersleriGetir();
 
   const gruplu = new Map<string, UniteIlerlemesi>();
   const uniteler: UniteIlerlemesi[] = [];
+  const yayindakiDersler: YayindakiDers[] = [];
 
   for (const s of satirlar) {
     if (!gruplu.has(s.unite_id)) {
@@ -228,13 +361,114 @@ export async function sinifDetayliIlerleme(kod: string): Promise<{
     const sayi = ilerleme.dersSayilari[s.ders_id] ?? 0;
     unite.dersler.push({
       dersId: s.ders_id,
+      eserId: s.eser_id,
       eserAdi: s.eser_adi,
       sira: Number(s.sira),
       sayi,
     });
     unite.toplamDers += 1;
     if (sayi > 0) unite.tamamlananDersCesidi += 1;
+
+    yayindakiDersler.push({ dersId: s.ders_id, eserId: s.eser_id });
   }
 
-  return { ilerleme, uniteler };
+  return {
+    ilerleme,
+    uniteler,
+    kulliyeler: kulliyeleriHesapla(yayindakiDersler, ilerleme.dersSayilari),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Sınıf Vakıf Röntgeni — birlikte açılan büyük ekran
+// ---------------------------------------------------------------------------
+
+interface SinifGelirSatiri {
+  id: number;
+  work_id: string;
+  kalem: string;
+  yuzde: string | number | null;
+  tip: GelirTipi | null;
+  kaynak: string | null;
+  sira: number;
+}
+
+/** Tamamlanan eserlerin gelir kalemlerini tek sorguda getirir. */
+async function sinifGelirleriGetir(
+  eserIdler: readonly string[],
+): Promise<Map<string, GelirKalemi[]>> {
+  const gruplu = new Map<string, GelirKalemi[]>();
+  if (eserIdler.length === 0) return gruplu;
+
+  const yerTutucu = eserIdler.map((_, i) => `$${i + 1}`).join(', ');
+  const satirlar = await sorgu<SinifGelirSatiri>(
+    `SELECT id, work_id, kalem, yuzde, tip, kaynak, sira
+       FROM income_item
+      WHERE work_id IN (${yerTutucu})
+      ORDER BY work_id, sira`,
+    [...eserIdler],
+  );
+
+  for (const s of satirlar) {
+    const kalem: GelirKalemi = {
+      id: s.id,
+      eserId: s.work_id,
+      kalem: s.kalem,
+      // NUMERIC -> number | null; belge yoksa oran uydurulmaz.
+      yuzde: s.yuzde === null || s.yuzde === undefined ? null : Number(s.yuzde),
+      tip: s.tip ?? null,
+      kaynak: s.kaynak,
+      sira: s.sira,
+    };
+    const liste = gruplu.get(s.work_id) ?? [];
+    liste.push(kalem);
+    gruplu.set(s.work_id, liste);
+  }
+
+  return gruplu;
+}
+
+/**
+ * Sınıfın birlikte gördüğü eserlerin Vakıf Röntgeni verisi.
+ *
+ * GİZLİLİK: Bu uç yalnızca sınıf kodunu, toplu sayaçları ve YAYIN İÇERİĞİNİ
+ * döner. Hangi çocuğun hangi dersi bitirdiği bilinmez; `class_progress`
+ * tablosunda kimlik yoktur. Sınıf kapalı olsa da tahtada gösterilebilir
+ * (kapatmak yeni tamamlamayı durdurur, geçmişi gizlemez).
+ */
+export async function sinifRontgeni(kod: string): Promise<SinifRontgeni | null> {
+  const sinif = await sinifGetir(kod);
+  if (!sinif) return null;
+
+  const ilerleme = await sinifIlerlemesi(sinif.kod);
+  if (!ilerleme) return null;
+
+  const satirlar = await yayindakiDersleriGetir();
+  const tamamlanan = satirlar.filter((s) => (ilerleme.dersSayilari[s.ders_id] ?? 0) > 0);
+  const eserIdler = [...new Set(tamamlanan.map((s) => s.eser_id))];
+  const gelirler = await sinifGelirleriGetir(eserIdler);
+
+  const eserler: SinifRontgenEseri[] = tamamlanan.map((s) => ({
+    dersId: s.ders_id,
+    eserId: s.eser_id,
+    eserAdi: s.eser_adi,
+    tur: s.tur,
+    sehirAdi: s.sehir_ad,
+    uniteAdi: s.unite_ad,
+    gelirDagilimiDurumu: s.gelir_dagilimi_durumu,
+    gelirKalemleri: gelirler.get(s.eser_id) ?? [],
+    kaynakKunye: s.kaynak_kunye,
+  }));
+
+  return {
+    kod: sinif.kod,
+    ad: sinif.ad,
+    toplamTamamlama: ilerleme.toplamTamamlama,
+    tamamlananDersCesidi: ilerleme.tamamlananDersCesidi,
+    kulliyeler: kulliyeleriHesapla(
+      satirlar.map((s) => ({ dersId: s.ders_id, eserId: s.eser_id })),
+      ilerleme.dersSayilari,
+    ),
+    eserler,
+  };
 }

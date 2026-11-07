@@ -8,8 +8,6 @@
  * söylenir. Sonda aynı ilçeden başka eserler önerilir (keşif sürsün).
  */
 import { useEffect, useMemo, useState } from 'react';
-import { DinleDugmesi } from '../ders/DinleDugmesi';
-import { sohbetiAc } from '../sohbet/KostikSohbeti';
 import { YasiyorRozeti } from '../merkez/YasiyorRozeti';
 import { BuradayimDugmesi } from '../muhur/BuradayimDugmesi';
 import { api } from '../../lib/api';
@@ -36,8 +34,8 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
         setListe(l);
         setParagraflar(p);
       })
-      .catch((e: unknown) => {
-        if (!iptal) setHata(e instanceof Error ? e.message : 'Eser yüklenemedi.');
+      .catch(() => {
+        if (!iptal) setHata('Eser şu an yüklenemedi.');
       });
     return () => {
       iptal = true;
@@ -76,6 +74,22 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
     return null;
   }, [eser, yol]);
 
+  // Bir kart yalnızca tek derse bağlanabildiği için kardeş dersler
+  // `ilgiliDersler` içinde durur (ör. külliye kartı → medrese/türbe dersleri).
+  const ilgiliDersler = useMemo(() => {
+    const sonuc: { dersId: string; eserAdi: string }[] = [];
+    const istenen = new Set(eser?.ilgiliDersler ?? []);
+    if (istenen.size === 0) return sonuc;
+    for (const s of yol?.sehirler ?? [])
+      for (const u of s.uniteler)
+        for (const d of u.dersler) {
+          if (istenen.has(d.eserId) && d.dersId !== dersId) {
+            sonuc.push({ dersId: d.dersId, eserAdi: d.eserAdi });
+          }
+        }
+    return sonuc;
+  }, [eser, yol, dersId]);
+
   const komsular = useMemo(
     () =>
       eser
@@ -113,19 +127,30 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
       </a>
 
       {eser.foto ? (
-        <img className="arsiv-eser__resim" src={arsivFotoUrl(eser.id)} alt={`${eser.ad} fotoğrafı`} decoding="async" />
+        <img
+          className="arsiv-eser__resim"
+          src={arsivFotoUrl(eser.id)}
+          alt={`${eser.ad} fotoğrafı`}
+          decoding="async"
+          onError={(olay) => {
+            // İnternetsiz ve fotoğraf önbellekte yoksa kırık görsel gösterme.
+            olay.currentTarget.hidden = true;
+          }}
+        />
       ) : null}
 
       <header className="yigin" style={{ gap: 'var(--b-2)' }}>
         <h1 style={{ margin: 0 }}>{eser.ad}</h1>
-        <YasiyorRozeti eserId={eser.ders ?? eser.id} />
+        <YasiyorRozeti eserId={eser.ders ?? eser.ilgiliDersler?.[0] ?? eser.id} />
         <ul className="arsiv-cipler" aria-label="Künye">
           <li>{IL_ADLARI[eser.il]}</li>
           {eser.ilce ? <li>{eser.ilce}</li> : null}
           <li>{eser.tur}</li>
         </ul>
         {/* Derssiz eserler Keşfet'ten girilen arşivde çoğunlukta; ayrım görünür olsun. */}
-        {eser.ders ? null : <p className="arsiv-not">Dersi yok · yalnızca keşif</p>}
+        {!dersId && ilgiliDersler.length === 0 ? (
+          <p className="arsiv-not">Dersi yok · yalnızca keşif</p>
+        ) : null}
       </header>
 
       {dersId ? (
@@ -139,9 +164,21 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
         </div>
       ) : null}
 
-      {/* Okuma güçlüğü olan çocuklar için: YALNIZCA kısa özeti Türkçe sesle
-          okur (sessiz modda ya da Türkçe ses yoksa düğme hiç çıkmaz). */}
-      {ozet ? <DinleDugmesi metin={`${eser.ad}. ${ozet}`} etiket="Hikâyesini dinle" /> : null}
+      {ilgiliDersler.length > 0 ? (
+        <div className="kart arsiv-ders">
+          <p style={{ margin: 0, fontWeight: 900 }}>Bu eserle ilgili dersler</p>
+          <ul className="yigin" style={{ gap: 'var(--b-2)', margin: 0, padding: 0, listStyle: 'none' }}>
+            {ilgiliDersler.map((d) => (
+              <li key={d.dersId}>
+                <a className="dugme dugme--ikincil" href={`#/ders/${encodeURIComponent(d.dersId)}`}>
+                  {d.eserAdi.split(' (')[0]}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
 
       <div className="arsiv-metin arsiv-ozet">
         {ozet ? (
@@ -171,14 +208,6 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
         <BuradayimDugmesi eserId={eser.ders} eserAd={eser.ad} koordinat={konum.koordinat} yaklasik={konum.yaklasik} />
       ) : null}
 
-      <button
-        type="button"
-        className="dugme dugme--ikincil arsiv-esere-sor"
-        onClick={() => sohbetiAc({ eserId: eser.id, eserAd: eser.ad })}
-      >
-        Köstik'e bu eseri sor
-      </button>
-
       <footer className="arsiv-kaynak">
         <p style={{ margin: 0 }}>
           <strong>Kaynak:</strong> {eser.kaynak}
@@ -195,7 +224,15 @@ export function ArsivEserSayfasi({ arsivId }: { arsivId: string }) {
               <li key={k.id} className="arsiv-kart">
                 <a className="arsiv-kart__bag" href={`#/arsiv/${encodeURIComponent(k.id)}`}>
                   {k.foto ? (
-                    <img className="arsiv-kart__resim" src={arsivFotoUrl(k.id)} alt="" loading="lazy" />
+                    <img
+                      className="arsiv-kart__resim"
+                      src={arsivFotoUrl(k.id)}
+                      alt=""
+                      loading="lazy"
+                      onError={(olay) => {
+                        olay.currentTarget.hidden = true;
+                      }}
+                    />
                   ) : (
                     <span className="arsiv-kart__resim arsiv-kart__resim--bos" aria-hidden="true" />
                   )}

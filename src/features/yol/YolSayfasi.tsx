@@ -13,11 +13,13 @@
  * Erişilebilirlik: düğümler gerçek <a> bağlantısıdır ve erişilebilir adı
  * "Eser adı, tür, durum" biçimindedir; durum renk + ikon + metinle verilir.
  */
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDurum, useSeviye } from '../../app/DurumSaglayici';
 import { IkonKilit, IkonTekrar } from '../../app/Ikonlar';
 import { gunMetni, vadesiGelenler } from '../../lib/tekrar';
+import { kisiselGuncelDersId } from '../../lib/kisiselSira';
+import { tercihleriOku } from '../../lib/tercihler';
 import { ZamanListesi } from '../zaman/ZamanListesi';
 import { gorunumOku, gorunumYaz, type YolGorunumu } from './yolGorunumu';
 import { FotografPatikasi } from './FotografPatikasi';
@@ -31,6 +33,10 @@ export { kisaAd };
 export function YolSayfasi() {
   const { yol, yukleniyor, hata, ilerleme, tekrar } = useDurum();
   const seviye = useSeviye();
+  // Kişisel sıra: başlangıç sorularındaki ilgiler açık ünitede "sıradaki ders"i
+  // ilgiye uyan derse taşır. Kilit modeli değişmez (src/lib/kisiselSira.ts).
+  const ilgiler = useMemo(() => tercihleriOku().ilgiler, []);
+  const kisiselId = useMemo(() => (yol ? kisiselGuncelDersId(yol, ilgiler) : null), [yol, ilgiler]);
   // Öğrenme sırası: şehir şehir (üniteler) ya da zaman sırasıyla (cihazda hatırlanır).
   const [gorunum, setGorunumDurum] = useState<YolGorunumu>(gorunumOku);
   const setGorunum = (g: YolGorunumu) => {
@@ -54,7 +60,7 @@ export function YolSayfasi() {
   // Kaydırırken ortadaki eserin fotoğraf rengi arka plana yayılır.
   useOrtamRengi(yolHazir);
 
-  // Canlı yol: son ziyaretten bu yana ders bittiyse Köstik ilerler, ünite
+  // Canlı yol: son ziyaretten bu yana ders bittiyse yol ilerler, ünite
   // açıldıysa kilit kırılır, ünite bittiyse mühür basılır. Bir kez hesaplanır;
   // yeni durum hemen cihaza yazılır (sahne tekrar oynamaz).
   const [sahne, setSahne] = useState<YolSahnesi>(BOS_SAHNE);
@@ -101,6 +107,7 @@ export function YolSayfasi() {
         <p className="yol-ozet__alt">
           {tamamlanan}/{toplamDers} ders · {seviye.ad}
           {seviye.kalanDers !== null ? ` · ${seviye.kalanDers} ders sonra bir üst seviye` : ''}
+          {kisiselId && kisiselId !== yol.guncelDersId ? ' · ilgine göre önerildi' : ''}
         </p>
         <div
           className="yol-ozet__cubuk"
@@ -149,7 +156,7 @@ export function YolSayfasi() {
         </button>
       </div>
 
-      {gorunum === 'zaman' && <ZamanListesi mod="yol" />}
+      {gorunum === 'zaman' && <ZamanListesi mod="yol" ilgiler={ilgiler} />}
 
       {gorunum === 'sehir' && yol.sehirler.map((sehir) => (
         <section key={sehir.sehirId} aria-labelledby={`sehir-${sehir.sehirId}`}>
@@ -174,7 +181,7 @@ export function YolSayfasi() {
                 key={unite.uniteId}
                 unite={unite}
                 sehirAdi={sehir.ad}
-                guncelDersId={yol.guncelDersId}
+                guncelDersId={kisiselId ?? yol.guncelDersId}
                 sahne={sahne}
               />
             ))}

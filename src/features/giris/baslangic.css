@@ -1,0 +1,275 @@
+/* ===========================================================================
+   Başlangıç soruları (onboarding) — "fotoğraf bandı + kart" düzeni.
+
+   Kullanıcı isteği: ekran düz koyu zeminde kalmasın. Çözüm iki katmanlı:
+   1) Sahne: içerik alanından yanlara taşan, token'lı yumuşak safran ışıma.
+   2) Kart: üstte gerçek bir Bursa eseri fotoğrafından kahraman bandı
+      (mobil 3:1, 640px ve üstünde 16:5) + `--karartma` geçişi üzerinde
+      `--foto-metin` etiket. Fotoğraf yüklenmezse bandın token'lı zemin dokusu
+      görünür; hiçbir tema düz siyah zeminde kalmaz.
+
+   Kurallar: renk yalnızca jetonlardan (ham hex/rgb/hsl yok), emoji yok,
+   dokunma hedefleri >= 44px (global .dugme / .secenek), 320px'te yatay taşma
+   yok, hareket `prefers-reduced-motion` ve "Hareketi azalt" ile durur.
+   =========================================================================== */
+
+/* --- Sahne ve sayfa ışıması ---------------------------------------------- */
+
+.baslangic-sahne {
+  position: relative;
+  isolation: isolate;
+  /* .sarmal'ın yan boşluğu kadar dışa taş: mobilde tam genişlik, taşma yok. */
+  margin-inline: calc(var(--b-4) * -1);
+  padding-inline: var(--b-4);
+  padding-block: var(--b-2) 0;
+}
+
+.baslangic-sahne::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--b-6) * -1) 0 auto;
+  height: 24rem;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 100% at 50% 0%,
+    color-mix(in srgb, var(--vurgu) 26%, transparent),
+    transparent 72%
+  );
+  opacity: 0.85;
+}
+
+/* --- Kart ---------------------------------------------------------------- */
+
+.baslangic {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 34rem;
+  margin-inline: auto;
+  background: var(--zemin-kart);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-lg);
+  overflow: hidden;
+}
+
+.baslangic__govde {
+  display: grid;
+  gap: var(--b-4);
+  padding: var(--b-5) var(--b-4) var(--b-5);
+}
+
+/* --- Kahraman bandı ------------------------------------------------------ */
+
+.baslangic__kahraman {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 3 / 1;
+  overflow: hidden;
+  /* Fotoğraf gelmezse görünen token'lı zemin: safran yumuşak + yüzey. */
+  background:
+    radial-gradient(120% 140% at 15% 0%, color-mix(in srgb, var(--vurgu) 34%, transparent), transparent 62%),
+    linear-gradient(135deg, var(--vurgu-yumusak), var(--zemin-vurgu) 55%, var(--zemin-kart));
+}
+
+/* Fotoğraf ayrı katmanda: yüklenemezse altındaki zemin dokusu kalır
+   (kırık görsel simgesi yok, <img> yerine dekoratif arka plan). */
+.baslangic__kahraman::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/gorseller/bursa-ulucami/1.webp') center 55% / cover no-repeat;
+  animation: baslangic-foto-gel 1100ms var(--cikis) both;
+}
+
+/* Fotoğraf üstü metin her temada okunur: --karartma geçişi (DESIGN §3). */
+.baslangic__kahraman::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    var(--karartma) 0%,
+    color-mix(in srgb, var(--karartma) 42%, transparent) 52%,
+    transparent 100%
+  );
+}
+
+.baslangic__kahraman-etiket {
+  position: absolute;
+  z-index: 1;
+  left: var(--b-3);
+  bottom: var(--b-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-2);
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--foto-metin);
+  text-wrap: balance;
+}
+
+@keyframes baslangic-foto-gel {
+  from {
+    opacity: 0.5;
+    scale: 1.06;
+  }
+}
+
+@media (min-width: 640px) {
+  .baslangic__kahraman {
+    aspect-ratio: 16 / 5;
+  }
+}
+
+/* --- İlerleme ------------------------------------------------------------ */
+
+.baslangic__ilerleme {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--metin-ikincil);
+}
+
+.baslangic__cubuk {
+  height: 10px;
+  overflow: hidden;
+  background: var(--zemin-vurgu);
+  border-radius: var(--kose-tam);
+}
+
+.baslangic__cubuk > span {
+  display: block;
+  height: 100%;
+  background: var(--vurgu);
+  border-radius: inherit;
+  transition: width var(--gecis-hizli);
+}
+
+/* --- Başlık ve metin ----------------------------------------------------- */
+
+.baslangic__baslik {
+  margin: 0;
+  font-size: var(--yazi-xl);
+  line-height: 1.25;
+}
+
+.baslangic__baslik:focus {
+  outline: none;
+}
+
+.baslangic__baslik:focus-visible {
+  outline: 3px solid var(--odak);
+  outline-offset: 4px;
+}
+
+.baslangic__aciklama,
+.baslangic__not {
+  margin: 0;
+  color: var(--metin-ikincil);
+}
+
+.baslangic__not {
+  font-size: var(--yazi-sm);
+}
+
+/* Özet ekranındaki "ilgi alanları yolda öncelikli olur" bilgi notu.
+   Anlam yalnızca renkle verilmez: metnin kendisi bilgiyi taşır. */
+.baslangic__ipucu {
+  margin: 0;
+  padding: var(--b-3);
+  font-size: var(--yazi-sm);
+  font-weight: 600;
+  color: var(--vurgu-koyu);
+  background: var(--vurgu-yumusak);
+  border: 1px solid var(--vurgu);
+  border-radius: var(--kose-sm);
+}
+
+/* --- Seçenekler ---------------------------------------------------------- */
+
+.baslangic__secenekler {
+  display: grid;
+  gap: var(--b-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.baslangic__secenek-metin {
+  flex: 1;
+}
+
+.baslangic__tik {
+  flex: none;
+  color: var(--vurgu-koyu);
+}
+
+/* --- Gezinme ------------------------------------------------------------- */
+
+.baslangic__gezinme {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-3);
+  justify-content: flex-end;
+}
+
+.baslangic__gezinme .dugme {
+  min-height: 44px;
+}
+
+/* --- Özet ---------------------------------------------------------------- */
+
+.baslangic__ozet {
+  display: grid;
+  gap: var(--b-3);
+  margin: 0;
+  padding: var(--b-4);
+  background: var(--zemin-vurgu);
+  border: 2px solid var(--cizgi);
+  border-radius: var(--kose-md);
+}
+
+.baslangic__ozet dt {
+  font-size: var(--yazi-sm);
+  color: var(--metin-ikincil);
+}
+
+.baslangic__ozet dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.baslangic__eylemler {
+  display: grid;
+  gap: var(--b-3);
+}
+
+/* --- Yüksek kontrast: fotoğraf yerine düz, yüksek kontrastlı zemin -------- */
+
+[data-tema='yuksek-kontrast'] .baslangic-sahne::before,
+[data-tema='yuksek-kontrast'] .baslangic__kahraman::before {
+  display: none;
+}
+
+[data-tema='yuksek-kontrast'] .baslangic {
+  border-width: 2px;
+}
+
+/* --- Hareket azaltma ----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .baslangic__cubuk > span {
+    transition: none;
+  }
+
+  .baslangic__kahraman::before {
+    animation: none;
+  }
+}
+
+[data-hareket-azalt='true'] .baslangic__kahraman::before {
+  animation: none;
+}

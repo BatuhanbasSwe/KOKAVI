@@ -58,6 +58,25 @@ export async function uniteListele(sehirId?: string): Promise<Unite[]> {
   return satirlar.map(uniteDonustur);
 }
 
+/** Tek şehir — yönetimde aynı kimliğin sessizce ezilmesini önlemek için. */
+export async function sehirGetir(id: string): Promise<Sehir | null> {
+  const s = await tekSorgu<SehirSatiri>(`SELECT * FROM city WHERE id = $1`, [id]);
+  return s ? sehirDonustur(s) : null;
+}
+
+/** Tek ünite — yönetimde aynı kimliğin sessizce ezilmesini önlemek için. */
+export async function uniteGetir(id: string): Promise<Unite | null> {
+  const s = await tekSorgu<UniteSatiri>(`SELECT * FROM unit WHERE id = $1`, [id]);
+  return s ? uniteDonustur(s) : null;
+}
+
+/** Tek külliye — yönetimde aynı kimliğin sessizce ezilmesini önlemek için. */
+export async function kulliyeGetir(id: string): Promise<Kulliye | null> {
+  const s = await tekSorgu<KulliyeSatiri>(`SELECT * FROM kulliye WHERE id = $1`, [id]);
+  if (!s) return null;
+  return { id: s.id, ad: s.ad, sehirId: s.sehir_id, bani: s.bani, aciklama: s.aciklama };
+}
+
 export async function kulliyeListele(): Promise<Kulliye[]> {
   const satirlar = await sorgu<KulliyeSatiri>(`SELECT * FROM kulliye ORDER BY ad`);
   return satirlar.map((s) => ({

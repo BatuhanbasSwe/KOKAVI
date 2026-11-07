@@ -3,8 +3,9 @@
  *
  * Tek bakışta bugün yapılabilecekler: büyük fotoğraflı "sıradaki ders"
  * kutucuğu, seri, Günün Eseri (bulanık fotoğrafla gizem), Hayrat mı Akar mı,
- * varsa Hatalarımı çalış, Canlı yarışma ve Sınıfım. Yeni kullanıcıya önce
- * Köstik'in tanıtım turu gösterilir.
+ * Canlı yarışmaya katıl (öğretmenin PIN'i ile), varsa Hatalarımı çalış.
+ * Yarışma kurmak öğretmen panelindedir. Yeni kullanıcıya
+ * önce tanıtım turu gösterilir.
  *
  * Erişilebilirlik: her kutucuk tek bir gerçek <a>; fotoğraflar süs (alt="")
  * çünkü eser adı bağlantı metninde yazılıdır. Durum metinle söylenir.
@@ -14,14 +15,12 @@ import { useDurum, useSeviye } from '../../app/DurumSaglayici';
 import { gunAnahtari } from '../../lib/ilerleme';
 import {
   IkonAlev,
+  IkonCanli,
   IkonDegistir,
   IkonOk,
-  IkonSaat,
-  IkonSinif,
   IkonTekrar,
   IkonYildiz,
 } from '../../app/Ikonlar';
-import { Maskot } from '../../app/Maskot';
 import { gununEseriDurumu } from '../gunun-eseri/GununEseriDavet';
 import { gununEseri, gunNumarasi } from '../gunun-eseri/oyun';
 import { useHataSayisi } from '../hatalar/HatalarSayfasi';
@@ -32,6 +31,7 @@ import { gorunumOku, gorunumYaz } from '../yol/yolGorunumu';
 import { kisaAd } from '../yol/kisaAd';
 import { Foto, Kutu } from './Mozaik';
 import { siradakiDers } from './siradaki';
+import { hedefDersSayisi, tercihleriOku, tercihVarMi } from '../../lib/tercihler';
 
 const GUNLUK_SOZLER = [
   'Bugün bir eser keşfedelim mi?',
@@ -41,7 +41,7 @@ const GUNLUK_SOZLER = [
   'Yanlış cevap yok, sadece ipucu var. Hadi!',
 ];
 
-/** Gün boyunca aynı kalan maskot sözü. */
+/** Gün boyunca aynı kalan günlük söz. */
 function gunlukSoz(): string {
   return GUNLUK_SOZLER[Math.floor(Date.now() / 86_400_000) % GUNLUK_SOZLER.length]!;
 }
@@ -58,22 +58,28 @@ export function BugunSayfasi() {
     () => ilerleme.tamamlananDersler.length === 0 && !tanitimGorulduMu(),
   );
 
+  const tercih = tercihleriOku();
   const toplamDers = yol?.sehirler.reduce((t, s) => t + s.toplamSayi, 0) ?? 0;
   const tamamlanan = ilerleme.tamamlananDersler.length;
-  const siradaki = siradakiDers(yol, gorunum);
+  const siradaki = siradakiDers(yol, gorunum, tercih.ilgiler);
   const hafta = haftaGunleri(seri.bugun);
+
+  const tercihYok = !tercihVarMi();
+  const gunlukHedef = tercih.gunlukHedef;
+  // Kişisel sıra: seçilen ilgiler sıradaki dersi değiştirdiyse kartta belli olsun.
+  const siradakiVarsayilan = siradakiDers(yol, gorunum);
+  const kisiselMi = !!siradaki && !!siradakiVarsayilan && siradaki.dersId !== siradakiVarsayilan.dersId;
 
   let sira = 0;
 
   return (
     <div className="bugun">
       <header className="bugun__ust">
-        <Maskot boyut={56} mutlu={toplamDers > 0 && tamamlanan === toplamDers} />
         <div className="bugun__selam">
           <h1 className="bugun__baslik">Merhaba, kâşif!</h1>
           <p className="bugun__soz">
             {tamamlanan === 0
-              ? 'Ben Köstik. İlk eserimizi birlikte keşfedelim mi?'
+              ? 'İlk eserimizi birlikte keşfedelim mi?'
               : toplamDers > 0 && tamamlanan === toplamDers
                 ? 'Bütün eserleri keşfettin! Arşivde daha yüzlercesi var.'
                 : gunlukSoz()}
@@ -109,6 +115,7 @@ export function BugunSayfasi() {
             <span className="mozaik__icerik">
               <span className="mozaik__ust">
                 Sıradaki ders · {siradaki.sehirAdi}
+                {kisiselMi ? ' · ilgine göre' : ''}
               </span>
               <span className="mozaik__eser">{kisaAd(siradaki.eserAdi)}</span>
               <span className="mozaik__eylem">
@@ -129,6 +136,19 @@ export function BugunSayfasi() {
             </span>
           </Kutu>
         ) : null}
+
+        {tercihYok && (
+          <Kutu href="#/baslangic" sira={sira++} sinif="mozaik__oge--buyuk mozaik__oge--duz">
+            <span className="mozaik__icerik">
+              <span className="mozaik__ust">4 kısa soru · 1 dakika</span>
+              <span className="mozaik__eser">Seni tanıyalım</span>
+              <span className="mozaik__eylem">
+                Cevapla
+                <IkonOk boyut={18} />
+              </span>
+            </span>
+          </Kutu>
+        )}
 
         <Kutu href="#/seri" sira={sira++} sinif="mozaik__oge--seri">
           <span className="mozaik__sayi">
@@ -162,6 +182,18 @@ export function BugunSayfasi() {
           </span>
         </Kutu>
 
+        <Kutu href="#/canli" sira={sira++} sinif="mozaik__oge--foto">
+          <Foto className="mozaik__foto" src="/gorseller/bursa-ulucami/k.webp" />
+          <span className="mozaik__karartma" aria-hidden="true" />
+          <span className="mozaik__icerik">
+            <span className="mozaik__simge" aria-hidden="true">
+              <IkonCanli boyut={22} />
+            </span>
+            <span className="mozaik__ad">Canlı yarışmaya katıl</span>
+            <span className="mozaik__alt">Öğretmeninin PIN'i ile</span>
+          </span>
+        </Kutu>
+
         <Kutu href="#/hayrat-akar" sira={sira++} sinif="mozaik__oge--foto">
           <Foto className="mozaik__foto" src="/gorseller/bursa-koza-hani/k.webp" />
           <span className="mozaik__karartma" aria-hidden="true" />
@@ -187,36 +219,13 @@ export function BugunSayfasi() {
             </span>
           </Kutu>
         )}
-
-        <Kutu href="#/canli" sira={sira++} sinif="mozaik__oge--foto">
-          <Foto className="mozaik__foto" src="/gorseller/hatay-kanuni-sultan-suleyman-kervansarayi/k.webp" />
-          <span className="mozaik__karartma" aria-hidden="true" />
-          <span className="mozaik__icerik">
-            <span className="mozaik__simge" aria-hidden="true">
-              <IkonSaat boyut={22} />
-            </span>
-            <span className="mozaik__ad">Canlı yarışma</span>
-            <span className="mozaik__alt">Sınıfınla aynı anda</span>
-          </span>
-        </Kutu>
-
-        <Kutu href="#/sinif" sira={sira++} sinif="mozaik__oge--foto">
-          <Foto className="mozaik__foto" src="/gorseller/karatay-medresesi/k.webp" />
-          <span className="mozaik__karartma" aria-hidden="true" />
-          <span className="mozaik__icerik">
-            <span className="mozaik__simge" aria-hidden="true">
-              <IkonSinif boyut={22} />
-            </span>
-            <span className="mozaik__ad">Sınıfım</span>
-            <span className="mozaik__alt">{ilerleme.sinifKodu ? `Kod ${ilerleme.sinifKodu}` : 'Sınıf koduyla katıl'}</span>
-          </span>
-        </Kutu>
       </ul>
 
       {toplamDers > 0 && (
         <p className="bugun__ozet">
           {tamamlanan}/{toplamDers} ders · {seviye.ad}
           {seviye.kalanDers !== null ? ` · ${seviye.kalanDers} ders sonra bir üst seviye` : ''}
+          {gunlukHedef ? ` · Günlük hedefin: ${hedefDersSayisi(gunlukHedef)} ders` : ''}
         </p>
       )}
     </div>

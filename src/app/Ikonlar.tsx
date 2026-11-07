@@ -2,7 +2,7 @@
  * Uygulama ikon seti: tek aile, Phosphor (@phosphor-icons/react, MIT).
  * Simgeler tek tek içe aktarılır (1500 simgelik toplu dosya yüklenmez).
  * Arayüzde `bold`, aktif durumda `fill` ağırlığı. Elle çizilmiş simge yok;
- * marka çizimi yalnızca maskot Köstik'tir (Maskot.tsx).
+ * marka işareti favicon'daki "K" harfidir.
  *
  * Erişilebilirlik: ikonlar her zaman aria-hidden'dır; anlamı yanındaki metin
  * veya `aria-label` taşır (WCAG 1.1.1, 1.4.1). Emoji kullanılmaz: ekran
@@ -32,18 +32,22 @@ import { Drop } from '@phosphor-icons/react/Drop';
 import { FireSimple } from '@phosphor-icons/react/FireSimple';
 import { Flame } from '@phosphor-icons/react/Flame';
 import { FlowerTulip } from '@phosphor-icons/react/FlowerTulip';
-import { Gear } from '@phosphor-icons/react/Gear';
+import { FunnelSimple } from '@phosphor-icons/react/FunnelSimple';
+import { GearSix } from '@phosphor-icons/react/GearSix';
 import { Hourglass } from '@phosphor-icons/react/Hourglass';
 import { House } from '@phosphor-icons/react/House';
 import { Jar } from '@phosphor-icons/react/Jar';
 import { Key } from '@phosphor-icons/react/Key';
 import { Lightbulb } from '@phosphor-icons/react/Lightbulb';
+import { Lightning } from '@phosphor-icons/react/Lightning';
 import { Lock } from '@phosphor-icons/react/Lock';
 import { MapTrifold } from '@phosphor-icons/react/MapTrifold';
 import { Medal } from '@phosphor-icons/react/Medal';
 import { Mosque } from '@phosphor-icons/react/Mosque';
 import { Path } from '@phosphor-icons/react/Path';
 import { Question } from '@phosphor-icons/react/Question';
+import { ShieldCheck } from '@phosphor-icons/react/ShieldCheck';
+import { SignIn } from '@phosphor-icons/react/SignIn';
 import { SpeakerHigh } from '@phosphor-icons/react/SpeakerHigh';
 import { Star } from '@phosphor-icons/react/Star';
 import { StarFour } from '@phosphor-icons/react/StarFour';
@@ -89,7 +93,8 @@ export const IkonPusula = sar(Compass);
 export const IkonDefter = sar(BookOpenText);
 export const IkonHarita = sar(MapTrifold);
 export const IkonSinif = sar(UsersThree);
-export const IkonAyarlar = sar(Gear);
+export const IkonAyarlar = sar(GearSix);
+export const IkonSuzgec = sar(FunnelSimple);
 export const IkonProfil = sar(UserCircle);
 export const IkonGeri = sar(ArrowLeft);
 export const IkonSagOk = sar(CaretRight, 20);
@@ -97,6 +102,9 @@ export const IkonCarsi = sar(Storefront);
 export const IkonTakvim = sar(CalendarCheck);
 export const IkonMadalya = sar(Medal);
 export const IkonBelge = sar(Certificate);
+export const IkonGiris = sar(SignIn);
+export const IkonYonetim = sar(ShieldCheck);
+export const IkonCanli = sar(Lightning);
 
 /* --- Göstergeler (renkli: seri safran, elmas mavi) ---------------------- */
 

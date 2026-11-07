@@ -15,7 +15,7 @@ import { api, yonetimApi } from '../../lib/api';
 import { CokSatirliGirdi, MetinGirdisi, OnayKutusu, SecimGirdisi } from './Alan';
 import { OnayDiyalogu } from './OnayDiyalogu';
 import { VeriTablosu } from './VeriTablosu';
-import { kimlikUret, metinVeyaNull, sayiyaCevir, type AlanHatalari } from './yardimci';
+import { kimlikUret, metinVeyaNull, panelHataMesaji, sayiyaCevir, type AlanHatalari } from './yardimci';
 
 interface UniteFormu {
   id: string;
@@ -42,7 +42,17 @@ interface SehirGrubu {
   uniteler: Unite[];
 }
 
-export function UniteYonetimi() {
+export interface UniteYonetimiProps {
+  /**
+   * Üst bileşendeki "Verileri yenile" sayacı. Değişince ünite listesi de
+   * yeniden çekilir; aksi halde aynı ekranda iki farklı ünite sayısı görünür.
+   */
+  tazeleAnahtari?: number;
+  /** Ünite/şehir eklendi-silindiğinde üstteki özet kartları tazelensin. */
+  onVeriDegisti?: () => void;
+}
+
+export function UniteYonetimi({ tazeleAnahtari = 0, onVeriDegisti }: UniteYonetimiProps = {}) {
   const [uniteler, setUniteler] = useState<Unite[]>([]);
   const [sehirler, setSehirler] = useState<Sehir[]>([]);
   const [yukleniyor, setYukleniyor] = useState(true);
@@ -71,7 +81,7 @@ export function UniteYonetimi() {
       setSehirler(sehirListesi);
       setYuklemeHatasi(null);
     } catch (hata: unknown) {
-      setYuklemeHatasi(hata instanceof Error ? hata.message : 'Üniteler yüklenemedi.');
+      setYuklemeHatasi(panelHataMesaji(hata, 'Üniteler yüklenemedi.'));
     } finally {
       setYukleniyor(false);
     }
@@ -79,7 +89,8 @@ export function UniteYonetimi() {
 
   useEffect(() => {
     void yukle();
-  }, [yukle]);
+    // `tazeleAnahtari` üstteki "Verileri yenile" düğmesiyle artar.
+  }, [yukle, tazeleAnahtari]);
 
   /** Bir şehirdeki en büyük sıradan sonraki boş sıra önerilir. */
   const siraOnerisi = useCallback(
@@ -168,8 +179,9 @@ export function UniteYonetimi() {
       setForm(bosUniteFormu());
       setSiraElle(false);
       await yukle();
+      onVeriDegisti?.();
     } catch (hata: unknown) {
-      setIslemHatasi(hata instanceof Error ? hata.message : 'Ünite kaydedilemedi.');
+      setIslemHatasi(panelHataMesaji(hata, 'Ünite kaydedilemedi.'));
     } finally {
       setMesgul(false);
     }
@@ -218,8 +230,9 @@ export function UniteYonetimi() {
       setForm((mevcut) => ({ ...mevcut, sehirId: id, sira: String(siraOnerisi(id)) }));
       setSiraElle(false);
       await yukle();
+      onVeriDegisti?.();
     } catch (hata: unknown) {
-      setIslemHatasi(hata instanceof Error ? hata.message : 'Şehir kaydedilemedi.');
+      setIslemHatasi(panelHataMesaji(hata, 'Şehir kaydedilemedi.'));
     } finally {
       setMesgul(false);
     }
@@ -238,10 +251,11 @@ export function UniteYonetimi() {
       setBildirim(`“${silinecek.ad}” ünitesi silindi.`);
       setSilinecek(null);
       await yukle();
+      onVeriDegisti?.();
       // Silinen satırın düğmesi kaybolduğu için odak bölüm başlığına taşınır (SC 2.4.3).
       window.setTimeout(() => document.getElementById('unite-baslik')?.focus(), 0);
     } catch (hata: unknown) {
-      setIslemHatasi(hata instanceof Error ? hata.message : 'Ünite silinemedi.');
+      setIslemHatasi(panelHataMesaji(hata, 'Ünite silinemedi.'));
       setSilinecek(null);
     } finally {
       setSiliniyor(false);
@@ -332,7 +346,7 @@ export function UniteYonetimi() {
                   {
                     anahtar: 'aciklama',
                     baslik: 'Açıklama',
-                    icerik: (unite) => unite.aciklama ?? <span className="metin-soluk">—</span>,
+                    icerik: (unite) => unite.aciklama ?? <span className="metin-soluk">Yok</span>,
                   },
                   {
                     anahtar: 'islem',
@@ -410,7 +424,7 @@ export function UniteYonetimi() {
                 }));
               }}
               secenekler={sehirSecenekleri}
-              bosEtiket="— Şehir seçin —"
+              bosEtiket="Şehir seçin"
               hata={hatalar['unite-sehir']}
               ipucu={
                 sehirSecenekleri.length === 0

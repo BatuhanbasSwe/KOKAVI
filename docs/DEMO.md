@@ -1,136 +1,152 @@
-# Demo senaryosu ve jüri provası
+# Demo Senaryosu — Final 7–8 Kasım 2026
 
-Fiziki final: **7–8 Kasım 2026**, 48 saatlik maraton. Sunum takım üyeleri tarafından
-yapılmalı (şartname md. 5.3) ve **her üye kendi geliştirdiği kısmın teknik ve
-işlevsel yönüne hâkim olmalı** (şartname 5.2.3).
+> **Ürün:** https://kokavi-one.vercel.app · **Takım:** TRİA · **Süre:** ana senaryo **3:50**,
+> jüri 3 dakika verirse **kırpılmış 3:00** planı (§4'te).
+> Şartname 5.1.1: ekran görüntüsü/statik tasarım çalışan ürün demosu yerine geçmez → **canlı ürün**.
+> Şartname 5.3: sunumu takım yapar. Bu senaryoda **iki anlatıcı**, **iki persona** vardır.
+> Sayılar ve iddiaların kanıtı: [SAVUNMA-NOTLARI.md](SAVUNMA-NOTLARI.md).
 
-Şartname md. 5.1.1: *"Sunum, ekran görüntüsü veya statik tasarım çalışan ürün
-demosu yerine geçmez."* → **Canlı, çalışan ürün gösterilecek.**
+## 1. İki persona
 
----
+| Persona | Nerede / cihaz | Ne yapar | Neyi kanıtlar |
+|---|---|---|---|
+| **Çocuk (evde)** | Aile cihazı, tarayıcı/PWA | Öğrenme yolunda ders bitirir, Vakıf Röntgeni'ni görür, defterine ekler | Ürünün çocuk akışı; ilerleme cihazda; cezasız öğrenme |
+| **Öğretmen (tahtada)** | Okulda tek cihaz (tahta/projeksiyon) | Sınıf kodu açar, dersi **Tahta modu**nda sınıfla birlikte işler, sayacı görür | Okulda telefon olmadan kullanım; anonim sınıf külliyesi |
 
-## 3 dakikalık canlı demo (dondurulmuş senaryo)
+İki anlatıcı: **A = Ürün/Anlatı** (çocuk akışı, hikâye), **B = Veri/Sistem** (öğretmen, veri dürüstlüğü, teknik cevaplar).
+Herkes kendi bölümünü anlatır (şartname 5.2.3). Geçiş cümlesi: *"Şimdi aynı dersi okulda, tek cihazda görelim."*
 
-| Süre | Ne gösterilir | Kim anlatır |
+## 2. Ana senaryo — 3:50 (dondurulmuş)
+
+| Süre | Ekran / rota | Ne denir | Kim |
+|---|---|---|---|
+| 0:00–0:20 | **Bugün** `#/bugun` | "Kök Avı canlı: 57 ders, 3 şehir, 633 eserlik arşiv. Bugün iki kişiyiz: evdeki çocuk ve tahtadaki öğretmen." | A |
+| 0:20–0:40 | **Öğrenme Yolu** `#/yol` | "Bursa 3 ünite, toplam 5 ünite 57 ders. Sıradaki ders burada; Kuzey Yıldızı ölçümüz **bir şehri uçtan uca tamamlamak**." | A |
+| 0:40–1:05 | **Ders 1/5 Merak** `#/ders/<dersId>` | "İlk adım tahmin: **hiçbir tahmin yanlış sayılmaz.** Kalp yok, ceza yok; yanlış sadece merakı başlatır." (kasten bir seçenek işaretlenir) | A |
+| 1:05–1:30 | **2/5 Bağlam** | "Vakıf bir bina değil, **kendi kendini finanse eden bir kurum**. Hayrat hizmet, akar gelir; ikisi aynı vakfın iki yüzü." | A |
+| 1:30–1:50 | **3/5 Perspektif** | "Tek karar anı: çocuk kendini 15. yüzyılda bir vakıf yöneticisi yerine koyar." | A |
+| 1:50–2:15 | **4/5 Geri çağırma** | "Dört egzersiz tipi. Kasten yanlış cevap: **ipucu gelir, ilerleme durmaz, elmas eksilmez.**" | A |
+| 2:15–2:50 | ⭐ **5/5 Yansıma — Vakıf Röntgeni** | "Ürünün ayırtıcı ekranı. Habib-i Neccar: **'Vakfa para nereden geliyordu?'** (Kozya %59 · Buhşîn %21 · arazi %20) ve **'Bu para nereye harcanıyordu?'** (maaşlar %77 · cami masrafları %23) — aynı paranın iki tarafı, iki ayrı liste." | A |
+| 2:50–3:05 | Vakıf Röntgeni — belgesiz örnek | "Peki belge yoksa? Başka bir ders: uygulama çubuk çizmez, açıkça **'belgelenememiştir'** der. **Oran uydurmayız** — asıl fark burada." | A |
+| 3:05–3:28 | **Öğretmen paneli** `#/ogretmen` → `#/tahta/<kod>/<dersId>` | "Okulda öğrenci telefonu yok. Öğretmen sınıf kodu açar, **Tahtada aç** ile dersi tek cihazda işler; ders bitince sınıf külliyesine işlenir. Sınıf kodu yalnız **evde devam** için." | B |
+| 3:28–3:43 | ⭐ **Sınıf Vakıf Röntgeni** `#/tahta/<kod>/rontgen` | "Ders bitince panelde **hedef külliye** ilerlemesi görünür: sınıf birlikte Yeşil Külliyesi'ni tamamlıyor, 1/4. **Sınıf Röntgeni**'nde birlikte görülen eserlerin gelir/gider listeleri tek ekranda — hangi çocuğun gördüğü yazmaz, yalnız eserler ve toplu sayaç var." | B |
+| 3:43–3:50 | Öğretmen paneli — sayaç | "Panelde 'kaç öğrenci' yazmaz: **kaç kez tamamlandı** yazar. Kimlik, cihaz, IP tutulmaz. 57 dersin tamamı ücretsiz; ses iddiası yok, dersler ses olmadan da biter." | B |
+
+> Demo sonunda **hiçbir ekstra özellik** gösterilmez. Canlı yarışma, Köstik sohbeti,
+> zaman tüneli bu sunumda yoktur.
+
+## 3. Tıklama yolları (tam adımlar)
+
+### A. Çocuk akışı (evde) — 2:30
+1. `https://kokavi-one.vercel.app` → `#/bugun`. Fotoğraflı **sıradaki ders** kutucuğuna bas (`Başla` / `Derse devam`) → `#/yol?odak=siradaki`.
+2. Yol'da Bursa üniteleri görünür; sıradaki durağa bas → `#/ders/<dersId>` (adres çubuğunda kimlik görünür).
+3. **Merak:** bir seçenek seç → *"Güzel tahmin!"* + köprü metni → **Devam**.
+4. **Bağlam:** kavram kartları (VAKIF, İMARET, EVKAF DEFTERİ) → **Devam**.
+5. **Perspektif:** tek seçenek → **Devam**.
+6. **Geri çağırma:** egzersizleri çöz; yanlışta **İpucu** → devam. Son egzersizde Yansıma'ya geçilir.
+7. **Yansıma:** Vakıf Röntgeni iki soru; en altta **Dersi bitir**.
+8. **Ders sonu:** elmas/seri/defter + "1, 3, 7, 14 gün" tekrar cümlesi → **Devam et**.
+9. **Defter** `#/defter`: pul ve rozetler; **Profil** `#/profil`: seri/elmas/seviye.
+
+**Belgeli ↔ belgesiz karşılaştırması (adres çubuğuyla, ~20 sn):**
+`#/ders/hatay-u1-d1` = Habib-i Neccar (iki liste, belgeli) ·
+`#/ders/bursa-u1-d1` = Ulucami (gelir dağılımı **belgelenememiştir**).
+> Ulucami Yansıma'sında **Geçmişten bugüne** kartı vardır: 1862 ve 1865–75
+> fotoğrafları bugünkü görünümle kaydırıcıdan karşılaştırılır (+15 sn, isteğe bağlı).
+> Ders kimlikleri seed sırasına bağlıdır: demo sabahı iki dersi açıp doğrula, yer imine ekle.
+
+### B. Öğretmen akışı (tahtada) — ~45 sn
+1. `#/profil` → **Yetişkinler için** → *Öğretmen paneli* (`#/ogretmen`). Doğrudan URL de olur.
+2. Giriş yap (demo hesabı; parola **repoda tutulmaz**).
+3. **Sınıf oluştur** (ör. ad: "TRİA Demo") → kod üretilir (ör. `KTM-4829`).
+4. Sınıf satırına bas → detay: üstte **gizlilik notu**, altta ünite tablosu.
+5. Tabloda bir dersin **Tahtada aç** bağlantısı → `#/tahta/<kod>/<dersId>`.
+6. Tahta modu: büyük yazılı, sade akış (tekrar sorusu sorulmaz, elmas verilmez). Dersin sonunda **Dersi bitir** → *"Sınıf külliyesine işlendi."*
+7. Ders sonu ekranındaki **Sınıf Röntgeni'ni tahtada aç** bağlantısı → `#/tahta/<kod>/rontgen`. Ya da panelde sınıf detayı → **Sınıf külliyesi** kartı → aynı bağlantı.
+8. Röntgen ekranı: hedef külliye ilerlemesi (ör. **1/4** Yeşil Külliyesi) + sınıfın birlikte gördüğü eserlerin **gelir/gider** listeleri. Kimlik yok; yalnız eser + toplu sayaç.
+9. **Öğretmen paneline dön** → sayaç **"1 kez tamamlandı"**; kaç öğrenci olduğu **bilinmez**.
+10. (Opsiyonel, 10 sn) Çocuk evde: `#/sinif` → kodu girer → "evde devam" açıklanır.
+
+> **Admin panel** (`#/panel`) şartname 5.1.1 CRUD içindir; **ana senaryoda yoktur**.
+> Jüri CRUD sorarsa: canlıda da gösterilebilir (7 Kasım 4. tur: oturumlar Upstash
+> Redis'te, yönetim yazmaları ortak işlem günlüğünde — sunucu örnekleri arasında
+> paylaşılır). Yedek: yerel `npm start` + önceden açık oturum (§5).
+
+## 4. Jüri 3 dakika verirse — kırpılmış plan (3:00)
+
+| Süre | Ekran / rota | Ne denir |
 |---|---|---|
-| 0:00–0:20 | **Öğrenme yolu** açılır (Bugün → "Başla", Yol sekmesinde sıradaki durağa kayar). Bursa Ünite 1/2 tamamlanmış, Ünite 3 "şu an burada", Konya ve Hatay üniteleri sırada. Kuzey Yıldızı metriği gösterilir. | Ürün & Sistem Mimarisi |
-| 0:20–0:50 | **Adım 01 Merak:** cezasız tahmin. Kasten "yanlış" bir seçenek işaretlenir → *"Hiçbir tahmin yanlış sayılmaz"* mesajı çıkar. | Ürün & Sistem Mimarisi |
-| 0:50–1:10 | **Adım 02 Bağlam:** HAYRAT / AKAR kavram kartları. Ürünün çekirdek fikri burada anlatılır. | Kullanıcı Deneyimi & Anlatı |
-| 1:10–1:30 | **Adım 03 Perspektif:** "Sen kervan tüccarısın" tek karar anı. | Kullanıcı Deneyimi & Anlatı |
-| 1:30–1:55 | **Adım 04 Geri çağırma:** egzersiz tipleri — Eşleştir (hayrat/akar), sonra Sırala (vakfiye gelir dağılımı). Yanlış cevap verilir → **ipucu gelir, ilerleme durmaz, kalp gitmez.** | Veri & İçerik Mühendisliği |
-| 1:55–2:25 | ⭐ **Adım 05 Yansıma — Vakıf Röntgeni.** Habib-i Neccar açılır: **"Vakfa para nereden geliyordu?"** (Kozya köyü %59 · Buhşîn köyü %21 · arazi kirası %20) ve **"Bu para nereye harcanıyordu?"** (personel maaşları %77 · cami masrafları %23). İki ayrı liste — *aynı paranın iki tarafı.* | Veri & İçerik Mühendisliği |
-| 2:25–2:40 | Sonra **gelir dağılımı belgelenememiş bir eser** açılır ve uygulamanın *"belgelenememiştir"* dediği gösterilir. **Aradaki fark, ürünün dürüstlüğüdür.** | Veri & İçerik Mühendisliği |
-| **2:40–2:55** | ⭐⭐ **HATAY ANI — duygusal zirve.** Habib-i Neccar'ın "bugün ne oldu" adımı: envanter fotoğrafları **depremden bir gün önce (5 Şubat 2023)** sergilenmişti; bir gün sonra bina yıkıldı. Uygulama, eserin **deprem öncesi son sistematik kaydını** gösterir. Sonra restorasyon ve **27 Aralık 2025'te yeniden ibadete açılış**. Cümle: *"Bu kayıt olmasaydı, o günü hatırlayan tek şey hafızamız olurdu."* | Kullanıcı Deneyimi & Anlatı |
-| 2:55–3:10 | **Ders sonu kutlaması** (+10 elmas, seri, deftere eklendi) ve **aralıklı tekrar**: sonraki derste "Tekrar zamanı: Yeşilcami dersinden hatırla" sorusu açılır. *"İpucusuz bildikçe 1, 3, 7, 14 gün sonra yeniden sorulur — öğrenilen kalıcı olur."* | Kullanıcı Deneyimi & Anlatı |
-| 3:10–3:25 | **Yönetim paneli:** giriş yapılır, yeni bir eser eklenir (**İngilizce ad + tarihçe dahil**), yayına alınır ve öğrenme yolunda belirdiği gösterilir (**CRUD** — şartname 5.1.1 zorunlu maddesi). | Ürün & Sistem Mimarisi |
-| 3:25–3:35 | **Harita + filtreler:** Bilgi Notu'nun istediği *"şehir ya da eser türüne göre filtreleme"*. "Hatay" seçilir → 12 eser. | Ürün & Sistem Mimarisi |
-| 3:35–3:45 | **Öğretmen paneli:** sınıf kodu oluşturulur, toplu ilerleme gösterilir. *"Bu sayılar kaç öğrenci olduğunu göstermez — kimlik toplamıyoruz."* | Kullanıcı Deneyimi & Anlatı |
-| 3:45–3:55 | **Erişilebilirlik:** yüksek kontrast teması + yazı boyutu + klavye ile gezinme canlı açılır. Gerçek tarayıcıda 22 ekran × 3 temada (koyu, açık, yüksek kontrast) axe-core ile 0 ihlal olduğu belirtilir. | Kullanıcı Deneyimi & Anlatı |
-| 3:55–4:05 | **Gizlilik:** "İlerleme sunucuya hiç gitmiyor" — tarayıcı ağ sekmesi gösterilir, hiçbir kullanıcı verisi gönderilmediği kanıtlanır. | Veri & İçerik Mühendisliği |
+| 0:00–0:15 | `#/bugun` + `#/yol` | "57 ders, 3 şehir, 633 arşiv; sıradaki ders yolda." |
+| 0:15–0:40 | Merak + Bağlam | "Tahmin yanlış sayılmaz; vakıf bina değil kurum." |
+| 0:40–1:20 | Yansıma: Vakıf Röntgeni (Habib-i Neccar) | İki liste: para nereden gelir / nereye gider. |
+| 1:20–1:45 | Belgesiz örnek (`#/ders/bursa-u1-d1`) | "Belge yoksa **belgelenememiştir** der; oran uydurmaz." |
+| 1:45–2:25 | Tahta modu (`#/ogretmen` → `#/tahta/...`) | "Okulda telefon yok; tek cihaz, sınıf külliyesine işlenir; sayaç, kimlik yok." |
+| 2:25–3:00 | Kapanış | Doğru sayılar + yol haritası (Bursa 33 → hedef 80, arşiv 6/57, TTS yok). |
 
-> **Bu senaryo finalden 1 hafta önce donar.** Son 3 güne bırakılmaz.
+**Kırpılanlar (sorulursa tek cümle):** Perspektif, geri çağırma egzersizleri, ders sonu,
+defter, harita/Keşfet. *"Süre nedeniyle atladık; canlı üründe hepsi var."*
 
----
+## 5. Yedek planlar
 
-## Önceden hazırlanmış durum (demo verisi)
-
-Demoyu hızlı başlatmak için `npm run seed` sonrası:
-
-- Bursa Ünite 1 ve 2 tamamlanmış olsun → `localStorage`'a örnek ilerleme yazılır.
-- En az **1 eserde `gelir_dagilimi_durumu = 'belgeli'`** (çubuklar görünsün)
-- En az **1 eserde `gelir_dagilimi_durumu = 'belge-bulunamadi'`** (dürüstlük ilkesi görünsün)
-
-Bu ikisinin **birlikte** gösterilmesi kritik: jüri "veri eksikse ne yapıyorsunuz?"
-sorusunun cevabını üründe görmeli.
-
----
-
-## Jüri sorularına hazır cevaplar
-
-| Soru | Cevap | Kanıt |
+| Durum | Belirti | Yedek plan |
 |---|---|---|
-| "Bu bir Duolingo kopyası değil mi?" | Motor ödünç alındı, içerik ve veri modeli özgün. Vakıf Röntgeni ve vakfiye veri modeli kimsede yok. | `README.md` eşleme tablosu |
-| "Sesli rehber zaten var, farkınız ne?" | Mevcut sistemler **biletli müze** odaklı; vakıf eserlerinin gişesi yok, model uygulanamaz. | `../Arastirma_Raporu.md` §5.4 |
-| "Bu bir ChatGPT wrapper'ı mı?" | AI içerik uydurmak için değil, **dağınık veriyi yapılandırmak** için kullanıldı. Her çıktı kaynağa bağlı ve insan kontrolünden geçer. | `data/research/` kaynak künyeleri |
-| "Gelir oranlarını nereden aldınız?" | Belgelendiği yerden; belgelenemeyenlerde uygulama açıkça "belgelenememiştir" der. Oran uydurulmaz. | `docs/KARARLAR.md` §8 |
-| "Çocuk verisini nasıl koruyorsunuz?" | Hiç toplamıyoruz. Mimari olarak: ilerleme sunucuya gitmez, sınıf kodu anonim. | `tests/api.test.ts` gizlilik testi + `tests/guvenlik.test.ts` §10 |
-| "Sınıf özelliği çocukları takip etmiyor mu?" | Hayır. Sunucu yalnızca sayaç tutar: "bu kodla bu ders kaç kez bitti". Kaç farklı öğrenci olduğu **bilinemez** — arayüz de iddia etmez. | `server/repo/sinif.ts` başlığı |
-| "Yönetim paneli güvenli mi?" | Tüm uçlar korumalı, parolalar scrypt, oturumlar httpOnly çerezde, kaba kuvvet kilitli. | `tests/guvenlik.test.ts` (67 test) |
-| "Erişilebilirlik gerçekten çalışıyor mu?" | Gerçek tarayıcıda 22 ekran × 3 tema, axe-core ile **0 ihlal**; %160 yazı boyutunda taşma yok. | `tests/erisilebilirlik-denetim.test.tsx`, `tests/erisilebilir-ders-akisi.test.tsx`, `tests/tema-kontrast.test.ts` |
-| "Hangi teknolojiyle yazdınız?" | React+TS PWA, Fastify, PostgreSQL (PGlite), MapLibre. | `README.md` yığın tablosu |
-| "Vakıf modelini anlatıyorsunuz, siz neden çocuktan elmas satıyorsunuz?" | Ana öğrenme yolu her zaman ücretsiz. Elmas harcaması yalnızca kozmetik/konfor; satın almalar veli onaylı. Gelirin yarısı kurumsal lisans ve hibe. | PDF sayfa 3 |
-| "Yeni şehir eklemek ne kadar sürer?" | Yazılım maliyeti sıfır: şehir parametreli mimari. Panelden şehir + ünite tanımlanır, içerik eklenir. | Canlı gösterim |
-| "Öğrenilen nasıl kalıcı oluyor?" | Aralıklı tekrar: ilk tekrar sonraki derste, ipucusuz bildikçe 1-3-7-14 gün. Takvim cihazda. | `tests/tekrar.test.ts` |
-| "Bu 42 dışındaki kullanıcılar için de çalışır mı?" | Evet, PWA — kurulum gerektirmez, tarayıcıdan açılır. | Canlı gösterim |
+| **İnternet yok** | Sayfa açılmıyor / "Çevrimdışısın" bandı | PWA önbelleği + yerel sunucu: `npm run seed` (API kapalıyken) → `npm run build` → `npm start` → `http://127.0.0.1:8787`. En az bir ders önbellekte prova edilmiş olmalı. |
+| **Harita altlığı yok** (tile gelmiyor) | Harita boş/gri | İl–ilçe sınırları **gömülüdür**; harita yine çizilir. Cümle: "Altlık gelmezse gömülü sınırlarla çalışır." Alternatif: `#/arsiv` (633 eser) + Keşif rotası. |
+| **Admin/öğretmen girişi olmaz** (canlı oturum, ağ) | Giriş ekranı hata verir | Önceden açık oturum (demo sabahı gir, sekmeyi kapatma) → yoksa yerel `npm start` + bilinen parola → yoksa **girişsiz tahta rotası**: `#/tahta/<kod>/<dersId>` doğrudan açılır; sayaç sözlü anlatılır. Canlıda `curl -s …/api/saglik` → `oturumDeposu:"redis"` ve `gunluk:"redis"` ise canlı giriş/CRUD güvenilirdir (7 Kasım 4. tur); değilse canlı admin girişine güvenme. |
+| **Projeksiyon / salon** | Yazı küçük, kontrast zayıf | Tahta modu (büyük punto) + tarayıcı yakınlaştırma %125; Ayarlar → **yüksek kontrast** teması; koyu tema varsayılan. Uzun kabloya karşı HDMI + yedek dongle. |
+| **Cihaz sesi yok / sessiz salon** | "Dinle" düğmesi görünmez | Bu **arıza değil**: sessiz modda düğme çizilmez, ders ses olmadan biter. Cümle: "Dersler ses olmadan da tamamlanır." |
+| **Vercel/servis düşer** | Beyaz ekran / API hatası | Yerel `npm start` + telefon hotspot; demo verisi seed'den gelir. |
+| **Ders kimliği değişmiş** | `#/ders/...` hata | Öğretmen panelindeki **Tahtada aç** bağlantısından aç (kimlik oradan gelir). |
+| **Sunucu bozuk / seed bozuk** | "İçerik yüklenemedi" | `.pgdata` yedeğini geri koy → `npm run seed`. Prova günü yedek klasör alınır. |
 
----
+## 6. Demo öncesi kontrol listesi
 
-## Bilinen riskler ve önlemler
+- [ ] Canlı doğrulama: `/api/eserler` **57**, `/api/dersler` **57**, `/api/yol` **3 şehir / 5 ünite**, `/arsiv/liste.json` **633**.
+- [ ] Canlı URL (https://kokavi-one.vercel.app) yeni sürümde: tahta modu var, sade harita, `/api/sor` **404**.
+- [ ] **Canlı yarışma gösterilecekse:** `curl -s https://kokavi-one.vercel.app/api/saglik` → `"depo":"redis"` **ve** `"gunluk":"redis"` **ve** `"oturumDeposu":"redis"` olmalı. Biri `bellek`/`kapali`/`yerel` ise o katman sunucu örnekleri arasında bölünür (Vercel'de Upstash bağlanıp deploy yenilenmeli).
+- [ ] Yerel yedek: `npm run seed` (API kapalıyken) → `npm run build` → `npm start` çalışıyor.
+- [ ] Demo tarayıcı profili: ilerleme hazır (Ünite 1'de 2–3 ders bitmiş görünsün; "Derse devam" çıksın).
+- [ ] Belgeli ders (`#/ders/hatay-u1-d1`) ve belgesiz ders (`#/ders/bursa-u1-d1`) açılıyor; **yer iminde**.
+- [ ] Öğretmen oturumu demo sabahı açıldı; sınıf oluşturuldu; **Tahtada aç** bir kez denendi.
+- [ ] **Sınıf külliyesi**: tahta dersten sonra panelde hedef külliye ilerlemesi (ör. 1/4) görünüyor.
+- [ ] **Sınıf Röntgeni** `#/tahta/<kod>/rontgen` tahtada açılıyor; en az bir belgeli + bir belgesiz eser görünüyor.
+- [ ] `/api/sinif/<kod>/rontgen` canlıda 200 dönüyor (sınıf koduyla).
+- [ ] Günün Eseri bugün oynanmamış (gizem kartı dolu görünsün).
+- [ ] Defter dolu, Profil sayıları tutarlı (seri/elmas/seviye).
+- [ ] İnternetsiz prova: uçak modu + yerel sunucu; ders baştan sona bitti.
+- [ ] Harita prova: internetli + internet kapalı (gömülü sınırlar).
+- [ ] Tema prova: koyu + yüksek kontrast; projeksiyonda okunuyor. Yazı %125/160'ta taşma yok.
+- [ ] Klavye ile ders: Tab/Enter; odak görünür; atlama bağlantısı.
+- [ ] Sessiz mod açık/kapalı iki durumda ders bitti.
+- [ ] Admin panel **opsiyonel**: demo sabahı canlı girişi bir kez dene; `api/saglik` `oturumDeposu:"redis"` + `gunluk:"redis"` döndüğünü doğrula. Parola repoda/sohbette yok; yerel giriş yedek.
+- [ ] Ana senaryo **3:50** en az 3 kez, kırpılmış **3:00** 1 kez prova edildi.
+- [ ] İki anlatıcı geçiş cümlelerini ezberledi; "söylenmeyecek iddialar" kutusu okundu.
+- [ ] Telefon hotspot + şarj + HDMI dongle + yedek laptop hazır.
 
-| Risk | Önlem |
-|---|---|
-| Demo makinesinde internet yok | PWA çevrimdışı önbellek + `npm start` yerel sunucu. **Demo öncesi çevrimdışı prova yapılmalı.** |
-| Veri seti gelir dağılımı içermiyor | Kendi araştırmamızla belgelenen eserler kullanılır; belgelenemeyenler dürüstçe işaretlenir |
-| "Sadece 3 şehir var" eleştirisi | Panelden yeni şehir eklenerek gösterilir; şehir başına yazılım maliyeti 0 TL |
-| İpek Hanı verisi | **Düzeltildi:** banisi Çelebi Sultan Mehmed, XV. yy ilk yarısı, Yeşilcami Külliyesi'ne akar (TDV İA) |
-| Sunum süresi aşımı | Senaryo 3:20; süre sınırı açıklanınca kırpılacak bölümler: 2:55–3:20 arası |
+## 7. Söylenmeyecek iddialar (kutu)
 
----
+> ⛔ Bu cümleleri **hiçbir anlatıcı söylemez**; jüri sorarsa SAVUNMA-NOTLARI.md §2'deki doğru cümle kullanılır.
 
-## Demo öncesi kontrol listesi
+- ⛔ "Her ders TTS ile dinlenebilir / toplu ses dosyası var." → **Ses dosyası yok**; yalnız cihaz sesi ve yalnız "Dinle" düğmesi.
+- ⛔ "Köstik ile yapay zekâ sohbeti var." → 26 Ekim'de **kaldırıldı**; maskot kalır, sohbet yok.
+- ⛔ "Canlı sınıf yarışması / Kahoot tarzı oyun." → Çocuk akışından çıkarıldı; **Profil > Giriş** bölümünden açılır. Sunumda yalnız `/api/saglik` `"depo":"redis"` ise gösterilir; `"bellek"` ise gösterilmez.
+- ⛔ "80 eser tamamlandı." → Bursa'da **33**; 80 **hedef/yol haritası**.
+- ⛔ "Her şey arşiv numaralı / her değer vakfiyeden." → Gerçek arşiv referansı **6/57**; resmî envanter künyesi **55/57**.
+- ⛔ "Tüm gelir oranları belgeli." → **4/57** belgeli; kalanında ekran "belgelenememiştir" der.
+- ⛔ "Gerçek tarayıcıda 22 ekran × 3 tema 0 ihlal, kesin." → "Otomatik axe taraması + kontrast testleri; finalde gerçek tarayıcı provası."
+- ⛔ "Kaç öğrenci tamamladı." → **Kaç kez** tamamlandı; öğrenci sayısı bilinmez.
+- ⛔ "AI ürünün içinde çalışıyor." → Yalnız **soru taslağı** hattı, insan onaylı.
+- ⛔ "3 pilot okulda doğrulandı / saha kanıtı var." → Pilot okul ve ölçüm **yok**.
+- ⛔ "g = 0,28" ve kaynaksız dış istatistikler → **kullanılmaz**.
+- ⛔ "Harita vakıf ağı/filtre ekranı." → Harita yalnız "eser Türkiye'nin neresinde?" sorusunu yanıtlar.
+- ⛔ "Derslerin süresi ölçüldü (3–5 dk)." → Süre **ölçülmedi**; "tasarım hedefi" denir.
+- ⛔ "PostGIS kullanıyoruz." → PostgreSQL (PGlite) var, **PostGIS yok**.
 
-- [ ] `npm run seed` çalıştı, `npm start` ayakta
-- [ ] En az 1 eser "belgeli" gelir dağılımına sahip
-- [ ] En az 1 eser "belge-bulunamadi" durumunda
-- [ ] Örnek ilerleme yüklü (Ünite 1-2 tamamlanmış görünsün)
-- [ ] Yeşilcami dersi demo cihazında bitirilmiş (tekrar sorusu Yeşil Medrese'de çıksın)
-- [ ] Türkçe konuşma sesi kurulu ("Dinle" düğmesi görünüyor mu?)
-- [ ] Koyu tema (varsayılan) ve açık tema ikisi de kontrol edildi
-- [ ] Yüksek kontrast teması test edildi
-- [ ] Klavye ile tüm akış gezildi (Tab/Enter)
-- [ ] Çevrimdışı mod provası yapıldı
-- [ ] Ekran okuyucu ile bir ders baştan sona dinlendi
-- [ ] Yönetim panelinden eser ekleme provası yapıldı
-- [ ] Üç üye de kendi bölümünü anlatabildiğini teyit etti
+## 8. Hızlı doğru sayılar (sunum öncesi son bakış)
 
----
+**57** eser · **57** ders · **3** şehir (Bursa 33 · Konya 12 · Hatay 12) · **5** ünite (Bursa 3) ·
+**633** arşiv eseri · **55/57** resmî envanter künyesi · **6/57** gerçek arşiv referansı ·
+**4/57** belgeli gelir dağılımı · **69** test dosyası / **702** test · canlı: `kokavi-one.vercel.app`.
 
-## EK (öneri, 16 Ekim gece çalışması): yeni özellikler için demo dilimleri
-
-> Ana senaryo **değiştirilmedi**. Aşağıdakiler süre kalırsa eklenebilecek ya da
-> mevcut dilimlerle değiştirilebilecek öneriler. Takım karar verir.
-> Şehirler: yalnızca Vakıf Katılım verisindeki Hatay, Konya ve Bursa (57 ders).
-> Kütahya, İzmir ve Manisa içerikten çıkarıldı; gerekçe `docs/KARARLAR.md` §11.
-
-| Süre | Ne gösterilir | Neden etkili |
-|---|---|---|
-| 0:40 | ⭐ **Canlı sınıf yarışması.** Laptop tahtaya yansıtılır (`#/canli/kur` → Bursa, 5 soru). Jüri üyelerine **QR kod** okutulur, telefonlarından "Turkuaz Kubbe" gibi takma adla katılırlar. 2 soru oynanır, podyum + konfeti. | Jüri **kendisi oynar**. "Ad sorulmadı, hiçbir şey kaydedilmedi" cümlesi gizlilik ilkesini canlı kanıtlar. |
-| 0:20 | **Günün Eseri.** Yol ekranındaki sarı kart → bir yanlış tahmin (şehir/tür/dönem karşılaştırması görünür) → yeni ipucu açılır. | Wordle tanıdık; "her yanlış yeni bir bilgi açar" = ceza yok ilkesi. |
-| 0:15 | **Kombo + ses.** Egzersizlerde üst üste doğru → "🔥 2 egzersiz üst üste" + "ding". | Duolingo hissi; Ayarlar → Sessiz mod ile hepsinin kapandığı gösterilir. |
-| 0:15 | **Rozet + sertifika.** Kâşif Defteri → Rozetlerim; tamamlanmış şehirde "sertifikanı al" → ad yazılır → Yazdır. | Somut çıktı: öğretmen/aile için. "Ad kaydedilmiyor." |
-
-### Canlı yarışma kurulumu (finalde)
-
-1. Laptop ve telefonlar **aynı Wi-Fi**'da olmalı (salon Wi-Fi'ı istemciler arası trafiği
-   engelliyorsa telefonun **kişisel erişim noktası** kullanılır).
-2. `npm run dev:lan` → konsolda `Network: http://192.168.x.x:5173` adresi çıkar.
-3. Tahta ekranı bu adresle açılır (`localhost` ile değil!), böylece QR kod doğru adresi verir.
-4. Windows güvenlik duvarı ilk açılışta Node için izin sorar → "Özel ağ" işaretlenir.
-5. ⚠ Vercel'deki canlı sürümde odalar örnekler arasında bölünebilir; yarışmayı **laptoptan** göster.
-
-### Yeni jüri soruları
-
-| Soru | Cevap | Kanıt |
-|---|---|---|
-| "Kahoot'ta çocuk adı/puanı saklanıyor mu?" | Hayır. Takma ad sunucudan gelir, oda yalnızca bellekte yaşar ve silinir. | `docs/KARARLAR.md` §15, `tests/canli.test.ts` |
-| "Yarışma 'ceza yok' ilkesine aykırı değil mi?" | Yanlış puan düşürmez; doğru cevap + açıklama + kaynak gösterilir. | `server/canli/oda.ts` |
-| "30 kişilik sınıf aynı ağdan bağlanınca ne olur?" | Hız sınırı IP+oyuncu başına; 30 cihazın saniyede bir yoklaması test edildi. | `tests/canli.test.ts` |
-| "Günün Eseri ipuçlarını kim yazdı?" | Envanterden çocuk diline biz çevirdik; test ilk ipuçlarının cevabı ele vermediğini denetler. | `scripts/gunun-eseri.py`, `tests/gunun-eseri.test.tsx` |
-| "Rozetler bağımlılık yaratmaz mı?" | Kaybedilmez, süre baskısı ve sıralama yok; yalnızca cihazda. | `src/features/rozetler/rozetMantigi.ts` |
-
-### Ek kontrol listesi
-
-- [ ] `npm run dev:lan` provası: en az 3 telefonla QR'dan katılım
-- [ ] Demo cihazında Günün Eseri o gün oynanmamış olsun (ya da `localStorage`'dan `kokavi-gunun-eseri-v1` silinsin)
-- [ ] Ses açık / kapalı (Sessiz mod) iki durumda da prova
-- [ ] Bir şehir tamamlanmış demo ilerlemesi (sertifika için)
+> Bu senaryo **26 Ekim ürün sadeleştirmesinden sonra** donmuştur; değişiklik ancak
+> iki anlatıcının onayıyla yapılır ve DEMO.md güncellenir.

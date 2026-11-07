@@ -73,10 +73,11 @@
 
 ## 6. Gezinme
 
-Alt sekme çubuğu 4 sekme: **Bugün · Yol · Keşfet · Defter** (mobilde altta 64px, geniş
-ekranda üstte). Profil üst çubukta (avatar). Yetişkin girişleri Profil sayfasındaki
-"Yetişkinler için" gezinmesinde. Alt sayfaların hangi sekmeyi seçili gösterdiği
-`App.tsx` → `UST_SEKME`.
+Alt sekme çubuğu 5 sekme: **Bugün · Yol · Keşfet · Defter · Ayarlar** (mobilde altta 64px, geniş
+ekranda üstte). Profil üst çubukta avatar düğmesi (çerçeveli, sağ oklu). **Giriş seçenekleri,
+Vakıf Çarşısı ve yetişkin panelleri ayrı sekme değil, Profil sayfasının bölümleridir**; `#/giris`
+ve `#/carsi` rotaları Profil'i açıp ilgili bölüme kaydırır. Alt sayfaların hangi sekmeyi seçili
+gösterdiği `App.tsx` → `UST_SEKME`.
 
 ## 7. Hareket
 

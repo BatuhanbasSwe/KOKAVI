@@ -7,7 +7,7 @@
  * (renk/rozet tek başına anlam taşımaz). Panel kapalıyken `hidden`.
  */
 import { useId, useState, type ReactNode } from 'react';
-import { IkonAyarlar } from './Ikonlar';
+import { IkonSuzgec } from './Ikonlar';
 
 export function SuzgecPaneli({
   etkinSayisi,
@@ -33,7 +33,7 @@ export function SuzgecPaneli({
         aria-controls={panelId}
         onClick={() => setAcik((a) => !a)}
       >
-        <IkonAyarlar boyut={18} />
+        <IkonSuzgec boyut={18} />
         Süz
         {etkinSayisi > 0 ? (
           <span className="suzgec__sayi">

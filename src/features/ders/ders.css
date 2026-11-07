@@ -47,7 +47,7 @@
 
 .ders-ust {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--b-3);
   margin-block: var(--b-2) var(--b-4);
 }
@@ -360,7 +360,7 @@
 }
 
 .ders-sonu__yildiz {
-  animation: ders-sonu-belir 520ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  animation: ders-sonu-belir 520ms var(--cikis) both;
 }
 
 @keyframes ders-sonu-belir {
@@ -443,7 +443,7 @@
   align-items: center;
   gap: var(--b-3);
   padding: var(--b-3) var(--b-4);
-  border: 2px dashed var(--odul-golge);
+  border: 2px solid var(--odul-golge);
   border-radius: var(--kose-lg);
   background: var(--zemin-kart);
   text-align: left;
@@ -595,7 +595,7 @@
 .ders-kapanis {
   margin: 0;
   padding: var(--b-3) var(--b-4);
-  border-left: 6px solid var(--altin);
+  border: 2px solid var(--altin);
   background: var(--sicak-yumusak);
   border-radius: var(--kose-md);
   font-weight: 700;
@@ -768,7 +768,7 @@
   list-style: none;
   margin: 0;
   padding: var(--b-2) 0 0;
-  border-top: 1px dashed var(--cizgi-kalin);
+  border-top: 1px solid var(--cizgi);
   font-size: var(--yazi-sm);
   color: var(--metin-ikincil);
 }
@@ -821,6 +821,11 @@
 .ders-sirala__isaret {
   font-size: var(--yazi-xs);
   font-weight: 800;
+}
+
+.ders-sirala__tarih {
+  font-weight: 800;
+  color: var(--metin-ikincil);
 }
 
 .ders-sirala__isaret--dogru {
@@ -894,7 +899,7 @@
 /* --- Eseri tanı ----------------------------------------------------------- */
 .ders-betimleme {
   margin: 0;
-  border-left: 6px solid var(--altin);
+  border-color: var(--altin);
 }
 
 .ders-betimleme__metin {
@@ -1097,7 +1102,7 @@
   font-weight: 800;
   font-size: var(--yazi-sm);
   box-shadow: var(--golge);
-  animation: kapak-etiket 500ms 650ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  animation: kapak-etiket 500ms 650ms var(--cikis) both;
 }
 
 @keyframes kapak-etiket {
@@ -1220,10 +1225,10 @@
   object-fit: cover;
   border-radius: var(--kose-sm);
   border: 3px solid var(--zemin-kart);
-  outline: 2px dashed var(--odul-golge);
+  outline: 2px solid var(--odul-golge);
   outline-offset: 2px;
   transform: rotate(-4deg);
-  animation: pul-bas 600ms 350ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+  animation: pul-bas 600ms 350ms var(--cikis) both;
 }
 
 @keyframes pul-bas {
@@ -1243,7 +1248,7 @@
    --------------------------------------------------------------------------- */
 .ders-geri--dogru .ders-geri__ikon {
   position: relative;
-  animation: onay-patla 520ms cubic-bezier(0.2, 1.8, 0.4, 1) both;
+  animation: onay-patla 520ms var(--cikis) both;
 }
 .ders-geri--dogru .ders-geri__ikon::after {
   content: '';
@@ -1324,7 +1329,7 @@
   border: 2px solid var(--odul-golge);
   color: var(--metin);
   font-weight: 700;
-  animation: ders-kombo-gir 520ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
+  animation: ders-kombo-gir 520ms var(--cikis) both;
 }
 .ders-kombo__alev {
   font-size: 1.3em;
@@ -1353,48 +1358,10 @@
   }
 }
 
-/* --- Geri bildirimde Köstik'in tepkisi --------------------------------------- */
+/* --- Geri bildirim gövdesi -------------------------------------------------- */
 .ders-geri__govde {
   flex: 1;
   min-width: 0;
-}
-.ders-geri__maskot {
-  flex: none;
-  margin-left: auto;
-  animation: ders-maskot-tepki 600ms cubic-bezier(0.2, 1.6, 0.4, 1) both;
-}
-.ders-geri--ipucu .ders-geri__maskot {
-  animation-name: ders-maskot-dusun;
-}
-@keyframes ders-maskot-tepki {
-  0% {
-    scale: 0.4;
-    translate: 0 10px;
-  }
-  60% {
-    scale: 1.15;
-    translate: 0 -6px;
-  }
-}
-@keyframes ders-maskot-dusun {
-  0% {
-    rotate: 0deg;
-    opacity: 0;
-  }
-  50% {
-    rotate: -10deg;
-    opacity: 1;
-  }
-}
-@media (max-width: 360px) {
-  .ders-geri__maskot {
-    display: none;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .ders-geri__maskot {
-    animation: none;
-  }
 }
 
 /* --- Ders sonu: elmas yağmuru ve seri alevi ---------------------------------
@@ -1436,5 +1403,177 @@
   transform: scale(var(--kombo-olcek, 1));
   transform-origin: 50% 85%;
   filter: drop-shadow(0 0 calc((var(--kombo-olcek, 1) - 1) * 18px) var(--vurgu));
-  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 300ms var(--cikis);
+}
+
+/* --- Tahta modu (okulda tek cihaz, projeksiyon) --------------------------- */
+.ders-sayfa--tahta {
+  font-size: 1.125rem;
+}
+.ders-sayfa--tahta .ders-baslik {
+  font-size: clamp(2rem, 3.2vw, 3rem);
+}
+.ders-sayfa--tahta .ders-adim-baslik {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+}
+.ders-sayfa--tahta .dugme {
+  font-size: 1.1em;
+}
+.ders-tahta-bilgi {
+  margin: 0 0 var(--b-4);
+  padding: var(--b-3) var(--b-4);
+  border: 2px solid var(--vurgu);
+  border-radius: var(--kose-md);
+  background: var(--vurgu-yumusak);
+  color: var(--metin);
+}
+
+/* --- Geçmişten bugüne: tarihî fotoğraf ↔ bugünkü fotoğraf karşılaştırması ---
+   İki katman üst üste; alttaki <input type="range"> eski katmanın görünürlüğünü
+   belirler. Renkler yalnız jetonlardan; metin karşılığı figcaption'da. */
+.ders-gecmis__giris {
+  margin: 0 0 var(--b-4);
+  color: var(--metin-soluk);
+}
+.gecmis-karsilastirma {
+  margin: 0 0 var(--b-4);
+}
+.gecmis-karsilastirma:last-of-type {
+  margin-bottom: 0;
+}
+.gecmis-karsilastirma__cerceve {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-kart);
+}
+.gecmis-karsilastirma__cerceve img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gecmis-karsilastirma__eski {
+  position: absolute;
+  inset: 0;
+}
+.gecmis-karsilastirma__etiket {
+  position: absolute;
+  top: var(--b-2);
+  padding: 2px var(--b-2);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--kose-sm);
+  background: var(--zemin-kart);
+  color: var(--metin);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.gecmis-karsilastirma__etiket--eski {
+  left: var(--b-2);
+}
+.gecmis-karsilastirma__etiket--bugun {
+  right: var(--b-2);
+}
+.gecmis-karsilastirma__kontrol {
+  position: absolute;
+  inset: auto 0 var(--b-3);
+  display: flex;
+  justify-content: center;
+}
+.gecmis-karsilastirma__kaydirici {
+  width: min(80%, 320px);
+  accent-color: var(--vurgu);
+}
+.gecmis-karsilastirma__alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--b-2);
+  justify-content: space-between;
+  margin-top: var(--b-2);
+}
+
+/* ---------------------------------------------------------------------------
+   02 · BAĞLAM — okuma kartları (her paragraf ayrı kart)
+   --------------------------------------------------------------------------- */
+.ders-okuma__ust {
+  display: flex;
+  align-items: center;
+  gap: var(--b-3);
+}
+
+.ders-okuma__sayac {
+  margin: 0;
+  flex-shrink: 0;
+  font-size: var(--yazi-sm);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--metin-ikincil);
+}
+
+.ders-okuma__noktalar {
+  list-style: none;
+  display: flex;
+  flex: 1;
+  gap: var(--b-1);
+  margin: 0;
+  padding: 0;
+}
+
+.ders-okuma__nokta {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--kose-tam);
+  background: var(--cizgi);
+  transition: background-color var(--gecis-normal) var(--cikis);
+}
+
+.ders-okuma__nokta--dolu {
+  background: var(--vurgu);
+}
+
+.ders-okuma__kart {
+  display: grid;
+  gap: var(--b-4);
+  animation: ders-okuma-gir var(--gecis-normal) var(--cikis) both;
+}
+
+.ders-okuma__kart .ders-soru:focus-visible {
+  outline-offset: 4px;
+}
+
+.ders-okuma__metin {
+  margin: 0;
+  font-size: var(--yazi-lg);
+  line-height: 1.6;
+}
+
+.ders-okuma__eylem {
+  flex-direction: row;
+}
+
+.ders-okuma__eylem .dugme--genis {
+  flex: 1;
+}
+
+@keyframes ders-okuma-gir {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ders-okuma__kart {
+    animation: none;
+  }
+  .ders-okuma__nokta {
+    transition: none;
+  }
 }

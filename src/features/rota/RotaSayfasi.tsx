@@ -83,16 +83,26 @@ export function RotaSayfasi() {
   const haritaKabi = useRef<HTMLDivElement>(null);
   const haritaRef = useRef<RotaHaritasi | null>(null);
 
+  const [deneme, setDeneme] = useState(0);
+
   useEffect(() => {
     let iptal = false;
+    setHata(null);
     api
       .eserler()
       .then((l) => !iptal && setEserler(l))
-      .catch((e: Error) => !iptal && setHata(e.message));
+      .catch(() => {
+        if (iptal) return;
+        setHata(
+          navigator.onLine === false
+            ? 'İnternet yok. Rotayı görmek için bir kez internete bağlan; sonra internetsiz de açılır.'
+            : 'Eser listesi şu an yüklenemedi. Biraz sonra yeniden dene.',
+        );
+      });
     return () => {
       iptal = true;
     };
-  }, []);
+  }, [deneme]);
 
   // İlçe → duraklar (konumu bilinen eserler). En az 2 eser olan ilçeler seçilebilir.
   const ilceler = useMemo(() => {
@@ -205,8 +215,20 @@ export function RotaSayfasi() {
         </p>
       </header>
 
-      {hata && <p className="bildirim bildirim--uyari" role="status">{hata}</p>}
+      {hata && (
+        <div className="bildirim bildirim--uyari" role="status">
+          <p>{hata}</p>
+          <button type="button" className="dugme dugme--ikincil" onClick={() => setDeneme((d) => d + 1)}>
+            Yeniden dene
+          </button>
+        </div>
+      )}
       {!eserler && !hata && <p role="status">Eserler yükleniyor…</p>}
+      {eserler && ilceler.length === 0 && (
+        <p className="bildirim" role="status">
+          Haritada yeri bilinen eser henüz az. Yeni eserler eklenince rotalar burada görünür.
+        </p>
+      )}
 
       {ilceler.length > 0 && (
         <div className="rota-secim">

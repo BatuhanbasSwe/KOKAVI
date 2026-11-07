@@ -44,24 +44,28 @@
   --kose-md: 20px;
   --kose-lg: 24px;
   --kose-tam: 999px;
-  /* Düğmeler gölgesiz ve düzdür; basınca küçülür (scale .97). */
-  --bas-derinlik: 0px;
+  /* Basılabilir "dudak": düğme, seçenek ve durakların altında düz, bulanıksız
+     bir kenar. Basınca öğe bu kadar aşağı iner ve dudak kaybolur. */
+  --bas-derinlik: 4px;
+  --bas-derinlik-buyuk: 6px;
 
   /* --- Hareket --------------------------------------------------------- */
   --gecis-hizli: 140ms;
   --gecis-normal: 240ms;
   --yay: cubic-bezier(0.2, 1, 0.3, 1);
+  /* ease-out-quint: geri sekme yok, hızlı başlar yumuşak durur. */
+  --cikis: cubic-bezier(0.22, 1, 0.36, 1);
+  --gecis-bas: 90ms;
 
   /* Fotoğraf üstü metin: her temada açık (altında --karartma vardır). */
   --foto-metin: #f4f6f5;
 }
 
 /* ===========================================================================
-   TEMA: Koyu (varsayılan)
+   TEMA: Koyu
    Soğuk koyu zemin, tek vurgu safran (üstünde koyu metin). İpucu/bilgi için
    kısık İznik mavisi yalnızca metin, simge ve kenarda.
    =========================================================================== */
-:root,
 [data-tema='koyu'] {
   color-scheme: dark;
 
@@ -140,10 +144,11 @@
 }
 
 /* ===========================================================================
-   TEMA: Açık
+   TEMA: Açık (varsayılan)
    Kırık beyaz (bej değil) + aynı safran; safran üstünde koyu metin.
    Safran açık zeminde metin olamaz: metin olarak --vurgu-koyu kullanılır.
    =========================================================================== */
+:root:not([data-tema]),
 [data-tema='acik'] {
   color-scheme: light;
 
@@ -296,6 +301,23 @@
 [data-tema='yuksek-kontrast'] .dugme,
 [data-tema='yuksek-kontrast'] .secenek {
   border-width: 2px !important;
+}
+
+/* ===========================================================================
+   WCAG AA DÜZELTMESİ — açık temada safran METİN
+   `--vurgu` bir dolgu rengidir (safran). Üç bileşen onu `--vurgu-yumusak`
+   zemin üzerinde metin olarak kullanıyordu: açık temada
+   #ffbf3c / #fff3d6 = 1.49:1 (WCAG 2.2 SC 1.4.3 eşiği 4.5:1).
+   Koyu ve yüksek-kontrast temalarda oran yeterli olduğu için düzeltme
+   yalnızca açık temaya uygulanır; dolgu/çerçeve renkleri değişmez.
+   Ölçüm: tests/tema-kontrast.test.ts (metin çifti + bu kuralın varlığı).
+   NOT: Kalıcı çözüm ilgili bileşen CSS'inde `--vurgu-koyu` kullanmaktır;
+   bu, jeton katmanında tutulan MİNİMAL düzeltmedir.
+   =========================================================================== */
+[data-tema='acik'] .ders-ilerleme__adim--aktif,
+[data-tema='acik'] .rozet--belgeli,
+[data-tema='acik'] .rozet--rol-admin {
+  color: var(--vurgu-koyu);
 }
 
 /* ===========================================================================

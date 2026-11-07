@@ -26,7 +26,7 @@ import { SinifDetayi } from './SinifDetayi';
 import { SinifListesi } from './SinifListesi';
 import { SinifOlusturmaFormu } from './SinifOlusturmaFormu';
 import './ogretmen.css';
-import { IkonSinif } from '../../app/Ikonlar';
+import { IkonCanli, IkonSinif } from '../../app/Ikonlar';
 
 /** Roller yalnızca yetişkinler içindir; çocuk hesabı yoktur. */
 const ROL_ETIKETI: Record<Rol, string> = {
@@ -185,7 +185,7 @@ function PanelIcerik({ kullanici, cikisYap }: PanelIcerikProps) {
 
       <p className="metin-ikincil">
         Sınıfını oluştur, kodu tahtaya yaz; çocuklar o kodla katılır. Dersler bitirildikçe sınıfın
-        ortak ilerlemesi burada birikir — <strong>kimin</strong> bitirdiği değil,{' '}
+        ortak ilerlemesi burada birikir: <strong>kimin</strong> bitirdiği değil,{' '}
         <strong>kaç kez</strong> bitirildiği.
       </p>
 
@@ -200,6 +200,17 @@ function PanelIcerik({ kullanici, cikisYap }: PanelIcerikProps) {
         />
       ) : (
         <>
+          <section className="kart ogretmen__bolum" aria-labelledby="canli-kur-baslik">
+            <h2 id="canli-kur-baslik" className="ogretmen__kart-baslik">
+              <IkonCanli boyut={20} /> Canlı yarışma
+            </h2>
+            <p className="metin-ikincil">
+              Sınıfa 6 haneli bir PIN ver; çocuklar telefondan katılsın, sorular tahtada çıksın.
+            </p>
+            <a className="dugme" href="#/canli/kur">
+              Canlı yarışma kur
+            </a>
+          </section>
           <SinifOlusturmaFormu onOlusturuldu={() => void yukle()} />
           <SinifListesi
             siniflar={siniflar}

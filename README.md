@@ -34,7 +34,7 @@ npm start         # API, dist/ içeriğini de servis eder → http://127.0.0.1:8
 Testler:
 
 ```bash
-npm test          # 186 test, 10 paket — aşağıya bakın
+npm test          # 702 test, 69 paket — aşağıya bakın
 npm run dogrula   # tip kontrolü + testler + üretim derlemesi (tek komut)
 npm run typecheck # TypeScript strict
 ```
@@ -47,7 +47,7 @@ npm run typecheck # TypeScript strict
 
 | Paket | Test | Neyi korur |
 |---|---|---|
-| `tests/guvenlik.test.ts` | 67 | Yetki, parola, kaba kuvvet, enjeksiyon, başlıklar, sınıf gizliliği |
+| `tests/guvenlik.test.ts` | 70 | Yetki, parola, kaba kuvvet, enjeksiyon, başlıklar, sınıf gizliliği |
 | `tests/icerik.test.ts` | 34 | Ders içeriği sözleşmesi (dört tip, `___`, `dogruIndex`…) |
 | `tests/ilerleme.test.ts` | 21 | Kilit sırası, seri, seviye, elmas mantığı |
 | `tests/api.test.ts` | 15 | CRUD + girdi doğrulama + gizlilik |
@@ -57,6 +57,8 @@ npm run typecheck # TypeScript strict
 | `tests/hata-siniri.test.tsx` | 7 | Hata sınırı: beyaz ekran yok, çıkış yolu var |
 | `tests/erisilebilirlik-denetim.test.tsx` | 6 | **axe-core: 6 sayfada 0 ihlal** |
 | `tests/sinif-gizlilik.test.tsx` | 5 | Sınıf kaydında yalnızca `{kod, dersId}` gider |
+| `tests/erisilebilirlik-tam-tarama.test.tsx` | 69 | **23 rota × 3 tema axe taraması** (0 ihlal) |
+| `tests/kulliye.test.ts` + sınıf Röntgeni testleri | 13 | Hedef külliye hesabı, sınıf Röntgeni ekranı, kimlik sızdırmama |
 
 ---
 
@@ -94,6 +96,7 @@ Her satır, PDF'teki bir taahhüdün kodda nerede karşılandığını gösterir
 | "Kâşif Defteri: öğrenilenin biriktiği yer" | `src/features/defter/DefterSayfasi.tsx` |
 | "Seri, Elmas, Seviye: Çırak → Kalfa → Usta" | `src/lib/ilerleme.ts` → `seriGuncelle`, `seviyeHesapla` |
 | "Öğretmen sınıf kodunu açar" | `src/features/ogretmen/` + `server/routes/sinif.ts` |
+| "Sınıf birlikte bir külliyeyi tamamlar; Vakıf Röntgeni'ni birlikte görür" (Senaryo B) | `shared/kulliyeler.ts` + `server/repo/sinif.ts` (`kulliyeleriHesapla`, `sinifRontgeni`) + `#/tahta/<kod>/rontgen` |
 | "Yönetim paneli — eser ekleme/düzenleme, yeni şehir ünitesi tanımlama" | `src/features/panel/` + `server/routes/admin.ts` |
 | "Sesli anlatım / ekran okuyucu / yüksek kontrast / renk körlüğü / altyazı / klavye" | `src/styles/tokens.css`, `src/features/ayarlar/`, tüm bileşenlerde ARIA |
 | "Kişisel veri toplanmaz, sınıf kodu anonim" | `src/lib/ilerleme.ts` (localStorage) + `tests/api.test.ts` gizlilik testi |
@@ -124,7 +127,7 @@ mvp/
 ├── data/
 │   ├── research/            # Doğrulanmış eser künyeleri (kaynaklı)
 │   └── content/             # Beş adımlı ders içerikleri
-├── tests/                   # 165 test (7 paket)
+├── tests/                   # 702 test (69 dosya)
 └── docs/
     ├── KARARLAR.md          # PDF'teki belirsizliklerin çözümü (10 madde)
     ├── API.md               # Uç referansı, alan şemaları, hata kodları
@@ -253,12 +256,17 @@ Hedef: **WCAG 2.2 AA**, özellikler ürüne gömülü (şartname 5.1.4 gereği).
 | Dokunma hedefi ≥ 44px | `.dugme`, `.secenek`, `.gezinme__baglanti` |
 | Haritanın metin eşdeğeri | `HaritaSayfasi` → eser listesi (WCAG 1.1.1) |
 
+**Kanıt:** `npm run erisilebilirlik` → 23 rota × 3 tema = 69 axe taraması + tema
+jetonu kontrast testleri, JSON çıktı `docs/erisilebilirlik-raporu.json`; yöntem ve
+dürüst sınırlar `docs/ERISILEBILIRLIK.md`.
+
 ---
 
 ## Bilinen sınırlar
 
 - **Seslendirme (TTS) yok.** PDF'te "toplu Türkçe TTS" taahhüdü var; bu MVP
-  kapsamı dışı bırakıldı. Egzersizlerin tamamı ses olmadan çalışır.
+  kapsamı dışı bırakıldı (kullanıcı kararı, 27 Ekim 2026: eklenmeyecek, sunumda
+  iddia edilmeyecek). Egzersizlerin tamamı ses olmadan çalışır.
 - **PostGIS yok.** Konum tabanlı sorgu üründe yok; koordinatlar düz kolonlarda.
 - **Eser sayısı** sponsorun veri setine bağlıdır; bu depodaki veri
   `data/research/` içindeki doğrulanmış araştırma çıktısıdır.

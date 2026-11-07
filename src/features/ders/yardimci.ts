@@ -40,6 +40,21 @@ export function karistirFarkli(dogruSira: readonly string[]): string[] {
   return karisik;
 }
 
+/**
+ * "Sırala" öğesindeki tarih önekini ayırır: "1339: Cami yapıldı" →
+ * { tarih: "1339", olay: "Cami yapıldı" }. Önekte rakam yoksa (ör. "Köylerden
+ * gelen buğday: 70.615 kuruş") ya da önek uzunsa öğe olduğu gibi kalır.
+ *
+ * Neden: Tarih görünürken çocuk metni okumadan sayıları sıralar. Tarihi
+ * gizleyince olay akışını hatırlamak zorunda kalır (geri çağırma); ilk
+ * denemeden sonra tarih ipucu olarak açılır, çıkmaz sokak olmaz.
+ */
+export function tarihAyir(oge: string): { tarih: string | null; olay: string } {
+  const eslesme = /^([^:]{1,30}):\s+(.+)$/s.exec(oge);
+  if (!eslesme || !/\d|yüzyıl|bugün/i.test(eslesme[1])) return { tarih: null, olay: oge };
+  return { tarih: eslesme[1].trim(), olay: eslesme[2].trim() };
+}
+
 /** Türkçe harflerin ASCII karşılıkları — karşılaştırma anahtarı için. */
 const TURKCE_ESLEME: Record<string, string> = {
   ı: 'i',
@@ -113,4 +128,37 @@ export function gelirKalemleriniSirala(kalemler: readonly GelirKalemi[]): GelirK
  */
 export function gelirBelgeliMi(eser: Eser): boolean {
   return eser.gelirDagilimiDurumu === 'belgeli' && eser.gelirKalemleri.length > 0;
+}
+
+/** Metinden 32 bit tohum (FNV-1a). Aynı metin her zaman aynı sayıyı verir. */
+function tohum(metin: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < metin.length; i++) {
+    h ^= metin.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return h >>> 0;
+}
+
+/**
+ * Her dersin egzersiz sırası ve sayısı farklı olsun diye seçim yapar (A1).
+ * Aynı ders her açılışta aynı sırayı verir: tekrar açan çocuk kaybolmaz.
+ * Dört veya daha fazla egzersizi olan derslerin yaklaşık üçte biri bir egzersiz eksik gelir.
+ */
+export function dersEgzersizSecimi<T>(dersId: string, egzersizler: readonly T[]): T[] {
+  let s = tohum(dersId);
+  const rastgele = () => {
+    s = (s + 0x6d2b79f5) >>> 0;
+    let t = s;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const sonuc = [...egzersizler];
+  for (let i = sonuc.length - 1; i > 0; i--) {
+    const j = Math.floor(rastgele() * (i + 1));
+    [sonuc[i], sonuc[j]] = [sonuc[j]!, sonuc[i]!];
+  }
+  if (sonuc.length >= 4 && tohum(`${dersId}#sayi`) % 3 === 0) sonuc.pop();
+  return sonuc;
 }

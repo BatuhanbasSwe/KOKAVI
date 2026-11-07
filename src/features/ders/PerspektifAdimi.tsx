@@ -7,7 +7,6 @@
  * dönmez; "Gerçekte şöyleydi" tonuyla bilgi verilir ve akış devam eder.
  */
 import { useState } from 'react';
-import { DinleDugmesi } from './DinleDugmesi';
 import type { PerspektifAdimi as PerspektifVerisi } from '@shared/types';
 
 interface Props {
@@ -38,9 +37,6 @@ export function PerspektifAdimi({ perspektif, onDevam }: Props) {
 
       <div className="ders-soru-kutusu">
         <h3 className="ders-soru">{perspektif.soru}</h3>
-        <DinleDugmesi
-          metin={[...perspektif.diyalog.map((d) => `${d.kim}: ${d.metin}`), perspektif.soru].join('. ')}
-        />
       </div>
 
       <div className="yigin ders-secenekler" role="group" aria-label="Karar seçenekleri">

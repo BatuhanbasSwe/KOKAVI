@@ -4,7 +4,7 @@
 >
 > **24 Ekim notu — o günden bugüne değişenler:** Kütahya ve İzmir uygulamadan çıkarıldı;
 > güncel kapsam **3 şehir (Bursa 33 · Konya 12 · Hatay 12), 57 ders, 228 egzersiz, 303 fotoğraf**.
-> Arşivde 633 eser var. Test: 61 dosya / 573 test. Vakfiye arşiv no 13/57, gelir dağılımı 4/57.
+> Arşivde 633 eser var. Test: 66 dosya / 695 test (27 Ekim). Vakfiye arşiv no 13/57, gelir dağılımı 4/57.
 
 > **Bu belge yeni bir oturumda işe devam etmek için yazıldı.**
 > Son güncelleme: 12 Ekim 2026 · Durum: **çalışır ve doğrulanmış MVP + güvenlik + veri**

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Kök Avı — vakıf eserlerini çocuklara günlük mikro derslerle öğreten PWA. KÖK & KOD Hackathon MVP.",
+  "description": "KÃ¶k AvÄ± â€” vakÄ±f eserlerini Ã§ocuklara gÃ¼nlÃ¼k mikro derslerle Ã¶ÄŸreten PWA. KÃ–K & KOD Hackathon MVP.",
   "scripts": {
     "dev": "concurrently -n api,web -c cyan,magenta \"npm:dev:api\" \"npm:dev:web\"",
     "dev:api": "tsx watch server/index.ts",
@@ -16,10 +16,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc -b --noEmit",
+    "erisilebilirlik": "vitest run tests/erisilebilirlik-tam-tarama.test.tsx tests/tema-kontrast.test.ts tests/erisilebilirlik-denetim.test.tsx --reporter=json --outputFile=docs/erisilebilirlik-raporu.json",
     "dogrula": "npm run typecheck && npm run test && npm run build",
     "build:vercel": "esbuild deploy/vercel-giris.ts --bundle --platform=node --format=esm --target=node20 --outfile=api/index.mjs --packages=external && node scripts/yayin-kopyala.mjs",
     "pgdata:dump": "tsx scripts/pgdata-dump.ts",
-    "korpus": "tsx scripts/korpus-uret.ts",
     "soru:taslak": "tsx scripts/soru-taslak.ts"
   },
   "dependencies": {
@@ -65,3 +65,4 @@
     }
   }
 }
+

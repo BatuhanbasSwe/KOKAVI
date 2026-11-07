@@ -85,6 +85,7 @@
   gap: var(--b-1);
   margin: 0;
   padding: 4px var(--b-3);
+  min-height: 44px; /* bağlantı: dokunma hedefi >= 44px (SC 2.5.8) */
   font-size: var(--yazi-sm);
   font-weight: 700;
   color: var(--vurgu-koyu);

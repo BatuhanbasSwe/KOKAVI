@@ -17,9 +17,8 @@ import { HaritaSayfasi } from '../features/harita/HaritaSayfasi';
 import { ArsivSayfasi } from '../features/arsiv/ArsivSayfasi';
 import { ArsivEserSayfasi } from '../features/arsiv/ArsivEserSayfasi';
 import { DersSayfasi } from '../features/ders/DersSayfasi';
-import { CarsiSayfasi } from '../features/carsi/CarsiSayfasi';
 import { KorumaliPanel } from '../features/panel/KorumaliPanel';
-import { OgretmenPaneli, SinifKoduGirisi } from '../features/ogretmen';
+import { OgretmenPaneli, SinifKoduGirisi, SinifRontgenSayfasi } from '../features/ogretmen';
 import { GununEseriSayfasi } from '../features/gunun-eseri/GununEseriSayfasi';
 import { RozetBildirimi } from '../features/rozetler/Rozetler';
 import { ArtanSayi } from './ArtanSayi';
@@ -34,22 +33,33 @@ import { CanliKurSayfasi, CanliYonetSayfasi } from '../features/canli/CanliYonet
 import { BugunSayfasi } from '../features/bugun/BugunSayfasi';
 import { KesfetSayfasi } from '../features/merkez/KesfetSayfasi';
 import { YasayanSayfasi } from '../features/merkez/YasayanSayfasi';
-import { KostikSohbeti } from '../features/sohbet/KostikSohbeti';
 import { ProfilSayfasi } from '../features/profil/ProfilSayfasi';
-import { Avatar, IkonAlev, IkonDefter, IkonElmas, IkonEv, IkonPusula, IkonYol } from './Ikonlar';
+import {
+  Avatar,
+  IkonAlev,
+  IkonAyarlar,
+  IkonDefter,
+  IkonElmas,
+  IkonEv,
+  IkonPusula,
+  IkonSagOk,
+  IkonYol,
+} from './Ikonlar';
+import { BaslangicSorulari } from '../features/giris/BaslangicSorulari';
 import './app.css';
 
 /**
- * Çocuğun ana gezinmesi: 4 sekme (Bugün · Yol · Keşfet · Defter). Mobilde
- * ekranın altında sabit sekme çubuğu, geniş ekranda üstte. Profil üst çubukta.
- * Öğretmen ve yönetim girişleri çocuğun gezinmesinde DEĞİL; Profil sayfasındaki
- * "Yetişkinler için" gezinmesinde durur.
+ * Ana gezinme: 5 sekme (Bugün · Yol · Keşfet · Defter · Ayarlar). Mobilde
+ * ekranın altında sabit sekme çubuğu, geniş ekranda üstte. Profil üst çubukta
+ * (avatar). Giriş seçenekleri, öğretmen/yönetim panelleri ve Vakıf Çarşısı çocuğun
+ * ana gezinmesinde DEĞİL; Profil sayfasının bölümleridir (`#/giris`, `#/carsi`).
  */
 const GEZINME = [
   { yol: 'bugun', etiket: 'Bugün', ad: 'bugun', Ikon: IkonEv },
   { yol: 'yol', etiket: 'Yol', ad: 'yol', Ikon: IkonYol },
   { yol: 'kesfet', etiket: 'Keşfet', ad: 'kesfet', Ikon: IkonPusula },
   { yol: 'defter', etiket: 'Defter', ad: 'defter', Ikon: IkonDefter },
+  { yol: 'ayarlar', etiket: 'Ayarlar', ad: 'ayarlar', Ikon: IkonAyarlar },
 ] as const;
 
 /** Alt sayfanın gezinmede hangi sekmeyi seçili gösterdiği. */
@@ -68,24 +78,30 @@ const UST_SEKME: Partial<Record<string, string>> = {
   sinif: 'bugun',
   seri: 'defter',
   sertifika: 'defter',
-  ayarlar: 'profil',
+  baslangic: 'bugun',
+  // Profil sayfasına ait sayfalar: ana gezinmede sekme yoktur; bu rotalarda
+  // üst çubuktaki avatar bağlantısı `aria-current` taşır.
   carsi: 'profil',
+  giris: 'profil',
   ogretmen: 'profil',
   'canli-kur': 'profil',
   'canli-yonet': 'profil',
+  'sinif-rontgen': 'profil',
   panel: 'profil',
   'panel-eser': 'profil',
 };
 
 /**
- * Çocuk tarafı sınıf ekranı.
+ * Çocuk tarafı sınıf ekranı — EVDE DEVAM içindir.
+ *
+ * Okulda öğrencilerin telefonu yok/toplanıyor; dersler öğretmenin tahtasında
+ * birlikte işlenir (bkz. `#/tahta/...`). Bu ekran, öğretmenin verdiği kodla
+ * çocuğun aile cihazından sınıfa katılmasını sağlar.
  *
  * `SinifKoduGirisi` sunucudan kodu doğrular; katılım başarılı olunca kodu
  * CİHAZA yazar (`sinifKoduAyarla`). Böylece ders tamamlandığında anonim
- * sayaç kaydı gönderilebilir — PDF Senaryo B: "Sınıf birlikte bir külliyeyi
- * tamamlar."
- *
- * Gizlilik: sunucuya giden tek şey {sınıf kodu, ders kimliği}. Kimlik yok.
+ * sayaç kaydı gönderilebilir. Gizlilik: sunucuya giden tek şey
+ * {sınıf kodu, ders kimliği}; kimlik yok.
  */
 function CocukSinifSayfasi() {
   const { ilerleme, sinifKoduAyarla } = useDurum();
@@ -95,7 +111,8 @@ function CocukSinifSayfasi() {
       <div>
         <h1>Sınıfım</h1>
         <p className="metin-ikincil">
-          Öğretmeninin verdiği kodu gir ve sınıfınla birlikte keşfet.
+          Öğretmeninin verdiği kodla <strong>evde</strong> sınıfına katıl; ders bitirdikçe sınıfın
+          külliyesi büyür. Okulda dersler tahtada birlikte işlenir.
         </p>
       </div>
 
@@ -106,16 +123,6 @@ function CocukSinifSayfasi() {
       )}
 
       <SinifKoduGirisi onKatildi={sinifKoduAyarla} />
-
-      <section className="kart canli-davet" aria-labelledby="canli-davet-baslik">
-        <h2 id="canli-davet-baslik">Canlı yarışma</h2>
-        <p className="metin-ikincil">
-          Öğretmenin tahtada bir PIN mi gösteriyor? Sınıfınla aynı anda yarış!
-        </p>
-        <a className="dugme" href="#/canli">
-          Canlı yarışmaya katıl
-        </a>
-      </section>
     </div>
   );
 }
@@ -143,6 +150,7 @@ function Kabuk() {
       arsiv: 'Meraklısına Arşivi',
       'arsiv-eser': 'Arşiv',
       ayarlar: 'Ayarlar',
+      baslangic: 'Seni tanıyalım',
       carsi: 'Vakıf Çarşısı',
       sinif: 'Sınıf',
       'gunun-eseri': 'Günün Eseri',
@@ -152,10 +160,13 @@ function Kabuk() {
       seri: 'Keşif Serisi',
       rota: 'Keşif Rotası',
       sertifika: 'Sertifika',
+      giris: 'Giriş',
       canli: 'Canlı Yarışma',
       'canli-kur': 'Canlı Yarışma Kur',
       'canli-yonet': 'Canlı Yarışma',
       'canli-oyna': 'Canlı Yarışma',
+      tahta: 'Tahta Modu',
+      'sinif-rontgen': 'Sınıf Röntgeni',
       panel: 'Yönetim Paneli',
       'panel-eser': 'Eser Düzenle',
       ders: 'Ders',
@@ -170,13 +181,15 @@ function Kabuk() {
         /* test ortamı */
       }
     }
-    if (rota.ad !== 'ders') anaIcerik.current?.focus();
+    if (rota.ad !== 'ders' && rota.ad !== 'tahta' && rota.ad !== 'sinif-rontgen') {
+      anaIcerik.current?.focus();
+    }
   }, [rota]);
 
   // Alt sayfalar gezinmede ait oldukları sekmeyi seçili gösterir
   // (harita/arşiv → Keşfet, Günün Eseri/yarışma → Bugün, seri → Defter).
   const aktifAd = UST_SEKME[rota.ad] ?? rota.ad;
-  const odakModu = rota.ad === 'ders';
+  const odakModu = rota.ad === 'ders' || rota.ad === 'tahta' || rota.ad === 'sinif-rontgen';
 
   return (
     <>
@@ -204,7 +217,7 @@ function Kabuk() {
                 <span className="sr-only">Keşif serisi:</span>
                 <ArtanSayi deger={ilerleme.seri.gunSayisi} anahtar="seri" />
                 <span className="gosterge__birim"> gün</span>
-                <span className="sr-only"> — takvimi aç</span>
+                <span className="sr-only"> (takvimi aç)</span>
               </a>
               <a
                 className="gosterge gosterge--elmas"
@@ -215,15 +228,17 @@ function Kabuk() {
                 <IkonElmas />
                 <span className="sr-only">Elmas:</span>
                 <ArtanSayi deger={ilerleme.elmas} anahtar="elmas" />
-                <span className="sr-only"> — Vakıf Çarşısı'na git</span>
+                <span className="sr-only"> (Vakıf Çarşısı'na git)</span>
               </a>
               <a
                 className="gosterge gosterge--profil"
                 href="#/profil"
-                aria-current={rota.ad === 'profil' ? 'page' : undefined}
+                title="Profil"
+                aria-current={rota.ad === 'profil' || rota.ad === 'carsi' || rota.ad === 'giris' ? 'page' : undefined}
               >
                 <Avatar id={carsi.avatar} boyut={34} />
                 <span className="sr-only">Profil (seviye: {seviye.ad})</span>
+                <IkonSagOk boyut={16} className="gosterge__ok" />
               </a>
             </div>
           </div>
@@ -253,12 +268,12 @@ function Kabuk() {
           <div className="bildirim bildirim--uyari" role="status">
             {hata
               ? `İçerik sunucusuna ulaşılamadı (${hata}). Çevrimdışı önbellekteki içerik gösteriliyor.`
-              : 'Çevrimdışısın — önbellekteki derslerle devam edebilirsin.'}
+              : 'Çevrimdışısın; önbellekteki derslerle devam edebilirsin.'}
             {cevrimdisi && (
               <button
                 type="button"
                 className="dugme dugme--ikincil"
-                style={{ marginLeft: 'var(--b-3)', minHeight: 32, padding: '2px 12px' }}
+                style={{ marginLeft: 'var(--b-3)', minHeight: 44, padding: '0 12px' }}
                 onClick={() => void window.location.reload()}
               >
                 Yeniden dene
@@ -277,14 +292,17 @@ function Kabuk() {
         {rota.ad === 'bugun' && <BugunSayfasi />}
         {rota.ad === 'kesfet' && <KesfetSayfasi />}
         {rota.ad === 'yasayan' && <YasayanSayfasi />}
-        {rota.ad === 'profil' && <ProfilSayfasi />}
+        {/* Profil, Vakıf Çarşısı ve Giriş aynı sayfanın bölümleridir; rota
+            yalnızca hangi bölüme kaydırılacağını belirler. */}
+        {(rota.ad === 'profil' || rota.ad === 'carsi' || rota.ad === 'giris') && (
+          <ProfilSayfasi bolum={rota.ad === 'carsi' ? 'carsi' : rota.ad === 'giris' ? 'giris' : undefined} />
+        )}
         {rota.ad === 'yol' && <YolSayfasi />}
         {rota.ad === 'defter' && <DefterSayfasi />}
         {rota.ad === 'harita' && <HaritaSayfasi />}
         {rota.ad === 'arsiv' && <ArsivSayfasi />}
         {rota.ad === 'arsiv-eser' && <ArsivEserSayfasi arsivId={rota.arsivId} />}
         {rota.ad === 'ayarlar' && <AyarlarSayfasi />}
-        {rota.ad === 'carsi' && <CarsiSayfasi />}
         {rota.ad === 'sinif' && <CocukSinifSayfasi />}
         {rota.ad === 'gunun-eseri' && <GununEseriSayfasi />}
         {rota.ad === 'hayrat-akar' && <HayratAkarSayfasi />}
@@ -293,6 +311,7 @@ function Kabuk() {
         {rota.ad === 'seri' && <SeriSayfasi />}
         {rota.ad === 'rota' && <RotaSayfasi />}
         {rota.ad === 'sertifika' && <SertifikaSayfasi sehirId={rota.sehirId} />}
+        {rota.ad === 'baslangic' && <BaslangicSorulari />}
         {rota.ad === 'canli' && <CanliGirisSayfasi />}
         {rota.ad === 'canli-kur' && <CanliKurSayfasi />}
         {rota.ad === 'canli-yonet' && <CanliYonetSayfasi pin={rota.pin} />}
@@ -301,6 +320,10 @@ function Kabuk() {
         {rota.ad === 'panel' && <KorumaliPanel />}
         {rota.ad === 'panel-eser' && <KorumaliPanel eserId={rota.eserId} />}
         {rota.ad === 'ders' && <DersSayfasi dersId={rota.dersId} />}
+        {rota.ad === 'tahta' && (
+          <DersSayfasi dersId={rota.dersId} tahtaSinifKodu={rota.kod} />
+        )}
+        {rota.ad === 'sinif-rontgen' && <SinifRontgenSayfasi kod={rota.kod} />}
         {rota.ad === 'bulunamadi' && (
           <div className="kart yigin">
             <h1>Sayfa bulunamadı</h1>
@@ -320,14 +343,11 @@ function Kabuk() {
 
       <RozetBildirimi />
 
-      {/* Her ekrandan açılan Köstik sohbeti (kaynaklı soru-cevap). */}
-      <KostikSohbeti rota={rota} />
-
       {!odakModu && (
         <footer className="altbilgi">
           <div className="sarmal">
             <p className="metin-soluk" style={{ margin: 0 }}>
-              Kök Avı · TRİA · KÖK &amp; KOD Hackathon. İçerik ve görseller envanter projesine
+              Kök Avı · TRİA. İçerik ve görseller envanter projesine
               aittir; tarihsel bilgiler kaynak künyesiyle birlikte gösterilir.
             </p>
           </div>

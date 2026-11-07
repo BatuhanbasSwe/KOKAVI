@@ -40,10 +40,59 @@ export interface UniteIlerlemesi {
   uniteId: string;
   uniteAdi: string;
   sehirAdi: string;
-  dersler: { dersId: string; eserAdi: string; sira: number; sayi: number }[];
+  dersler: { dersId: string; eserId: string; eserAdi: string; sira: number; sayi: number }[];
   /** Bu ünitede en az bir kez tamamlanmış farklı ders sayısı. */
   tamamlananDersCesidi: number;
   toplamDers: number;
+}
+
+/**
+ * Sınıfın bir külliyedeki ilerlemesi.
+ *
+ * PDF Senaryo B: "Sınıf birlikte bir külliyeyi tamamlar." Külliyeler yalnızca
+ * kaynakta belgelenmiş bağlarla tanımlıdır; `hedefMi` yol sırasındaki ilk
+ * tamamlanmamış külliyedir, öğretmen seçim yapmaz.
+ */
+export interface KulliyeIlerlemesi {
+  id: string;
+  ad: string;
+  sehirId: string;
+  toplamDers: number;
+  tamamlananDersCesidi: number;
+  hedefMi: boolean;
+  tamamlandiMi: boolean;
+}
+
+/** `GET /api/sinif/:kod/rontgen` içindeki tek eser. */
+export interface SinifRontgenEseri {
+  dersId: string;
+  eserId: string;
+  eserAdi: string;
+  tur: string;
+  sehirAdi: string;
+  uniteAdi: string;
+  gelirDagilimiDurumu: 'belgeli' | 'belge-bulunamadi';
+  gelirKalemleri: {
+    id: number;
+    eserId: string;
+    kalem: string;
+    yuzde: number | null;
+    tip: 'gelir' | 'gider' | null;
+    kaynak: string | null;
+    sira: number;
+  }[];
+  /** Dersin Yansıma adımındaki resmî kaynak künyesi. */
+  kaynakKunye: string | null;
+}
+
+/** Sınıfın birlikte açtığı Vakıf Röntgeni — yalnız toplu sayaç + yayın içeriği. */
+export interface SinifRontgenCevabi {
+  kod: string;
+  ad: string;
+  toplamTamamlama: number;
+  tamamlananDersCesidi: number;
+  kulliyeler: KulliyeIlerlemesi[];
+  eserler: SinifRontgenEseri[];
 }
 
 /** `GET /api/ogretmen/siniflar` satırı: sınıf bilgisi + özet sayaçlar. */
@@ -55,6 +104,7 @@ export interface SinifOzeti extends Sinif {
 export interface SinifDetayCevabi {
   ilerleme: SinifIlerlemesi;
   uniteler: UniteIlerlemesi[];
+  kulliyeler: KulliyeIlerlemesi[];
 }
 
 /** `GET /api/sinif/:kod` gövdesi — çocuğun gördüğü anonim özet. */
@@ -140,6 +190,13 @@ export const ogretmenApi = {
 export const katilimApi = {
   /** Kodu doğrular ve yalnızca toplu sayaçları döner. */
   sinifiSorgula: (kod: string) => iste<KatilimBilgisi>(`/sinif/${encodeURIComponent(kod)}`),
+
+  /**
+   * Sınıfın birlikte gördüğü eserlerin Vakıf Röntgeni — tahtada birlikte açılır.
+   * Dönen veri yayın içeriği + toplu sayaçtır; çocuk kimliği yoktur.
+   */
+  sinifRontgeni: (kod: string) =>
+    iste<SinifRontgenCevabi>(`/sinif/${encodeURIComponent(kod)}/rontgen`),
 };
 
 // ---------------------------------------------------------------------------

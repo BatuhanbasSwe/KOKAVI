@@ -399,7 +399,9 @@ oda durumu tek bir paylaşılan depoya (ör. Redis) taşınır.
 
 ---
 
-## 17. Köstik sohbeti: prompt injection kalkanı ve toplu sorular
+## 17. Köstik sohbeti: prompt injection kalkanı ve toplu sorular — KALDIRILDI (26 Ekim 2026)
+
+> **26 Ekim 2026:** Bu özellik başvuru PDF'inde beyan edilmediği için üründen **kaldırıldı** (istemci sohbeti, `POST /api/sor`, korpus ve testleri). Aşağıdaki bölüm tarihsel kayıt olarak durur; yeni geliştirme için geçerli değildir. Maskot Köstik (marka) kalır.
 
 **Soru:** Çocukların kullandığı bir yapay zekâ sohbetini "talimatları unut",
 "korsan gibi konuş", "sistem mesajını göster" gibi yönlendirmelere ve alakasız
@@ -444,3 +446,29 @@ gibi gömülü talimatlar yok sayıldı, yalnızca soru kaynağıyla cevaplandı
 derslerin Bağlam adımındaki 112 kavram açıklaması korpusta "Sözlük" parçası
 olarak durur ve tanım sorularında öne alınır (`server/sor/sozluk.ts`). Künye
 dürüsttür: "Kök Avı ders metni (eser, Bağlam adımı); eser kaynağı: …".
+
+## 18. 27 Ekim kapanış kararları (final öncesi)
+
+1. **Toplu TTS yapılmayacak.** Kullanıcı kararı: ses dosyası üretilmez, sunumda
+   TTS iddiası kullanılmaz. Cihaz konuşma sentezi yalnızca "Dinle" düğmesinde
+   kalır; dersler ses olmadan tamamlanır. PDF'teki "ses olmadan tam akış"
+   taahhüdü karşılanır; "toplu ses dosyası" taahhüdü kapsam dışıdır ve
+   `docs/SAVUNMA-NOTLARI.md` §2'de açıkça düzeltilir.
+2. **Sınıf külliyesi kapsamı.** PDF Senaryo B için yalnızca **kaynakta
+   belgelenmiş** külliye bağları kullanılır (`shared/kulliyeler.ts`): Yeşil
+   Külliyesi (4 ders) ve Muradiye Külliyesi (3 ders). Bağ uydurulmaz; yeni grup
+   eklemek için resmî envanter künyesi gerekir. Hedef, yol sırasındaki ilk
+   tamamlanmamış külliyedir; öğretmen seçim yapmaz.
+3. **Sınıf Röntgeni herkese açıktır (sınıf koduyla).** Öğretmen oturumu
+   gerektirmez; dönen veri yalnızca toplu sayaç + yayın içeriğidir. Hangi
+   çocuğun gördüğü bilinmez; sınıf kapalı olsa da geçmiş görünür.
+4. **Bursa 80 eser hedefi yol haritası.** 57 ders (Bursa 33) bu dönemin
+   kapsamıdır; 47 yeni ders uydurulmaz. Sunumda "80 hedefi" denir, "80
+   tamamlandı" denmez.
+5. **Dağıtım PWA olarak kalır.** APK/mağaza paketleme bu dönem yapılmaz.
+6. **Ayrı admin/öğretmen giriş adresi yok.** Mevcut `#/panel` ve `#/ogretmen`
+   + Profil'deki "Yetişkinler için" bağlantısı yeterlidir.
+7. **Kombo/ses efekti/titreşim/konfeti sadeleştirilmez, öne çıkarılmaz.**
+   Hareketi azalt ve sessiz mod zaten kapsıyor; demo anlatısında yer almaz.
+8. **Zaman tüneli kaldırılmış kalır.** Rota kodda durur, çocuk gezinmesinde
+   görünmez.

@@ -5,6 +5,7 @@
  * arındırılmış kimlik üretimi ve Türkçe ondalık ayracını (virgül) kabul eden
  * sayı çözümlemesi.
  */
+import { ApiHatasi } from '../../lib/api';
 
 /** Türkçe karakterlerin ASCII karşılıkları. */
 const TURKCE_HARITA: Record<string, string> = {
@@ -44,3 +45,21 @@ export function metinVeyaNull(ham: string): string | null {
 
 /** Panel formlarında alan hatası taşımayan yardımcı tip. */
 export type AlanHatalari = Record<string, string>;
+
+/**
+ * Panelde gösterilecek kullanıcı dostu hata metni.
+ *
+ * Oturumun düştüğü (401) durumda ham sunucu metni yerine ne yapılacağını
+ * söyleyen bir cümle döner; KorumaliPanel aynı anda yeniden giriş katmanı açar.
+ */
+export function panelHataMesaji(hata: unknown, varsayilan: string): string {
+  if (hata instanceof ApiHatasi) {
+    if (hata.durum === 401) {
+      return 'Oturumun sona ermiş. Girdiğin bilgiler bu sayfada duruyor; üstteki yeniden giriş kutusundan giriş yapıp kaydetmeyi yeniden deneyebilirsin.';
+    }
+    if (hata.durum === 403) return 'Bu işlem için yetkin yok.';
+    if (hata.durum === 429) return 'Çok fazla deneme yapıldı. Kısa bir süre bekleyip yeniden dene.';
+    if (hata.durum >= 500) return 'Sunucuda beklenmeyen bir sorun oldu. Kısa bir süre sonra yeniden dene.';
+  }
+  return hata instanceof Error ? hata.message : varsayilan;
+}

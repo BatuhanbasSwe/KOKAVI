@@ -77,7 +77,7 @@
         "ozet": "Karatay Medresesi'ni 1251'de Celâleddin Karatay yaptırdı. Vakfiyesi, paranın hangi sırayla harcanacağını yazdı. Artan para on parçaya bölünüp çalışanlara verildi. Medrese bugün Konya'da bir çini müzesi.",
         "rontgenSorusu": "Medresede kimler ne kadar pay alıyordu?",
         "rontgenAciklama": "Vakfiye, artan geliri on hisseye ayırmıştı: müderris (Hanefi mezhebinden), mütevelli, muid, bevvâb (kapıcı), ferrâş ve dersleri düzenli takip edenler. Ancak kaynak metnin iki pasajı muidin hissesi konusunda çelişir ve listelenen hisselerin toplamı on hisseyi tam vermez; kaynakta yazılan yüzdelerin toplamı %100'e oturmuyor. Bu yüzden uygulama Karatay Medresesi için oran çubuğu çizmez, kalemleri hisse listesi olarak gösterir. Bu bir kusur değil, ürünün dürüstlüğüdür: doğrulanmamış bir toplamı kesin bilgi gibi göstermiyoruz.",
-        "kaynakKunye": "Medeniyet Tasavvuru ve Karatay Medresesi (ed. Ömer Faruk Erdem – Murat Ayvacı), KTO Karatay Üniversitesi Yayınları, Konya 2020, s. 424-430 — dayanak: Osman Turan, “Selçuklu Devri Vakfiyeleri III: Celâleddin Karatay Vakıfları ve Vakfiyeleri”, TTK Belleten XII/45 (1948), s. 142, 147; Selçuk Mülâyim, “KARATAY MEDRESESİ”, TDV İslâm Ansiklopedisi, c. 24 (2001), s. 475-476"
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (2024), s. 88-95 · Medeniyet Tasavvuru ve Karatay Medresesi (ed. Ömer Faruk Erdem – Murat Ayvacı), KTO Karatay Üniversitesi Yayınları, Konya 2020, s. 424-430 — dayanak: Osman Turan, “Selçuklu Devri Vakfiyeleri III: Celâleddin Karatay Vakıfları ve Vakfiyeleri”, TTK Belleten XII/45 (1948), s. 142, 147; Selçuk Mülâyim, “KARATAY MEDRESESİ”, TDV İslâm Ansiklopedisi, c. 24 (2001), s. 475-476"
       },
       "egzersizler": [
         {
@@ -259,8 +259,8 @@
       "yansima": {
         "ozet": "Sâhib Ata Külliyesi'ni Selçuklu veziri Sâhib Ata Konya'da yaptırdı. Köyler, dükkânlar ve bağlar külliyeye gelir getirdi. Ürünün üçte biri, vakfı yönetene ayrıldı. Hankahı bugün bir vakıf müzesi.",
         "rontgenSorusu": "Külliyenin gelirinin üçte biri kime gidiyordu?",
-        "rontgenAciklama": "Sâhib Ata vakfiyesi gelir dağılımını yüzdelerle değil, görevlilere ödenen sabit miktarlarla (dirhem ve ekmek) düzenlemişti. Belgelenen tek yüzde, tevliyet ve nezaret hakkı olarak açıkça “tam üçtebir” denilen paydır; yani mahsulün %33'ü vakfı yönetme ve denetleme hakkının sahibine aitti. Bu bir dağılım tablosu değil, tek bir şarttır: iki muide ayda onar dirhem, nakibe on beş dirhem, imama ve müezzine ekmek gibi diğer ödemeler yüzdeye çevrilemediği için oran olarak gösterilmiyor.",
-        "kaynakKunye": "Sadi Bayram – Ahmet Hamdi Karabacak, “Sahib Ata Fahrü'd-din Ali'nin Konya, İmaret ve Sivas Gökmedrese Vakfiyeleri”, Vakıflar Dergisi 13 (1981), s. 40 (Konya İmaret vakfiyesi tercümesi); Sevgi Parlak, “SÂHİB ATA KÜLLİYESİ”, TDV İslâm Ansiklopedisi, c. 35 (2008), s. 516-518"
+        "rontgenAciklama": "Sâhib Ata vakfiyesi gelir dağılımını yüzdelerle değil, görevlilere ödenen sabit miktarlarla (dirhem ve ekmek) düzenlemişti. Belgelenen tek yüzde, tevliyet ve nezaret hakkı olarak açıkça “tam üçtebir” denilen paydır; yani mahsulün %33'ü vakfı yönetme ve denetleme hakkının sahibine aitti. Bu bir dağılım tablosu değil, tek bir şarttır. İki muide ayda onar dirhem, nakibe on beş dirhem, imama ve müezzine ekmek gibi diğer ödemeler yüzdeye çevrilemediği için oran olarak gösterilmiyor.",
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (2024), s. 136-145 · Sadi Bayram – Ahmet Hamdi Karabacak, “Sahib Ata Fahrü'd-din Ali'nin Konya, İmaret ve Sivas Gökmedrese Vakfiyeleri”, Vakıflar Dergisi 13 (1981), s. 40 (Konya İmaret vakfiyesi tercümesi); Sevgi Parlak, “SÂHİB ATA KÜLLİYESİ”, TDV İslâm Ansiklopedisi, c. 35 (2008), s. 516-518"
       },
       "egzersizler": [
         {
@@ -435,7 +435,7 @@
         "ozet": "Zazadin Hanı, 1235-1237'de Konya-Aksaray yolunda yapılmış bir kervansaray. İçinde odalar, mescit, hamam, ambarlar ve ahırlar var. Yüzyıllarca kervanlara hizmet etti. 2017'de onarıldı.",
         "rontgenSorusu": "Bu hanın geliri nereye gidiyordu?",
         "rontgenAciklama": "Zazadin Hanı'nın vakfiyesi hiçbir kaynakta bulunamamıştır. Vakfiye olmadığı için gelirin kim tarafından toplandığı ve nereye harcandığı belgelenememiştir; uygulama bu eser için oran göstermez, hiçbir tahmini oran yazmaz ve gelir kalemi listelemez. Kervansaraylar için sık tekrarlanan “üç gün ücretsiz konaklama” bilgisi de bu han özelinde hiçbir kaynakta görülmediği için burada yazılmamıştır. Avludaki oda sayısı da hakemli bir yayından değil bir basın açıklamasından geldiği için kesin bilgi olarak sunulmaz. Hanın yapım tarihi de kaynaklarda bir yıl farkla verilir: bir kaynak inşanın 1235'te başlayıp 1237'de bittiğini, TDV İslâm Ansiklopedisi ise hanı 1236-1237 yıllarına tarihlendirir.",
-        "kaynakKunye": "Kültür Envanteri, “Zazadin Han” kaydı (KE No 2576); Muharrem Kesik, “SÂDEDDİN KÖPEK”, TDV İslâm Ansiklopedisi, c. 35 (2008), s. 392-393; Anadolu Ajansı haberinden aktaran Arkeolojik Haber, “Sadettin Köpek'in yaptırdığı kervansaray: Zazadin Hanı” (10 Aralık 2018)"
+        "kaynakKunye": "Vakıf Katılım, 'Konya Vakıf Eserleri', II. Cilt (2024), s. 264-269 · Kültür Envanteri, “Zazadin Han” kaydı (KE No 2576); Muharrem Kesik, “SÂDEDDİN KÖPEK”, TDV İslâm Ansiklopedisi, c. 35 (2008), s. 392-393; Anadolu Ajansı haberinden aktaran Arkeolojik Haber, “Sadettin Köpek'in yaptırdığı kervansaray: Zazadin Hanı” (10 Aralık 2018)"
       },
       "egzersizler": [
         {

@@ -4,7 +4,7 @@
  * PDF: "Her gün 3–5 dakikalık bir ders: bir vakıf eseri, BEŞ ADIMLIK akış,
  * karışık egzersiz tipleri."
  *
- * Akış: 01 Merak (cezasız tahmin) → 02 Bağlam (öğretim) → 03 Perspektif
+ * Akış: 01 Merak (tahmin) → 02 Bağlam (öğretim) → 03 Perspektif
  * (tek karar anı) → 04 Geri çağırma (egzersizler) → 05 Yansıma (Vakıf Röntgeni).
  *
  * Erişilebilirlik (WCAG 2.2 AA — erişilebilirlik tasarımda değil ÜRÜNDE):
@@ -12,7 +12,7 @@
  *  - Tüm etkileşim klavyeyle yapılabilir; hiçbir yerde sürükle-bırak yok.
  *  - İlerleme göstergesi role="progressbar" + metinli adım listesi sunar.
  */
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ELMAS_ODULU, type Ders, type Egzersiz, type Eser } from '@shared/types';
 import { api } from '../../lib/api';
 import { baslikAyarla, git } from '../../lib/yonlendirme';
@@ -34,6 +34,7 @@ import {
   vadesiGelenler,
   type TekrarKaydi,
 } from '../../lib/tekrar';
+import { dersEgzersizSecimi } from './yardimci';
 import './ders.css';
 
 /** Bu derste sorulacak aralıklı tekrar sorusu (önceki bir dersten). */
@@ -44,9 +45,15 @@ export interface TekrarGorevi {
 
 interface Props {
   dersId: string;
+  /**
+   * Tahta modu: öğretmenin sınıfla birlikte tek cihazdan işlediği ders.
+   * Ders bitince ilerleme çocuk profilinde değil, sınıf külliyesinde sayılır.
+   */
+  tahtaSinifKodu?: string;
 }
 
-export function DersSayfasi({ dersId }: Props) {
+export function DersSayfasi({ dersId, tahtaSinifKodu }: Props) {
+  const tahtaMi = Boolean(tahtaSinifKodu);
   const { dersTamamla, ayarlar, ilerleme, tekrar, tekrarTakvimeEkle, tekrarSonucu, carsi, ipucuKullan } =
     useDurum();
 
@@ -99,7 +106,10 @@ export function DersSayfasi({ dersId }: Props) {
 
         // Vadesi gelen bir tekrar varsa önceki dersten bir egzersiz getirilir.
         // Hata olursa ders tekrarsız devam eder — tekrar asla akışı kilitlemez.
-        const vadeli = vadesiGelenler(tekrarRef.current, gunMetni(new Date()), dersId)[0];
+        // Tahta modunda tekrar sorulmaz: sınıf dersinin akışı sade kalmalı.
+        const vadeli = tahtaMi
+          ? undefined
+          : vadesiGelenler(tekrarRef.current, gunMetni(new Date()), dersId)[0];
         if (vadeli) {
           void api
             .ders(vadeli.dersId)
@@ -120,21 +130,20 @@ export function DersSayfasi({ dersId }: Props) {
         try {
           const gelenEser = await api.eser(gelenDers.eserId);
           if (!iptal) setEser(gelenEser);
-        } catch (eserHatasiNesnesi) {
+        } catch {
           if (!iptal) {
-            setEserHatasi(
-              eserHatasiNesnesi instanceof Error
-                ? eserHatasiNesnesi.message
-                : 'Eser bilgisi yüklenemedi',
-            );
+            // Ham fetch hatası ("FetchEvent.respondWith...") çocuğa gösterilmez.
+            setEserHatasi('Eser bilgisi şu an yüklenemedi.');
           }
         } finally {
           if (!iptal) setEserYukleniyor(false);
         }
-      } catch (dersHatasiNesnesi) {
+      } catch {
         if (iptal) return;
         setHata(
-          dersHatasiNesnesi instanceof Error ? dersHatasiNesnesi.message : 'Ders yüklenemedi',
+          typeof navigator !== 'undefined' && navigator.onLine === false
+            ? 'Ders şu an açılamadı. İnternet yoksa bu ders henüz cihaza indirilmemiş; bağlanınca yeniden dene.'
+            : 'Ders şu an yüklenemedi. Biraz sonra yeniden dene.',
         );
         setYukleniyor(false);
       }
@@ -143,7 +152,7 @@ export function DersSayfasi({ dersId }: Props) {
     return () => {
       iptal = true;
     };
-  }, [dersId, denemeSayisi]);
+  }, [dersId, denemeSayisi, tahtaMi]);
 
   // PDF/erişilebilirlik: sayfa başlığı ekran okuyucu ve sekme için ayarlanır.
   useEffect(() => {
@@ -167,7 +176,9 @@ export function DersSayfasi({ dersId }: Props) {
   // --- Gezinme --------------------------------------------------------------
   // Tekrar sorusu varsa Geri çağırma adımının İLK egzersizidir.
   const tekrarSayisi = tekrarGorevi ? 1 : 0;
-  const toplamEgzersiz = (ders?.egzersizler.length ?? 0) + tekrarSayisi;
+  // A1: her ders kendi sırasıyla (bazıları 3 egzersizle) gelir; aynı ders hep aynı sırayı verir.
+  const egzersizler = useMemo(() => (ders ? dersEgzersizSecimi(ders.id, ders.egzersizler) : []), [ders]);
+  const toplamEgzersiz = egzersizler.length + tekrarSayisi;
 
   const adimIlerle = useCallback(() => {
     setAdim((mevcut) => Math.min(ADIMLAR.length, mevcut + 1));
@@ -201,14 +212,26 @@ export function DersSayfasi({ dersId }: Props) {
     [tekrarGorevi, tekrarSonucu],
   );
 
-  /** PDF: "Kâşif Defteri dolar" — ilerleme cihazda tutulur, sunucuya gitmez. */
+  /** PDF: "Kaşif Defteri dolar" — ilerleme cihazda tutulur, sunucuya gitmez. */
   const dersiBitir = useCallback(() => {
     if (!ders) return;
+    // Tahta modu: çocuk profili yazılmaz; ders sınıf külliyesine işlenir.
+    if (tahtaSinifKodu) {
+      void fetch('/api/sinif/tamamla', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ kod: tahtaSinifKodu, dersId: ders.id }),
+      }).catch(() => {
+        /* çevrimdışı: sınıf sayacı sonra güncellenir, akış kilitlenmez */
+      });
+      setBitti({ yeni: true });
+      return;
+    }
     const yeni = !ilerleme.tamamlananDersler.includes(ders.id);
     dersTamamla(ders.id, ders.eserId);
     tekrarTakvimeEkle(ders.id, eser?.ad ?? ders.eser?.ad ?? 'Bu eser');
     setBitti({ yeni });
-  }, [ders, dersTamamla, eser, ilerleme.tamamlananDersler, tekrarTakvimeEkle]);
+  }, [ders, dersTamamla, eser, ilerleme.tamamlananDersler, tekrarTakvimeEkle, tahtaSinifKodu]);
 
   // --- Görünüm --------------------------------------------------------------
   adimRef.current = adim;
@@ -219,12 +242,14 @@ export function DersSayfasi({ dersId }: Props) {
   // Adım değişimini ekran okuyucuya duyurur; egzersiz sırası da buradadır.
   const duyuru =
     adim === 4 && toplamEgzersiz > 0
-      ? `${adim}/${ADIMLAR.length} ${bilgi.ad} — Egzersiz ${egzersizSirasi + 1}/${toplamEgzersiz}`
-      : `${adim}/${ADIMLAR.length} ${bilgi.ad} — ${bilgi.aciklama}`;
+      ? `${adim}/${ADIMLAR.length} ${bilgi.ad} · Egzersiz ${egzersizSirasi + 1}/${toplamEgzersiz}`
+      : `${adim}/${ADIMLAR.length} ${bilgi.ad} · ${bilgi.aciklama}`;
+
+  const sayfaSinifi = tahtaMi ? 'ders-sayfa ders-sayfa--tahta' : 'ders-sayfa';
 
   if (yukleniyor) {
     return (
-      <div className="ders-sayfa">
+      <div className={sayfaSinifi}>
         <p className="bildirim bildirim--bilgi" role="status">
           Ders yükleniyor…
         </p>
@@ -234,7 +259,7 @@ export function DersSayfasi({ dersId }: Props) {
 
   if (hata || !ders) {
     return (
-      <div className="ders-sayfa">
+      <div className={sayfaSinifi}>
         <div className="kart yigin ders-hata">
           <h1 className="ders-baslik">Ders açılamadı</h1>
           <p className="bildirim bildirim--hata" role="alert">
@@ -255,30 +280,42 @@ export function DersSayfasi({ dersId }: Props) {
 
   if (bitti) {
     return (
-      <div className="ders-sayfa">
+      <div className={sayfaSinifi}>
         <DersSonu
           eserAdi={dersBasligi}
           eserTur={eser?.tur ?? ders.eser?.tur ?? null}
           eserSehir={eser?.ilce ?? null}
           kapak={eser?.fotograflar?.[0] ?? null}
-          kazanilanElmas={bitti.yeni ? ELMAS_ODULU : 0}
+          kazanilanElmas={tahtaMi ? 0 : bitti.yeni ? ELMAS_ODULU : 0}
           seriGun={ilerleme.seri.gunSayisi}
           tekrarSonucMetni={tekrarSonucMetni}
-          onDevam={() => git('yol')}
+          tahtaSinifKodu={tahtaSinifKodu}
+          onDevam={() => git(tahtaMi ? 'ogretmen' : 'yol')}
         />
       </div>
     );
   }
 
   return (
-    <div className="ders-sayfa">
+    <div className={sayfaSinifi}>
       {/* Odak modu üst çubuğu: çıkış + ilerleme (Duolingo gibi, başka hiçbir şey yok). */}
       <div className="ders-ustcubuk">
-        <a className="ders-cikis" href="#/yol" aria-label="Dersten çık, öğrenme yoluna dön">
+        <a
+          className="ders-cikis"
+          href={tahtaMi ? '#/ogretmen' : '#/yol'}
+          aria-label={tahtaMi ? 'Tahta modundan çık, öğretmen paneline dön' : 'Dersten çık, öğrenme yoluna dön'}
+        >
           <IkonKapat boyut={26} />
         </a>
         <AdimGostergesi aktifAdim={adim} />
       </div>
+
+      {tahtaMi ? (
+        <p className="ders-tahta-bilgi" role="status">
+          <strong>Tahta modu</strong> · Sınıf {tahtaSinifKodu} · Ders bitince külliyeye işlenir;
+          çocukların telefonu gerekmez.
+        </p>
+      ) : null}
 
       {/* Adım değişimi duyurusu (ekran okuyucu, görünmez). */}
       <p className="sr-only" role="status" aria-live="polite">
@@ -343,7 +380,7 @@ export function DersSayfasi({ dersId }: Props) {
               value={{ kavramlar: ders.baglam.kavramlar, hak: carsi.ipucuHakki, kullan: ipucuKullan }}
             >
               <GeriCagirmaAdimi
-                egzersizler={ders.egzersizler}
+                egzersizler={egzersizler}
                 sirasi={egzersizSirasi}
                 sessizMod={ayarlar.sessizMod}
                 onIlerle={egzersizIlerle}

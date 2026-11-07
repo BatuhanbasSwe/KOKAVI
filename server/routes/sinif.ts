@@ -17,12 +17,14 @@ import {
   sinifGetir,
   sinifIlerlemesi,
   sinifDetayliIlerleme,
+  sinifRontgeni,
   ogretmenSiniflari,
   sinifDurumDegistir,
   tamamlamaKaydet,
   koduNormalle,
 } from '../repo/sinif.ts';
 import { oturumGerekli } from '../auth/koruma.ts';
+import { gunlukYaz } from '../yonetim/gunluk.ts';
 
 class DogrulamaHatasi extends Error {}
 
@@ -58,6 +60,22 @@ export async function sinifUclari(app: FastifyInstance): Promise<void> {
   });
 
   /**
+   * Sınıfın birlikte açtığı Vakıf Röntgeni — öğretmenin tahtasında gösterilir.
+   *
+   * Sınıf kodu yeterli: pano ekranı öğretmen oturumu gerektirmez. Dönen veri
+   * yalnızca toplu sayaçlar ve yayın içeriğidir (eser adı, gelir kalemleri).
+   * Hangi çocuğun gördüğü bilinmez; sınıf kapalıysa da geçmiş gösterilir.
+   */
+  app.get('/api/sinif/:kod/rontgen', async (istek, cevap) => {
+    const { kod } = istek.params as { kod: string };
+    const rontgen = await sinifRontgeni(kod);
+    if (!rontgen) {
+      return cevap.code(404).send({ hata: 'Böyle bir sınıf kodu yok.', kod: 'SINIF_YOK' });
+    }
+    return rontgen;
+  });
+
+  /**
    * Anonim tamamlama kaydı. Çocuk dersi bitirince çağrılır.
    * Gönderilen tek şey: sınıf kodu + ders kimliği. Kimlik YOK.
    */
@@ -71,7 +89,7 @@ export async function sinifUclari(app: FastifyInstance): Promise<void> {
     },
     async (istek, cevap) => {
       try {
-        const govde = istek.body as Record<string, unknown>;
+        const govde = (istek.body ?? {}) as Record<string, unknown>;
         const kod = zorunlu(govde.kod, 'kod');
         const dersId = zorunlu(govde.dersId, 'dersId');
 
@@ -79,6 +97,8 @@ export async function sinifUclari(app: FastifyInstance): Promise<void> {
         if (!tamam) {
           return cevap.code(404).send({ hata: 'Sınıf kodu veya ders bulunamadı.' });
         }
+        // İşlem günlüğü: sayaç bütün sunucu örneklerinde birleşsin.
+        await gunlukYaz({ t: 'sinif-tamamla', d: { kod, dersId } });
         return { tamam: true };
       } catch (hata) {
         if (hata instanceof DogrulamaHatasi) {
@@ -106,11 +126,16 @@ export async function sinifUclari(app: FastifyInstance): Promise<void> {
 
   app.post('/api/ogretmen/siniflar', { preHandler: oturumGerekli }, async (istek, cevap) => {
     try {
-      const govde = istek.body as Record<string, unknown>;
+      const govde = (istek.body ?? {}) as Record<string, unknown>;
       const ad = zorunlu(govde.ad, 'ad');
       if (ad.length > 120) throw new DogrulamaHatasi('"ad" en fazla 120 karakter olabilir.');
 
       const sinif = await sinifOlustur(istek.kullanici!.id, ad);
+      // İşlem günlüğü: sınıf kodu bütün sunucu örneklerinde açılabilsin.
+      await gunlukYaz({
+        t: 'sinif-ekle',
+        d: { kod: sinif.kod, ogretmenId: sinif.ogretmenId, ad: sinif.ad },
+      });
       return cevap.code(201).send(sinif);
     } catch (hata) {
       if (hata instanceof DogrulamaHatasi) {
@@ -154,6 +179,7 @@ export async function sinifUclari(app: FastifyInstance): Promise<void> {
     }
 
     await sinifDurumDegistir(sinif.kod, govde.aktif);
+    await gunlukYaz({ t: 'sinif-durum', d: { kod: sinif.kod, aktif: govde.aktif } });
     return { tamam: true };
   });
 }

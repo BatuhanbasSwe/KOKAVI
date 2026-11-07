@@ -9,8 +9,89 @@
  * tek doğruluk kaynağı üst bileşendir (`onDurumDegisti` ile geri bildirilir).
  */
 import { useCallback, useEffect, useState } from 'react';
-import { hataMetni, ogretmenApi, type SinifDetayCevabi } from './api';
+import {
+  hataMetni,
+  ogretmenApi,
+  type KulliyeIlerlemesi,
+  type SinifDetayCevabi,
+} from './api';
 import { CanliBolge, DurumRozeti, GizlilikNotu, IlerlemeCubugu, KodKopyala } from './parcalar';
+
+/**
+ * Sınıf külliyesi — PDF Senaryo B.
+ *
+ * Hedef, yol sırasındaki ilk tamamlanmamış külliyedir; öğretmen seçim yapmaz.
+ * Külliyeler yalnızca kaynakta belgelenmiş bağlardan gelir; bağ yoksa kart
+ * gösterilmez (uydurma külliye adı basılmaz).
+ */
+function KulliyeBolumu({
+  kulliyeler,
+  kod,
+}: {
+  kulliyeler: KulliyeIlerlemesi[];
+  kod: string;
+}) {
+  if (kulliyeler.length === 0) return null;
+
+  const hedef = kulliyeler.find((k) => k.hedefMi);
+
+  return (
+    <section className="kart ogretmen__bolum" aria-labelledby="sinif-kulliye-baslik">
+      <div className="ogretmen__bolum-basligi">
+        <div>
+          <p className="etiket">Birlikte öğrenme · PDF Senaryo B</p>
+          <h3 id="sinif-kulliye-baslik">Sınıf külliyesi</h3>
+        </div>
+        <a
+          className="dugme dugme--ikincil dugme--kucuk"
+          href={`#/tahta/${encodeURIComponent(kod)}/rontgen`}
+        >
+          Sınıf Röntgeni&apos;ni tahtada aç
+        </a>
+      </div>
+
+      <p className="metin-ikincil" style={{ margin: 0 }}>
+        Sınıf birlikte bir külliyeyi tamamlar; dersler tahtada işlendikçe hedef külliye dolar.
+        Yalnızca kaynakta belgelenmiş külliye bağları gösterilir.
+      </p>
+
+      {hedef ? (
+        <>
+          <p className="etiket" style={{ margin: 0 }}>
+            Sıradaki hedef
+          </p>
+          <p className="ogretmen__kulliye-ad">{hedef.ad}</p>
+          <IlerlemeCubugu
+            etiket={`Sınıf külliyesi: ${hedef.ad}`}
+            tamamlanan={hedef.tamamlananDersCesidi}
+            toplam={hedef.toplamDers}
+            desen={2}
+          />
+          <p className="metin-ikincil" style={{ margin: 0 }}>
+            {hedef.toplamDers - hedef.tamamlananDersCesidi} ders kaldı. Külliye tamamlanınca hedef
+            sıradaki külliyeye geçer.
+          </p>
+        </>
+      ) : (
+        <p className="bildirim bildirim--basari" role="status">
+          <strong>Belgelenmiş tüm külliyeler tamamlandı.</strong> Sınıf birlikte tamamladı.
+        </p>
+      )}
+
+      <ul className="ogretmen__kulliye-liste" aria-label="Külliye ilerlemeleri">
+        {kulliyeler.map((k) => (
+          <li key={k.id}>
+            <span className="rozet">{k.tamamlandiMi ? '✓ Tamamlandı' : 'Devam ediyor'}</span>{' '}
+            <span>{k.ad}</span>{' '}
+            <span className="metin-soluk">
+              {k.tamamlananDersCesidi}/{k.toplamDers} ders
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
 
 export interface SinifDetayiProps {
   kod: string;
@@ -83,6 +164,14 @@ export function SinifDetayi({ kod, aktif, onDurumDegisti, onGeri }: SinifDetayiP
       {/* Sayılar okunmadan ÖNCE ne anlama geldiği söylenir. */}
       <GizlilikNotu />
 
+      <div className="kart ogretmen__bolum">
+        <p className="metin-ikincil" style={{ margin: 0 }}>
+          <strong>Okulda telefon yok:</strong> dersi tahtada birlikte işleyin. Aşağıdaki
+          &quot;Tahtada aç&quot; bağlantısı büyük yazılı sunum modunu açar; ders bitince sınıf
+          külliyesine işlenir. Öğrenciler isterse aynı kodla <em>evde</em> devam edebilir.
+        </p>
+      </div>
+
       <CanliBolge tur="durum">
         {durumMesaji ? <p className="bildirim bildirim--basari">{durumMesaji}</p> : null}
       </CanliBolge>
@@ -110,6 +199,8 @@ export function SinifDetayi({ kod, aktif, onDurumDegisti, onGeri }: SinifDetayiP
 
       {veri ? (
         <>
+          <KulliyeBolumu kulliyeler={veri.kulliyeler} kod={veri.ilerleme.kod} />
+
           <div className="kart ogretmen__bolum">
             <KodKopyala kod={veri.ilerleme.kod} etiket="Sınıf kodu" />
 
@@ -172,15 +263,21 @@ export function SinifDetayi({ kod, aktif, onDurumDegisti, onGeri }: SinifDetayiP
                   />
                 </div>
 
-                <div className="ogretmen__tablo-kaydirma">
+                <div
+                  className="ogretmen__tablo-kaydirma"
+                  role="region"
+                  aria-label={`${unite.sehirAdi} · ${unite.uniteAdi} ders tablosu (yatay kaydırılabilir)`}
+                  tabIndex={0}
+                >
                   <table className="ogretmen__tablo">
                     <caption className="sr-only">
-                      {unite.sehirAdi} · {unite.uniteAdi} — ders tamamlama sayıları
+                      {unite.sehirAdi} · {unite.uniteAdi}: ders tamamlama sayıları ve tahtada açma
                     </caption>
                     <thead>
                       <tr>
                         <th scope="col">Ders</th>
                         <th scope="col">Tamamlama</th>
+                        <th scope="col">Tahtada</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -197,6 +294,17 @@ export function SinifDetayi({ kod, aktif, onDurumDegisti, onGeri }: SinifDetayiP
                                 <strong>{ders.sayi}</strong> kez tamamlandı
                               </>
                             )}
+                          </td>
+                          <td>
+                            <a
+                              className="dugme dugme--kucuk"
+                              href={`#/tahta/${encodeURIComponent(veri.ilerleme.kod)}/${encodeURIComponent(ders.dersId)}`}
+                            >
+                              Tahtada aç
+                              <span className="sr-only">
+                                : {ders.sira}. {ders.eserAdi}
+                              </span>
+                            </a>
                           </td>
                         </tr>
                       ))}

@@ -24,10 +24,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { Rol } from '@shared/types';
 import { useOturum } from '../../lib/oturum';
+import { ApiHatasi, oturumBittiBildir } from '../../lib/api';
 import { MetinGirdisi, ParolaGirdisi, SecimGirdisi } from './Alan';
 import { OnayDiyalogu } from './OnayDiyalogu';
 import { VeriTablosu } from './VeriTablosu';
-import type { AlanHatalari } from './yardimci';
+import { panelHataMesaji, type AlanHatalari } from './yardimci';
 
 // ---------------------------------------------------------------------------
 // Sözleşme tipleri ve uç çağrıları
@@ -55,18 +56,8 @@ interface YeniKullaniciGirdisi {
 /** Sunucunun hata gövdesi: `detay` parola zayıflık nedenlerini taşır. */
 interface HataGovdesi {
   hata?: string;
+  kod?: string;
   detay?: string[];
-}
-
-/** `detay` maddelerini kaybetmeyen API hatası. */
-class ApiHatasi extends Error {
-  readonly detay: string[];
-
-  constructor(mesaj: string, detay: string[]) {
-    super(mesaj);
-    this.name = 'ApiHatasi';
-    this.detay = detay;
-  }
 }
 
 const KULLANICI_YOLU = '/api/yonetim/kullanicilar';
@@ -81,17 +72,21 @@ async function kullaniciIstegi<T>(ekYol: string, secenekler?: RequestInit): Prom
 
   if (!cevap.ok) {
     let mesaj = `İstek başarısız (HTTP ${cevap.status}).`;
+    let kod: string | null = null;
     let detay: string[] = [];
     try {
       const govde = (await cevap.json()) as HataGovdesi;
       if (typeof govde.hata === 'string' && govde.hata.trim() !== '') mesaj = govde.hata;
+      if (typeof govde.kod === 'string') kod = govde.kod;
       if (Array.isArray(govde.detay)) {
         detay = govde.detay.filter((madde): madde is string => typeof madde === 'string');
       }
     } catch {
       /* Gövde JSON değilse genel mesaj kalır. */
     }
-    throw new ApiHatasi(mesaj, detay);
+    // Oturum düştüyse KorumaliPanel yeniden giriş katmanı açsın.
+    if (cevap.status === 401) oturumBittiBildir();
+    throw new ApiHatasi(mesaj, cevap.status, kod, detay);
   }
 
   return (await cevap.json()) as T;
@@ -208,7 +203,7 @@ export function KullaniciYonetimi() {
       setKullanicilar(liste);
       setYuklemeHatasi(null);
     } catch (hata: unknown) {
-      setYuklemeHatasi(hata instanceof Error ? hata.message : 'Kullanıcı listesi yüklenemedi.');
+      setYuklemeHatasi(panelHataMesaji(hata, 'Kullanıcı listesi yüklenemedi.'));
     } finally {
       if (!sessiz) setYukleniyor(false);
     }
@@ -259,7 +254,7 @@ export function KullaniciYonetimi() {
     } catch (hata: unknown) {
       const detay = hata instanceof ApiHatasi ? hata.detay : [];
       setIslemHatasi({
-        mesaj: hata instanceof Error ? hata.message : 'Kullanıcı eklenemedi.',
+        mesaj: panelHataMesaji(hata, 'Kullanıcı eklenemedi.'),
         detay,
       });
 
@@ -300,7 +295,7 @@ export function KullaniciYonetimi() {
       await yukle(true);
     } catch (hata: unknown) {
       setIslemHatasi({
-        mesaj: hata instanceof Error ? hata.message : 'Hesap durumu değiştirilemedi.',
+        mesaj: panelHataMesaji(hata, 'Hesap durumu değiştirilemedi.'),
         detay: [],
       });
       setOnayDurumu(null);
@@ -454,9 +449,9 @@ export function KullaniciYonetimi() {
                 baslik: 'Durum',
                 icerik: (kullanici) =>
                   kullanici.aktif ? (
-                    <span className="rozet rozet--aktif">Aktif — giriş yapabilir</span>
+                    <span className="rozet rozet--aktif">Aktif: giriş yapabilir</span>
                   ) : (
-                    <span className="rozet rozet--pasif">Pasif — giriş yapamaz</span>
+                    <span className="rozet rozet--pasif">Pasif: giriş yapamaz</span>
                   ),
               },
               {
@@ -588,7 +583,7 @@ export function KullaniciYonetimi() {
                 }))
               }
               secenekler={rolSecenekleri}
-              bosEtiket="— Rol seçin —"
+              bosEtiket="Rol seçin"
               hata={hatalar['kullanici-rol']}
               ipucu="Varsayılan: Öğretmen (en az yetki). Rollerin yetkileri yukarıdaki listede yazılıdır."
               zorunlu

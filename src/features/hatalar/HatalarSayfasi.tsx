@@ -6,7 +6,6 @@
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Konfeti } from '@/app/Konfeti';
-import { Maskot } from '@/app/Maskot';
 import { EgzersizCalistirici } from '../ders/GeriCagirmaAdimi';
 import { IpucuBildirimi } from '../ders/EgzersizKabugu';
 import { HATA_OLAYI, hataCikar, hatalariOku, type HataKaydi } from './hataDeposu';
@@ -64,7 +63,7 @@ export function HatalarSayfasi() {
     return (
       <div className="yigin">
         <section className="kart yigin hatalar-giris" aria-labelledby="hatalar-baslik">
-          <Maskot boyut={84} dusunceli={bekleyen > 0} mutlu={bekleyen === 0} />
+          
           <h1 id="hatalar-baslik">Hatalarımı çalış</h1>
           {bekleyen === 0 ? (
             <p>Şu an tekrar edilecek bir şey yok. Derslerde ipucu aldığın sorular burada birikir.</p>
@@ -95,7 +94,7 @@ export function HatalarSayfasi() {
       <div className="yigin">
         {ogrenilen.length > 0 && <Konfeti />}
         <section className="kart yigin hatalar-giris" aria-labelledby="hatalar-son">
-          <Maskot boyut={84} mutlu />
+          
           <h1 id="hatalar-son">
             {hepsi ? 'Hepsini öğrendin!' : `${ogrenilen.length} soruyu öğrendin!`}
           </h1>
@@ -104,7 +103,7 @@ export function HatalarSayfasi() {
               const tamam = ogrenilen.includes(h.egzersiz.id);
               return (
                 <li key={h.egzersiz.id}>
-                  <span aria-hidden="true">{tamam ? '✓' : '↻'}</span> {h.eserAdi || 'Ders'} —{' '}
+                  <span aria-hidden="true">{tamam ? '✓' : '↻'}</span> {h.eserAdi || 'Ders'}:{' '}
                   {tamam ? 'listeden çıktı' : 'bir dahaki pratikte yine gelecek'}
                 </li>
               );
@@ -128,6 +127,11 @@ export function HatalarSayfasi() {
   return (
     <div className="yigin">
       <header className="hatalar-ust">
+        {/* Ekranın tek h1'i: pratik sırasında görsel başlık ince kaldığı için
+            aynı bilgi ekran okuyucuya sr-only h1 olarak verilir (başlık hiyerarşisi). */}
+        <h1 className="sr-only">
+          Hatalarımı çalış: soru {sira + 1}/{tur.length}
+        </h1>
         <p className="etiket">
           Hatalarımı çalış · {sira + 1}/{tur.length}
         </p>

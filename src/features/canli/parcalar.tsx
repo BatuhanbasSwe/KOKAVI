@@ -41,19 +41,31 @@ export function useYoklama<T>(getir: (() => Promise<T>) | null, aralikMs = 1000)
   const getirRef = useRef(getir);
   getirRef.current = getir;
   const [tetik, setTetik] = useState(0);
+  const ardisik = useRef(0);
+  const veriGeldi = useRef(false);
 
   useEffect(() => {
     if (!getirRef.current) return;
     let iptal = false;
     let zamanlayici: ReturnType<typeof setTimeout>;
+    // Sunucusuz ortamda tek tük 404/ağ hatası gelebilir; veri bir kez geldiyse
+    // hatayı ancak art arda ESIK kez tekrarlanınca gösteririz (ekran titremesin).
+    // 404'ler canliApi içinde kısa aralıkla yeniden denenir; bu eşik son
+    // savunma: geçici bir kopma "Oyun bulunamadı" ekranına dönüşmesin.
+    const ESIK = 12;
     const tur = async () => {
       try {
         const yeni = await getirRef.current!();
         if (iptal) return;
+        ardisik.current = 0;
+        veriGeldi.current = true;
         setVeri(yeni);
         setHata(null);
       } catch (e) {
-        if (!iptal) setHata(e as Error);
+        if (!iptal) {
+          ardisik.current += 1;
+          if (!veriGeldi.current ? ardisik.current >= 3 : ardisik.current >= ESIK) setHata(e as Error);
+        }
       }
       if (!iptal) zamanlayici = setTimeout(() => void tur(), aralikMs);
     };

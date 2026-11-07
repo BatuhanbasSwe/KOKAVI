@@ -31,7 +31,7 @@ import type {
 } from '@shared/types';
 import { api, yonetimApi } from '../../lib/api';
 import { Alan, CokSatirliGirdi, MetinGirdisi, OnayKutusu, SecimGirdisi, type Secenek } from './Alan';
-import { kimlikUret, metinVeyaNull, sayiyaCevir, type AlanHatalari } from './yardimci';
+import { kimlikUret, metinVeyaNull, panelHataMesaji, sayiyaCevir, type AlanHatalari } from './yardimci';
 
 // ---------------------------------------------------------------------------
 // Form modeli
@@ -335,6 +335,13 @@ function dogrula(form: FormDurumu, yeniMi: boolean): AlanHatalari {
   return hatalar;
 }
 
+/**
+ * Formun ÜSTTE, katlanmamış "Hızlı giriş" bölümünde duran zorunlu alanları.
+ * `dogrula()` aynı DOM kimliklerini kullanır; üstteki "kaç zorunlu alan kaldı"
+ * göstergesi bu listeyi sayar (kurallar yeniden yazılmaz).
+ */
+const ZORUNLU_ALAN_ANAHTARLARI = ['eser-id', 'eser-ad', 'eser-sehir', 'eser-tur'] as const;
+
 // ---------------------------------------------------------------------------
 // Bileşen
 // ---------------------------------------------------------------------------
@@ -426,7 +433,7 @@ function SaltOkunurGaleri({
                     className="panel__foto"
                     src={foto.url}
                     // `alt` ZORUNLU — hiçbir görsel etiketsiz kalmaz.
-                    alt={alt ?? `${gosterilecekAd} — arşiv fotoğrafı`}
+                    alt={alt ?? `${gosterilecekAd} (arşiv fotoğrafı)`}
                   />
                   {alt === null ? (
                     <span className="panel__foto-uyari">
@@ -495,6 +502,12 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
    * gösterilir (görseller Vakıf Katılım'dan beklenmektedir).
    */
   const [kayitliVeri, setKayitliVeri] = useState<SaltOkunurVeri | null>(null);
+  /**
+   * "Ayrıntılar (isteğe bağlı)" bölümü başlangıçta KAPALI: içerik yöneticisi
+   * zorunlu alanları tek ekranda doldurup kaydedebilir. Hata ayrıntıdaki bir
+   * alandaysa bölüm otomatik açılır (kaydet akışında).
+   */
+  const [ayrintilarAcik, setAyrintilarAcik] = useState(false);
 
   const etkinId = eserId ?? olusanId;
   const yeniMi = etkinId === null;
@@ -593,16 +606,29 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
     ] as const
   ).filter((taraf) => taraf.toplam > 100);
 
+  /**
+   * Hatalı alana götürür: alan katlanmış "Ayrıntılar" bölümündeyse bölümü açar,
+   * sonra odağı alana verir. Gizli alan odak alamadığı için odak, açılma
+   * çiziminden sonraya bırakılır (SC 3.3.1).
+   */
+  const hatayaOdakla = (alanId: string) => {
+    const alan = document.getElementById(alanId);
+    const govde = document.getElementById('eser-ayrintilar-govde');
+    if (alan !== null && govde !== null && govde.contains(alan)) setAyrintilarAcik(true);
+    window.setTimeout(() => document.getElementById(alanId)?.focus(), 0);
+  };
+
   const kaydet = async () => {
     const bulunanlar = dogrula(form, yeniMi);
     setHatalar(bulunanlar);
     setKaydetmeHatasi(null);
     setBasari(null);
 
-    // İlk hatalı alana odak taşınır ve hata özeti role="alert" ile duyurulur.
+    // İlk hatalı alana odak taşınır ve hata özeti role="alert" ile duyurulur
+    // (SC 3.3.1). Alan katlanmış "Ayrıntılar" bölümündeyse bölüm önce açılır.
     const ilkHataId = Object.keys(bulunanlar)[0];
     if (ilkHataId !== undefined) {
-      document.getElementById(ilkHataId)?.focus();
+      hatayaOdakla(ilkHataId);
       return;
     }
 
@@ -625,7 +651,7 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
       setHatalar({});
     } catch (hata: unknown) {
       // Sunucu 400 döndüğünde Türkçe doğrulama mesajı doğrudan gösterilir (şartname 5.1.5).
-      setKaydetmeHatasi(hata instanceof Error ? hata.message : 'Kaydetme başarısız oldu.');
+      setKaydetmeHatasi(panelHataMesaji(hata, 'Kaydetme başarısız oldu.'));
     } finally {
       setMesgul(false);
     }
@@ -636,7 +662,21 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
     .filter((kulliye) => form.sehirId === '' || kulliye.sehirId === form.sehirId)
     .map((kulliye) => ({ deger: kulliye.id, etiket: kulliye.ad }));
 
-  const hataOzeti = [...new Set(Object.values(hatalar))];
+  /**
+   * Hata özeti: aynı mesaj birden çok alanda olabilir; özette BİR kez gösterilir
+   * ama ilk ilgili alana bağlanır (tıklayınca o alana odak taşınır).
+   */
+  const hataListesi: { alanId: string; mesaj: string }[] = [];
+  for (const [alanId, mesaj] of Object.entries(hatalar)) {
+    if (!hataListesi.some((kayit) => kayit.mesaj === mesaj)) hataListesi.push({ alanId, mesaj });
+  }
+
+  /**
+   * Üstteki canlı durum: kaç ZORUNLU alanın kaldığını METİNLE söyler
+   * (renk tek başına anlam taşımaz). Doğrulama kuralları yeniden yazılmaz;
+   * `dogrula()` çıktısının zorunlu alan anahtarları sayılır.
+   */
+  const eksikZorunlu = ZORUNLU_ALAN_ANAHTARLARI.filter((anahtar) => dogrula(form, yeniMi)[anahtar]).length;
 
   return (
     <section className="panel__form-bolum" aria-labelledby="eser-form-baslik">
@@ -645,13 +685,26 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
           <p className="etiket">KATMAN 04 · İçerik yönetimi</p>
           <h1 id="eser-form-baslik">{yeniMi ? 'Yeni eser ekle' : 'Eseri düzenle'}</h1>
           <p className="metin-ikincil">
-            Vakıf eseri künyesi, vakfiye amacı ve gelir dağılımı buradan yönetilir. Her
-            bilgi kaynağıyla birlikte kaydedilir.
+            Zorunlu alanları doldurup kaydedin; konum, bani, tarihçe, gelir dağılımı, fotoğraf ve
+            kaynaklar aşağıdaki “Ayrıntılar (isteğe bağlı)” bölümündedir.
           </p>
         </div>
-        <button type="button" className="dugme dugme--ikincil" onClick={onListeyeDon}>
-          ← Listeye dön
-        </button>
+        <div className="panel__ust-eylem">
+          <p className={eksikZorunlu > 0 ? 'panel__durum' : 'panel__durum panel__durum--tamam'}>
+            {eksikZorunlu > 0 ? `${eksikZorunlu} zorunlu alan kaldı` : 'Zorunlu alanlar tamam'}
+          </p>
+          <button
+            type="button"
+            className="dugme"
+            onClick={() => void kaydet()}
+            disabled={mesgul || yukleniyor || yuklemeHatasi !== null}
+          >
+            {mesgul ? 'Kaydediliyor…' : yeniMi ? 'Eseri kaydet' : 'Değişiklikleri kaydet'}
+          </button>
+          <button type="button" className="dugme dugme--ikincil" onClick={onListeyeDon}>
+            ← Listeye dön
+          </button>
+        </div>
       </div>
 
       {/*
@@ -670,14 +723,22 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
         </div>
       ) : null}
 
-      {hataOzeti.length > 0 ? (
+      {hataListesi.length > 0 ? (
         <div className="bildirim bildirim--hata" role="alert">
           <p className="panel__ozet-baslik">
             <strong>Form gönderilemedi.</strong> Lütfen aşağıdaki alanları düzeltin:
           </p>
           <ul className="panel__ozet-listesi">
-            {hataOzeti.map((mesaj) => (
-              <li key={mesaj}>{mesaj}</li>
+            {hataListesi.map((kayit) => (
+              <li key={kayit.mesaj}>
+                <button
+                  type="button"
+                  className="panel__ozet-baglanti"
+                  onClick={() => hatayaOdakla(kayit.alanId)}
+                >
+                  {kayit.mesaj}
+                </button>
+              </li>
             ))}
           </ul>
         </div>
@@ -714,8 +775,20 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
             </p>
           ) : null}
 
-          <Grup baslik="Künye ve konum" aciklama="Kimlik, ad, şehir ve harita bilgileri.">
+          <Grup
+            baslik="Hızlı giriş · zorunlu alanlar"
+            aciklama="Yeni eseri hızla girmek için gereken alanlar. Kaydettikten sonra kalan bilgileri aşağıdaki “Ayrıntılar (isteğe bağlı)” bölümünden ekleyebilirsiniz."
+          >
             <div className="izgara-2">
+              <MetinGirdisi
+                id="eser-ad"
+                etiket="Eser adı"
+                deger={form.ad}
+                onDegistir={adDegistir}
+                hata={hatalar['eser-ad']}
+                zorunlu
+                ornek="Ulu Cami"
+              />
               <MetinGirdisi
                 id="eser-id"
                 etiket="Kimlik"
@@ -734,23 +807,6 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
                 saltOkunur={!yeniMi}
                 ornek="bursa-ulu-cami"
               />
-              <MetinGirdisi
-                id="eser-ad"
-                etiket="Eser adı"
-                deger={form.ad}
-                onDegistir={adDegistir}
-                hata={hatalar['eser-ad']}
-                zorunlu
-                ornek="Ulu Cami"
-              />
-              <MetinGirdisi
-                id="eser-ad-en"
-                etiket="İngilizce ad"
-                deger={form.adEn}
-                onDegistir={(deger) => alan('adEn', deger)}
-                ipucu="Envanter kitapları Türkçe ve İngilizce iki dilli basılır."
-                ornek="Grand Mosque"
-              />
               <SecimGirdisi
                 id="eser-sehir"
                 etiket="Şehir"
@@ -761,7 +817,7 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
                   alan('kulliyeId', '');
                 }}
                 secenekler={sehirSecenekleri}
-                bosEtiket="— Şehir seçin —"
+                bosEtiket="Şehir seçin"
                 hata={hatalar['eser-sehir']}
                 zorunlu
               />
@@ -775,47 +831,85 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
                 zorunlu
                 ornek="Cami"
               />
-              <MetinGirdisi
-                id="eser-ilce"
-                etiket="İlçe"
-                deger={form.ilce}
-                onDegistir={(deger) => alan('ilce', deger)}
-                ornek="Osmangazi"
-              />
-              <SecimGirdisi
-                id="eser-kulliye"
-                etiket="Külliye"
-                deger={form.kulliyeId}
-                onDegistir={(deger) => alan('kulliyeId', deger)}
-                secenekler={kulliyeSecenekleri}
-                bosEtiket="— Külliye yok —"
-                ipucu={
-                  kulliyeSecenekleri.length === 0
-                    ? 'Bu şehirde tanımlı külliye yok.'
-                    : 'Eser bir külliyenin parçasıysa seçin.'
-                }
-              />
-              <MetinGirdisi
-                id="eser-lat"
-                etiket="Enlem"
-                deger={form.lat}
-                onDegistir={(deger) => alan('lat', deger)}
-                hata={hatalar['eser-lat']}
-                girdiModu="decimal"
-                ornek="40,1836"
-              />
-              <MetinGirdisi
-                id="eser-lng"
-                etiket="Boylam"
-                deger={form.lng}
-                onDegistir={(deger) => alan('lng', deger)}
-                hata={hatalar['eser-lng']}
-                girdiModu="decimal"
-                ipucu="Haritada göstermek için enlem ve boylam birlikte girilir."
-                ornek="29,0662"
-              />
             </div>
+            <OnayKutusu
+              id="eser-yayinda"
+              etiket="Yayında"
+              isaretli={form.yayinda}
+              onDegistir={(isaretli) => alan('yayinda', isaretli)}
+              ipucu="Kapalıyken eser taslak kalır; derslerde gösterilmez. Yeni eseri hemen yayınlamak için işaretleyin."
+            />
           </Grup>
+
+          <button
+            type="button"
+            className="panel__ayrintilar-dugme"
+            aria-expanded={ayrintilarAcik}
+            aria-controls="eser-ayrintilar-govde"
+            onClick={() => setAyrintilarAcik((acik) => !acik)}
+          >
+            <span className="panel__ayrintilar-baslik">Ayrıntılar (isteğe bağlı)</span>
+            <span className="panel__ayrintilar-not">
+              Konum · bani · tarihçe · gelir dağılımı · fotoğraf · kaynaklar
+            </span>
+          </button>
+
+          <div id="eser-ayrintilar-govde" className="panel__ayrintilar-govde" hidden={!ayrintilarAcik}>
+            <Grup
+              baslik="Kimlik ve konum ayrıntıları"
+              aciklama="İngilizce ad, ilçe, külliye ve harita koordinatları (isteğe bağlı)."
+            >
+              <div className="izgara-2">
+                <MetinGirdisi
+                  id="eser-ad-en"
+                  etiket="İngilizce ad"
+                  deger={form.adEn}
+                  onDegistir={(deger) => alan('adEn', deger)}
+                  ipucu="Envanter kitapları Türkçe ve İngilizce iki dilli basılır."
+                  ornek="Grand Mosque"
+                />
+                <MetinGirdisi
+                  id="eser-ilce"
+                  etiket="İlçe"
+                  deger={form.ilce}
+                  onDegistir={(deger) => alan('ilce', deger)}
+                  ornek="Osmangazi"
+                />
+                <SecimGirdisi
+                  id="eser-kulliye"
+                  etiket="Külliye"
+                  deger={form.kulliyeId}
+                  onDegistir={(deger) => alan('kulliyeId', deger)}
+                  secenekler={kulliyeSecenekleri}
+                  bosEtiket="Külliye yok"
+                  ipucu={
+                    kulliyeSecenekleri.length === 0
+                      ? 'Bu şehirde tanımlı külliye yok.'
+                      : 'Eser bir külliyenin parçasıysa seçin.'
+                  }
+                />
+                <MetinGirdisi
+                  id="eser-lat"
+                  etiket="Enlem"
+                  deger={form.lat}
+                  onDegistir={(deger) => alan('lat', deger)}
+                  hata={hatalar['eser-lat']}
+                  girdiModu="decimal"
+                  ornek="40,1836"
+                />
+                <MetinGirdisi
+                  id="eser-lng"
+                  etiket="Boylam"
+                  deger={form.lng}
+                  onDegistir={(deger) => alan('lng', deger)}
+                  hata={hatalar['eser-lng']}
+                  girdiModu="decimal"
+                  ipucu="Haritada göstermek için enlem ve boylam birlikte girilir."
+                  ornek="29,0662"
+                />
+              </div>
+            </Grup>
+
 
           <Grup baslik="K1 · Kim yaptırdı?" aciklama="Bani (yaptıran) ve dönemi.">
             <div className="izgara-2">
@@ -928,7 +1022,7 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
                     deger={satir.tip ?? ''}
                     onDegistir={(deger) => kalemDegistir(satir.anahtar, { tip: tipCoz(deger) })}
                     secenekler={TIP_SECENEKLERI}
-                    bosEtiket="— Belirsiz —"
+                    bosEtiket="Belirsiz"
                     ipucu="Gelir: para nereden geliyor. Gider: nereye harcanıyor."
                   />
                   <MetinGirdisi
@@ -975,8 +1069,8 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
               {(ozellikler) => (
                 <output {...ozellikler} className="panel__cikti">
                   {belgeli
-                    ? `Belgeli — ${oranliSayi} kalemde oran verilmiş`
-                    : 'Belge bulunamadı — hiçbir kalemde oran yok'}
+                    ? `Belgeli: ${oranliSayi} kalemde oran verilmiş`
+                    : 'Belge bulunamadı: hiçbir kalemde oran yok'}
                 </output>
               )}
             </Alan>
@@ -1057,17 +1151,13 @@ export function EserFormu({ eserId, sehirler, kulliyeler, onListeyeDon }: EserFo
             />
           </Grup>
 
-          <Grup baslik="Yayın durumu" aciklama="Yalnızca yayında olan eserler öğrenme yolunda görünür.">
-            <OnayKutusu
-              id="eser-yayinda"
-              etiket="Yayında"
-              isaretli={form.yayinda}
-              onDegistir={(isaretli) => alan('yayinda', isaretli)}
-              ipucu="Kapalıyken eser taslak kalır; derslerde gösterilmez."
-            />
-          </Grup>
+          </div>
 
-          <div className="panel__form-eylem">
+          {/* Yapışkan eylem çubuğu: uzun formda kaydet düğmesi her an erişilebilir. */}
+          <div className="panel__form-eylem panel__form-eylem--yapiskan">
+            <p className="panel__eylem-durum">
+              {eksikZorunlu > 0 ? `${eksikZorunlu} zorunlu alan kaldı` : 'Zorunlu alanlar tamam'}
+            </p>
             <button type="submit" className="dugme" disabled={mesgul}>
               {mesgul ? 'Kaydediliyor…' : yeniMi ? 'Eseri kaydet' : 'Değişiklikleri kaydet'}
             </button>

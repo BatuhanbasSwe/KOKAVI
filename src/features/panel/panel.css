@@ -724,3 +724,137 @@
   line-height: 1.5;
 }
 
+/* ===========================================================================
+   Eser formu — "hızlı giriş" düzeni
+   Zorunlu alanlar üstte tek ekranda; geri kalanı katlanır "Ayrıntılar"
+   bölümünde. Renk yalnızca jetonlardan; tıklanabilir her şey >= 44px.
+   =========================================================================== */
+
+/* Başlık sağındaki eylem kümesi: durum metni + kaydet + listeye dön. */
+.panel__ust-eylem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--b-2);
+}
+
+/* Kaç zorunlu alanın kaldığını METİNLE söyler (renk tek başına anlam taşımaz). */
+.panel__durum {
+  margin: 0;
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--uyari);
+}
+
+.panel__durum--tamam {
+  color: var(--vurgu-koyu);
+}
+
+/* "Ayrıntılar (isteğe bağlı)" aç/kapa düğmesi — aria-expanded ile açılır. */
+.panel__ayrintilar-dugme {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--b-1);
+  width: 100%;
+  min-height: 52px;
+  padding: var(--b-3) var(--b-4);
+  font: inherit;
+  text-align: left;
+  color: var(--metin);
+  background: var(--zemin-vurgu);
+  border: 2px solid var(--cizgi-kalin);
+  border-radius: var(--kose-md);
+  cursor: pointer;
+  transition: border-color var(--gecis-hizli);
+}
+
+.panel__ayrintilar-dugme:hover {
+  border-color: var(--vurgu);
+}
+
+.panel__ayrintilar-baslik {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-2);
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-md);
+  font-weight: 800;
+}
+
+/* Açık/kapalı göstergesi: yön oku; durum ayrıca aria-expanded ile duyurulur. */
+.panel__ayrintilar-baslik::after {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  rotate: 45deg;
+  translate: 0 -1px;
+  transition: rotate var(--gecis-hizli);
+}
+
+.panel__ayrintilar-dugme[aria-expanded='true'] .panel__ayrintilar-baslik::after {
+  rotate: -135deg;
+  translate: 0 2px;
+}
+
+.panel__ayrintilar-not {
+  font-size: var(--yazi-sm);
+  color: var(--metin-soluk);
+}
+
+.panel__ayrintilar-govde {
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-4);
+}
+
+/* `hidden` yazar stilini yenmeli: kapalıyken bölüm tamamen gizlenir. */
+.panel__ayrintilar-govde[hidden] {
+  display: none;
+}
+
+/* Yapışkan eylem çubuğu: uzun formda kaydet düğmesi her an erişilebilir. */
+.panel__form-eylem--yapiskan {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  margin-inline: calc(var(--b-4) * -1);
+  padding: var(--b-3) var(--b-4);
+  background: var(--zemin);
+  border-top: 2px solid var(--cizgi);
+}
+
+.panel__eylem-durum {
+  margin: 0 auto 0 0;
+  font-size: var(--yazi-sm);
+  font-weight: 700;
+  color: var(--metin-ikincil);
+}
+
+/* Hata özeti: metne tıklayınca ilgili alana odak gider (SC 3.3.1). */
+.panel__ozet-baglanti {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* Mobilde alt sekme çubuğu sabit (64px + güvenli alan): çubuk üstünde durur. */
+@media (max-width: 720px) {
+  .panel__form-eylem--yapiskan {
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+}
+

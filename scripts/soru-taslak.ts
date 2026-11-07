@@ -17,7 +17,6 @@ import Anthropic from '@anthropic-ai/sdk';
 import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
 import { GoogleGenAI, ThinkingLevel } from '@google/genai';
 import { z } from 'zod';
-import { saglayiciSec } from '../server/sor/saglayici.ts';
 import {
   SISTEM_TASLAK,
   TaslakSoruSemasi,
@@ -28,6 +27,13 @@ import {
   type ModelTaslagi,
   type TaslakSoru,
 } from './soru-taslak-lib.ts';
+
+/** Model sağlayıcısını seçer: GEMINI_API_KEY varsa Gemini, yoksa Claude; ikisi de yoksa null. */
+function saglayiciSec(ortam: Record<string, string | undefined> = process.env): 'gemini' | 'claude' | null {
+  if (ortam.GEMINI_API_KEY) return 'gemini';
+  if (ortam.ANTHROPIC_API_KEY) return 'claude';
+  return null;
+}
 
 const ARASTIRMA = 'data/research';
 const CIKTI = 'data/taslak-sorular';

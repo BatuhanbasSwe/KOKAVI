@@ -641,6 +641,50 @@ describe('10. Sınıf uçları', () => {
     expect(cevap.json().hata).toContain('dersId');
   });
 
+  it('sınıf Röntgeni yalnızca toplu sayaç + yayın içeriği döner (kimlik yok)', async () => {
+    const cevap = await app.inject({
+      method: 'GET',
+      url: `/api/sinif/${sinifKodu}/rontgen`,
+    });
+    expect(cevap.statusCode).toBe(200);
+
+    const govde = cevap.json() as Record<string, unknown>;
+    expect(Object.keys(govde).sort()).toEqual(
+      [
+        'ad',
+        'eserler',
+        'kod',
+        'kulliyeler',
+        'tamamlananDersCesidi',
+        'toplamTamamlama',
+      ].sort(),
+    );
+    expect(Array.isArray(govde.eserler)).toBe(true);
+    expect(Array.isArray(govde.kulliyeler)).toBe(true);
+
+    // Öğretmen kimliği, e-posta veya çocuk kimliği ASLA dönmemeli.
+    const metin = JSON.stringify(govde);
+    expect(metin).not.toContain('ogretmenId');
+    expect(metin).not.toContain('@');
+    expect(metin).not.toContain('ogretmen@test.local');
+  });
+
+  it('olmayan sınıfın Röntgeni 404 döner', async () => {
+    const cevap = await app.inject({ method: 'GET', url: '/api/sinif/XXX-9999/rontgen' });
+    expect(cevap.statusCode).toBe(404);
+    expect(cevap.json().kod).toBe('SINIF_YOK');
+  });
+
+  it('öğretmen sınıf detayı külliye kırılımını da döner', async () => {
+    const cevap = await app.inject({
+      method: 'GET',
+      url: `/api/ogretmen/siniflar/${sinifKodu}`,
+      cookies: { kokavi_oturum: ogretmenToken },
+    });
+    expect(cevap.statusCode).toBe(200);
+    expect(Array.isArray(cevap.json().kulliyeler)).toBe(true);
+  });
+
   it('geçersiz kod biçimi reddedilir', async () => {
     const cevap = await app.inject({ method: 'GET', url: '/api/sinif/ab' });
     expect(cevap.statusCode).toBe(404);

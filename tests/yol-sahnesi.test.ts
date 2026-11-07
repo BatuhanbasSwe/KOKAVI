@@ -1,6 +1,6 @@
 /**
  * Canlı yol yardımcıları: yol eğrisi, zıplayan yürüyüş noktaları ve sahne
- * kararı (ders bitti → Köstik ilerler; ünite açıldı → kilit kırılır; ünite
+ * kararı (ders bitti → yol ilerler; ünite açıldı → kilit kırılır; ünite
  * bitti → mühür; ilk ziyarette sahne yok).
  */
 import { describe, expect, it } from 'vitest';
@@ -55,7 +55,7 @@ describe('sahne kararı', () => {
     expect(sahneHesapla(null, yolYap([], 'a'))).toEqual({ kimden: null, kime: null, yeniAcilan: [], yeniBiten: [] });
   });
 
-  it('ders bitince Köstik eski dersten yenisine yürür', () => {
+  it('ders bitince yol eski dersten yenisine ilerler', () => {
     const once = yolAnisi(yolYap([], 'a'));
     expect(sahneHesapla(once, yolYap(['a'], 'b'))).toMatchObject({ kimden: 'a', kime: 'b' });
   });

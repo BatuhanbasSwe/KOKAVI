@@ -118,7 +118,7 @@ Bunlardan birini değiştirmek gerçekten gerekiyorsa dur, kullanıcıya nedenin
 5. `TODOLIST.md`'de ilgili kutuyu işaretle (aynı commit'te).
 6. Kullanıcıya kısaca bildir: değişen dosyalar, ne yapıldığı, test sonucu.
 
-**Teslim (git):** Depo `github.com/BatuhanbasSwe/KOKAVI`. ZIP artık kullanılmıyor.
+**Teslim (git):** Ana depo `github.com/abdkayaa/hackathon`. ZIP artık kullanılmıyor; Vercel production yayını bu deponun `main` dalından otomatik yapılır.
 - Herkes kendi dalında çalışır, `main`'e PR ya da merge ile girer. Push'u kullanıcı kendisi yapar; sorulmadan push etme.
 - `node_modules/`, `.pgdata/`, `dist/`, `.env` ve `deploy/ADMIN-PAROLA.txt` commit'e girmez (`.gitignore`).
 - Commit mesajı: ne değişti, neden; `npm run seed` gerekiyorsa mesajda belirt.

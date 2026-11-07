@@ -3,7 +3,7 @@
  * girişleri ayrı etiketli gezinmede durur; axe ihlali yok.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, render, screen, within } from '@testing-library/react';
+import { cleanup, render, screen, waitFor, within } from '@testing-library/react';
 import axe from 'axe-core';
 
 beforeEach(() => {
@@ -38,13 +38,13 @@ async function ihlaller(container: HTMLElement) {
 }
 
 describe('Keşfet', () => {
-  it('harita, arşiv, zaman tüneli ve rota kutucukları; ihlalsiz', async () => {
+  it('harita, rota ve arşiv kutucukları; ihlalsiz', async () => {
     const container = await ac('#/kesfet', /keşfet/i);
     const liste = screen.getByRole('list', { name: /keşif alanları/i });
     const hedefler = within(liste)
       .getAllByRole('link')
       .map((a) => a.getAttribute('href'));
-    expect(hedefler).toEqual(['#/harita', '#/arsiv', '#/zaman-tuneli', '#/kesfet/yasayan', '#/rota']);
+    expect(hedefler).toEqual(['#/harita', '#/rota', '#/arsiv']);
     // Arşiv kutusu çocuk akışını öne çıkarır, envanter ölçeğini korur.
     expect(screen.getByText('Büyükler için · yüzlerce eser')).toBeInTheDocument();
     expect(await ihlaller(container)).toEqual([]);
@@ -63,7 +63,7 @@ describe('Keşfet', () => {
 });
 
 describe('Profil', () => {
-  it('ayarlar, çarşı, seri ve sınıf satırları; yetişkin gezinmesi ayrı; ihlalsiz', async () => {
+  it('ayarlar, çarşı, seri ve sınıf satırları; giriş bölümü ayrı etiketli gezinme; ihlalsiz', async () => {
     const container = await ac('#/profil', /kâşif/i);
     const ana = screen.getByRole('main');
     for (const [ad, href] of [
@@ -74,19 +74,27 @@ describe('Profil', () => {
     ] as const) {
       expect(within(ana).getByRole('link', { name: ad }).getAttribute('href')).toBe(href);
     }
-    const yetiskin = screen.getByRole('navigation', { name: /yetişkinler için/i });
+    const giris = screen.getByRole('navigation', { name: /giriş seçenekleri/i });
     expect(
-      within(yetiskin)
+      within(giris)
         .getAllByRole('link')
         .map((a) => a.getAttribute('href')),
-    ).toEqual(['#/ogretmen', '#/canli/kur', '#/panel']);
+    ).toEqual(['#/canli', '#/ogretmen', '#/panel']);
     expect(await ihlaller(container)).toEqual([]);
   });
 
-  it('ayarlar profil sekmesine ait; ana gezinmede seçili sekme yok', async () => {
+  it('Vakıf Çarşısı da Profil sayfasının bir bölümü: #/carsi profil sayfasını açar', async () => {
+    const container = await ac('#/carsi', /kâşif/i);
+    const baslik = screen.getByRole('heading', { level: 2, name: 'Vakıf Çarşısı' });
+    expect(baslik).toBeInTheDocument();
+    await waitFor(() => expect(baslik).toHaveFocus());
+    expect(await ihlaller(container)).toEqual([]);
+  });
+
+  it('ayarlar kendi sekmesine ait; ana gezinmede Ayarlar seçili', async () => {
     await ac('#/ayarlar', /ayarlar/i);
     const nav = screen.getByRole('navigation', { name: /ana gezinme/i });
-    expect(nav.querySelector('[aria-current="page"]')).toBeNull();
+    expect(within(nav).getByRole('link', { name: 'Ayarlar' }).getAttribute('aria-current')).toBe('page');
     expect(screen.getByRole('link', { name: /profil/i }).getAttribute('href')).toBe('#/profil');
   });
 });

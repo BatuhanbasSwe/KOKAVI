@@ -13,6 +13,7 @@ import type { EserTaniVerisi } from '@shared/types';
 import { useDurum } from '../../app/DurumSaglayici';
 import { sesDestekleniyor } from '../../lib/ses';
 import { DinleDugmesi } from './DinleDugmesi';
+import { karistir } from './yardimci';
 import {
   EgzersizKabugu,
   type EgzersizOrtakProps,
@@ -30,6 +31,9 @@ export function EserTaniEgzersizi({
   const [geriBildirim, setGeriBildirim] = useState<GeriBildirimVerisi | null>(null);
   const [altyazi, setAltyazi] = useState(false);
   const altyaziId = useId();
+  // İçerikte doğru eser çoğunlukla ilk şık (57 dersin 51'i). Görüntü sırası
+  // karıştırılır; kontrol yine gerçek index (veri.dogruIndex) üzerinden yapılır.
+  const [gorunumSirasi] = useState(() => karistir(veri.secenekler.map((_, i) => i)));
 
   const cozuldu = secili !== null && secili === veri.dogruIndex;
   const dogruCevap = veri.secenekler[veri.dogruIndex];
@@ -63,7 +67,7 @@ export function EserTaniEgzersizi({
       setGeriBildirim({
         tur: 'ipucu',
         baslik: 'Doğru cevap',
-        metin: `«${dogruCevap}» — betimlemedeki ayrıntılar bu esere ait. Şimdi devam edebilirsin.`,
+        metin: `«${dogruCevap}». Betimlemedeki ayrıntılar bu esere ait. Şimdi devam edebilirsin.`,
       });
       return;
     }
@@ -119,7 +123,8 @@ export function EserTaniEgzersizi({
       )}
 
       <div className="yigin ders-secenekler" role="group" aria-label="Eser seçenekleri">
-        {veri.secenekler.map((secenek, i) => {
+        {gorunumSirasi.map((i) => {
+          const secenek = veri.secenekler[i];
           const dogruMu = secili === veri.dogruIndex && i === veri.dogruIndex;
           const yanlisMi = yanlislar.includes(i) && i !== veri.dogruIndex;
           const sinif = dogruMu

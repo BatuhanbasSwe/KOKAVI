@@ -9,11 +9,15 @@
  * "e-posta var mı" bilgisini sızdırmaz (bkz. server/routes/auth.ts).
  */
 import { useRef, useState, type FormEvent } from 'react';
-import { useOturum } from '../../lib/oturum';
+import type { useOturum } from '../../lib/oturum';
 import { IkonUyari } from '../../app/Ikonlar';
 
-export function GirisEkrani() {
-  const { girisYap } = useOturum();
+/**
+ * `girisYap` üst bileşenden gelir: `useOturum()` paylaşılan durum değil, her
+ * çağrı kendi state'ini tutar. Burada ayrı çağrılırsa başarılı giriş
+ * `KorumaliPanel`'e ulaşmaz ve ekran giriş formunda kalır.
+ */
+export function GirisEkrani({ girisYap }: { girisYap: ReturnType<typeof useOturum>['girisYap'] }) {
   const [email, setEmail] = useState('');
   const [parola, setParola] = useState('');
   const [hata, setHata] = useState<string | null>(null);

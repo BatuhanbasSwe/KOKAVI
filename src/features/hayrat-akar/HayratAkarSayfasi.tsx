@@ -9,7 +9,6 @@
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Konfeti } from '@/app/Konfeti';
-import { Maskot } from '@/app/Maskot';
 import { useEfekt } from '@/app/useEfekt';
 import { eserBul } from '../gunun-eseri/oyun';
 import { TUR_BOYU, turKartlari, type HayratAkar, type Kart } from './kartlar';
@@ -74,7 +73,7 @@ export function HayratAkarSayfasi() {
       <div className="yigin ha">
         {dogruSayisi >= 8 && <Konfeti />}
         <section className="kart yigin ha-son" aria-labelledby="ha-son-baslik">
-          <Maskot boyut={88} mutlu={dogruSayisi >= 5} />
+          
           <h1 id="ha-son-baslik">
             {dogruSayisi === TUR_BOYU ? 'Kusursuz! Vakıf ustasısın!' : `${dogruSayisi}/${kartlar.length} doğru!`}
           </h1>
@@ -90,7 +89,7 @@ export function HayratAkarSayfasi() {
                 <li key={k.eserId} className={tamam ? 'ha-ozet--dogru' : 'ha-ozet--ogrenildi'}>
                   <span aria-hidden="true">{tamam ? '✓' : '↻'}</span>
                   <span>
-                    <strong>{e.kisaAd}</strong> — {ETIKET[k.dogru]}
+                    <strong>{e.kisaAd}</strong>: {ETIKET[k.dogru]}
                     <span className="sr-only">{tamam ? ' (doğru bildin)' : ' (yeni öğrendin)'}</span>
                   </span>
                 </li>

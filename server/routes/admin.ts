@@ -14,9 +14,19 @@
  */
 import type { FastifyInstance, FastifyReply } from 'fastify';
 import { eserKaydet, eserSil, eserGetir, type EserGirdisi } from '../repo/eser.ts';
-import { uniteKaydet, uniteSil, sehirKaydet, kulliyeKaydet, istatistikler } from '../repo/yol.ts';
-import { dersKaydet, dersSil, type DersGirdisi } from '../repo/ders.ts';
+import {
+  uniteKaydet,
+  uniteSil,
+  uniteGetir,
+  sehirKaydet,
+  sehirGetir,
+  kulliyeKaydet,
+  kulliyeGetir,
+  istatistikler,
+} from '../repo/yol.ts';
+import { dersKaydet, dersSil, dersGetir, type DersGirdisi } from '../repo/ders.ts';
 import { yoneticiGerekli } from '../auth/koruma.ts';
+import { gunlukYaz } from '../yonetim/gunluk.ts';
 import type { EgzersizTipi } from '../../shared/types.ts';
 
 const GECERLI_TIPLER: EgzersizTipi[] = ['eslestir', 'sirala', 'bosluk-doldur', 'eser-tani'];
@@ -41,6 +51,24 @@ function sayi(deger: unknown, alan: string): number {
   return n;
 }
 
+/** Sıra numarası: negatif olamaz; paneldeki sıralama sessizce bozulmasın. */
+function siraSayisi(deger: unknown, alan: string): number {
+  const n = sayi(deger, alan);
+  if (!Number.isInteger(n) || n < 0) {
+    throw new DogrulamaHatasi(`"${alan}" sıfır veya pozitif tam sayı olmalıdır.`);
+  }
+  return n;
+}
+
+/** Mantıksal alan: "false" metni true'ya dönüşmesin (kaza ile yayınlama). */
+function mantiksal(deger: unknown, alan: string, varsayilan: boolean): boolean {
+  if (deger === undefined) return varsayilan;
+  if (typeof deger !== 'boolean') {
+    throw new DogrulamaHatasi(`"${alan}" true/false olmalıdır.`);
+  }
+  return deger;
+}
+
 function hataYanit(cevap: FastifyReply, hata: unknown) {
   if (hata instanceof DogrulamaHatasi) {
     return cevap.code(400).send({ hata: hata.message });
@@ -53,7 +81,9 @@ function hataYanit(cevap: FastifyReply, hata: unknown) {
   if (mesaj.includes('foreign key')) {
     return cevap.code(400).send({ hata: 'İlişkili kayıt bulunamadı (şehir/ünite/eser).' });
   }
-  return cevap.code(500).send({ hata: 'Sunucu hatası', detay: mesaj });
+  // Ham hata metni istemciye DÖNMEZ (tablo/kolon adı sızıntısı); yalnız sunucu günlüğüne yazılır.
+  console.error('[yonetim] işlenmeyen hata:', hata);
+  return cevap.code(500).send({ hata: 'Sunucu hatası', kod: 'SUNUCU_HATASI' });
 }
 
 export async function yonetimUclari(app: FastifyInstance): Promise<void> {
@@ -66,13 +96,20 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
   // --- Şehir ---------------------------------------------------------------
   app.post('/api/yonetim/sehirler', async (istek, cevap) => {
     try {
-      const g = istek.body as Record<string, unknown>;
+      const g = (istek.body ?? {}) as Record<string, unknown>;
+      const id = zorunlu(g.id, 'id');
+      // POST = YENİ kayıt. Var olan kimlik sessizce güncellenmemeli (veri kaybı).
+      if (await sehirGetir(id)) {
+        return cevap.code(409).send({ hata: 'Bu kimlikle bir şehir zaten var.' });
+      }
       const sonuc = await sehirKaydet({
-        id: zorunlu(g.id, 'id'),
+        id,
         ad: zorunlu(g.ad, 'ad'),
-        sira: sayi(g.sira, 'sira'),
-        aktif: g.aktif === undefined ? true : Boolean(g.aktif),
+        sira: siraSayisi(g.sira, 'sira'),
+        aktif: mantiksal(g.aktif, 'aktif', true),
       });
+      // İşlem günlüğü: başka sunucu örnekleri de aynı değişikliği uygulasın.
+      if (sonuc) await gunlukYaz({ t: 'sehir-kaydet', d: sonuc });
       return cevap.code(201).send(sonuc);
     } catch (hata) {
       return hataYanit(cevap, hata);
@@ -82,14 +119,19 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
   // --- Külliye -------------------------------------------------------------
   app.post('/api/yonetim/kulliyeler', async (istek, cevap) => {
     try {
-      const g = istek.body as Record<string, unknown>;
-      await kulliyeKaydet({
+      const g = (istek.body ?? {}) as Record<string, unknown>;
+      const girdi = {
         id: zorunlu(g.id, 'id'),
         ad: zorunlu(g.ad, 'ad'),
         sehirId: zorunlu(g.sehirId, 'sehirId'),
         bani: (g.bani as string) ?? null,
         aciklama: (g.aciklama as string) ?? null,
-      });
+      };
+      if (await kulliyeGetir(girdi.id)) {
+        return cevap.code(409).send({ hata: 'Bu kimlikle bir külliye zaten var.' });
+      }
+      await kulliyeKaydet(girdi);
+      await gunlukYaz({ t: 'kulliye-kaydet', d: girdi });
       return cevap.code(201).send({ tamam: true });
     } catch (hata) {
       return hataYanit(cevap, hata);
@@ -99,14 +141,19 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
   // --- Ünite ---------------------------------------------------------------
   app.post('/api/yonetim/uniteler', async (istek, cevap) => {
     try {
-      const g = istek.body as Record<string, unknown>;
+      const g = (istek.body ?? {}) as Record<string, unknown>;
+      const id = zorunlu(g.id, 'id');
+      if (await uniteGetir(id)) {
+        return cevap.code(409).send({ hata: 'Bu kimlikle bir ünite zaten var.' });
+      }
       const sonuc = await uniteKaydet({
-        id: zorunlu(g.id, 'id'),
+        id,
         sehirId: zorunlu(g.sehirId, 'sehirId'),
         ad: zorunlu(g.ad, 'ad'),
-        sira: sayi(g.sira, 'sira'),
+        sira: siraSayisi(g.sira, 'sira'),
         aciklama: (g.aciklama as string) ?? null,
       });
+      if (sonuc) await gunlukYaz({ t: 'unite-kaydet', d: sonuc });
       return cevap.code(201).send(sonuc);
     } catch (hata) {
       return hataYanit(cevap, hata);
@@ -118,6 +165,7 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
       const { id } = istek.params as { id: string };
       const silindi = await uniteSil(id);
       if (!silindi) return cevap.code(404).send({ hata: 'Ünite bulunamadı' });
+      await gunlukYaz({ t: 'unite-sil', d: { id } });
       return { tamam: true };
     } catch (hata) {
       return hataYanit(cevap, hata);
@@ -127,8 +175,16 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
   // --- Eser ----------------------------------------------------------------
   app.post('/api/yonetim/eserler', async (istek, cevap) => {
     try {
-      const girdi = eserGirdisiDogrula(istek.body as Record<string, unknown>);
+      const girdi = eserGirdisiDogrula((istek.body ?? {}) as Record<string, unknown>);
+      // POST = YENİ kayıt. Var olan kimlik sessizce EZİLMEMELİ: panelin
+      // "kaydedildi" demesi eski kaydın üzerine yazmak anlamına gelmez.
+      if (await eserGetir(girdi.id)) {
+        return cevap
+          .code(409)
+          .send({ hata: 'Bu kimlikle bir eser zaten var. Düzenlemek için listeden açın.' });
+      }
       const sonuc = await eserKaydet(girdi);
+      await gunlukYaz({ t: 'eser-kaydet', d: girdi });
       return cevap.code(201).send(sonuc);
     } catch (hata) {
       return hataYanit(cevap, hata);
@@ -139,8 +195,10 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
     try {
       const { id } = istek.params as { id: string };
       if (!(await eserGetir(id))) return cevap.code(404).send({ hata: 'Eser bulunamadı' });
-      const girdi = eserGirdisiDogrula({ ...(istek.body as object), id });
-      return await eserKaydet(girdi);
+      const girdi = eserGirdisiDogrula({ ...((istek.body ?? {}) as object), id });
+      const sonuc = await eserKaydet(girdi);
+      await gunlukYaz({ t: 'eser-kaydet', d: girdi });
+      return sonuc;
     } catch (hata) {
       return hataYanit(cevap, hata);
     }
@@ -151,6 +209,7 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
       const { id } = istek.params as { id: string };
       const silindi = await eserSil(id);
       if (!silindi) return cevap.code(404).send({ hata: 'Eser bulunamadı' });
+      await gunlukYaz({ t: 'eser-sil', d: { id } });
       return { tamam: true };
     } catch (hata) {
       return hataYanit(cevap, hata);
@@ -160,8 +219,12 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
   // --- Ders ----------------------------------------------------------------
   app.post('/api/yonetim/dersler', async (istek, cevap) => {
     try {
-      const girdi = dersGirdisiDogrula(istek.body as Record<string, unknown>);
+      const girdi = dersGirdisiDogrula((istek.body ?? {}) as Record<string, unknown>);
+      if (await dersGetir(girdi.id)) {
+        return cevap.code(409).send({ hata: 'Bu kimlikle bir ders zaten var.' });
+      }
       const sonuc = await dersKaydet(girdi);
+      await gunlukYaz({ t: 'ders-kaydet', d: girdi });
       return cevap.code(201).send(sonuc);
     } catch (hata) {
       return hataYanit(cevap, hata);
@@ -171,8 +234,12 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
   app.put('/api/yonetim/dersler/:id', async (istek, cevap) => {
     try {
       const { id } = istek.params as { id: string };
-      const girdi = dersGirdisiDogrula({ ...(istek.body as object), id });
-      return await dersKaydet(girdi);
+      // PUT yalnızca VAR OLAN kaydı günceller (eser PUT'uyla tutarlı sözleşme).
+      if (!(await dersGetir(id))) return cevap.code(404).send({ hata: 'Ders bulunamadı' });
+      const girdi = dersGirdisiDogrula({ ...((istek.body ?? {}) as object), id });
+      const sonuc = await dersKaydet(girdi);
+      await gunlukYaz({ t: 'ders-kaydet', d: girdi });
+      return sonuc;
     } catch (hata) {
       return hataYanit(cevap, hata);
     }
@@ -183,6 +250,7 @@ export async function yonetimUclari(app: FastifyInstance): Promise<void> {
       const { id } = istek.params as { id: string };
       const silindi = await dersSil(id);
       if (!silindi) return cevap.code(404).send({ hata: 'Ders bulunamadı' });
+      await gunlukYaz({ t: 'ders-sil', d: { id } });
       return { tamam: true };
     } catch (hata) {
       return hataYanit(cevap, hata);
@@ -255,7 +323,7 @@ function eserGirdisiDogrula(g: Record<string, unknown>): EserGirdisi {
     arsivNo: (g.arsivNo as string) ?? null,
     kaynaklar: Array.isArray(g.kaynaklar) ? (g.kaynaklar as EserGirdisi['kaynaklar']) : [],
     dogrulamaNotu: (g.dogrulamaNotu as string) ?? null,
-    yayinda: g.yayinda === undefined ? false : Boolean(g.yayinda),
+    yayinda: mantiksal(g.yayinda, 'yayinda', false),
     gelirKalemleri,
   };
 }

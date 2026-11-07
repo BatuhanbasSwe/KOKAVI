@@ -94,7 +94,7 @@ export function SinifKoduGirisi({ onKatildi }: SinifKoduGirisiProps) {
         <p className="etiket">Kök Avı · Sınıf</p>
         <h1>Sınıfına katıl</h1>
         <p className="metin-ikincil">
-          Öğretmeninin tahtaya yazdığı kodu gir. Senden isim, e-posta veya telefon istenmez —
+          Öğretmeninin tahtaya yazdığı kodu gir. Senden isim, e-posta veya telefon istenmez;
           sınıf kodu anonimdir.
         </p>
       </div>
@@ -151,7 +151,7 @@ export function SinifKoduGirisi({ onKatildi }: SinifKoduGirisiProps) {
             etiket="Sınıf kodu"
             zorunlu
             hata={hata?.ayrinti ?? null}
-            ipucu={`3 harf, tire, 4 karakter — örn. ${SINIF_KODU_ORNEK}`}
+            ipucu={`3 harf, tire, 4 karakter. Örnek: ${SINIF_KODU_ORNEK}`}
           >
             {(o) => (
               <input

@@ -70,7 +70,7 @@ export function SinifOlusturmaFormu({ onOlusturuldu }: SinifOlusturmaFormuProps)
       <div>
         <h2 id="yeni-sinif-baslik">Sınıf oluştur</h2>
         <p className="metin-ikincil">
-          Sınıfına bir ad ver; uygulama sana bir sınıf kodu üretir. Kodu tahtaya yazman yeterli —
+          Sınıfına bir ad ver; uygulama sana bir sınıf kodu üretir. Kodu tahtaya yazman yeterli,
           çocuklardan isim, e-posta veya üyelik istenmez.
         </p>
       </div>
@@ -117,7 +117,7 @@ export function SinifOlusturmaFormu({ onOlusturuldu }: SinifOlusturmaFormuProps)
             <p className="ogretmen__olusan-baslik">
               <span aria-hidden="true">✓ </span>“{olusan.ad}” sınıfı oluşturuldu.
             </p>
-            <KodKopyala kod={olusan.kod} etiket="Sınıf kodu — tahtaya yaz" />
+            <KodKopyala kod={olusan.kod} etiket="Sınıf kodu (tahtaya yaz)" />
             <p className="ogretmen__olusan-not">
               Kod anonimdir: kişisel bilgi içermez ve kodu kimin kullandığı kaydedilmez. Sınıf
               sayıları aşağıdaki listede birikir.

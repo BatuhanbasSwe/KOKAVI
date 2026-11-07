@@ -208,7 +208,7 @@ export function VakifRontgeni({ eser, eserYukleniyor, eserHatasi }: Props) {
                     {kaynak.kunye}
                     {kaynak.url ? (
                       <>
-                        {' — '}
+                        {' · '}
                         <a href={kaynak.url} rel="noreferrer noopener" target="_blank">
                           kaynağı aç
                         </a>

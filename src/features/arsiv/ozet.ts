@@ -206,6 +206,48 @@ export interface CocukOzeti {
 }
 
 /**
+ * Paragraf bir başlık satırı gibi mi?
+ *
+ * Envanter PDF'lerinde eser adı + İngilizce ad + tür etiketi tek satırda,
+ * noktalama olmadan gelir; ayrıca PDF aktarımı ilk harfi (drop cap) kaybeder
+ * ("ÇINARLI" → "narlı"). Bu satırlar özete girerse çocuk "narlı … MOSQUE"
+ * gibi yarım ve İngilizce bir cümle okur. Yalnızca METNİN BAŞINDAki bu tür
+ * başlıkları atlarız; gövde paragraflarına dokunmayız.
+ */
+function baslikGibiMi(paragraf: string): boolean {
+  const metin = paragraf.trim();
+  if (metin.length === 0) return true;
+  // Gövde cümlesi neredeyse her zaman noktalama ile biter.
+  if (/[.!?…]$/u.test(metin)) return false;
+  // Çok uzun ve noktalamasız paragraf başlık değildir (bozuk gövde olabilir).
+  if (metin.length > 240) return false;
+  // Büyük harfli tür etiketi (MOSQUE/TOMB/MADRASA) veya parantezli ad → başlık.
+  return /\b(MOSQUE|TOMB|MADRASA|COMPLEX|FOUNTAIN|BATH|CARAVANSERAI|MESCIT|CAMII|TÜRBE|MEDRESE)\b/u.test(metin) ||
+    /^[a-zçğıöşü]/u.test(metin) ||
+    metin.includes('(');
+}
+
+/**
+ * Baştaki başlık paragraflarını ve yarım kalmış gövde parçalarını atlar.
+ *
+ * PDF'ten aktarımda iki bozulma olur:
+ *  1. Eser adı + İngilizce ad + tür etiketi tek satırda, noktalamasız gelir.
+ *  2. Sayfa geçişinde cümle ortasından başlayan parça ("hücrelerinin güney
+ *     ucunda…") gövdenin başına düşer.
+ * İkisi de özete girerse çocuk yarım cümle okur. Yalnızca metnin BAŞINDA
+ * temizlik yaparız; sonraki paragraflar korunur. Hepsi atılırsa metni
+ * kaybetmemek için başlık sonrası hâle döneriz.
+ */
+function govdeyeGec(paragraflar: string[]): string[] {
+  let bas = 0;
+  while (bas < paragraflar.length && baslikGibiMi(paragraflar[bas]!)) bas += 1;
+  const baslikSonrasi = bas;
+  while (bas < paragraflar.length && /^[a-zçğıöşü]/u.test(paragraflar[bas]!.trim())) bas += 1;
+  if (bas >= paragraflar.length) bas = baslikSonrasi;
+  return bas >= paragraflar.length ? paragraflar : paragraflar.slice(bas);
+}
+
+/**
  * Arşiv paragraflarından çocuk özeti üretir.
  *
  * @param paragraflar `arsivMetni()` gibi kaynaklardan gelen ham paragraflar.
@@ -214,6 +256,7 @@ export interface CocukOzeti {
 export function cocukOzeti(paragraflar: string[]): CocukOzeti {
   const temiz = paragraflar.map((paragraf) => paragraf.trim()).filter((paragraf) => paragraf.length > 0);
   const kalan = temiz.filter((paragraf) => !ingilizceParagrafMi(paragraf));
-  const birlesik = kalan.join(' ').replace(/\s+/gu, ' ').trim();
+  const govde = govdeyeGec(kalan);
+  const birlesik = govde.join(' ').replace(/\s+/gu, ' ').trim();
   return { ozet: ozetCikar(cumlelere(birlesik)), kalan };
 }

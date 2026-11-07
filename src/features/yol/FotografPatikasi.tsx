@@ -7,17 +7,16 @@
  * kilit simgesi. Madalyonlar gerçek <a>; erişilebilir adı "Eser, tür, durum".
  *
  * Canlı yol (yolSahnesi.ts): madalyonları kıvrımlı bir yol bağlar; biten kısım
- * altın, kalan kısım kesik çizgi. Ders bitince Köstik yol boyunca zıplayarak
- * yeni durağa gider; yeni açılan ünitede kilitler kırılır, fotoğraflar renklenir.
+ * altın, kalan kısım kesik çizgi. Ders bitince yol altınla dolar; yeni açılan
+ * ünitede kilitler kırılır, fotoğraflar renklenir.
  * Bütün hareket katmanları aria-hidden; "hareketi azalt" açıksa sahne oynamaz.
  */
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type RefObject } from 'react';
 import type { YolUnitesi } from '@shared/types';
 import { IkonKilit, IkonTik, IkonTur } from '../../app/Ikonlar';
-import { Maskot } from '../../app/Maskot';
 import { canlandirilabilir } from '../../app/hareket';
 import { kisaAd } from './kisaAd';
-import { BOS_SAHNE, egriYolu, ziplayanNoktalar, type Nokta, type YolSahnesi } from './yolSahnesi';
+import { BOS_SAHNE, egriYolu, type Nokta, type YolSahnesi } from './yolSahnesi';
 import './patika.css';
 
 /** Zikzak: duraklar sırayla sola/sağa kayar (px; telefonda CSS ile küçülür). */
@@ -32,7 +31,7 @@ const DURUM_METNI: Record<Durum, string> = {
   kilitli: 'kilitli, önceki üniteyi tamamla',
 };
 
-const YAY = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
+const YAY = 'cubic-bezier(0.22, 1, 0.36, 1)';
 
 function Madalyon({ eserId, tur }: { eserId: string; tur: string }) {
   const [yok, setYok] = useState(false);
@@ -130,7 +129,6 @@ export function FotografPatikasi({
   const yuzde = unite.toplamSayi ? Math.round((unite.tamamlananSayi / unite.toplamSayi) * 100) : 0;
   const bolum = useRef<HTMLElement>(null);
   const ol = useRef<HTMLOListElement>(null);
-  const gezgin = useRef<HTMLSpanElement>(null);
   const olcu = useMadalyonMerkezleri(ol);
 
   const sira = (dersId: string | null) => unite.dersler.findIndex((d) => d.dersId === dersId);
@@ -143,9 +141,6 @@ export function FotografPatikasi({
   const yeniBitti = sahne.yeniBiten.includes(unite.uniteId);
   const baslik = useRef<HTMLElement>(null);
   const muhurGoruldu = useGoruldu(baslik, yeniBitti);
-  // Köstik yürürken duraktaki asıl Köstik gizlenir, varınca yeniden belirir.
-  const [vardi, setVardi] = useState(false);
-  const yuruyor = kimeSira >= 0 && !vardi;
   const oynadi = useRef(false);
 
   // Ölçüler her giriş animasyonundan sonra yenilenir; sahne yalnızca ilk hazır
@@ -154,23 +149,16 @@ export function FotografPatikasi({
   const zamanlayicilar = useRef<number[]>([]);
   useEffect(() => () => zamanlayicilar.current.forEach((z) => window.clearTimeout(z)), []);
 
-  // --- İlerleme sahnesi: onay patlar → yol altınla dolar → Köstik zıplayarak gelir
+  // --- İlerleme sahnesi: onay patlar → yol altınla dolar → hedef durak vurgulanır
   useEffect(() => {
     if (kimeSira < 0 || oynadi.current || !olcuHazir) return;
     const kap = ol.current;
-    const yuruyen = gezgin.current;
     const duraklar = kap ? [...kap.querySelectorAll<HTMLElement>(':scope > li')] : [];
     const hedefDurak = duraklar[kimeSira];
-    const asilKostik = hedefDurak?.querySelector<HTMLElement>('.patika__maskot');
-    if (!kap || !canlandirilabilir(yuruyen) || !hedefDurak || !asilKostik) {
-      setVardi(true);
-      return;
-    }
+    if (!kap || !hedefDurak || !canlandirilabilir(kap)) return;
     oynadi.current = true;
     hedefDurak.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    const ayniUnite = kimdenSira >= 0;
-    const adim = ayniUnite ? Math.max(3, (kimeSira - kimdenSira) * 3) : 1;
     // Yeni açılan ünitede önce kilitler kırılsın.
     const baslangic = yeniAcildi ? 1500 : 650;
     const sonra = (ms: number, is: () => void) => zamanlayicilar.current.push(window.setTimeout(is, ms));
@@ -191,52 +179,19 @@ export function FotografPatikasi({
       }
     });
     sonra(baslangic, () => {
-      // Konumlar yürüyüş anında ölçülür (giriş animasyonları bitmiş olur).
-      const r = kap.getBoundingClientRect();
-      const merkez = (o: Element) => {
-        const k = o.getBoundingClientRect();
-        return { x: k.left + k.width / 2 - r.left, y: k.top + k.height / 2 - r.top };
-      };
-      const varis = merkez(asilKostik);
-      const onceki = duraklar[kimdenSira]?.querySelector('.patika__madalyon');
-      const cikis =
-        ayniUnite && onceki
-          ? { x: merkez(onceki).x, y: merkez(onceki).y - 64 }
-          : { x: varis.x, y: varis.y - 160 };
-      const noktalar = ziplayanNoktalar(cikis, varis, adim, ayniUnite ? 26 : 0, 8);
-      const sure = ayniUnite ? 260 * adim : 700;
-      yuruyen.style.opacity = '1';
-      const yuruyus = yuruyen.animate(
-        noktalar.map((n) => ({ transform: `translate(${n.x - 24}px, ${n.y - 24}px)` })),
-        { duration: sure, easing: ayniUnite ? 'linear' : 'cubic-bezier(0.5, 0, 0.75, 0)', fill: 'forwards' },
-      );
-      yuruyus.onfinish = () => {
-        yuruyen.style.opacity = '0';
-        setVardi(true);
-        asilKostik.animate([{ transform: 'scale(0.8) translateY(6px)' }, { transform: 'scale(1.15)' }, { transform: 'none' }], {
-          duration: 420,
-          easing: YAY,
+      hedefDurak
+        .querySelector('.patika__halka-cizgi')
+        ?.animate([{ strokeDashoffset: 100 }, { strokeDashoffset: 0 }], { duration: 900, easing: 'ease-out' });
+      hedefDurak
+        .querySelector('.patika__devam')
+        ?.animate([{ opacity: 0, translate: '0 8px' }, { opacity: 1, translate: '0 0' }], {
+          duration: 240,
+          delay: 250,
+          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          fill: 'backwards',
         });
-        hedefDurak
-          .querySelector('.patika__halka-cizgi')
-          ?.animate([{ strokeDashoffset: 100 }, { strokeDashoffset: 0 }], { duration: 900, easing: 'ease-out' });
-        hedefDurak
-          .querySelector('.patika__devam')
-          ?.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12)' }, { transform: 'scale(0.96)' }, { transform: 'none' }], {
-            duration: 600,
-            delay: 250,
-            easing: YAY,
-          });
-      };
     });
   }, [olcuHazir, kimeSira, kimdenSira, yeniAcildi]);
-
-  // Sahne yarıda kalırsa (ör. ölçü yok) Köstik görünmez kalmasın.
-  useEffect(() => {
-    if (!yuruyor) return;
-    const z = window.setTimeout(() => setVardi(true), 6000);
-    return () => window.clearTimeout(z);
-  }, [yuruyor]);
 
   // Yolun parçaları: ders i bittiyse i → i+1 altın. Bu ziyarette bitenler sahneyle dolar.
   const parcalar = olcu
@@ -307,11 +262,6 @@ export function FotografPatikasi({
               ) : null,
             )}
           </svg>
-        )}
-        {kimeSira >= 0 && (
-          <span ref={gezgin} className="patika__gezgin" aria-hidden="true">
-            <Maskot boyut={48} />
-          </span>
         )}
         {unite.dersler.map((ders, i) => {
           const durum: Durum = unite.kilitli
@@ -389,11 +339,6 @@ export function FotografPatikasi({
                 <a className="patika__baglanti" href={`#/ders/${encodeURIComponent(ders.dersId)}`} aria-label={etiket}>
                   {gorunum}
                 </a>
-              )}
-              {durum === 'aktif' && (
-                <span className={`patika__maskot${yuruyor ? ' patika__maskot--bekliyor' : ''}`} aria-hidden="true">
-                  <Maskot boyut={48} />
-                </span>
               )}
             </li>
           );

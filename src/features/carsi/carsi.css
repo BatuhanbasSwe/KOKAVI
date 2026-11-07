@@ -8,8 +8,9 @@
   flex-wrap: wrap;
 }
 
-.carsi-ust h1 {
-  margin-bottom: var(--b-1);
+.carsi-ust h2 {
+  margin: 0 0 var(--b-1);
+  font-size: var(--yazi-xl);
 }
 
 .carsi-bakiye {
@@ -28,11 +29,6 @@
 [data-tema='koyu'] .carsi-bakiye,
 [data-tema='yuksek-kontrast'] .carsi-bakiye {
   color: var(--metin);
-}
-
-.carsi-kurallar {
-  border-color: var(--odul-golge);
-  background: var(--odul-yumusak);
 }
 
 .carsi-mesaj {

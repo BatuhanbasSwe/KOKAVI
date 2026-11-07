@@ -110,8 +110,38 @@ export class RedisDeposu implements OdaDeposu {
   }
 }
 
+/** Ortak depo var mı? Teşhis için: yayında bellek = her örnek kendi odasında. */
+export type DepoTuru = 'redis' | 'bellek';
+
+export interface DepoDurumu {
+  tur: DepoTuru;
+  /** Redis'i hangi ortam değişkeni çiftinin açtığı (gizli değer döndürülmez). */
+  kaynak: 'upstash' | 'vercel-kv' | null;
+}
+
+/**
+ * Vercel'de iki farklı env adlandırması görülüyor:
+ *  · Upstash Marketplace: UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN
+ *  · Vercel KV (Upstash tabanlı): KV_REST_API_URL / KV_REST_API_TOKEN
+ * İkisi de aynı REST protokolünü konuşur; yalnız birini tanımak, env bağlıyken
+ * sessizce belleğe düşmeye ve "Oyun bulunamadı" hatasına yol açıyordu.
+ */
+export function depoDurumu(): DepoDurumu {
+  const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
+  const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (upstashUrl && upstashToken) return { tur: 'redis', kaynak: 'upstash' };
+  const kvUrl = process.env.KV_REST_API_URL;
+  const kvToken = process.env.KV_REST_API_TOKEN;
+  if (kvUrl && kvToken) return { tur: 'redis', kaynak: 'vercel-kv' };
+  return { tur: 'bellek', kaynak: null };
+}
+
 export function varsayilanDepo(simdi: () => number = Date.now): OdaDeposu {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-  return url && token ? new RedisDeposu(url, token) : new BellekDeposu(simdi);
+  const durum = depoDurumu();
+  if (durum.tur === 'redis') {
+    const url = (process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL)!;
+    const token = (process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN)!;
+    return new RedisDeposu(url, token);
+  }
+  return new BellekDeposu(simdi);
 }

@@ -25,6 +25,17 @@
   margin-inline: auto;
 }
 
+/* Canlı yarışma kartı başlığı: şimşek ikonu + metin */
+.ogretmen__kart-baslik {
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+}
+
+.ogretmen__kart-baslik + p {
+  margin-top: 0;
+}
+
 /* --- Üst şerit ve kullanıcı kimliği --------------------------------------- */
 
 .ogretmen__ust {
@@ -302,7 +313,8 @@
 
 .ogretmen__liste {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* min(100%, 300px): 320px ekranda içerik alanı 288px'e düşse de ızgara taşmaz. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: var(--b-4);
   margin: 0;
   padding: 0;
@@ -405,6 +417,12 @@
   border-radius: var(--kose-sm);
 }
 
+/* Klavye kullanıcısı yatay kaydırılabilir bölgede olduğunu görmeli (SC 2.1.1). */
+.ogretmen__tablo-kaydirma:focus-visible {
+  outline: 3px solid var(--odak);
+  outline-offset: 2px;
+}
+
 .ogretmen__tablo {
   width: 100%;
   min-width: 320px;
@@ -465,4 +483,29 @@
     width: 100%;
     align-self: stretch;
   }
+}
+
+/* --- Sınıf külliyesi (PDF Senaryo B) -------------------------------------- */
+
+.ogretmen__kulliye-ad {
+  margin: 0;
+  font-family: var(--yazi-baslik);
+  font-size: var(--yazi-xl);
+  font-weight: 800;
+}
+
+.ogretmen__kulliye-liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--b-2);
+}
+
+.ogretmen__kulliye-liste li {
+  display: flex;
+  align-items: center;
+  gap: var(--b-2);
+  flex-wrap: wrap;
 }

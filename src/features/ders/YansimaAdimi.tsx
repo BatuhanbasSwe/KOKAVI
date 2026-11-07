@@ -5,8 +5,8 @@
  * bilgi." Bu yüzden ekranda rozet değil, eserin ekonomik döngüsü gösterilir.
  */
 import type { Eser, YansimaAdimi as YansimaVerisi } from '@shared/types';
+import { GecmisKarsilastirma } from './GecmisKarsilastirma';
 import { VakifRontgeni } from './VakifRontgeni';
-import { DinleDugmesi } from './DinleDugmesi';
 
 interface Props {
   yansima: YansimaVerisi;
@@ -20,10 +20,7 @@ export function YansimaAdimi({ yansima, eser, eserYukleniyor, eserHatasi, onBiti
   return (
     <div className="yigin">
       <div className="kart ders-ozet">
-        <div className="ders-soru-kutusu">
-          <p className="etiket">Ders özeti</p>
-          <DinleDugmesi metin={yansima.ozet} />
-        </div>
+        <p className="etiket">Ders özeti</p>
         <p className="ders-ozet__metin">{yansima.ozet}</p>
       </div>
 
@@ -36,6 +33,8 @@ export function YansimaAdimi({ yansima, eser, eserYukleniyor, eserHatasi, onBiti
         </p>
         <VakifRontgeni eser={eser} eserYukleniyor={eserYukleniyor} eserHatasi={eserHatasi} />
       </section>
+
+      <GecmisKarsilastirma eserId={eser?.id ?? null} />
 
       {/*
         Uzun açıklama ve künye "Büyükler için" bölümünde: çocuk ekranı tek

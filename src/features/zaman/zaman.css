@@ -39,7 +39,7 @@
 }
 .zt-oge {
   position: relative;
-  animation: zt-gir 420ms calc(var(--sira, 0) * 50ms) cubic-bezier(0.2, 1.2, 0.4, 1) both;
+  animation: zt-gir 420ms calc(var(--sira, 0) * 50ms) var(--cikis) both;
 }
 .zt-oge__nokta {
   position: absolute;
@@ -60,7 +60,7 @@
   gap: var(--b-3);
   align-items: center;
   padding: var(--b-2);
-  border: 2px dashed var(--cizgi-kalin);
+  border: 2px solid var(--cizgi);
   border-radius: var(--kose-md);
   background: var(--zemin);
   color: var(--metin-soluk);

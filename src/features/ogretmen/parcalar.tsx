@@ -156,7 +156,7 @@ export function KodKopyala({ kod, boyut = 'buyuk', etiket = 'Sınıf kodu' }: Ko
       setMesaj(`${kod} panoya kopyalandı.`);
     } catch {
       // Kopyalama engellenmişse kod zaten ekranda yazılı: elle yazılabilir.
-      setMesaj(`Kopyalanamadı — kodu elle yazabilirsin: ${kod}`);
+      setMesaj(`Kopyalanamadı. Kodu elle yazabilirsin: ${kod}`);
     }
   }
 

@@ -58,7 +58,7 @@ export function SinifListesi({ siniflar, yukleniyor, hata, onYenile, onDetay }: 
 
       {!yukleniyor && siniflar.length === 0 && !hata ? (
         <p className="bildirim bildirim--bilgi">
-          Henüz sınıfın yok. Yukarıdaki formdan ilk sınıfını oluştur — kod hemen üretilir.
+          Henüz sınıfın yok. Yukarıdaki formdan ilk sınıfını oluştur; kod hemen üretilir.
         </p>
       ) : null}
 

@@ -13,22 +13,33 @@
  */
 import { useMemo } from 'react';
 import { useDurum } from '@/app/DurumSaglayici';
+import { ilgiOncelikliSiradaki } from '@/lib/kisiselSira';
+import type { Ilgi } from '@/lib/tercihler';
 import { ESERLER, type GununEseri } from '../gunun-eseri/oyun';
 import './zaman.css';
 
-export function ZamanListesi({ mod }: { mod: 'tunel' | 'yol' }) {
+export function ZamanListesi({
+  mod,
+  ilgiler = [],
+}: {
+  mod: 'tunel' | 'yol';
+  /** Başlangıç sorularındaki ilgiler: önerilen sıradaki eseri etkiler. */
+  ilgiler?: readonly Ilgi[];
+}) {
   const { yol } = useDurum();
 
-  const { dersler, kesfedilen } = useMemo(() => {
+  const { dersler, turler, kesfedilen } = useMemo(() => {
     const d = new Map<string, string>();
+    const t = new Map<string, string>();
     const k = new Set<string>();
     for (const s of yol?.sehirler ?? [])
       for (const u of s.uniteler)
         for (const ders of u.dersler) {
           d.set(ders.eserId, ders.dersId);
+          t.set(ders.eserId, ders.tur);
           if (ders.tamamlandi) k.add(ders.eserId);
         }
-    return { dersler: d, kesfedilen: k };
+    return { dersler: d, turler: t, kesfedilen: k };
   }, [yol]);
 
   const sirali = useMemo(
@@ -44,8 +55,15 @@ export function ZamanListesi({ mod }: { mod: 'tunel' | 'yol' }) {
     return [...m.entries()];
   }, [sirali]);
 
-  // Zaman sırasında ilk bitmemiş (ve dersi olan) eser: önerilen sıradaki ders.
-  const siradaki = mod === 'yol' ? sirali.find((e) => dersler.has(e.eserId) && !kesfedilen.has(e.eserId)) : undefined;
+  // Zaman sırasında önerilen sıradaki ders: ilgiye uyan en eski bitmemiş eser;
+  // eşleşme yoksa ilk bitmemiş eser (src/lib/kisiselSira.ts).
+  const siradaki = useMemo(() => {
+    if (mod !== 'yol') return undefined;
+    const dersli = sirali
+      .filter((e) => dersler.has(e.eserId))
+      .map((e) => ({ ...e, tur: turler.get(e.eserId) ?? e.kategori }));
+    return ilgiOncelikliSiradaki(dersli, kesfedilen, ilgiler);
+  }, [mod, sirali, dersler, turler, kesfedilen, ilgiler]);
   let sayac = 0;
 
   return (

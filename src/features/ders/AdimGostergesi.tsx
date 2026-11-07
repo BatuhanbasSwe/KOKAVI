@@ -13,13 +13,13 @@ export interface AdimBilgisi {
   no: number;
   /** Kısa ad: "Merak" */
   ad: string;
-  /** Açıklama: "Cezasız tahmin" */
+  /** Kısa açıklama: "Tahmin et" */
   aciklama: string;
 }
 
 /** PDF'teki beş adım, sırasıyla. */
 export const ADIMLAR: readonly AdimBilgisi[] = [
-  { no: 1, ad: 'Merak', aciklama: 'Cezasız tahmin' },
+  { no: 1, ad: 'Merak', aciklama: 'Tahmin et' },
   { no: 2, ad: 'Bağlam', aciklama: 'Öğretim' },
   { no: 3, ad: 'Perspektif', aciklama: 'Tek karar anı' },
   { no: 4, ad: 'Geri çağırma', aciklama: 'Karışık egzersizler' },

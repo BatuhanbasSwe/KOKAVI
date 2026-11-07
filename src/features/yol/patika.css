@@ -103,20 +103,6 @@
   stroke-dashoffset: 1;
 }
 
-/* Yol boyunca yürüyen Köstik (sahne sırasında görünür). */
-.patika__gezgin {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 48px;
-  opacity: 0;
-  pointer-events: none;
-}
-.patika__maskot--bekliyor {
-  visibility: hidden;
-}
-
 /* Yeni açılan ünite: kilitler kırılır, fotoğraflar sırayla renklenir. */
 .patika__kirik {
   position: absolute;
@@ -226,11 +212,16 @@
   position: relative;
   display: grid;
   place-items: center;
-  transition: transform 140ms var(--yay);
 }
 
-a.patika__baglanti:active .patika__cerceve {
-  transform: scale(0.94);
+/* Madalyon da düğme gibi basılır: dudağın üstüne iner. */
+a.patika__baglanti:active .patika__madalyon {
+  transform: translateY(var(--bas-derinlik-buyuk));
+  box-shadow: 0 0 0 var(--dudak);
+}
+a.patika__baglanti:active .patika__devam {
+  transform: translateY(var(--bas-derinlik));
+  box-shadow: 0 0 0 var(--dudak);
 }
 
 .patika__madalyon {
@@ -240,9 +231,14 @@ a.patika__baglanti:active .patika__cerceve {
   height: 76px;
   overflow: hidden;
   border-radius: 50%;
+  --dudak: var(--cizgi-kalin);
   color: var(--vurgu-koyu);
   background: var(--zemin-vurgu);
   border: 3px solid var(--cizgi-kalin);
+  box-shadow: 0 var(--bas-derinlik-buyuk) 0 var(--dudak);
+  transition:
+    transform var(--gecis-bas) var(--cikis),
+    box-shadow var(--gecis-bas) var(--cikis);
 }
 
 .patika__madalyon img {
@@ -263,6 +259,7 @@ a.patika__baglanti:active .patika__cerceve {
 
 /* Biten: safran kenar + onay rozeti */
 .patika__durak--tamam .patika__madalyon {
+  --dudak: var(--vurgu-golge);
   border-color: var(--vurgu);
 }
 
@@ -287,6 +284,7 @@ a.patika__baglanti:active .patika__cerceve {
 
 /* Kilitli: soluk ve gri */
 .patika__durak--kilitli .patika__madalyon {
+  --dudak: var(--kilit-golge);
   border-color: var(--cizgi);
 }
 
@@ -303,6 +301,7 @@ a.patika__baglanti:active .patika__cerceve {
 .patika__durak--aktif .patika__madalyon {
   width: 100px;
   height: 100px;
+  --dudak: var(--vurgu-golge);
   border-color: var(--zemin);
   animation: nefes 2.6s ease-in-out 700ms infinite;
 }
@@ -343,13 +342,14 @@ a.patika__baglanti:active .patika__cerceve {
   }
 }
 
+/* scale özelliği: basınca uygulanan transform ile çakışmaz. */
 @keyframes nefes {
   0%,
   100% {
-    transform: scale(1);
+    scale: 1;
   }
   50% {
-    transform: scale(1.05);
+    scale: 1.05;
   }
 }
 
@@ -361,29 +361,35 @@ a.patika__baglanti:active .patika__cerceve {
 }
 
 .patika__devam {
+  --dudak: var(--vurgu-golge);
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  padding: 0 var(--b-4);
+  margin-top: var(--b-2);
+  padding: 0 var(--b-5);
   font-family: var(--yazi-baslik);
   font-weight: 700;
   color: var(--vurgu-metin);
   background: var(--vurgu);
   border-radius: var(--kose-sm);
+  box-shadow: 0 var(--bas-derinlik) 0 var(--dudak);
+  transition:
+    transform var(--gecis-bas) var(--cikis),
+    box-shadow var(--gecis-bas) var(--cikis);
 }
 
-/* Köstik sıradaki durağın yanında, patikanın merkezine doğru */
-.patika__maskot {
+/* Konuşma balonu ucu: madalyonu işaret eder. */
+.patika__devam::before {
+  content: '';
   position: absolute;
-  top: 20px;
-  left: calc(100% + 14px);
-  width: 48px;
-  pointer-events: none;
-}
-
-.patika__durak--sag .patika__maskot {
-  left: auto;
-  right: calc(100% + 14px);
+  top: -7px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background: var(--vurgu);
+  border-radius: 3px 0 0 0;
+  transform: translateX(-50%) rotate(45deg);
 }
 
 /* Telefon: zikzak daralır, taşma olmaz */
@@ -438,7 +444,6 @@ a.patika__baglanti:active .patika__cerceve {
   font-size: var(--yazi-xs);
   font-weight: 800;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   white-space: nowrap;
   transform: rotate(-8deg);
   box-shadow: inset 0 0 0 2px var(--zemin), inset 0 0 0 3px var(--vurgu-koyu);
@@ -447,7 +452,7 @@ a.patika__baglanti:active .patika__cerceve {
   visibility: hidden;
 }
 .patika-unite__muhur--bas {
-  animation: muhur-bas 700ms cubic-bezier(0.2, 0.9, 0.3, 1.2) 200ms both;
+  animation: muhur-bas 700ms var(--cikis) 200ms both;
 }
 @keyframes muhur-bas {
   0% {

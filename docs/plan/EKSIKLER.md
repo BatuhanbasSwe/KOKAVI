@@ -11,8 +11,8 @@
 | # | Özellik (PDF) | Şu anki durum | Yapılacak | Tahmini süre |
 |---|---|---|---|---|
 | 1 | **Dinle ve seç** egzersiz tipi | ✅ Bitti (24 Ekim): ses kendiliğinden çalar, altyazı açılır/kapanır, sessiz modda "Eser tanı"ya düşer (`tests/dinle-sec.test.tsx`) | — | — |
-| 2 | **Toplu Türkçe TTS** (dosya olarak saklanır, çevrimdışı çalışır) | ⏳ Motor seçimi bekliyor; şu an tarayıcının anlık sesi (Web Speech) kullanılıyor | Her ders için bir kez ses dosyası üret, `public/` altında sakla, PWA önbelleğine ekle | 2–3 saat |
-| 3 | **Erişilebilirlik** (WCAG 2.2 AA, yüksek kontrast, ölçeklenebilir yazı, sessiz mod) | ✅ Bitti (24 Ekim): 22 rota × 3 temada axe 0 ihlal; yazı boyutu ve sessiz mod uçtan uca doğrulandı | — | — |
+| 2 | **Toplu Türkçe TTS** (dosya olarak saklanır, çevrimdışı çalışır) | ⛔ Kapsam dışı (kullanıcı kararı, 27 Ekim): ses dosyası üretilmeyecek; yalnız cihaz sesi var, dersler sessiz modda tamamlanır | — | — |
+| 3 | **Erişilebilirlik** (WCAG 2.2 AA, yüksek kontrast, ölçeklenebilir yazı, sessiz mod) | ✅ Bitti (27 Ekim): 23 rota × 3 tema otomatik axe taraması + jeton kontrast testleri; `npm run erisilebilirlik` JSON kanıtı (`docs/ERISILEBILIRLIK.md`) | — | — |
 | 4 | **AI ile soru üretimi** (içerik hattı: içerik → AI soru → insan kontrolü → yayın) | Sorular script / elle yazılmış | Soru taslağı üreten script veya panel adımı + "insan onayı" durumu | ✅ `scripts/soru-taslak.ts` |
 | 5 | **Elmas harcama** (yeni şehir paketi, ek sefer) + **veli onayı** | Elmas kazanılıyor; harcama yeri sınırlı | Elmasla şehir/ek sefer açma; satın alma ekranında simüle veli onayı (gerçek para yok) | 1–2 saat |
 

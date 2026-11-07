@@ -118,7 +118,11 @@ export function rotaHaritasiKur(
   const markerlar = duraklar.map((d, i) => {
     const el = document.createElement('div');
     el.className = 'rota-isaret';
-    el.textContent = String(i + 1);
+    // Görsel daire iç öğede: dokunma hedefi kabın tamamı (44x44) olur.
+    const daire = document.createElement('span');
+    daire.className = 'rota-isaret__daire';
+    daire.textContent = String(i + 1);
+    el.append(daire);
     el.setAttribute('aria-hidden', 'true');
     el.style.setProperty('--sira', String(i));
     // Dokunulan durak listede seçilir (liste aynı işin erişilebilir yoludur).
@@ -157,9 +161,12 @@ export function rotaHaritasiKur(
       const ardisik = sirali.every((n, k) => k === 0 || n === sirali[k - 1]! + 1);
       const el = document.createElement('div');
       el.className = 'rota-isaret rota-isaret--grup';
-      el.textContent = ardisik
+      const daire = document.createElement('span');
+      daire.className = 'rota-isaret__daire';
+      daire.textContent = ardisik
         ? `${sirali[0]! + 1}-${sirali[sirali.length - 1]! + 1}`
         : `${sirali.length} durak`;
+      el.append(daire);
       el.setAttribute('aria-hidden', 'true');
       const uyeDuraklar = sirali.map((u) => duraklar[u]!);
       el.addEventListener('click', (olay) => {

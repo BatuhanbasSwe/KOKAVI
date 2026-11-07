@@ -77,18 +77,46 @@ describe('Bugün ekranı', () => {
       .getAllByRole('link')
       .map((a) => a.getAttribute('href'));
     expect(hedefler).toEqual(
-      expect.arrayContaining(['#/seri', '#/gunun-eseri', '#/hayrat-akar', '#/canli', '#/sinif']),
+      expect.arrayContaining(['#/seri', '#/gunun-eseri', '#/hayrat-akar']),
     );
     expect(within(mozaik).getByRole('link', { name: /günlük seri/i })).toHaveTextContent('0');
+    // Canlı yarışmaya katılım ana ekranda (Batu geri bildirimi, 07.11); kurmak öğretmen panelinde.
+    expect(hedefler).toContain('#/canli');
+    expect(hedefler).not.toContain('#/canli/kur');
+    expect(hedefler).not.toContain('#/sinif');
     // Hatalarımı çalış yalnızca bekleyen soru varsa
     expect(hedefler).not.toContain('#/hatalar');
   });
 
   it('yeni kullanıcıya tanıtım turu; atlayınca kapanır', async () => {
     await ac();
-    expect(screen.getByRole('heading', { name: 'Merhaba, ben Köstik!' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Kök Avı’na hoş geldin!' })).toBeTruthy();
     screen.getByRole('button', { name: 'Atla' }).click();
     await vi.waitFor(() => expect(screen.queryByRole('button', { name: 'Atla' })).toBeNull());
+  });
+
+  it('tercihlere göre sıradaki ders değişir: ilgiye uyan ders öne alınır', async () => {
+    localStorage.setItem(
+      'kokavi.tercihler.v1',
+      JSON.stringify({ sinif: null, ilgiler: ['han'], gunlukHedef: null, onBilgi: null }),
+    );
+    const { mozaik } = await ac();
+    const ders = await within(mozaik).findByRole('link', { name: /başla/i });
+    expect(ders).toHaveTextContent('Koza Hanı');
+    expect(ders).toHaveTextContent('ilgine göre');
+  });
+
+  it('Yol ekranında "Devam et" ilgiye uyan derse taşınır', async () => {
+    localStorage.setItem(
+      'kokavi.tercihler.v1',
+      JSON.stringify({ sinif: null, ilgiler: ['han'], gunlukHedef: null, onBilgi: null }),
+    );
+    window.location.hash = '#/yol';
+    const { App } = await import('../src/app/App');
+    render(<App />);
+    await screen.findByRole('heading', { level: 1, name: /öğrenme yolu/i });
+    const devam = await screen.findByRole('link', { name: /Koza Hanı Devam et/i });
+    expect(devam.getAttribute('href')).toBe('#/ders/bursa-u1-d2');
   });
 
   it('axe ihlali yok', async () => {

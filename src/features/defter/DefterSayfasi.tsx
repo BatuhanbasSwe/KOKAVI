@@ -27,8 +27,9 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import type { Eser } from '@shared/types';
 import { api } from '../../lib/api';
 import { arsivKaydiMetni } from '../../lib/arsivKaydi';
+import { kategoriyeGoreGrupla } from '../../lib/kategori';
 import { useDurum } from '../../app/DurumSaglayici';
-import { IkonTur } from '../../app/Ikonlar';
+import { IkonKilit, IkonTur } from '../../app/Ikonlar';
 import { kisaAd } from '../yol/kisaAd';
 import { muhurleriOku } from '../../lib/muhur';
 import '../muhur/muhur.css';
@@ -48,17 +49,40 @@ function sekmeOku(): Sekme {
   return SEKMELER.find((s) => s.id === istenen)?.id ?? 'pullar';
 }
 
-/** Pul: eserin kapak fotoğrafı tırtıklı kenarlı çerçevede; görsel yoksa tür simgesi. */
-function PulGorseli({ eserId, tur }: { eserId: string; tur: string }) {
+/**
+ * Pul: eserin kapak fotoğrafı tırtıklı kenarlı çerçevede; görsel yoksa tür simgesi.
+ * Kilitliyken küçük kapak bulanık gösterilir (merak uyandırır, eseri ele vermez).
+ */
+function PulGorseli({ eserId, tur, kilitli = false }: { eserId: string; tur: string; kilitli?: boolean }) {
   const [yok, setYok] = useState(false);
   return (
-    <span className="defter-pul__resim" aria-hidden="true">
+    <span className={`defter-pul__resim${kilitli ? ' defter-pul__resim--bulanik' : ''}`} aria-hidden="true">
       {yok ? (
         <IkonTur tur={tur} boyut={28} />
       ) : (
         <img src={`/gorseller/${eserId}/k.webp`} alt="" loading="lazy" decoding="async" onError={() => setYok(true)} />
       )}
+      {kilitli && (
+        <span className="defter-pul__kilit">
+          <IkonKilit boyut={18} />
+        </span>
+      )}
     </span>
+  );
+}
+
+/** Açılan sayfanın büyük (yüksek çözünürlüklü) fotoğrafı; yoksa hiç gösterilmez. */
+function SayfaFotografi({ eserId }: { eserId: string }) {
+  const [yok, setYok] = useState(false);
+  if (yok) return null;
+  return (
+    <img
+      className="defter-sayfasi__foto"
+      src={`/gorseller/${eserId}/1.webp`}
+      alt=""
+      decoding="async"
+      onError={() => setYok(true)}
+    />
   );
 }
 
@@ -166,8 +190,8 @@ function Pullar() {
       .then((liste) => {
         if (!iptal) setEserler(liste);
       })
-      .catch((e: unknown) => {
-        if (!iptal) setHata(e instanceof Error ? e.message : 'Eserler yüklenemedi');
+      .catch(() => {
+        if (!iptal) setHata('Eserler şu an yüklenemedi.');
       })
       .finally(() => {
         if (!iptal) setYukleniyor(false);
@@ -198,6 +222,20 @@ function Pullar() {
   const aktifSehir = sehirler.find((s) => s.id === aktifSehirId) ?? null;
   const toplamOgrenilen = eserler.filter((e) => ogrenilen.has(e.id)).length;
   const acikEser = eserler.find((e) => e.id === acikSayfa && ogrenilen.has(e.id)) ?? null;
+
+  /**
+   * Kategori kırılımı (Batu geri bildirimi: "kategori mantığı ... camii medrese
+   * gibi"): aktif şehrin pulları ham `tur` metninden bağımsız kategorilere
+   * bölünür. Pulun kendisi değişmez; yalnızca başlık ve sıra değişir, böylece
+   * öğrenilen/kilitli davranışı (blur, kilit, büyük fotoğraf) aynı kalır.
+   */
+  const kategoriGruplari = useMemo(() => {
+    if (!aktifSehir) return [];
+    return kategoriyeGoreGrupla(aktifSehir.eserler, (eser) => eser.tur).map((grup) => ({
+      ...grup,
+      ogrenilenSayi: grup.ogeler.filter((eser) => ogrenilen.has(eser.id)).length,
+    }));
+  }, [aktifSehir, ogrenilen]);
 
   // Bağlantılar: aynı baninin en az iki eseri öğrenildiyse
   const bagliBani = useMemo(() => {
@@ -278,56 +316,78 @@ function Pullar() {
             </p>
           )}
 
-          <ul className="defter-albumu">
-            {aktifSehir.eserler.map((eser) => {
-              const acik = ogrenilen.has(eser.id);
+          {/* Kategori kırılımı: her kategori kendi başlığı ve pul sayacıyla
+              listelenir. Pul bileşeni değişmez; yalnızca gruplama değişir. */}
+          <div className="defter-kategoriler">
+            {kategoriGruplari.map((grup, sira) => {
+              const baslikId = `defter-kategori-${sira}`;
               return (
-                <li key={eser.id}>
-                  {acik ? (
-                    <button
-                      type="button"
-                      className="defter-pul defter-pul--acik"
-                      aria-expanded={acikSayfa === eser.id}
-                      aria-controls="defter-sayfa-ayrinti"
-                      onClick={() => setAcikSayfa(acikSayfa === eser.id ? null : eser.id)}
-                    >
-                      <span className="defter-pul__sarmal">
-                        <span className="defter-pul__kagit">
-                          <PulGorseli eserId={eser.id} tur={eser.tur} />
-                        </span>
-                        {muhurler[eser.id] ? (
-                          <span className="muhur-damga" aria-hidden="true">
-                            Orada bulundum
-                          </span>
-                        ) : null}
-                      </span>
-                      <span className="defter-pul__ad">
-                        {kisaAd(eser.ad)}
-                        {muhurler[eser.id] ? <span className="sr-only">, orada bulundun</span> : null}
-                      </span>
-                    </button>
-                  ) : (
-                    <div className="defter-pul defter-pul--kapali">
-                      <span className="defter-pul__kagit" aria-hidden="true">
-                        <span className="defter-pul__resim">
-                          <IkonTur tur={eser.tur} boyut={24} />
-                        </span>
-                      </span>
-                      <span className="defter-pul__ad">
-                        <span aria-hidden="true">? </span>
-                        {eser.tur}
-                        <span className="sr-only">, henüz öğrenilmedi</span>
-                      </span>
-                    </div>
-                  )}
-                </li>
+                <section
+                  key={grup.kategori}
+                  className="defter-kategori"
+                  aria-labelledby={baslikId}
+                >
+                  <h3 id={baslikId} className="defter-kategori__baslik">
+                    {grup.kategori}
+                    {' '}
+                    <span className="defter-kategori__sayac">
+                      {grup.ogrenilenSayi}/{grup.ogeler.length} pul
+                    </span>
+                  </h3>
+                  <ul className="defter-albumu">
+                    {grup.ogeler.map((eser) => {
+                      const acik = ogrenilen.has(eser.id);
+                      return (
+                        <li key={eser.id}>
+                          {acik ? (
+                            <button
+                              type="button"
+                              className="defter-pul defter-pul--acik"
+                              aria-expanded={acikSayfa === eser.id}
+                              aria-controls="defter-sayfa-ayrinti"
+                              onClick={() => setAcikSayfa(acikSayfa === eser.id ? null : eser.id)}
+                            >
+                              <span className="defter-pul__sarmal">
+                                <span className="defter-pul__kagit">
+                                  <PulGorseli eserId={eser.id} tur={eser.tur} />
+                                </span>
+                                {muhurler[eser.id] ? (
+                                  <span className="muhur-damga" aria-hidden="true">
+                                    Orada bulundum
+                                  </span>
+                                ) : null}
+                              </span>
+                              <span className="defter-pul__ad">
+                                {kisaAd(eser.ad)}
+                                {muhurler[eser.id] ? (
+                                  <span className="sr-only">, orada bulundun</span>
+                                ) : null}
+                              </span>
+                            </button>
+                          ) : (
+                            <div className="defter-pul defter-pul--kapali">
+                              <span className="defter-pul__kagit" aria-hidden="true">
+                                <PulGorseli eserId={eser.id} tur={eser.tur} kilitli />
+                              </span>
+                              <span className="defter-pul__ad">
+                                {kisaAd(eser.ad)}
+                                <span className="sr-only">, henüz öğrenilmedi</span>
+                              </span>
+                            </div>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
               );
             })}
-          </ul>
+          </div>
 
           <div id="defter-sayfa-ayrinti" aria-live="polite">
             {acikEser && (
               <article className="defter-sayfasi defter-sayfasi--acik">
+                <SayfaFotografi key={acikEser.id} eserId={acikEser.id} />
                 <div className="etiket">{acikEser.tur}</div>
                 <h3 style={{ margin: 0, fontSize: 'var(--yazi-xl)' }}>{kisaAd(acikEser.ad)}</h3>
                 {ozetler.get(acikEser.id) && <p style={{ margin: 0 }}>{ozetler.get(acikEser.id)}</p>}

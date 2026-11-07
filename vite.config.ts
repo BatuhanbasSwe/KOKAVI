@@ -28,10 +28,20 @@ export default defineConfig({
       workbox: {
         // Çevrimdışı ders desteği: uygulama kabuğu + ders verisi önbelleğe alınır.
         // .mjs: MapLibre worker'ı (harita çevrimdışı da çizilsin).
-        globPatterns: ['**/*.{js,mjs,css,html,svg,png,woff2,json}', 'maskot/*.webp'],
-        // Eser fotoğrafları (~25 MB) ve arşiv (~23 MB) ilk yüklemeye girmez;
-        // açıldıkça aşağıdaki çalışma zamanı önbelleğine alınır.
-        globIgnores: ['gorseller/**', 'arsiv/**'],
+        // k.webp: 57 eserin küçük kapak fotoğrafı (~1,5 MB). Keşfet/Bugün/Yol/
+        // Defter kutucukları ile ders başlıkları internetsiz de görünür.
+        globPatterns: ['**/*.{js,mjs,css,html,svg,png,woff2,json}', 'gorseller/**/k.webp'],
+        // Büyük eser fotoğrafları (~25 MB) ve arşiv (~23 MB) ilk yüklemeye girmez;
+        // açıldıkça aşağıdaki çalışma zamanı önbelleğine alınır. Ayrıca
+        // `src/lib/cevrimdisi.ts` internet varken ders verisini ve kapakları
+        // sessizce ısıtır; böylece çevrimdışı ders açılır.
+        // liste.json (136 KB) önbelleğe girer: harita ilçe sayıları internetsiz de gelsin.
+        globIgnores: [
+          'gorseller/**/[0-9].webp',
+          'gorseller/**/[0-9][0-9].webp',
+          'arsiv/foto/**',
+          'arsiv/metin/**',
+        ],
         navigateFallback: '/index.html',
         runtimeCaching: [
           {
@@ -46,19 +56,30 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /^\/(gorseller|arsiv)\//,
+            // Not: Workbox RegExp'i tam URL'ye (https://...) uygular; ^\/ hiç eşleşmez.
+            // Eser fotoğrafı (1..6.webp), arşiv fotoğrafı ve arşiv metni: açıldıkça
+            // önbelleğe alınır; kez görülen görsel çevrimdışı da açılır.
+            urlPattern: ({ url, sameOrigin }) =>
+              sameOrigin && /^\/(gorseller|arsiv)\//.test(url.pathname),
             handler: 'CacheFirst',
             options: {
               cacheName: 'kokavi-gorsel-arsiv',
-              expiration: { maxEntries: 1500, maxAgeSeconds: 60 * 60 * 24 * 60 },
+              expiration: { maxEntries: 3000, maxAgeSeconds: 60 * 60 * 24 * 60 },
             },
           },
           {
-            urlPattern: /^\/api\/(eserler|uniteler|yol|ders)\b.*/,
-            handler: 'StaleWhileRevalidate',
+            // Ders, eser, şehir/ünite, külliye ve filtre verisi: önce ağ (taze);
+            // 4 sn'de gelmezse ya da internet yoksa son kopya.
+            urlPattern: ({ url, sameOrigin }) =>
+              sameOrigin &&
+              /^\/api\/(eserler|uniteler|sehirler|kulliyeler|yol|dersler|filtreler)\b/.test(url.pathname),
+            handler: 'NetworkFirst',
             options: {
               cacheName: 'kokavi-api',
-              expiration: { maxEntries: 400, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              networkTimeoutSeconds: 4,
+              cacheableResponse: { statuses: [200] },
+              // 57 ders + 57 eser + liste uçları: çevrimdışı paket tam sığsın.
+              expiration: { maxEntries: 800, maxAgeSeconds: 60 * 60 * 24 * 30 },
             },
           },
         ],

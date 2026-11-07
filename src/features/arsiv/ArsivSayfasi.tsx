@@ -12,8 +12,6 @@
  */
 import { useEffect, useMemo, useState } from 'react';
 import { SuzgecPaneli } from '../../app/SuzgecPaneli';
-import { soruMu } from '../../lib/soruMu';
-import { sohbetiAc } from '../sohbet/KostikSohbeti';
 import { git } from '../../lib/yonlendirme';
 import { arsivFotoUrl, arsivListesi, IL_ADLARI, type ArsivEseri } from './arsivVeri';
 import './arsiv.css';
@@ -36,7 +34,18 @@ export function ArsivSayfasi() {
   const [tur, setTur] = useState('');
   const [arama, setArama] = useState('');
   const [gosterilen, setGosterilen] = useState(SAYFA);
-  const soruYazildi = soruMu(arama);
+  // Çevrimdışı: liste ve künye gömülü/kalıcı önbellekte; fotoğraflar ilk kez
+  // görülürken ağdan gelir. Durumu metinle söyle (renk tek başına anlam taşımaz).
+  const [cevrimdisi, setCevrimdisi] = useState(() => typeof navigator !== 'undefined' && !navigator.onLine);
+  useEffect(() => {
+    const guncelle = () => setCevrimdisi(!navigator.onLine);
+    window.addEventListener('online', guncelle);
+    window.addEventListener('offline', guncelle);
+    return () => {
+      window.removeEventListener('online', guncelle);
+      window.removeEventListener('offline', guncelle);
+    };
+  }, []);
 
   useEffect(() => {
     let iptal = false;
@@ -44,8 +53,8 @@ export function ArsivSayfasi() {
       .then((l) => {
         if (!iptal) setListe(l);
       })
-      .catch((e: unknown) => {
-        if (!iptal) setHata(e instanceof Error ? e.message : 'Arşiv yüklenemedi.');
+      .catch(() => {
+        if (!iptal) setHata('Arşiv şu an yüklenemedi.');
       })
       .finally(() => {
         if (!iptal) setYukleniyor(false);
@@ -71,8 +80,7 @@ export function ArsivSayfasi() {
   );
 
   const sonuc = useMemo(() => {
-    // Soru yazılıyorsa ad araması yapılmaz (liste diğer süzgeçlerle kalır).
-    const aranan = soruMu(arama) ? '' : kucult(arama.trim());
+    const aranan = kucult(arama.trim());
     return liste.filter(
       (e) =>
         (!il || e.il === il) &&
@@ -119,7 +127,7 @@ export function ArsivSayfasi() {
         <div className="arsiv-arama">
           <div className="harita-filtre">
             <label className="sr-only" htmlFor="arsiv-arama">
-              Sor ya da ara
+              Eser adı ara
             </label>
             <input
               id="arsiv-arama"
@@ -127,11 +135,7 @@ export function ArsivSayfasi() {
               type="search"
               value={arama}
               onChange={(o) => setArama(o.target.value)}
-              onKeyDown={(o) => {
-                if (o.key === 'Enter' && soruYazildi) sohbetiAc({ soru: arama.trim() });
-              }}
-              placeholder="Ara ya da sor: Ulucami'de kaç kubbe var?"
-              aria-describedby="arsiv-sor-ipucu"
+              placeholder="Eser adı ara: Ulucami…"
             />
           </div>
           <SuzgecPaneli
@@ -199,14 +203,6 @@ export function ArsivSayfasi() {
             </div>
           </SuzgecPaneli>
         </div>
-        {soruYazildi ? (
-          <button type="button" className="dugme dugme--kucuk arsiv-sor" onClick={() => sohbetiAc({ soru: arama.trim() })}>
-            Köstik'e sor
-          </button>
-        ) : null}
-        <p id="arsiv-sor-ipucu" className="sr-only">
-          Bir eser adı yaz ya da soru sor; soru sorarsan Köstik kaynaklarıyla cevaplar.
-        </p>
         <p className="harita-filtreler__durum" role="status" aria-live="polite">
           {durum}
         </p>
@@ -215,12 +211,29 @@ export function ArsivSayfasi() {
 
       {hata ? <div className="bildirim bildirim--uyari">{hata} İnternet bağlantını kontrol et.</div> : null}
 
+      {cevrimdisi ? (
+        <div className="bildirim bildirim--uyari" role="status">
+          İnternet yok. Eser adları ve künyeler görünür; fotoğraflar internet gelince yüklenir.
+        </div>
+      ) : null}
+
       <ul className="arsiv-izgara">
         {sonuc.slice(0, gosterilen).map((e, i) => (
           <li key={e.id} className="arsiv-kart" style={{ ['--gecikme' as string]: `${(i % SAYFA) * 25}ms` }}>
             <a className="arsiv-kart__bag" href={`#/arsiv/${encodeURIComponent(e.id)}`}>
               {e.foto ? (
-                <img className="arsiv-kart__resim" src={arsivFotoUrl(e.id)} alt="" loading="lazy" decoding="async" />
+                <img
+                  className="arsiv-kart__resim"
+                  src={arsivFotoUrl(e.id)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  onError={(olay) => {
+                    // İnternetsiz ve önbellekte yoksa kırık görsel simgesi yerine
+                    // boş bırak; kart bilgisi metinle okunur.
+                    olay.currentTarget.hidden = true;
+                  }}
+                />
               ) : (
                 <span className="arsiv-kart__resim arsiv-kart__resim--bos" aria-hidden="true" />
               )}
@@ -229,7 +242,15 @@ export function ArsivSayfasi() {
                 <span className="arsiv-kart__alt">
                   {[IL_ADLARI[e.il], e.ilce, e.tur].filter(Boolean).join(' · ')}
                 </span>
-                {e.ders ? <span className="arsiv-kart__rozet"><IkonYildiz boyut={12} /> Dersi var</span> : null}
+                {e.ders ? (
+                  <span className="arsiv-kart__rozet">
+                    <IkonYildiz boyut={12} /> Dersi var
+                  </span>
+                ) : e.ilgiliDersler?.length ? (
+                  <span className="arsiv-kart__rozet">
+                    <IkonYildiz boyut={12} /> İlgili ders
+                  </span>
+                ) : null}
               </span>
             </a>
           </li>
