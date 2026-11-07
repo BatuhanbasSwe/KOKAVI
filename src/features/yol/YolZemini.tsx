@@ -124,13 +124,6 @@ function Suslemeler({ zemin }: { zemin: YolZeminiAdi }) {
       </svg>
     );
   }
-  if (zemin === 'cayir') {
-    return (
-      <svg className="yol-zemin__alt" viewBox="0 0 1200 160" preserveAspectRatio="none">
-        <path d="M0 90 Q300 30 600 80 T1200 70 V160 H0Z" className="yz-cayir-tepe" />
-      </svg>
-    );
-  }
   return null;
 }
 

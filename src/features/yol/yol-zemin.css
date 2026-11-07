@@ -70,14 +70,9 @@ body:has(.yol-zemin) .yol-zemin-secici {
   background: radial-gradient(ellipse 320px 130% at 50% 50%, #f6f1e6 50%, color-mix(in srgb, #f6f1e6 25%, transparent) 100%);
 }
 
-/* 2 · Oyun çayırı: yeşil dünya, kum yol, ağaçlar, çiçekler, gölet ---------- */
+/* 2 · Oyun çayırı: düz çizim dünya karosu (public/yol-zemin/cayir.svg) ------ */
 .yol-zemin--cayir {
-  background-color: #a8dc7a;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='520' viewBox='0 0 420 520'%3E%3Cellipse cx='60' cy='420' rx='70' ry='34' fill='%237fd3f7' stroke='%23ffffff' stroke-width='5'/%3E%3Ccircle cx='40' cy='80' r='26' fill='%2350a85a'/%3E%3Ccircle cx='58' cy='66' r='22' fill='%2366c26e'/%3E%3Crect x='44' y='96' width='8' height='18' rx='3' fill='%23946437'/%3E%3Ccircle cx='370' cy='210' r='30' fill='%2350a85a'/%3E%3Ccircle cx='388' cy='194' r='24' fill='%2366c26e'/%3E%3Crect x='372' y='230' width='9' height='20' rx='3' fill='%23946437'/%3E%3Ccircle cx='350' cy='450' r='22' fill='%2350a85a'/%3E%3Ccircle cx='366' cy='438' r='18' fill='%2366c26e'/%3E%3Crect x='354' y='466' width='7' height='15' rx='3' fill='%23946437'/%3E%3Cg fill='%23ffffff'%3E%3Ccircle cx='120' cy='250' r='5'/%3E%3Ccircle cx='300' cy='70' r='5'/%3E%3Ccircle cx='250' cy='380' r='5'/%3E%3C/g%3E%3Cg fill='%23ffd43b'%3E%3Ccircle cx='120' cy='250' r='2.5'/%3E%3Ccircle cx='300' cy='70' r='2.5'/%3E%3Ccircle cx='250' cy='380' r='2.5'/%3E%3C/g%3E%3Cg fill='%2389c95f'%3E%3Cpath d='M180 160 l5 -12 l5 12z M190 162 l5 -14 l5 14z M70 300 l5 -12 l5 12z M80 302 l5 -14 l5 14z M300 320 l5 -12 l5 12z'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 420px 520px;
-}
-.yz-cayir-tepe {
-  fill: #7cc35a;
+  background: #9fd76f url('/yol-zemin/cayir.svg') center top / 800px auto repeat;
 }
 
 /* 3 · Gökyüzü: mavi degrade, bulutlar, güneş, tepeler ---------------------- */
@@ -216,3 +211,4 @@ body:has(.yol-zemin--siluet) .patika__yol-iz {
   stroke: #6b3f5f;
   stroke-width: 6;
 }
+
