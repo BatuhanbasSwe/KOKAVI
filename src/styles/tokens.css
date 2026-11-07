@@ -169,6 +169,9 @@
    =========================================================================== */
 :root:not([data-tema]),
 [data-tema='acik'] {
+  /* Öğrenme Yolu "tarihi eserler" zemini (yol-zemin.css) */
+  --yol-zemin-renk: #f6efe2;
+  --yol-tas: #e3d3b4;
   color-scheme: light;
 
   --zemin: #f6f8fc;
